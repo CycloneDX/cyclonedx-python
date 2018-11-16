@@ -2,20 +2,17 @@ import argparse
 import requirements
 from cyclonedx import BomGenerator
 
-parser = argparse.ArgumentParser(description='Add some integers.')
 
-parser.add_argument('integers', metavar='N', type=int, nargs='+',
-                    help='interger list')
-parser.add_argument('--sum', action='store_const',
-                    const=sum, default=max,
-                    help='sum the integers (default: find the max)')
-
-# args = parser.parse_args()
-# print(args.sum(args.integers))
+parser = argparse.ArgumentParser(description='CycloneDX BOM Generator')
+parser.add_argument('-i', action="store", dest="input_file", default="requirements.txt")
+parser.add_argument('-o', action="store", dest="output_file", default="bom.xml")
+args = parser.parse_args()
+print("Input file: " + args.input_file)
+print("Output BOM: " + args.output_file)
 
 
-def main():
-    with open('requirements.txt', 'r') as fd:
+def main(requirementsFile, bomOutputFile):
+    with open(requirementsFile, 'r') as fd:
         print("Generating CycloneDX BOM")
         component_elements = []
         for req in requirements.parse(fd):
@@ -40,6 +37,11 @@ def main():
                     component = BomGenerator.build_component_element("", name, version, "", "", purl, "false")
                     component_elements.append(component)
 
-        BomGenerator.build_bom(component_elements)
+    # Generate the CycloneDX BOM and return it as an XML string
+    bom_xml = BomGenerator.build_bom(component_elements)
+    text_file = open(bomOutputFile, "w")
+    text_file.write(bom_xml)
+    text_file.close()
 
-main()
+
+main(args.input_file, args.output_file)

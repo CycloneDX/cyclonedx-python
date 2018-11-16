@@ -21,8 +21,7 @@ def build_bom(component_elements):
     for component in component_elements:
         components.append(component)
     bom.append(components)
-    xml_str = declaration + ElementTree.tostring(bom).decode()
-    print(xml_str)
+    return declaration + ElementTree.tostring(bom).decode()
 
 
 def build_component_element(publisher, name, version, description, license, purl, modified):

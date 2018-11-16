@@ -12,26 +12,30 @@ The CycloneDX module for Python creates a valid CycloneDX bill-of-material docum
 Usage
 -------------------
 
+#### Freezing
+A bill-of-material such as CycloneDX expects exact version numbers. Therefore requirements.txt must be frozen. This can
+be accomplished via:
+
+```bash
+pip freeze > requirements.txt
+```
+
 #### Installing
 
 ```bash
 pip install cyclonedx-bom
 ```
 
-#### Getting Help
+#### Options
+By default, requirements.txt will be read from the current working directory and the resulting bom.xml will also 
+be created in the current working directory. These options can be overwritten as follows:
+
 ```bash
-$ cyclonedx-py -h
-Usage:  cyclonedx-py [OPTIONS] [path]
+$ cyclonedx-py
+Usage:  cyclonedx-py [OPTIONS]
 Options:
-  -h        - this help
   -i <path> - the alternate filename to a frozen requirements.txt
-  -o <path> - write to file instead of stdout
-
-```
-
-#### Example
-```bash
-cyclonedx-py -o bom.xml
+  -o <path> - the bom file to create
 ```
 
 License
