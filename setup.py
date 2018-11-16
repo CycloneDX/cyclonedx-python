@@ -24,7 +24,7 @@ setuptools.setup(
         'packageurl',
         'xml.etree',
     ],
-    entry_points={  # Links 'hello1234' command with a function to call
+    entry_points={
         'console_scripts': ['cyclonedx-py=generateBom:main']
     },
     author='Steve Springett',
