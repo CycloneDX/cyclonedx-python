@@ -7,7 +7,7 @@ The CycloneDX module for Python creates a valid CycloneDX bill-of-material docum
 Usage
 -----
 
-#### Freezing
+**Freezing**
 A bill-of-material such as CycloneDX expects exact version numbers. Therefore requirements.txt must be frozen. This can
 be accomplished via:
 
@@ -16,14 +16,14 @@ be accomplished via:
     $ pip freeze > requirements.txt
 
 
-#### Installing
+**Installing**
 
 .. code-block:: console
 
     $ pip install cyclonedx-bom
 
 
-#### Options
+**Options**
 By default, requirements.txt will be read from the current working directory and the resulting bom.xml will also 
 be created in the current working directory. These options can be overwritten as follows:
 
@@ -39,4 +39,4 @@ be created in the current working directory. These options can be overwritten as
 License
 -------
 
-Permission to modify and redistribute is granted under the terms of the Apache 2.0 license. See the [LICENSE] file for the full license.
+Permission to modify and redistribute is granted under the terms of the Apache 2.0 license.
