@@ -8,6 +8,7 @@ Usage
 -----
 
 **Freezing**
+
 A bill-of-material such as CycloneDX expects exact version numbers. Therefore requirements.txt must be frozen. This can
 be accomplished via:
 
@@ -24,6 +25,7 @@ be accomplished via:
 
 
 **Options**
+
 By default, requirements.txt will be read from the current working directory and the resulting bom.xml will also 
 be created in the current working directory. These options can be overwritten as follows:
 
