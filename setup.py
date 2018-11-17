@@ -23,6 +23,7 @@ setuptools.setup(
         'requirements',
         'packageurl',
         'xml.etree',
+        'xmlschema',
     ],
     entry_points={
         'console_scripts': ['cyclonedx-py=generateBom:main']
