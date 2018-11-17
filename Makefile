@@ -15,6 +15,6 @@ package:
 	@echo "\nChecks pass, good to package..."
 	python setup.py sdist bdist_wheel
 
-publish: deploy
+publish:
 	@echo "\nPackaging complete... Uploading to PyPi..."
 	twine upload dist/*
