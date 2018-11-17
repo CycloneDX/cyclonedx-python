@@ -32,6 +32,10 @@ setuptools.setup(
     maintainer='Steve Springett, Creator/maintainer of CycloneDX among others',
     maintainer_email='steve.springett@owasp.org',
     url='https://github.com/CycloneDX/cyclonedx-python',
+    project_urls={
+        'Homepage': 'https://cyclonedx.org'
+    },
+    keywords=["BOM", "SBOM" "SCA"],
     license='Apache-2.0',
     classifiers=[
         'Intended Audience :: Developers',
