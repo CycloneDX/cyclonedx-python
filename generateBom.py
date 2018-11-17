@@ -20,6 +20,7 @@
 import argparse
 import requirements
 from cyclonedx import BomGenerator
+from cyclonedx import BomValidator
 
 
 parser = argparse.ArgumentParser(description='CycloneDX BOM Generator')
@@ -61,6 +62,13 @@ def main(requirementsFile, bomOutputFile):
     text_file = open(bomOutputFile, "w")
     text_file.write(bom_xml)
     text_file.close()
+
+    print("Validating BOM")
+    is_valid = BomValidator.is_valid(bomOutputFile)
+    if is_valid:
+        print("Complete")
+    else:
+        print("The generated BOM is not valid")
 
 
 main(args.input_file, args.output_file)
