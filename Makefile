@@ -13,7 +13,7 @@ clean:
 
 package:
 	@echo "\nChecks pass, good to package..."
-	python setup.py sdist
+	python setup.py sdist bdist_wheel
 
 publish: deploy
 	@echo "\nPackaging complete... Uploading to PyPi..."
