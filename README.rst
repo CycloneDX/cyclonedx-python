@@ -2,7 +2,7 @@
 CycloneDX Python Module
 =======================
 
-The CycloneDX module for Python creates a valid CycloneDX bill-of-material document containing an aggregate of all project dependencies. CycloneDX is a lightweight BoM specification that is easily created, human readable, and simple to parse. The resulting bom.xml can be used with tools such as [OWASP Dependency-Track](https://dependencytrack.org/) for the continuous analysis of components.
+The CycloneDX module for Python creates a valid CycloneDX bill-of-material document containing an aggregate of all project dependencies. CycloneDX is a lightweight BoM specification that is easily created, human readable, and simple to parse. The resulting bom.xml can be used with tools such as `OWASP Dependency-Track <https://dependencytrack.org/>`_ for the continuous analysis of components.
 
 Usage
 -----
