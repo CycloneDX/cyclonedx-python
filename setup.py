@@ -5,16 +5,11 @@ from __future__ import print_function
 
 import setuptools
 
-with open("README.md", "r") as fh:
-    long_description = fh.read()
-
 setuptools.setup(
     name='cyclonedx-bom',
     version='0.1.0',
     description='CycloneDX bill-of-material (BOM) generation utility',
-    long_description=long_description,
-    long_description_content_type="text/markdown",
-    # packages=['cyclonedx', 'cyclonedx.schema'],
+    long_description=open("README.md").read(),
     packages=setuptools.find_packages(),
     package_data={'cyclonedx.schema': ['bom-1.0.xsd', 'spdx.xsd']},
     include_package_data=True,
@@ -30,11 +25,13 @@ setuptools.setup(
     },
     author='Steve Springett',
     author_email='steve.springett@owasp.org',
-    maintainer='Steve Springett, Creator/maintainer of CycloneDX among others',
+    maintainer='Steve Springett',
     maintainer_email='steve.springett@owasp.org',
     url='https://github.com/CycloneDX/cyclonedx-python',
     project_urls={
-        'Homepage': 'https://cyclonedx.org'
+        'CycloneDX': 'https://cyclonedx.org',
+        'Source Code': 'https://github.com/CycloneDX/cyclonedx-python',
+        'Issue Tracker': 'https://github.com/CycloneDX/cyclonedx-python/issues',
     },
     keywords=["BOM", "SBOM" "SCA"],
     license='Apache-2.0',
