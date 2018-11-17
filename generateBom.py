@@ -31,6 +31,18 @@ print("Input file: " + args.input_file)
 print("Output BOM: " + args.output_file)
 
 
+def populate_digests(hashes, digests):
+    for sig in digests:
+        if sig == "md5":
+            hashes["MD5"] = digests[sig]
+        elif sig == "sha1":
+            hashes["SHA-1"] = digests[sig]
+        elif sig == "sha256":
+            hashes["SHA-256"] = digests[sig]
+        elif sig == "sha512":
+            hashes["SHA-512"] = digests[sig]
+
+
 def main(requirementsFile, bomOutputFile):
     with open(requirementsFile, 'r') as fd:
         print("Generating CycloneDX BOM")
@@ -48,13 +60,29 @@ def main(requirementsFile, bomOutputFile):
                     author = info["author"]
                     description = info["summary"]
                     license = info["license"]  # TODO: Attempt to perform SPDX license ID resolution
+
+                    # This should be optimized a bit - kinda ugly
+                    hashes = {}
+                    releases = json["releases"]
+                    version_release = releases[version]
+                    has_wheel = False
+                    for release in version_release:
+                        if release["packagetype"] == "bdist_wheel":
+                            has_wheel = True
+                    # pip will always prefer bdist_wheel over sdist - therefore hashes from bdist_wheel take precedence
+                    for release in version_release:
+                        if has_wheel is True and release["packagetype"] == "bdist_wheel":
+                            populate_digests(hashes, release["digests"])
+                        elif has_wheel is False and release["packagetype"] == "sdist":
+                            populate_digests(hashes, release["digests"])
+
                     purl = BomGenerator.generate_purl(name, version)
-                    component = BomGenerator.build_component_element(author, name, version, description, license, purl, "false")
+                    component = BomGenerator.build_component_element(author, name, version, description, hashes, license, purl, "false")
                     component_elements.append(component)
                 else:
                     # nothing to parse, simply add the name, version, and purl to bom
                     purl = BomGenerator.generate_purl(name, version)
-                    component = BomGenerator.build_component_element("", name, version, "", "", purl, "false")
+                    component = BomGenerator.build_component_element("", name, version, "", {}, "", purl, "false")
                     component_elements.append(component)
 
     # Generate the CycloneDX BOM and return it as an XML string

@@ -40,7 +40,7 @@ def build_bom(component_elements):
     return declaration + ElementTree.tostring(bom).decode()
 
 
-def build_component_element(publisher, name, version, description, license, purl, modified):
+def build_component_element(publisher, name, version, description, hashes, license, purl, modified):
     component = ElementTree.Element("component", {"type": "library"})
     if publisher and publisher != 'UNKNOWN':
         elm = ElementTree.Element("publisher")
@@ -58,6 +58,13 @@ def build_component_element(publisher, name, version, description, license, purl
         elm = ElementTree.Element("description")
         elm.text = description
         component.append(elm)
+    if len(hashes) > 0:
+        hashes_elm = ElementTree.Element("hashes")
+        for h in hashes:
+            elm = ElementTree.Element("hash", {"alg": h})
+            elm.text = hashes[h]
+            hashes_elm.append(elm)
+        component.append(hashes_elm)
     if license and license != "UNKNOWN":
         licenses_elm = ElementTree.Element("licenses")
         license_elm = ElementTree.Element("license")
