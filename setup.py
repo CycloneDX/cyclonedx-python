@@ -33,7 +33,7 @@ setuptools.setup(
         'Source Code': 'https://github.com/CycloneDX/cyclonedx-python',
         'Issue Tracker': 'https://github.com/CycloneDX/cyclonedx-python/issues',
     },
-    keywords=["BOM", "SBOM" "SCA"],
+    keywords=["BOM", "SBOM", "SCA"],
     license='Apache-2.0',
     classifiers=[
         'Intended Audience :: Developers',
