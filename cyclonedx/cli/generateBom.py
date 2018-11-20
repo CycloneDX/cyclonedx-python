@@ -48,8 +48,12 @@ def main(requirementsFile, bomOutputFile):
         print("Generating CycloneDX BOM")
         component_elements = []
         for req in requirements.parse(fd):
+            name = req.name
+            if not req.specs:
+                print("WARNING: " + name + " does not have a version specified. Skipping.")
+                break
+
             if len(req.specs[0]) >= 2:
-                name = req.name
                 version = req.specs[0][1]
                 if req.specs[0][0] != "==":
                     print("WARNING: " + name + " is not pinned to a specific version. Using: " + version)
