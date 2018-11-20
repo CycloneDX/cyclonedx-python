@@ -17,7 +17,6 @@ setuptools.setup(
     install_requires=[
         'requirements',
         'packageurl_python',
-        'xml.etree',
         'xmlschema',
     ],
     entry_points={
