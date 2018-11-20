@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='cyclonedx-bom',
-    version='0.1.1.6',
+    version='0.2.0',
     description='CycloneDX bill-of-material (BOM) generation utility',
     long_description=open("README.rst").read(),
     packages=find_packages(),
