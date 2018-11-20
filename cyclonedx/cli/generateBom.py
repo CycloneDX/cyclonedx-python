@@ -22,15 +22,6 @@ import requirements
 from cyclonedx import BomGenerator
 from cyclonedx import BomValidator
 
-
-parser = argparse.ArgumentParser(description='CycloneDX BOM Generator')
-parser.add_argument('-i', action="store", dest="input_file", default="requirements.txt")
-parser.add_argument('-o', action="store", dest="output_file", default="bom.xml")
-args = parser.parse_args()
-print("Input file: " + args.input_file)
-print("Output BOM: " + args.output_file)
-
-
 def populate_digests(hashes, digests):
     for sig in digests:
         if sig == "md5":
@@ -43,8 +34,15 @@ def populate_digests(hashes, digests):
             hashes["SHA-512"] = digests[sig]
 
 
-def main(requirementsFile, bomOutputFile):
-    with open(requirementsFile, 'r') as fd:
+def main():
+    parser = argparse.ArgumentParser(description='CycloneDX BOM Generator')
+    parser.add_argument('-i', action="store", dest="input_file", default="requirements.txt")
+    parser.add_argument('-o', action="store", dest="output_file", default="bom.xml")
+    args = parser.parse_args()
+    print("Input file: " + args.input_file)
+    print("Output BOM: " + args.output_file)
+
+    with open(args.input_file, 'r') as fd:
         print("Generating CycloneDX BOM")
         component_elements = []
         for req in requirements.parse(fd):
@@ -91,16 +89,13 @@ def main(requirementsFile, bomOutputFile):
 
     # Generate the CycloneDX BOM and return it as an XML string
     bom_xml = BomGenerator.build_bom(component_elements)
-    text_file = open(bomOutputFile, "w")
+    text_file = open(args.output_file, "w")
     text_file.write(bom_xml)
     text_file.close()
 
     print("Validating BOM")
-    is_valid = BomValidator.is_valid(bomOutputFile)
+    is_valid = BomValidator.is_valid(args.output_file)
     if is_valid:
         print("Complete")
     else:
         print("The generated BOM is not valid")
-
-
-main(args.input_file, args.output_file)
