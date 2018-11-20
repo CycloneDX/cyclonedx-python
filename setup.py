@@ -7,7 +7,7 @@ import setuptools
 
 setuptools.setup(
     name='cyclonedx-bom',
-    version='0.1.0',
+    version='0.1.1',
     description='CycloneDX bill-of-material (BOM) generation utility',
     long_description=open("README.rst").read(),
     packages=setuptools.find_packages(),
@@ -16,7 +16,7 @@ setuptools.setup(
     zip_safe=False,
     install_requires=[
         'requirements',
-        'packageurl',
+        'packageurl_python',
         'xml.etree',
         'xmlschema',
     ],
