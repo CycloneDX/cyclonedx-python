@@ -17,6 +17,7 @@
 #
 # Copyright (c) Steve Springett. All Rights Reserved.
 
+import sys
 import argparse
 import requirements
 from cyclonedx import BomGenerator
@@ -34,6 +35,55 @@ def populate_digests(hashes, digests):
             hashes["SHA-512"] = digests[sig]
 
 
+def read_bom(fd):
+    """Read BOM data from file handle."""
+    print("Generating CycloneDX BOM")
+    component_elements = []
+    for req in requirements.parse(fd):
+        name = req.name
+        if not req.specs:
+            print("WARNING: " + name + " does not have a version specified. Skipping.")
+            break
+
+        if len(req.specs[0]) >= 2:
+            version = req.specs[0][1]
+            if req.specs[0][0] != "==":
+                print("WARNING: " + name + " is not pinned to a specific version. Using: " + version)
+            response = BomGenerator.get_package_info(name, version)
+            if response:
+                json = response.json()
+                info = json["info"]
+                author = info["author"]
+                description = info["summary"]
+                license = info["license"]  # TODO: Attempt to perform SPDX license ID resolution
+
+                # This should be optimized a bit - kinda ugly
+                hashes = {}
+                releases = json["releases"]
+                version_release = releases[version]
+                has_wheel = False
+                for release in version_release:
+                    if release["packagetype"] == "bdist_wheel":
+                        has_wheel = True
+                # pip will always prefer bdist_wheel over sdist - therefore hashes from bdist_wheel take precedence
+                for release in version_release:
+                    if has_wheel is True and release["packagetype"] == "bdist_wheel":
+                        populate_digests(hashes, release["digests"])
+                    elif has_wheel is False and release["packagetype"] == "sdist":
+                        populate_digests(hashes, release["digests"])
+
+                purl = BomGenerator.generate_purl(name, version)
+                component = BomGenerator.build_component_element(author, name, version, description, hashes, license, purl, "false")
+                component_elements.append(component)
+            else:
+                # nothing to parse, simply add the name, version, and purl to bom
+                purl = BomGenerator.generate_purl(name, version)
+                component = BomGenerator.build_component_element("", name, version, "", {}, "", purl, "false")
+                component_elements.append(component)
+
+    return component_elements
+
+
 def main():
     parser = argparse.ArgumentParser(description='CycloneDX BOM Generator')
     parser.add_argument('-i', action="store", dest="input_file", default="requirements.txt")
@@ -42,50 +92,11 @@ def main():
     print("Input file: " + args.input_file)
     print("Output BOM: " + args.output_file)
 
-    with open(args.input_file, 'r') as fd:
-        print("Generating CycloneDX BOM")
-        component_elements = []
-        for req in requirements.parse(fd):
-            name = req.name
-            if not req.specs:
-                print("WARNING: " + name + " does not have a version specified. Skipping.")
-                break
-
-            if len(req.specs[0]) >= 2:
-                version = req.specs[0][1]
-                if req.specs[0][0] != "==":
-                    print("WARNING: " + name + " is not pinned to a specific version. Using: " + version)
-                response = BomGenerator.get_package_info(name, version)
-                if response:
-                    json = response.json()
-                    info = json["info"]
-                    author = info["author"]
-                    description = info["summary"]
-                    license = info["license"]  # TODO: Attempt to perform SPDX license ID resolution
-
-                    # This should be optimized a bit - kinda ugly
-                    hashes = {}
-                    releases = json["releases"]
-                    version_release = releases[version]
-                    has_wheel = False
-                    for release in version_release:
-                        if release["packagetype"] == "bdist_wheel":
-                            has_wheel = True
-                    # pip will always prefer bdist_wheel over sdist - therefore hashes from bdist_wheel take precedence
-                    for release in version_release:
-                        if has_wheel is True and release["packagetype"] == "bdist_wheel":
-                            populate_digests(hashes, release["digests"])
-                        elif has_wheel is False and release["packagetype"] == "sdist":
-                            populate_digests(hashes, release["digests"])
-
-                    purl = BomGenerator.generate_purl(name, version)
-                    component = BomGenerator.build_component_element(author, name, version, description, hashes, license, purl, "false")
-                    component_elements.append(component)
-                else:
-                    # nothing to parse, simply add the name, version, and purl to bom
-                    purl = BomGenerator.generate_purl(name, version)
-                    component = BomGenerator.build_component_element("", name, version, "", {}, "", purl, "false")
-                    component_elements.append(component)
+    if args.input_file == '-':
+        component_elements = read_bom(sys.stdin)
+    else:
+        with open(args.input_file, 'r') as fd:
+            component_elements = read_bom(fd)
 
     # Generate the CycloneDX BOM and return it as an XML string
     bom_xml = BomGenerator.build_bom(component_elements)
