@@ -15,6 +15,7 @@ setup(
         'requirements_parser==0.1.0',
         'packageurl_python==0.8.1',
         'xmlschema==1.0.7',
+        'requests==2.20.1'
     ],
     entry_points={
         'console_scripts': [
