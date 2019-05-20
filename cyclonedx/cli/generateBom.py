@@ -22,6 +22,9 @@ import argparse
 import requirements
 from cyclonedx import BomGenerator
 from cyclonedx import BomValidator
+from packaging.utils import canonicalize_version
+from packaging.version import parse as packaging_parse
+
 
 def populate_digests(hashes, digests):
     for sig in digests:
@@ -33,6 +36,21 @@ def populate_digests(hashes, digests):
             hashes["SHA-256"] = digests[sig]
         elif sig == "sha512":
             hashes["SHA-512"] = digests[sig]
+
+
+def _get_pypi_version(special_version, release_dict):
+    """
+    Loop over the pypi release dictionary looking for an equivalent version string. Return the alternative version
+    if found, otherwise return None.
+    :param special_version: The version string that failed to match against the Pypi versions.
+    :param release_dict: Pypi's releases dictionary for a given module.
+    :return: The matching version string or None if it not matched.
+    """
+    for release in release_dict:
+        pypi_version = canonicalize_version(release)
+        if special_version == pypi_version:
+            return release
+    return None
 
 
 def read_bom(fd):
@@ -60,7 +78,21 @@ def read_bom(fd):
                 # This should be optimized a bit - kinda ugly
                 hashes = {}
                 releases = json["releases"]
-                version_release = releases[version]
+                try:
+                    version_release = releases[version]
+                except KeyError as key_error:
+                    parsed_version = packaging_parse(version)
+                    if parsed_version.is_prerelease or parsed_version.is_postrelease or parsed_version.is_devrelease:
+                        pypi_version = _get_pypi_version(version, releases)
+                        if pypi_version:
+                            version_release = releases[pypi_version]
+                        else:
+                            # Unable to find a matching normalized version string, re-throw exception
+                            raise key_error
+                    else:
+                        # This wasn't one of the special case version strings we can handle, re-throw exception
+                        raise key_error
+
                 has_wheel = False
                 for release in version_release:
                     if release["packagetype"] == "bdist_wheel":
@@ -109,3 +141,4 @@ def main():
         print("Complete")
     else:
         print("The generated BOM is not valid")
+
