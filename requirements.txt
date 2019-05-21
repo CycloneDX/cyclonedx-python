@@ -3,3 +3,4 @@ requests==2.20.1
 xmlschema==1.0.7
 setuptools==18.5
 requirements_parser==0.1.0
+packaging==19.0
