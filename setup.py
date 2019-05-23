@@ -35,6 +35,9 @@ setup(
         'Intended Audience :: Information Technology',
         'Intended Audience :: Legal Industry',
         'Intended Audience :: System Administrators',
+        'Topic :: Security',
+        'Topic :: Software Development',
+        'Topic :: System :: Software Distribution',
         'License :: OSI Approved :: Apache Software License',
         'Programming Language :: Python :: 2.7'
     ]
