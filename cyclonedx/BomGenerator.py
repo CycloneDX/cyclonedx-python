@@ -37,7 +37,8 @@ def build_bom(component_elements):
     for component in component_elements:
         components.append(component)
     bom.append(components)
-    return declaration + ElementTree.tostring(bom).decode()
+    pretty_print(bom)
+    return declaration + ElementTree.tostring(bom, "utf-8").decode()
 
 
 def build_component_element(publisher, name, version, description, hashes, license, purl, modified):
@@ -86,3 +87,20 @@ def build_component_element(publisher, name, version, description, hashes, licen
         elm.text = "false"
         component.append(elm)
     return component
+
+
+def pretty_print(elem, level=0):
+    i = "\n" + level*"    "
+    if len(elem):
+        if not elem.text or not elem.text.strip():
+            elem.text = i + "    "
+        if not elem.tail or not elem.tail.strip():
+            elem.tail = i
+        for elem in elem:
+            pretty_print(elem, level+1)
+        if not elem.tail or not elem.tail.strip():
+            elem.tail = i
+    else:
+        if level and (not elem.tail or not elem.tail.strip()):
+            elem.tail = i
+    return elem
