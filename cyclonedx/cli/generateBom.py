@@ -78,20 +78,24 @@ def read_bom(fd):
                 # This should be optimized a bit - kinda ugly
                 hashes = {}
                 releases = json["releases"]
-                try:
-                    version_release = releases[version]
-                except KeyError as key_error:
+                version_release = releases.get(version, version)
+
+                if type(version_release) == str:
+                    # version was not found in release_dict
+                    print("WARNING: " + name + "==" + version + " could not be found in PyPi")
+                    purl = BomGenerator.generate_purl(name, version)
+                    component = BomGenerator.build_component_element("", name, version, "", {}, "", purl, "false")
+                    component_elements.append(component)
+                    continue # move on to the next component
+                else:
                     parsed_version = packaging_parse(version)
                     if parsed_version.is_prerelease or parsed_version.is_postrelease or parsed_version.is_devrelease:
                         pypi_version = _get_pypi_version(version, releases)
                         if pypi_version:
                             version_release = releases[pypi_version]
                         else:
-                            # Unable to find a matching normalized version string, re-throw exception
-                            raise key_error
-                    else:
-                        # This wasn't one of the special case version strings we can handle, re-throw exception
-                        raise key_error
+                            # Unable to find a matching normalized version string, throw exception
+                            raise ValueError("Could not find a matching normalized version string", name, version)
 
                 has_wheel = False
                 for release in version_release:
