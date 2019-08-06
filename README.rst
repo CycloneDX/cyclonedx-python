@@ -1,4 +1,27 @@
+.. image:: https://travis-ci.org/CycloneDX/cyclonedx-python.svg?branch=master
+   :alt: Build Status
+   :target: https://travis-ci.org/CycloneDX/cyclonedx-python
 
+.. image:: https://img.shields.io/badge/license-Apache%202.0-brightgreen
+   :alt: License
+   :target: https://github.com/CycloneDX/cyclonedx-python/blob/master/LICENSE
+
+.. image:: https://img.shields.io/badge/https://-cyclonedx.org-blue
+   :alt: Website
+   :target: https://cyclonedx.org/
+
+.. image:: https://img.shields.io/pypi/v/cyclonedx-bom
+   :alt: PyPI
+   :target: https://pypi.org/project/cyclonedx-bom/
+
+.. image:: https://img.shields.io/badge/discussion-groups.io-blue
+   :alt: Group Discussion
+   :target: https://groups.io/g/CycloneDX
+
+.. image:: https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Follow
+   :alt: Twitter
+   :target: https://twitter.com/CycloneDX_Spec
+   
 CycloneDX Python Module
 =======================
 
