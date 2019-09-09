@@ -16,7 +16,7 @@ setup(
         'packageurl_python==0.8.7',
         'xmlschema==1.0.14',
         'requests==2.22.0',
-        'packaging==19.0',
+        'packaging==19.1',
     ],
     entry_points={
         'console_scripts': [
