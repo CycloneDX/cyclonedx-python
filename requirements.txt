@@ -1,4 +1,4 @@
-packageurl_python==0.8.1
+packageurl_python==0.8.7
 requests==2.20.1
 xmlschema==1.0.14
 setuptools==18.5
