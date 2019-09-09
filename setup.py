@@ -15,7 +15,7 @@ setup(
         'requirements_parser==0.1.0',
         'packageurl_python==0.8.7',
         'xmlschema==1.0.14',
-        'requests==2.20.1',
+        'requests==2.22.0',
         'packaging==19.0',
     ],
     entry_points={
