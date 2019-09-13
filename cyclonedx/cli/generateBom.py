@@ -136,8 +136,8 @@ def main():
 
     # Generate the CycloneDX BOM and return it as an XML string
     bom_xml = BomGenerator.build_bom(component_elements)
-    with open(args.output_file, "w") as text_file:
-        text_file.write(bom_xml)
+    with open(args.output_file, "wb") as text_file:
+        text_file.write(bom_xml.encode("utf-8")
 
     print("Validating BOM")
     is_valid = BomValidator.is_valid(args.output_file)
