@@ -4,3 +4,4 @@ xmlschema==1.0.14
 setuptools==18.5
 requirements_parser==0.1.0
 packaging==19.1
+chardet=3.0.4
