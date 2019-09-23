@@ -19,6 +19,7 @@
 
 import sys
 import argparse
+import chardet
 import requirements
 from cyclonedx import BomGenerator
 from cyclonedx import BomValidator
@@ -131,13 +132,15 @@ def main():
     if args.input_file == '-':
         component_elements = read_bom(sys.stdin)
     else:
-        with open(args.input_file, 'r') as fd:
+        rawdata = open(args.input_file, 'rb').read()
+        result = chardet.detect(rawdata)
+        with open(args.input_file, 'r', encoding=result['encoding']) as fd:
             component_elements = read_bom(fd)
 
     # Generate the CycloneDX BOM and return it as an XML string
     bom_xml = BomGenerator.build_bom(component_elements)
     with open(args.output_file, "wb") as text_file:
-        text_file.write(bom_xml.encode("utf-8")
+        text_file.write(bom_xml.encode("utf-8"))
 
     print("Validating BOM")
     is_valid = BomValidator.is_valid(args.output_file)
