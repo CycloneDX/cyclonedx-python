@@ -4,8 +4,8 @@ from setuptools import setup, find_packages
 
 setup(
     name='cyclonedx-bom',
-    version='0.3.1',
-    description='CycloneDX software bill-of-material (SBoM) generation utility',
+    version='0.3.2',
+    description='CycloneDX software bill-of-material (SBOM) generation utility',
     long_description=open("README.rst").read(),
     packages=find_packages(),
     package_data={'cyclonedx.schema': ['bom-1.0.xsd', 'spdx.xsd']},
