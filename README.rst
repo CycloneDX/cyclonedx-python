@@ -1,6 +1,6 @@
-.. image:: https://travis-ci.org/CycloneDX/cyclonedx-python.svg?branch=master
+.. image:: https://github.com/CycloneDX/cyclonedx-python/workflows/Python%20CI/badge.svg
    :alt: Build Status
-   :target: https://travis-ci.org/CycloneDX/cyclonedx-python
+   :target: https://github.com/CycloneDX/cyclonedx-python/actions?workflow=Python+CI
 
 .. image:: https://img.shields.io/badge/license-Apache%202.0-brightgreen
    :alt: License
@@ -21,11 +21,11 @@
 .. image:: https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Follow
    :alt: Twitter
    :target: https://twitter.com/CycloneDX_Spec
-   
+
 CycloneDX Python Module
 =======================
 
-The CycloneDX module for Python creates a valid CycloneDX bill-of-material document containing an aggregate of all project dependencies. CycloneDX is a lightweight BoM specification that is easily created, human readable, and simple to parse. 
+The CycloneDX module for Python creates a valid CycloneDX bill-of-material document containing an aggregate of all project dependencies. CycloneDX is a lightweight BoM specification that is easily created, human readable, and simple to parse.
 
 Usage
 -----
@@ -49,7 +49,7 @@ be accomplished via:
 
 **Options**
 
-By default, requirements.txt will be read from the current working directory and the resulting bom.xml will also 
+By default, requirements.txt will be read from the current working directory and the resulting bom.xml will also
 be created in the current working directory. These options can be overwritten as follows:
 
 .. code-block:: console
