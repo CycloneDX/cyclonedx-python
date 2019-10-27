@@ -34,4 +34,4 @@ jobs:
         # pytest
     - name: Make package
       run: |
-        make package
+        ./setup.py sdist bdist_wheel
