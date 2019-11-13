@@ -60,6 +60,10 @@ def read_bom(fd):
     component_elements = []
     for req in requirements.parse(fd):
         name = req.name
+        if req.local_file:
+            print("WARNING: Local file " + req.path + " does not have versions. Skipping.")
+            continue
+            
         if not req.specs:
             print("WARNING: " + name + " does not have a version specified. Skipping.")
             break
