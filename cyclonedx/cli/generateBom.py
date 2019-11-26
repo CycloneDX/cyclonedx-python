@@ -66,7 +66,7 @@ def read_bom(fd):
             
         if not req.specs:
             print("WARNING: " + name + " does not have a version specified. Skipping.")
-            break
+            continue
 
         if len(req.specs[0]) >= 2:
             version = req.specs[0][1]
@@ -152,4 +152,3 @@ def main():
         print("Complete")
     else:
         print("The generated BOM is not valid")
-
