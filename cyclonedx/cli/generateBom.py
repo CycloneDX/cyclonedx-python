@@ -49,7 +49,7 @@ def _get_pypi_version(special_version, release_dict):
     """
     for release in release_dict:
         pypi_version = canonicalize_version(release)
-        if special_version == pypi_version:
+        if special_version == pypi_version or special_version == release:
             return release
     return None
 
@@ -63,7 +63,7 @@ def read_bom(fd):
         if req.local_file:
             print("WARNING: Local file " + req.path + " does not have versions. Skipping.")
             continue
-            
+
         if not req.specs:
             print("WARNING: " + name + " does not have a version specified. Skipping.")
             continue
@@ -152,3 +152,6 @@ def main():
         print("Complete")
     else:
         print("The generated BOM is not valid")
+
+
+main()
