@@ -15,7 +15,7 @@ echo $RELEASE_VERSION > VERSION
 git commit -m "prepare release"
 
 rm -f -R ./dist/
-./setup.py sdist bdist_wheel
+python ./setup.py sdist bdist_wheel
 python -m twine upload dist/*
 
 git tag v$RELEASE_VERSION
