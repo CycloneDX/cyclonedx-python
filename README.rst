@@ -2,6 +2,10 @@
    :alt: Build Status
    :target: https://github.com/CycloneDX/cyclonedx-python/actions?workflow=Python+CI
 
+.. image:: https://img.shields.io/badge/docker-image-brightgreen?style=flat&logo=docker
+   :alt: Docker Image
+   :target: https://hub.docker.com/r/cyclonedx/cyclonedx-python
+   
 .. image:: https://img.shields.io/badge/license-Apache%202.0-brightgreen
    :alt: License
    :target: https://github.com/CycloneDX/cyclonedx-python/blob/master/LICENSE
@@ -17,10 +21,6 @@
 .. image:: https://img.shields.io/badge/discussion-groups.io-blue
    :alt: Group Discussion
    :target: https://groups.io/g/CycloneDX
-
-.. image:: https://img.shields.io/badge/docker-image-brightgreen?style=flat&logo=docker
-   :alt: Docker Image
-   :target: https://hub.docker.com/r/cyclonedx/cyclonedx-python
 
 .. image:: https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Follow
    :alt: Twitter
