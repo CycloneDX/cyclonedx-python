@@ -18,6 +18,10 @@
    :alt: Group Discussion
    :target: https://groups.io/g/CycloneDX
 
+.. image:: https://img.shields.io/badge/docker-image-green?style=flat&logo=docker
+   :alt: Docker Image
+   :target: https://hub.docker.com/r/cyclonedx/cyclonedx-python
+
 .. image:: https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Follow
    :alt: Twitter
    :target: https://twitter.com/CycloneDX_Spec
