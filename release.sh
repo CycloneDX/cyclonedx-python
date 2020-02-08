@@ -22,3 +22,13 @@ git tag v$RELEASE_VERSION
 
 echo $NEXT_SNAPSHOT_VERSION > VERSION
 git commit -m "prepare for next development iteration"
+
+# Cleanup containers/images, build new image and push to Docker Hub
+REPO=cyclonedx/cyclonedx-python
+docker rm cyclonedx-python
+docker rmi $REPO:latest
+docker rmi $REPO:$RELEASE_VERSION
+docker build -f Dockerfile -t $REPO:$RELEASE_VERSION -t $REPO:latest .
+docker login
+docker push $REPO:latest
+docker push $REPO:$RELEASE_VERSION
