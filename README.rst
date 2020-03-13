@@ -13,6 +13,10 @@
 .. image:: https://img.shields.io/badge/https://-cyclonedx.org-blue
    :alt: Website
    :target: https://cyclonedx.org/
+   
+.. image:: https://img.shields.io/badge/Slack-Join-blue?logo=slack&labelColor=393939
+   :alt: Slack Invite
+   :target: https://cyclonedx.org/slack/invite
 
 .. image:: https://img.shields.io/pypi/v/cyclonedx-bom
    :alt: PyPI
