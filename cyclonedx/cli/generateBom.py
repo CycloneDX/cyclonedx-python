@@ -154,4 +154,5 @@ def main():
         print("The generated BOM is not valid")
 
 
-main()
+if __name__ == '__main__':
+    main()
