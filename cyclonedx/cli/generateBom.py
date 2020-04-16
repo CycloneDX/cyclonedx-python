@@ -29,15 +29,13 @@ from cyclonedx import BomGenerator, BomValidator
 
 
 def populate_digests(hashes, digests):
-    for sig in digests:
-        if sig == "md5":
-            hashes["MD5"] = digests[sig]
-        elif sig == "sha1":
-            hashes["SHA-1"] = digests[sig]
-        elif sig == "sha256":
-            hashes["SHA-256"] = digests[sig]
-        elif sig == "sha512":
-            hashes["SHA-512"] = digests[sig]
+    mapping = {
+        "md5": "MD5",
+        "sha1": "SHA-1",
+        "sha256": "SHA-256",
+        "sha512": "SHA-512",
+    }
+    hashes.update(((mapping[k], v) for k, v in digests.items() if k in mapping))
 
 
 def _get_pypi_version(special_version, release_dict):
