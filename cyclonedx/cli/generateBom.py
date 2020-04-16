@@ -17,14 +17,15 @@
 #
 # Copyright (c) Steve Springett. All Rights Reserved.
 
-import sys
 import argparse
+import sys
+
 import chardet
 import requirements
-from cyclonedx import BomGenerator
-from cyclonedx import BomValidator
 from packaging.utils import canonicalize_version
 from packaging.version import parse as packaging_parse
+
+from cyclonedx import BomGenerator, BomValidator
 
 
 def populate_digests(hashes, digests):

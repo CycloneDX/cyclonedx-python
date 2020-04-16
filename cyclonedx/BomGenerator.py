@@ -14,8 +14,9 @@
 #
 # Copyright (c) Steve Springett. All Rights Reserved.
 
-import requests
 from xml.etree import ElementTree
+
+import requests
 from packageurl import PackageURL
 
 
