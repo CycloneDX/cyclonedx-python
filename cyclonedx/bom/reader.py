@@ -52,9 +52,8 @@ def get_component(req, package_info_url=DEFAULT_PACKAGE_INFO_URL):
         # TODO: Attempt to perform SPDX license ID resolution
         license = package_info["info"]["license"]
 
-        releases = package_info["releases"]
-        if version in releases:
-            release_info = get_release_info(releases, version)
+        if version in package_info["releases"]:
+            release_info = get_release_info(package_info, version)
             hashes = get_hashes(release_info)
         else:
             print("WARNING: " + name + "==" + version + " could not be found in PyPi")
@@ -111,16 +110,17 @@ def _get_pypi_version(special_version, release_dict):
     return None
 
 
-def get_release_info(releases_info, specified_version):
+def get_release_info(package_info, specified_version):
+    releases_info = package_info["releases"]
     release_info = releases_info.get(specified_version)
     parsed_version = packaging_parse(specified_version)
     if parsed_version.is_prerelease or parsed_version.is_postrelease or parsed_version.is_devrelease:
-        pypi_version = _get_pypi_version(specified_version, releases)
+        pypi_version = _get_pypi_version(specified_version, releases_info)
         if pypi_version:
             release_info = releases_info[pypi_version]
         else:
             # Unable to find a matching normalized version string, throw exception
-            raise ValueError("Could not find a matching normalized version string", name, version)
+            raise ValueError("Could not find a matching normalized version string", package_info['name'], specified_version)
     return release_info
 
 
