@@ -34,59 +34,43 @@ def build_bom(component_elements):
     declaration = '<?xml version="1.0" encoding="UTF-8"?>\n'
     namespace = {'xmlns': 'http://cyclonedx.org/schema/bom/1.0', 'version': '1'}
     bom = ElementTree.Element("bom", namespace)
-    components = ElementTree.Element("components")
+    components = ElementTree.SubElement(bom, "components")
     for component in component_elements:
         components.append(component)
-    bom.append(components)
     pretty_print(bom)
-    return declaration + ElementTree.tostring(bom, "utf-8").decode()
+    return declaration + ElementTree.tostring(bom, "unicode")
 
 
 def build_component_element(publisher, name, version, description, hashes, license, purl, modified):
     component = ElementTree.Element("component", {"type": "library"})
-    if publisher and publisher != 'UNKNOWN':
-        elm = ElementTree.Element("publisher")
-        elm.text = publisher
-        component.append(elm)
+
+    if publisher and publisher != "UNKNOWN":
+        ElementTree.SubElement(component, "publisher").text = publisher
+
     if name and name != "UNKNOWN":
-        elm = ElementTree.Element("name")
-        elm.text = name
-        component.append(elm)
+        ElementTree.SubElement(component, "name").text = name
+
     if version and version != "UNKNOWN":
-        elm = ElementTree.Element("version")
-        elm.text = version
-        component.append(elm)
+        ElementTree.SubElement(component, "version").text = version
+
     if description and description != "UNKNOWN":
-        elm = ElementTree.Element("description")
-        elm.text = description
-        component.append(elm)
-    if len(hashes) > 0:
-        hashes_elm = ElementTree.Element("hashes")
+        ElementTree.SubElement(component, "description").text = description
+
+    if hashes:
+        hashes_elm = ElementTree.SubElement(component, "hashes")
         for h in hashes:
-            elm = ElementTree.Element("hash", {"alg": h})
-            elm.text = hashes[h]
-            hashes_elm.append(elm)
-        component.append(hashes_elm)
+            ElementTree.SubElement(hashes_elm, "hash", alg=h).text = hashes[h]
+
     if license and license != "UNKNOWN":
-        licenses_elm = ElementTree.Element("licenses")
-        license_elm = ElementTree.Element("license")
-        name_elm = ElementTree.Element("name")
-        name_elm.text = license
-        license_elm.append(name_elm)
-        licenses_elm.append(license_elm)
-        component.append(licenses_elm)
+        licenses_elm = ElementTree.SubElement(component, "licenses")
+        license_elm = ElementTree.SubElement(licenses_elm, "license")
+        ElementTree.SubElement(license_elm, "name").text = license
+
     if purl:
-        elm = ElementTree.Element("purl")
-        elm.text = purl
-        component.append(elm)
-    if modified:
-        elm = ElementTree.Element("modified")
-        elm.text = modified
-        component.append(elm)
-    else:
-        elm = ElementTree.Element("modified")
-        elm.text = "false"
-        component.append(elm)
+        ElementTree.SubElement(component, "purl").text = purl
+
+    ElementTree.SubElement(component, "modified").text = modified if modified else "false"
+
     return component
 
 
