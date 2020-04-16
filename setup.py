@@ -20,7 +20,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'cyclonedx-py = cyclonedx.cli.generateBom:main'
+            'cyclonedx-py = cyclonedx.client:main'
         ]
     },
     author='Steve Springett',

@@ -16,19 +16,6 @@
 
 from xml.etree import ElementTree
 
-import requests
-from packageurl import PackageURL
-
-
-def get_package_info(package_name, package_version):
-    ship_api_url = "https://pypi.org/pypi/" + package_name + "/" + package_version + "/json"
-    request_data = requests.get(ship_api_url)
-    return request_data
-
-
-def generate_purl(package_name, package_version):
-    return PackageURL("pypi", '', package_name, package_version, '', '').to_string()
-
 
 def build_bom(component_elements):
     declaration = '<?xml version="1.0" encoding="UTF-8"?>\n'
