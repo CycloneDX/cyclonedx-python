@@ -13,7 +13,7 @@ def read_bom(fd, package_info_url=DEFAULT_PACKAGE_INFO_URL):
     """Read BOM data from file handle."""
 
     print("Generating CycloneDX BOM")
-    components = (get_component(req) for req in requirements.parse(fd))
+    components = (get_component(req, package_info_url) for req in requirements.parse(fd))
     components = filter(lambda c: c is not None, components)
     bom = generator.build_bom(components)
     return bom
@@ -45,7 +45,7 @@ def get_component(req, package_info_url=DEFAULT_PACKAGE_INFO_URL):
     if req.specs[0][0] != "==":
         print("WARNING: " + name + " is not pinned to a specific version. Using: " + version)
 
-    package_info = get_package_info(name, version)
+    package_info = get_package_info(name, version, package_info_url)
     if package_info:
         author = package_info["info"]["author"]
         description = package_info["info"]["summary"]
