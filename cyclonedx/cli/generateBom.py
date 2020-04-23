@@ -21,6 +21,7 @@ import sys
 import argparse
 import chardet
 import requirements
+from collections import OrderedDict
 from cyclonedx import BomGenerator
 from cyclonedx import BomValidator
 from packaging.utils import canonicalize_version
@@ -28,7 +29,9 @@ from packaging.version import parse as packaging_parse
 
 
 def populate_digests(hashes, digests):
-    for sig in digests:
+    # sort the digests so they are added in a deterministic way for testing
+    # this is an issue because of different behaviour between Python 3.5 and later versions
+    for sig in sorted(list(digests)):
         if sig == "md5":
             hashes["MD5"] = digests[sig]
         elif sig == "sha1":
@@ -81,7 +84,9 @@ def read_bom(fd):
                 license = info["license"]  # TODO: Attempt to perform SPDX license ID resolution
 
                 # This should be optimized a bit - kinda ugly
-                hashes = {}
+                # using OrderedDict, Python versions prior to 3.6 have a different dictionary implementation
+                # this makes testing expected output tricky for 3.5 vs 3.6 and 3.7
+                hashes = OrderedDict()
                 releases = json["releases"]
                 version_release = releases.get(version, version)
 
