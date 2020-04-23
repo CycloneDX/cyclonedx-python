@@ -9,7 +9,7 @@
            vc:maxVersion="1.1"
            version="1.0.1">
 
-    <xs:import namespace="http://cyclonedx.org/schema/spdx" schemaLocation="http://cyclonedx.org/schema/spdx"/>
+    <xs:import namespace="http://cyclonedx.org/schema/spdx" schemaLocation="spdx.xsd"/>
 
     <xs:complexType name="component">
         <xs:sequence>

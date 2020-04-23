@@ -14,9 +14,11 @@
 #
 # Copyright (c) Steve Springett. All Rights Reserved.
 
+import os
 import xmlschema
 
-bom_schema = xmlschema.XMLSchema("http://cyclonedx.org/schema/bom/1.0")
+bom_schema_path = os.path.join(os.path.dirname(__file__), "../schema/bom-1.0.xsd")
+bom_schema = xmlschema.XMLSchema(bom_schema_path)
 
 def is_valid(bom):
     return bom_schema.is_valid(bom)
