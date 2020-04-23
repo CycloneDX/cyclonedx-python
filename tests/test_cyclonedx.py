@@ -16,21 +16,21 @@
 
 import os.path
 import pytest
-from cyclonedx.cli import read_bom
-from cyclonedx.BomGenerator import build_bom
+from cyclonedx.client import build_parser, generate_bom
+
 
 script_path = os.path.dirname(__file__)
+
 
 def test_bom_generation():
     # arrange
     with open(os.path.join(script_path, 'resources', 'bom.xml'), 'r') as bf:
         expected_xml = bf.read()
+    parser = build_parser()
+    args = parser.parse_args(['-i', os.path.join(script_path, 'resources', 'requirements.txt')])
     
     # act
-    with open(os.path.join(script_path, 'resources', 'requirements.txt'), 'r') as fd:
-        component_elements = read_bom(fd)
+    actual_xml = generate_bom(args)
     
-    actual_xml = build_bom(component_elements)
-
     # assert
     assert actual_xml == expected_xml
