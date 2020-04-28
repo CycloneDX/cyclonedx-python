@@ -1,5 +1,5 @@
 packageurl_python==0.8.7
-requests==2.22.0
+requests==2.23.0
 xmlschema==1.0.16
 setuptools==18.5
 requirements_parser==0.2.0
