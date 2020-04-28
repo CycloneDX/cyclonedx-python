@@ -1,0 +1,5 @@
+.vscode/
+venv/
+.tox/
+cyclonedx_bom.egg-info/
+*.pyc

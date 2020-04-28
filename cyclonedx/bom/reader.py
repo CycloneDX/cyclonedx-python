@@ -1,5 +1,6 @@
 import requests
 import requirements
+from collections import OrderedDict
 from packageurl import PackageURL
 from packaging.utils import canonicalize_version
 from packaging.version import parse as packaging_parse
@@ -86,12 +87,14 @@ def generate_purl(package_name, package_version):
 
 
 def translate_digests(digests):
-    mapping = {
-        "md5": "MD5",
-        "sha1": "SHA-1",
-        "sha256": "SHA-256",
-        "sha512": "SHA-512",
-    }
+    # using an ordered dictionary so hashes are added in a deterministic way for testing
+    # the dictionary implementation was changed in Python 3.6
+    mapping = OrderedDict(
+        md5="MD5",
+        sha1="SHA-1",
+        sha256="SHA-256",
+        sha512="SHA-512",
+    )
     return {mapping[k]: v for k, v in digests.items() if k in mapping}
 
 
@@ -135,7 +138,9 @@ def get_hashes(releases):
         if has_wheel and r["packagetype"] == "bdist_wheel" or not has_wheel and r["packagetype"] == "sdist":
             relevant_releases.append(r)
 
-    hashes = {}
+    # using an ordered dictionary so hashes are added in a deterministic way for testing
+    # the dictionary implementation was changed in Python 3.6
+    hashes = OrderedDict()
     for release in relevant_releases:
         hashes.update(translate_digests(release["digests"]))
 
