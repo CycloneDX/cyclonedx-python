@@ -17,18 +17,28 @@
 from xml.etree import ElementTree
 
 
-def build_bom(component_elements):
+def build_xml_bom(components):
     declaration = '<?xml version="1.0" encoding="UTF-8"?>\n'
     namespace = {'xmlns': 'http://cyclonedx.org/schema/bom/1.0', 'version': '1'}
     bom = ElementTree.Element("bom", namespace)
-    components = ElementTree.SubElement(bom, "components")
-    for component in component_elements:
-        components.append(component)
-    pretty_print(bom)
+    xml_components = ElementTree.SubElement(bom, "components")
+    for component in components:
+        component_xml = build_xml_component_element(
+            component.publisher,
+            component.name,
+            component.version,
+            component.description,
+            component.hashes,
+            component.licenses,
+            component.purl,
+            component.modified
+        )
+        xml_components.append(component_xml)
+    xml_pretty_print(bom)
     return declaration + ElementTree.tostring(bom, "unicode")
 
 
-def build_component_element(publisher, name, version, description, hashes, license, purl, modified):
+def build_xml_component_element(publisher, name, version, description, hashes, licenses, purl, modified):
     component = ElementTree.Element("component", {"type": "library"})
 
     if publisher and publisher != "UNKNOWN":
@@ -46,12 +56,13 @@ def build_component_element(publisher, name, version, description, hashes, licen
     if hashes:
         hashes_elm = ElementTree.SubElement(component, "hashes")
         for h in hashes:
-            ElementTree.SubElement(hashes_elm, "hash", alg=h).text = hashes[h]
+            ElementTree.SubElement(hashes_elm, "hash", alg=h.algorithm).text = h.value
 
-    if license and license != "UNKNOWN":
+    if len(licenses):
         licenses_elm = ElementTree.SubElement(component, "licenses")
-        license_elm = ElementTree.SubElement(licenses_elm, "license")
-        ElementTree.SubElement(license_elm, "name").text = license
+        for license in licenses:
+            license_elm = ElementTree.SubElement(licenses_elm, "license")
+            ElementTree.SubElement(license_elm, "name").text = license.name
 
     if purl:
         ElementTree.SubElement(component, "purl").text = purl
@@ -61,7 +72,7 @@ def build_component_element(publisher, name, version, description, hashes, licen
     return component
 
 
-def pretty_print(elem, level=0):
+def xml_pretty_print(elem, level=0):
     i = "\n" + level*"    "
     if len(elem):
         if not elem.text or not elem.text.strip():
@@ -69,7 +80,7 @@ def pretty_print(elem, level=0):
         if not elem.tail or not elem.tail.strip():
             elem.tail = i
         for elem in elem:
-            pretty_print(elem, level+1)
+            xml_pretty_print(elem, level+1)
         if not elem.tail or not elem.tail.strip():
             elem.tail = i
     else:
