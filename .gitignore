@@ -2,4 +2,6 @@
 venv/
 .tox/
 cyclonedx_bom.egg-info/
+build/
+dist/
 *.pyc
