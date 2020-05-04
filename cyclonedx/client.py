@@ -18,10 +18,13 @@
 # Copyright (c) Steve Springett. All Rights Reserved.
 
 import argparse
+import os
 import sys
 
 import chardet
 
+script_path = os.path.dirname(__file__)
+sys.path.append(os.path.join(script_path, '..'))
 from cyclonedx.bom import reader, generator, validator
 
 
