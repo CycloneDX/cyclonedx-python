@@ -22,7 +22,7 @@ from cyclonedx.client import build_parser, generate_bom
 script_path = os.path.dirname(__file__)
 
 
-def test_bom_generation():
+def test_xml_bom_generation():
     # arrange
     with open(os.path.join(script_path, 'resources', 'bom.xml'), 'r') as bf:
         expected_xml = bf.read()
@@ -34,3 +34,17 @@ def test_bom_generation():
     
     # assert
     assert actual_xml == expected_xml
+
+
+def test_json_bom_generation():
+    # arrange
+    with open(os.path.join(script_path, 'resources', 'bom.json'), 'r') as bf:
+        expected_json = bf.read()
+    parser = build_parser()
+    args = parser.parse_args(['-i', os.path.join(script_path, 'resources', 'requirements.txt'), '-j'])
+    
+    # act
+    actual_json = generate_bom(args)
+    
+    # assert
+    assert actual_json == expected_json

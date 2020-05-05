@@ -6,12 +6,12 @@ from packaging.utils import canonicalize_version
 from packaging.version import parse as packaging_parse
 
 from cyclonedx.bom import generator
-from cyclonedx.models import Component, Hash, License
+from cyclonedx.models import *
 
 
 DEFAULT_PACKAGE_INFO_URL = "https://pypi.org/pypi/{package_name}/{package_version}/json"
 
-def read_bom(fd, package_info_url=DEFAULT_PACKAGE_INFO_URL):
+def read_bom(fd, package_info_url=DEFAULT_PACKAGE_INFO_URL, json=False):
     """Read BOM data from file handle."""
 
     print("Generating CycloneDX BOM")
@@ -26,6 +26,12 @@ def read_bom(fd, package_info_url=DEFAULT_PACKAGE_INFO_URL):
             added_purls.append(component.purl)
 
     bom = generator.build_xml_bom(components)
+
+    if json:
+        bom = generator.build_json_bom(components)
+    else:
+        bom = generator.build_xml_bom(components)
+    
     return bom
 
 
@@ -60,11 +66,13 @@ def get_component(req, package_info_url=DEFAULT_PACKAGE_INFO_URL):
         package_license = package_info["info"]["license"]
         if package_license != 'UNKNOWN' and len(package_license.strip()) > 0:
             license = License(name=package_license)
-            component.licenses.append(license)
+            component_license = ComponentLicense(license=license)
+            component.licenses.append(component_license)
 
         if component.version in package_info["releases"]:
             release_info = get_release_info(package_info, component.version)
             component.hashes = get_hashes(release_info)
+            component.hashes.sort()
         else:
             print('WARNING: {component.name}=={component.version} could not be found in PyPi'.format(component=component))
 
@@ -94,13 +102,13 @@ def generate_purl(package_name, package_version):
 
 
 def translate_digests(digests):
-    mapping = OrderedDict(
-        md5="MD5",
-        sha1="SHA-1",
-        sha256="SHA-256",
-        sha512="SHA-512",
-    )
-    return [Hash(mapping[k], v) for k, v in digests.items() if k in mapping]
+    mapping = {
+        'md5': 'MD5',
+        'sha1': 'SHA-1',
+        'sha256': 'SHA-256',
+        'sha512': 'SHA-512',
+    }
+    return [Hash(mapping[k], digests[k]) for k in digests if k in mapping]
 
 
 def _get_pypi_version(special_version, release_dict):
@@ -149,10 +157,10 @@ def get_hashes(releases):
     #     hashes.extend(translate_digests(release['digests']))
 
     # doing this to mimic current behaviour of picking the last hash
-    hashes = OrderedDict()
+    hashes = {}
     for release in relevant_releases:
         release_hashes = translate_digests(release['digests'])
         for release_hash in release_hashes:
-            hashes[release_hash.algorithm] = release_hash
+            hashes[release_hash.alg] = release_hash
 
-    return list(hashes.values())
+    return [hashes[k] for k in hashes]

@@ -14,15 +14,6 @@
 #
 # Copyright (c) Steve Springett. All Rights Reserved.
 
-class Hash:
-    def __init__(self, alg, content):
-        self.alg = alg
-        self.content = content
-    
-    def __lt__(self, other):
-        if self.alg < other.alg:
-            return True
-        elif self.alg == other.alg:
-            return self.content < other.content
-        else:
-            return False
+class ComponentLicense:
+    def __init__(self, license=None):
+        self.license = license
