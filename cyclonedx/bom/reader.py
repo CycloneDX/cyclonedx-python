@@ -15,8 +15,16 @@ def read_bom(fd, package_info_url=DEFAULT_PACKAGE_INFO_URL):
     """Read BOM data from file handle."""
 
     print("Generating CycloneDX BOM")
-    components = (get_component(req, package_info_url) for req in requirements.parse(fd))
-    components = filter(lambda c: c is not None, components)
+    all_components = (get_component(req, package_info_url) for req in requirements.parse(fd))
+
+    # there can be duplicates in all_components, get rid of them
+    components = []
+    added_purls = []
+    for component in all_components:
+        if component is not None and component.purl not in added_purls:
+            components.append(component)
+            added_purls.append(component.purl)
+
     bom = generator.build_xml_bom(components)
     return bom
 
