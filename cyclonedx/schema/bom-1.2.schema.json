@@ -7,8 +7,7 @@
   "required": [
     "bomFormat",
     "specVersion",
-    "version",
-    "components"
+    "version"
   ],
   "properties": {
     "bomFormat": {
@@ -56,6 +55,13 @@
       "items": {"$ref": "#/definitions/component"},
       "uniqueItems": true,
       "title": "Components"
+    },
+    "services": {
+      "$id": "#/properties/services",
+      "type": "array",
+      "items": {"$ref": "#/definitions/service"},
+      "uniqueItems": true,
+      "title": "Services"
     },
     "externalReferences": {
       "$id": "#/properties/externalReferences",
@@ -249,6 +255,11 @@
           "default": "",
           "pattern": "^(.*)$"
         },
+        "supplier": {
+          "title": "Component Supplier",
+          "description": " The organization that supplied the component. The supplier may often be the manufacture, but may also be a distributor or repackager.",
+          "$ref": "#/definitions/organizationalEntity"
+        },
         "author": {
           "type": "string",
           "title": "Component Author",
@@ -401,6 +412,12 @@
               "description": "A list of zero or more commits which provide a trail describing how the component deviates from an ancestor, descendant, or variant.",
               "items": {"$ref": "#/definitions/commit"}
             },
+            "patches": {
+              "type": "array",
+              "title": "Patches",
+              "description": ">A list of zero or more patches describing how the component deviates from an ancestor, descendant, or variant. Patches may be complimentary to commits or may be used in place of commits.",
+              "items": {"$ref": "#/definitions/patch"}
+            },
             "notes": {
               "type": "string",
               "title": "Notes",
@@ -492,7 +509,7 @@
         },
         "content": {
           "type": "string",
-          "title": "Attachment Content",
+          "title": "Attachment Text",
           "description": "The attachment data"
         }
       }
@@ -522,7 +539,12 @@
         "SHA-384",
         "SHA-512",
         "SHA3-256",
-        "SHA3-512"
+        "SHA3-384",
+        "SHA3-512",
+        "BLAKE2b-256",
+        "BLAKE2b-384",
+        "BLAKE2b-512",
+        "BLAKE3"
       ],
       "title": "Hash Algorithm",
       "default": "",
@@ -561,34 +583,10 @@
           "examples": ["Acme Software License"],
           "pattern": "^(.*)$"
         },
-        "content": {
-          "type": "object",
-          "title": "License Content",
-          "description": "An optional way to include the textual content of a license",
-          "required": ["text"],
-          "properties": {
-            "text": {
-              "type": "string",
-              "title": "License Text",
-              "description": "Specifies the optional full text of the license",
-              "pattern": "^(.*)$"
-            },
-            "content-type": {
-              "type": "string",
-              "title": "License Text Content-Type",
-              "description": "Specifies the content type of the license text. Defaults to text/plain if not specified.",
-              "default": "text/plain",
-              "examples": ["text/markdown"],
-              "pattern": "^(.*)$"
-            },
-            "encoding": {
-              "type": "string",
-              "enum": ["base64"],
-              "title": "License Text Encoding",
-              "description": "Specifies the optional encoding the license text is represented in",
-              "pattern": "^(.*)$"
-            }
-          }
+        "text": {
+          "title": "License text",
+          "description": "An optional way to include the textual content of a license.",
+          "$ref": "#/definitions/attachment"
         },
         "url": {
           "type": "string",
@@ -630,6 +628,121 @@
           "type": "string",
           "title": "Message",
           "description": "The text description of the contents of the commit",
+          "pattern": "^(.*)$"
+        }
+      }
+    },
+    "patch": {
+      "type": "object",
+      "title": "Patch",
+      "description": "Specifies an individual patch",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "unofficial",
+            "monkey",
+            "backport",
+            "cherry-pick"
+          ],
+          "title": "Type",
+          "description": "Specifies the purpose for the patch including the resolution of defects, security issues, or new behavior or functionality"
+        },
+        "diff": {
+          "title": "Diff",
+          "description": "The patch file (or diff) that show changes. Refer to https://en.wikipedia.org/wiki/Diff",
+          "$ref": "#/definitions/diff"
+        },
+        "resolves": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/issue"},
+          "title": "Resolves",
+          "description": "A collection of issues the patch resolves"
+        }
+      }
+    },
+    "diff": {
+      "type": "object",
+      "title": "Diff",
+      "description": "The patch file (or diff) that show changes. Refer to https://en.wikipedia.org/wiki/Diff",
+      "properties": {
+        "text": {
+          "title": "Diff text",
+          "description": "Specifies the optional text of the diff",
+          "$ref": "#/definitions/attachment"
+        },
+        "url": {
+          "type": "string",
+          "title": "URL",
+          "description": "Specifies the URL to the diff",
+          "pattern": "^(.*)$"
+        }
+      }
+    },
+    "issue": {
+      "type": "object",
+      "title": "Diff",
+      "description": "The patch file (or diff) that show changes. Refer to https://en.wikipedia.org/wiki/Diff",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "defect",
+            "enhancement",
+            "security"
+          ],
+          "title": "Type",
+          "description": "Specifies the type of issue"
+        },
+        "id": {
+          "type": "string",
+          "title": "ID",
+          "description": "The identifier of the issue assigned by the source of the issue",
+          "pattern": "^(.*)$"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name",
+          "description": "The name of the issue",
+          "pattern": "^(.*)$"
+        },
+        "description": {
+          "type": "string",
+          "title": "Description",
+          "description": "A description of the issue",
+          "pattern": "^(.*)$"
+        },
+        "source": {
+          "type": "object",
+          "title": "Source",
+          "description": "The source of the issue where it is documented",
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "Name",
+              "description": "The name of the source. For example 'National Vulnerability Database', 'NVD', and 'Apache'",
+              "pattern": "^(.*)$"
+            },
+            "url": {
+              "type": "string",
+              "title": "URL",
+              "description": "The url of the issue documentation as provided by the source",
+              "pattern": "^(.*)$"
+            }
+          }
+        },
+        "references": {
+          "type": "array",
+          "title": "References",
+          "description": "A collection of URL's for reference. Multiple URLs are allowed.",
+          "default": "",
+          "examples": ["https://example.com"],
           "pattern": "^(.*)$"
         }
       }
@@ -728,6 +841,143 @@
           "description": "The bom-ref identifiers of the components that are dependencies of this dependency object."
         }
       }
+    },
+    "service": {
+      "type": "object",
+      "title": "Service Object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "bom-ref": {
+          "type": "string",
+          "title": "BOM Reference",
+          "description": "An optional identifier which can be used to reference the service elsewhere in the BOM. Every bom-ref should be unique.",
+          "default": "",
+          "pattern": "^(.*)$"
+        },
+        "provider": {
+          "title": "Provider",
+          "description": "The organization that provides the service.",
+          "$ref": "#/definitions/organizationalEntity"
+        },
+        "group": {
+          "type": "string",
+          "title": "Service Group",
+          "description": "The grouping name, namespace, or identifier. This will often be a shortened, single name of the company or project that produced the service or domain name. Whitespace and special characters should be avoided.",
+          "default": "",
+          "examples": ["com.acme"],
+          "pattern": "^(.*)$"
+        },
+        "name": {
+          "type": "string",
+          "title": "Service Name",
+          "description": "The name of the service. This will often be a shortened, single name of the service.",
+          "default": "",
+          "examples": ["ticker-service"],
+          "pattern": "^(.*)$"
+        },
+        "version": {
+          "type": "string",
+          "title": "Service Version",
+          "description": "The service version.",
+          "default": "",
+          "examples": ["1.0.0"],
+          "pattern": "^(.*)$"
+        },
+        "description": {
+          "type": "string",
+          "title": "Service Description",
+          "description": "Specifies a description for the service",
+          "default": "",
+          "pattern": "^(.*)$"
+        },
+        "endpoints": {
+          "type": "array",
+          "title": "Endpoints",
+          "description": "The endpoint URIs of the service. Multiple endpoints are allowed.",
+          "default": "",
+          "examples": ["https://example.com/api/v1/ticker"],
+          "pattern": "^(.*)$"
+        },
+        "authenticated": {
+          "type": "boolean",
+          "title": "Authentication Required",
+          "description": "A boolean value indicating if the service requires authentication. A value of true indicates the service requires authentication prior to use. A value of false indicates the service does not require authentication."
+        },
+        "x-trust-boundary": {
+          "type": "boolean",
+          "title": "Crosses Trust Boundary",
+          "description": "A boolean value indicating if use of the service crosses a trust zone or boundary. A value of true indicates that by using the service, a trust boundary is crossed. A value of false indicates that by using the service, a trust boundary is not crossed."
+        },
+        "data": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/dataClassification"},
+          "title": "Data Classification",
+          "description": "Specifies the data classification."
+        },
+        "licenses": {
+          "type": "array",
+          "title": "Component License(s)",
+          "items": {
+            "properties": {
+              "license": {
+                "$ref": "#/definitions/license"
+              },
+              "expression": {
+                "type": "string",
+                "title": "SPDX License Expression",
+                "examples": [
+                  "Apache-2.0 AND (MIT OR GPL-2.0-only)",
+                  "GPL-3.0-only WITH Classpath-exception-2.0"
+                ],
+                "pattern": "^(.*)$"
+              }
+            },
+            "oneOf":[
+              {
+                "required": ["license"]
+              },
+              {
+                "required": ["expression"]
+              }
+            ]
+          }
+        },
+        "externalReferences": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/externalReference"},
+          "title": "External References"
+        }
+      }
+    },
+    "dataClassification": {
+      "type": "object",
+      "title": "Hash Objects",
+      "required": [
+        "flow",
+        "classification"
+      ],
+      "properties": {
+        "flow": {
+          "$ref": "#/definitions/dataFlow"
+        },
+        "classification": {
+          "type": "string"
+        }
+      }
+    },
+    "dataFlow": {
+      "type": "string",
+      "enum": [
+        "inbound",
+        "outbound",
+        "bi-directional",
+        "unknown"
+      ],
+      "title": "Data flow direction",
+      "default": "",
+      "pattern": "^(.*)$"
     }
   }
 }

@@ -21,7 +21,7 @@ import xmlschema
 
 xml_bom_schema_path = os.path.join(os.path.dirname(__file__), "../schema/bom-1.0.xsd")
 xml_bom_schema = xmlschema.XMLSchema(xml_bom_schema_path)
-json_bom_schema_path = os.path.join(os.path.dirname(__file__), "../schema/bom-1.2.json")
+json_bom_schema_path = os.path.join(os.path.dirname(__file__), "../schema/bom-1.2.schema.json")
 with open(json_bom_schema_path, 'rt') as f:
     json_bom_schema = json.load(f)
 
