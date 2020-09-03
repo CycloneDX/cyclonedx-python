@@ -19,7 +19,7 @@ setup(
         'packageurl_python==0.8.7',
         'xmlschema==1.2.3',
         'requests==2.24.0',
-        'packaging==19.2',
+        'packaging==20.4',
         'jsonschema==3.2.0',
     ],
     entry_points={
