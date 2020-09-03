@@ -18,7 +18,7 @@ setup(
         'requirements_parser==0.2.0',
         'packageurl_python==0.8.7',
         'xmlschema==1.2.3',
-        'requests==2.22.0',
+        'requests==2.24.0',
         'packaging==19.2',
         'jsonschema==3.2.0',
     ],
