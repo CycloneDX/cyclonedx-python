@@ -24,17 +24,51 @@ jobs:
       run: |
         pip install tox
         tox
-    - name: Make package
+
+    - name: Package release
+      id: package_release
+      env:
+        REPO: cyclonedx/cyclonedx-python
+      run: |
+        VERSION=`cat VERSION`
+        echo "##[set-output name=version;]$VERSION"
+        python setup.py sdist bdist_wheel
+        docker build -f Dockerfile -t $REPO:$VERSION -t $REPO:latest .
+    
+    - name: Publish package
       env:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+      run: |
+        twine upload --repository cyclonedx-bom dist/*
+
+    - name: Publish docker image
+      env:
         REPO: cyclonedx/cyclonedx-python
         DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
       run: |
         VERSION=`cat VERSION`
-        python setup.py sdist bdist_wheel
-        docker build -f Dockerfile -t $REPO:$VERSION -t $REPO:latest .
         docker login --username coderpatros --password "$DOCKER_TOKEN"
-        twine upload --repository cyclonedx-bom dist/*
         docker push $REPO:latest
-        docker push $REPO:$VERSION
+        docker push $REPO:${{ steps.package_release.outputs.version }}
+    
+    - name: Create github release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        release_name: ${{ steps.package_release.outputs.version }}
+        tag_name: v${{ steps.package_release.outputs.version }}
+        draft: false
+        prerelease: false
+
+    - name: Upload package to github release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: dist/cyclonedx_bom-${{ steps.package_release.outputs.version }}-py2.py3-none-any.whl
+        asset_name: cyclonedx_bom-${{ steps.package_release.outputs.version }}-py2.py3-none-any.whl
+        asset_content_type: application/zip
