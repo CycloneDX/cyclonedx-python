@@ -1,0 +1,33 @@
+name: Release
+
+on:
+  workflow_dispatch
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python 3.5
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.5
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install setuptools wheel twine
+        pip install -r requirements.txt
+    # The tests should have already been run during the PR workflow, so this is really just a sanity check
+    - name: Test with tox+pytest
+      run: |
+        pip install tox
+        tox
+    - name: Make package
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+      run: |
+        python setup.py sdist bdist_wheel
+        twine upload --repository cyclonedx-bom dist/*
