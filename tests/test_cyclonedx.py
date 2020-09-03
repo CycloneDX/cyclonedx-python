@@ -15,6 +15,8 @@
 # Copyright (c) Steve Springett. All Rights Reserved.
 
 import os.path
+import subprocess
+import tempfile
 import pytest
 from cyclonedx.client import build_parser, generate_bom
 
@@ -22,15 +24,40 @@ from cyclonedx.client import build_parser, generate_bom
 script_path = os.path.dirname(__file__)
 
 
-def test_bom_generation():
-    # arrange
-    with open(os.path.join(script_path, 'resources', 'bom.xml'), 'r') as bf:
-        expected_xml = bf.read()
-    parser = build_parser()
-    args = parser.parse_args(['-i', os.path.join(script_path, 'resources', 'requirements.txt')])
-    
-    # act
-    actual_xml = generate_bom(args)
-    
-    # assert
-    assert actual_xml == expected_xml
+def test_xml_bom_generation():
+    with tempfile.TemporaryDirectory() as dirname:
+        # arrange
+        with open(os.path.join(script_path, 'resources', 'bom.xml'), 'r') as bf:
+            expected_xml = bf.read()
+        
+        # act
+        subprocess.check_output([
+            'cyclonedx-py',
+            '-i', os.path.join(script_path, 'resources', 'requirements.txt'),
+            '-o', os.path.join(dirname, 'bom.xml'),
+        ])
+
+        # assert
+        with open(os.path.join(dirname, 'bom.xml'), 'rt') as f:
+            actual_xml = f.read()
+        assert actual_xml == expected_xml
+
+
+def test_json_bom_generation():
+    with tempfile.TemporaryDirectory() as dirname:
+        # arrange
+        with open(os.path.join(script_path, 'resources', 'bom.json'), 'r') as bf:
+            expected_json = bf.read()
+        
+        # act
+        subprocess.check_output([
+            'cyclonedx-py',
+            '-i', os.path.join(script_path, 'resources', 'requirements.txt'),
+            '-o', os.path.join(dirname, 'bom.json'),
+            '-j',
+        ])
+
+        # assert
+        with open(os.path.join(dirname, 'bom.json'), 'rt') as f:
+            actual_json = f.read()
+        assert actual_json == expected_json

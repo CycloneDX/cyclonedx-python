@@ -20,6 +20,7 @@ setup(
         'xmlschema==1.0.16',
         'requests==2.22.0',
         'packaging==19.2',
+        'jsonschema==3.2.0',
     ],
     entry_points={
         'console_scripts': [

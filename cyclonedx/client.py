@@ -18,10 +18,13 @@
 # Copyright (c) Steve Springett. All Rights Reserved.
 
 import argparse
+import os
 import sys
 
 import chardet
 
+script_path = os.path.dirname(__file__)
+sys.path.append(os.path.join(script_path, '..'))
 from cyclonedx.bom import reader, generator, validator
 
 
@@ -29,6 +32,7 @@ def build_parser():
     parser = argparse.ArgumentParser(description='CycloneDX BOM Generator')
     parser.add_argument('-i', action="store", dest="input_file", default="requirements.txt")
     parser.add_argument('-o', action="store", dest="output_file", default="bom.xml")
+    parser.add_argument('-j', action="store_true", dest="json")
     parser.add_argument(
         '--package-info-url',
         action="store",
@@ -41,28 +45,29 @@ def build_parser():
 def print_arguments(args):
     print("Input file: " + args.input_file)
     print("Output BOM: " + args.output_file)
+    print("JSON output:", args.json)
     print("Package info url: " + args.package_info_url)
 
 
 def generate_bom(args):
     if args.input_file == '-':
-        bom_xml = reader.read_bom(sys.stdin, args.package_info_url)
+        bom_contents = reader.read_bom(sys.stdin, args.package_info_url, args.json)
     else:
         rawdata = open(args.input_file, 'rb').read()
         result = chardet.detect(rawdata)
         with open(args.input_file, 'r', encoding=result['encoding']) as fd:
-            bom_xml = reader.read_bom(fd, args.package_info_url)
-    return bom_xml
+            bom_contents = reader.read_bom(fd, args.package_info_url, args.json)
+    return bom_contents
 
 
-def write_bom(args, bom_xml):
+def write_bom(args, bom_contents):
     with open(args.output_file, "w", encoding="utf-8") as file:
-        file.write(bom_xml)
+        file.write(bom_contents)
 
 
 def validate_bom(args):
     print("Validating BOM")
-    if validator.is_valid(args.output_file):
+    if validator.is_valid(args.output_file, args.json):
         print("Complete")
     else:
         print("The generated BOM is not valid")
@@ -71,10 +76,12 @@ def validate_bom(args):
 def main():
     parser = build_parser()
     args = parser.parse_args()
+    if args.json and args.output_file == 'bom.xml':
+        args.output_file = 'bom.json'
     print_arguments(args)
 
-    bom_xml = generate_bom(args)
-    write_bom(args, bom_xml)
+    bom_contents = generate_bom(args)
+    write_bom(args, bom_contents)
     validate_bom(args)
 
 

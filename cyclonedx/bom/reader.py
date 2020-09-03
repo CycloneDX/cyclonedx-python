@@ -6,17 +6,32 @@ from packaging.utils import canonicalize_version
 from packaging.version import parse as packaging_parse
 
 from cyclonedx.bom import generator
+from cyclonedx.models import *
 
 
 DEFAULT_PACKAGE_INFO_URL = "https://pypi.org/pypi/{package_name}/{package_version}/json"
 
-def read_bom(fd, package_info_url=DEFAULT_PACKAGE_INFO_URL):
+def read_bom(fd, package_info_url=DEFAULT_PACKAGE_INFO_URL, json=False):
     """Read BOM data from file handle."""
 
     print("Generating CycloneDX BOM")
-    components = (get_component(req, package_info_url) for req in requirements.parse(fd))
-    components = filter(lambda c: c is not None, components)
-    bom = generator.build_bom(components)
+    all_components = (get_component(req, package_info_url) for req in requirements.parse(fd))
+
+    # there can be duplicates in all_components, get rid of them
+    components = []
+    added_purls = []
+    for component in all_components:
+        if component is not None and component.purl not in added_purls:
+            components.append(component)
+            added_purls.append(component.purl)
+
+    bom = generator.build_xml_bom(components)
+
+    if json:
+        bom = generator.build_json_bom(components)
+    else:
+        bom = generator.build_xml_bom(components)
+    
     return bom
 
 
@@ -34,33 +49,33 @@ def get_component(req, package_info_url=DEFAULT_PACKAGE_INFO_URL):
         return None
 
     # set defaults
-    name = req.name
-    version = req.specs[0][1]
-    author = ""
-    description = ""
-    hashes = {}
-    license = ""
-    modified = "false"
-    purl = ""
+    component = Component(
+        name=req.name,
+        version=req.specs[0][1],
+        purl=generate_purl(req.name, req.specs[0][1]),
+    )
 
     if req.specs[0][0] != "==":
-        print("WARNING: " + name + " is not pinned to a specific version. Using: " + version)
+        print('WARNING: {component.name} is not pinned to a specific version. Using: {component.version}'.format(component=component))
 
-    package_info = get_package_info(name, version, package_info_url)
+    package_info = get_package_info(component.name, component.version, package_info_url)
     if package_info:
-        author = package_info["info"]["author"]
-        description = package_info["info"]["summary"]
+        component.publisher = package_info["info"]["author"]
+        component.description = package_info["info"]["summary"]
         # TODO: Attempt to perform SPDX license ID resolution
-        license = package_info["info"]["license"]
+        package_license = package_info["info"]["license"]
+        if package_license != 'UNKNOWN' and len(package_license.strip()) > 0:
+            license = License(name=package_license)
+            component_license = ComponentLicense(license=license)
+            component.licenses.append(component_license)
 
-        if version in package_info["releases"]:
-            release_info = get_release_info(package_info, version)
-            hashes = get_hashes(release_info)
+        if component.version in package_info["releases"]:
+            release_info = get_release_info(package_info, component.version)
+            component.hashes = get_hashes(release_info)
+            component.hashes.sort()
         else:
-            print("WARNING: " + name + "==" + version + " could not be found in PyPi")
+            print('WARNING: {component.name}=={component.version} could not be found in PyPi'.format(component=component))
 
-    purl = generate_purl(name, version)
-    component = generator.build_component_element(author, name, version, description, hashes, license, purl, modified)
     return component
 
 
@@ -87,15 +102,13 @@ def generate_purl(package_name, package_version):
 
 
 def translate_digests(digests):
-    # using an ordered dictionary so hashes are added in a deterministic way for testing
-    # the dictionary implementation was changed in Python 3.6
-    mapping = OrderedDict(
-        md5="MD5",
-        sha1="SHA-1",
-        sha256="SHA-256",
-        sha512="SHA-512",
-    )
-    return {mapping[k]: v for k, v in digests.items() if k in mapping}
+    mapping = {
+        'md5': 'MD5',
+        'sha1': 'SHA-1',
+        'sha256': 'SHA-256',
+        'sha512': 'SHA-512',
+    }
+    return [Hash(mapping[k], digests[k]) for k in digests if k in mapping]
 
 
 def _get_pypi_version(special_version, release_dict):
@@ -138,10 +151,16 @@ def get_hashes(releases):
         if has_wheel and r["packagetype"] == "bdist_wheel" or not has_wheel and r["packagetype"] == "sdist":
             relevant_releases.append(r)
 
-    # using an ordered dictionary so hashes are added in a deterministic way for testing
-    # the dictionary implementation was changed in Python 3.6
-    hashes = OrderedDict()
-    for release in relevant_releases:
-        hashes.update(translate_digests(release["digests"]))
+    # instead of doing something like this once the TODO above is complete...
+    # hashes = []
+    # for release in relevant_releases:
+    #     hashes.extend(translate_digests(release['digests']))
 
-    return hashes
+    # doing this to mimic current behaviour of picking the last hash
+    hashes = {}
+    for release in relevant_releases:
+        release_hashes = translate_digests(release['digests'])
+        for release_hash in release_hashes:
+            hashes[release_hash.alg] = release_hash
+
+    return [hashes[k] for k in hashes]

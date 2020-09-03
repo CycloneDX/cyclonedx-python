@@ -276,23 +276,6 @@
             <modified>false</modified>
         </component>
         <component type="library">
-            <publisher>Marc Gibbons</publisher>
-            <name>django-rest-swagger</name>
-            <version>2.1.2</version>
-            <description>Swagger UI for Django REST Framework 3.5+</description>
-            <hashes>
-                <hash alg="MD5">3d1160115490f3d0a29482ef65e36054</hash>
-                <hash alg="SHA-256">3471e6c21a3e97751fa6f7b81b66e916e40fa645cac36be1594c0efed810d247</hash>
-            </hashes>
-            <licenses>
-                <license>
-                    <name>FreeBSD License</name>
-                </license>
-            </licenses>
-            <purl>pkg:pypi/django-rest-swagger@2.1.2</purl>
-            <modified>false</modified>
-        </component>
-        <component type="library">
             <publisher>Tom Christie</publisher>
             <name>djangorestframework</name>
             <version>3.7.7</version>
