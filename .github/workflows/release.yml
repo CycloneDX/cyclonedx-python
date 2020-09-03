@@ -40,7 +40,7 @@ jobs:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
       run: |
-        twine upload --repository cyclonedx-bom dist/*
+        twine upload dist/*
 
     - name: Publish docker image
       env:
