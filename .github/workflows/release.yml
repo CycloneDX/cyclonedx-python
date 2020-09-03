@@ -28,6 +28,13 @@ jobs:
       env:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        REPO: cyclonedx/cyclonedx-python
+        DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
       run: |
+        VERSION=`cat VERSION`
         python setup.py sdist bdist_wheel
+        docker build -f Dockerfile -t $REPO:$VERSION -t $REPO:latest .
+        docker login --username coderpatros --password "$DOCKER_TOKEN"
         twine upload --repository cyclonedx-bom dist/*
+        docker push $REPO:latest
+        docker push $REPO:$VERSION
