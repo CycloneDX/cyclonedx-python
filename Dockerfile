@@ -1,3 +1,7 @@
 FROM python:3.8.1-slim-buster
-RUN pip install cyclonedx-bom
+
+ARG VERSION
+
+COPY ./dist /tmp/dist
+RUN pip install cyclonedx-bom==${VERSION} --find-links file:///tmp/dist
 ENTRYPOINT ["cyclonedx-py"]

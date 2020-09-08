@@ -53,7 +53,7 @@ jobs:
         VERSION=`cat VERSION`
         echo "##[set-output name=version;]$VERSION"
         python setup.py sdist bdist_wheel
-        docker build -f Dockerfile -t $REPO:$VERSION -t $REPO:latest .
+        docker build -f Dockerfile --build-arg VERSION=$VERSION -t $REPO:$VERSION -t $REPO:latest .
     
     - name: Publish package
       env:
