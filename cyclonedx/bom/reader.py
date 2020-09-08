@@ -64,7 +64,7 @@ def get_component(req, package_info_url=DEFAULT_PACKAGE_INFO_URL):
         component.description = package_info["info"]["summary"]
         # TODO: Attempt to perform SPDX license ID resolution
         package_license = package_info["info"]["license"]
-        if package_license != 'UNKNOWN' and len(package_license.strip()) > 0:
+        if package_license and package_license != 'UNKNOWN' and len(package_license.strip()) > 0:
             license = License(name=package_license)
             component_license = ComponentLicense(license=license)
             component.licenses.append(component_license)
