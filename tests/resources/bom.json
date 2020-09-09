@@ -1042,6 +1042,26 @@
             "purl": "pkg:pypi/royalnet@5.0a8",
             "type": "library",
             "version": "5.0a8"
+        },
+        {
+            "description": "Python Build Reasonableness",
+            "hashes": [
+                {
+                    "alg": "MD5",
+                    "content": "7941615147c725d1800ee86f91d5df3e"
+                },
+                {
+                    "alg": "SHA-256",
+                    "content": "f5cf7265a80636ecff66806d13494cbf9d77a3758a65fd8b4d4d4bee81b0c375"
+                }
+            ],
+            "licenses": [],
+            "modified": false,
+            "name": "pbr",
+            "publisher": "OpenStack",
+            "purl": "pkg:pypi/pbr@1.10.0",
+            "type": "library",
+            "version": "1.10.0"
         }
     ],
     "specVersion": "1.2",

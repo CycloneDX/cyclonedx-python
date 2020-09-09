@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bom version="1" xmlns="http://cyclonedx.org/schema/bom/1.0">
+<bom xmlns="http://cyclonedx.org/schema/bom/1.0" version="1">
     <components>
         <component type="library">
             <publisher>Ask Solem</publisher>
@@ -676,6 +676,18 @@
                 <hash alg="SHA-256">a94fa6d8f4692b5c824790f279315a3a3d1c8db75ad6064dde83ddc4cf74bc88</hash>
             </hashes>
             <purl>pkg:pypi/royalnet@5.0a8</purl>
+            <modified>false</modified>
+        </component>
+        <component type="library">
+            <publisher>OpenStack</publisher>
+            <name>pbr</name>
+            <version>1.10.0</version>
+            <description>Python Build Reasonableness</description>
+            <hashes>
+                <hash alg="MD5">7941615147c725d1800ee86f91d5df3e</hash>
+                <hash alg="SHA-256">f5cf7265a80636ecff66806d13494cbf9d77a3758a65fd8b4d4d4bee81b0c375</hash>
+            </hashes>
+            <purl>pkg:pypi/pbr@1.10.0</purl>
             <modified>false</modified>
         </component>
     </components>
