@@ -41,3 +41,4 @@ pandas>=0.22.0
 django-dbbackup>=3.2.0
 django-markdownx>=2.0.23
 royalnet==5.0a8
+pbr==1.10.0 # flexes null licenses

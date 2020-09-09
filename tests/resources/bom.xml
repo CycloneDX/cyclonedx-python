@@ -678,5 +678,17 @@
             <purl>pkg:pypi/royalnet@5.0a8</purl>
             <modified>false</modified>
         </component>
+        <component type="library">
+            <publisher>OpenStack</publisher>
+            <name>pbr</name>
+            <version>1.10.0</version>
+            <description>Python Build Reasonableness</description>
+            <hashes>
+                <hash alg="MD5">7941615147c725d1800ee86f91d5df3e</hash>
+                <hash alg="SHA-256">f5cf7265a80636ecff66806d13494cbf9d77a3758a65fd8b4d4d4bee81b0c375</hash>
+            </hashes>
+            <purl>pkg:pypi/pbr@1.10.0</purl>
+            <modified>false</modified>
+        </component>
     </components>
 </bom>
