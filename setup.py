@@ -16,7 +16,7 @@ setup(
     zip_safe=False,
     install_requires=[
         'requirements_parser==0.2.0',
-        'packageurl_python==0.9.1',
+        'packageurl_python==0.9.2',
         'xmlschema==1.2.4',
         'requests==2.24.0',
         'packaging==20.4',
