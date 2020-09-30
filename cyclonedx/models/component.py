@@ -24,7 +24,7 @@ class Component:
         licenses=None,
         purl=None,
         modified=False,
-        component_type='library'
+        component_type=None
     ):
         self.name = name
         self.version = version

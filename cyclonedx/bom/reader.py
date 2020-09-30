@@ -51,6 +51,7 @@ def get_component(req, package_info_url=DEFAULT_PACKAGE_INFO_URL):
         name=req.name,
         version=req.specs[0][1],
         purl=generate_purl(req.name, req.specs[0][1]),
+        component_type='library'
     )
 
     if req.specs[0][0] != "==":

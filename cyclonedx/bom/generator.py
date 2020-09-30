@@ -65,15 +65,16 @@ def build_xml_bom(components):
             component.hashes,
             component.licenses,
             component.purl,
-            component.modified
+            component.modified,
+            component.component_type
         )
         xml_components.append(component_xml)
     xml_pretty_print(bom)
     return declaration + ElementTree.tostring(bom, "unicode")
 
 
-def build_xml_component_element(publisher, name, version, description, hashes, licenses, purl, modified):
-    component = ElementTree.Element("component", {"type": "library"})
+def build_xml_component_element(publisher, name, version, description, hashes, licenses, purl, modified, component_type):
+    component = ElementTree.Element("component", {"type": component_type})
 
     if publisher and publisher != "UNKNOWN":
         ElementTree.SubElement(component, "publisher").text = publisher
