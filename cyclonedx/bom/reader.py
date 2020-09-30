@@ -25,8 +25,6 @@ def read_bom(fd, package_info_url=DEFAULT_PACKAGE_INFO_URL, json=False):
             components.append(component)
             added_purls.append(component.purl)
 
-    bom = generator.build_xml_bom(components)
-
     if json:
         bom = generator.build_json_bom(components)
     else:
