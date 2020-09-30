@@ -1,6 +1,6 @@
 packageurl_python==0.9.2
 requests==2.24.0
-xmlschema==1.2.4
+xmlschema==1.2.5
 setuptools==50.3.0
 requirements_parser==0.2.0
 packaging==20.4
