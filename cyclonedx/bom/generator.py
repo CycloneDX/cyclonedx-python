@@ -40,21 +40,29 @@ class BomJSONEncoder(JSONEncoder):
             return super().default(self, obj)
 
 
-def build_json_bom(components):
+def build_json_bom(components, metadata):
     bom = OrderedDict({
         'bomFormat': 'CycloneDX',
         'specVersion': '1.2',
         'version': 1,
         'components': components,
+        'metadata' : {
+            'timestamp' : metadata.timestamp
+        }
     })
     bom_json = json.dumps(bom, indent=4, cls=BomJSONEncoder, sort_keys=True)
     return bom_json
 
 
-def build_xml_bom(components):
+def build_xml_bom(components, metadata):
     declaration = '<?xml version="1.0" encoding="UTF-8"?>\n'
     namespace = {'xmlns': 'http://cyclonedx.org/schema/bom/1.0', 'version': '1'}
     bom = ElementTree.Element("bom", namespace)
+    
+    xml_metadata = ElementTree.SubElement(bom, "metadata")
+    xml_timestamp = ElementTree.SubElement(xml_metadata, "timestamp")
+    xml_timestamp.text = metadata.timestamp
+
     xml_components = ElementTree.SubElement(bom, "components")
     for component in components:
         component_xml = build_xml_component_element(
