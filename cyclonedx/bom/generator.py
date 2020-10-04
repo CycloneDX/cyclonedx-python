@@ -42,14 +42,14 @@ class BomJSONEncoder(JSONEncoder):
 
 def build_json_bom(components, metadata=None):
     if metadata is None:
-        metadata = []
+        metadata = {}
     bom = OrderedDict({
         'bomFormat': 'CycloneDX',
         'specVersion': '1.2',
         'version': 1,
         'components': components,
         'metadata' : {
-            'timestamp' : metadata.timestamp
+            'timestamp' : metadata.get('timestamp')
         }
     })
     bom_json = json.dumps(bom, indent=4, cls=BomJSONEncoder, sort_keys=True)
@@ -65,7 +65,7 @@ def build_xml_bom(components, metadata=None):
         metadata = []
     xml_metadata = ElementTree.SubElement(bom, "metadata")
     xml_timestamp = ElementTree.SubElement(xml_metadata, "timestamp")
-    xml_timestamp.text = metadata.timestamp
+    xml_timestamp.text = metadata.get('timestamp')
 
     xml_components = ElementTree.SubElement(bom, "components")
     for component in components:
