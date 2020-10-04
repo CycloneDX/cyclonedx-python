@@ -40,7 +40,7 @@ class BomJSONEncoder(JSONEncoder):
             return super().default(self, obj)
 
 
-def build_json_bom(components, metadata):
+def build_json_bom(components, metadata=None):
     bom = OrderedDict({
         'bomFormat': 'CycloneDX',
         'specVersion': '1.2',
@@ -54,7 +54,7 @@ def build_json_bom(components, metadata):
     return bom_json
 
 
-def build_xml_bom(components, metadata):
+def build_xml_bom(components, metadata=None):
     declaration = '<?xml version="1.0" encoding="UTF-8"?>\n'
     namespace = {'xmlns': 'http://cyclonedx.org/schema/bom/1.0', 'version': '1'}
     bom = ElementTree.Element("bom", namespace)
