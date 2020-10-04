@@ -41,6 +41,8 @@ class BomJSONEncoder(JSONEncoder):
 
 
 def build_json_bom(components, metadata=None):
+    if metadata is None:
+        metadata = []
     bom = OrderedDict({
         'bomFormat': 'CycloneDX',
         'specVersion': '1.2',
@@ -59,6 +61,8 @@ def build_xml_bom(components, metadata=None):
     namespace = {'xmlns': 'http://cyclonedx.org/schema/bom/1.0', 'version': '1'}
     bom = ElementTree.Element("bom", namespace)
     
+    if metadata is None:
+        metadata = []
     xml_metadata = ElementTree.SubElement(bom, "metadata")
     xml_timestamp = ElementTree.SubElement(xml_metadata, "timestamp")
     xml_timestamp.text = metadata.timestamp
