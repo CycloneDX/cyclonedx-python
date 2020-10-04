@@ -62,7 +62,7 @@ def build_xml_bom(components, metadata=None):
     bom = ElementTree.Element("bom", namespace)
     
     if metadata is None:
-        metadata = []
+        metadata = {}
     xml_metadata = ElementTree.SubElement(bom, "metadata")
     xml_timestamp = ElementTree.SubElement(xml_metadata, "timestamp")
     xml_timestamp.text = metadata.get('timestamp')
