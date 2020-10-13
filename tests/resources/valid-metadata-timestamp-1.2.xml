@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<bom version="1" xmlns="http://cyclonedx.org/schema/bom/1.0">
+    <metadata>
+        <timestamp>2020-04-07T07:01:00Z</timestamp>
+    </metadata>
+    <components />
+</bom>
