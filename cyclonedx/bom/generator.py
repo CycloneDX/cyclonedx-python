@@ -48,7 +48,19 @@ def build_json_bom(components, metadata=None):
         'components': components,
     })
     if metadata:
-        bom['metadata'] = {'timestamp': metadata.get('timestamp')}
+        bom['metadata'] = {}
+
+        if metadata.get('timestamp'):
+            timestamp = {'timestamp': metadata.get('timestamp')}
+            bom['metadata'].update(timestamp)
+
+        if metadata.get('authors'):
+            author_array = []
+            for author in metadata.get('authors'):
+                author_array.append(author)
+            authors = {'authors': author_array}
+            bom['metadata'].update(authors)
+
     bom_json = json.dumps(bom, indent=4, cls=BomJSONEncoder, sort_keys=True)
     return bom_json
 
@@ -60,8 +72,22 @@ def build_xml_bom(components, metadata=None):
     
     if metadata:
         xml_metadata = ElementTree.SubElement(bom, "metadata")
-        xml_timestamp = ElementTree.SubElement(xml_metadata, "timestamp")
-        xml_timestamp.text = metadata.get('timestamp')
+
+        if metadata.get('timestamp'):
+            xml_timestamp = ElementTree.SubElement(xml_metadata, "timestamp")
+            xml_timestamp.text = metadata.get('timestamp')
+
+        if metadata.get('authors'):
+            xml_authors = ElementTree.SubElement(xml_metadata, "authors")
+            for author in metadata.get('authors'):
+                xml_author = ElementTree.SubElement(xml_authors, "author")
+                
+                xml_name = ElementTree.SubElement(xml_author, "name")
+                xml_name.text = author['name']
+                xml_email = ElementTree.SubElement(xml_author, "email")
+                xml_email.text = author['email']
+                xml_phone = ElementTree.SubElement(xml_author, "phone")
+                xml_phone.text = author['phone']
 
     xml_components = ElementTree.SubElement(bom, "components")
     for component in components:
