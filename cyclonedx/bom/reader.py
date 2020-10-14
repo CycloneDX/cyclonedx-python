@@ -25,8 +25,6 @@ def read_bom(fd, package_info_url=DEFAULT_PACKAGE_INFO_URL, json=False):
             components.append(component)
             added_purls.append(component.purl)
 
-    bom = generator.build_xml_bom(components)
-
     if json:
         bom = generator.build_json_bom(components)
     else:
@@ -53,6 +51,7 @@ def get_component(req, package_info_url=DEFAULT_PACKAGE_INFO_URL):
         name=req.name,
         version=req.specs[0][1],
         purl=generate_purl(req.name, req.specs[0][1]),
+        component_type='library'
     )
 
     if req.specs[0][0] != "==":
