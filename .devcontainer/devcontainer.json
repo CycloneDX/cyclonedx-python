@@ -1,0 +1,12 @@
+{
+    "name": "devcontainer",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+    "extensions": [
+        "ms-python.python",
+        "redhat.vscode-yaml"
+    ],
+    "postCreateCommand": "pip3 install --user -r requirements.txt"
+}
