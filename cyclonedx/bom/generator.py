@@ -81,7 +81,6 @@ def build_xml_bom(components, metadata=None):
             xml_authors = ElementTree.SubElement(xml_metadata, "authors")
             for author in metadata.get('authors'):
                 xml_author = ElementTree.SubElement(xml_authors, "author")
-                
                 xml_name = ElementTree.SubElement(xml_author, "name")
                 xml_name.text = author['name']
                 xml_email = ElementTree.SubElement(xml_author, "email")
