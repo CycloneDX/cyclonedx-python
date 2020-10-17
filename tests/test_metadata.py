@@ -23,7 +23,7 @@ script_path = os.path.dirname(__file__)
 
 
 #TODO: update to use 1.2 spec
-def text_xml_metadata_timestamp():
+def test_xml_metadata_timestamp():
     # arrange
     with open(os.path.join(script_path, 'resources', 'valid-metadata-timestamp-1.2.xml'), 'r') as bf:
         expected_xml = bf.read()
@@ -38,7 +38,7 @@ def text_xml_metadata_timestamp():
     assert actual_xml == expected_xml
 
 #TODO: update to use 1.2 spec
-def text_json_metadata_timestamp():
+def test_json_metadata_timestamp():
     # arrange
     with open(os.path.join(script_path, 'resources', 'valid-metadata-timestamp-1.2.json'), 'r') as bf:
         expected_json = bf.read()
