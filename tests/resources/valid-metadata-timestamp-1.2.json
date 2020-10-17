@@ -1,9 +1,9 @@
 {
-  "bomFormat": "CycloneDX",
-  "metadata": {
-    "timestamp": "2020-04-13T20:20:39+00:00"
-  },
-  "components": [],
-  "specVersion": "1.0",
-  "version": 1
+    "bomFormat": "CycloneDX",
+    "components": [],
+    "metadata": {
+      "timestamp": "2020-04-07T07:01:00Z"
+    },
+    "specVersion": "1.2",
+    "version": 1
 }
