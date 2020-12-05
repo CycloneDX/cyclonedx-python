@@ -17,10 +17,17 @@
 from collections import OrderedDict
 import json
 from json import JSONEncoder
+import re
 from xml.etree import ElementTree
 
 from cyclonedx.models import *
 
+RE_XML_ILLEGAL = u'([\u0000-\u0008\u000b-\u000c\u000e-\u001f\ufffe-\uffff])' + \
+                 u'|' + \
+                 u'([%s-%s][^%s-%s])|([^%s-%s][%s-%s])|([%s-%s]$)|(^[%s-%s])' % \
+                  (chr(0xd800),chr(0xdbff),chr(0xdc00),chr(0xdfff),
+                   chr(0xd800),chr(0xdbff),chr(0xdc00),chr(0xdfff),
+                   chr(0xd800),chr(0xdbff),chr(0xdc00),chr(0xdfff))
 
 class BomJSONEncoder(JSONEncoder):
     def default(self, obj):
@@ -85,16 +92,16 @@ def build_xml_component_element(publisher, name, version, description, hashes, l
     component = ElementTree.Element("component", {"type": component_type})
 
     if publisher and publisher != "UNKNOWN":
-        ElementTree.SubElement(component, "publisher").text = publisher
+        ElementTree.SubElement(component, "publisher").text = re.sub(RE_XML_ILLEGAL, "?", publisher)
 
     if name and name != "UNKNOWN":
-        ElementTree.SubElement(component, "name").text = name
+        ElementTree.SubElement(component, "name").text = re.sub(RE_XML_ILLEGAL, "?", name)
 
     if version and version != "UNKNOWN":
-        ElementTree.SubElement(component, "version").text = version
+        ElementTree.SubElement(component, "version").text = re.sub(RE_XML_ILLEGAL, "?", version)
 
     if description and description != "UNKNOWN":
-        ElementTree.SubElement(component, "description").text = description
+        ElementTree.SubElement(component, "description").text = re.sub(RE_XML_ILLEGAL, "?", description)
 
     if hashes:
         hashes_elm = ElementTree.SubElement(component, "hashes")
@@ -106,7 +113,7 @@ def build_xml_component_element(publisher, name, version, description, hashes, l
         for component_license in licenses:
             if component_license.license is not None:
                 license_elm = ElementTree.SubElement(licenses_elm, "license")
-                ElementTree.SubElement(license_elm, "name").text = component_license.license.name
+                ElementTree.SubElement(license_elm, "name").text = re.sub(RE_XML_ILLEGAL, "?", component_license.license.name)
 
     if purl:
         ElementTree.SubElement(component, "purl").text = purl
