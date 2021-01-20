@@ -68,6 +68,8 @@ be created in the current working directory. These options can be overwritten as
         -i <path> - the alternate filename to a frozen requirements.txt
         -o <path> - the bom file to create
         -j        - generate JSON instead of XML
+        -c        - Attempt to fill in CPE details in bom from NIST
+                    NVD database (requires internet access to https://services.nvd.nist.gov/)
 
 
 License

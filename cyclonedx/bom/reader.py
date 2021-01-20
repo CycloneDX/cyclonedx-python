@@ -1,3 +1,4 @@
+import re
 import requests
 import requirements
 from collections import OrderedDict
@@ -11,11 +12,11 @@ from cyclonedx.models import *
 
 DEFAULT_PACKAGE_INFO_URL = "https://pypi.org/pypi/{package_name}/{package_version}/json"
 
-def read_bom(fd, package_info_url=DEFAULT_PACKAGE_INFO_URL, json=False):
+def read_bom(fd, package_info_url=DEFAULT_PACKAGE_INFO_URL, json=False, nvd_cpe=False):
     """Read BOM data from file handle."""
 
     print("Generating CycloneDX BOM")
-    all_components = (get_component(req, package_info_url) for req in requirements.parse(fd))
+    all_components = (get_component(req, package_info_url, nvd_cpe) for req in requirements.parse(fd))
 
     # there can be duplicates in all_components, get rid of them
     components = []
@@ -33,7 +34,7 @@ def read_bom(fd, package_info_url=DEFAULT_PACKAGE_INFO_URL, json=False):
     return bom
 
 
-def get_component(req, package_info_url=DEFAULT_PACKAGE_INFO_URL):
+def get_component(req, package_info_url=DEFAULT_PACKAGE_INFO_URL, nvd_cpe=False):
     if req.local_file:
         print("WARNING: Local file " + req.path + " does not have versions. Skipping.")
         return None
@@ -56,6 +57,13 @@ def get_component(req, package_info_url=DEFAULT_PACKAGE_INFO_URL):
 
     if req.specs[0][0] != "==":
         print('WARNING: {component.name} is not pinned to a specific version. Using: {component.version}'.format(component=component))
+
+    if nvd_cpe:
+        cpe = match_cpe_from_nvd(req.name, req.specs[0][1])
+        if cpe:
+            component.cpe = cpe
+        else:
+            print("WARNING: Failed to match CPE for {component.name}".format(component=component))
 
     package_info = get_package_info(component.name, component.version, package_info_url)
     if package_info:
@@ -98,6 +106,63 @@ def get_package_info(
 
 def generate_purl(package_name, package_version):
     return PackageURL("pypi", '', package_name, package_version, '', '').to_string()
+
+
+def match_cpe_from_nvd(package_name, package_version):
+    """
+    Search the NIST National Vulnerabilities Database for matches to the pip dependency.
+
+    NIST publishes CVEs in the NVD (National Vulnerability Database) using CPE
+    (Common Platform Enumeration). A CPE, like a PURL, is used to uniquely identify
+    a dependency — but is intended for software/hardware typically not libraries.
+
+    Unfortunately, python CPEs do not seem to have a completely predictable pattern.
+    NIST exposes a REST endpoint where this method will attempt to search for a matching
+    CPE for the given package.
+
+    Including a CPE in the Bill of Materials for a Python dependency can result in
+    more thorough CVE matching in tools such as OWASP Dependency Track.
+    """
+
+    # It should be sufficient to find the first match (if any) - hence resultsPerPage=1.
+    # If any CPE matches the package name, the version will be substituted into the
+    # cpe returned by this method.
+    nvd_url = "https://services.nvd.nist.gov/rest/json/cpes/1.0"
+    params = {"cpeMatchString": "cpe:2.3:a:*:{package_name}".format(package_name=package_name),
+              "resultsPerPage": 1}
+    response = requests.get(url=nvd_url, params=params)
+
+    # The response will be JSON
+    nvd_results = response.json()
+    result = nvd_results['result']
+
+    # Look for a cpe entry
+    if result and result['cpes']:
+        cpe_match = result['cpes'][0]
+        if cpe_match:
+            cpe23Uri = cpe_match['cpe23Uri']
+
+            if cpe23Uri:
+                return to_cpe(cpe23Uri, package_version)
+
+    return None
+
+
+def to_cpe(cpe23Uri, package_version):
+    """
+    A cpe23Uri will look something like "cpe:2.3:a:ruamel.yaml_project:ruamel.yaml:0.1:*:*:*:*:*:*:*"
+    when matching against `ruamel_yaml`. This is close, but the version must be replaced with the
+    package version we are interested in.
+
+    This is done because the NVD does not always have a CPE that matches the exact version of every
+    python dependency for which it has an entry.
+    """
+
+    pat = re.compile(r"(?P<prefix>cpe:2.3:a:)(?P<package>.*:)(?P<version>.*:)(?P<suffix>\*:\*:\*:\*:\*:\*:\*)")
+    (result, count) = pat.subn(r"\g<prefix>\g<package>" + package_version + r":\g<suffix>", cpe23Uri)
+    if count == 1:
+        return result
+    return None
 
 
 def translate_digests(digests):

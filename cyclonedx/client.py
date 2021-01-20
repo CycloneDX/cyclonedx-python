@@ -33,6 +33,7 @@ def build_parser():
     parser.add_argument('-i', action="store", dest="input_file", default="requirements.txt")
     parser.add_argument('-o', action="store", dest="output_file", default="bom.xml")
     parser.add_argument('-j', action="store_true", dest="json")
+    parser.add_argument('-c', action="store_true", dest="nvd_cpe")
     parser.add_argument(
         '--package-info-url',
         action="store",
@@ -46,17 +47,18 @@ def print_arguments(args):
     print("Input file: " + args.input_file)
     print("Output BOM: " + args.output_file)
     print("JSON output:", args.json)
+    print("Fetch CPE from NVD:", args.nvd_cpe)
     print("Package info url: " + args.package_info_url)
 
 
 def generate_bom(args):
     if args.input_file == '-':
-        bom_contents = reader.read_bom(sys.stdin, args.package_info_url, args.json)
+        bom_contents = reader.read_bom(sys.stdin, args.package_info_url, args.json, args.nvd_cpe)
     else:
         rawdata = open(args.input_file, 'rb').read()
         result = chardet.detect(rawdata)
         with open(args.input_file, 'r', encoding=result['encoding']) as fd:
-            bom_contents = reader.read_bom(fd, args.package_info_url, args.json)
+            bom_contents = reader.read_bom(fd, args.package_info_url, args.json, args.nvd_cpe)
     return bom_contents
 
 

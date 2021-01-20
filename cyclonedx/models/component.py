@@ -24,7 +24,8 @@ class Component:
         licenses=None,
         purl=None,
         modified=False,
-        component_type=None
+        component_type=None,
+        cpe=None
     ):
         self.name = name
         self.version = version
@@ -35,3 +36,4 @@ class Component:
         self.purl = purl
         self.modified = modified
         self.component_type = component_type
+        self.cpe = cpe

@@ -81,14 +81,15 @@ def build_xml_bom(components, metadata=None):
             component.licenses,
             component.purl,
             component.modified,
-            component.component_type
+            component.component_type,
+            component.cpe
         )
         xml_components.append(component_xml)
     xml_pretty_print(bom)
     return declaration + ElementTree.tostring(bom, "unicode")
 
 
-def build_xml_component_element(publisher, name, version, description, hashes, licenses, purl, modified, component_type):
+def build_xml_component_element(publisher, name, version, description, hashes, licenses, purl, modified, component_type, cpe):
     component = ElementTree.Element("component", {"type": component_type})
 
     if publisher and publisher != "UNKNOWN":
@@ -114,6 +115,9 @@ def build_xml_component_element(publisher, name, version, description, hashes, l
             if component_license.license is not None:
                 license_elm = ElementTree.SubElement(licenses_elm, "license")
                 ElementTree.SubElement(license_elm, "name").text = re.sub(RE_XML_ILLEGAL, "?", component_license.license.name)
+
+    if cpe:
+        ElementTree.SubElement(component, "cpe").text = cpe
 
     if purl:
         ElementTree.SubElement(component, "purl").text = purl
