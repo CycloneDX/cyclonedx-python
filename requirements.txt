@@ -4,6 +4,6 @@ xmlschema==1.2.5
 setuptools==50.3.2
 requirements_parser==0.2.0
 packaging==20.9
-chardet==3.0.4
+chardet==4.0.0
 pytest==6.1.2
 jsonschema==3.2.0
