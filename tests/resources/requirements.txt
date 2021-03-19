@@ -16,7 +16,7 @@ django-tastypie==0.14.0
 django-tastypie-swagger==0.1.4
 django-watson==1.5.2
 django-rest-swagger==2.1.2
-djangorestframework==3.7.7
+djangorestframework==3.11.2
 gunicorn==19.7.1
 html2text==2018.1.9
 humanize==0.5.1
