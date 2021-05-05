@@ -1,4 +1,4 @@
-FROM python:3.9.2-slim-buster
+FROM python:3.9.5-slim-buster
 
 ARG VERSION
 
