@@ -1,4 +1,4 @@
-# This file is part of CycloneDX Python module.
+# This file is part of CycloneDX Python
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+# SPDX-License-Identifier: Apache-2.0
 # Copyright (c) Steve Springett. All Rights Reserved.
 
 from collections import OrderedDict
@@ -37,11 +38,11 @@ class BomJSONEncoder(JSONEncoder):
             for k in obj.__dict__:
                 if obj_dict[k] is None:
                     del obj_dict[k]
-            
+
             if type(obj) is Component:
                 obj_dict['type'] = obj_dict['component_type']
                 del obj_dict['component_type']
-            
+
             return obj_dict
         else:
             return super().default(self, obj)
@@ -64,7 +65,7 @@ def build_xml_bom(components, metadata=None):
     declaration = '<?xml version="1.0" encoding="UTF-8"?>\n'
     namespace = {'xmlns': 'http://cyclonedx.org/schema/bom/1.0', 'version': '1'}
     bom = ElementTree.Element("bom", namespace)
-    
+
     if metadata:
         xml_metadata = ElementTree.SubElement(bom, "metadata")
         xml_timestamp = ElementTree.SubElement(xml_metadata, "timestamp")

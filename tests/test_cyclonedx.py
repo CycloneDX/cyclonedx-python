@@ -1,4 +1,4 @@
-# This file is part of CycloneDX Python module.
+# This file is part of CycloneDX Python
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+# SPDX-License-Identifier: Apache-2.0
 # Copyright (c) Steve Springett. All Rights Reserved.
 
 import os.path
@@ -29,7 +30,7 @@ def test_xml_bom_generation():
         # arrange
         with open(os.path.join(script_path, 'resources', 'bom.xml'), 'r') as bf:
             expected_xml = bf.read()
-        
+
         # act
         subprocess.check_output([
             'cyclonedx-py',
@@ -48,7 +49,7 @@ def test_json_bom_generation():
         # arrange
         with open(os.path.join(script_path, 'resources', 'bom.json'), 'r') as bf:
             expected_json = bf.read()
-        
+
         # act
         subprocess.check_output([
             'cyclonedx-py',
@@ -67,7 +68,7 @@ def test_invalid_xml_characters():
         # arrange
         with open(os.path.join(script_path, 'resources', 'invalid-xml-characters', 'bom.xml'), 'r') as bf:
             expected_xml = bf.read()
-        
+
         # act
         subprocess.check_output([
             'cyclonedx-py',

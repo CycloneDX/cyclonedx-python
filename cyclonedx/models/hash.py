@@ -1,4 +1,4 @@
-# This file is part of CycloneDX Python module.
+# This file is part of CycloneDX Python
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,13 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+# SPDX-License-Identifier: Apache-2.0
 # Copyright (c) Steve Springett. All Rights Reserved.
 
 class Hash:
     def __init__(self, alg, content):
         self.alg = alg
         self.content = content
-    
+
     def __lt__(self, other):
         if self.alg < other.alg:
             return True
