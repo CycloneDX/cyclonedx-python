@@ -15,6 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) Steve Springett. All Rights Reserved.
 
+import os
 import requests
 import requirements
 from collections import OrderedDict
@@ -27,6 +28,8 @@ from cyclonedx.models import *
 
 
 DEFAULT_PACKAGE_INFO_URL = "https://pypi.org/pypi/{package_name}/{package_version}/json"
+
+PROXY = os.environ.get('HTTPS_PROXY')
 
 def read_bom(fd, package_info_url=DEFAULT_PACKAGE_INFO_URL, json=False):
     """Read BOM data from file handle."""
@@ -103,7 +106,7 @@ def get_package_info(
     url = url.format(package_name=package_name, package_version=package_version)
 
     try:
-        request_data = requests.get(url)
+        request_data = requests.get(url, proxies={'https':PROXY} if PROXY else None)
         request_data.raise_for_status()
         package_info = request_data.json()
     except requests.RequestException:
