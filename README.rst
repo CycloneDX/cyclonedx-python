@@ -70,7 +70,9 @@ be created in the current working directory. These options can be overwritten as
         -j        - generate JSON instead of XML
 
 
-License
+Copyright & License
 -------
+
+CycloneDX Python is Copyright (c) OWASP Foundation. All Rights Reserved.
 
 Permission to modify and redistribute is granted under the terms of the Apache 2.0 license.

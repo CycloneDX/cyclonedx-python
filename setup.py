@@ -8,7 +8,7 @@ script_path = os.path.dirname(__file__)
 setup(
     name='cyclonedx-bom',
     version=open(os.path.join(script_path, 'VERSION')).read(),
-    description='CycloneDX software bill-of-material (SBOM) generation utility',
+    description='CycloneDX Software Bill of Materials (SBOM) generation utility',
     long_description=open(os.path.join(script_path, 'README.rst')).read(),
     packages=find_packages(),
     package_data={'cyclonedx.schema': ['bom-1.0.xsd', 'spdx.xsd']},
@@ -32,7 +32,7 @@ setup(
     maintainer='Steve Springett',
     maintainer_email='steve.springett@owasp.org',
     url='https://github.com/CycloneDX/cyclonedx-python',
-    keywords=["BOM", "SBOM", "SCA"],
+    keywords=["BOM", "SBOM", "SCA", "OWASP"],
     license='Apache-2.0',
     classifiers=[
         'Intended Audience :: Developers',
