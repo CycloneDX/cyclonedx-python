@@ -65,7 +65,7 @@ def build_json_bom(components, dependencies, metadata=None):
 
 def build_xml_bom(components, dependencies, metadata=None):
     declaration = '<?xml version="1.0" encoding="UTF-8"?>\n'
-    namespace = {'xmlns': 'http://cyclonedx.org/schema/bom/1.2', 'version': '1'}
+    namespace = OrderedDict((('xmlns', 'http://cyclonedx.org/schema/bom/1.2'), ('version', '1')))
     bom = ElementTree.Element("bom", namespace)
 
     if metadata:
