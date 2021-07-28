@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bom version="1" xmlns="http://cyclonedx.org/schema/bom/1.0">
+<bom xmlns="http://cyclonedx.org/schema/bom/1.2" version="1">
     <components>
         <component type="library">
             <publisher>Adam Cohen</publisher>
@@ -358,4 +358,7 @@ Public License instead of this License.</name>
             <modified>false</modified>
         </component>
     </components>
+    <dependencies>
+        <dependency ref="pkg:pypi/fuzzywuzzy@0.15.0" />
+    </dependencies>
 </bom>

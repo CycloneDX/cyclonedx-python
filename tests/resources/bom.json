@@ -1064,6 +1064,196 @@
             "version": "1.10.0"
         }
     ],
+    "dependencies": [
+        {
+            "depends_on": [
+                "pkg:pypi/pytz@2017.3",
+                "pkg:pypi/django@1.11.11"
+            ],
+            "ref": "pkg:pypi/celery@4.1.0"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/coverage@4.5.1"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/defusedxml@0.5.0"
+        },
+        {
+            "depends_on": [
+                "pkg:pypi/pytz@2017.3"
+            ],
+            "ref": "pkg:pypi/django@1.11.11"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/django-auditlog@0.4.5"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/django-custom-field@2.9"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/django-filter@1.0.4"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/django-imagekit@4.0.2"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/django-multiselectfield@0.1.8"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/django-overextends@0.4.3"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/django-polymorphic@1.2"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/django-slack@5.11.1"
+        },
+        {
+            "depends_on": [
+                "pkg:pypi/djangorestframework@3.7.7"
+            ],
+            "ref": "pkg:pypi/django-rest-swagger@2.1.2"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/django-tagging@0.4.6"
+        },
+        {
+            "depends_on": [
+                "pkg:pypi/python-dateutil@2.6.1"
+            ],
+            "ref": "pkg:pypi/django-tastypie@0.14.0"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/django-tastypie-swagger@0.1.4"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/django-watson@1.5.2"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/djangorestframework@3.7.7"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/gunicorn@19.7.1"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/html2text@2018.1.9"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/humanize@0.5.1"
+        },
+        {
+            "depends_on": [
+                "pkg:pypi/defusedxml@0.5.0",
+                "pkg:pypi/pbr@1.10.0",
+                "pkg:pypi/requests@2.18.4"
+            ],
+            "ref": "pkg:pypi/jira@1.0.13"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/lxml@4.1.1"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/mysqlclient@1.3.12"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/pdfkit@0.6.1"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/pillow@5.0.0"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/psycopg2@2.7.3.2"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/pycrypto@2.6.1"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/python-dateutil@2.6.1"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/python-nmap@0.6.1"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/pytz@2017.3"
+        },
+        {
+            "depends_on": [
+                "pkg:pypi/urllib3@1.22"
+            ],
+            "ref": "pkg:pypi/requests@2.18.4"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/supervisor@3.3.3"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/urllib3@1.22"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/vobject@0.9.5"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/asteval@0.9.12"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/markdown@2.6.11"
+        },
+        {
+            "depends_on": [
+                "pkg:pypi/python-dateutil@2.6.1",
+                "pkg:pypi/pytz@2017.3"
+            ],
+            "ref": "pkg:pypi/pandas@0.22.0"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/django-dbbackup@3.2.0"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/django-markdownx@2.0.23"
+        },
+        {
+            "depends_on": [
+                "pkg:pypi/markdown@2.6.11"
+            ],
+            "ref": "pkg:pypi/royalnet@5.0a8"
+        },
+        {
+            "depends_on": [],
+            "ref": "pkg:pypi/pbr@1.10.0"
+        }
+    ],
     "specVersion": "1.2",
     "version": 1
 }
