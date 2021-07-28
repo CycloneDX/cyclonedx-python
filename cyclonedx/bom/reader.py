@@ -45,10 +45,14 @@ def read_bom(fd, package_info_url=DEFAULT_PACKAGE_INFO_URL, json=False):
             components.append(component)
             added_purls.append(component.purl)
 
+    dependencies = []
+    for component in components:
+        dependencies.append(get_dependency(components, component))
+
     if json:
-        bom = generator.build_json_bom(components)
+        bom = generator.build_json_bom(components, dependencies)
     else:
-        bom = generator.build_xml_bom(components)
+        bom = generator.build_xml_bom(components, dependencies)
 
     return bom
 
@@ -81,6 +85,7 @@ def get_component(req, package_info_url=DEFAULT_PACKAGE_INFO_URL):
     if package_info:
         component.publisher = package_info["info"]["author"]
         component.description = package_info["info"]["summary"]
+        component.requires_dist = package_info["info"]["requires_dist"]
         # TODO: Attempt to perform SPDX license ID resolution
         package_license = package_info["info"]["license"]
         if package_license and package_license != 'UNKNOWN' and len(package_license.strip()) > 0:
@@ -183,3 +188,14 @@ def get_hashes(releases):
             hashes[release_hash.alg] = release_hash
 
     return [hashes[k] for k in hashes]
+
+
+def get_dependency(components, component):
+    # Set defaults
+    dependency = Dependency(ref=component.purl)
+    if component.requires_dist:
+        for req in component.requires_dist:
+            req_component = [_ for _ in components if _.name == next(requirements.parse(req)).name]
+            if req_component:
+                dependency.depends_on.append(req_component[0].purl)
+    return dependency

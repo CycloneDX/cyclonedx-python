@@ -32,7 +32,7 @@ RE_XML_ILLEGAL = u'([\u0000-\u0008\u000b-\u000c\u000e-\u001f\ufffe-\uffff])' + \
 
 class BomJSONEncoder(JSONEncoder):
     def default(self, obj):
-        if type(obj) in (Component, ComponentLicense, License, Hash):
+        if type(obj) in (Component, Dependency, ComponentLicense, License, Hash):
             # we make a copy so that we can remove nulls from the output
             obj_dict = obj.__dict__.copy()
             for k in obj.__dict__:
@@ -42,18 +42,20 @@ class BomJSONEncoder(JSONEncoder):
             if type(obj) is Component:
                 obj_dict['type'] = obj_dict['component_type']
                 del obj_dict['component_type']
+                obj_dict.pop('requires_dist', None)
 
             return obj_dict
         else:
             return super().default(self, obj)
 
 
-def build_json_bom(components, metadata=None):
+def build_json_bom(components, dependencies, metadata=None):
     bom = OrderedDict({
         'bomFormat': 'CycloneDX',
         'specVersion': '1.2',
         'version': 1,
         'components': components,
+        'dependencies': dependencies
     })
     if metadata:
         bom['metadata'] = {'timestamp': metadata.get('timestamp')}
@@ -61,9 +63,9 @@ def build_json_bom(components, metadata=None):
     return bom_json
 
 
-def build_xml_bom(components, metadata=None):
+def build_xml_bom(components, dependencies, metadata=None):
     declaration = '<?xml version="1.0" encoding="UTF-8"?>\n'
-    namespace = {'xmlns': 'http://cyclonedx.org/schema/bom/1.0', 'version': '1'}
+    namespace = {'xmlns': 'http://cyclonedx.org/schema/bom/1.2', 'version': '1'}
     bom = ElementTree.Element("bom", namespace)
 
     if metadata:
@@ -85,6 +87,15 @@ def build_xml_bom(components, metadata=None):
             component.component_type
         )
         xml_components.append(component_xml)
+
+    xml_dependencies = ElementTree.SubElement(bom, "dependencies")
+    for dependency in dependencies:
+        dependency_xml = build_xml_dependency_element(
+            dependency.ref,
+            dependency.depends_on
+        )
+        xml_dependencies.append(dependency_xml)
+
     xml_pretty_print(bom)
     return declaration + ElementTree.tostring(bom, "unicode")
 
@@ -122,6 +133,12 @@ def build_xml_component_element(publisher, name, version, description, hashes, l
     ElementTree.SubElement(component, "modified").text = modified if modified else "false"
 
     return component
+
+def build_xml_dependency_element(ref, depends_on):
+    dependency = ElementTree.Element("dependency", {"ref": ref})
+    for depends in depends_on:
+        ElementTree.SubElement(dependency, "dependency", {"ref": depends})
+    return dependency
 
 
 def xml_pretty_print(elem, level=0):

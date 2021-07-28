@@ -15,26 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-class Component:
-    def __init__(self,
-        name=None,
-        version=None,
-        publisher=None,
-        description=None,
-        hashes=None,
-        licenses=None,
-        purl=None,
-        modified=False,
-        component_type=None,
-        requires_dist=None
-    ):
-        self.name = name
-        self.version = version
-        self.publisher = publisher
-        self.description = description
-        self.hashes = [] if hashes is None else hashes
-        self.licenses = [] if licenses is None else licenses
-        self.purl = purl
-        self.modified = modified
-        self.component_type = component_type
-        self.requires_dist = requires_dist
+class Dependency:
+    def __init__(self, ref=None, depends_on=None):
+        self.ref = ref
+        self.depends_on = [] if depends_on is None else depends_on
