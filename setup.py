@@ -17,7 +17,7 @@ setup(
     install_requires=[
         'requirements_parser==0.2.0',
         'packageurl_python==0.9.4',
-        'xmlschema==1.2.5',
+        'xmlschema==1.7.1',
         'requests==2.25.0',
         'packaging==20.9',
         'jsonschema==3.2.0',
