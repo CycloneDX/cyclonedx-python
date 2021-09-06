@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 import os.path
+
 from setuptools import setup, find_packages
 
 script_path = os.path.dirname(__file__)
@@ -8,33 +9,18 @@ script_path = os.path.dirname(__file__)
 setup(
     name='cyclonedx-bom',
     version=open(os.path.join(script_path, 'VERSION')).read(),
-    description='CycloneDX Software Bill of Materials (SBOM) generation utility',
-    long_description=open(os.path.join(script_path, 'README.rst')).read(),
-    packages=find_packages(),
-    package_data={'cyclonedx.schema': ['bom-1.0.xsd', 'spdx.xsd']},
-    include_package_data=True,
-    zip_safe=False,
-    install_requires=[
-        'requirements_parser==0.2.0',
-        'packageurl_python==0.9.4',
-        'xmlschema==1.2.5',
-        'requests==2.25.0',
-        'packaging==20.9',
-        'jsonschema==3.2.0',
-    ],
-    entry_points={
-        'console_scripts': [
-            'cyclonedx-py = cyclonedx.client:main'
-        ]
-    },
+    url='https://github.com/CycloneDX/cyclonedx-python',
     author='Steve Springett',
     author_email='steve.springett@owasp.org',
     maintainer='Steve Springett',
     maintainer_email='steve.springett@owasp.org',
-    url='https://github.com/CycloneDX/cyclonedx-python',
+    description='CycloneDX Software Bill of Materials (SBOM) generation utility',
+    long_description=open(os.path.join(script_path, 'README.rst')).read(),
+    long_description_content_type="text/markdown",
     keywords=["BOM", "SBOM", "SCA", "OWASP"],
     license='Apache-2.0',
     classifiers=[
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'Intended Audience :: Information Technology',
         'Intended Audience :: Legal Industry',
@@ -43,6 +29,19 @@ setup(
         'Topic :: Software Development',
         'Topic :: System :: Software Distribution',
         'License :: OSI Approved :: Apache Software License',
-        'Programming Language :: Python :: 3'
-    ]
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9'
+    ],
+    packages=find_packages(),
+    python_requires='>=3.6',
+    data_files=[('', ['README.rst', 'requirements.txt', 'requirements-test.txt', 'VERSION'])],
+    install_requires=open(os.path.join(script_path, 'requirements.txt')).read(),
+    entry_points={
+        'console_scripts': [
+            'cyclonedx-py=cyclonedx_py.client:main'
+        ]
+    },
+    zip_safe=False
 )

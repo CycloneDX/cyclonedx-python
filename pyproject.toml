@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "cyclonedx-python"
+version = "1.0.0-dev"
+description = "CycloneDX Software Bill of Materials (SBOM) generation utility"
+authors = ["Steven Springett <steve.springett@owasp.org>", "Paul Horton <phorton@sonatype.com>"]
+license = "Apache-2.0"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+cyclonedx = {path = "../../sonatype-nexus-community/cyclonedx-python-lib/dist/cyclonedx-0.0.2-py3-none-any.whl"}
+
+[tool.poetry.dev-dependencies]
+tox = "^3.24.3"
+coverage = "^5.5"
+pytest = "^6.1.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
