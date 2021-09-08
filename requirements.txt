@@ -1,7 +1,7 @@
 packageurl_python==0.9.4
 requests==2.25.0
 xmlschema==1.2.5
-setuptools==50.3.2
+setuptools==58.0.3
 requirements_parser==0.2.0
 packaging==20.9
 chardet==3.0.4
