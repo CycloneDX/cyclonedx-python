@@ -55,8 +55,8 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4"
 toml = ["toml"]
 
 [[package]]
-name = "cyclonedx"
-version = "0.0.2"
+name = "cyclonedx-python-lib"
+version = "0.0.10"
 description = "A library for producing CycloneDX SBOM (Software Bill of Materials) files."
 category = "main"
 optional = false
@@ -66,10 +66,6 @@ python-versions = ">=3.6,<4.0"
 importlib-metadata = ">=4.8.1,<5.0.0"
 packageurl-python = ">=0.9.4,<0.10.0"
 requirements_parser = ">=0.2.0,<0.3.0"
-
-[package.source]
-type = "file"
-url = "../../sonatype-nexus-community/cyclonedx-python-lib/dist/cyclonedx-0.0.2-py3-none-any.whl"
 
 [[package]]
 name = "distlib"
@@ -302,7 +298,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "8c51a39c18938e4b81e528a844a23e117e89015798717e8db69d5f383980fbc4"
+content-hash = "c6dc16d16ab468b3575854a74d400badd2738f7d343dc601ad57d1d2f3fa48bb"
 
 [metadata.files]
 atomicwrites = [
@@ -375,8 +371,9 @@ coverage = [
     {file = "coverage-5.5-pp37-none-any.whl", hash = "sha256:2a3859cb82dcbda1cfd3e6f71c27081d18aa251d20a17d87d26d4cd216fb0af4"},
     {file = "coverage-5.5.tar.gz", hash = "sha256:ebe78fe9a0e874362175b02371bdfbee64d8edc42a044253ddf4ee7d3c15212c"},
 ]
-cyclonedx = [
-    {file = "cyclonedx-0.0.2-py3-none-any.whl", hash = "sha256:8b736f8126a574dec36b1a0724774e5a1e6e85f1501108d44eb063275a644c7b"},
+cyclonedx-python-lib = [
+    {file = "cyclonedx-python-lib-0.0.10.tar.gz", hash = "sha256:0f19d50c9a62324011d8d4a64749ae0b0f3c829d1d68e111ee7f26809425689b"},
+    {file = "cyclonedx_python_lib-0.0.10-py3-none-any.whl", hash = "sha256:1eb1ac3a2ffc258edd97a96e255d9ea7bf12edfba3b671fdefbc90d2a0e902ee"},
 ]
 distlib = [
     {file = "distlib-0.3.2-py2.py3-none-any.whl", hash = "sha256:23e223426b28491b1ced97dc3bbe183027419dfc7982b4fa2f05d5f3ff10711c"},

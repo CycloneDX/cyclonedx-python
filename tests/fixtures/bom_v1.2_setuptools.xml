@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.2" version="1">
+    <metadata>
+        <timestamp>2021-09-01T10:50:42.051979+00:00</timestamp>
+    </metadata>
+    <components>
+        <component type="library" bom-ref="pkg:pypi/setuptools@50.3.2?extension=tar.gz">
+            <name>setuptools</name>
+            <version>50.3.2</version>
+            <purl>pkg:pypi/setuptools@50.3.2?extension=tar.gz</purl>
+        </component>
+    </components>
+</bom>

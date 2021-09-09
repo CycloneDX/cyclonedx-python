@@ -1,4 +1,4 @@
-cyclonedx==0.0.2
+cyclonedx-python-lib==0.0.10
 importlib-metadata==4.8.1
 packageurl_python==0.9.4
 requirements_parser==0.2.0
