@@ -50,10 +50,10 @@ class TestCycloneDxXml(BaseXmlTestCase):
     def test_requirements_txt_file_v1_2(self):
         self._do_test_requirements_txt_file_for_version(schema_version='1.2')
 
-    def test_requirements_txt_file_v1_2(self):
+    def test_requirements_txt_file_v1_1(self):
         self._do_test_requirements_txt_file_for_version(schema_version='1.1')
 
-    def test_requirements_txt_file_v1_2(self):
+    def test_requirements_txt_file_v1_0(self):
         self._do_test_requirements_txt_file_for_version(schema_version='1.0')
 
     def _do_test_requirements_txt_file_for_version(self, schema_version: str):

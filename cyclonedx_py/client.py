@@ -22,7 +22,6 @@ import argparse
 import os
 import sys
 from datetime import datetime
-from typing import Union
 
 from cyclonedx.model.bom import Bom
 from cyclonedx.output import BaseOutput, get_instance, OutputFormat, SchemaVersion
