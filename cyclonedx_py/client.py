@@ -20,6 +20,7 @@
 
 import argparse
 import os
+import sys
 from datetime import datetime
 from typing import Union
 
@@ -59,11 +60,12 @@ class CycloneDxCmd:
             )]
         )
 
-    def execute(self) -> Union[str, None]:
+    def execute(self):
         output = self.get_output()
-        if self._arguments.output_file is '-' or not self._arguments.output_file:
+        if self._arguments.output_file == '-' or not self._arguments.output_file:
             self._debug_message('Returning SBOM to STDOUT')
-            return output.output_as_string()
+            print(output.output_as_string())
+            return
 
         # Check directory writable
         output_filename = os.path.realpath(self._arguments.output_file)
@@ -75,7 +77,7 @@ class CycloneDxCmd:
 
         input_group = self._arg_parser.add_mutually_exclusive_group(required=True)
         input_group.add_argument(
-            '-e', '--e', '--environment', action='store_true', default='e',
+            '-e', '--e', '--environment', action='store_true',
             help='Build a SBOM based on the packages installed in your current Python environment (default)',
             dest='input_from_environment'
         )
@@ -110,7 +112,7 @@ class CycloneDxCmd:
         )
         output_group.add_argument(
             '-o', '--o', '--output', action='store', metavar='FILE_PATH', default='cyclonedx.xml', required=False,
-            help='Output file path for your SBOM (specify \'-\' to output to STDOUT)', dest='output_file'
+            help='Output file path for your SBOM (set to \'-\' to output to STDOUT)', dest='output_file'
         )
         output_group.add_argument(
             '-F', '--force', action='store_true', dest='output_file_overwrite',
@@ -121,7 +123,6 @@ class CycloneDxCmd:
 
     def _debug_message(self, message: str):
         if self._DEBUG_ENABLED:
-            # @todo Add current date/time instead of 'NOW'
             print('[DEBUG] - {} - {}'.format(datetime.now(), message))
 
     @staticmethod
@@ -142,12 +143,15 @@ class CycloneDxCmd:
                         self._arguments.input_requirements_file
                     ))
             else:
-                # @todo Support requirements.txt content passed via STDIN
-                return RequirementsParser(requirements_content='')
+                return RequirementsParser(requirements_content=sys.stdin.readlines())
 
     def _parse_arguments(self):
         self._arguments = self._arg_parser.parse_args()
 
 
-if __name__ == "__main__":
+def main():
     CycloneDxCmd().execute()
+
+
+if __name__ == "__main__":
+    main()
