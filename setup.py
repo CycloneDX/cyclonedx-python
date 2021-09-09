@@ -15,7 +15,7 @@ setup(
     maintainer='Steve Springett',
     maintainer_email='steve.springett@owasp.org',
     description='CycloneDX Software Bill of Materials (SBOM) generation utility',
-    long_description=open(os.path.join(script_path, 'README.rst')).read(),
+    long_description=open(os.path.join(script_path, 'README.md')).read(),
     long_description_content_type="text/markdown",
     keywords=["BOM", "SBOM", "SCA", "OWASP"],
     license='Apache-2.0',
@@ -36,7 +36,7 @@ setup(
     ],
     packages=find_packages(),
     python_requires='>=3.6',
-    data_files=[('', ['README.rst', 'requirements.txt', 'requirements-test.txt', 'VERSION'])],
+    data_files=[('', ['README.md', 'requirements.txt', 'requirements-test.txt', 'VERSION'])],
     install_requires=open(os.path.join(script_path, 'requirements.txt')).read(),
     entry_points={
         'console_scripts': [

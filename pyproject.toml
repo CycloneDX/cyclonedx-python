@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "cyclonedx-python"
+name = "cyclonedx-bom"
 version = "1.0.0"
 description = "CycloneDX Software Bill of Materials (SBOM) generation utility"
 authors = ["Steven Springett <steve.springett@owasp.org>", "Paul Horton <phorton@sonatype.com>"]
 license = "Apache-2.0"
-readme = "README.rst"
+readme = "README.md"
 homepage = "https://github.com/CycloneDX/cyclonedx-python"
 repository = "https://github.com/CycloneDX/cyclonedx-python"
 packages = [
