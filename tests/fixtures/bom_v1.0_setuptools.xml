@@ -4,7 +4,7 @@
         <component type="library">
             <name>setuptools</name>
             <version>50.3.2</version>
-            <purl>pkg:pypi/setuptools@50.3.2?extension=tar.gz</purl>
+            <purl>pkg:pypi/setuptools@50.3.2</purl>
         </component>
     </components>
 </bom>
