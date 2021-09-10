@@ -1,0 +1,39 @@
+[tool.poetry]
+name = "cyclonedx-bom"
+version = "1.0.0"
+description = "CycloneDX Software Bill of Materials (SBOM) generation utility"
+authors = ["Steven Springett <steve.springett@owasp.org>", "Paul Horton <phorton@sonatype.com>"]
+license = "Apache-2.0"
+readme = "README.md"
+homepage = "https://github.com/CycloneDX/cyclonedx-python"
+repository = "https://github.com/CycloneDX/cyclonedx-python"
+packages = [
+    { include = "cyclonedx_py" }
+]
+include = [
+    "LICENSE"
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+cyclonedx-python-lib = "^0.0.10"
+
+[tool.poetry.dev-dependencies]
+tox = "^3.24.3"
+coverage = "^5.5"
+
+[tool.poetry.scripts]
+cyclonedx-py = 'cyclonedx_py.client:main'
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.semantic_release]
+version_variable = [
+    "pyproject.toml:version"
+]
+branch = "master"
+upload_to_pypi = true
+upload_to_release = true
+build_command = "pip install poetry && poetry build"
