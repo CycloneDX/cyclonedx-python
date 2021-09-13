@@ -1,4 +1,6 @@
-# This file is part of CycloneDX Python
+# encoding: utf-8
+
+# This file is part of CycloneDX Python Lib
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,65 +20,56 @@
 import os.path
 import subprocess
 import tempfile
-import pytest
-from cyclonedx.client import build_parser, generate_bom
 
+from base import BaseXmlTestCase
 
 script_path = os.path.dirname(__file__)
 
-
-def test_xml_bom_generation():
-    with tempfile.TemporaryDirectory() as dirname:
-        # arrange
-        with open(os.path.join(script_path, 'resources', 'bom.xml'), 'r') as bf:
-            expected_xml = bf.read()
-
-        # act
-        subprocess.check_output([
-            'cyclonedx-py',
-            '-i', os.path.join(script_path, 'resources', 'requirements.txt'),
-            '-o', os.path.join(dirname, 'bom.xml'),
-        ])
-
-        # assert
-        with open(os.path.join(dirname, 'bom.xml'), 'rt') as f:
-            actual_xml = f.read()
-        assert actual_xml == expected_xml
+FIXTURES_DIRECTORY = os.path.join(os.path.dirname(__file__), 'fixtures')
 
 
-def test_json_bom_generation():
-    with tempfile.TemporaryDirectory() as dirname:
-        # arrange
-        with open(os.path.join(script_path, 'resources', 'bom.json'), 'r') as bf:
-            expected_json = bf.read()
+class TestCycloneDxXml(BaseXmlTestCase):
 
-        # act
-        subprocess.check_output([
-            'cyclonedx-py',
-            '-i', os.path.join(script_path, 'resources', 'requirements.txt'),
-            '-o', os.path.join(dirname, 'bom.json'),
-            '-j',
-        ])
+    def test_requirements_txt_file(self):
+        with tempfile.TemporaryDirectory() as dirname:
+            # Run command to generate latest 1.3 XML SBOM from Requirements File
+            subprocess.check_output([
+                'cyclonedx-py',
+                '-r',
+                '-rf', os.path.join(FIXTURES_DIRECTORY, 'requirements-simple.txt'),
+                '-o', os.path.join(dirname, 'sbom.xml'),
+            ])
 
-        # assert
-        with open(os.path.join(dirname, 'bom.json'), 'rt') as f:
-            actual_json = f.read()
-        assert actual_json == expected_json
+            with open(os.path.join(dirname, 'sbom.xml'), 'r') as f, \
+                    open(os.path.join(FIXTURES_DIRECTORY, 'bom_v1.3_setuptools.xml')) as expected:
+                self.assertEqualXmlBom(f.read(), expected.read(),
+                                       namespace='http://cyclonedx.org/schema/bom/1.3')
+                f.close()
+                expected.close()
 
-def test_invalid_xml_characters():
-    with tempfile.TemporaryDirectory() as dirname:
-        # arrange
-        with open(os.path.join(script_path, 'resources', 'invalid-xml-characters', 'bom.xml'), 'r') as bf:
-            expected_xml = bf.read()
+    def test_requirements_txt_file_v1_2(self):
+        self._do_test_requirements_txt_file_for_version(schema_version='1.2')
 
-        # act
-        subprocess.check_output([
-            'cyclonedx-py',
-            '-i', os.path.join(script_path, 'resources', 'invalid-xml-characters', 'requirements.txt'),
-            '-o', os.path.join(dirname, 'bom.xml'),
-        ])
+    def test_requirements_txt_file_v1_1(self):
+        self._do_test_requirements_txt_file_for_version(schema_version='1.1')
 
-        # assert
-        with open(os.path.join(dirname, 'bom.xml'), 'rt') as f:
-            actual_xml = f.read()
-        assert actual_xml == expected_xml
+    def test_requirements_txt_file_v1_0(self):
+        self._do_test_requirements_txt_file_for_version(schema_version='1.0')
+
+    def _do_test_requirements_txt_file_for_version(self, schema_version: str):
+        with tempfile.TemporaryDirectory() as dirname:
+            # Run command to generate XML SBOM from Requirements File
+            subprocess.check_output([
+                'cyclonedx-py',
+                '-r',
+                '-rf', os.path.join(FIXTURES_DIRECTORY, 'requirements-simple.txt'),
+                '--schema-version', schema_version,
+                '-o', os.path.join(dirname, 'sbom.xml'),
+            ])
+
+            with open(os.path.join(dirname, 'sbom.xml'), 'r') as f, \
+                    open(os.path.join(FIXTURES_DIRECTORY, 'bom_v{}_setuptools.xml'.format(schema_version))) as expected:
+                self.assertEqualXmlBom(f.read(), expected.read(),
+                                       namespace='http://cyclonedx.org/schema/bom/{}'.format(schema_version))
+                f.close()
+                expected.close()

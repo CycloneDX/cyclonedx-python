@@ -1,0 +1,17 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.2",
+  "serialNumber": "urn:uuid:3e671687-395b-41f5-a30f-a58921a69b79",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2021-09-01T10:50:42.051979+00:00"
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "setuptools",
+      "version": "50.3.2",
+      "purl": "pkg:pypi/setuptools@50.3.2?extension=tar.gz"
+    }
+  ]
+}
