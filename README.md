@@ -2,7 +2,7 @@
 
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/CycloneDX/cyclonedx-python/Python%20CI)](https://github.com/CycloneDX/cyclonedx-python/actions/workflows/ci.yml)
 [![Docker Image](https://img.shields.io/badge/docker-image-brightgreen?style=flat&logo=docker)](https://hub.docker.com/r/cyclonedx/cyclonedx-python)
-[![GitHub license](https://img.shields.io/github/license/CycloneDX/cyclonedx-python)](https://github.com/CycloneDX/CycloneDX/blob/main/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/CycloneDX/cyclonedx-python)](https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE)
 [![Python Version Support](https://img.shields.io/badge/https://-cyclonedx.org-blue)](https://cyclonedx.org/)
 [![Slack Invite](https://img.shields.io/badge/Slack-Join-blue?logo=slack&labelColor=393939)](https://cyclonedx.org/slack/invite)
 ![PyPI Version](https://img.shields.io/pypi/v/cyclonedx-bom?label=PyPI&logo=pypi)

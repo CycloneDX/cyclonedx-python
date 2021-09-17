@@ -1,3 +1,0 @@
-include VERSION
-include README.rst
-include cyclonedx/schema/*
