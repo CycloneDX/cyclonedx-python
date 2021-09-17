@@ -21,6 +21,7 @@ cyclonedx-python-lib = "^0.4.0"
 [tool.poetry.dev-dependencies]
 tox = "^3.24.3"
 coverage = "^5.5"
+flake8 = "^3.9.2"
 
 [tool.poetry.scripts]
 cyclonedx-py = 'cyclonedx_py.client:main'
