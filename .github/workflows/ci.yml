@@ -57,6 +57,8 @@ jobs:
   build-and-test:
     name: Tests for Python ${{ matrix.python-version }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
+    env:
+      REPORTS_ARTIFACT: tests-reports
     timeout-minutes: 30
     strategy:
       matrix:
