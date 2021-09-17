@@ -1,40 +1,106 @@
+# encoding: utf-8
+
+# This file is part of CycloneDX Python
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) OWASP Foundation. All Rights Reserved.
+
 name: Python CI
 
 on:
-  pull_request
+  pull_request:
+  workflow_dispatch:
+
+env:
+  REPORTS_DIR: CI_reports
 
 jobs:
-  test:
+  coding-standards:
+    name: Linting & Coding Standards
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        # see https://github.com/actions/checkout
+        uses: actions/checkout@v2
+      - name: Setup Python Environment
+        # see https://github.com/actions/setup-python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+          architecture: 'x64'
+      - name: Install poetry
+        # see https://github.com/marketplace/actions/setup-poetry
+        uses: Gr1N/setup-poetry@v7
+        with:
+          poetry-version: 1.1.8
+      - uses: actions/cache@v2
+        with:
+          path: ~/.cache/pypoetry/virtualenvs
+          key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
+      - name: Install dependencies
+        run: poetry install
+      - name: Run tox
+        run: poetry run tox -e flake8
+
+  build-and-test:
     name: Tests for Python ${{ matrix.python-version }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
+    env:
+      REPORTS_ARTIFACT: tests-reports
     timeout-minutes: 30
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
         python-version: [3.6, 3.7, 3.8, 3.9]
-
     steps:
-    - uses: actions/checkout@v2.3.4
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2.2.2
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install setuptools wheel twine
-        pip install -r requirements.txt
-    - name: Lint with flake8
-      run: |
-        pip install flake8
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Test with tox+pytest
-      run: |
-        pip install tox
-        tox
-    - name: Make package
-      run: |
-        python setup.py sdist bdist_wheel
+      - name: Checkout
+        # see https://github.com/actions/checkout
+        uses: actions/checkout@v2
+      - name: Create reports directory
+        run: mkdir ${{ env.REPORTS_DIR }}
+      - name: Setup Python Environment
+        # see https://github.com/actions/setup-python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: 'x64'
+      - name: Install poetry
+        # see https://github.com/marketplace/actions/setup-poetry
+        uses: Gr1N/setup-poetry@v7
+        with:
+          poetry-version: 1.1.8
+      - uses: actions/cache@v2
+        with:
+          path: ~/.cache/pypoetry/virtualenvs
+          key: ${{ runner.os }}-${{ matrix.python-version }}-poetry-${{ hashFiles('poetry.lock') }}
+      - name: Install dependencies
+        run: poetry install
+      - name: Ensure build successful
+        run: poetry build
+      - name: Run tox
+        run: poetry run tox -e py${{ matrix.python-version }}
+      - name: Generate coverage reports
+        run: >
+          poetry run coverage report &&
+          poetry run coverage xml -o ${{ env.REPORTS_DIR }}/coverage-${{ matrix.os }}-${{ matrix.python-version }}.xml &&
+          poetry run coverage html -d ${{ env.REPORTS_DIR }}
+      - name: Artifact reports
+        if: ${{ ! cancelled() }}
+        # see https://github.com/actions/upload-artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.REPORTS_ARTIFACT }}
+          path: ${{ env.REPORTS_DIR }}
+          if-no-files-found: error
