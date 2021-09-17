@@ -19,7 +19,7 @@ python = "^3.6"
 cyclonedx-python-lib = "^0.0.10"
 
 [tool.poetry.dev-dependencies]
-tox = "^3.24.3"
+tox = "^3.24.4"
 coverage = "^5.5"
 
 [tool.poetry.scripts]
