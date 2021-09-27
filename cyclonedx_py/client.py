@@ -137,7 +137,7 @@ class CycloneDxCmd:
                 # A requirements.txt path was provided
                 return RequirementsFileParser(requirements_file=requirements_file)
             else:
-                self._error_and_exit('The requirements.txt file path provided does not exist ({})'.format(
+                self._error_and_exit('The provided file \'{}\' does not exist'.format(
                     requirements_file
                 ))
         else:
