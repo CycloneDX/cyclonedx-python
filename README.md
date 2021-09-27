@@ -101,6 +101,26 @@ cyclonedx-py -r -rf PATH/TO/requirements.txt -o -
 
 This will generate a CycloneDX and output to STDOUT in XML using the latest schema version `1.3` by default.
 
+#### Unpinned dependencies in `requirements.txt`
+
+If you failed to freeze your dependencies before passing the `requirements.txt` data to `cyclonedx-py`, you'll be 
+warned about this and the dependencies that do not have pinned versions WILL NOT be included in the resulting CycloneDX
+output.
+
+```
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! Some of your dependencies do not have pinned version !!
+!! numbers in your requirements.txt                     !!
+!!                                                      !!
+!! -> idna                                              !!
+!! -> requests                                          !!
+!! -> urllib3                                           !!
+!!                                                      !!
+!! The above will NOT be included in the generated      !!
+!! CycloneDX as version is a mandatory field.           !!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+```
+
 ## Python Support
 
 We endeavour to support all functionality for all [current actively supported Python versions](https://www.python.org/downloads/).
