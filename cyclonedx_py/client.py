@@ -45,8 +45,24 @@ class CycloneDxCmd:
             self._debug_message('Parsed Arguments: {}'.format(self._arguments))
 
     def get_output(self) -> BaseOutput:
+        parser = self._get_input_parser()
+
+        if parser.has_warnings():
+            print('')
+            print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+            print('!! Some of your dependencies do not have pinned version !!')
+            print('!! numbers in your requirements.txt                     !!')
+            print('!!                                                      !!')
+            for warning in parser.get_warnings():
+                print('!! -> {} !!'.format(warning.get_item().ljust(49)))
+            print('!!                                                      !!')
+            print('!! The above will NOT be included in the generated      !!')
+            print('!! CycloneDX as version is a mandatory field.           !!')
+            print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+            print('')
+
         return get_instance(
-            bom=Bom.from_parser(self._get_input_parser()),
+            bom=Bom.from_parser(parser=parser),
             output_format=OutputFormat[str(self._arguments.output_format).upper()],
             schema_version=SchemaVersion['V{}'.format(
                 str(self._arguments.output_schema_version).replace('.', '_')
