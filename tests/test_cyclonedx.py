@@ -20,6 +20,9 @@
 import os.path
 import subprocess
 import tempfile
+from unittest.mock import mock_open, patch
+
+from cyclonedx_py.client import CycloneDxCmd
 
 from base import BaseXmlTestCase
 
@@ -29,6 +32,20 @@ FIXTURES_DIRECTORY = os.path.join(os.path.dirname(__file__), 'fixtures')
 
 
 class TestCycloneDxXml(BaseXmlTestCase):
+
+    def test_run(self):
+        parser = CycloneDxCmd.get_arg_parser()
+        with tempfile.TemporaryDirectory() as dirname:
+            args = parser.parse_args(args=('-r', '-o', os.path.join(dirname, 'sbom.xml')))
+            with open(os.path.join(FIXTURES_DIRECTORY, 'requirements-simple.txt'), 'r') as req_file:
+                with patch('builtins.open', mock_open(read_data=req_file.read())) as mock_req_file:
+                    with patch('cyclonedx_py.client.CycloneDxCmd._validate_requirements_file') as mock_exists:
+                        CycloneDxCmd(args).execute()
+
+                        mock_exists.assert_called_with('requirements.txt')
+                        mock_req_file.assert_called()
+
+            req_file.close()
 
     def test_requirements_txt_file(self):
         with tempfile.TemporaryDirectory() as dirname:
