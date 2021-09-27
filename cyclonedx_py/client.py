@@ -20,30 +20,24 @@
 
 import argparse
 import os
-import sys
 from datetime import datetime
 
 from cyclonedx.model.bom import Bom
 from cyclonedx.output import BaseOutput, get_instance, OutputFormat, SchemaVersion
 from cyclonedx.parser import BaseParser
 from cyclonedx.parser.environment import EnvironmentParser
-from cyclonedx.parser.requirements import RequirementsParser, RequirementsFileParser
+from cyclonedx.parser.requirements import RequirementsFileParser
 
 
 class CycloneDxCmd:
     # Whether debug output is enabled
     _DEBUG_ENABLED: bool = False
 
-    # Argument Parser
-    _arg_parser: argparse.ArgumentParser
-
     # Parsed Arguments
     _arguments: argparse.Namespace
 
-    def __init__(self):
-        # Build and parse command arguments
-        self._build_arg_parser()
-        self._parse_arguments()
+    def __init__(self, args: argparse.Namespace):
+        self._arguments = args
 
         if self._arguments.debug_enabled:
             self._DEBUG_ENABLED = True
@@ -71,10 +65,11 @@ class CycloneDxCmd:
         self._debug_message('Will be outputting SBOM to file at: {}'.format(output_filename))
         output.output_to_file(filename=output_filename, allow_overwrite=self._arguments.output_file_overwrite)
 
-    def _build_arg_parser(self):
-        self._arg_parser = argparse.ArgumentParser(description='CycloneDX SBOM Generator')
+    @staticmethod
+    def get_arg_parser() -> argparse.ArgumentParser:
+        arg_parser = argparse.ArgumentParser(description='CycloneDX SBOM Generator')
 
-        input_group = self._arg_parser.add_mutually_exclusive_group(required=True)
+        input_group = arg_parser.add_mutually_exclusive_group(required=True)
         input_group.add_argument(
             '-e', '--e', '--environment', action='store_true',
             help='Build a SBOM based on the packages installed in your current Python environment (default)',
@@ -86,16 +81,16 @@ class CycloneDxCmd:
             dest='input_from_requirements'
         )
 
-        req_input_group = self._arg_parser.add_argument_group(
+        req_input_group = arg_parser.add_argument_group(
             title='Requirements',
             description='Additional optional arguments if you are setting the input type to `requirements`.'
         )
         req_input_group.add_argument(
-            '-rf', '--rf', '--requirements-file', action='store', metavar='FILE_PATH',
+            '-rf', '--rf', '--requirements-file', action='store', metavar='FILE_PATH', default='requirements.txt',
             help='Path to a the requirements.txt file you wish to parse', dest='input_requirements_file', required=False
         )
 
-        output_group = self._arg_parser.add_argument_group(
+        output_group = arg_parser.add_argument_group(
             title='SBOM Output Configuration',
             description='Choose the output format and schema version'
         )
@@ -118,7 +113,9 @@ class CycloneDxCmd:
             help='If outputting to a file and the stated file already exists, it will be overwritten.'
         )
 
-        self._arg_parser.add_argument('-X', action='store_true', help='Enable debug output', dest='debug_enabled')
+        arg_parser.add_argument('-X', action='store_true', help='Enable debug output', dest='debug_enabled')
+
+        return arg_parser
 
     def _debug_message(self, message: str):
         if self._DEBUG_ENABLED:
@@ -133,23 +130,28 @@ class CycloneDxCmd:
         if self._arguments.input_from_environment:
             return EnvironmentParser()
         elif self._arguments.input_from_requirements:
-            if self._arguments.input_requirements_file:
-                if os.path.exists(self._arguments.input_requirements_file):
-                    # A requirements.txt path was provided
-                    return RequirementsFileParser(requirements_file=self._arguments.input_requirements_file)
-                else:
-                    self._error_and_exit('The requirements.txt file path provided does not exist ({})'.format(
-                        self._arguments.input_requirements_file
-                    ))
+            # if self._arguments.input_requirements_file:
+            requirements_file = os.path.realpath(self._arguments.input_requirements_file)
+            # requirements_file = self._arguments.input_requirements_file
+            if CycloneDxCmd._validate_requirements_file(self._arguments.input_requirements_file):
+                # A requirements.txt path was provided
+                return RequirementsFileParser(requirements_file=requirements_file)
             else:
-                return RequirementsParser(requirements_content=sys.stdin.readlines())
+                self._error_and_exit('The requirements.txt file path provided does not exist ({})'.format(
+                    requirements_file
+                ))
+        else:
+            raise ValueError('Parser type could not be determined.')
 
-    def _parse_arguments(self):
-        self._arguments = self._arg_parser.parse_args()
+    @staticmethod
+    def _validate_requirements_file(requirements_file_path: str) -> bool:
+        return os.path.exists(requirements_file_path)
 
 
 def main():
-    CycloneDxCmd().execute()
+    parser = CycloneDxCmd.get_arg_parser()
+    args = parser.parse_args()
+    CycloneDxCmd(args).execute()
 
 
 if __name__ == "__main__":
