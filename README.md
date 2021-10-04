@@ -40,34 +40,55 @@ Once installed, you can access the full documentation by running `--help`:
 
 ```
 $ cyclonedx-py --help
-usage: cyclonedx-py [-h] (-e | -r) [-rf FILE_PATH] [--format {json,xml}] [--schema-version {1.3,1.2,1.1,1.0}] 
-[-o FILE_PATH] [-F] [-X]
+usage: client.py [-h] (-e | -p | -r) [-pf FILE_PATH] [-rf FILE_PATH]
+                 [--format {json,xml}] [--schema-version {1.3,1.2,1.1,1.0}]
+                 [-o FILE_PATH] [-F] [-X]
 
 CycloneDX SBOM Generator
 
 optional arguments:
   -h, --help            show this help message and exit
   -e, --e, --environment
-                        Build a SBOM based on the packages installed in your current Python environment (default)
+                        Build a SBOM based on the packages installed in your
+                        current Python environment (default)
+  -p, --p, --poetry     Build a SBOM based on a Poetry poetry.lock's contents.
+                        Use with -pf to specify absolute pathto a
+                        `poetry.lock` you wish to use, else we'll look for one
+                        in the current working directory.
   -r, --r, --requirements
-                        Build a SBOM based on a requirements.txt's contents
+                        Build a SBOM based on a requirements.txt's contents.
+                        Use with -rf to specify absolute pathto a
+                        `requirements.txt` you wish to use, else we'll look
+                        for one in the current working directory.
   -X                    Enable debug output
 
+Poetry:
+  Additional optional arguments if you are setting the input type to
+  `poetry`
+
+  -pf FILE_PATH, --pf FILE_PATH, --poetry-file FILE_PATH
+                        Path to a the `poetry.lock` file you wish to parse
+
 Requirements:
-  Additional optional arguments if you are setting the input type to `requirements`.
+  Additional optional arguments if you are setting the input type to
+  `requirements`.
 
   -rf FILE_PATH, --rf FILE_PATH, --requirements-file FILE_PATH
-                        Path to a the requirements.txt file you wish to parse
+                        Path to a the `requirements.txt` file you wish to
+                        parse
 
 SBOM Output Configuration:
   Choose the output format and schema version
 
   --format {json,xml}   The output format for your SBOM (default: xml)
   --schema-version {1.3,1.2,1.1,1.0}
-                        The CycloneDX schema version for your SBOM (default: 1.3)
+                        The CycloneDX schema version for your SBOM (default:
+                        1.3)
   -o FILE_PATH, --o FILE_PATH, --output FILE_PATH
-                        Output file path for your SBOM (set to '-' to output to STDOUT)
-  -F, --force           If outputting to a file and the stated file already exists, it will be overwritten.
+                        Output file path for your SBOM (set to '-' to output
+                        to STDOUT)
+  -F, --force           If outputting to a file and the stated file already
+                        exists, it will be overwritten.
 ```
 
 ### Building CycloneDX for your current Python environment
@@ -87,6 +108,18 @@ in XML using the latest schema version `1.3` by default.
 
 ### Building CycloneDX from your Manifest
 
+#### Poetry
+
+We support parsing your `poetry.lock` file which should be committed along with your `pyrpoject.toml` and details
+exact pinned versions.
+
+You can then run `cyclonedx-py` as follows:
+```
+cyclonedx-py -p -pf PATH/TO/poetry.lock -o sbom.xml
+```
+
+#### Pip / Requirements
+
 We currently support `requirements.txt` manifest files. Note that a BOM such as CycloneDX expects exact version numbers, 
 therefore if you wish to generate a BOM from a `requirements.txt`, these must be frozen. This can be accomplished via:
 
@@ -96,16 +129,14 @@ pip freeze > requirements.txt
 
 You can then run `cyclonedx-py` as follows:
 ```
-cyclonedx-py -r -rf PATH/TO/requirements.txt -o -
+cyclonedx-py -r -rf PATH/TO/requirements.txt -o sbom.xml
 ```
 
 This will generate a CycloneDX and output to STDOUT in XML using the latest schema version `1.3` by default.
 
-#### Unpinned dependencies in `requirements.txt`
-
-If you failed to freeze your dependencies before passing the `requirements.txt` data to `cyclonedx-py`, you'll be 
-warned about this and the dependencies that do not have pinned versions WILL NOT be included in the resulting CycloneDX
-output.
+**Note:** If you failed to freeze your dependencies before passing the `requirements.txt` data to `cyclonedx-py`, you'll 
+be warned about this and the dependencies that do not have pinned versions WILL NOT be included in the resulting 
+CycloneDX output.
 
 ```
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

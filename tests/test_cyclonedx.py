@@ -39,7 +39,7 @@ class TestCycloneDxXml(BaseXmlTestCase):
             args = parser.parse_args(args=('-r', '-o', os.path.join(dirname, 'sbom.xml')))
             with open(os.path.join(FIXTURES_DIRECTORY, 'requirements-simple.txt'), 'r') as req_file:
                 with patch('builtins.open', mock_open(read_data=req_file.read())) as mock_req_file:
-                    with patch('cyclonedx_py.client.CycloneDxCmd._validate_requirements_file') as mock_exists:
+                    with patch('cyclonedx_py.client.CycloneDxCmd._validate_file_exists') as mock_exists:
                         CycloneDxCmd(args).execute()
 
                         mock_exists.assert_called_with('requirements.txt')

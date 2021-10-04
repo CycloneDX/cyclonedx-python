@@ -26,6 +26,7 @@ from cyclonedx.model.bom import Bom
 from cyclonedx.output import BaseOutput, get_instance, OutputFormat, SchemaVersion
 from cyclonedx.parser import BaseParser
 from cyclonedx.parser.environment import EnvironmentParser
+from cyclonedx.parser.poetry import PoetryFileParser
 from cyclonedx.parser.requirements import RequirementsFileParser
 
 
@@ -92,9 +93,26 @@ class CycloneDxCmd:
             dest='input_from_environment'
         )
         input_group.add_argument(
+            '-p', '--p', '--poetry', action='store_true',
+            help='Build a SBOM based on a Poetry poetry.lock\'s contents. Use with -pf to specify absolute path'
+                 'to a `poetry.lock` you wish to use, else we\'ll look for one in the current working directory.',
+            dest='input_from_poetry'
+        )
+        input_group.add_argument(
             '-r', '--r', '--requirements', action='store_true',
-            help='Build a SBOM based on a requirements.txt\'s contents',
+            help='Build a SBOM based on a requirements.txt\'s contents. Use with -rf to specify absolute path'
+                 'to a `requirements.txt` you wish to use, else we\'ll look for one in the current working directory.',
             dest='input_from_requirements'
+        )
+
+        req_input_group = arg_parser.add_argument_group(
+            title='Poetry',
+            description='Additional optional arguments if you are setting the input type to `poetry`'
+        )
+        req_input_group.add_argument(
+            '-pf', '--pf', '--poetry-file', action='store', metavar='FILE_PATH', default='poetry.lock',
+            help='Path to a the `poetry.lock` file you wish to parse',
+            dest='input_poetry_file', required=False
         )
 
         req_input_group = arg_parser.add_argument_group(
@@ -103,7 +121,8 @@ class CycloneDxCmd:
         )
         req_input_group.add_argument(
             '-rf', '--rf', '--requirements-file', action='store', metavar='FILE_PATH', default='requirements.txt',
-            help='Path to a the requirements.txt file you wish to parse', dest='input_requirements_file', required=False
+            help='Path to a the `requirements.txt` file you wish to parse',
+            dest='input_requirements_file', required=False
         )
 
         output_group = arg_parser.add_argument_group(
@@ -145,11 +164,20 @@ class CycloneDxCmd:
     def _get_input_parser(self) -> BaseParser:
         if self._arguments.input_from_environment:
             return EnvironmentParser()
+        elif self._arguments.input_from_poetry:
+            poetry_lock_file = os.path.realpath(self._arguments.input_poetry_file)
+            if CycloneDxCmd._validate_file_exists(self._arguments.input_poetry_file):
+                # A poetry.lock path was provided
+                return PoetryFileParser(poetry_lock_filename=poetry_lock_file)
+            else:
+                self._error_and_exit('The provided file \'{}\' does not exist'.format(
+                    poetry_lock_file
+                ))
         elif self._arguments.input_from_requirements:
             # if self._arguments.input_requirements_file:
             requirements_file = os.path.realpath(self._arguments.input_requirements_file)
             # requirements_file = self._arguments.input_requirements_file
-            if CycloneDxCmd._validate_requirements_file(self._arguments.input_requirements_file):
+            if CycloneDxCmd._validate_file_exists(self._arguments.input_requirements_file):
                 # A requirements.txt path was provided
                 return RequirementsFileParser(requirements_file=requirements_file)
             else:
@@ -160,8 +188,8 @@ class CycloneDxCmd:
             raise ValueError('Parser type could not be determined.')
 
     @staticmethod
-    def _validate_requirements_file(requirements_file_path: str) -> bool:
-        return os.path.exists(requirements_file_path)
+    def _validate_file_exists(file_path: str) -> bool:
+        return os.path.exists(file_path)
 
 
 def main():
