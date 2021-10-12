@@ -11,12 +11,12 @@ packages = [
     { include = "cyclonedx_py" }
 ]
 include = [
-    "LICENSE"
+    "LICENSE", "NOTICE"
 ]
 
 [tool.poetry.dependencies]
 python = "^3.6"
-cyclonedx-python-lib = "0.4.1"
+cyclonedx-python-lib = "^0.8.1"
 
 [tool.poetry.dev-dependencies]
 tox = "^3.24.3"

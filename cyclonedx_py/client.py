@@ -20,12 +20,14 @@
 
 import argparse
 import os
+import sys
 from datetime import datetime
 
-from cyclonedx.model.bom import Bom
+from cyclonedx.model.bom import Bom, Tool
 from cyclonedx.output import BaseOutput, get_instance, OutputFormat, SchemaVersion
 from cyclonedx.parser import BaseParser
 from cyclonedx.parser.environment import EnvironmentParser
+from cyclonedx.parser.pipenv import PipEnvFileParser
 from cyclonedx.parser.poetry import PoetryFileParser
 from cyclonedx.parser.requirements import RequirementsFileParser
 
@@ -62,8 +64,19 @@ class CycloneDxCmd:
             print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
             print('')
 
+        bom = Bom.from_parser(parser=parser)
+
+        # Add cyclonedx_bom as a Tool to record it being part of the CycloneDX SBOM generation process
+        if sys.version_info >= (3, 8, 0):
+            from importlib.metadata import version
+        else:
+            from importlib_metadata import version
+        bom.get_metadata().add_tool(tool=Tool(
+            vendor='CycloneDX', name='cyclonedx-bom', version=version('cyclonedx-bom')
+        ))
+
         return get_instance(
-            bom=Bom.from_parser(parser=parser),
+            bom=bom,
             output_format=OutputFormat[str(self._arguments.output_format).upper()],
             schema_version=SchemaVersion['V{}'.format(
                 str(self._arguments.output_schema_version).replace('.', '_')
@@ -99,6 +112,12 @@ class CycloneDxCmd:
             dest='input_from_poetry'
         )
         input_group.add_argument(
+            '-pip', '--pip', action='store_true',
+            help='Build a SBOM based on a PipEnv Pipfile.lock\'s contents. Use with --pip-file to specify absolute path'
+                 'to a `Pipefile.lock` you wish to use, else we\'ll look for one in the current working directory.',
+            dest='input_from_pip'
+        )
+        input_group.add_argument(
             '-r', '--r', '--requirements', action='store_true',
             help='Build a SBOM based on a requirements.txt\'s contents. Use with -rf to specify absolute path'
                  'to a `requirements.txt` you wish to use, else we\'ll look for one in the current working directory.',
@@ -113,6 +132,16 @@ class CycloneDxCmd:
             '-pf', '--pf', '--poetry-file', action='store', metavar='FILE_PATH', default='poetry.lock',
             help='Path to a the `poetry.lock` file you wish to parse',
             dest='input_poetry_file', required=False
+        )
+
+        req_input_group = arg_parser.add_argument_group(
+            title='PipEnv',
+            description='Additional optional arguments if you are setting the input type to `pipenv`'
+        )
+        req_input_group.add_argument(
+            '--pip-file', action='store', metavar='FILE_PATH', default='Pipfile.lock',
+            help='Path to a the `Pipfile.lock` file you wish to parse',
+            dest='input_pipenv_file', required=False
         )
 
         req_input_group = arg_parser.add_argument_group(
@@ -164,6 +193,13 @@ class CycloneDxCmd:
     def _get_input_parser(self) -> BaseParser:
         if self._arguments.input_from_environment:
             return EnvironmentParser()
+        elif self._arguments.input_from_pip:
+            pipfile_lock_file = os.path.realpath(self._arguments.input_pipenv_file)
+            if CycloneDxCmd._validate_file_exists(self._arguments.input_pipenv_file):
+                # A Pipfile.lock path was provided
+                return PipEnvFileParser(pipenv_lock_filename=pipfile_lock_file)
+            else:
+                self._error_and_exit(f'The provided file \'{pipfile_lock_file}\' does not exist')
         elif self._arguments.input_from_poetry:
             poetry_lock_file = os.path.realpath(self._arguments.input_poetry_file)
             if CycloneDxCmd._validate_file_exists(self._arguments.input_poetry_file):
@@ -174,9 +210,7 @@ class CycloneDxCmd:
                     poetry_lock_file
                 ))
         elif self._arguments.input_from_requirements:
-            # if self._arguments.input_requirements_file:
             requirements_file = os.path.realpath(self._arguments.input_requirements_file)
-            # requirements_file = self._arguments.input_requirements_file
             if CycloneDxCmd._validate_file_exists(self._arguments.input_requirements_file):
                 # A requirements.txt path was provided
                 return RequirementsFileParser(requirements_file=requirements_file)
