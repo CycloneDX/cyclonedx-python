@@ -2,6 +2,18 @@
 <bom xmlns="http://cyclonedx.org/schema/bom/1.3" version="1">
     <metadata>
         <timestamp>2021-09-01T10:50:42.051979+00:00</timestamp>
+        <tools>
+            <tool>
+                <vendor>CycloneDX</vendor>
+                <name>cyclonedx-python-lib</name>
+                <version>VERSION</version>
+            </tool>
+            <tool>
+                <vendor>CycloneDX</vendor>
+                <name>cyclonedx-bom</name>
+                <version>VERSION</version>
+            </tool>
+        </tools>
     </metadata>
     <components>
         <component type="library" bom-ref="pkg:pypi/setuptools@50.3.2">
