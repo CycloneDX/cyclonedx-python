@@ -14,7 +14,7 @@
 
 This project provides a runnable Python-based application for generating CycloneDX bill-of-material documents from either:
 1. Your current Python Environment
-2. Your project's manifest (e.g. `requirements.txt`)
+2. Your project's manifest (e.g. `Pipfile.lock`, `poetry.lock` or `requirements.txt`)
 
 The BOM will contain an aggregate of all your current project's dependencies, or those defined by the manifest you supply.
 
@@ -96,6 +96,9 @@ SBOM Output Configuration:
 This will produce the most accurate and complete CycloneDX BOM as it will include all transitive dependencies required
 by the packages defined in your project's manifest (think `requriements.txt`).
 
+When using _Environment_ as the source, any license information avaialble from the installed packages will also be 
+included in the generated CycloneDX BOM.
+
 Simply run:
 
 ```
@@ -107,6 +110,9 @@ in XML using the latest schema version `1.3` by default.
 
 
 ### Building CycloneDX from your Manifest
+
+_Note: Manifest scanning limits the amount of information available. Each manifest type contains different information
+but all are significantly less complete than scanning your actual Python Environment._
 
 #### Poetry
 
