@@ -20,9 +20,6 @@
 import os.path
 import subprocess
 import tempfile
-from unittest.mock import mock_open, patch
-
-from cyclonedx_py.client import CycloneDxCmd
 
 from base import BaseXmlTestCase
 
