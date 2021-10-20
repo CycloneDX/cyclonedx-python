@@ -1,0 +1,5 @@
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: osx-64
+@EXPLICIT
+https://repo.anaconda.com/pkgs/main/osx-64/setuptools-52.0.0-py39hecd8cb5_0.conda#5c9e48476978303d04650c21ee55f365
