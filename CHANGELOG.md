@@ -2,6 +2,14 @@
 
 <!--next-version-placeholder-->
 
+## v1.4.0 (2021-10-21)
+### Feature
+* Add conda support (bump cyclonedx-python-lib to ^0.10.0) ([`cb24275`](https://github.com/CycloneDX/cyclonedx-python/commit/cb24275f3e8716244de2b4ef0a046b879fa88ba5))
+
+### Fix
+* Encoding issues on Windows (bump cyclonedx-python-lib to ^0.10.2) ([`da6772b`](https://github.com/CycloneDX/cyclonedx-python/commit/da6772be89ad923b1d8df6dd3b2a89c6e5805571))
+* Encoding issues on Windows (bump cyclonedx-python-lib to ^0.10.1) ([`fe5df36`](https://github.com/CycloneDX/cyclonedx-python/commit/fe5df3607157b2f24854ef1f69457f163d79a093))
+
 ## v1.3.1 (2021-10-19)
 ### Fix
 * Bump to cyclonedx-python-lib to resolve issue #244 ([`ebea3ef`](https://github.com/CycloneDX/cyclonedx-python/commit/ebea3ef47e917479a7474489bb274b5fa9704375))
