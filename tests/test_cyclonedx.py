@@ -20,9 +20,6 @@
 import os.path
 import subprocess
 import tempfile
-from unittest.mock import mock_open, patch
-
-from cyclonedx_py.client import CycloneDxCmd
 
 from base import BaseXmlTestCase
 
@@ -33,19 +30,30 @@ FIXTURES_DIRECTORY = os.path.join(os.path.dirname(__file__), 'fixtures')
 
 class TestCycloneDxXml(BaseXmlTestCase):
 
-    def test_run(self):
-        parser = CycloneDxCmd.get_arg_parser()
+    def test_environment(self):
         with tempfile.TemporaryDirectory() as dirname:
-            args = parser.parse_args(args=('-r', '-o', os.path.join(dirname, 'sbom.xml')))
-            with open(os.path.join(FIXTURES_DIRECTORY, 'requirements-simple.txt'), 'r') as req_file:
-                with patch('builtins.open', mock_open(read_data=req_file.read())) as mock_req_file:
-                    with patch('cyclonedx_py.client.CycloneDxCmd._validate_file_exists') as mock_exists:
-                        CycloneDxCmd(args).execute()
+            subprocess.check_output([
+                'cyclonedx-py',
+                '-e',
+                '-o', os.path.join(dirname, 'sbom.xml'),
+            ])
 
-                        mock_exists.assert_called_with('requirements.txt')
-                        mock_req_file.assert_called()
+    def text_conda_list_explicit(self):
+        with tempfile.TemporaryDirectory() as dirname:
+            # Run command to generate latest 1.3 XML SBOM from Requirements File
+            subprocess.check_output([
+                'cyclonedx-bom',
+                '-c',
+                '-i', os.path.join(FIXTURES_DIRECTORY, 'conda-list-explicit-simple.txt'),
+                '-o', os.path.join(dirname, 'sbom.xml'),
+            ])
 
-            req_file.close()
+            with open(os.path.join(dirname, 'sbom.xml'), 'r') as f, \
+                    open(os.path.join(FIXTURES_DIRECTORY, 'bom_v1.3_setuptools.xml')) as expected:
+                self.assertEqualXmlBom(f.read(), expected.read(),
+                                       namespace='http://cyclonedx.org/schema/bom/1.3')
+                f.close()
+                expected.close()
 
     def test_requirements_txt_file(self):
         with tempfile.TemporaryDirectory() as dirname:
@@ -53,7 +61,7 @@ class TestCycloneDxXml(BaseXmlTestCase):
             subprocess.check_output([
                 'cyclonedx-py',
                 '-r',
-                '-rf', os.path.join(FIXTURES_DIRECTORY, 'requirements-simple.txt'),
+                '-i', os.path.join(FIXTURES_DIRECTORY, 'requirements-simple.txt'),
                 '-o', os.path.join(dirname, 'sbom.xml'),
             ])
 
@@ -79,7 +87,7 @@ class TestCycloneDxXml(BaseXmlTestCase):
             subprocess.check_output([
                 'cyclonedx-py',
                 '-r',
-                '-rf', os.path.join(FIXTURES_DIRECTORY, 'requirements-simple.txt'),
+                '-i', os.path.join(FIXTURES_DIRECTORY, 'requirements-simple.txt'),
                 '--schema-version', schema_version,
                 '-o', os.path.join(dirname, 'sbom.xml'),
             ])

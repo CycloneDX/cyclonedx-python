@@ -26,10 +26,11 @@ from datetime import datetime
 from cyclonedx.model.bom import Bom, Tool
 from cyclonedx.output import BaseOutput, get_instance, OutputFormat, SchemaVersion
 from cyclonedx.parser import BaseParser
+from cyclonedx.parser.conda import CondaListExplicitParser, CondaListJsonParser
 from cyclonedx.parser.environment import EnvironmentParser
-from cyclonedx.parser.pipenv import PipEnvFileParser
-from cyclonedx.parser.poetry import PoetryFileParser
-from cyclonedx.parser.requirements import RequirementsFileParser
+from cyclonedx.parser.pipenv import PipEnvParser
+from cyclonedx.parser.poetry import PoetryParser
+from cyclonedx.parser.requirements import RequirementsParser
 
 
 class CycloneDxCmd:
@@ -101,6 +102,16 @@ class CycloneDxCmd:
 
         input_group = arg_parser.add_mutually_exclusive_group(required=True)
         input_group.add_argument(
+            '-c', '--conda', action='store_true',
+            help='Build a SBOM based on the output from `conda list --explicit` or `conda list --explicit --md5`',
+            dest='input_from_conda_explicit'
+        )
+        input_group.add_argument(
+            '-cj', '--conda-json', action='store_true',
+            help='Build a SBOM based on the output from `conda list --json`',
+            dest='input_from_conda_json'
+        )
+        input_group.add_argument(
             '-e', '--e', '--environment', action='store_true',
             help='Build a SBOM based on the packages installed in your current Python environment (default)',
             dest='input_from_environment'
@@ -124,34 +135,14 @@ class CycloneDxCmd:
             dest='input_from_requirements'
         )
 
-        req_input_group = arg_parser.add_argument_group(
-            title='Poetry',
-            description='Additional optional arguments if you are setting the input type to `poetry`'
+        input_method_group = arg_parser.add_argument_group(
+            title='Input Method',
+            description='Flags to determine how `cyclonedx-bom` obtains it\'s input'
         )
-        req_input_group.add_argument(
-            '-pf', '--pf', '--poetry-file', action='store', metavar='FILE_PATH', default='poetry.lock',
-            help='Path to a the `poetry.lock` file you wish to parse',
-            dest='input_poetry_file', required=False
-        )
-
-        req_input_group = arg_parser.add_argument_group(
-            title='PipEnv',
-            description='Additional optional arguments if you are setting the input type to `pipenv`'
-        )
-        req_input_group.add_argument(
-            '--pip-file', action='store', metavar='FILE_PATH', default='Pipfile.lock',
-            help='Path to a the `Pipfile.lock` file you wish to parse',
-            dest='input_pipenv_file', required=False
-        )
-
-        req_input_group = arg_parser.add_argument_group(
-            title='Requirements',
-            description='Additional optional arguments if you are setting the input type to `requirements`.'
-        )
-        req_input_group.add_argument(
-            '-rf', '--rf', '--requirements-file', action='store', metavar='FILE_PATH', default='requirements.txt',
-            help='Path to a the `requirements.txt` file you wish to parse',
-            dest='input_requirements_file', required=False
+        input_method_group.add_argument(
+            '-i', '--in-file', action='store', metavar='FILE_PATH',
+            type=argparse.FileType('r'), default=(None if sys.stdin.isatty() else sys.stdin),
+            help='File to read input from, or STDIN if not specified', dest='input_source', required=False
         )
 
         output_group = arg_parser.add_argument_group(
@@ -193,37 +184,25 @@ class CycloneDxCmd:
     def _get_input_parser(self) -> BaseParser:
         if self._arguments.input_from_environment:
             return EnvironmentParser()
+
+        # All other Parsers will require some input - grab it now!
+        input_data_fh = self._arguments.input_source
+        with input_data_fh:
+            input_data = input_data_fh.read()
+            input_data_fh.close()
+
+        if self._arguments.input_from_conda_explicit:
+            return CondaListExplicitParser(conda_data=input_data)
+        elif self._arguments.input_from_conda_json:
+            return CondaListJsonParser(conda_data=input_data)
         elif self._arguments.input_from_pip:
-            pipfile_lock_file = os.path.realpath(self._arguments.input_pipenv_file)
-            if CycloneDxCmd._validate_file_exists(self._arguments.input_pipenv_file):
-                # A Pipfile.lock path was provided
-                return PipEnvFileParser(pipenv_lock_filename=pipfile_lock_file)
-            else:
-                self._error_and_exit(f'The provided file \'{pipfile_lock_file}\' does not exist')
+            return PipEnvParser(pipenv_contents=input_data)
         elif self._arguments.input_from_poetry:
-            poetry_lock_file = os.path.realpath(self._arguments.input_poetry_file)
-            if CycloneDxCmd._validate_file_exists(self._arguments.input_poetry_file):
-                # A poetry.lock path was provided
-                return PoetryFileParser(poetry_lock_filename=poetry_lock_file)
-            else:
-                self._error_and_exit('The provided file \'{}\' does not exist'.format(
-                    poetry_lock_file
-                ))
+            return PoetryParser(poetry_lock_contents=input_data)
         elif self._arguments.input_from_requirements:
-            requirements_file = os.path.realpath(self._arguments.input_requirements_file)
-            if CycloneDxCmd._validate_file_exists(self._arguments.input_requirements_file):
-                # A requirements.txt path was provided
-                return RequirementsFileParser(requirements_file=requirements_file)
-            else:
-                self._error_and_exit('The provided file \'{}\' does not exist'.format(
-                    requirements_file
-                ))
+            return RequirementsParser(requirements_content=input_data)
         else:
             raise ValueError('Parser type could not be determined.')
-
-    @staticmethod
-    def _validate_file_exists(file_path: str) -> bool:
-        return os.path.exists(file_path)
 
 
 def main():

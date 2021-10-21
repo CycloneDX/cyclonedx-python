@@ -15,6 +15,7 @@
 This project provides a runnable Python-based application for generating CycloneDX bill-of-material documents from either:
 1. Your current Python Environment
 2. Your project's manifest (e.g. `Pipfile.lock`, `poetry.lock` or `requirements.txt`)
+3. Conda as a Package Manager
 
 The BOM will contain an aggregate of all your current project's dependencies, or those defined by the manifest you supply.
 
@@ -39,8 +40,8 @@ poetry add cyclonedx-bom
 Once installed, you can access the full documentation by running `--help`:
 
 ```
-$ cyclonedx-py --help
-usage: client.py [-h] (-e | -p | -r) [-pf FILE_PATH] [-rf FILE_PATH]
+$ cyclonedx-bom --help
+usage: cyclonedx-bom [-h] (-c | -cj | -e | -p | -pip | -r) [-i FILE_PATH]
                  [--format {json,xml}] [--schema-version {1.3,1.2,1.1,1.0}]
                  [-o FILE_PATH] [-F] [-X]
 
@@ -48,6 +49,10 @@ CycloneDX SBOM Generator
 
 optional arguments:
   -h, --help            show this help message and exit
+  -c, --conda           Build a SBOM based on the output from `conda list
+                        --explicit` or `conda list --explicit --md5`
+  -cj, --conda-json     Build a SBOM based on the output from `conda list
+                        --json`
   -e, --e, --environment
                         Build a SBOM based on the packages installed in your
                         current Python environment (default)
@@ -55,6 +60,10 @@ optional arguments:
                         Use with -pf to specify absolute pathto a
                         `poetry.lock` you wish to use, else we'll look for one
                         in the current working directory.
+  -pip, --pip           Build a SBOM based on a PipEnv Pipfile.lock's
+                        contents. Use with --pip-file to specify absolute
+                        pathto a `Pipefile.lock` you wish to use, else we'll
+                        look for one in the current working directory.
   -r, --r, --requirements
                         Build a SBOM based on a requirements.txt's contents.
                         Use with -rf to specify absolute pathto a
@@ -62,20 +71,11 @@ optional arguments:
                         for one in the current working directory.
   -X                    Enable debug output
 
-Poetry:
-  Additional optional arguments if you are setting the input type to
-  `poetry`
+Input Method:
+  Flags to determine how `cyclonedx-bom` obtains it's input
 
-  -pf FILE_PATH, --pf FILE_PATH, --poetry-file FILE_PATH
-                        Path to a the `poetry.lock` file you wish to parse
-
-Requirements:
-  Additional optional arguments if you are setting the input type to
-  `requirements`.
-
-  -rf FILE_PATH, --rf FILE_PATH, --requirements-file FILE_PATH
-                        Path to a the `requirements.txt` file you wish to
-                        parse
+  -i FILE_PATH, --in-file FILE_PATH
+                        File to read input from, or STDIN if not specified
 
 SBOM Output Configuration:
   Choose the output format and schema version
@@ -96,32 +96,43 @@ SBOM Output Configuration:
 This will produce the most accurate and complete CycloneDX BOM as it will include all transitive dependencies required
 by the packages defined in your project's manifest (think `requriements.txt`).
 
-When using _Environment_ as the source, any license information avaialble from the installed packages will also be 
+When using _Environment_ as the source, any license information available from the installed packages will also be 
 included in the generated CycloneDX BOM.
 
 Simply run:
 
 ```
-cyclonedx-py -e -o -
+cyclonedx-bom -e -o -
 ```
 
 This will generate a CycloneDX including all packages installed in your current Python environment and output to STDOUT
 in XML using the latest schema version `1.3` by default.
 
 
-### Building CycloneDX from your Manifest
+### Building CycloneDX from your Manifest / Package Manager
 
 _Note: Manifest scanning limits the amount of information available. Each manifest type contains different information
 but all are significantly less complete than scanning your actual Python Environment._
+
+#### Conda
+
+We support parsing output from Conda in various formats:
+- Explict output (run `conda list --explicit` or `conda list --explicit --md5`)
+- JSON output (run `conda list --json`)
+
+As example:
+```
+conda list --explicit --md5 | cyclonedx-bom -c -o cyclonedx.xml
+```
 
 #### Poetry
 
 We support parsing your `poetry.lock` file which should be committed along with your `pyrpoject.toml` and details
 exact pinned versions.
 
-You can then run `cyclonedx-py` as follows:
+You can then run `cyclonedx-bom` as follows:
 ```
-cyclonedx-py -p -pf PATH/TO/poetry.lock -o sbom.xml
+cyclonedx-bom -p -i PATH/TO/poetry.lock -o sbom.xml
 ```
 
 #### Pip / Requirements
@@ -135,13 +146,13 @@ pip freeze > requirements.txt
 
 You can then run `cyclonedx-py` as follows:
 ```
-cyclonedx-py -r -rf PATH/TO/requirements.txt -o sbom.xml
+cyclonedx-bom -r -i PATH/TO/requirements.txt -o sbom.xml
 ```
 
 This will generate a CycloneDX and output to STDOUT in XML using the latest schema version `1.3` by default.
 
-**Note:** If you failed to freeze your dependencies before passing the `requirements.txt` data to `cyclonedx-py`, you'll 
-be warned about this and the dependencies that do not have pinned versions WILL NOT be included in the resulting 
+**Note:** If you failed to freeze your dependencies before passing the `requirements.txt` data to `cyclonedx-bom`, 
+you'll be warned about this and the dependencies that do not have pinned versions WILL NOT be included in the resulting 
 CycloneDX output.
 
 ```
