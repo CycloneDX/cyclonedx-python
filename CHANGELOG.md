@@ -3,6 +3,11 @@
 <!--next-version-placeholder-->
 
 ## v1.4.0 (2021-10-21)
+### Breaking Changes
+* The following parameter flags have all been removed in favour of a single common parameter flag `-i`:
+  * For Poetry: `-pf`, `--poetry-file`
+  * For Requirements: `-rf`, `--requirements-file`
+
 ### Feature
 * Add conda support (bump cyclonedx-python-lib to ^0.10.0) ([`cb24275`](https://github.com/CycloneDX/cyclonedx-python/commit/cb24275f3e8716244de2b4ef0a046b879fa88ba5))
 
