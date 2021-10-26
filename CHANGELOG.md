@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v1.4.1 (2021-10-26)
+### Fix
+* Corrected documentation after deprecation of `-rf`, `-pf`, `--poetry-file`, `--requirements-file` and `--pip-file` ([`4c4c8d8`](https://github.com/CycloneDX/cyclonedx-python/commit/4c4c8d8d4756ebc953c26504052d5469f3c47cfa))
+
 ## v1.4.0 (2021-10-21)
 ### Breaking Changes
 * The following parameter flags have all been removed in favour of a single common parameter flag `-i`:
