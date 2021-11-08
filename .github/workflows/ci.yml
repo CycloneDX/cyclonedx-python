@@ -20,8 +20,11 @@
 name: Python CI
 
 on:
-  pull_request:
   workflow_dispatch:
+  pull_request:
+  push:
+    tags: [ 'v*.*.*' ]  # run again on release tags to have tools mark them
+    branches: [ 'master']
 
 env:
   REPORTS_DIR: CI_reports
