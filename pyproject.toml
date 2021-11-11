@@ -16,7 +16,7 @@ include = [
 
 [tool.poetry.dependencies]
 python = "^3.6"
-cyclonedx-python-lib = "^0.10.2"
+cyclonedx-python-lib = ">=0.10.2,<0.12.0"
 
 [tool.poetry.dev-dependencies]
 tox = "^3.24.3"

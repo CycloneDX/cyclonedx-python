@@ -34,7 +34,7 @@ toml = ["tomli"]
 
 [[package]]
 name = "cyclonedx-python-lib"
-version = "0.10.2"
+version = "0.11.1"
 description = "A library for producing CycloneDX SBOM (Software Bill of Materials) files."
 category = "main"
 optional = false
@@ -45,6 +45,8 @@ importlib-metadata = {version = ">=4.8.1,<5.0.0", markers = "python_version >= \
 packageurl-python = ">=0.9.4,<0.10.0"
 requirements_parser = ">=0.2.0,<0.3.0"
 toml = ">=0.10.2,<0.11.0"
+types-setuptools = ">=57.4.2,<58.0.0"
+types-toml = ">=0.10.1,<0.11.0"
 typing-extensions = {version = ">=3.10.0,<4.0.0", markers = "python_version >= \"3.6\" and python_version < \"3.8\""}
 
 [[package]]
@@ -250,6 +252,22 @@ docs = ["pygments-github-lexers (>=0.0.5)", "sphinx (>=2.0.0)", "sphinxcontrib-a
 testing = ["flaky (>=3.4.0)", "freezegun (>=0.3.11)", "psutil (>=5.6.1)", "pytest (>=4.0.0)", "pytest-cov (>=2.5.1)", "pytest-mock (>=1.10.0)", "pytest-randomly (>=1.0.0)", "pytest-xdist (>=1.22.2)", "pathlib2 (>=2.3.3)"]
 
 [[package]]
+name = "types-setuptools"
+version = "57.4.2"
+description = "Typing stubs for setuptools"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "types-toml"
+version = "0.10.1"
+description = "Typing stubs for toml"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "typing-extensions"
 version = "3.10.0.2"
 description = "Backported and Experimental Type Hints for Python 3.5+"
@@ -293,7 +311,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "3983ecb758d42dee8940f0e965a2a3fba02e725848cfaca613ae04c416c4a15b"
+content-hash = "09aed9b7b3e100c1c0be63d9163cac13b6a97e98e5f387a141bb002ee6a1c974"
 
 [metadata.files]
 "backports.entry-points-selectable" = [
@@ -354,8 +372,8 @@ coverage = [
     {file = "coverage-6.1.2.tar.gz", hash = "sha256:d9a635114b88c0ab462e0355472d00a180a5fbfd8511e7f18e4ac32652e7d972"},
 ]
 cyclonedx-python-lib = [
-    {file = "cyclonedx-python-lib-0.10.2.tar.gz", hash = "sha256:6f79742ca1728b9016ea272bbe58a60441848e6b4f9742918b8eb67ca987df3b"},
-    {file = "cyclonedx_python_lib-0.10.2-py3-none-any.whl", hash = "sha256:e0b2cd3e91c3d55746ce7175a05c23ea2f618158a407b7c9d166eef083a4ee04"},
+    {file = "cyclonedx-python-lib-0.11.1.tar.gz", hash = "sha256:cb0f1730ebe23c37820a9a2d4b42fc1d19fb3e8e6e92dfd3489673c76152e43c"},
+    {file = "cyclonedx_python_lib-0.11.1-py3-none-any.whl", hash = "sha256:ed6cf44f29b1f31835f818ca3b18deaee28be32a3179eadf9ad6c853217c93f9"},
 ]
 distlib = [
     {file = "distlib-0.3.3-py2.py3-none-any.whl", hash = "sha256:c8b54e8454e5bf6237cc84c20e8264c3e991e824ef27e8f1e81049867d861e31"},
@@ -428,6 +446,14 @@ toml = [
 tox = [
     {file = "tox-3.24.4-py2.py3-none-any.whl", hash = "sha256:5e274227a53dc9ef856767c21867377ba395992549f02ce55eb549f9fb9a8d10"},
     {file = "tox-3.24.4.tar.gz", hash = "sha256:c30b57fa2477f1fb7c36aa1d83292d5c2336cd0018119e1b1c17340e2c2708ca"},
+]
+types-setuptools = [
+    {file = "types-setuptools-57.4.2.tar.gz", hash = "sha256:5499a0f429281d1a3aa9494c79b6599ab356dfe6d393825426bc749e48ea1bf8"},
+    {file = "types_setuptools-57.4.2-py3-none-any.whl", hash = "sha256:9c96aab47fdcf066fef83160b2b9ddbfab3d2c8fdc89053579d0b306837bf22a"},
+]
+types-toml = [
+    {file = "types-toml-0.10.1.tar.gz", hash = "sha256:5c1f8f8d57692397c8f902bf6b4d913a0952235db7db17d2908cc110e70610cb"},
+    {file = "types_toml-0.10.1-py3-none-any.whl", hash = "sha256:8cdfd2b7c89bed703158b042dd5cf04255dae77096db66f4a12ca0a93ccb07a5"},
 ]
 typing-extensions = [
     {file = "typing_extensions-3.10.0.2-py2-none-any.whl", hash = "sha256:d8226d10bc02a29bcc81df19a26e56a9647f8b0a6d4a83924139f4a8b01f17b7"},
