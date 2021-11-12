@@ -14,7 +14,8 @@ dist/
 test-reports
 
 # Exclude Python Virtual Environment
-venv/*
+venv/
+.venv/
 
 # Exlude IDE related files
 .idea/*
