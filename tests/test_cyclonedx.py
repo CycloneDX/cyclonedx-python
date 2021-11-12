@@ -30,7 +30,7 @@ FIXTURES_DIRECTORY = os.path.join(os.path.dirname(__file__), 'fixtures')
 
 class TestCycloneDxXml(BaseXmlTestCase):
 
-    def test_environment(self):
+    def test_environment(self) -> None:
         with tempfile.TemporaryDirectory() as dirname:
             subprocess.check_output([
                 'cyclonedx-py',
@@ -38,7 +38,7 @@ class TestCycloneDxXml(BaseXmlTestCase):
                 '-o', os.path.join(dirname, 'sbom.xml'),
             ])
 
-    def text_conda_list_explicit(self):
+    def text_conda_list_explicit(self) -> None:
         with tempfile.TemporaryDirectory() as dirname:
             # Run command to generate latest 1.3 XML SBOM from Requirements File
             subprocess.check_output([
@@ -55,7 +55,7 @@ class TestCycloneDxXml(BaseXmlTestCase):
                 f.close()
                 expected.close()
 
-    def test_requirements_txt_file(self):
+    def test_requirements_txt_file(self) -> None:
         with tempfile.TemporaryDirectory() as dirname:
             # Run command to generate latest 1.3 XML SBOM from Requirements File
             subprocess.check_output([
@@ -72,16 +72,16 @@ class TestCycloneDxXml(BaseXmlTestCase):
                 f.close()
                 expected.close()
 
-    def test_requirements_txt_file_v1_2(self):
+    def test_requirements_txt_file_v1_2(self) -> None:
         self._do_test_requirements_txt_file_for_version(schema_version='1.2')
 
-    def test_requirements_txt_file_v1_1(self):
+    def test_requirements_txt_file_v1_1(self) -> None:
         self._do_test_requirements_txt_file_for_version(schema_version='1.1')
 
-    def test_requirements_txt_file_v1_0(self):
+    def test_requirements_txt_file_v1_0(self) -> None:
         self._do_test_requirements_txt_file_for_version(schema_version='1.0')
 
-    def _do_test_requirements_txt_file_for_version(self, schema_version: str):
+    def _do_test_requirements_txt_file_for_version(self, schema_version: str) -> None:
         with tempfile.TemporaryDirectory() as dirname:
             # Run command to generate XML SBOM from Requirements File
             subprocess.check_output([

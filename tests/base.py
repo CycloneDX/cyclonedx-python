@@ -24,6 +24,7 @@ from datetime import datetime, timezone
 from unittest import TestCase
 from uuid import uuid4
 from xml.dom import minidom
+from typing import Any
 
 if sys.version_info >= (3, 8, 0):
     from importlib.metadata import version
@@ -39,13 +40,13 @@ single_uuid: str = 'urn:uuid:{}'.format(uuid4())
 
 class BaseJsonTestCase(TestCase):
 
-    def assertEqualJson(self, a: str, b: str):
+    def assertEqualJson(self, a: str, b: str) -> None:
         self.assertEqual(
             json.dumps(json.loads(a), sort_keys=True),
             json.dumps(json.loads(b), sort_keys=True)
         )
 
-    def assertEqualJsonBom(self, a: str, b: str):
+    def assertEqualJsonBom(self, a: str, b: str) -> None:
         """
         Remove UUID before comparison as this will be unique to each generation
         """
@@ -80,12 +81,12 @@ class BaseJsonTestCase(TestCase):
 
 class BaseXmlTestCase(TestCase):
 
-    def assertEqualXml(self, a: str, b: str):
+    def assertEqualXml(self, a: str, b: str) -> None:
         da, db = minidom.parseString(a), minidom.parseString(b)
         self.assertTrue(self._is_equal_xml_element(da.documentElement, db.documentElement),
                         'XML Documents are not equal: \n{}\n{}'.format(da.toxml(), db.toxml()))
 
-    def assertEqualXmlBom(self, a: str, b: str, namespace: str):
+    def assertEqualXmlBom(self, a: str, b: str, namespace: str) -> None:
         """
         Sanitise some fields such as timestamps which cannot have their values directly compared for equality.
         """
@@ -124,7 +125,7 @@ class BaseXmlTestCase(TestCase):
             xml.etree.ElementTree.tostring(bb, 'unicode')
         )
 
-    def _is_equal_xml_element(self, a, b):
+    def _is_equal_xml_element(self, a: Any, b: Any) -> bool:
         if a.tagName != b.tagName:
             return False
         if sorted(a.attributes.items()) != sorted(b.attributes.items()):
