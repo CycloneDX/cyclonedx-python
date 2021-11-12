@@ -36,7 +36,7 @@ class TestCycloneDxXml(BaseXmlTestCase):
                 'cyclonedx-py',
                 '-e',
                 '-o', os.path.join(dirname, 'sbom.xml'),
-            ])
+            ], shell=False)
 
     def text_conda_list_explicit(self) -> None:
         with tempfile.TemporaryDirectory() as dirname:
@@ -46,7 +46,7 @@ class TestCycloneDxXml(BaseXmlTestCase):
                 '-c',
                 '-i', os.path.join(FIXTURES_DIRECTORY, 'conda-list-explicit-simple.txt'),
                 '-o', os.path.join(dirname, 'sbom.xml'),
-            ])
+            ], shell=False)
 
             with open(os.path.join(dirname, 'sbom.xml'), 'r') as f, \
                     open(os.path.join(FIXTURES_DIRECTORY, 'bom_v1.3_setuptools.xml')) as expected:
@@ -63,7 +63,7 @@ class TestCycloneDxXml(BaseXmlTestCase):
                 '-r',
                 '-i', os.path.join(FIXTURES_DIRECTORY, 'requirements-simple.txt'),
                 '-o', os.path.join(dirname, 'sbom.xml'),
-            ])
+            ], shell=False)
 
             with open(os.path.join(dirname, 'sbom.xml'), 'r') as f, \
                     open(os.path.join(FIXTURES_DIRECTORY, 'bom_v1.3_setuptools.xml')) as expected:
@@ -90,7 +90,7 @@ class TestCycloneDxXml(BaseXmlTestCase):
                 '-i', os.path.join(FIXTURES_DIRECTORY, 'requirements-simple.txt'),
                 '--schema-version', schema_version,
                 '-o', os.path.join(dirname, 'sbom.xml'),
-            ])
+            ], shell=False)
 
             with open(os.path.join(dirname, 'sbom.xml'), 'r') as f, \
                     open(os.path.join(FIXTURES_DIRECTORY, 'bom_v{}_setuptools.xml'.format(schema_version))) as expected:
