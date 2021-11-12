@@ -135,7 +135,26 @@ You can then run `cyclonedx-bom` as follows:
 cyclonedx-bom -p -i PATH/TO/poetry.lock -o sbom.xml
 ```
 
-#### Pip / Requirements
+If your `poetry.lock` is in the current working directory, you can also shorten this to:
+```
+cyclonedx-bom -p -o sbom.xml
+```
+
+#### Pip
+
+We currently support `Pipfile.lock` manifest files.
+
+You can then run `cyclonedx-bom` as follows:
+```
+cyclonedx-bom -pip -i PATH/TO/Pipfile.lock -o sbom.xml
+```
+
+If your `Pipfile.lock` is in the current working directory, you can also shorten this to:
+```
+cyclonedx-bom -pip -o sbom.xml
+```
+
+#### Requirements
 
 We currently support `requirements.txt` manifest files. Note that a BOM such as CycloneDX expects exact version numbers, 
 therefore if you wish to generate a BOM from a `requirements.txt`, these must be frozen. This can be accomplished via:
@@ -144,9 +163,14 @@ therefore if you wish to generate a BOM from a `requirements.txt`, these must be
 pip freeze > requirements.txt
 ```
 
-You can then run `cyclonedx-py` as follows:
+You can then run `cyclonedx-bom` as follows:
 ```
 cyclonedx-bom -r -i PATH/TO/requirements.txt -o sbom.xml
+```
+
+If your `requirements.txt` is in the current working directory, you can also shorten this to:
+```
+cyclonedx-bom -r -o sbom.xml
 ```
 
 This will generate a CycloneDX and output to STDOUT in XML using the latest schema version `1.3` by default.
