@@ -84,11 +84,11 @@ class CycloneDxCmd:
 
         # Add cyclonedx_bom as a Tool to record it being part of the CycloneDX SBOM generation process
         if sys.version_info >= (3, 8, 0):
-            from importlib.metadata import version
+            from importlib.metadata import version as md_version
         else:
-            from importlib_metadata import version
+            from importlib_metadata import version as md_version  # type: ignore
         bom.get_metadata().add_tool(tool=Tool(
-            vendor='CycloneDX', name='cyclonedx-bom', version=version('cyclonedx-bom')
+            vendor='CycloneDX', name='cyclonedx-bom', version=md_version('cyclonedx-bom')
         ))
 
         return get_instance(
