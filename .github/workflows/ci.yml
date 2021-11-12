@@ -91,9 +91,14 @@ jobs:
       REPORTS_ARTIFACT: tests-reports
     timeout-minutes: 30
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: [3.6, 3.7, 3.8, 3.9]
+        python-version:
+          - "3.9" # highest supported
+          - "3.8"
+          - "3.7"
+          - "3.6" # lowest supported
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
