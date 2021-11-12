@@ -212,7 +212,7 @@ class CycloneDxCmd:
                     raise CycloneDxCmdNoInputFileSupplied('When using input from Conda JSON, you need to pipe input'
                                                           'via STDIN')
                 elif self._arguments.input_from_pip:
-                    self._arguments.input_source = open(os.path.join(current_directory, 'Pipefile.lock'), 'r')
+                    self._arguments.input_source = open(os.path.join(current_directory, 'Pipfile.lock'), 'r')
                 elif self._arguments.input_from_poetry:
                     self._arguments.input_source = open(os.path.join(current_directory, 'poetry.lock'), 'r')
                 elif self._arguments.input_from_requirements:
