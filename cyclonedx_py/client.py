@@ -33,6 +33,14 @@ from cyclonedx.parser.poetry import PoetryParser
 from cyclonedx.parser.requirements import RequirementsParser
 
 
+class CycloneDxCmdException(Exception):
+    pass
+
+
+class CycloneDxCmdNoInputFileSupplied(CycloneDxCmdException):
+    pass
+
+
 class CycloneDxCmd:
     # Whether debug output is enabled
     _DEBUG_ENABLED: bool = False
@@ -49,7 +57,14 @@ class CycloneDxCmd:
             self._debug_message('Parsed Arguments: {}'.format(self._arguments))
 
     def get_output(self) -> BaseOutput:
-        parser = self._get_input_parser()
+        try:
+            parser = self._get_input_parser()
+        except CycloneDxCmdNoInputFileSupplied as e:
+            print(f'ERROR: {str(e)}')
+            exit(1)
+        except CycloneDxCmdException as e:
+            print(f'ERROR: {str(e)}')
+            exit(1)
 
         if parser.has_warnings():
             print('')
@@ -186,6 +201,29 @@ class CycloneDxCmd:
             return EnvironmentParser()
 
         # All other Parsers will require some input - grab it now!
+        if not self._arguments.input_source:
+            # Nothing passed via STDIN, and no FILENAME supplied, let's assume a default by input type for ease
+            current_directory = os.getcwd()
+            try:
+                if self._arguments.input_from_conda_explicit:
+                    raise CycloneDxCmdNoInputFileSupplied('When using input from Conda Explicit, you need to pipe input'
+                                                          'via STDIN')
+                elif self._arguments.input_from_conda_json:
+                    raise CycloneDxCmdNoInputFileSupplied('When using input from Conda JSON, you need to pipe input'
+                                                          'via STDIN')
+                elif self._arguments.input_from_pip:
+                    self._arguments.input_source = open(os.path.join(current_directory, 'Pipefile.lock'), 'r')
+                elif self._arguments.input_from_poetry:
+                    self._arguments.input_source = open(os.path.join(current_directory, 'poetry.lock'), 'r')
+                elif self._arguments.input_from_requirements:
+                    self._arguments.input_source = open(os.path.join(current_directory, 'requirements.txt'), 'r')
+                else:
+                    raise CycloneDxCmdException('Parser type could not be determined.')
+            except FileNotFoundError as e:
+                raise CycloneDxCmdNoInputFileSupplied(
+                    f'No input file was supplied and no input was provided on STDIN:\n{str(e)}'
+                )
+
         input_data_fh = self._arguments.input_source
         with input_data_fh:
             input_data = input_data_fh.read()
@@ -202,7 +240,7 @@ class CycloneDxCmd:
         elif self._arguments.input_from_requirements:
             return RequirementsParser(requirements_content=input_data)
         else:
-            raise ValueError('Parser type could not be determined.')
+            raise CycloneDxCmdException('Parser type could not be determined.')
 
 
 def main():
