@@ -17,15 +17,12 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-import os.path
+from os import path
 import subprocess
 import tempfile
 
-from base import BaseXmlTestCase
-
-script_path = os.path.dirname(__file__)
-
-FIXTURES_DIRECTORY = os.path.join(os.path.dirname(__file__), 'fixtures')
+from . import FIXTURES_DIRECTORY
+from .base import BaseXmlTestCase
 
 
 class TestCycloneDxXml(BaseXmlTestCase):
@@ -35,7 +32,7 @@ class TestCycloneDxXml(BaseXmlTestCase):
             subprocess.check_output([
                 'cyclonedx-py',
                 '-e',
-                '-o', os.path.join(dirname, 'sbom.xml'),
+                '-o', path.join(dirname, 'sbom.xml'),
             ], shell=False)
 
     def text_conda_list_explicit(self) -> None:
@@ -44,12 +41,12 @@ class TestCycloneDxXml(BaseXmlTestCase):
             subprocess.check_output([
                 'cyclonedx-bom',
                 '-c',
-                '-i', os.path.join(FIXTURES_DIRECTORY, 'conda-list-explicit-simple.txt'),
-                '-o', os.path.join(dirname, 'sbom.xml'),
+                '-i', path.join(FIXTURES_DIRECTORY, 'conda-list-explicit-simple.txt'),
+                '-o', path.join(dirname, 'sbom.xml'),
             ], shell=False)
 
-            with open(os.path.join(dirname, 'sbom.xml'), 'r') as f, \
-                    open(os.path.join(FIXTURES_DIRECTORY, 'bom_v1.3_setuptools.xml')) as expected:
+            with open(path.join(dirname, 'sbom.xml'), 'r') as f, \
+                    open(path.join(FIXTURES_DIRECTORY, 'bom_v1.3_setuptools.xml')) as expected:
                 self.assertEqualXmlBom(f.read(), expected.read(),
                                        namespace='http://cyclonedx.org/schema/bom/1.3')
                 f.close()
@@ -61,12 +58,12 @@ class TestCycloneDxXml(BaseXmlTestCase):
             subprocess.check_output([
                 'cyclonedx-py',
                 '-r',
-                '-i', os.path.join(FIXTURES_DIRECTORY, 'requirements-simple.txt'),
-                '-o', os.path.join(dirname, 'sbom.xml'),
+                '-i', path.join(FIXTURES_DIRECTORY, 'requirements-simple.txt'),
+                '-o', path.join(dirname, 'sbom.xml'),
             ], shell=False)
 
-            with open(os.path.join(dirname, 'sbom.xml'), 'r') as f, \
-                    open(os.path.join(FIXTURES_DIRECTORY, 'bom_v1.3_setuptools.xml')) as expected:
+            with open(path.join(dirname, 'sbom.xml'), 'r') as f, \
+                    open(path.join(FIXTURES_DIRECTORY, 'bom_v1.3_setuptools.xml')) as expected:
                 self.assertEqualXmlBom(f.read(), expected.read(),
                                        namespace='http://cyclonedx.org/schema/bom/1.3')
                 f.close()
@@ -87,13 +84,13 @@ class TestCycloneDxXml(BaseXmlTestCase):
             subprocess.check_output([
                 'cyclonedx-py',
                 '-r',
-                '-i', os.path.join(FIXTURES_DIRECTORY, 'requirements-simple.txt'),
+                '-i', path.join(FIXTURES_DIRECTORY, 'requirements-simple.txt'),
                 '--schema-version', schema_version,
-                '-o', os.path.join(dirname, 'sbom.xml'),
+                '-o', path.join(dirname, 'sbom.xml'),
             ], shell=False)
 
-            with open(os.path.join(dirname, 'sbom.xml'), 'r') as f, \
-                    open(os.path.join(FIXTURES_DIRECTORY, 'bom_v{}_setuptools.xml'.format(schema_version))) as expected:
+            with open(path.join(dirname, 'sbom.xml'), 'r') as f, \
+                    open(path.join(FIXTURES_DIRECTORY, 'bom_v{}_setuptools.xml'.format(schema_version))) as expected:
                 self.assertEqualXmlBom(f.read(), expected.read(),
                                        namespace='http://cyclonedx.org/schema/bom/{}'.format(schema_version))
                 f.close()
