@@ -57,6 +57,33 @@ jobs:
       - name: Run tox
         run: poetry run tox -e flake8
 
+  static-code-analysis:
+    name: Static Coding Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        # see https://github.com/actions/checkout
+        uses: actions/checkout@v2
+      - name: Setup Python Environment
+        # see https://github.com/actions/setup-python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+          architecture: 'x64'
+      - name: Install poetry
+        # see https://github.com/marketplace/actions/setup-poetry
+        uses: Gr1N/setup-poetry@v7
+        with:
+          poetry-version: 1.1.8
+      - uses: actions/cache@v2
+        with:
+          path: ~/.cache/pypoetry/virtualenvs
+          key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
+      - name: Install dependencies
+        run: poetry install
+      - name: Run tox
+        run: poetry run tox -e mypy
+
   build-and-test:
     name: Tests for Python ${{ matrix.python-version }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
@@ -64,9 +91,14 @@ jobs:
       REPORTS_ARTIFACT: tests-reports
     timeout-minutes: 30
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: [3.6, 3.7, 3.8, 3.9]
+        python-version:
+          - "3.9" # highest supported
+          - "3.8"
+          - "3.7"
+          - "3.6" # lowest supported
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
@@ -93,7 +125,7 @@ jobs:
       - name: Ensure build successful
         run: poetry build
       - name: Run tox
-        run: poetry run tox -e py${{ matrix.python-version }}
+        run: poetry run tox -e py -s false
       - name: Generate coverage reports
         run: >
           poetry run coverage report &&

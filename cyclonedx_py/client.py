@@ -48,7 +48,7 @@ class CycloneDxCmd:
     # Parsed Arguments
     _arguments: argparse.Namespace
 
-    def __init__(self, args: argparse.Namespace):
+    def __init__(self, args: argparse.Namespace) -> None:
         self._arguments = args
 
         if self._arguments.debug_enabled:
@@ -84,11 +84,11 @@ class CycloneDxCmd:
 
         # Add cyclonedx_bom as a Tool to record it being part of the CycloneDX SBOM generation process
         if sys.version_info >= (3, 8, 0):
-            from importlib.metadata import version
+            from importlib.metadata import version as md_version
         else:
-            from importlib_metadata import version
+            from importlib_metadata import version as md_version  # type: ignore
         bom.get_metadata().add_tool(tool=Tool(
-            vendor='CycloneDX', name='cyclonedx-bom', version=version('cyclonedx-bom')
+            vendor='CycloneDX', name='cyclonedx-bom', version=md_version('cyclonedx-bom')
         ))
 
         return get_instance(
@@ -99,7 +99,7 @@ class CycloneDxCmd:
             )]
         )
 
-    def execute(self):
+    def execute(self) -> None:
         output = self.get_output()
         if self._arguments.output_file == '-' or not self._arguments.output_file:
             self._debug_message('Returning SBOM to STDOUT')
@@ -187,12 +187,12 @@ class CycloneDxCmd:
 
         return arg_parser
 
-    def _debug_message(self, message: str):
+    def _debug_message(self, message: str) -> None:
         if self._DEBUG_ENABLED:
             print('[DEBUG] - {} - {}'.format(datetime.now(), message))
 
     @staticmethod
-    def _error_and_exit(message: str, exit_code: int = 1):
+    def _error_and_exit(message: str, exit_code: int = 1) -> None:
         print('[ERROR] - {} - {}'.format(datetime.now(), message))
         exit(exit_code)
 
@@ -243,7 +243,7 @@ class CycloneDxCmd:
             raise CycloneDxCmdException('Parser type could not be determined.')
 
 
-def main():
+def main() -> None:
     parser = CycloneDxCmd.get_arg_parser()
     args = parser.parse_args()
     CycloneDxCmd(args).execute()

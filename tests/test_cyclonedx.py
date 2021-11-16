@@ -17,83 +17,80 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-import os.path
+from os import path
 import subprocess
 import tempfile
 
-from base import BaseXmlTestCase
-
-script_path = os.path.dirname(__file__)
-
-FIXTURES_DIRECTORY = os.path.join(os.path.dirname(__file__), 'fixtures')
+from . import FIXTURES_DIRECTORY
+from .base import BaseXmlTestCase
 
 
 class TestCycloneDxXml(BaseXmlTestCase):
 
-    def test_environment(self):
+    def test_environment(self) -> None:
         with tempfile.TemporaryDirectory() as dirname:
             subprocess.check_output([
                 'cyclonedx-py',
                 '-e',
-                '-o', os.path.join(dirname, 'sbom.xml'),
-            ])
+                '-o', path.join(dirname, 'sbom.xml'),
+            ], shell=False)
 
-    def text_conda_list_explicit(self):
+    def text_conda_list_explicit(self) -> None:
         with tempfile.TemporaryDirectory() as dirname:
             # Run command to generate latest 1.3 XML SBOM from Requirements File
             subprocess.check_output([
                 'cyclonedx-bom',
                 '-c',
-                '-i', os.path.join(FIXTURES_DIRECTORY, 'conda-list-explicit-simple.txt'),
-                '-o', os.path.join(dirname, 'sbom.xml'),
-            ])
+                '-i', path.join(FIXTURES_DIRECTORY, 'conda-list-explicit-simple.txt'),
+                '-o', path.join(dirname, 'sbom.xml'),
+            ], shell=False)
 
-            with open(os.path.join(dirname, 'sbom.xml'), 'r') as f, \
-                    open(os.path.join(FIXTURES_DIRECTORY, 'bom_v1.3_setuptools.xml')) as expected:
+            with open(path.join(dirname, 'sbom.xml'), 'r') as f, \
+                    open(path.join(FIXTURES_DIRECTORY, 'bom_v1.3_setuptools.xml')) as expected:
                 self.assertEqualXmlBom(f.read(), expected.read(),
                                        namespace='http://cyclonedx.org/schema/bom/1.3')
                 f.close()
                 expected.close()
 
-    def test_requirements_txt_file(self):
+    def test_requirements_txt_file(self) -> None:
         with tempfile.TemporaryDirectory() as dirname:
             # Run command to generate latest 1.3 XML SBOM from Requirements File
             subprocess.check_output([
                 'cyclonedx-py',
                 '-r',
-                '-i', os.path.join(FIXTURES_DIRECTORY, 'requirements-simple.txt'),
-                '-o', os.path.join(dirname, 'sbom.xml'),
-            ])
+                '-i', path.join(FIXTURES_DIRECTORY, 'requirements-simple.txt'),
+                '-o', path.join(dirname, 'sbom.xml'),
+            ], shell=False)
 
-            with open(os.path.join(dirname, 'sbom.xml'), 'r') as f, \
-                    open(os.path.join(FIXTURES_DIRECTORY, 'bom_v1.3_setuptools.xml')) as expected:
+            with open(path.join(dirname, 'sbom.xml'), 'r') as f, \
+                    open(path.join(FIXTURES_DIRECTORY, 'bom_v1.3_setuptools.xml')) as expected:
                 self.assertEqualXmlBom(f.read(), expected.read(),
                                        namespace='http://cyclonedx.org/schema/bom/1.3')
                 f.close()
                 expected.close()
 
-    def test_requirements_txt_file_v1_2(self):
+    def test_requirements_txt_file_v1_2(self) -> None:
         self._do_test_requirements_txt_file_for_version(schema_version='1.2')
 
-    def test_requirements_txt_file_v1_1(self):
+    def test_requirements_txt_file_v1_1(self) -> None:
         self._do_test_requirements_txt_file_for_version(schema_version='1.1')
 
-    def test_requirements_txt_file_v1_0(self):
+    def test_requirements_txt_file_v1_0(self) -> None:
         self._do_test_requirements_txt_file_for_version(schema_version='1.0')
 
-    def _do_test_requirements_txt_file_for_version(self, schema_version: str):
+    def _do_test_requirements_txt_file_for_version(self, schema_version: str) -> None:
         with tempfile.TemporaryDirectory() as dirname:
             # Run command to generate XML SBOM from Requirements File
             subprocess.check_output([
                 'cyclonedx-py',
                 '-r',
-                '-i', os.path.join(FIXTURES_DIRECTORY, 'requirements-simple.txt'),
+                '-i', path.join(FIXTURES_DIRECTORY, 'requirements-simple.txt'),
                 '--schema-version', schema_version,
-                '-o', os.path.join(dirname, 'sbom.xml'),
-            ])
+                '-o', path.join(dirname, 'sbom.xml'),
+            ], shell=False)
 
-            with open(os.path.join(dirname, 'sbom.xml'), 'r') as f, \
-                    open(os.path.join(FIXTURES_DIRECTORY, 'bom_v{}_setuptools.xml'.format(schema_version))) as expected:
+            with open(path.join(dirname, 'sbom.xml'), 'r') as f, \
+                    open(path.join(FIXTURES_DIRECTORY, 'bom_v{}_setuptools.xml'.format(schema_version))) as expected:
                 self.assertEqualXmlBom(f.read(), expected.read(),
                                        namespace='http://cyclonedx.org/schema/bom/{}'.format(schema_version))
                 f.close()
