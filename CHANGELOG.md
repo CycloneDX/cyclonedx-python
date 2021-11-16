@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v1.4.3 (2021-11-16)
+### Fix
+* Add static code analysis, better typing and bump cyclonedx-python-lib to 0.11 ([`d5d9f56`](https://github.com/CycloneDX/cyclonedx-python/commit/d5d9f563f2ceb1bdfb2f9cb39ff07af9f0deca26))
+
 ## v1.4.2 (2021-11-12)
 ### Fix
 * If no input file is supplied and no input is provided on STDIN, we will now try to automatically locate (in the current working directory) a manifest with default name for the input type specified. This works for PIP (Pipfile.lock), Poetry (poetry.lock) and Requirements (requirements.txt) ([`93f9e59`](https://github.com/CycloneDX/cyclonedx-python/commit/93f9e5985f0d0cecd865b66119276d33b2175fe9))
