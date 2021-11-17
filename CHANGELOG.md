@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v1.5.0 (2021-11-17)
+### Feature
+* Support for Python 3.10 ([#261](https://github.com/CycloneDX/cyclonedx-python/issues/261)) ([`f4f9ffe`](https://github.com/CycloneDX/cyclonedx-python/commit/f4f9ffe4b1e2d4fffe4ad0b274a067a20c9c372f))
+
 ## v1.4.3 (2021-11-16)
 ### Fix
 * Add static code analysis, better typing and bump cyclonedx-python-lib to 0.11 ([`d5d9f56`](https://github.com/CycloneDX/cyclonedx-python/commit/d5d9f563f2ceb1bdfb2f9cb39ff07af9f0deca26))
