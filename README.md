@@ -23,7 +23,7 @@ CycloneDX is a lightweight BOM specification that is easily created, human-reada
 
 ## Installation
 
-Install this from [PyPi.org](https://pypi.org/project/cyclonedx-bom/) using your preferred Python package manager.
+Install this from [PyPi.org][link_pypi] using your preferred Python package manager.
 
 Example using `pip`:
 
