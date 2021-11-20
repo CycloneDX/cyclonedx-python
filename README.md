@@ -1,14 +1,13 @@
 # CycloneDX Python SBOM Generation Tool
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/CycloneDX/cyclonedx-python/Python%20CI)](https://github.com/CycloneDX/cyclonedx-python/actions/workflows/ci.yml)
-[![Docker Image](https://img.shields.io/badge/docker-image-brightgreen?style=flat&logo=docker)](https://hub.docker.com/r/cyclonedx/cyclonedx-python)
-[![GitHub license](https://img.shields.io/github/license/CycloneDX/cyclonedx-python)](https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE)
-[![Python Version Support](https://img.shields.io/badge/https://-cyclonedx.org-blue)](https://cyclonedx.org/)
-[![Slack Invite](https://img.shields.io/badge/Slack-Join-blue?logo=slack&labelColor=393939)](https://cyclonedx.org/slack/invite)
-![PyPI Version](https://img.shields.io/pypi/v/cyclonedx-bom?label=PyPI&logo=pypi)
-![Python Version Support](https://img.shields.io/badge/python-3.6+-blue)
-[![Group Discussion](https://img.shields.io/badge/discussion-groups.io-blue)](https://groups.io/g/CycloneDX)
-[![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Follow)](https://twitter.com/CycloneDX_Spec)
+[![shield_gh-workflow-test]][link_gh-workflow-test]
+[![shield_pypi-version]][link_pypi]
+[![shield_docker-version]][link_docker]
+[![shield_license]][license_file]  
+[![shield_website]][link_website]
+[![shield_slack]][link_slack]
+[![shield_groups]][link_discussion]
+[![shield_twitter-follow]][link_twitter]
 
 ----
 
@@ -210,6 +209,24 @@ However, some features may not be possible/present in older Python versions due 
 
 ## Copyright & License
 
-CycloneDX BOM is Copyright (c) OWASP Foundation. All Rights Reserved.
+CycloneDX BOM is Copyright (c) OWASP Foundation. All Rights Reserved.  
+Permission to modify and redistribute is granted under the terms of the Apache 2.0 license.  
+See the [LICENSE][license_file] file for the full license.
 
-Permission to modify and redistribute is granted under the terms of the Apache 2.0 license.
+[license_file]: https://github.com/CycloneDX/cyclonedx-python/blob/master/LICENSE
+
+[shield_gh-workflow-test]: https://img.shields.io/github/workflow/status/CycloneDX/cyclonedx-python/Python%20CI/master?logo=GitHub&logoColor=white "build"
+[shield_pypi-version]: https://img.shields.io/pypi/v/cyclonedx-bom?logo=Python&logoColor=white "pypi"
+[shield_docker-version]: https://img.shields.io/docker/v/cyclonedx/cyclonedx-python?logo=Docker&logoColor=white "docker"
+[shield_license]: https://img.shields.io/github/license/CycloneDX/cyclonedx-python "license"
+[shield_website]: https://img.shields.io/badge/https://-cyclonedx.org-blue.svg "homepage"
+[shield_slack]: https://img.shields.io/badge/slack-join-blue?logo=Slack&logoColor=white "slack join"
+[shield_groups]: https://img.shields.io/badge/discussion-groups.io-blue.svg "groups discussion"
+[shield_twitter-follow]: https://img.shields.io/badge/Twitter-follow-blue?logo=Twitter&logoColor=white "twitter follow"
+[link_gh-workflow-test]: https://github.com/CycloneDX/cyclonedx-python/actions/workflows/ci.yml?query=branch%3Amaster
+[link_pypi]: https://pypi.org/project/cyclonedx-bom/
+[link_docker]: https://hub.docker.com/r/cyclonedx/cyclonedx-python
+[link_website]: https://cyclonedx.org/
+[link_slack]: https://cyclonedx.org/slack/invite
+[link_discussion]: https://groups.io/g/CycloneDX
+[link_twitter]: https://twitter.com/CycloneDX_Spec
