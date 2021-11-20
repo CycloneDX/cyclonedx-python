@@ -26,12 +26,12 @@ CycloneDX is a lightweight BOM specification that is easily created, human-reada
 Install this from [PyPi.org](https://pypi.org/project/cyclonedx-bom/) using your preferred Python package manager.
 
 Example using `pip`:
-```
+```shell
 pip install cyclonedx-bom
 ```
 
 Example using `poetry`:
-```
+```shell
 poetry add cyclonedx-bom
 ```
 
@@ -101,7 +101,7 @@ included in the generated CycloneDX BOM.
 
 Simply run:
 
-```
+```shell
 cyclonedx-bom -e -o -
 ```
 
@@ -121,7 +121,7 @@ We support parsing output from Conda in various formats:
 - JSON output (run `conda list --json`)
 
 As example:
-```
+```shell
 conda list --explicit --md5 | cyclonedx-bom -c -o cyclonedx.xml
 ```
 
@@ -131,12 +131,12 @@ We support parsing your `poetry.lock` file which should be committed along with 
 exact pinned versions.
 
 You can then run `cyclonedx-bom` as follows:
-```
+```shell
 cyclonedx-bom -p -i PATH/TO/poetry.lock -o sbom.xml
 ```
 
 If your `poetry.lock` is in the current working directory, you can also shorten this to:
-```
+```shell
 cyclonedx-bom -p -o sbom.xml
 ```
 
@@ -145,12 +145,12 @@ cyclonedx-bom -p -o sbom.xml
 We currently support `Pipfile.lock` manifest files.
 
 You can then run `cyclonedx-bom` as follows:
-```
+```shell
 cyclonedx-bom -pip -i PATH/TO/Pipfile.lock -o sbom.xml
 ```
 
 If your `Pipfile.lock` is in the current working directory, you can also shorten this to:
-```
+```shell
 cyclonedx-bom -pip -o sbom.xml
 ```
 
@@ -159,17 +159,17 @@ cyclonedx-bom -pip -o sbom.xml
 We currently support `requirements.txt` manifest files. Note that a BOM such as CycloneDX expects exact version numbers, 
 therefore if you wish to generate a BOM from a `requirements.txt`, these must be frozen. This can be accomplished via:
 
-```
+```shell
 pip freeze > requirements.txt
 ```
 
 You can then run `cyclonedx-bom` as follows:
-```
+```shell
 cyclonedx-bom -r -i PATH/TO/requirements.txt -o sbom.xml
 ```
 
 If your `requirements.txt` is in the current working directory, you can also shorten this to:
-```
+```shell
 cyclonedx-bom -r -o sbom.xml
 ```
 
