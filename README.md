@@ -13,9 +13,10 @@
 ----
 
 This project provides a runnable Python-based application for generating CycloneDX bill-of-material documents from either:
-1. Your current Python Environment
-2. Your project's manifest (e.g. `Pipfile.lock`, `poetry.lock` or `requirements.txt`)
-3. Conda as a Package Manager
+
+* Your current Python Environment
+* Your project's manifest (e.g. `Pipfile.lock`, `poetry.lock` or `requirements.txt`)
+* Conda as a Package Manager
 
 The BOM will contain an aggregate of all your current project's dependencies, or those defined by the manifest you supply.
 
@@ -26,11 +27,13 @@ CycloneDX is a lightweight BOM specification that is easily created, human-reada
 Install this from [PyPi.org](https://pypi.org/project/cyclonedx-bom/) using your preferred Python package manager.
 
 Example using `pip`:
+
 ```shell
 pip install cyclonedx-bom
 ```
 
 Example using `poetry`:
+
 ```shell
 poetry add cyclonedx-bom
 ```
@@ -39,7 +42,7 @@ poetry add cyclonedx-bom
 
 Once installed, you can access the full documentation by running `--help`:
 
-```
+```text
 $ cyclonedx-bom --help
 usage: cyclonedx-bom [-h] (-c | -cj | -e | -p | -pip | -r) [-i FILE_PATH]
                  [--format {json,xml}] [--schema-version {1.3,1.2,1.1,1.0}]
@@ -108,7 +111,6 @@ cyclonedx-bom -e -o -
 This will generate a CycloneDX including all packages installed in your current Python environment and output to STDOUT
 in XML using the latest schema version `1.3` by default.
 
-
 ### Building CycloneDX from your Manifest / Package Manager
 
 _Note: Manifest scanning limits the amount of information available. Each manifest type contains different information
@@ -117,10 +119,12 @@ but all are significantly less complete than scanning your actual Python Environ
 #### Conda
 
 We support parsing output from Conda in various formats:
-- Explict output (run `conda list --explicit` or `conda list --explicit --md5`)
-- JSON output (run `conda list --json`)
+
+* Explict output (run `conda list --explicit` or `conda list --explicit --md5`)
+* JSON output (run `conda list --json`)
 
 As example:
+
 ```shell
 conda list --explicit --md5 | cyclonedx-bom -c -o cyclonedx.xml
 ```
@@ -131,11 +135,13 @@ We support parsing your `poetry.lock` file which should be committed along with 
 exact pinned versions.
 
 You can then run `cyclonedx-bom` as follows:
+
 ```shell
 cyclonedx-bom -p -i PATH/TO/poetry.lock -o sbom.xml
 ```
 
 If your `poetry.lock` is in the current working directory, you can also shorten this to:
+
 ```shell
 cyclonedx-bom -p -o sbom.xml
 ```
@@ -145,11 +151,13 @@ cyclonedx-bom -p -o sbom.xml
 We currently support `Pipfile.lock` manifest files.
 
 You can then run `cyclonedx-bom` as follows:
+
 ```shell
 cyclonedx-bom -pip -i PATH/TO/Pipfile.lock -o sbom.xml
 ```
 
 If your `Pipfile.lock` is in the current working directory, you can also shorten this to:
+
 ```shell
 cyclonedx-bom -pip -o sbom.xml
 ```
@@ -164,11 +172,13 @@ pip freeze > requirements.txt
 ```
 
 You can then run `cyclonedx-bom` as follows:
+
 ```shell
 cyclonedx-bom -r -i PATH/TO/requirements.txt -o sbom.xml
 ```
 
 If your `requirements.txt` is in the current working directory, you can also shorten this to:
+
 ```shell
 cyclonedx-bom -r -o sbom.xml
 ```
@@ -179,7 +189,7 @@ This will generate a CycloneDX and output to STDOUT in XML using the latest sche
 you'll be warned about this and the dependencies that do not have pinned versions WILL NOT be included in the resulting 
 CycloneDX output.
 
-```
+```text
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! Some of your dependencies do not have pinned version !!
 !! numbers in your requirements.txt                     !!
