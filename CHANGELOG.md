@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v1.5.2 (2021-11-23)
+### Fix
+* Corrected docker image build process to not rely on `dist` folder which is cleaned up by python-semantic-release ([`6c65c11`](https://github.com/CycloneDX/cyclonedx-python/commit/6c65c11d439169417e2ef7e94cacb1ec216eb11c))
+
 ## v1.5.1 (2021-11-23)
 ### Fix
 * Re-enable build and publish of Docker Image ([#263](https://github.com/CycloneDX/cyclonedx-python/issues/263)) ([`478360d`](https://github.com/CycloneDX/cyclonedx-python/commit/478360db0de269159ab6e3777cd291b87e2e1174))
