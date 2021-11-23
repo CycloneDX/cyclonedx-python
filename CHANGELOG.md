@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v1.5.3 (2021-11-23)
+### Fix
+* Revert to previous process for building Docker image as PyPi index update is too slow to pull straight away after publish ([`67bb738`](https://github.com/CycloneDX/cyclonedx-python/commit/67bb738246bfe0ca3acd409d8c5a27fd7a305347))
+
 ## v1.5.2 (2021-11-23)
 ### Fix
 * Corrected docker image build process to not rely on `dist` folder which is cleaned up by python-semantic-release ([`6c65c11`](https://github.com/CycloneDX/cyclonedx-python/commit/6c65c11d439169417e2ef7e94cacb1ec216eb11c))
