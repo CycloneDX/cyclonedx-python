@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cyclonedx-bom"
-version = "1.5.0"
+version = "1.5.1"
 description = "CycloneDX Software Bill of Materials (SBOM) generation utility"
 authors = ["Steven Springett <steve.springett@owasp.org>", "Paul Horton <phorton@sonatype.com>"]
 license = "Apache-2.0"

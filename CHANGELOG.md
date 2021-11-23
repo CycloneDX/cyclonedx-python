@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v1.5.1 (2021-11-23)
+### Fix
+* Re-enable build and publish of Docker Image ([#263](https://github.com/CycloneDX/cyclonedx-python/issues/263)) ([`478360d`](https://github.com/CycloneDX/cyclonedx-python/commit/478360db0de269159ab6e3777cd291b87e2e1174))
+
 ## v1.5.0 (2021-11-17)
 ### Feature
 * Support for Python 3.10 ([#261](https://github.com/CycloneDX/cyclonedx-python/issues/261)) ([`f4f9ffe`](https://github.com/CycloneDX/cyclonedx-python/commit/f4f9ffe4b1e2d4fffe4ad0b274a067a20c9c372f))
