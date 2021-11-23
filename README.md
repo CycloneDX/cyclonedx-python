@@ -1,21 +1,21 @@
 # CycloneDX Python SBOM Generation Tool
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/CycloneDX/cyclonedx-python/Python%20CI)](https://github.com/CycloneDX/cyclonedx-python/actions/workflows/ci.yml)
-[![Docker Image](https://img.shields.io/badge/docker-image-brightgreen?style=flat&logo=docker)](https://hub.docker.com/r/cyclonedx/cyclonedx-python)
-[![GitHub license](https://img.shields.io/github/license/CycloneDX/cyclonedx-python)](https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE)
-[![Python Version Support](https://img.shields.io/badge/https://-cyclonedx.org-blue)](https://cyclonedx.org/)
-[![Slack Invite](https://img.shields.io/badge/Slack-Join-blue?logo=slack&labelColor=393939)](https://cyclonedx.org/slack/invite)
-![PyPI Version](https://img.shields.io/pypi/v/cyclonedx-bom?label=PyPI&logo=pypi)
-![Python Version Support](https://img.shields.io/badge/python-3.6+-blue)
-[![Group Discussion](https://img.shields.io/badge/discussion-groups.io-blue)](https://groups.io/g/CycloneDX)
-[![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Follow)](https://twitter.com/CycloneDX_Spec)
+[![shield_gh-workflow-test]][link_gh-workflow-test]
+[![shield_pypi-version]][link_pypi]
+[![shield_docker-version]][link_docker]
+[![shield_license]][license_file]  
+[![shield_website]][link_website]
+[![shield_slack]][link_slack]
+[![shield_groups]][link_discussion]
+[![shield_twitter-follow]][link_twitter]
 
 ----
 
 This project provides a runnable Python-based application for generating CycloneDX bill-of-material documents from either:
-1. Your current Python Environment
-2. Your project's manifest (e.g. `Pipfile.lock`, `poetry.lock` or `requirements.txt`)
-3. Conda as a Package Manager
+
+* Your current Python Environment
+* Your project's manifest (e.g. `Pipfile.lock`, `poetry.lock` or `requirements.txt`)
+* Conda as a Package Manager
 
 The BOM will contain an aggregate of all your current project's dependencies, or those defined by the manifest you supply.
 
@@ -23,15 +23,17 @@ CycloneDX is a lightweight BOM specification that is easily created, human-reada
 
 ## Installation
 
-Install this from [PyPi.org](https://pypi.org/project/cyclonedx-bom/) using your preferred Python package manager.
+Install this from [PyPi.org][link_pypi] using your preferred Python package manager.
 
 Example using `pip`:
-```
+
+```shell
 pip install cyclonedx-bom
 ```
 
 Example using `poetry`:
-```
+
+```shell
 poetry add cyclonedx-bom
 ```
 
@@ -39,7 +41,7 @@ poetry add cyclonedx-bom
 
 Once installed, you can access the full documentation by running `--help`:
 
-```
+```text
 $ cyclonedx-bom --help
 usage: cyclonedx-bom [-h] (-c | -cj | -e | -p | -pip | -r) [-i FILE_PATH]
                  [--format {json,xml}] [--schema-version {1.3,1.2,1.1,1.0}]
@@ -101,13 +103,12 @@ included in the generated CycloneDX BOM.
 
 Simply run:
 
-```
+```shell
 cyclonedx-bom -e -o -
 ```
 
 This will generate a CycloneDX including all packages installed in your current Python environment and output to STDOUT
 in XML using the latest schema version `1.3` by default.
-
 
 ### Building CycloneDX from your Manifest / Package Manager
 
@@ -117,11 +118,13 @@ but all are significantly less complete than scanning your actual Python Environ
 #### Conda
 
 We support parsing output from Conda in various formats:
-- Explict output (run `conda list --explicit` or `conda list --explicit --md5`)
-- JSON output (run `conda list --json`)
+
+* Explict output (run `conda list --explicit` or `conda list --explicit --md5`)
+* JSON output (run `conda list --json`)
 
 As example:
-```
+
+```shell
 conda list --explicit --md5 | cyclonedx-bom -c -o cyclonedx.xml
 ```
 
@@ -131,12 +134,14 @@ We support parsing your `poetry.lock` file which should be committed along with 
 exact pinned versions.
 
 You can then run `cyclonedx-bom` as follows:
-```
+
+```shell
 cyclonedx-bom -p -i PATH/TO/poetry.lock -o sbom.xml
 ```
 
 If your `poetry.lock` is in the current working directory, you can also shorten this to:
-```
+
+```shell
 cyclonedx-bom -p -o sbom.xml
 ```
 
@@ -145,12 +150,14 @@ cyclonedx-bom -p -o sbom.xml
 We currently support `Pipfile.lock` manifest files.
 
 You can then run `cyclonedx-bom` as follows:
-```
+
+```shell
 cyclonedx-bom -pip -i PATH/TO/Pipfile.lock -o sbom.xml
 ```
 
 If your `Pipfile.lock` is in the current working directory, you can also shorten this to:
-```
+
+```shell
 cyclonedx-bom -pip -o sbom.xml
 ```
 
@@ -159,17 +166,19 @@ cyclonedx-bom -pip -o sbom.xml
 We currently support `requirements.txt` manifest files. Note that a BOM such as CycloneDX expects exact version numbers, 
 therefore if you wish to generate a BOM from a `requirements.txt`, these must be frozen. This can be accomplished via:
 
-```
+```shell
 pip freeze > requirements.txt
 ```
 
 You can then run `cyclonedx-bom` as follows:
-```
+
+```shell
 cyclonedx-bom -r -i PATH/TO/requirements.txt -o sbom.xml
 ```
 
 If your `requirements.txt` is in the current working directory, you can also shorten this to:
-```
+
+```shell
 cyclonedx-bom -r -o sbom.xml
 ```
 
@@ -179,7 +188,7 @@ This will generate a CycloneDX and output to STDOUT in XML using the latest sche
 you'll be warned about this and the dependencies that do not have pinned versions WILL NOT be included in the resulting 
 CycloneDX output.
 
-```
+```text
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! Some of your dependencies do not have pinned version !!
 !! numbers in your requirements.txt                     !!
@@ -200,6 +209,24 @@ However, some features may not be possible/present in older Python versions due 
 
 ## Copyright & License
 
-CycloneDX BOM is Copyright (c) OWASP Foundation. All Rights Reserved.
+CycloneDX BOM is Copyright (c) OWASP Foundation. All Rights Reserved.  
+Permission to modify and redistribute is granted under the terms of the Apache 2.0 license.  
+See the [LICENSE][license_file] file for the full license.
 
-Permission to modify and redistribute is granted under the terms of the Apache 2.0 license.
+[license_file]: https://github.com/CycloneDX/cyclonedx-python/blob/master/LICENSE
+
+[shield_gh-workflow-test]: https://img.shields.io/github/workflow/status/CycloneDX/cyclonedx-python/Python%20CI/master?logo=GitHub&logoColor=white "build"
+[shield_pypi-version]: https://img.shields.io/pypi/v/cyclonedx-bom?logo=Python&logoColor=white "pypi"
+[shield_docker-version]: https://img.shields.io/docker/v/cyclonedx/cyclonedx-python?logo=Docker&logoColor=white "docker"
+[shield_license]: https://img.shields.io/github/license/CycloneDX/cyclonedx-python "license"
+[shield_website]: https://img.shields.io/badge/https://-cyclonedx.org-blue.svg "homepage"
+[shield_slack]: https://img.shields.io/badge/slack-join-blue?logo=Slack&logoColor=white "slack join"
+[shield_groups]: https://img.shields.io/badge/discussion-groups.io-blue.svg "groups discussion"
+[shield_twitter-follow]: https://img.shields.io/badge/Twitter-follow-blue?logo=Twitter&logoColor=white "twitter follow"
+[link_gh-workflow-test]: https://github.com/CycloneDX/cyclonedx-python/actions/workflows/ci.yml?query=branch%3Amaster
+[link_pypi]: https://pypi.org/project/cyclonedx-bom/
+[link_docker]: https://hub.docker.com/r/cyclonedx/cyclonedx-python
+[link_website]: https://cyclonedx.org/
+[link_slack]: https://cyclonedx.org/slack/invite
+[link_discussion]: https://groups.io/g/CycloneDX
+[link_twitter]: https://twitter.com/CycloneDX_Spec
