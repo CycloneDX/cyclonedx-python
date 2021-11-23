@@ -55,7 +55,6 @@ jobs:
           pypi_token: ${{ secrets.PYPI_TOKEN }}
 
       - name: Build Docker Image
-        id: package_release
         env:
           REPO: cyclonedx/cyclonedx-python
         run: |
