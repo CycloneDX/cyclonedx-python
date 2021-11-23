@@ -59,6 +59,7 @@ jobs:
           REPO: cyclonedx/cyclonedx-python
         run: |
           VERSION=`poetry version -s`
+          poetry build
           docker build -f Dockerfile --build-arg VERSION=$VERSION -t $REPO:$VERSION -t $REPO:latest .
 
       - name: Publish Docker Image(s)
