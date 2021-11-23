@@ -54,23 +54,20 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           pypi_token: ${{ secrets.PYPI_TOKEN }}
 
-#    - name: Package release
-#      id: package_release
-#      env:
-#        REPO: cyclonedx/cyclonedx-python
-#      run: |
-#        VERSION=`cat VERSION`
-#        echo "##[set-output name=version;]$VERSION"
-#        python setup.py sdist bdist_wheel
-#        docker build -f Dockerfile --build-arg VERSION=$VERSION -t $REPO:$VERSION -t $REPO:latest .
+      - name: Build Docker Image
+        id: package_release
+        env:
+          REPO: cyclonedx/cyclonedx-python
+        run: |
+          VERSION=`poetry version -s`
+          docker build -f Dockerfile --build-arg VERSION=$VERSION -t $REPO:$VERSION -t $REPO:latest .
 
-#
-#    - name: Publish docker image
-#      env:
-#        REPO: cyclonedx/cyclonedx-python
-#        DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
-#      run: |
-#        VERSION=`cat VERSION`
-#        docker login --username coderpatros --password "$DOCKER_TOKEN"
-#        docker push $REPO:latest
-#        docker push $REPO:${{ steps.package_release.outputs.version }}
+      - name: Publish Docker Image(s)
+        env:
+          REPO: cyclonedx/cyclonedx-python
+          DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+        run: |
+          VERSION=`poetry version -s`
+          docker login --username coderpatros --password "$DOCKER_TOKEN"
+          docker push $REPO:latest
+          docker push $REPO:$VERSION
