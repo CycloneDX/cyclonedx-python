@@ -33,7 +33,7 @@ coverage = "^6.1"
 flake8 = "^3.9.2"
 mypy = "^0.910"
 flake8-annotations = "^2.0"
-flake8-bugbear = "^21.9.2"
+flake8-bugbear = "^21.11.29"
 
 [tool.poetry.scripts]
 cyclonedx-bom = 'cyclonedx_py.client:main'
