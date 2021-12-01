@@ -60,14 +60,13 @@ jobs:
         run: |
           VERSION=`poetry version -s`
           poetry build
-          docker build -f Dockerfile --build-arg VERSION=$VERSION -t $REPO:$VERSION -t $REPO:latest .
+          docker build -f Dockerfile --build-arg "VERSION=$VERSION" -t "$REPO:$VERSION" -t "$REPO:latest" .
 
       - name: Publish Docker Image(s)
         env:
-          REPO: cyclonedx/cyclonedx-python
-          DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+          REPO: 'cyclonedx/cyclonedx-python'
         run: |
           VERSION=`poetry version -s`
-          docker login --username coderpatros --password "$DOCKER_TOKEN"
-          docker push $REPO:latest
-          docker push $REPO:$VERSION
+          docker login --username '${{ secrets.DOCKERHUB_USERNAME }}' --password '${{ secrets.DOCKERHUB_TOKEN }}'
+          docker push "$REPO:latest"
+          docker push "$REPO:$VERSION"
