@@ -223,7 +223,7 @@ See the [LICENSE][license_file] file for the full license.
 [shield_slack]: https://img.shields.io/badge/slack-join-blue?logo=Slack&logoColor=white "slack join"
 [shield_groups]: https://img.shields.io/badge/discussion-groups.io-blue.svg "groups discussion"
 [shield_twitter-follow]: https://img.shields.io/badge/Twitter-follow-blue?logo=Twitter&logoColor=white "twitter follow"
-[link_gh-workflow-test]: https://github.com/CycloneDX/cyclonedx-python/actions/workflows/ci.yml?query=branch%3Amaster
+[link_gh-workflow-test]: https://github.com/CycloneDX/cyclonedx-python/actions/workflows/python.yml?query=branch%3Amaster
 [link_pypi]: https://pypi.org/project/cyclonedx-bom/
 [link_docker]: https://hub.docker.com/r/cyclonedx/cyclonedx-python
 [link_website]: https://cyclonedx.org/
