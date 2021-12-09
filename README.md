@@ -207,6 +207,11 @@ CycloneDX output.
 We endeavour to support all functionality for all [current actively supported Python versions](https://www.python.org/downloads/).
 However, some features may not be possible/present in older Python versions due to their lack of support.
 
+## Contributing
+
+Feel free to open issues, bugreports or pull requests.  
+See the [CONTRIBUTING][contributing_file] file for details.
+
 ## Copyright & License
 
 CycloneDX BOM is Copyright (c) OWASP Foundation. All Rights Reserved.  
@@ -214,6 +219,7 @@ Permission to modify and redistribute is granted under the terms of the Apache 2
 See the [LICENSE][license_file] file for the full license.
 
 [license_file]: https://github.com/CycloneDX/cyclonedx-python/blob/master/LICENSE
+[contributing_file]: https://github.com/CycloneDX/cyclonedx-python/blob/master/CONTRIBUTING.md
 
 [shield_gh-workflow-test]: https://img.shields.io/github/workflow/status/CycloneDX/cyclonedx-python/Python%20CI/master?logo=GitHub&logoColor=white "build"
 [shield_pypi-version]: https://img.shields.io/pypi/v/cyclonedx-bom?logo=Python&logoColor=white&label=PyPI "PyPI"
