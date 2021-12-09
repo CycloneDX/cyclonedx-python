@@ -25,14 +25,15 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.6"
-cyclonedx-python-lib = "^0.11"
+cyclonedx-python-lib = "^0.12"
 
 [tool.poetry.dev-dependencies]
 tox = "^3.24.3"
 coverage = "^6.2"
-flake8 = "^3.9.2"
 mypy = "^0.910"
-flake8-annotations = "^2.0"
+autopep8 = "^1.6.0"
+flake8 = "^4.0.1"
+flake8-annotations = {version = "^2.7.0", python = ">= 3.6.2"}
 flake8-bugbear = "^21.11.29"
 
 [tool.poetry.scripts]
