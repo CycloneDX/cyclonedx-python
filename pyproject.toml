@@ -31,7 +31,7 @@ cyclonedx-python-lib = ">=0.11,<0.13"
 tox = "^3.24.3"
 coverage = "^6.2"
 flake8 = "^3.9.2"
-mypy = "^0.920"
+mypy = "^0.921"
 flake8-annotations = "^2.0"
 flake8-bugbear = "^21.11.29"
 
