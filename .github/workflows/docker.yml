@@ -10,6 +10,7 @@ on:
   workflow_dispatch:
 
 env:
+  REPORTS_DIR: CI_reports
   PYTHON_VERISON: "3.10"
   POETRY_VERSION: "1.1.11"
 
@@ -19,6 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
+      REPORTS_ARTIFACT: 'docker-image-bom'
       DOCKER_TAG: 'cdx-python-testing:${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}'
     steps:
       - name: Checkout code
@@ -26,12 +28,15 @@ jobs:
         uses: actions/checkout@v2.4.0
         with:
           fetch-depth: 0
+      - name: setup reports-dir
+        run: mkdir "$REPORTS_DIR"
+
       - name: Setup python ${{ env.PYTHON_VERISON }}
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v2
         with:
           python-version: ${{ env.PYTHON_VERISON }}
-      - name: Install poetry
+      - name: Setup poetry ${{ env.POETRY_VERSION }}
         # see https://github.com/marketplace/actions/setup-poetry
         uses: Gr1N/setup-poetry@v7
         with:
@@ -39,15 +44,55 @@ jobs:
 
       - name: Poetry build
         run: poetry build
-      - name: get version
-        run: poetry version -s
+      - name: Artifact python dist
+        if: |
+          !failure() && !cancelled() &&
+          steps.after-release.outputs.released
+        # see https://github.com/actions/upload-artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.RUN_ARTIFACT_PYTHON_DIST }}
+          path: ${{ env.DIST_SOURCE_DIR }}/
+          if-no-files-found: warn
+
+      - name: post-hook
+        id: after-build
+        run: |
+          VERSION="$(poetry version --short --no-interaction --no-ansi)"
+          echo "::set-output name=version::$VERSION"
 
       - name: Build Docker image
-        run: |
-          VERSION=`poetry version -s`
-          docker build -f Dockerfile --build-arg "VERSION=$VERSION" -t "$DOCKER_TAG" .
-      - name: Test Docker image
-        run: docker run --rm "$DOCKER_TAG" -h
+        env:
+          VERSION: ${{ steps.after-build.outputs.version }}
+        run: >
+          docker build -f Dockerfile
+          --build-arg "VERSION=$VERSION"
+          -t "$DOCKER_TAG"
+          .
+
+      - name: Build own SBoM (XML)
+        run: >
+          docker run --rm "$DOCKER_TAG"
+          --environment
+          --format=xml
+          --output=-
+          > "$REPORTS_DIR/docker-image.bom.xml"
+      - name: Build own SBoM (JSON)
+        run: >
+          docker run --rm "$DOCKER_TAG"
+          --environment
+          --format=json
+          --output=-
+          > "$REPORTS_DIR/docker-image.bom.json"
+      - name: Artifact reports
+        if: ${{ ! cancelled() }}
+        # see https://github.com/actions/upload-artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.REPORTS_ARTIFACT }}
+          path: ${{ env.REPORTS_DIR }}
+          if-no-files-found: error
+
       - name: Destroy Docker image
         # run regardless of outcome
         if: ${{ always() }}

@@ -26,56 +26,155 @@ on:
   workflow_dispatch:
 
 env:
+  REPORTS_DIR: CI_reports
+  DIST_DIR: dist
+  DIST_ARTIFACT: python-dist
   PYTHON_VERISON: "3.10"
   POETRY_VERSION: "1.1.11"
 
 jobs:
-  release:
+  release-PyPI:
+    name: "Release: GitHub, PyPI"
     # https://github.community/t/how-do-i-specify-job-dependency-running-in-another-workflow/16482
     # limit this to being run on regular commits, not the commits that semantic-release will create
-    if: github.ref == 'refs/heads/master' && !contains(github.event.head_commit.message, 'chore(release):')
+    if: |
+      github.ref == 'refs/heads/master' &&
+      !contains(github.event.head_commit.message, 'chore(release):')
     runs-on: ubuntu-latest
-    concurrency: release
+    concurrency: release-PyPI  # one release at a time, prevent hickups
+    outputs:
+      version-before: ${{ steps.before-release.outputs.version }}  # version may be empty
+      released:       ${{ steps.after-release.outputs.released }}  # optional bool-ish string
+      version-after:  ${{ steps.after-release.outputs.version  }}  # version may still be empty
     steps:
       - name: Checkout code
         # see https://github.com/actions/checkout
         uses: actions/checkout@v2.4.0
         with:
-          fetch-depth: 0
+          fetch-depth: 0  # action `relekang/python-semantic-release` requires all git history
       - name: Setup python ${{ env.PYTHON_VERISON }}
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v2
         with:
           python-version: ${{ env.PYTHON_VERISON }}
-      - name: Install poetry
+      - name: Setup poetry ${{ env.POETRY_VERSION }}
         # see https://github.com/marketplace/actions/setup-poetry
         uses: Gr1N/setup-poetry@v7
         with:
           poetry-version: ${{ env.POETRY_VERSION }}
-
+      - name: pre-hook
+        id: before-release
+        run: |
+          VERSION="$(poetry version --short --no-interaction --no-ansi)"
+          # version may be empty at first
+          echo "::set-output name=version::$VERSION"
       - name: Python Semantic Release
+        id: semantic-release
+        # see https://python-semantic-release.readthedocs.io/en/latest/automatic-releases/github-actions.html
         uses: relekang/python-semantic-release@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           pypi_token: ${{ secrets.PYPI_TOKEN }}
-
-      - name: Poetry build
-        run: poetry build
-      - name: get version
-        run: poetry version -s
-
-      - name: Build Docker Image
-        env:
-          REPO: cyclonedx/cyclonedx-python
+      - name: post-hook
+        id: after-release
         run: |
-          VERSION=`poetry version -s`
-          docker build -f Dockerfile --build-arg "VERSION=$VERSION" -t "$REPO:$VERSION" -t "$REPO:latest" .
+          VERSION="$(poetry version --short --no-interaction --no-ansi)"
+          # version may still be empty
+          echo "::set-output name=version::$VERSION"
+          if [ "$VERSION" != "$VERSION_PRE" ]
+          then
+            echo "::set-output name=released::true"
+          fi
+        env: 
+          VERSION_PRE: ${{ steps.before-release.outputs.version }}
+      - name: Artifact python dist
+        if: |
+          !failure() && !cancelled() &&
+          steps.after-release.outputs.released
+        # see https://github.com/actions/upload-artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.DIST_ARTIFACT }}
+          path: ${{ env.DIST_DIR }}/
+          if-no-files-found: error
+          # Dist results are required for further processing.
+          # Therefore, make sure that python-semantic-release is configuret to keep dist.
+          # see https://python-semantic-release.readthedocs.io/en/latest/configuration.html?highlight=remove_dist#remove-dist 
 
+  release-DockerHub:
+    name: "Release: DockerHub"
+    needs:
+      - release-PyPI
+    if: |
+      !failure() && !cancelled() &&
+      needs.release-PyPI.result == 'success' &&
+      needs.release-PyPI.outputs.released &&
+      needs.release-PyPI.outputs.version-after
+    runs-on: ubuntu-latest
+    concurrency: release-DockerHub  # because of the 'latest' tag
+    env:
+      VERSION: ${{ needs.release-PyPI.outputs.version-after }}
+      ARTIFACT_DOCKER_SBOM: 'docker-image-bom'
+      DOCKER_REPO: cyclonedx/cyclonedx-python
+    steps:
+      - name: Checkout code (tags/v${{ env.VERSION }})
+        # see https://github.com/actions/checkout
+        uses: actions/checkout@v2.4.0
+        with:
+          ref: tags/v${{ env.VERSION }}
+      - name: setup dirs
+        run: |
+          mkdir "$REPORTS_DIR"
+          mkdir "$DIST_DIR"
+      - name: Fetch python dist artifact
+        # see https://github.com/actions/download-artifact
+        uses: actions/download-artifact@v2
+        with: 
+          name: ${{ env.DIST_ARTIFACT }}
+          path: ${{ env.DIST_DIR }}/
+      - name: Build Docker Image (${{ env.VERSION }})
+        run: >
+          docker build -f Dockerfile
+          --build-arg "VERSION=$VERSION"
+          -t "$DOCKER_REPO:$VERSION"
+          -t "$DOCKER_REPO:latest"
+          .
+      - name: Build own SBoM (XML)
+        run: >
+          docker run --rm "$DOCKER_REPO:$VERSION"
+          --environment
+          --format=xml
+          --output=-
+          > "$REPORTS_DIR/$ARTIFACT_DOCKER_SBOM.bom.xml"
+      - name: Build own SBoM (JSON)
+        run: >
+          docker run --rm "$DOCKER_REPO:$VERSION"
+          --environment
+          --format=json
+          --output=-
+          > "$REPORTS_DIR/$ARTIFACT_DOCKER_SBOM.bom.json"
+      - name: Artifact reports
+        if: ${{ ! cancelled() }}
+        # see https://github.com/actions/upload-artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.ARTIFACT_DOCKER_SBOM }}
+          path: ${{ env.REPORTS_DIR }}/*.bom.*
+          if-no-files-found: error
+      # publish AFTER the boms were build, as the bom-generation is kind of a test if the image works
       - name: Publish Docker Image(s)
-        env:
-          REPO: 'cyclonedx/cyclonedx-python'
         run: |
-          VERSION=`poetry version -s`
-          docker login --username '${{ secrets.DOCKERHUB_USERNAME }}' --password '${{ secrets.DOCKERHUB_TOKEN }}'
-          docker push "$REPO:latest"
-          docker push "$REPO:$VERSION"
+          docker login --username "$DOCKERHUB_USERNAME" --password "$DOCKERHUB_TOKEN"
+          docker push "$DOCKER_REPO:$VERSION"
+          docker push "$DOCKER_REPO:latest"
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+      # TODO: publish all files in $REPORTS_DIR as release assets - see https://github.com/actions/upload-release-asset
+      - name: Destroy Docker image
+        # run regardless of outcome
+        if: ${{ always() }}
+        run: >
+          docker rmi -f
+          "$DOCKER_REPO:$VERSION"
+          "$DOCKER_REPO:latest"
