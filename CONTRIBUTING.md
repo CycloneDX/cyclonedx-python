@@ -12,6 +12,15 @@ To install dev-dependencies and tools:
 poetry install
 ```
 
+## Code style
+
+This project uses [PEP8] Style Guide for Python Code.  
+Get it applied via:
+
+```shell
+poetry run autopep8 --in-place -r .
+```
+
 ## Testing
 
 ```shell
