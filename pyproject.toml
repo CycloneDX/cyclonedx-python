@@ -29,7 +29,7 @@ cyclonedx-python-lib = ">=0.12.2"
 
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.6.0"
-tox = "^3.24.3"
+tox = "^3.24.5"
 coverage = "^6.2"
 mypy = "^0.930"
 flake8 = "^4.0.1"
