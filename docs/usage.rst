@@ -7,7 +7,7 @@ Once installed, you can access the full documentation by running ``--help``:
 
     $ cyclonedx-bom --help
     usage: cyclonedx-bom [-h] (-c | -cj | -e | -p | -pip | -r) [-i FILE_PATH]
-                     [--format {json,xml}] [--schema-version {1.4,1.3,1.2,1.1,1.0}]
+                     [--format {json,xml}] [--schema-version {1.3,1.2,1.1,1.0}]
                      [-o FILE_PATH] [-F] [-X]
 
     CycloneDX SBOM Generator
@@ -46,7 +46,7 @@ Once installed, you can access the full documentation by running ``--help``:
       Choose the output format and schema version
 
       --format {json,xml}   The output format for your SBOM (default: xml)
-      --schema-version {1.4,1.3,1.2,1.1,1.0}
+      --schema-version {1.3,1.2,1.1,1.0}
                             The CycloneDX schema version for your SBOM (default:
                             1.3)
       -o FILE_PATH, --o FILE_PATH, --output FILE_PATH
@@ -59,7 +59,7 @@ SBOM for your current Python Environment
 ----------------------------------------
 
 This will produce the most accurate and complete CycloneDX BOM as it will include all transitive dependencies required
-by the packages defined in your project's manifest (think ``requriements.txt``).
+by the packages defined in your project's manifest (think ``requirements.txt``).
 
 When using *Environment* as the source, any license information available from the installed packages will also be
 included in the generated CycloneDX BOM.
