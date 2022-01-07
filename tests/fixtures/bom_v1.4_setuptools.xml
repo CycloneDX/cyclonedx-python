@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.4" version="1">
+    <metadata>
+        <timestamp>2021-09-01T10:50:42.051979+00:00</timestamp>
+        <tools>
+            <tool>
+                <vendor>CycloneDX</vendor>
+                <name>cyclonedx-python-lib</name>
+                <version>VERSION</version>
+                <externalReferences>
+                    <reference type="build-system">
+                        <url>https://github.com/CycloneDX/cyclonedx-python-lib/actions</url>
+                    </reference>
+                    <reference type="distribution">
+                        <url>https://pypi.org/project/cyclonedx-python-lib/</url>
+                    </reference>
+                    <reference type="documentation">
+                        <url>https://cyclonedx.github.io/cyclonedx-python-lib/</url>
+                    </reference>
+                    <reference type="issue-tracker">
+                        <url>https://github.com/CycloneDX/cyclonedx-python-lib/issues</url>
+                    </reference>
+                    <reference type="license">
+                        <url>https://github.com/CycloneDX/cyclonedx-python-lib/blob/main/LICENSE</url>
+                    </reference>
+                    <reference type="release-notes">
+                        <url>https://github.com/CycloneDX/cyclonedx-python-lib/blob/main/CHANGELOG.md</url>
+                    </reference>
+                    <reference type="vcs">
+                        <url>https://github.com/CycloneDX/cyclonedx-python-lib</url>
+                    </reference>
+                    <reference type="website">
+                        <url>https://cyclonedx.org</url>
+                    </reference>
+                </externalReferences>
+            </tool>
+            <tool>
+                <vendor>CycloneDX</vendor>
+                <name>cyclonedx-bom</name>
+                <version>VERSION</version>
+            </tool>
+        </tools>
+    </metadata>
+    <components>
+        <component type="library" bom-ref="pkg:pypi/setuptools@50.3.2">
+            <name>setuptools</name>
+            <version>50.3.2</version>
+            <purl>pkg:pypi/setuptools@50.3.2</purl>
+        </component>
+    </components>
+</bom>
