@@ -20,3 +20,6 @@ venv/
 # Exlude IDE related files
 .idea/*
 .vscode/*
+
+# Exclude generated docs
+docs/_build
