@@ -45,7 +45,7 @@ toml = ["tomli"]
 
 [[package]]
 name = "cyclonedx-python-lib"
-version = "1.0.0rc0"
+version = "1.0.0rc1"
 description = "A library for producing CycloneDX SBOM (Software Bill of Materials) files."
 category = "main"
 optional = false
@@ -367,7 +367,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "types-setuptools"
-version = "57.4.5"
+version = "57.4.6"
 description = "Typing stubs for setuptools"
 category = "main"
 optional = false
@@ -375,7 +375,7 @@ python-versions = "*"
 
 [[package]]
 name = "types-toml"
-version = "0.10.1"
+version = "0.10.2"
 description = "Typing stubs for toml"
 category = "main"
 optional = false
@@ -424,7 +424,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "ac2fa2cf9b12f4ba9dfb7019b94ea5affc30e17698d8eff953b41c020ad0e06e"
+content-hash = "e601498c2ffb76c253459ea3bb273d6a7f1243d0f43c15aeb9283fba93c41275"
 
 [metadata.files]
 attrs = [
@@ -489,8 +489,8 @@ coverage = [
     {file = "coverage-6.2.tar.gz", hash = "sha256:e2cad8093172b7d1595b4ad66f24270808658e11acf43a8f95b41276162eb5b8"},
 ]
 cyclonedx-python-lib = [
-    {file = "cyclonedx-python-lib-1.0.0rc0.tar.gz", hash = "sha256:30b4fa09215f8ab90a029ab694620ac934af9c16a5733df09f6b3fc9c62245e8"},
-    {file = "cyclonedx_python_lib-1.0.0rc0-py3-none-any.whl", hash = "sha256:ebbacc939f04a4615a9ac2d35c1bde8aa40e8a60f57e513f94b4584f0853ba36"},
+    {file = "cyclonedx-python-lib-1.0.0rc1.tar.gz", hash = "sha256:dcbf2684a0f24495f26748029d4cbde0e7ef6a654ae17e3ced86dffd3bce5550"},
+    {file = "cyclonedx_python_lib-1.0.0rc1-py3-none-any.whl", hash = "sha256:69fe497a908b35227324ba0b0799936fed3dd88dbe9977320286dacea3344a45"},
 ]
 distlib = [
     {file = "distlib-0.3.4-py2.py3-none-any.whl", hash = "sha256:6564fe0a8f51e734df6333d08b8b94d4ea8ee6b99b5ed50613f731fd4089f34b"},
@@ -709,12 +709,12 @@ typed-ast = [
     {file = "typed_ast-1.5.1.tar.gz", hash = "sha256:484137cab8ecf47e137260daa20bafbba5f4e3ec7fda1c1e69ab299b75fa81c5"},
 ]
 types-setuptools = [
-    {file = "types-setuptools-57.4.5.tar.gz", hash = "sha256:a4600efdca68a33204ad9c083fd9966d63aee61a7d007e912b6afc6ff57d6e02"},
-    {file = "types_setuptools-57.4.5-py3-none-any.whl", hash = "sha256:920a7c1ee120025e939a1707f8fd09a1266edbf7848eae7b8de7c5909a824cc8"},
+    {file = "types-setuptools-57.4.6.tar.gz", hash = "sha256:65ef8946fc31aed946177629e681861217aceb8fc9b75a44ba987d7eea9388aa"},
+    {file = "types_setuptools-57.4.6-py3-none-any.whl", hash = "sha256:b1be17770e830432571bcb81a78fed13df32ca787550ed575dfbc921816ad18a"},
 ]
 types-toml = [
-    {file = "types-toml-0.10.1.tar.gz", hash = "sha256:5c1f8f8d57692397c8f902bf6b4d913a0952235db7db17d2908cc110e70610cb"},
-    {file = "types_toml-0.10.1-py3-none-any.whl", hash = "sha256:8cdfd2b7c89bed703158b042dd5cf04255dae77096db66f4a12ca0a93ccb07a5"},
+    {file = "types-toml-0.10.2.tar.gz", hash = "sha256:cd38b802e9c84c7a2e9b61e99a217e794bc01874586b292222e9764c6c7ca75c"},
+    {file = "types_toml-0.10.2-py3-none-any.whl", hash = "sha256:8a72568466fd041c1b7481aa2bd8d81d4585017131d6b268de13d876da0827d7"},
 ]
 typing-extensions = [
     {file = "typing_extensions-3.10.0.2-py2-none-any.whl", hash = "sha256:d8226d10bc02a29bcc81df19a26e56a9647f8b0a6d4a83924139f4a8b01f17b7"},
