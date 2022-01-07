@@ -5,6 +5,7 @@
             <name>setuptools</name>
             <version>50.3.2</version>
             <purl>pkg:pypi/setuptools@50.3.2</purl>
+            <modified>false</modified>
         </component>
     </components>
 </bom>

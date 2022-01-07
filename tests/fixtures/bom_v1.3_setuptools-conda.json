@@ -1,7 +1,7 @@
 {
-  "$schema": "http://cyclonedx.org/schema/bom-1.2a.schema.json",
+  "$schema": "http://cyclonedx.org/schema/bom-1.3.schema.json",
   "bomFormat": "CycloneDX",
-  "specVersion": "1.2",
+  "specVersion": "1.3",
   "serialNumber": "urn:uuid:3e671687-395b-41f5-a30f-a58921a69b79",
   "version": 1,
   "metadata": {
@@ -22,10 +22,17 @@
   "components": [
     {
       "type": "library",
-      "bom-ref": "pkg:pypi/setuptools@50.3.2",
+      "bom-ref": "pkg:pypi/setuptools@52.0.0",
       "name": "setuptools",
-      "version": "50.3.2",
-      "purl": "pkg:pypi/setuptools@50.3.2"
+      "version": "52.0.0",
+      "purl": "pkg:pypi/setuptools@52.0.0",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://repo.anaconda.com/pkgs/main",
+          "comment": "Distribution name setuptools-52.0.0-py39hecd8cb5_0"
+        }
+      ]
     }
   ]
 }

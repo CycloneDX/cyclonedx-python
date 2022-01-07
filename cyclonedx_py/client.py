@@ -87,7 +87,7 @@ class CycloneDxCmd:
             from importlib.metadata import version as md_version
         else:
             from importlib_metadata import version as md_version  # type: ignore
-        bom.get_metadata().add_tool(tool=Tool(
+        bom.metadata.add_tool(tool=Tool(
             vendor='CycloneDX', name='cyclonedx-bom', version=md_version('cyclonedx-bom')
         ))
 
@@ -100,6 +100,14 @@ class CycloneDxCmd:
         )
 
     def execute(self) -> None:
+        # Quick check for JSON && SchemaVersion <= 1.1
+        if str(self._arguments.output_format).upper() == 'JSON' and \
+                str(self._arguments.output_schema_version) in ['1.0', '1.1']:
+            self._error_and_exit(
+                message='CycloneDX schema does not support JSON output in Schema Versions < 1.2',
+                exit_code=2
+            )
+
         output = self.get_output()
         if self._arguments.output_file == '-' or not self._arguments.output_file:
             self._debug_message('Returning SBOM to STDOUT')
@@ -170,7 +178,7 @@ class CycloneDxCmd:
             dest='output_format'
         )
         output_group.add_argument(
-            '--schema-version', action='store', choices=['1.3', '1.2', '1.1', '1.0'], default='1.3',
+            '--schema-version', action='store', choices=['1.4', '1.3', '1.2', '1.1', '1.0'], default='1.3',
             help='The CycloneDX schema version for your SBOM (default: %(default)s)',
             dest='output_schema_version'
         )
