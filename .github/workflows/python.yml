@@ -50,10 +50,6 @@ jobs:
         uses: Gr1N/setup-poetry@v7
         with:
           poetry-version: ${{ env.POETRY_VERSION }}
-      - uses: actions/cache@v2
-        with:
-          path: ~/.cache/pypoetry/virtualenvs
-          key: ${{ runner.os }}-${{ env.PYTHON_VERISON_DEFAULT }}-poetry${{ env.POETRY_VERSION }}-${{ hashFiles('poetry.lock') }}
       - name: Install dependencies
         run: poetry install
       - name: Run tox
@@ -77,10 +73,6 @@ jobs:
         uses: Gr1N/setup-poetry@v7
         with:
           poetry-version: ${{ env.POETRY_VERSION }}
-      - uses: actions/cache@v2
-        with:
-          path: ~/.cache/pypoetry/virtualenvs
-          key: ${{ runner.os }}-${{ env.PYTHON_VERISON_DEFAULT }}-poetry${{ env.POETRY_VERSION }}-${{ hashFiles('poetry.lock') }}
       - name: Install dependencies
         run: poetry install
       - name: Run tox
@@ -119,10 +111,6 @@ jobs:
         uses: Gr1N/setup-poetry@v7
         with:
           poetry-version: ${{ env.POETRY_VERSION }}
-      - uses: actions/cache@v2
-        with:
-          path: ~/.cache/pypoetry/virtualenvs
-          key: ${{ runner.os }}-${{ matrix.python-version }}-poetry${{ env.POETRY_VERSION }}-${{ hashFiles('poetry.lock') }}
       - name: Install dependencies
         run: poetry install
       - name: Ensure build successful
