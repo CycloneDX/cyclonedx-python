@@ -23,7 +23,8 @@ import os
 import sys
 from datetime import datetime
 
-from cyclonedx.model.bom import Bom, Tool
+from cyclonedx.model import Tool
+from cyclonedx.model.bom import Bom
 from cyclonedx.output import BaseOutput, get_instance, OutputFormat, SchemaVersion
 from cyclonedx.parser import BaseParser
 from cyclonedx.parser.conda import CondaListExplicitParser, CondaListJsonParser
