@@ -27,11 +27,12 @@ from cyclonedx.model import Tool
 from cyclonedx.model.bom import Bom
 from cyclonedx.output import BaseOutput, get_instance, OutputFormat, SchemaVersion
 from cyclonedx.parser import BaseParser
-from cyclonedx.parser.conda import CondaListExplicitParser, CondaListJsonParser
-from cyclonedx.parser.environment import EnvironmentParser
-from cyclonedx.parser.pipenv import PipEnvParser
-from cyclonedx.parser.poetry import PoetryParser
-from cyclonedx.parser.requirements import RequirementsParser
+
+from .parser.conda import CondaListExplicitParser, CondaListJsonParser
+from .parser.environment import EnvironmentParser
+from .parser.pipenv import PipEnvParser
+from .parser.poetry import PoetryParser
+from .parser.requirements import RequirementsParser
 
 
 class CycloneDxCmdException(Exception):
@@ -67,7 +68,7 @@ class CycloneDxCmd:
             print(f'ERROR: {str(e)}')
             exit(1)
 
-        if parser.has_warnings():
+        if parser and parser.has_warnings():
             print('')
             print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
             print('!! Some of your dependencies do not have pinned version !!')
