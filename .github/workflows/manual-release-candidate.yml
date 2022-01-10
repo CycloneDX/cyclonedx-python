@@ -1,0 +1,38 @@
+name: Manual Pre Release Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_candidate_suffix:
+        description: 'RC Suffix e.g. rc0, beta1, alpha2. Do not include a leading hyphen.'
+        required: true
+        type: string
+
+jobs:
+  release_candidate:
+    runs-on: ubuntu-latest
+    concurrency: release_candidate
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Install dependencies
+        run: |
+          python -m pip install poetry --upgrade pip
+          poetry config virtualenvs.create false
+          poetry install
+          python -m pip install python-semantic-release
+      - name: Apply Pre Release Version
+        run: |
+          RC_VERSION="$(semantic-release --noop --major print-version)-${{ github.event.inputs.release_candidate_suffix }}"
+          echo "RC Version will be: ${RC_VERSION}"
+          poetry version ${RC_VERSION}
+          poetry build
+      - name: Publish Pre Release 📦 to PyPI
+        uses: pypa/gh-action-pypi-publish@master
+        with:
+          password: ${{ secrets.PYPI_TOKEN }}
