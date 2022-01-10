@@ -1,0 +1,38 @@
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: osx-64
+@EXPLICIT
+https://repo.anaconda.com/pkgs/main/osx-64/ca-certificates-2021.7.5-hecd8cb5_1.conda#c2d0ae65c08dacdcf86770b7b5bbb187
+https://repo.anaconda.com/pkgs/main/osx-64/libcxx-10.0.0-1.conda#86574bfd5bcf4921237da41c07534cdc
+https://repo.anaconda.com/pkgs/main/noarch/tzdata-2021a-h52ac0ba_0.conda#d42e4db918af84a470286e4c300604a3
+https://repo.anaconda.com/pkgs/main/osx-64/xz-5.2.5-h1de35cc_0.conda#f38610dab0f2b0cb05f1b31f354113c5
+https://repo.anaconda.com/pkgs/main/osx-64/yaml-0.2.5-haf1e3a3_0.conda#73628ed86f99adf6a0cb81dd20e426cd
+https://repo.anaconda.com/pkgs/main/osx-64/zlib-1.2.11-h1de35cc_3.conda#67bb31afee816662edebfc3171360ccf
+https://repo.anaconda.com/pkgs/main/osx-64/libffi-3.3-hb1e8313_2.conda#0c959d444ac65555cb836cdbd3e9a2d9
+https://repo.anaconda.com/pkgs/main/osx-64/ncurses-6.2-h0a44026_1.conda#649f497ed2ff2704749256d3532d144b
+https://repo.anaconda.com/pkgs/main/osx-64/openssl-1.1.1k-h9ed2024_0.conda#2ecbfa7a9684bbaaa057c6dac778abc3
+https://repo.anaconda.com/pkgs/main/osx-64/tk-8.6.10-hb0a8c7a_0.conda#2f199f5862f5b000479408673eadb88d
+https://repo.anaconda.com/pkgs/main/osx-64/readline-8.1-h9ed2024_0.conda#ce1a650fddb885c47ccdb28c90a2057a
+https://repo.anaconda.com/pkgs/main/osx-64/sqlite-3.36.0-hce871da_0.conda#7e47a43e94a61ad1c7a5d910c5e970fd
+https://repo.anaconda.com/pkgs/main/osx-64/python-3.9.5-h88f2d9e_3.conda#f10a9a3fd6b0936cc05f9e94e06a2d94
+https://repo.anaconda.com/pkgs/main/osx-64/certifi-2021.5.30-py39hecd8cb5_0.conda#48a9d5f197fbcef83387ca18e7216068
+https://repo.anaconda.com/pkgs/main/osx-64/chardet-4.0.0-py39hecd8cb5_1003.conda#535b448899dcf60a12dc683a90be5c0c
+https://repo.anaconda.com/pkgs/main/noarch/idna-2.10-pyhd3eb1b0_0.tar.bz2#153ff132f593ea80aae2eea61a629c92
+https://repo.anaconda.com/pkgs/main/osx-64/pycosat-0.6.3-py39h9ed2024_0.conda#625905706ac243fae350f4dfc63e1b2d
+https://repo.anaconda.com/pkgs/main/noarch/pycparser-2.20-py_2.conda#fcfeb621c6f895f3562ff01d9d6ce959
+https://repo.anaconda.com/pkgs/main/osx-64/pysocks-1.7.1-py39hecd8cb5_0.conda#4765ca1a39ea5287cbe170734ac83e37
+https://repo.anaconda.com/pkgs/main/osx-64/python.app-3-py39h9ed2024_0.conda#8a562918b61f71b3cac387cec842cbd2
+https://repo.anaconda.com/pkgs/main/osx-64/ruamel_yaml-0.15.100-py39h9ed2024_0.conda#d7abc88ed5b3a8d9e4af95b8a64d87fe
+https://repo.anaconda.com/pkgs/main/noarch/six-1.16.0-pyhd3eb1b0_0.conda#529b369e1accc75b89f2d7e184a898d0
+https://repo.anaconda.com/pkgs/main/noarch/tqdm-4.61.2-pyhd3eb1b0_1.conda#f061c1548e813e7544d0017a71651e04
+https://repo.anaconda.com/pkgs/main/noarch/wheel-0.36.2-pyhd3eb1b0_0.conda#31029affc034e8c7203202417cebd157
+https://repo.anaconda.com/pkgs/main/osx-64/cffi-1.14.6-py39h2125817_0.conda#78ee9d3613c9f3f50a9eb4acd45bc747
+https://repo.anaconda.com/pkgs/main/osx-64/conda-package-handling-1.7.3-py39h9ed2024_1.conda#04a0be0e0f5bad8d8fc7ebe4803ea446
+https://repo.anaconda.com/pkgs/main/osx-64/setuptools-52.0.0-py39hecd8cb5_0.conda#5c9e48476978303d04650c21ee55f365
+https://repo.anaconda.com/pkgs/main/osx-64/brotlipy-0.7.0-py39h9ed2024_1003.conda#a08f6f5f899aff4a07351217b36fae41
+https://repo.anaconda.com/pkgs/main/osx-64/cryptography-3.4.7-py39h2fd3fbb_0.conda#822e8758f6e705c84b01480810eb24b6
+https://repo.anaconda.com/pkgs/main/osx-64/pip-21.1.3-py39hecd8cb5_0.conda#7bae540cbc7fdc9627b588c760b05e58
+https://repo.anaconda.com/pkgs/main/noarch/pyopenssl-20.0.1-pyhd3eb1b0_1.conda#ac62ddccf2e89f7a35867b2478a278af
+https://repo.anaconda.com/pkgs/main/noarch/urllib3-1.26.6-pyhd3eb1b0_1.conda#5c72bc4a5a4fc0420b0e73b3acb1f52b
+https://repo.anaconda.com/pkgs/main/noarch/requests-2.25.1-pyhd3eb1b0_0.conda#9d30b41b315403c7c74793b9b8d88580
+https://repo.anaconda.com/pkgs/main/osx-64/conda-4.10.3-py39hecd8cb5_0.tar.bz2#bc36833ee4a90c212e0695675bcfe120
