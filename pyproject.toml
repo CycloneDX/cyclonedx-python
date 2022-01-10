@@ -25,7 +25,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.6"
-cyclonedx-python-lib = "^1.0.0rc1"
+cyclonedx-python-lib = "^1.0.0rc2"
 
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.6.0"

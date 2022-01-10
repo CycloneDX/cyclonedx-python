@@ -17,12 +17,11 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
+from cyclonedx.exception.model import UnknownHashTypeException
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType
 from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser
 from toml import loads as load_toml
-
-from ..exception.parser import UnknownHashTypeException
 
 
 class PoetryParser(BaseParser):

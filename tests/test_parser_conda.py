@@ -20,7 +20,7 @@
 import os
 from unittest import TestCase
 
-from cyclonedx.parser.conda import CondaListJsonParser, CondaListExplicitParser
+from cyclonedx_py.parser.conda import CondaListJsonParser, CondaListExplicitParser
 
 
 class TestCondaParser(TestCase):

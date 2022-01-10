@@ -20,7 +20,7 @@
 import os
 from unittest import TestCase
 
-from cyclonedx.parser.poetry import PoetryFileParser
+from cyclonedx_py.parser.poetry import PoetryFileParser
 
 
 class TestPoetryParser(TestCase):

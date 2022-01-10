@@ -33,12 +33,15 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.viewcode",
     "autoapi.extension",
-    "sphinx_rtd_theme"
+    "sphinx_rtd_theme",
+    "m2r2"
 ]
 
 # Document Python Code
 autoapi_type = 'python'
 autoapi_dirs = ['../cyclonedx_py']
+
+source_suffix = ['.rst', '.md']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

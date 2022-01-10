@@ -19,8 +19,9 @@
 
 from unittest import TestCase
 
-from cyclonedx.parser.environment import EnvironmentParser
 from cyclonedx.model.component import Component
+
+from cyclonedx_py.parser.environment import EnvironmentParser
 
 
 class TestEnvironmentParser(TestCase):

@@ -20,7 +20,7 @@
 import os
 from unittest import TestCase
 
-from cyclonedx.parser.pipenv import PipEnvFileParser
+from cyclonedx_py.parser.pipenv import PipEnvFileParser
 
 
 class TestPipEnvParser(TestCase):

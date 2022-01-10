@@ -16,14 +16,5 @@
 #
 
 """
-Exceptions that are specific error scenarios during occuring within Parsers in the CycloneDX library implementation.
+Exceptions that are specific error scenarios during occurring within Parsers in the CycloneDX library implementation.
 """
-
-from cyclonedx.exception import CycloneDxException
-
-
-class UnknownHashTypeException(CycloneDxException):
-    """
-    Exception raised when we are unable to determine the type of hash from a composite hash string.
-    """
-    pass
