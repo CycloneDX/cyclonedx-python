@@ -21,7 +21,8 @@ from cyclonedx.exception.model import UnknownHashTypeException
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType
 from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser
-from packageurl import PackageURL
+# See https://github.com/package-url/packageurl-python/issues/65
+from packageurl import PackageURL  # type: ignore
 from toml import loads as load_toml
 
 

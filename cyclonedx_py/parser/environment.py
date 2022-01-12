@@ -30,7 +30,8 @@ The Environment Parsers support population of the following data about Component
 
 import sys
 
-from packageurl import PackageURL
+# See https://github.com/package-url/packageurl-python/issues/65
+from packageurl import PackageURL  # type: ignore
 from pkg_resources import DistInfoDistribution  # type: ignore
 
 if sys.version_info >= (3, 8):
