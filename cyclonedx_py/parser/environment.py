@@ -30,6 +30,7 @@ The Environment Parsers support population of the following data about Component
 
 import sys
 
+from packageurl import PackageURL
 from pkg_resources import DistInfoDistribution  # type: ignore
 
 if sys.version_info >= (3, 8):
@@ -57,7 +58,9 @@ class EnvironmentParser(BaseParser):
 
         i: DistInfoDistribution
         for i in iter(pkg_resources.working_set):
-            c = Component(name=i.project_name, version=i.version)
+            c = Component(name=i.project_name, version=i.version, purl=PackageURL(
+                type='pypi', name=i.project_name, version=i.version
+            ))
 
             i_metadata = self._get_metadata_for_package(i.project_name)
             if 'Author' in i_metadata:

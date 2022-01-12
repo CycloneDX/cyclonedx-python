@@ -21,6 +21,7 @@ from cyclonedx.exception.model import UnknownHashTypeException
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType
 from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser
+from packageurl import PackageURL
 from toml import loads as load_toml
 
 
@@ -32,7 +33,9 @@ class PoetryParser(BaseParser):
 
         for package in poetry_lock['package']:
             component = Component(
-                name=package['name'], version=package['version']
+                name=package['name'], version=package['version'], purl=PackageURL(
+                    type='pypi', name=package['name'], version=package['version']
+                )
             )
 
             for file_metadata in poetry_lock['metadata']['files'][package['name']]:

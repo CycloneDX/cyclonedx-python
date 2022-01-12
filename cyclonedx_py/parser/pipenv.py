@@ -23,6 +23,7 @@ from typing import Any, Dict
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType
 from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser
+from packageurl import PackageURL
 
 
 class PipEnvParser(BaseParser):
@@ -37,6 +38,9 @@ class PipEnvParser(BaseParser):
             c = Component(
                 name=package_name,
                 version=str(package_data.get('version') or 'unknown').lstrip('='),
+                purl=PackageURL(
+                    type='pypi', name=package_name, version=str(package_data.get('version') or 'unknown').lstrip('=')
+                )
             )
             if package_data.get('index') == 'pypi' and isinstance(package_data.get('hashes'), list):
                 # Add download location with hashes stored in Pipfile.lock

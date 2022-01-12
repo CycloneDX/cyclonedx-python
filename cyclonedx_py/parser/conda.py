@@ -24,6 +24,7 @@ from typing import List
 from cyclonedx.model import ExternalReference, ExternalReferenceType
 from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser
+from packageurl import PackageURL
 
 from ..utils.conda import parse_conda_json_to_conda_package, parse_conda_list_str_to_conda_package, CondaPackage
 
@@ -58,7 +59,10 @@ class _BaseCondaParser(BaseParser, metaclass=ABCMeta):
         """
         for conda_package in self._conda_packages:
             c = Component(
-                name=conda_package['name'], version=str(conda_package['version'])
+                name=conda_package['name'], version=str(conda_package['version']),
+                purl=PackageURL(
+                    type='pypi', name=conda_package['name'], version=str(conda_package['version'])
+                )
             )
             c.add_external_reference(ExternalReference(
                 reference_type=ExternalReferenceType.DISTRIBUTION,

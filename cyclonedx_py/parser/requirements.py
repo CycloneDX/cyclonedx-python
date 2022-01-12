@@ -19,6 +19,7 @@
 
 from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser, ParserWarning
+from packageurl import PackageURL
 from pkg_resources import parse_requirements as parse_requirements
 
 
@@ -40,7 +41,9 @@ class RequirementsParser(BaseParser):
             try:
                 (op, version) = requirement.specs[0]
                 self._components.append(Component(
-                    name=requirement.project_name, version=version
+                    name=requirement.project_name, version=version, purl=PackageURL(
+                        type='pypi', name=requirement.project_name, version=version
+                    )
                 ))
             except IndexError:
                 self._warnings.append(
