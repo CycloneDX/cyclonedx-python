@@ -17,7 +17,7 @@ import pkg_resources
 
 # -- Project information -----------------------------------------------------
 
-project = 'CycloneDX Python Library'
+project = 'CycloneDX Python'
 copyright = '2022, Copyright (c) OWASP Foundation'
 author = 'Paul Horton, Jan Kowalleck, Steve Springett, Patrick Dwyer'
 
