@@ -17,7 +17,7 @@ import pkg_resources
 
 # -- Project information -----------------------------------------------------
 
-project = 'CycloneDX Python Library'
+project = 'CycloneDX Python'
 copyright = '2022, Copyright (c) OWASP Foundation'
 author = 'Paul Horton, Jan Kowalleck, Steve Springett, Patrick Dwyer'
 
@@ -33,12 +33,15 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.viewcode",
     "autoapi.extension",
-    "sphinx_rtd_theme"
+    "sphinx_rtd_theme",
+    "m2r2"
 ]
 
 # Document Python Code
 autoapi_type = 'python'
 autoapi_dirs = ['../cyclonedx_py']
+
+source_suffix = ['.rst', '.md']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

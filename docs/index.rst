@@ -34,6 +34,7 @@ supply.
    install
    usage
    support
+   changelog
 
 
 .. _CycloneDX: https://cyclonedx.org/

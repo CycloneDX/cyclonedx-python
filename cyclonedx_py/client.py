@@ -23,14 +23,16 @@ import os
 import sys
 from datetime import datetime
 
-from cyclonedx.model.bom import Bom, Tool
+from cyclonedx.model import Tool
+from cyclonedx.model.bom import Bom
 from cyclonedx.output import BaseOutput, get_instance, OutputFormat, SchemaVersion
 from cyclonedx.parser import BaseParser
-from cyclonedx.parser.conda import CondaListExplicitParser, CondaListJsonParser
-from cyclonedx.parser.environment import EnvironmentParser
-from cyclonedx.parser.pipenv import PipEnvParser
-from cyclonedx.parser.poetry import PoetryParser
-from cyclonedx.parser.requirements import RequirementsParser
+
+from .parser.conda import CondaListExplicitParser, CondaListJsonParser
+from .parser.environment import EnvironmentParser
+from .parser.pipenv import PipEnvParser
+from .parser.poetry import PoetryParser
+from .parser.requirements import RequirementsParser
 
 
 class CycloneDxCmdException(Exception):
@@ -66,7 +68,7 @@ class CycloneDxCmd:
             print(f'ERROR: {str(e)}')
             exit(1)
 
-        if parser.has_warnings():
+        if parser and parser.has_warnings():
             print('')
             print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
             print('!! Some of your dependencies do not have pinned version !!')
@@ -87,7 +89,7 @@ class CycloneDxCmd:
             from importlib.metadata import version as md_version
         else:
             from importlib_metadata import version as md_version  # type: ignore
-        bom.get_metadata().add_tool(tool=Tool(
+        bom.metadata.add_tool(tool=Tool(
             vendor='CycloneDX', name='cyclonedx-bom', version=md_version('cyclonedx-bom')
         ))
 
@@ -100,6 +102,14 @@ class CycloneDxCmd:
         )
 
     def execute(self) -> None:
+        # Quick check for JSON && SchemaVersion <= 1.1
+        if str(self._arguments.output_format).upper() == 'JSON' and \
+                str(self._arguments.output_schema_version) in ['1.0', '1.1']:
+            self._error_and_exit(
+                message='CycloneDX schema does not support JSON output in Schema Versions < 1.2',
+                exit_code=2
+            )
+
         output = self.get_output()
         if self._arguments.output_file == '-' or not self._arguments.output_file:
             self._debug_message('Returning SBOM to STDOUT')
@@ -170,7 +180,7 @@ class CycloneDxCmd:
             dest='output_format'
         )
         output_group.add_argument(
-            '--schema-version', action='store', choices=['1.3', '1.2', '1.1', '1.0'], default='1.3',
+            '--schema-version', action='store', choices=['1.4', '1.3', '1.2', '1.1', '1.0'], default='1.3',
             help='The CycloneDX schema version for your SBOM (default: %(default)s)',
             dest='output_schema_version'
         )
