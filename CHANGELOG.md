@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## v1.6.0 (2022-01-13)
+### Feature
+* Add support for CycloneDX 1.4 specification ([#294](https://github.com/CycloneDX/cyclonedx-python/issues/294)) ([`7bb6d32`](https://github.com/CycloneDX/cyclonedx-python/commit/7bb6d328adec59cdd4c3ab80eb5f39568ca3bc9c))
+
+### Documentation
+* Readme maintenance - shields & links ([#266](https://github.com/CycloneDX/cyclonedx-python/issues/266)) ([`a34046f`](https://github.com/CycloneDX/cyclonedx-python/commit/a34046f9b4c96d013fdf2dbdac5e930aa9204e15))
+
 ## v1.5.3 (2021-11-23)
 ### Fix
 * Revert to previous process for building Docker image as PyPi index update is too slow to pull straight away after publish ([`67bb738`](https://github.com/CycloneDX/cyclonedx-python/commit/67bb738246bfe0ca3acd409d8c5a27fd7a305347))
