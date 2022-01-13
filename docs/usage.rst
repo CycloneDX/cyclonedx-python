@@ -78,12 +78,12 @@ This will generate a CycloneDX including all packages installed in your current 
 in XML using the default schema version ``1.3`` by default.
 
 From your Python application manifest
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. note::
 
     Manifest scanning limits the amount of information available. Each manifest type contains different information
     but all are significantly less complete than scanning your actual Python Environment.
+
 
 **Conda**
 
@@ -164,6 +164,7 @@ This will generate a CycloneDX and output to STDOUT in XML using the default sch
     If you failed to freeze your dependencies before passing the ``requirements.txt`` data to ``cyclonedx-bom``,
     you'll be warned about this and the dependencies that do not have pinned versions WILL NOT be included in the
     resulting CycloneDX output.
+
 
 Programmatic Usage
 ------------------
