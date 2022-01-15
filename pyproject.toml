@@ -34,7 +34,7 @@ coverage = "^6.2"
 mypy = "^0.931"
 flake8 = "^4.0.1"
 flake8-annotations = {version = "^2.7.0", python = ">= 3.6.2"}
-flake8-bugbear = "^21.11.29"
+flake8-bugbear = "^22.1.11"
 
 [tool.poetry.scripts]
 cyclonedx-bom = 'cyclonedx_py.client:main'
