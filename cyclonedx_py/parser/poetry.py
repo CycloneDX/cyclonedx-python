@@ -16,10 +16,12 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
+from typing import Dict, Optional, Any
 
 from cyclonedx.exception.model import UnknownHashTypeException
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType
 from cyclonedx.model.component import Component
+from cyclonedx.model.dependency import Dependency
 from cyclonedx.parser import BaseParser
 # See https://github.com/package-url/packageurl-python/issues/65
 from packageurl import PackageURL  # type: ignore
@@ -38,6 +40,16 @@ class PoetryParser(BaseParser):
                     type='pypi', name=package['name'], version=package['version']
                 )
             )
+            package_dependencies = package.get("dependencies")
+            if package_dependencies is not None:
+                for (name, _) in package_dependencies.items():
+                    version = self._get_package_version_from_lock_dict(poetry_lock["package"], name)
+                    d = Dependency(
+                        purl=PackageURL(
+                            type='pypi', name=name, version=version
+                        )
+                    )
+                    component.add_dependency(d)
 
             for file_metadata in poetry_lock['metadata']['files'][package['name']]:
                 try:
@@ -52,6 +64,12 @@ class PoetryParser(BaseParser):
                     pass
 
             self._components.append(component)
+
+    def _get_package_version_from_lock_dict(self, poetry_lock_packages: Dict[Any, Any], name: str) -> Optional[str]:
+        for package in poetry_lock_packages:
+            if package["name"] == name:
+                return str(package["version"])
+        return None
 
 
 class PoetryFileParser(PoetryParser):
