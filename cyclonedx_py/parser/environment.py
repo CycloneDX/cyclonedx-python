@@ -31,7 +31,6 @@ The Environment Parsers support population of the following data about Component
 import sys
 
 # See https://github.com/package-url/packageurl-python/issues/65
-from cyclonedx.model.dependency import Dependency
 from packageurl import PackageURL  # type: ignore
 from pkg_resources import DistInfoDistribution  # type: ignore
 
@@ -43,6 +42,7 @@ else:
 
 from cyclonedx.model import LicenseChoice
 from cyclonedx.model.component import Component
+from cyclonedx.model.dependency import Dependency
 from cyclonedx.parser import BaseParser, ParserWarning
 
 
