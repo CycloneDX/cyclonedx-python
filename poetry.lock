@@ -45,7 +45,7 @@ toml = ["tomli"]
 
 [[package]]
 name = "cyclonedx-python-lib"
-version = "1.0.0"
+version = "1.1.1"
 description = "A library for producing CycloneDX SBOM (Software Bill of Materials) files."
 category = "main"
 optional = false
@@ -448,8 +448,8 @@ coverage = [
     {file = "coverage-6.2.tar.gz", hash = "sha256:e2cad8093172b7d1595b4ad66f24270808658e11acf43a8f95b41276162eb5b8"},
 ]
 cyclonedx-python-lib = [
-    {file = "cyclonedx-python-lib-1.0.0.tar.gz", hash = "sha256:86004111fc5c179193bce9d661165384931e50710ffac4b3b804b04396da5f7d"},
-    {file = "cyclonedx_python_lib-1.0.0-py3-none-any.whl", hash = "sha256:1e9476ddb7082d6703f5a2f1928cecbbb7027941627e0d1cf04c3aeedf6a7f7f"},
+    {file = "cyclonedx-python-lib-1.1.1.tar.gz", hash = "sha256:03f810246ee45d8a8027e5f159c13d67632ae5a8e2e1d143b1bcc28b8b98b9eb"},
+    {file = "cyclonedx_python_lib-1.1.1-py3-none-any.whl", hash = "sha256:76e20b205c97b4824733fb55acb33977cd5fdb636e9977666703944d0a01df60"},
 ]
 distlib = [
     {file = "distlib-0.3.4-py2.py3-none-any.whl", hash = "sha256:6564fe0a8f51e734df6333d08b8b94d4ea8ee6b99b5ed50613f731fd4089f34b"},
