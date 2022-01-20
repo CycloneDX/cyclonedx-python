@@ -45,10 +45,13 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.semantic_release]
+# https://python-semantic-release.readthedocs.io/en/latest/configuration.html
 version_variable = [
     "pyproject.toml:version"
 ]
 branch = "master"
 upload_to_pypi = true
+upload_to_repository = true
 upload_to_release = true
 build_command = "pip install poetry && poetry build"
+remove_dist = false  # dist results required for some CI automation
