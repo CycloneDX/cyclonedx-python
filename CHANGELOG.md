@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v2.0.1 (2022-01-24)
+### Fix
+* Bump dependencies to get latest `cyclonedx-python-lib` ([`87c3fe7`](https://github.com/CycloneDX/cyclonedx-python/commit/87c3fe7747cd8abd55ad5699bfc87ad9877c8132))
+
 ## v2.0.0 (2022-01-13)
 ### Feature
 * Add support for CycloneDX 1.4 specification ([#294](https://github.com/CycloneDX/cyclonedx-python/issues/294)) ([`7bb6d32`](https://github.com/CycloneDX/cyclonedx-python/commit/7bb6d328adec59cdd4c3ab80eb5f39568ca3bc9c))
