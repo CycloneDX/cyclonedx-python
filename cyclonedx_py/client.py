@@ -166,7 +166,8 @@ class CycloneDxCmd:
         )
         input_method_group.add_argument(
             '-i', '--in-file', action='store', metavar='FILE_PATH',
-            type=argparse.FileType('r'), default=None,
+            type=argparse.FileType('r'),  # FileType does handle '-'
+            default=None,
             help='File to read input from. Use "-" to read from STDIN.', dest='input_source', required=False
         )
 
