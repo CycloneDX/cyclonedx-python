@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v2.0.3 (2022-02-03)
+### Fix
+* Docker image releae checkout ref w/o `tags` ([#309](https://github.com/CycloneDX/cyclonedx-python/issues/309)) ([`5d8b1e1`](https://github.com/CycloneDX/cyclonedx-python/commit/5d8b1e159c2ced59e810b9e9564e19a29fe263d0))
+
 ## v2.0.2 (2022-02-03)
 ### Fix
 * Properly support reading from stdin ([#307](https://github.com/CycloneDX/cyclonedx-python/issues/307)) ([`23f31a0`](https://github.com/CycloneDX/cyclonedx-python/commit/23f31a03a4fbf888f396b88a9413c054358b2a3a))
