@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v2.0.2 (2022-02-03)
+### Fix
+* Properly support reading from stdin ([#307](https://github.com/CycloneDX/cyclonedx-python/issues/307)) ([`23f31a0`](https://github.com/CycloneDX/cyclonedx-python/commit/23f31a03a4fbf888f396b88a9413c054358b2a3a))
+
 ## v2.0.1 (2022-01-24)
 ### Fix
 * Bump dependencies to get latest `cyclonedx-python-lib` ([`87c3fe7`](https://github.com/CycloneDX/cyclonedx-python/commit/87c3fe7747cd8abd55ad5699bfc87ad9877c8132))
