@@ -117,11 +117,11 @@ jobs:
       ARTIFACT_DOCKER_SBOM: 'docker-image-bom'
       DOCKER_REPO: cyclonedx/cyclonedx-python
     steps:
-      - name: Checkout code (tags/v${{ env.VERSION }})
+      - name: Checkout code (v${{ env.VERSION }})
         # see https://github.com/actions/checkout
         uses: actions/checkout@v2.4.0
         with:
-          ref: tags/v${{ env.VERSION }}
+          ref: v${{ env.VERSION }}
       - name: setup dirs
         run: |
           mkdir "$REPORTS_DIR"
