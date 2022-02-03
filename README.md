@@ -77,7 +77,7 @@ Input Method:
   Flags to determine how `cyclonedx-bom` obtains it's input
 
   -i FILE_PATH, --in-file FILE_PATH
-                        File to read input from, or STDIN if not specified
+                        File to read input from. Use "-" to read from STDIN.
 
 SBOM Output Configuration:
   Choose the output format and schema version
