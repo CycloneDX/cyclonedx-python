@@ -42,7 +42,8 @@ else:
 
 from cyclonedx.model import LicenseChoice
 from cyclonedx.model.component import Component
-from cyclonedx.parser import BaseParser
+from cyclonedx.model.dependency import Dependency
+from cyclonedx.parser import BaseParser, ParserWarning
 
 
 class EnvironmentParser(BaseParser):
@@ -80,7 +81,25 @@ class EnvironmentParser(BaseParser):
                                 license_expression=str(classifier).replace('License :: OSI Approved :: ', '').strip()
                             )
                         )
-
+            for requirement in i.requires():
+                try:
+                    requirement_distribution = pkg_resources.get_distribution(requirement.project_name)
+                except pkg_resources.DistributionNotFound:
+                    self._warnings.append(
+                        ParserWarning(
+                            item=requirement.project_name,
+                            warning='Dependency \'{}\' does not have a version installed in local environment and '
+                                    'cannot be included in your CycloneDX SBOM.'.format(requirement.project_name)
+                        )
+                    )
+                else:
+                    version = requirement_distribution.version
+                    d = Dependency(
+                        purl=PackageURL(
+                            type='pypi', name=requirement.project_name, version=version
+                        )
+                    )
+                    c.add_dependency(d)
             self._components.append(c)
 
     @staticmethod

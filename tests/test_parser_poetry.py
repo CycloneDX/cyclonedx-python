@@ -20,6 +20,8 @@
 import os
 from unittest import TestCase
 
+from packageurl import PackageURL
+
 from cyclonedx_py.parser.poetry import PoetryFileParser
 
 
@@ -29,8 +31,13 @@ class TestPoetryParser(TestCase):
         tests_poetry_lock_file = os.path.join(os.path.dirname(__file__), 'fixtures/poetry-lock-simple.txt')
 
         parser = PoetryFileParser(poetry_lock_filename=tests_poetry_lock_file)
-        self.assertEqual(1, parser.component_count())
+        self.assertEqual(2, parser.component_count())
         components = parser.get_components()
-        self.assertEqual('toml', components[0].name)
-        self.assertEqual('0.10.2', components[0].version)
+        self.assertEqual('pluggy', components[0].name)
+        self.assertEqual('1.0.0', components[0].version)
+        self.assertEqual('importlib-metadata', components[1].name)
+        self.assertEqual('4.8.1', components[1].version)
         self.assertEqual(len(components[0].external_references), 2)
+        dependencies = components[0].get_dependencies()
+        self.assertEqual(1, len(dependencies))
+        self.assertEqual(PackageURL(type="pypi", name="importlib-metadata", version="4.8.1"), dependencies[0].purl)

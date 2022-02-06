@@ -20,6 +20,7 @@
 from unittest import TestCase
 
 from cyclonedx.model.component import Component
+from packageurl import PackageURL
 
 from cyclonedx_py.parser.environment import EnvironmentParser
 
@@ -40,3 +41,8 @@ class TestEnvironmentParser(TestCase):
         c_tox: Component = [x for x in parser.get_components() if x.name == 'tox'][0]
         self.assertIsNotNone(c_tox.licenses)
         self.assertEqual('MIT', c_tox.licenses[0].expression)
+
+        # Since we have tox, we have its dependencies:
+        self.assertEqual(len(c_tox.get_dependencies()), 9)
+        colorama_dependency = [x for x in c_tox.get_dependencies() if x.purl.name == "colorama"][0]
+        self.assertEqual(PackageURL(type="pypi", name="colorama", version="0.4.4"), colorama_dependency.purl)
