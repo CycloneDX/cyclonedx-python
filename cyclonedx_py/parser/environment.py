@@ -68,14 +68,12 @@ class EnvironmentParser(BaseParser):
                 c.author = i_metadata['Author']
 
             if 'License' in i_metadata and i_metadata['License'] != 'UNKNOWN':
-                c.licenses.append(
-                    LicenseChoice(license_expression=i_metadata['License'])
-                )
+                c.licenses.add(LicenseChoice(license_expression=i_metadata['License']))
 
             if 'Classifier' in i_metadata:
                 for classifier in i_metadata['Classifier']:
                     if str(classifier).startswith('License :: OSI Approved :: '):
-                        c.licenses.append(
+                        c.licenses.add(
                             LicenseChoice(
                                 license_expression=str(classifier).replace('License :: OSI Approved :: ', '').strip()
                             )

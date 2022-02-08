@@ -89,7 +89,7 @@ class CycloneDxCmd:
             from importlib.metadata import version as md_version
         else:
             from importlib_metadata import version as md_version  # type: ignore
-        bom.metadata.add_tool(tool=Tool(
+        bom.metadata.tools.add(Tool(
             vendor='CycloneDX', name='cyclonedx-bom', version=md_version('cyclonedx-bom')
         ))
 

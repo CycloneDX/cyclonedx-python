@@ -45,7 +45,7 @@ toml = ["tomli"]
 
 [[package]]
 name = "cyclonedx-python-lib"
-version = "1.3.0"
+version = "2.0.0rc0"
 description = "A library for producing CycloneDX SBOM (Software Bill of Materials) files."
 category = "main"
 optional = false
@@ -187,14 +187,14 @@ python-versions = "*"
 
 [[package]]
 name = "packageurl-python"
-version = "0.9.6"
+version = "0.9.7"
 description = "A purl aka. Package URL parser and builder"
 category = "main"
 optional = false
 python-versions = ">=3.6"
 
 [package.extras]
-test = ["pytest", "isort"]
+test = ["isort", "pytest"]
 
 [[package]]
 name = "packaging"
@@ -326,7 +326,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "types-setuptools"
-version = "57.4.7"
+version = "57.4.9"
 description = "Typing stubs for setuptools"
 category = "main"
 optional = false
@@ -350,7 +350,7 @@ python-versions = "*"
 
 [[package]]
 name = "virtualenv"
-version = "20.13.0"
+version = "20.13.1"
 description = "Virtual Python Environment builder"
 category = "dev"
 optional = false
@@ -383,7 +383,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "e19926f565a95189afc0abac023c778312cbfc04ac02d3e216321031736b7c75"
+content-hash = "06bf1095ef73496c703235150f4461d6089200dad98973bb180ad6c866b08b0e"
 
 [metadata.files]
 attrs = [
@@ -448,8 +448,8 @@ coverage = [
     {file = "coverage-6.2.tar.gz", hash = "sha256:e2cad8093172b7d1595b4ad66f24270808658e11acf43a8f95b41276162eb5b8"},
 ]
 cyclonedx-python-lib = [
-    {file = "cyclonedx-python-lib-1.3.0.tar.gz", hash = "sha256:8793fcf6a4735835bda33cda461a9a60c63faf0a8f9c58fc1fc4312e8f307164"},
-    {file = "cyclonedx_python_lib-1.3.0-py3-none-any.whl", hash = "sha256:2b8b1250f6b22b4836bfb86b87381a228377e4d329d6d6d7488a2cdfbc073049"},
+    {file = "cyclonedx-python-lib-2.0.0rc0.tar.gz", hash = "sha256:8d812e7ac15c86372e9c0834f5146497fc192643678d552cb0c4861be905a173"},
+    {file = "cyclonedx_python_lib-2.0.0rc0-py3-none-any.whl", hash = "sha256:9e458b6d3bdf4656aa5ed69838cb574c5add4d6ce976e44a28d3d71decc3e537"},
 ]
 distlib = [
     {file = "distlib-0.3.4-py2.py3-none-any.whl", hash = "sha256:6564fe0a8f51e734df6333d08b8b94d4ea8ee6b99b5ed50613f731fd4089f34b"},
@@ -510,8 +510,8 @@ mypy-extensions = [
     {file = "mypy_extensions-0.4.3.tar.gz", hash = "sha256:2d82818f5bb3e369420cb3c4060a7970edba416647068eb4c5343488a6c604a8"},
 ]
 packageurl-python = [
-    {file = "packageurl-python-0.9.6.tar.gz", hash = "sha256:c01fbaf62ad2eb791e97158d1f30349e830bee2dd3e9503a87f6c3ffae8d1cf0"},
-    {file = "packageurl_python-0.9.6-py3-none-any.whl", hash = "sha256:676dcb8278721df952e2444bfcd8d7bf3518894498050f0c6a5faddbe0860cd0"},
+    {file = "packageurl-python-0.9.7.tar.gz", hash = "sha256:d43db6af6a350099e32e9e05e737013d0409287b761fa59c58a03e55dbc3648a"},
+    {file = "packageurl_python-0.9.7-py3-none-any.whl", hash = "sha256:ba971c2f3c5c976574803467e97522ae5f542ade3dfec763192a52abb2d7ea8f"},
 ]
 packaging = [
     {file = "packaging-21.3-py3-none-any.whl", hash = "sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522"},
@@ -584,8 +584,8 @@ typed-ast = [
     {file = "typed_ast-1.5.2.tar.gz", hash = "sha256:525a2d4088e70a9f75b08b3f87a51acc9cde640e19cc523c7e41aa355564ae27"},
 ]
 types-setuptools = [
-    {file = "types-setuptools-57.4.7.tar.gz", hash = "sha256:9677d969b00ec1c14552f5be2b2b47a6fbea4d0ed4de0fdcee18abdaa0cc9267"},
-    {file = "types_setuptools-57.4.7-py3-none-any.whl", hash = "sha256:ffda504687ea02d4b7751c0d1df517fbbcdc276836d90849e4f1a5f1ccd79f01"},
+    {file = "types-setuptools-57.4.9.tar.gz", hash = "sha256:536ef74744f8e1e4be4fc719887f886e74e4cf3c792b4a06984320be4df450b5"},
+    {file = "types_setuptools-57.4.9-py3-none-any.whl", hash = "sha256:948dc6863373750e2cd0b223a84f1fb608414cde5e55cf38ea657b93aeb411d2"},
 ]
 types-toml = [
     {file = "types-toml-0.10.3.tar.gz", hash = "sha256:215a7a79198651ec5bdfd66193c1e71eb681a42f3ef7226c9af3123ced62564a"},
@@ -597,8 +597,8 @@ typing-extensions = [
     {file = "typing_extensions-3.10.0.2.tar.gz", hash = "sha256:49f75d16ff11f1cd258e1b988ccff82a3ca5570217d7ad8c5f48205dd99a677e"},
 ]
 virtualenv = [
-    {file = "virtualenv-20.13.0-py2.py3-none-any.whl", hash = "sha256:339f16c4a86b44240ba7223d0f93a7887c3ca04b5f9c8129da7958447d079b09"},
-    {file = "virtualenv-20.13.0.tar.gz", hash = "sha256:d8458cf8d59d0ea495ad9b34c2599487f8a7772d796f9910858376d1600dd2dd"},
+    {file = "virtualenv-20.13.1-py2.py3-none-any.whl", hash = "sha256:45e1d053cad4cd453181ae877c4ffc053546ae99e7dd049b9ff1d9be7491abf7"},
+    {file = "virtualenv-20.13.1.tar.gz", hash = "sha256:e0621bcbf4160e4e1030f05065c8834b4e93f4fcc223255db2a823440aca9c14"},
 ]
 zipp = [
     {file = "zipp-3.6.0-py3-none-any.whl", hash = "sha256:9fe5ea21568a0a70e50f273397638d39b03353731e6cbbb3fd8502a33fec40bc"},

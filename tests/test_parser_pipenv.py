@@ -16,7 +16,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
-
 import os
 from unittest import TestCase
 
@@ -34,8 +33,9 @@ class TestPipEnvParser(TestCase):
 
         self.assertEqual('toml', components[0].name)
         self.assertEqual('0.10.2', components[0].version)
-        self.assertEqual(len(components[0].external_references), 2)
-        self.assertEqual(len(components[0].external_references[0].get_hashes()), 1)
+        c = components.pop()
+        self.assertEqual(len(c.external_references), 2)
+        self.assertEqual(len(c.external_references.pop().hashes), 1)
 
     def test_with_multiple_and_no_index(self) -> None:
         tests_pipfile_lock = os.path.join(os.path.dirname(__file__), 'fixtures/pipfile-lock-no-index-example.txt')
@@ -54,4 +54,4 @@ class TestPipEnvParser(TestCase):
         self.assertEqual('toml', c_toml.name)
         self.assertEqual('0.10.2', c_toml.version)
         self.assertEqual(len(c_toml.external_references), 2)
-        self.assertEqual(len(c_toml.external_references[0].get_hashes()), 1)
+        self.assertEqual(len(c_toml.external_references.pop().hashes), 1)
