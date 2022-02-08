@@ -181,7 +181,7 @@ class CycloneDxCmd:
             dest='output_format'
         )
         output_group.add_argument(
-            '--schema-version', action='store', choices=['1.4', '1.3', '1.2', '1.1', '1.0'], default='1.3',
+            '--schema-version', action='store', choices=['1.4', '1.3', '1.2', '1.1', '1.0'], default='1.4',
             help='The CycloneDX schema version for your SBOM (default: %(default)s)',
             dest='output_schema_version'
         )
