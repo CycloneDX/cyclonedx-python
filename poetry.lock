@@ -45,7 +45,7 @@ toml = ["tomli"]
 
 [[package]]
 name = "cyclonedx-python-lib"
-version = "2.0.0rc2"
+version = "2.0.0rc3"
 description = "A library for producing CycloneDX SBOM (Software Bill of Materials) files."
 category = "main"
 optional = false
@@ -187,7 +187,7 @@ python-versions = "*"
 
 [[package]]
 name = "packageurl-python"
-version = "0.9.8.1"
+version = "0.9.9"
 description = "A purl aka. Package URL parser and builder"
 category = "main"
 optional = false
@@ -383,7 +383,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "25f4390dd9b4b6235d614479ad940bce06ad7c1df2b2057bc9aacd9b8aadc642"
+content-hash = "2ac46463181b7537dfd1a3b8fb11210bd765529090e730d996211872e5444a07"
 
 [metadata.files]
 attrs = [
@@ -448,8 +448,8 @@ coverage = [
     {file = "coverage-6.2.tar.gz", hash = "sha256:e2cad8093172b7d1595b4ad66f24270808658e11acf43a8f95b41276162eb5b8"},
 ]
 cyclonedx-python-lib = [
-    {file = "cyclonedx-python-lib-2.0.0rc2.tar.gz", hash = "sha256:19ad76247a687c2cfa69be49cb95fd1782167d9bc5b4ec2dbdd7cc98c648ef9b"},
-    {file = "cyclonedx_python_lib-2.0.0rc2-py3-none-any.whl", hash = "sha256:d7900f56e02c7c2b937a60cb2b082642b59fbfb770dacb86158bfad532c9378d"},
+    {file = "cyclonedx-python-lib-2.0.0rc3.tar.gz", hash = "sha256:95fa795f7225e2666761be72bf2cebb738a5210203368d8868ff702f2417462d"},
+    {file = "cyclonedx_python_lib-2.0.0rc3-py3-none-any.whl", hash = "sha256:6d98b28a3d7fd98a99b3309f0aa3132daa3fb1b553c3d8f8cacf9dac2f7b059e"},
 ]
 distlib = [
     {file = "distlib-0.3.4-py2.py3-none-any.whl", hash = "sha256:6564fe0a8f51e734df6333d08b8b94d4ea8ee6b99b5ed50613f731fd4089f34b"},
@@ -510,8 +510,8 @@ mypy-extensions = [
     {file = "mypy_extensions-0.4.3.tar.gz", hash = "sha256:2d82818f5bb3e369420cb3c4060a7970edba416647068eb4c5343488a6c604a8"},
 ]
 packageurl-python = [
-    {file = "packageurl-python-0.9.8.1.tar.gz", hash = "sha256:675e0ec8058fa0837a0405047178bdea6a7d0b46966983fa79e1c0a1afab1c9e"},
-    {file = "packageurl_python-0.9.8.1-py3-none-any.whl", hash = "sha256:3545c89efb19ef26246c69201c748e60e4395a055b83347760064853b60eb9d7"},
+    {file = "packageurl-python-0.9.9.tar.gz", hash = "sha256:872a0434b9a448b3fa97571711f69dd2a3fb72345ad66c90b17d827afea82f09"},
+    {file = "packageurl_python-0.9.9-py3-none-any.whl", hash = "sha256:07aa852d1c48b0e86e625f6a32d83f96427739806b269d0f8142788ee807114b"},
 ]
 packaging = [
     {file = "packaging-21.3-py3-none-any.whl", hash = "sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522"},
