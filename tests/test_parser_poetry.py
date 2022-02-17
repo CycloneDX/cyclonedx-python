@@ -29,7 +29,8 @@ class TestPoetryParser(TestCase):
 
         parser = PoetryFileParser(poetry_lock_filename=tests_poetry_lock_file)
         self.assertEqual(1, parser.component_count())
-        component = parser.get_components().pop()
+        component = next(filter(lambda c: c.name == 'toml', parser.get_components()), parser.get_components)
+        self.assertIsNotNone(component)
         self.assertEqual('toml', component.name)
         self.assertEqual('0.10.2', component.version)
         self.assertEqual(len(component.external_references), 2)

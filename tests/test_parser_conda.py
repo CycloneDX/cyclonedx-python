@@ -32,9 +32,8 @@ class TestCondaParser(TestCase):
             conda_list_ouptut_fh.close()
 
         self.assertEqual(34, parser.component_count())
-        components = parser.get_components()
-
-        c_noarch = [x for x in components if x.name == 'idna'][0]
+        c_noarch = next(filter(lambda c: c.name == 'idna', parser.get_components()), parser.get_components)
+        self.assertIsNotNone(c_noarch)
         self.assertEqual('idna', c_noarch.name)
         self.assertEqual('2.10', c_noarch.version)
         self.assertEqual(1, len(c_noarch.external_references))
@@ -48,9 +47,8 @@ class TestCondaParser(TestCase):
             conda_list_ouptut_fh.close()
 
         self.assertEqual(34, parser.component_count())
-        components = parser.get_components()
-
-        c_noarch = [x for x in components if x.name == 'idna'][0]
+        c_noarch = next(filter(lambda c: c.name == 'idna', parser.get_components()), parser.get_components)
+        self.assertIsNotNone(c_noarch)
         self.assertEqual('idna', c_noarch.name)
         self.assertEqual('2.10', c_noarch.version)
         self.assertEqual(1, len(c_noarch.external_references))

@@ -29,23 +29,23 @@ class TestPipEnvParser(TestCase):
 
         parser = PipEnvFileParser(pipenv_lock_filename=tests_pipfile_lock)
         self.assertEqual(1, parser.component_count())
-        components = parser.get_components()
-
-        self.assertEqual('toml', components[0].name)
-        self.assertEqual('0.10.2', components[0].version)
-        c = components.pop()
-        self.assertEqual(len(c.external_references), 2)
-        self.assertEqual(len(c.external_references.pop().hashes), 1)
+        c_toml = next(filter(lambda c: c.name == 'toml', parser.get_components()), parser.get_components)
+        self.assertIsNotNone(c_toml)
+        self.assertEqual('toml', c_toml.name)
+        self.assertEqual('0.10.2', c_toml.version)
+        self.assertEqual(2, len(c_toml.external_references))
+        self.assertEqual(1, len(c_toml.external_references.pop().hashes))
 
     def test_with_multiple_and_no_index(self) -> None:
         tests_pipfile_lock = os.path.join(os.path.dirname(__file__), 'fixtures/pipfile-lock-no-index-example.txt')
 
         parser = PipEnvFileParser(pipenv_lock_filename=tests_pipfile_lock)
         self.assertEqual(2, parser.component_count())
-        components = parser.get_components()
 
-        c_anyio = [x for x in components if x.name == 'anyio'][0]
-        c_toml = [x for x in components if x.name == 'toml'][0]
+        c_anyio = next(filter(lambda c: c.name == 'anyio', parser.get_components()), parser.get_components)
+        self.assertIsNotNone(c_anyio)
+        c_toml = next(filter(lambda c: c.name == 'toml', parser.get_components()), parser.get_components)
+        self.assertIsNotNone(c_toml)
 
         self.assertEqual('anyio', c_anyio.name)
         self.assertEqual('3.3.3', c_anyio.version)
@@ -53,5 +53,5 @@ class TestPipEnvParser(TestCase):
 
         self.assertEqual('toml', c_toml.name)
         self.assertEqual('0.10.2', c_toml.version)
-        self.assertEqual(len(c_toml.external_references), 2)
-        self.assertEqual(len(c_toml.external_references.pop().hashes), 1)
+        self.assertEqual(2, len(c_toml.external_references))
+        self.assertEqual(1, len(c_toml.external_references.pop().hashes))
