@@ -45,7 +45,7 @@ toml = ["tomli"]
 
 [[package]]
 name = "cyclonedx-python-lib"
-version = "2.0.0rc4"
+version = "2.0.0"
 description = "A library for producing CycloneDX SBOM (Software Bill of Materials) files."
 category = "main"
 optional = false
@@ -383,7 +383,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "a418573a7c22270ff6cf59bae1dbfa6e22d848579cae37ea916fef6dad999f92"
+content-hash = "a4070d309fa10e538e2a1ecd520ca9d32c79c857b2bf45429744b5a68696dee5"
 
 [metadata.files]
 attrs = [
@@ -448,8 +448,8 @@ coverage = [
     {file = "coverage-6.2.tar.gz", hash = "sha256:e2cad8093172b7d1595b4ad66f24270808658e11acf43a8f95b41276162eb5b8"},
 ]
 cyclonedx-python-lib = [
-    {file = "cyclonedx-python-lib-2.0.0rc4.tar.gz", hash = "sha256:3db3af890c1fd507f6668d8211d2ca3070dbd41ed476c33a1aaccb2b8d88a8fb"},
-    {file = "cyclonedx_python_lib-2.0.0rc4-py3-none-any.whl", hash = "sha256:2a2c749129441eca6d04634c85c92dba50e38b71973ed44794da2984d54832d4"},
+    {file = "cyclonedx-python-lib-2.0.0.tar.gz", hash = "sha256:32d6f3372b69df5734373a698cce81ffeed65d882a1a9c48891914cb0658279e"},
+    {file = "cyclonedx_python_lib-2.0.0-py3-none-any.whl", hash = "sha256:9c5da7c37b54649990029c375b27166f1355a8d3ba43c3cb5e83a4481da64d5b"},
 ]
 distlib = [
     {file = "distlib-0.3.4-py2.py3-none-any.whl", hash = "sha256:6564fe0a8f51e734df6333d08b8b94d4ea8ee6b99b5ed50613f731fd4089f34b"},
