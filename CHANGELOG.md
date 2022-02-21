@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v2.1.0 (2022-02-21)
+### Feature
+* Added marker and classifiers to denote this as typed ([#313](https://github.com/CycloneDX/cyclonedx-python/issues/313)) ([`f317353`](https://github.com/CycloneDX/cyclonedx-python/commit/f317353bd7a24dbf4fb31642d766d94da609eb42))
+* Update to latest RC of `cyclonedx-python-lib` ([`6c8b517`](https://github.com/CycloneDX/cyclonedx-python/commit/6c8b5173f07329b2086312d27af5d111f9b2c7ed))
+* Update to latest RC of `cyclonedx-python-lib` ([`bc8ee6b`](https://github.com/CycloneDX/cyclonedx-python/commit/bc8ee6bb115dd5214358430f64bd0581de5cb2e4))
+
 ## v2.0.3 (2022-02-03)
 ### Fix
 * Docker image releae checkout ref w/o `tags` ([#309](https://github.com/CycloneDX/cyclonedx-python/issues/309)) ([`5d8b1e1`](https://github.com/CycloneDX/cyclonedx-python/commit/5d8b1e159c2ced59e810b9e9564e19a29fe263d0))
