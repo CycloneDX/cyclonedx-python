@@ -5,15 +5,12 @@
 ## v3.0.0 (2022-02-21)
 ### Feature
 * Bump to latest `cyclonedx-python-lib` ([`5902fbf`](https://github.com/CycloneDX/cyclonedx-python/commit/5902fbf9dc5becdf7d92180242488e56b998d9de))
-
-### Breaking
-* Default Schema Version has been replaced by notion of LATEST supported Schema Version ([`5902fbf`](https://github.com/CycloneDX/cyclonedx-python/commit/5902fbf9dc5becdf7d92180242488e56b998d9de))
-
-## v2.1.0 (2022-02-21)
-### Feature
 * Added marker and classifiers to denote this as typed ([#313](https://github.com/CycloneDX/cyclonedx-python/issues/313)) ([`f317353`](https://github.com/CycloneDX/cyclonedx-python/commit/f317353bd7a24dbf4fb31642d766d94da609eb42))
 * Update to latest RC of `cyclonedx-python-lib` ([`6c8b517`](https://github.com/CycloneDX/cyclonedx-python/commit/6c8b5173f07329b2086312d27af5d111f9b2c7ed))
 * Update to latest RC of `cyclonedx-python-lib` ([`bc8ee6b`](https://github.com/CycloneDX/cyclonedx-python/commit/bc8ee6bb115dd5214358430f64bd0581de5cb2e4))
+
+### Breaking
+* Default Schema Version has been replaced by notion of LATEST supported Schema Version ([`5902fbf`](https://github.com/CycloneDX/cyclonedx-python/commit/5902fbf9dc5becdf7d92180242488e56b998d9de))
 
 ## v2.0.3 (2022-02-03)
 ### Fix
