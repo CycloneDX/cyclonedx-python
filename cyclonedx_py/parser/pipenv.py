@@ -20,7 +20,7 @@
 import json
 from typing import Any, Dict
 
-from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType
+from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
 from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser
 # See https://github.com/package-url/packageurl-python/issues/65
@@ -48,11 +48,11 @@ class PipEnvParser(BaseParser):
                 for pip_hash in package_data['hashes']:
                     ext_ref = ExternalReference(
                         reference_type=ExternalReferenceType.DISTRIBUTION,
-                        url=c.get_pypi_url(),
+                        url=XsUri(c.get_pypi_url()),
                         comment='Distribution available from pypi.org'
                     )
-                    ext_ref.add_hash(HashType.from_composite_str(pip_hash))
-                    c.add_external_reference(ext_ref)
+                    ext_ref.hashes.add(HashType.from_composite_str(pip_hash))
+                    c.external_references.add(ext_ref)
 
             self._components.append(c)
 

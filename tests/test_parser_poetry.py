@@ -16,7 +16,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
-
 import os
 from unittest import TestCase
 
@@ -30,7 +29,8 @@ class TestPoetryParser(TestCase):
 
         parser = PoetryFileParser(poetry_lock_filename=tests_poetry_lock_file)
         self.assertEqual(1, parser.component_count())
-        components = parser.get_components()
-        self.assertEqual('toml', components[0].name)
-        self.assertEqual('0.10.2', components[0].version)
-        self.assertEqual(len(components[0].external_references), 2)
+        component = next(filter(lambda c: c.name == 'toml', parser.get_components()), parser.get_components)
+        self.assertIsNotNone(component)
+        self.assertEqual('toml', component.name)
+        self.assertEqual('0.10.2', component.version)
+        self.assertEqual(len(component.external_references), 2)

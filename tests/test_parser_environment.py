@@ -16,10 +16,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
-
 from unittest import TestCase
-
-from cyclonedx.model.component import Component
 
 from cyclonedx_py.parser.environment import EnvironmentParser
 
@@ -37,6 +34,7 @@ class TestEnvironmentParser(TestCase):
         self.assertGreater(parser.component_count(), 1)
 
         # We can only be sure that tox is in the environment, for example as we use tox to run tests
-        c_tox: Component = [x for x in parser.get_components() if x.name == 'tox'][0]
+        c_tox = next(filter(lambda c: c.name == 'tox', parser.get_components()), parser.get_components)
+        self.assertIsNotNone(c_tox)
         self.assertIsNotNone(c_tox.licenses)
-        self.assertEqual('MIT', c_tox.licenses[0].expression)
+        self.assertEqual('MIT', c_tox.licenses.pop().expression)

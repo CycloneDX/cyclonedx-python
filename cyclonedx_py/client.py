@@ -89,7 +89,7 @@ class CycloneDxCmd:
             from importlib.metadata import version as md_version
         else:
             from importlib_metadata import version as md_version  # type: ignore
-        bom.metadata.add_tool(tool=Tool(
+        bom.metadata.tools.add(Tool(
             vendor='CycloneDX', name='cyclonedx-bom', version=md_version('cyclonedx-bom')
         ))
 
@@ -181,7 +181,7 @@ class CycloneDxCmd:
             dest='output_format'
         )
         output_group.add_argument(
-            '--schema-version', action='store', choices=['1.4', '1.3', '1.2', '1.1', '1.0'], default='1.3',
+            '--schema-version', action='store', choices=['1.4', '1.3', '1.2', '1.1', '1.0'], default='1.4',
             help='The CycloneDX schema version for your SBOM (default: %(default)s)',
             dest='output_schema_version'
         )

@@ -18,7 +18,7 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 from cyclonedx.exception.model import UnknownHashTypeException
-from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType
+from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
 from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser
 # See https://github.com/package-url/packageurl-python/issues/65
@@ -41,9 +41,9 @@ class PoetryParser(BaseParser):
 
             for file_metadata in poetry_lock['metadata']['files'][package['name']]:
                 try:
-                    component.add_external_reference(ExternalReference(
+                    component.external_references.add(ExternalReference(
                         reference_type=ExternalReferenceType.DISTRIBUTION,
-                        url=component.get_pypi_url(),
+                        url=XsUri(component.get_pypi_url()),
                         comment=f'Distribution file: {file_metadata["file"]}',
                         hashes=[HashType.from_composite_str(file_metadata['hash'])]
                     ))

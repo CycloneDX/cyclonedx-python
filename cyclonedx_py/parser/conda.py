@@ -21,7 +21,7 @@ import json
 from abc import ABCMeta, abstractmethod
 from typing import List
 
-from cyclonedx.model import ExternalReference, ExternalReferenceType
+from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
 from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser
 # See https://github.com/package-url/packageurl-python/issues/65
@@ -65,9 +65,9 @@ class _BaseCondaParser(BaseParser, metaclass=ABCMeta):
                     type='pypi', name=conda_package['name'], version=str(conda_package['version'])
                 )
             )
-            c.add_external_reference(ExternalReference(
+            c.external_references.add(ExternalReference(
                 reference_type=ExternalReferenceType.DISTRIBUTION,
-                url=conda_package['base_url'],
+                url=XsUri(conda_package['base_url']),
                 comment=f"Distribution name {conda_package['dist_name']}"
             ))
 

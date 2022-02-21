@@ -44,7 +44,7 @@ Once installed, you can access the full documentation by running `--help`:
 ```text
 $ cyclonedx-bom --help
 usage: cyclonedx-bom [-h] (-c | -cj | -e | -p | -pip | -r) [-i FILE_PATH]
-                 [--format {json,xml}] [--schema-version {1.3,1.2,1.1,1.0}]
+                 [--format {json,xml}] [--schema-version {1.4,1.3,1.2,1.1,1.0}]
                  [-o FILE_PATH] [-F] [-X]
 
 CycloneDX SBOM Generator
@@ -83,9 +83,9 @@ SBOM Output Configuration:
   Choose the output format and schema version
 
   --format {json,xml}   The output format for your SBOM (default: xml)
-  --schema-version {1.3,1.2,1.1,1.0}
+  --schema-version {1.4,1.3,1.2,1.1,1.0}
                         The CycloneDX schema version for your SBOM (default:
-                        1.3)
+                        1.4)
   -o FILE_PATH, --o FILE_PATH, --output FILE_PATH
                         Output file path for your SBOM (set to '-' to output
                         to STDOUT)

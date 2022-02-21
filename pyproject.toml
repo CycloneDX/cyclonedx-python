@@ -16,16 +16,26 @@ include = [
 classifiers = [
     # Trove classifiers - https://packaging.python.org/specifications/core-metadata/#metadata-classifier
     # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
+    'Development Status :: 5 - Production/Stable',
+    'Intended Audience :: Developers',
+    'Intended Audience :: Information Technology',
+    'Intended Audience :: Legal Industry',
+    'Intended Audience :: System Administrators',
+    'Topic :: Security',
+    'Topic :: Software Development',
+    'Topic :: System :: Software Distribution',
+    'License :: OSI Approved :: Apache Software License',
     'Programming Language :: Python :: 3.6',
     'Programming Language :: Python :: 3.7',
     'Programming Language :: Python :: 3.8',
     'Programming Language :: Python :: 3.9',
-    'Programming Language :: Python :: 3.10'
+    'Programming Language :: Python :: 3.10',
+    'Typing :: Typed'
 ]
 
 [tool.poetry.dependencies]
 python = "^3.6"
-cyclonedx-python-lib = "^1.3.0"
+cyclonedx-python-lib = ">= 2.0.0rc4, < 3.0.0"
 
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.6.0"
