@@ -18,9 +18,11 @@ poetry install
 ## Code style
 
 This project uses [PEP8] Style Guide for Python Code.  
-Get it applied via:
+This project loves sorted imports.  
+Get it all applied via:
 
 ```shell
+poetry run isort .
 poetry run autopep8 --in-place -r .
 ```
 
