@@ -24,10 +24,11 @@ from typing import List
 from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
 from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser
+
 # See https://github.com/package-url/packageurl-python/issues/65
 from packageurl import PackageURL  # type: ignore
 
-from ..utils.conda import parse_conda_json_to_conda_package, parse_conda_list_str_to_conda_package, CondaPackage
+from ..utils.conda import CondaPackage, parse_conda_json_to_conda_package, parse_conda_list_str_to_conda_package
 
 
 class _BaseCondaParser(BaseParser, metaclass=ABCMeta):
