@@ -33,7 +33,7 @@ jobs:
 
       - name: Setup python ${{ env.PYTHON_VERISON }}
         # see https://github.com/actions/setup-python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: ${{ env.PYTHON_VERISON }}
       - name: Setup poetry ${{ env.POETRY_VERSION }}
