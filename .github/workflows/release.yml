@@ -49,7 +49,7 @@ jobs:
     steps:
       - name: Checkout code
         # see https://github.com/actions/checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0  # action `relekang/python-semantic-release` requires all git history
       - name: Setup python ${{ env.PYTHON_VERISON }}
@@ -119,7 +119,7 @@ jobs:
     steps:
       - name: Checkout code (v${{ env.VERSION }})
         # see https://github.com/actions/checkout
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3
         with:
           ref: v${{ env.VERSION }}
       - name: setup dirs
