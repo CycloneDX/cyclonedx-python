@@ -77,8 +77,16 @@ class TestRequirementsParser(TestCase):
             parser = RequirementsParser(
                 requirements_content=r.read()
             )
-            breakpoint()
         self.assertTrue(1, parser.component_count())
+        self.assertFalse(parser.has_warnings())
+
+    def test_example_with_urls(self) -> None:
+        with open(os.path.join(os.path.dirname(__file__),
+                               'fixtures/requirements-with-urls.txt')) as r:
+            parser = RequirementsParser(
+                requirements_content=r.read()
+            )
+        self.assertTrue(4, parser.component_count())
         self.assertFalse(parser.has_warnings())
 
     def test_example_with_hashes(self) -> None:
