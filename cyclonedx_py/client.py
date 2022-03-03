@@ -22,6 +22,7 @@ import argparse
 import os
 import sys
 from datetime import datetime
+from typing import Optional
 
 from cyclonedx.model import Tool
 from cyclonedx.model.bom import Bom
@@ -122,8 +123,8 @@ class CycloneDxCmd:
         output.output_to_file(filename=output_filename, allow_overwrite=self._arguments.output_file_overwrite)
 
     @staticmethod
-    def get_arg_parser() -> argparse.ArgumentParser:
-        arg_parser = argparse.ArgumentParser(description='CycloneDX SBOM Generator')
+    def get_arg_parser(*, prog: Optional[str] = None) -> argparse.ArgumentParser:
+        arg_parser = argparse.ArgumentParser(prog=prog, description='CycloneDX SBOM Generator')
 
         input_group = arg_parser.add_mutually_exclusive_group(required=True)
         input_group.add_argument(
@@ -254,8 +255,8 @@ class CycloneDxCmd:
             raise CycloneDxCmdException('Parser type could not be determined.')
 
 
-def main() -> None:
-    parser = CycloneDxCmd.get_arg_parser()
+def main(*, prog_name: Optional[str] = None) -> None:
+    parser = CycloneDxCmd.get_arg_parser(prog=prog_name)
     args = parser.parse_args()
     CycloneDxCmd(args).execute()
 
