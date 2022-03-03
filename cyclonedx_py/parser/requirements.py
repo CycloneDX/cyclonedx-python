@@ -17,49 +17,66 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
+import os.path
+from tempfile import NamedTemporaryFile, _TemporaryFileWrapper
+from typing import Optional
+
 from cyclonedx.model.component import Component
+from cyclonedx.model import HashType
 from cyclonedx.parser import BaseParser, ParserWarning
 
 # See https://github.com/package-url/packageurl-python/issues/65
-from packageurl import PackageURL  # type: ignore
-from pkg_resources import parse_requirements as parse_requirements
+from packageurl import PackageURL
+from pip_requirements_parser import RequirementsFile
 
 
 class RequirementsParser(BaseParser):
 
     def __init__(self, requirements_content: str) -> None:
         super().__init__()
+        parsed_rf: Optional[RequirementsFile] = None
+        requirements_file: Optional[_TemporaryFileWrapper] = None
 
-        requirements = parse_requirements(requirements_content)
-        for requirement in requirements:
-            """
-            @todo
-            Note that the below line will get the first (lowest) version specified in the Requirement and
-            ignore the operator (it might not be ==). This is passed to the Component.
+        if os.path.exists(requirements_content):
+            parsed_rf = RequirementsFile.from_file(
+                requirements_content, include_nested=True)
+        else:
+            requirements_file = NamedTemporaryFile(mode='w+', delete=True)
+            requirements_file.write(requirements_content)
+            requirements_file.seek(0)
 
-            For example if a requirement was listed as: "PickyThing>1.6,<=1.9,!=1.8.6", we'll be interpreting this
-            as if it were written "PickyThing==1.6"
-            """
-            try:
-                (op, version) = requirement.specs[0]
-                self._components.append(Component(
-                    name=requirement.project_name, version=version, purl=PackageURL(
-                        type='pypi', name=requirement.project_name, version=version
-                    )
-                ))
-            except IndexError:
+            parsed_rf = RequirementsFile.from_file(
+                requirements_file.name, include_nested=False)
+
+        for requirement in parsed_rf.requirements:
+            name = requirement.link.url if requirement.is_local_path else requirement.name
+            version = (
+                requirement.get_pinned_version
+                if requirement.get_pinned_version
+                else requirement.dumps_specifier())
+            hashes = [HashType.from_composite_str(hash) for hash in requirement.hash_options]
+
+            if not version and not requirement.is_local_path:
                 self._warnings.append(
                     ParserWarning(
-                        item=requirement.project_name,
-                        warning='Requirement \'{}\' does not have a pinned version and cannot be included in your '
-                                'CycloneDX SBOM.'.format(requirement.project_name)
+                        item=name,
+                        warning=(f"Requirement \'{name}\' does not have a pinned "
+                                 "version and cannot be included in your CycloneDX SBOM.")
                     )
                 )
+            else:
+                self._components.append(Component(
+                    name=name,
+                    version=version,
+                    hashes=hashes,
+                    purl=PackageURL(type='pypi', name=name, version=version)
+                ))
+
+        if requirements_file:
+            requirements_file.close()
 
 
 class RequirementsFileParser(RequirementsParser):
 
     def __init__(self, requirements_file: str) -> None:
-        with open(requirements_file) as r:
-            super(RequirementsFileParser, self).__init__(requirements_content=r.read())
-            r.close()
+        super().__init__(requirements_content=requirements_file)
