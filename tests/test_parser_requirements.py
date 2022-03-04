@@ -18,7 +18,6 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 import os
-import unittest
 from unittest import TestCase
 
 from cyclonedx_py.parser.requirements import RequirementsParser
