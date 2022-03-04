@@ -18,16 +18,16 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 import os.path
-from tempfile import NamedTemporaryFile, _TemporaryFileWrapper
-from typing import Optional
+from tempfile import NamedTemporaryFile, _TemporaryFileWrapper  # Weak error
+from typing import Any, Optional
 
 from cyclonedx.model.component import Component
 from cyclonedx.model import HashType
 from cyclonedx.parser import BaseParser, ParserWarning
 
 # See https://github.com/package-url/packageurl-python/issues/65
-from packageurl import PackageURL
-from pip_requirements_parser import RequirementsFile
+from packageurl import PackageURL  # type: ignore
+from pip_requirements_parser import RequirementsFile  # type: ignore
 
 
 class RequirementsParser(BaseParser):
@@ -35,7 +35,7 @@ class RequirementsParser(BaseParser):
     def __init__(self, requirements_content: str) -> None:
         super().__init__()
         parsed_rf: Optional[RequirementsFile] = None
-        requirements_file: Optional[_TemporaryFileWrapper] = None
+        requirements_file: Optional[_TemporaryFileWrapper[Any]] = None
 
         if os.path.exists(requirements_content):
             parsed_rf = RequirementsFile.from_file(
