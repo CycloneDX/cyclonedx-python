@@ -20,7 +20,7 @@
 import os
 from unittest import TestCase
 
-from cyclonedx_py.parser.requirements import RequirementsParser
+from cyclonedx_py.parser.requirements import RequirementsParser, RequirementsFileParser
 
 
 class TestRequirementsParser(TestCase):
@@ -68,6 +68,15 @@ class TestRequirementsParser(TestCase):
                 requirements_content=r.read()
             )
         self.assertTrue(5, parser.component_count())
+        self.assertFalse(parser.has_warnings())
+
+    def test_example_local_and_nested_packages(self) -> None:
+        # RequirementsFileParser can parse nested requirements files,
+        # but RequirementsParser cannot.
+        parser = RequirementsFileParser(
+            requirements_file='fixtures/requirements-local-packages.txt'
+        )
+        self.assertTrue(6, parser.component_count())
         self.assertFalse(parser.has_warnings())
 
     def test_example_private_packages(self) -> None:
