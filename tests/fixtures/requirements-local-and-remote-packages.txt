@@ -3,5 +3,6 @@
 -e ./myproject/idna.whl
 ./myproject/requests --hash=sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804
 ./myproject/urllib3
+https://example.com/mypackage.whl
 
 -r requirements-nested.txt
