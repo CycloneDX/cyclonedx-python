@@ -17,6 +17,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
+import os
 import os.path
 from tempfile import NamedTemporaryFile, _TemporaryFileWrapper  # Weak error
 from typing import Any, Optional
@@ -41,9 +42,9 @@ class RequirementsParser(BaseParser):
             parsed_rf = RequirementsFile.from_file(
                 requirements_content, include_nested=True)
         else:
-            requirements_file = NamedTemporaryFile(mode='w+', delete=True)
+            requirements_file = NamedTemporaryFile(mode='w+', delete=False)
             requirements_file.write(requirements_content)
-            requirements_file.seek(0)
+            requirements_file.close()
 
             parsed_rf = RequirementsFile.from_file(
                 requirements_file.name, include_nested=False)
@@ -73,7 +74,7 @@ class RequirementsParser(BaseParser):
                 ))
 
         if requirements_file:
-            requirements_file.close()
+            os.unlink(requirements_file.name)
 
 
 class RequirementsFileParser(RequirementsParser):
