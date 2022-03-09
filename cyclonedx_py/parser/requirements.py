@@ -51,11 +51,8 @@ class RequirementsParser(BaseParser):
 
         for requirement in parsed_rf.requirements:
             name = requirement.link.url if requirement.is_local_path else requirement.name
-            version = (
-                requirement.get_pinned_version
-                if requirement.get_pinned_version
-                else requirement.dumps_specifier())
-            hashes = [HashType.from_composite_str(hash) for hash in requirement.hash_options]
+            version = requirement.get_pinned_version or requirement.dumps_specifier()
+            hashes = map(HashType.from_composite_str, requirement.hash_options)
 
             if not version and not requirement.is_local_path:
                 self._warnings.append(
