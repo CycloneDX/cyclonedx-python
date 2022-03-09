@@ -22,8 +22,8 @@ import os.path
 from tempfile import NamedTemporaryFile, _TemporaryFileWrapper  # Weak error
 from typing import Any, Optional
 
-from cyclonedx.model.component import Component
 from cyclonedx.model import HashType
+from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser, ParserWarning
 
 # See https://github.com/package-url/packageurl-python/issues/65
