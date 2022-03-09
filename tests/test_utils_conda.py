@@ -16,10 +16,14 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
+
 from unittest import TestCase
 
-from cyclonedx_py.utils.conda import parse_conda_json_to_conda_package, parse_conda_list_str_to_conda_package, \
-    CondaPackage
+from cyclonedx_py.utils.conda import (
+    CondaPackage,
+    parse_conda_json_to_conda_package,
+    parse_conda_list_str_to_conda_package,
+)
 
 
 class TestUtilsConda(TestCase):

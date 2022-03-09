@@ -19,6 +19,7 @@
 
 from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser, ParserWarning
+
 # See https://github.com/package-url/packageurl-python/issues/65
 from packageurl import PackageURL  # type: ignore
 from pkg_resources import parse_requirements as parse_requirements

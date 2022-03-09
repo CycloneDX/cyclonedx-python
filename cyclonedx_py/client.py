@@ -25,7 +25,7 @@ from datetime import datetime
 
 from cyclonedx.model import Tool
 from cyclonedx.model.bom import Bom
-from cyclonedx.output import BaseOutput, get_instance, OutputFormat, SchemaVersion
+from cyclonedx.output import BaseOutput, OutputFormat, SchemaVersion, get_instance
 from cyclonedx.parser import BaseParser
 
 from .parser.conda import CondaListExplicitParser, CondaListJsonParser

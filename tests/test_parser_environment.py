@@ -16,6 +16,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
+
 from unittest import TestCase
 
 from cyclonedx_py.parser.environment import EnvironmentParser

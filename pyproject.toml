@@ -39,12 +39,14 @@ cyclonedx-python-lib = ">= 2.0.0, < 3.0.0"
 
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.6.0"
+isort = { version = "^5.10.0", python = ">= 3.6.1" }
 tox = "^3.24.3"
 coverage = "^6.2"
 mypy = "^0.931"
 flake8 = "^4.0.1"
 flake8-annotations = {version = "^2.7.0", python = ">= 3.6.2"}
 flake8-bugbear = "^22.1.11"
+flake8-isort = { version = "^4.1.0", python = ">= 3.6.1" }
 
 [tool.poetry.scripts]
 cyclonedx-bom = 'cyclonedx_py.client:main'

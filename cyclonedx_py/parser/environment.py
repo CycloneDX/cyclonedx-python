@@ -35,8 +35,8 @@ from packageurl import PackageURL  # type: ignore
 from pkg_resources import DistInfoDistribution  # type: ignore
 
 if sys.version_info >= (3, 8):
-    from importlib.metadata import metadata
     from email.message import Message as _MetadataReturn
+    from importlib.metadata import metadata
 else:
     from importlib_metadata import metadata, PackageMetadata as _MetadataReturn
 
