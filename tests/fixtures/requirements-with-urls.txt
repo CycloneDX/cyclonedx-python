@@ -1,0 +1,4 @@
+git+https://github.com/path/to/package-one@41b95ec#egg=package-one # commit hash
+git+https://github.com/path/to/package-two@master#egg=package-two # master branch
+git+https://github.com/path/to/package-three@0.1#egg=package-three # tag
+git+https://github.com/path/to/package-four@releases/tag/v3.7.1#egg=package-four # release tag
