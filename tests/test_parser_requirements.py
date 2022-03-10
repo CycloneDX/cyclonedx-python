@@ -20,7 +20,7 @@
 import os
 from unittest import TestCase
 
-from cyclonedx_py.parser.requirements import RequirementsParser, RequirementsFileParser
+from cyclonedx_py.parser.requirements import RequirementsFileParser, RequirementsParser
 
 
 class TestRequirementsParser(TestCase):
