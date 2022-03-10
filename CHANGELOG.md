@@ -2,6 +2,17 @@
 
 <!--next-version-placeholder-->
 
+## v3.1.0 (2022-03-10)
+### Feature
+* Add pip-requirements-parser and update virtualenv to latest version ([`73b2182`](https://github.com/CycloneDX/cyclonedx-python/commit/73b2182550d9635a0a5ab8e4f2226f37cf6b1b35))
+
+### Fix
+* Sort imports ([`fdec44b`](https://github.com/CycloneDX/cyclonedx-python/commit/fdec44bc111d7eb1add080a219dbc77744678f8a))
+* Try to fix the temp file issue on Windows machines ([`684d4f0`](https://github.com/CycloneDX/cyclonedx-python/commit/684d4f03ad6f8c0764dfaf8f3a38a09b91b69e5d))
+
+### Documentation
+* Update RequirementsFileParser docs to include nested file support ([`9e9021d`](https://github.com/CycloneDX/cyclonedx-python/commit/9e9021decb19d8262e87fe6955577c1bd1309d95))
+
 ## v3.0.0 (2022-02-21)
 ### Feature
 * Bump to latest `cyclonedx-python-lib` ([`5902fbf`](https://github.com/CycloneDX/cyclonedx-python/commit/5902fbf9dc5becdf7d92180242488e56b998d9de))
