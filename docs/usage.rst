@@ -4,7 +4,15 @@ Usage
 Command Line Usage
 ------------------
 
-Once installed, you can access the full documentation by running ``--help``:
+Once installed, you can call the tool via the following methods:
+
+.. code-block:: bash
+
+    $ python3 -m cyclonedx_py
+    $ cyclonedx-py
+    $ cyclonedx-bom
+
+The full documentation can be issued by running with ``--help``:
 
 .. code-block:: bash
 
@@ -215,8 +223,8 @@ Requirements
 
 * :py:mod:`cyclonedx_py.parser.requirements.RequirementsParser`: Parses a multiline string that you provide that conforms
   to the ``requirements.txt`` :pep:`508` standard.
-* :py:mod:`cyclonedx_py.parser.requirements.RequirementsFileParser`: Parses a file that you provide the path to that conforms to the ``requirements.txt`` :pep:`508` standard. It supports nested
-files, so if there is a line in your ``requirements.txt`` file with the ``-r requirements-nested.txt`` syntax, it'll parse the nested file as part of the same file.
+* :py:mod:`cyclonedx_py.parser.requirements.RequirementsFileParser`: Parses a file that you provide the path to that conforms to the ``requirements.txt`` :pep:`508` standard.
+  It supports nested files, so if there is a line in your ``requirements.txt`` file with the ``-r requirements-nested.txt`` syntax, it'll parse the nested file as part of the same file.
 
 CycloneDX software bill-of-materials require pinned versions of requirements. If your `requirements.txt` does not have
 pinned versions, warnings will be recorded and the dependencies without pinned versions will be excluded from the
