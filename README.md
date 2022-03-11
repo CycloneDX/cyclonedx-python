@@ -22,6 +22,8 @@ The BOM will contain an aggregate of all your current project's dependencies, or
 
 CycloneDX is a lightweight BOM specification that is easily created, human-readable, and simple to parse.
 
+Read the full [documentation][link_rtfd] for more details.
+
 ## Installation
 
 Install this from [PyPi.org][link_pypi] using your preferred Python package manager.
@@ -40,7 +42,7 @@ poetry add cyclonedx-bom
 
 ## Usage
 
-Once installed, you can access the full documentation by running `--help`:
+## Basic usage
 
 ```text
 $ cyclonedx-bom --help
@@ -94,6 +96,10 @@ SBOM Output Configuration:
                         exists, it will be overwritten.
 ```
 
+### Advanced usage and details
+
+See the full [documentation][link_rtfd] for advanced usage and details on input formats, switches and options.
+
 ## Python Support
 
 We endeavour to support all functionality for all [current actively supported Python versions](https://www.python.org/downloads/).
@@ -112,6 +118,7 @@ See the [LICENSE][license_file] file for the full license.
 
 [license_file]: https://github.com/CycloneDX/cyclonedx-python/blob/master/LICENSE
 [contributing_file]: https://github.com/CycloneDX/cyclonedx-python/blob/master/CONTRIBUTING.md
+[link_rtfd]: https://cyclonedx-bom-tool.readthedocs.io/
 
 [shield_gh-workflow-test]: https://img.shields.io/github/workflow/status/CycloneDX/cyclonedx-python/Python%20CI/master?logo=GitHub&logoColor=white "build"
 [shield_rtfd]: https://img.shields.io/readthedocs/cyclonedx-bom-tool?logo=readthedocs&logoColor=white
@@ -122,7 +129,6 @@ See the [LICENSE][license_file] file for the full license.
 [shield_slack]: https://img.shields.io/badge/slack-join-blue?logo=Slack&logoColor=white "slack join"
 [shield_groups]: https://img.shields.io/badge/discussion-groups.io-blue.svg "groups discussion"
 [shield_twitter-follow]: https://img.shields.io/badge/Twitter-follow-blue?logo=Twitter&logoColor=white "twitter follow"
-[link_rtfd]: https://cyclonedx-bom-tool.readthedocs.io/
 [link_gh-workflow-test]: https://github.com/CycloneDX/cyclonedx-python/actions/workflows/python.yml?query=branch%3Amaster
 [link_pypi]: https://pypi.org/project/cyclonedx-bom/
 [link_docker]: https://hub.docker.com/r/cyclonedx/cyclonedx-python
