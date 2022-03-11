@@ -20,7 +20,7 @@ This project provides a runnable Python-based application for generating Cyclone
 
 The BOM will contain an aggregate of all your current project's dependencies, or those defined by the manifest you supply.
 
-CycloneDX is a lightweight BOM specification that is easily created, human-readable, and simple to parse.
+[CycloneDX](https://cyclonedx.org/) is a lightweight BOM specification that is easily created, human-readable, and simple to parse.
 
 Read the full [documentation][link_rtfd] for more details.
 
