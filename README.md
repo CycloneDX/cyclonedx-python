@@ -1,6 +1,7 @@
 # CycloneDX Python SBOM Generation Tool
 
 [![shield_gh-workflow-test]][link_gh-workflow-test]
+[![shield_rtfd]][link_rtfd]
 [![shield_pypi-version]][link_pypi]
 [![shield_docker-version]][link_docker]
 [![shield_license]][license_file]  
@@ -19,7 +20,9 @@ This project provides a runnable Python-based application for generating Cyclone
 
 The BOM will contain an aggregate of all your current project's dependencies, or those defined by the manifest you supply.
 
-CycloneDX is a lightweight BOM specification that is easily created, human-readable, and simple to parse.
+[CycloneDX](https://cyclonedx.org/) is a lightweight BOM specification that is easily created, human-readable, and simple to parse.
+
+Read the full [documentation][link_rtfd] for more details.
 
 ## Installation
 
@@ -39,7 +42,7 @@ poetry add cyclonedx-bom
 
 ## Usage
 
-Once installed, you can access the full documentation by running `--help`:
+## Basic usage
 
 ```text
 $ cyclonedx-bom --help
@@ -93,7 +96,9 @@ SBOM Output Configuration:
                         exists, it will be overwritten.
 ```
 
+### Advanced usage and details
 
+See the full [documentation][link_rtfd] for advanced usage and details on input formats, switches and options.
 
 ## Python Support
 
@@ -113,8 +118,10 @@ See the [LICENSE][license_file] file for the full license.
 
 [license_file]: https://github.com/CycloneDX/cyclonedx-python/blob/master/LICENSE
 [contributing_file]: https://github.com/CycloneDX/cyclonedx-python/blob/master/CONTRIBUTING.md
+[link_rtfd]: https://cyclonedx-bom-tool.readthedocs.io/
 
 [shield_gh-workflow-test]: https://img.shields.io/github/workflow/status/CycloneDX/cyclonedx-python/Python%20CI/master?logo=GitHub&logoColor=white "build"
+[shield_rtfd]: https://img.shields.io/readthedocs/cyclonedx-bom-tool?logo=readthedocs&logoColor=white
 [shield_pypi-version]: https://img.shields.io/pypi/v/cyclonedx-bom?logo=Python&logoColor=white&label=PyPI "PyPI"
 [shield_docker-version]: https://img.shields.io/docker/v/cyclonedx/cyclonedx-python?logo=docker&logoColor=white&label=docker "docker"
 [shield_license]: https://img.shields.io/github/license/CycloneDX/cyclonedx-python "license"
