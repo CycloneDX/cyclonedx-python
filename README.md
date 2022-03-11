@@ -1,6 +1,7 @@
 # CycloneDX Python SBOM Generation Tool
 
 [![shield_gh-workflow-test]][link_gh-workflow-test]
+[![shield_rtfd]][link_rtfd]
 [![shield_pypi-version]][link_pypi]
 [![shield_docker-version]][link_docker]
 [![shield_license]][license_file]  
@@ -93,8 +94,6 @@ SBOM Output Configuration:
                         exists, it will be overwritten.
 ```
 
-
-
 ## Python Support
 
 We endeavour to support all functionality for all [current actively supported Python versions](https://www.python.org/downloads/).
@@ -115,6 +114,7 @@ See the [LICENSE][license_file] file for the full license.
 [contributing_file]: https://github.com/CycloneDX/cyclonedx-python/blob/master/CONTRIBUTING.md
 
 [shield_gh-workflow-test]: https://img.shields.io/github/workflow/status/CycloneDX/cyclonedx-python/Python%20CI/master?logo=GitHub&logoColor=white "build"
+[shield_rtfd]: https://img.shields.io/readthedocs/cyclonedx-bom-tool?logo=readthedocs&logoColor=white
 [shield_pypi-version]: https://img.shields.io/pypi/v/cyclonedx-bom?logo=Python&logoColor=white&label=PyPI "PyPI"
 [shield_docker-version]: https://img.shields.io/docker/v/cyclonedx/cyclonedx-python?logo=docker&logoColor=white&label=docker "docker"
 [shield_license]: https://img.shields.io/github/license/CycloneDX/cyclonedx-python "license"
@@ -122,6 +122,7 @@ See the [LICENSE][license_file] file for the full license.
 [shield_slack]: https://img.shields.io/badge/slack-join-blue?logo=Slack&logoColor=white "slack join"
 [shield_groups]: https://img.shields.io/badge/discussion-groups.io-blue.svg "groups discussion"
 [shield_twitter-follow]: https://img.shields.io/badge/Twitter-follow-blue?logo=Twitter&logoColor=white "twitter follow"
+[link_rtfd]: https://cyclonedx-bom-tool.readthedocs.io/
 [link_gh-workflow-test]: https://github.com/CycloneDX/cyclonedx-python/actions/workflows/python.yml?query=branch%3Amaster
 [link_pypi]: https://pypi.org/project/cyclonedx-bom/
 [link_docker]: https://hub.docker.com/r/cyclonedx/cyclonedx-python
