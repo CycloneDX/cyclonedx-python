@@ -31,8 +31,10 @@ class TestRequirementsParser(TestCase):
             parser = RequirementsParser(
                 requirements_content=r.read()
             )
-        self.assertTrue(1, parser.component_count())
-        self.assertFalse(parser.has_warnings())
+        components = parser.get_components()
+
+        self.assertFalse(parser.has_warnings(), f'{parser.get_warnings()}')
+        self.assertEqual(1, len(components), f'{components}')
 
     def test_example_1(self) -> None:
         with open(os.path.join(os.path.dirname(__file__),
@@ -40,8 +42,10 @@ class TestRequirementsParser(TestCase):
             parser = RequirementsParser(
                 requirements_content=r.read()
             )
-        self.assertTrue(3, parser.component_count())
-        self.assertFalse(parser.has_warnings())
+        components = parser.get_components()
+
+        self.assertFalse(parser.has_warnings(), f'{parser.get_warnings()}')
+        self.assertEqual(3, len(components), f'{components}')
 
     def test_example_with_comments(self) -> None:
         with open(os.path.join(os.path.dirname(__file__),
@@ -49,8 +53,10 @@ class TestRequirementsParser(TestCase):
             parser = RequirementsParser(
                 requirements_content=r.read()
             )
-        self.assertTrue(5, parser.component_count())
-        self.assertFalse(parser.has_warnings())
+        components = parser.get_components()
+
+        self.assertFalse(parser.has_warnings(), f'{parser.get_warnings()}')
+        self.assertEqual(5, len(components), f'{components}')
 
     def test_example_multiline_with_comments(self) -> None:
         with open(os.path.join(os.path.dirname(__file__),
@@ -58,8 +64,10 @@ class TestRequirementsParser(TestCase):
             parser = RequirementsParser(
                 requirements_content=r.read()
             )
-        self.assertTrue(5, parser.component_count())
-        self.assertFalse(parser.has_warnings())
+        components = parser.get_components()
+
+        self.assertFalse(parser.has_warnings(), f'{parser.get_warnings()}')
+        self.assertEqual(5, len(components), f'{components}')
 
     def test_example_local_packages(self) -> None:
         with open(os.path.join(os.path.dirname(__file__),
@@ -67,8 +75,10 @@ class TestRequirementsParser(TestCase):
             parser = RequirementsParser(
                 requirements_content=r.read()
             )
-        self.assertTrue(6, parser.component_count())
-        self.assertFalse(parser.has_warnings())
+        components = parser.get_components()
+
+        self.assertFalse(parser.has_warnings(), f'{parser.get_warnings()}')
+        self.assertEqual(6, len(components), f'{components}')
 
     def test_example_local_and_nested_packages(self) -> None:
         # RequirementsFileParser can parse nested requirements files,
@@ -76,8 +86,10 @@ class TestRequirementsParser(TestCase):
         parser = RequirementsFileParser(
             requirements_file='fixtures/requirements-local-and-remote-packages.txt'
         )
-        self.assertTrue(7, parser.component_count())
-        self.assertFalse(parser.has_warnings())
+        components = parser.get_components()
+
+        self.assertFalse(parser.has_warnings(), f'{parser.get_warnings()}')
+        self.assertEqual(7, len(components), f'{components}')
 
     def test_example_private_packages(self) -> None:
         with open(os.path.join(os.path.dirname(__file__),
@@ -85,8 +97,10 @@ class TestRequirementsParser(TestCase):
             parser = RequirementsParser(
                 requirements_content=r.read()
             )
-        self.assertTrue(1, parser.component_count())
-        self.assertFalse(parser.has_warnings())
+        components = parser.get_components()
+
+        self.assertFalse(parser.has_warnings(), f'{parser.get_warnings()}')
+        self.assertEqual(1, len(components), f'{components}')
 
     def test_example_with_urls(self) -> None:
         with open(os.path.join(os.path.dirname(__file__),
@@ -94,8 +108,10 @@ class TestRequirementsParser(TestCase):
             parser = RequirementsParser(
                 requirements_content=r.read()
             )
-        self.assertTrue(4, parser.component_count())
-        self.assertFalse(parser.has_warnings())
+        components = parser.get_components()
+
+        self.assertFalse(parser.has_warnings(), f'{parser.get_warnings()}')
+        self.assertEqual(4, len(components), f'{components}')
 
     def test_example_with_hashes(self) -> None:
         with open(os.path.join(os.path.dirname(__file__),
@@ -103,15 +119,18 @@ class TestRequirementsParser(TestCase):
             parser = RequirementsParser(
                 requirements_content=r.read()
             )
-        self.assertTrue(5, parser.component_count())
-        self.assertFalse(parser.has_warnings())
+        components = parser.get_components()
 
-    def test_example_without_pinned_versions(self) -> None:
+        self.assertFalse(parser.has_warnings(), f'{parser.get_warnings()}')
+        self.assertEqual(5, len(components), f'{components}')
+
+    def test_example_without_pinned_versions_warns(self) -> None:
         with open(os.path.join(os.path.dirname(__file__),
                                'fixtures/requirements-without-pinned-versions.txt')) as r:
             parser = RequirementsParser(
                 requirements_content=r.read()
             )
-        self.assertTrue(2, parser.component_count())
-        self.assertTrue(parser.has_warnings())
-        self.assertEqual(3, len(parser.get_warnings()))
+        components = parser.get_components()
+
+        self.assertEqual(2, len(components), f'{components}')
+        self.assertTrue(parser.has_warnings(), f'{parser.get_warnings()}')

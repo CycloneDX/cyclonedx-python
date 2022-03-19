@@ -30,11 +30,11 @@ class TestPipEnvParser(TestCase):
 
         parser = PipEnvFileParser(pipenv_lock_filename=tests_pipfile_lock)
         self.assertEqual(1, parser.component_count())
-        c_toml = next(filter(lambda c: c.name == 'toml', parser.get_components()), parser.get_components)
+        c_toml = next(filter(lambda c: c.name == 'toml', parser.get_components()), None)
         self.assertIsNotNone(c_toml)
         self.assertEqual('toml', c_toml.name)
         self.assertEqual('0.10.2', c_toml.version)
-        self.assertEqual(2, len(c_toml.external_references))
+        self.assertEqual(2, len(c_toml.external_references), f'{c_toml.external_references}')
         self.assertEqual(1, len(c_toml.external_references.pop().hashes))
 
     def test_with_multiple_and_no_index(self) -> None:
@@ -43,16 +43,16 @@ class TestPipEnvParser(TestCase):
         parser = PipEnvFileParser(pipenv_lock_filename=tests_pipfile_lock)
         self.assertEqual(2, parser.component_count())
 
-        c_anyio = next(filter(lambda c: c.name == 'anyio', parser.get_components()), parser.get_components)
+        c_anyio = next(filter(lambda c: c.name == 'anyio', parser.get_components()), None)
         self.assertIsNotNone(c_anyio)
-        c_toml = next(filter(lambda c: c.name == 'toml', parser.get_components()), parser.get_components)
+        c_toml = next(filter(lambda c: c.name == 'toml', parser.get_components()), None)
         self.assertIsNotNone(c_toml)
 
         self.assertEqual('anyio', c_anyio.name)
         self.assertEqual('3.3.3', c_anyio.version)
-        self.assertEqual(0, len(c_anyio.external_references))
+        self.assertEqual(0, len(c_anyio.external_references), f'{c_anyio.external_references}')
 
         self.assertEqual('toml', c_toml.name)
         self.assertEqual('0.10.2', c_toml.version)
-        self.assertEqual(2, len(c_toml.external_references))
+        self.assertEqual(2, len(c_toml.external_references), f'{c_toml.external_references}')
         self.assertEqual(1, len(c_toml.external_references.pop().hashes))
