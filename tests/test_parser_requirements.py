@@ -58,7 +58,7 @@ class TestRequirementsParser(TestCase):
         self.assertFalse(parser.has_warnings(), f'{parser.get_warnings()}')
         self.assertEqual(5, len(components), f'{components}')
 
-    def test_example_multiline_with_comments(self) -> None:
+    def test_example_multilines_with_comments(self) -> None:
         with open(os.path.join(os.path.dirname(__file__),
                                'fixtures/requirements-multilines-with-comments.txt')) as r:
             parser = RequirementsParser(
