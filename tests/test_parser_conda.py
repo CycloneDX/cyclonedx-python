@@ -27,7 +27,8 @@ from cyclonedx_py.parser.conda import CondaListExplicitParser, CondaListJsonPars
 class TestCondaParser(TestCase):
 
     def test_conda_list_json(self) -> None:
-        conda_list_ouptut_file = os.path.join(os.path.dirname(__file__), 'fixtures/conda-list-output.json')
+        conda_list_ouptut_file = os.path.join(os.path.dirname(__file__),
+                                              'fixtures/conda-list-output.json')
 
         with (open(conda_list_ouptut_file, 'r')) as conda_list_output_fh:
             parser = CondaListJsonParser(conda_data=conda_list_output_fh.read())
@@ -43,7 +44,8 @@ class TestCondaParser(TestCase):
         self.assertEqual(0, len(c_idna.external_references.pop().hashes))
 
     def test_conda_list_explicit_md5(self) -> None:
-        conda_list_ouptut_file = os.path.join(os.path.dirname(__file__), 'fixtures/conda-list-explicit-md5.txt')
+        conda_list_ouptut_file = os.path.join(os.path.dirname(__file__),
+                                              'fixtures/conda-list-explicit-md5.txt')
 
         with (open(conda_list_ouptut_file, 'r')) as conda_list_output_fh:
             parser = CondaListExplicitParser(conda_data=conda_list_output_fh.read())
