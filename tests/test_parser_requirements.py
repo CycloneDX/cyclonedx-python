@@ -67,7 +67,7 @@ class TestRequirementsParser(TestCase):
         components = parser.get_components()
 
         self.assertFalse(parser.has_warnings(), f'{parser.get_warnings()}')
-        self.assertEqual(5, len(components), f'{components}')
+        self.assertEqual(1, len(components), f'{components}')
 
     def test_example_local_packages(self) -> None:
         with open(os.path.join(os.path.dirname(__file__),
@@ -84,7 +84,8 @@ class TestRequirementsParser(TestCase):
         # RequirementsFileParser can parse nested requirements files,
         # but RequirementsParser cannot.
         parser = RequirementsFileParser(
-            requirements_file='fixtures/requirements-local-and-remote-packages.txt'
+            requirements_file=os.path.join(os.path.dirname(__file__),
+                                           'fixtures/requirements-local-and-remote-packages.txt')
         )
         components = parser.get_components()
 
