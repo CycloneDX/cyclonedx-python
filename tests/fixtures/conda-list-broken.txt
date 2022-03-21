@@ -1,0 +1,2 @@
+# This package list id malformed.
+https://repo.anaconda.com/pkgs/main/linux-64/malformed_source.conda

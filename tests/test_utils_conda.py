@@ -129,3 +129,51 @@ class TestUtilsConda(TestCase):
         self.assertEqual(cp['platform'], 'linux-64')
         self.assertEqual(cp['version'], '0.1')
         self.assertEqual(cp['md5_hash'], 'd7c89558ba9fa0495403155b64376d81')
+
+    def test_parse_conda_list_build_number(self) -> None:
+        cp: CondaPackage = parse_conda_list_str_to_conda_package(
+            conda_list_str='https://repo.anaconda.com/pkgs/main/osx-64/chardet-4.0.0-py39hecd8cb5_1003.conda'
+        )
+
+        self.assertIsInstance(cp, dict)
+        self.assertEqual('https://repo.anaconda.com/pkgs/main', cp['base_url'])
+        self.assertEqual(1003, cp['build_number'])
+        self.assertEqual('py39hecd8cb5_1003', cp['build_string'])
+        self.assertEqual('pkgs/main', cp['channel'])
+        self.assertEqual('chardet-4.0.0-py39hecd8cb5_1003', cp['dist_name'])
+        self.assertEqual('chardet', cp['name'])
+        self.assertEqual('osx-64', cp['platform'])
+        self.assertEqual('4.0.0', cp['version'])
+        self.assertIsNone(cp['md5_hash'])
+
+    def test_parse_conda_list_no_build_number(self) -> None:
+        cp: CondaPackage = parse_conda_list_str_to_conda_package(
+            conda_list_str='https://repo.anaconda.com/pkgs/main/linux-64/_libgcc_mutex-0.1-main.conda'
+        )
+
+        self.assertIsInstance(cp, dict)
+        self.assertEqual('https://repo.anaconda.com/pkgs/main', cp['base_url'])
+        self.assertEqual(None, cp['build_number'])
+        self.assertEqual('main', cp['build_string'])
+        self.assertEqual('pkgs/main', cp['channel'])
+        self.assertEqual('_libgcc_mutex-0.1-main', cp['dist_name'])
+        self.assertEqual('_libgcc_mutex', cp['name'])
+        self.assertEqual('linux-64', cp['platform'])
+        self.assertEqual('0.1', cp['version'])
+        self.assertIsNone(cp['md5_hash'])
+
+    def test_parse_conda_list_no_build_number2(self) -> None:
+        cp: CondaPackage = parse_conda_list_str_to_conda_package(
+            conda_list_str='https://repo.anaconda.com/pkgs/main/linux-64/_openmp_mutex-4.5-1_gnu.tar.bz2'
+        )
+
+        self.assertIsInstance(cp, dict)
+        self.assertEqual('https://repo.anaconda.com/pkgs/main', cp['base_url'])
+        self.assertEqual(None, cp['build_number'])
+        self.assertEqual('1_gnu', cp['build_string'])
+        self.assertEqual('pkgs/main', cp['channel'])
+        self.assertEqual('_openmp_mutex-4.5-1_gnu', cp['dist_name'])
+        self.assertEqual('_openmp_mutex', cp['name'])
+        self.assertEqual('linux-64', cp['platform'])
+        self.assertEqual('4.5', cp['version'])
+        self.assertIsNone(cp['md5_hash'])

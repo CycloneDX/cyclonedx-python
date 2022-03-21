@@ -20,14 +20,13 @@
 import json
 import sys
 from json import JSONDecodeError
-from typing import Optional
+from typing import Optional, Tuple
+from urllib.parse import urlparse
 
 if sys.version_info >= (3, 8):
     from typing import TypedDict
 else:
     from typing_extensions import TypedDict
-
-from urllib.parse import urlparse
 
 
 class CondaPackage(TypedDict):
@@ -72,56 +71,72 @@ def parse_conda_list_str_to_conda_package(conda_list_str: str) -> Optional[Conda
 
     line = conda_list_str.strip()
 
-    if line[0:1] == '#' or line[0:1] == '@' or len(line) == 0:
+    if '' == line or line[0] in ['#', '@']:
         # Skip comments, @EXPLICT or empty lines
         return None
 
     # Remove any hash
     package_hash = None
     if '#' in line:
-        hash_parts = line.split('#')
-        if len(hash_parts) > 1:
-            package_hash = hash_parts.pop()
-            line = ''.join(hash_parts)
+        *_line_parts, package_hash = line.split('#')
+        line = ''.join(*_line_parts)
 
     package_parts = line.split('/')
-    package_name_version_build_string = package_parts.pop()
-    package_arch = package_parts.pop()
-    package_url = urlparse('/'.join(package_parts))
+    if len(package_parts) < 2:
+        raise ValueError(f'Unexpected format in {package_parts}')
+    *_package_url_parts, package_arch, package_name_version_build_string = package_parts
+    package_url = urlparse('/'.join(_package_url_parts))
 
-    try:
-        package_nvbs_parts = package_name_version_build_string.split('-')
-        build_number_with_opt_string = package_nvbs_parts.pop()
-        if '.' in build_number_with_opt_string:
-            # Remove any .conda at the end if present or other package type eg .tar.gz
-            pos = build_number_with_opt_string.find('.')
-            build_number_with_opt_string = build_number_with_opt_string[0:pos]
-
-        build_string: str
-        build_number: Optional[int]
-
-        if '_' in build_number_with_opt_string:
-            bnbs_parts = build_number_with_opt_string.split('_')
-            # Build number will be the last part - check if it's an integer
-            # Updated logic given https://github.com/CycloneDX/cyclonedx-python-lib/issues/65
-            candidate_build_number: str = bnbs_parts.pop()
-            if candidate_build_number.isdigit():
-                build_number = int(candidate_build_number)
-                build_string = build_number_with_opt_string
-            else:
-                build_number = None
-                build_string = build_number_with_opt_string
-        else:
-            build_string = ''
-            build_number = int(build_number_with_opt_string)
-
-        build_version = package_nvbs_parts.pop()
-        package_name = '-'.join(package_nvbs_parts)
-    except IndexError as e:
-        raise ValueError(f'Error parsing {package_nvbs_parts} from {conda_list_str}') from e
+    package_name, build_version, build_string = split_package_string(package_name_version_build_string)
+    build_string, build_number = split_package_build_string(build_string)
 
     return CondaPackage(
         base_url=package_url.geturl(), build_number=build_number, build_string=build_string,
         channel=package_url.path[1:], dist_name=f'{package_name}-{build_version}-{build_string}',
         name=package_name, platform=package_arch, version=build_version, md5_hash=package_hash
     )
+
+
+def split_package_string(package_name_version_build_string: str) -> Tuple[str, str, str]:
+    """Helper method for parsing package_name_version_build_string.
+
+    Returns:
+        Tuple (package_name, build_version, build_string)
+    """
+    package_nvbs_parts = package_name_version_build_string.split('-')
+    if len(package_nvbs_parts) < 3:
+        raise ValueError(f'Unexpected format in {package_nvbs_parts}')
+
+    *_package_name_parts, build_version, build_string = package_nvbs_parts
+    package_name = '-'.join(_package_name_parts)
+
+    _pos = build_string.find('.')
+    if _pos >= 0:
+        # Remove any .conda at the end if present or other package type eg .tar.gz
+        build_string = build_string[0:_pos]
+
+    return package_name, build_version, build_string
+
+
+def split_package_build_string(build_string: str) -> Tuple[str, Optional[int]]:
+    """Helper method for parsing build_string.
+
+    Returns:
+        Tuple (build_string, build_number)
+    """
+
+    if '' == build_string:
+        return '', None
+
+    if build_string.isdigit():
+        return '', int(build_string)
+
+    _pos = build_string.rindex('_') if '_' in build_string else -1
+    if _pos >= 1:
+        # Build number will be the last part - check if it's an integer
+        # Updated logic given https://github.com/CycloneDX/cyclonedx-python-lib/issues/65
+        build_number = build_string[_pos + 1:]
+        if build_number.isdigit():
+            return build_string, int(build_number)
+
+    return build_string, None
