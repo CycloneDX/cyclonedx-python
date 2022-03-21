@@ -2,6 +2,16 @@
 
 <!--next-version-placeholder-->
 
+## v3.1.1 (2022-03-21)
+### Fix
+* **conda-parser:** Version recognition for strings ([#332](https://github.com/CycloneDX/cyclonedx-python/issues/332)) ([`65246dd`](https://github.com/CycloneDX/cyclonedx-python/commit/65246ddfa9a55ce53fbf87f33b1f269c519f9b3a))
+
+### Documentation
+* Add link to https://cyclonedx.org/ to README ([`fc4b8e4`](https://github.com/CycloneDX/cyclonedx-python/commit/fc4b8e44bec39b175bb8994e0a59bc5076d1b2a6))
+* Add hint for RTFD to README ([`cf4f534`](https://github.com/CycloneDX/cyclonedx-python/commit/cf4f534401dc90dbe093ce1a094efb02e5fb7c90))
+* Add RTFD shield to README ([`7fef6ee`](https://github.com/CycloneDX/cyclonedx-python/commit/7fef6eec5d553c7687e7b2d2af1ba4e330f16490))
+* Fixed link to RTFD ([`3a8669a`](https://github.com/CycloneDX/cyclonedx-python/commit/3a8669ad7ba4230d06d1e0965342a5a836a52d1f))
+
 ## v3.1.0 (2022-03-10)
 ### Feature
 * Add pip-requirements-parser and update virtualenv to latest version ([`73b2182`](https://github.com/CycloneDX/cyclonedx-python/commit/73b2182550d9635a0a5ab8e4f2226f37cf6b1b35))
