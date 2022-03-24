@@ -19,13 +19,14 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 import argparse
+import enum
 import os
 import sys
 from datetime import datetime
 
 from cyclonedx.model import Tool
 from cyclonedx.model.bom import Bom
-from cyclonedx.output import BaseOutput, OutputFormat, SchemaVersion, get_instance
+from cyclonedx.output import BaseOutput, OutputFormat, SchemaVersion, get_instance as get_output_instance
 from cyclonedx.parser import BaseParser
 
 from .parser.conda import CondaListExplicitParser, CondaListJsonParser
@@ -43,6 +44,22 @@ class CycloneDxCmdNoInputFileSupplied(CycloneDxCmdException):
     pass
 
 
+@enum.unique
+class _CLI_OUTPUT_FORMAT(enum.Enum):
+    XML = 'xml'
+    JSON = 'json'
+
+
+_output_formats = {
+    _CLI_OUTPUT_FORMAT.XML: OutputFormat.XML,
+    _CLI_OUTPUT_FORMAT.JSON: OutputFormat.JSON,
+}
+_output_default_filenames = {
+    _CLI_OUTPUT_FORMAT.XML: 'cyclonedx.xml',
+    _CLI_OUTPUT_FORMAT.JSON: 'cyclonedx.json',
+}
+
+
 class CycloneDxCmd:
     # Whether debug output is enabled
     _DEBUG_ENABLED: bool = False
@@ -57,6 +74,9 @@ class CycloneDxCmd:
             self._DEBUG_ENABLED = True
             self._debug_message('!!! DEBUG MODE ENABLED !!!')
             self._debug_message('Parsed Arguments: {}'.format(self._arguments))
+
+    def _get_output_format(self) -> _CLI_OUTPUT_FORMAT:
+        return _CLI_OUTPUT_FORMAT(str(self._arguments.output_format).lower())
 
     def get_output(self) -> BaseOutput:
         try:
@@ -93,17 +113,20 @@ class CycloneDxCmd:
             vendor='CycloneDX', name='cyclonedx-bom', version=md_version('cyclonedx-bom')
         ))
 
-        return get_instance(
+        return get_output_instance(
             bom=bom,
-            output_format=OutputFormat[str(self._arguments.output_format).upper()],
+            output_format=_output_formats[self._get_output_format()],
             schema_version=SchemaVersion['V{}'.format(
                 str(self._arguments.output_schema_version).replace('.', '_')
             )]
         )
 
     def execute(self) -> None:
+        output_format = self._get_output_format()
+        self._debug_message(f'output_format: {output_format}')
+
         # Quick check for JSON && SchemaVersion <= 1.1
-        if str(self._arguments.output_format).upper() == 'JSON' and \
+        if output_format == OutputFormat.JSON and \
                 str(self._arguments.output_schema_version) in ['1.0', '1.1']:
             self._error_and_exit(
                 message='CycloneDX schema does not support JSON output in Schema Versions < 1.2',
@@ -117,7 +140,9 @@ class CycloneDxCmd:
             return
 
         # Check directory writable
-        output_filename = os.path.realpath(self._arguments.output_file)
+        output_file = self._arguments.output_file
+        output_filename = os.path.realpath(
+            output_file if isinstance(output_file, str) else _output_default_filenames[output_format])
         self._debug_message('Will be outputting SBOM to file at: {}'.format(output_filename))
         output.output_to_file(filename=output_filename, allow_overwrite=self._arguments.output_file_overwrite)
 
@@ -176,7 +201,8 @@ class CycloneDxCmd:
             description='Choose the output format and schema version'
         )
         output_group.add_argument(
-            '--format', action='store', choices=['json', 'xml'], default='xml',
+            '--format', action='store',
+            choices=[f.value for f in _CLI_OUTPUT_FORMAT], default=_CLI_OUTPUT_FORMAT.XML.value,
             help='The output format for your SBOM (default: %(default)s)',
             dest='output_format'
         )
@@ -186,7 +212,8 @@ class CycloneDxCmd:
             dest='output_schema_version'
         )
         output_group.add_argument(
-            '-o', '--o', '--output', action='store', metavar='FILE_PATH', default='cyclonedx.xml', required=False,
+            # string, None or True. True=autodetect(based-on-format)
+            '-o', '--o', '--output', action='store', metavar='FILE_PATH', default=True, required=False,
             help='Output file path for your SBOM (set to \'-\' to output to STDOUT)', dest='output_file'
         )
         output_group.add_argument(
