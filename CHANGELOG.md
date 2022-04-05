@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## v3.2.0 (2022-04-05)
+### Feature
+* Make module callable ([`5b3d8d7`](https://github.com/CycloneDX/cyclonedx-python/commit/5b3d8d7641b0f2825e5419b5ad8c8a75bf66403b))
+
+### Documentation
+* Describe methods to call the tool ([`2bac83a`](https://github.com/CycloneDX/cyclonedx-python/commit/2bac83a6c6f7354d8b7218c32b4b2e5d96b2fd0c))
+
 ## v3.1.1 (2022-03-21)
 ### Fix
 * **conda-parser:** Version recognition for strings ([#332](https://github.com/CycloneDX/cyclonedx-python/issues/332)) ([`65246dd`](https://github.com/CycloneDX/cyclonedx-python/commit/65246ddfa9a55ce53fbf87f33b1f269c519f9b3a))
