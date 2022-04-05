@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v3.2.1 (2022-04-05)
+### Fix
+* Cli default file for json format ([`8747620`](https://github.com/CycloneDX/cyclonedx-python/commit/8747620dac7ed3eeff69369c05dfb6386a56e549))
+
 ## v3.2.0 (2022-04-05)
 ### Feature
 * Make module callable ([`5b3d8d7`](https://github.com/CycloneDX/cyclonedx-python/commit/5b3d8d7641b0f2825e5419b5ad8c8a75bf66403b))
