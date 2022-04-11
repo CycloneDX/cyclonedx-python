@@ -22,6 +22,7 @@ name: Python CI
 on:
   workflow_dispatch:
   pull_request:
+    branches-ignore: 'dependabot/**'
   push:
     tags: [ 'v*.*.*' ]  # run again on release tags to have tools mark them
     branches: [ 'master' ]
@@ -35,6 +36,7 @@ jobs:
   coding-standards:
     name: Linting & Coding Standards
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
@@ -58,6 +60,7 @@ jobs:
   static-code-analysis:
     name: Static Coding Analysis
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
@@ -81,9 +84,9 @@ jobs:
   build-and-test:
     name: Tests for Python ${{ matrix.python-version }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
     env:
       REPORTS_ARTIFACT: tests-reports
-    timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
