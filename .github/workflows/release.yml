@@ -92,7 +92,7 @@ jobs:
           !failure() && !cancelled() &&
           steps.after-release.outputs.released
         # see https://github.com/actions/upload-artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ env.DIST_ARTIFACT }}
           path: ${{ env.DIST_DIR }}/
@@ -156,7 +156,7 @@ jobs:
       - name: Artifact reports
         if: ${{ ! cancelled() }}
         # see https://github.com/actions/upload-artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ env.ARTIFACT_DOCKER_SBOM }}
           path: ${{ env.REPORTS_DIR }}/*.bom.*
