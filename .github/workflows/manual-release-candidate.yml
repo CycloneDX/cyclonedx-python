@@ -41,7 +41,7 @@ jobs:
           poetry build
       - name: Artifact python dist
         # see https://github.com/actions/upload-artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ env.DIST_ARTIFACT }}
           path: ${{ env.DIST_DIR }}/
