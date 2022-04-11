@@ -128,7 +128,7 @@ jobs:
           mkdir "$DIST_DIR"
       - name: Fetch python dist artifact
         # see https://github.com/actions/download-artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with: 
           name: ${{ env.DIST_ARTIFACT }}
           path: ${{ env.DIST_DIR }}/
