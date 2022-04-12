@@ -41,7 +41,7 @@ pip-requirements-parser = "^31.2.0"
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.6.0"
 isort = { version = "^5.10.0", python = ">= 3.6.1" }
-tox = "^3.24.3"
+tox = "^3.25.0"
 coverage = "^6.2"
 mypy = "^0.942"
 flake8 = "^4.0.1"
