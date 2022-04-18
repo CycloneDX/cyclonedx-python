@@ -44,7 +44,7 @@ class PipEnvParser(BaseParser):
                     type='pypi', name=package_name, version=str(package_data.get('version') or 'unknown').lstrip('=')
                 )
             )
-            if package_data.get('index') == 'pypi' and isinstance(package_data.get('hashes'), list):
+            if isinstance(package_data.get('hashes'), list):
                 # Add download location with hashes stored in Pipfile.lock
                 for pip_hash in package_data['hashes']:
                     ext_ref = ExternalReference(
