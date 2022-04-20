@@ -50,7 +50,8 @@ class TestPipEnvParser(TestCase):
 
         self.assertEqual('anyio', c_anyio.name)
         self.assertEqual('3.3.3', c_anyio.version)
-        self.assertEqual(0, len(c_anyio.external_references), f'{c_anyio.external_references}')
+        self.assertEqual(2, len(c_anyio.external_references), f'{c_anyio.external_references}')
+        self.assertEqual(1, len(c_anyio.external_references.pop().hashes))
 
         self.assertEqual('toml', c_toml.name)
         self.assertEqual('0.10.2', c_toml.version)
