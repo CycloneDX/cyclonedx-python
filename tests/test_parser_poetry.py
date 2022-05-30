@@ -33,5 +33,6 @@ class TestPoetryParser(TestCase):
         component = next(filter(lambda c: c.name == 'toml', parser.get_components()), None)
         self.assertIsNotNone(component)
         self.assertEqual('toml', component.name)
+        self.assertEqual(component.purl.to_string(), component.bom_ref.value)
         self.assertEqual('0.10.2', component.version)
         self.assertEqual(2, len(component.external_references), f'{component.external_references}')

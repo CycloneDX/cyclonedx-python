@@ -63,11 +63,13 @@ class RequirementsParser(BaseParser):
                     )
                 )
             else:
+                purl = PackageURL(type='pypi', name=name, version=version)
                 self._components.append(Component(
                     name=name,
+                    bom_ref=purl.to_string(),
                     version=version,
                     hashes=hashes,
-                    purl=PackageURL(type='pypi', name=name, version=version)
+                    purl=purl
                 ))
 
         if requirements_file:

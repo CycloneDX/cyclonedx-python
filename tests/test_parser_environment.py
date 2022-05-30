@@ -37,5 +37,6 @@ class TestEnvironmentParser(TestCase):
         # We can only be sure that tox is in the environment, for example as we use tox to run tests
         c_tox = next(filter(lambda c: c.name == 'tox', parser.get_components()), None)
         self.assertIsNotNone(c_tox)
+        self.assertEqual(c_tox.purl.to_string(), c_tox.bom_ref.value)
         self.assertIsNotNone(c_tox.licenses)
         self.assertEqual('MIT', c_tox.licenses.pop().expression)

@@ -60,11 +60,10 @@ class _BaseCondaParser(BaseParser, metaclass=ABCMeta):
 
         """
         for conda_package in self._conda_packages:
+            purl = PackageURL(type='pypi', name=conda_package['name'], version=str(conda_package['version']))
             c = Component(
-                name=conda_package['name'], version=str(conda_package['version']),
-                purl=PackageURL(
-                    type='pypi', name=conda_package['name'], version=str(conda_package['version'])
-                )
+                name=conda_package['name'], bom_ref=purl.to_string(), version=str(conda_package['version']),
+                purl=purl
             )
             c.external_references.add(ExternalReference(
                 reference_type=ExternalReferenceType.DISTRIBUTION,

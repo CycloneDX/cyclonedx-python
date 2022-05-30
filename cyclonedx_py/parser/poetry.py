@@ -34,10 +34,10 @@ class PoetryParser(BaseParser):
         poetry_lock = load_toml(poetry_lock_contents)
 
         for package in poetry_lock['package']:
+            purl = PackageURL(type='pypi', name=package['name'], version=package['version'])
             component = Component(
-                name=package['name'], version=package['version'], purl=PackageURL(
-                    type='pypi', name=package['name'], version=package['version']
-                )
+                name=package['name'], bom_ref=purl.to_string(), version=package['version'],
+                purl=purl
             )
 
             for file_metadata in poetry_lock['metadata']['files'][package['name']]:

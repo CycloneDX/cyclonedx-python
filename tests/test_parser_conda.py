@@ -39,6 +39,7 @@ class TestCondaParser(TestCase):
         c_idna = next(filter(lambda c: c.name == 'idna', components), None)
         self.assertIsNotNone(c_idna)
         self.assertEqual('idna', c_idna.name)
+        self.assertEqual(c_idna.purl.to_string(), c_idna.bom_ref.value)
         self.assertEqual('2.10', c_idna.version)
         self.assertEqual(1, len(c_idna.external_references), f'{c_idna.external_references}')
         self.assertEqual(0, len(c_idna.external_references.pop().hashes))

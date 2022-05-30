@@ -37,13 +37,9 @@ class PipEnvParser(BaseParser):
         pipfile_default: Dict[str, Dict[str, Any]] = pipfile_lock_contents.get('default') or {}
 
         for (package_name, package_data) in pipfile_default.items():
-            c = Component(
-                name=package_name,
-                version=str(package_data.get('version') or 'unknown').lstrip('='),
-                purl=PackageURL(
-                    type='pypi', name=package_name, version=str(package_data.get('version') or 'unknown').lstrip('=')
-                )
-            )
+            version = str(package_data.get('version') or 'unknown').lstrip('=')
+            purl = PackageURL(type='pypi', name=package_name, version=version)
+            c = Component(name=package_name, bom_ref=purl.to_string(), version=version, purl=purl)
             if isinstance(package_data.get('hashes'), list):
                 # Add download location with hashes stored in Pipfile.lock
                 for pip_hash in package_data['hashes']:

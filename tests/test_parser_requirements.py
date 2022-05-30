@@ -35,6 +35,8 @@ class TestRequirementsParser(TestCase):
 
         self.assertFalse(parser.has_warnings(), f'{parser.get_warnings()}')
         self.assertEqual(1, len(components), f'{components}')
+        for component in components:
+            self.assertEqual(component.purl.to_string(), component.bom_ref.value)
 
     def test_example_1(self) -> None:
         with open(os.path.join(os.path.dirname(__file__),
@@ -46,6 +48,8 @@ class TestRequirementsParser(TestCase):
 
         self.assertFalse(parser.has_warnings(), f'{parser.get_warnings()}')
         self.assertEqual(3, len(components), f'{components}')
+        for component in components:
+            self.assertEqual(component.purl.to_string(), component.bom_ref.value)
 
     def test_example_with_comments(self) -> None:
         with open(os.path.join(os.path.dirname(__file__),
@@ -57,6 +61,8 @@ class TestRequirementsParser(TestCase):
 
         self.assertFalse(parser.has_warnings(), f'{parser.get_warnings()}')
         self.assertEqual(5, len(components), f'{components}')
+        for component in components:
+            self.assertEqual(component.purl.to_string(), component.bom_ref.value)
 
     def test_example_multilines_with_comments(self) -> None:
         with open(os.path.join(os.path.dirname(__file__),
@@ -68,6 +74,8 @@ class TestRequirementsParser(TestCase):
 
         self.assertFalse(parser.has_warnings(), f'{parser.get_warnings()}')
         self.assertEqual(1, len(components), f'{components}')
+        for component in components:
+            self.assertEqual(component.purl.to_string(), component.bom_ref.value)
 
     def test_example_local_packages(self) -> None:
         with open(os.path.join(os.path.dirname(__file__),
@@ -79,6 +87,8 @@ class TestRequirementsParser(TestCase):
 
         self.assertFalse(parser.has_warnings(), f'{parser.get_warnings()}')
         self.assertEqual(6, len(components), f'{components}')
+        for component in components:
+            self.assertEqual(component.purl.to_string(), component.bom_ref.value)
 
     def test_example_local_and_nested_packages(self) -> None:
         # RequirementsFileParser can parse nested requirements files,
@@ -91,6 +101,8 @@ class TestRequirementsParser(TestCase):
 
         self.assertFalse(parser.has_warnings(), f'{parser.get_warnings()}')
         self.assertEqual(7, len(components), f'{components}')
+        for component in components:
+            self.assertEqual(component.purl.to_string(), component.bom_ref.value)
 
     def test_example_private_packages(self) -> None:
         with open(os.path.join(os.path.dirname(__file__),
@@ -102,6 +114,8 @@ class TestRequirementsParser(TestCase):
 
         self.assertFalse(parser.has_warnings(), f'{parser.get_warnings()}')
         self.assertEqual(1, len(components), f'{components}')
+        for component in components:
+            self.assertEqual(component.purl.to_string(), component.bom_ref.value)
 
     def test_example_with_urls(self) -> None:
         with open(os.path.join(os.path.dirname(__file__),
@@ -113,6 +127,8 @@ class TestRequirementsParser(TestCase):
 
         self.assertFalse(parser.has_warnings(), f'{parser.get_warnings()}')
         self.assertEqual(4, len(components), f'{components}')
+        for component in components:
+            self.assertEqual(component.purl.to_string(), component.bom_ref.value)
 
     def test_example_with_hashes(self) -> None:
         with open(os.path.join(os.path.dirname(__file__),
@@ -124,6 +140,8 @@ class TestRequirementsParser(TestCase):
 
         self.assertFalse(parser.has_warnings(), f'{parser.get_warnings()}')
         self.assertEqual(5, len(components), f'{components}')
+        for component in components:
+            self.assertEqual(component.purl.to_string(), component.bom_ref.value)
 
     def test_example_without_pinned_versions_warns(self) -> None:
         with open(os.path.join(os.path.dirname(__file__),
@@ -135,3 +153,5 @@ class TestRequirementsParser(TestCase):
 
         self.assertEqual(2, len(components), f'{components}')
         self.assertTrue(parser.has_warnings(), f'{parser.get_warnings()}')
+        for component in components:
+            self.assertEqual(component.purl.to_string(), component.bom_ref.value)
