@@ -105,14 +105,19 @@ class CycloneDxCmd:
 
         bom = Bom.from_parser(parser=parser)
 
-        # Add cyclonedx_bom as a Tool to record it being part of the CycloneDX SBOM generation process
-        if sys.version_info >= (3, 8, 0):
+        # region Add cyclonedx_bom as a Tool to record it being part of the CycloneDX SBOM generation process
+        if sys.version_info >= (3, 8):
             from importlib.metadata import version as md_version
         else:
-            from importlib_metadata import version as md_version  # type: ignore
+            from importlib_metadata import version as md_version
+        _this_tool_name = 'cyclonedx-bom'
+        _this_tool_version: Optional[str] = md_version(_this_tool_name)  # type: ignore[no-untyped-call]
         bom.metadata.tools.add(Tool(
-            vendor='CycloneDX', name='cyclonedx-bom', version=md_version('cyclonedx-bom')
+            vendor='CycloneDX',
+            name=_this_tool_name,
+            version=_this_tool_version
         ))
+        # endregion
 
         return get_output_instance(
             bom=bom,
