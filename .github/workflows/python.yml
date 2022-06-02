@@ -55,12 +55,22 @@ jobs:
       - name: Install dependencies
         run: poetry install
       - name: Run tox
-        run: poetry run tox -e flake8
+        run: poetry run tox -e flake8 -s false
 
   static-code-analysis:
-    name: Static Coding Analysis
+    name: Static Coding Analysis (py${{ matrix.python-version}} ${{ matrix.toxenv-factor }})
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - # test with the locked dependencies
+            python-version: '3.10'
+            toxenv-factor: 'locked'
+          - # test with the lowest dependencies
+            python-version: '3.6'
+            toxenv-factor: 'lowest'
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
@@ -79,10 +89,10 @@ jobs:
       - name: Install dependencies
         run: poetry install
       - name: Run tox
-        run: poetry run tox -e mypy
+        run: poetry run tox -e mypy-${{ matrix.toxenv-factor }} -s false
 
   build-and-test:
-    name: Tests for Python ${{ matrix.python-version }} on ${{ matrix.os }}
+    name: Test (${{ matrix.os }} py${{ matrix.python-version }} ${{ matrix.toxenv-factor }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
     env:
@@ -97,6 +107,12 @@ jobs:
           - "3.8"
           - "3.7"
           - "3.6"  # lowest supported
+        toxenv-factor: ['locked']
+        include:
+          - # test with the lowest dependencies
+            os: 'ubuntu-latest'
+            python-version: '3.6'
+            toxenv-factor: 'lowest'
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
@@ -119,11 +135,11 @@ jobs:
       - name: Ensure build successful
         run: poetry build
       - name: Run tox
-        run: poetry run tox -e py -s false
+        run: poetry run tox -e py-${{ matrix.toxenv-factor }} -s false
       - name: Generate coverage reports
         run: >
           poetry run coverage report &&
-          poetry run coverage xml -o ${{ env.REPORTS_DIR }}/coverage-${{ matrix.os }}-${{ matrix.python-version }}.xml &&
+          poetry run coverage xml -o ${{ env.REPORTS_DIR }}/coverage-${{ matrix.os }}-${{ matrix.python-version }}-${{ matrix.toxenv-factor }}.xml &&
           poetry run coverage html -d ${{ env.REPORTS_DIR }}
       - name: Artifact reports
         if: ${{ ! cancelled() }}
