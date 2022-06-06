@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cyclonedx-bom"
-version = "3.2.1"
+version = "3.2.2"
 description = "CycloneDX Software Bill of Materials (SBOM) generation utility"
 authors = ["Steven Springett <steve.springett@owasp.org>", "Paul Horton <phorton@sonatype.com>"]
 license = "Apache-2.0"
@@ -35,19 +35,28 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.6"
+# ATTENTION: keep `requirements.lowest.txt` file in sync
 cyclonedx-python-lib = ">= 2.0.0, < 3.0.0"
+packageurl-python = ">= 0.9"
+importlib-metadata = { version = ">= 3.4", python = "< 3.8" }
 pip-requirements-parser = "^31.2.0"
+setuptools = ">= 47.0.0"
+toml = "^0.10.0"
 
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.6.0"
 isort = { version = "^5.10.0", python = ">= 3.6.1" }
 tox = "^3.25.0"
 coverage = "^6.2"
-mypy = "^0.942"
+mypy = "^0.960"
 flake8 = "^4.0.1"
 flake8-annotations = {version = "^2.7.0", python = ">= 3.6.2"}
 flake8-bugbear = "^22.4.25"
 flake8-isort = { version = "^4.1.0", python = ">= 3.6.1" }
+# `types-toml` need to stay in sync with version of `toml`
+types-toml = "^0.10.0"
+# `types-setuptools` need to stay in sync with version of `setuptools` - but 47 was not typed...
+types-setuptools = ">= 57.0.0"
 
 [tool.poetry.scripts]
 cyclonedx-bom = 'cyclonedx_py.client:main'
