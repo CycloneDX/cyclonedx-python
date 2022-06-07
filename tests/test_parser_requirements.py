@@ -21,6 +21,7 @@ import os
 from unittest import TestCase
 
 from cyclonedx.model import HashAlgorithm, HashType
+from cyclonedx.model.component import Component
 
 from cyclonedx_py.parser.requirements import RequirementsFileParser, RequirementsParser
 
@@ -70,6 +71,11 @@ class TestRequirementsParser(TestCase):
 
         self.assertFalse(parser.has_warnings(), f'{parser.get_warnings()}')
         self.assertEqual(1, len(components), f'{components}')
+        component: Component = components[0]
+        self.assertEqual(1, len(component.hashes))
+        hash: HashType = component.hashes.pop()
+        self.assertEqual(HashAlgorithm.SHA_256, hash.alg)
+        self.assertNotEqual(0, len(hash.content), f'{hash.content}')
 
     def test_example_local_packages(self) -> None:
         with open(os.path.join(os.path.dirname(__file__),
