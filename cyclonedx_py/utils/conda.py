@@ -57,7 +57,7 @@ def conda_package_to_purl(pkg: CondaPackage) -> PackageURL:
         'channel': pkg['channel'],
         'subdir': pkg['platform'],
     }
-    if 'package_format' in pkg:
+    if pkg['package_format'] is not None:
         qualifiers['type'] = pkg['package_format']
 
     purl = PackageURL(
