@@ -58,7 +58,7 @@ def conda_package_to_purl(pkg: CondaPackage) -> PackageURL:
         'subdir': pkg['platform'],
     }
     if pkg['package_format'] is not None:
-        qualifiers['type'] = pkg['package_format']
+        qualifiers['type'] = str(pkg['package_format'])
 
     purl = PackageURL(
         type='conda', name=pkg['name'], version=pkg['version'], qualifiers=qualifiers
