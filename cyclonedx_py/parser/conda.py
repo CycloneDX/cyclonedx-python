@@ -74,7 +74,7 @@ class _BaseCondaParser(BaseParser, metaclass=ABCMeta):
             if conda_package['md5_hash'] is not None:
                 c.hashes.add(HashType(
                     algorithm=HashAlgorithm.MD5,
-                    hash_value=conda_package['md5_hash']
+                    hash_value=str(conda_package['md5_hash'])
                 ))
 
             self._components.append(c)
