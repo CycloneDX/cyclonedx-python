@@ -23,7 +23,8 @@ from json import JSONDecodeError
 from typing import Optional, Tuple
 from urllib.parse import urlparse
 
-from packageurl import PackageURL
+# See https://github.com/package-url/packageurl-python/issues/65
+from packageurl import PackageURL  # type: ignore
 
 if sys.version_info >= (3, 8):
     from typing import TypedDict
