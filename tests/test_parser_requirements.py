@@ -20,6 +20,9 @@
 import os
 from unittest import TestCase
 
+from cyclonedx.model import HashAlgorithm, HashType
+from cyclonedx.model.component import Component
+
 from cyclonedx_py.parser.requirements import RequirementsFileParser, RequirementsParser
 
 
@@ -76,6 +79,12 @@ class TestRequirementsParser(TestCase):
         self.assertEqual(1, len(components), f'{components}')
         for component in components:
             self.assertEqual(component.purl.to_string(), component.bom_ref.value)
+
+        c0: Component = components[0]
+        self.assertEqual(1, len(c0.hashes))
+        hash: HashType = c0.hashes.pop()
+        self.assertEqual(HashAlgorithm.SHA_256, hash.alg)
+        self.assertNotEqual(0, len(hash.content), f'{hash.content}')
 
     def test_example_local_packages(self) -> None:
         with open(os.path.join(os.path.dirname(__file__),
@@ -142,6 +151,14 @@ class TestRequirementsParser(TestCase):
         self.assertEqual(5, len(components), f'{components}')
         for component in components:
             self.assertEqual(component.purl.to_string(), component.bom_ref.value)
+
+        c_idna = next(filter(lambda c: c.name == 'idna', components), None)
+        self.assertIsNotNone(c_idna)
+        self.assertEqual('idna', c_idna.name)
+        self.assertEqual(2, len(c_idna.hashes), f'{c_idna.hashes}')
+        hash: HashType = c_idna.hashes.pop()
+        self.assertEqual(HashAlgorithm.SHA_256, hash.alg)
+        self.assertNotEqual(0, len(hash.content), f'{hash.content}')
 
     def test_example_without_pinned_versions_warns(self) -> None:
         with open(os.path.join(os.path.dirname(__file__),
