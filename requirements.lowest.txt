@@ -1,7 +1,7 @@
 # exactly pinned dependencies to the lowest version regardless of python_version
 # see pyptoject file for ranges
 
-cyclonedx-python-lib == 2.0.0
+cyclonedx-python-lib == 2.5.1
 packageurl-python == 0.9
 importlib-metadata == 3.4.0 # ; python_version < '3.8'
 pip-requirements-parser == 31.2.0
