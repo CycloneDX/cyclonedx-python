@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v3.2.2 (2022-06-02)
+### Fix
+* Add actively used (transitive) dependencies ([#363](https://github.com/CycloneDX/cyclonedx-python/issues/363)) ([`1f45ad9`](https://github.com/CycloneDX/cyclonedx-python/commit/1f45ad9162be511f07e9310414793218c554a097))
+
 ## v3.2.1 (2022-04-05)
 ### Fix
 * Cli default file for json format ([`8747620`](https://github.com/CycloneDX/cyclonedx-python/commit/8747620dac7ed3eeff69369c05dfb6386a56e549))
