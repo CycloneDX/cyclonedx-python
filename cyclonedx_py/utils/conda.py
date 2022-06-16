@@ -23,6 +23,9 @@ from json import JSONDecodeError
 from typing import Optional, Tuple
 from urllib.parse import urlparse
 
+# See https://github.com/package-url/packageurl-python/issues/65
+from packageurl import PackageURL  # type: ignore
+
 if sys.version_info >= (3, 8):
     from typing import TypedDict
 else:
@@ -41,7 +44,27 @@ class CondaPackage(TypedDict):
     name: str
     platform: str
     version: str
+    package_format: Optional[str]
     md5_hash: Optional[str]
+
+
+def conda_package_to_purl(pkg: CondaPackage) -> PackageURL:
+    """
+    Return the purl for the specified package.
+    See https://github.com/package-url/purl-spec/blob/master/PURL-TYPES.rst#conda
+    """
+    qualifiers = {
+        'build': pkg['build_string'],
+        'channel': pkg['channel'],
+        'subdir': pkg['platform'],
+    }
+    if pkg['package_format'] is not None:
+        qualifiers['type'] = str(pkg['package_format'])
+
+    purl = PackageURL(
+        type='conda', name=pkg['name'], version=pkg['version'], qualifiers=qualifiers
+    )
+    return purl
 
 
 def parse_conda_json_to_conda_package(conda_json_str: str) -> Optional[CondaPackage]:
@@ -53,6 +76,7 @@ def parse_conda_json_to_conda_package(conda_json_str: str) -> Optional[CondaPack
     if not isinstance(package_data, dict):
         return None
 
+    package_data.setdefault('package_format', None)
     package_data.setdefault('md5_hash', None)
     return CondaPackage(package_data)  # type: ignore # @FIXME write proper type safe dict at this point
 
@@ -87,17 +111,18 @@ def parse_conda_list_str_to_conda_package(conda_list_str: str) -> Optional[Conda
     *_package_url_parts, package_arch, package_name_version_build_string = package_parts
     package_url = urlparse('/'.join(_package_url_parts))
 
-    package_name, build_version, build_string = split_package_string(package_name_version_build_string)
+    package_name, build_version, build_string, package_format = split_package_string(package_name_version_build_string)
     build_string, build_number = split_package_build_string(build_string)
 
     return CondaPackage(
         base_url=package_url.geturl(), build_number=build_number, build_string=build_string,
         channel=package_url.path[1:], dist_name=f'{package_name}-{build_version}-{build_string}',
-        name=package_name, platform=package_arch, version=build_version, md5_hash=package_hash
+        name=package_name, platform=package_arch, version=build_version, package_format=package_format,
+        md5_hash=package_hash
     )
 
 
-def split_package_string(package_name_version_build_string: str) -> Tuple[str, str, str]:
+def split_package_string(package_name_version_build_string: str) -> Tuple[str, str, str, str]:
     """Helper method for parsing package_name_version_build_string.
 
     Returns:
@@ -110,12 +135,12 @@ def split_package_string(package_name_version_build_string: str) -> Tuple[str, s
     *_package_name_parts, build_version, build_string = package_nvbs_parts
     package_name = '-'.join(_package_name_parts)
 
+    # Split package_format (.conda or .tar.gz) at the end
     _pos = build_string.find('.')
-    if _pos >= 0:
-        # Remove any .conda at the end if present or other package type eg .tar.gz
-        build_string = build_string[0:_pos]
+    package_format = build_string[_pos + 1:]
+    build_string = build_string[0:_pos]
 
-    return package_name, build_version, build_string
+    return package_name, build_version, build_string, package_format
 
 
 def split_package_build_string(build_string: str) -> Tuple[str, Optional[int]]:
