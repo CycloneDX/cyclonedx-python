@@ -21,6 +21,8 @@ import os
 import re
 from unittest import TestCase
 
+from cyclonedx.model import HashAlgorithm, HashType
+
 from cyclonedx_py.parser.conda import CondaListExplicitParser, CondaListJsonParser
 
 
@@ -44,6 +46,7 @@ class TestCondaParser(TestCase):
                          c_idna.purl.to_string())
         self.assertEqual(1, len(c_idna.external_references), f'{c_idna.external_references}')
         self.assertEqual(0, len(c_idna.external_references.pop().hashes))
+        self.assertEqual(0, len(c_idna.hashes), f'{c_idna.hashes}')
 
     def test_conda_list_explicit_md5(self) -> None:
         conda_list_output_file = os.path.join(os.path.dirname(__file__),
@@ -63,6 +66,10 @@ class TestCondaParser(TestCase):
                          c_idna.purl.to_string())
         self.assertEqual(1, len(c_idna.external_references), f'{c_idna.external_references}')
         self.assertEqual(0, len(c_idna.external_references.pop().hashes))
+        self.assertEqual(1, len(c_idna.hashes), f'{c_idna.hashes}')
+        hash: HashType = c_idna.hashes.pop()
+        self.assertEqual(HashAlgorithm.MD5, hash.alg)
+        self.assertEqual('153ff132f593ea80aae2eea61a629c92', hash.content)
 
     def test_conda_list_build_number_text(self) -> None:
         conda_list_output_file = os.path.join(os.path.dirname(__file__), 'fixtures/conda-list-build-number-text.txt')
@@ -79,18 +86,23 @@ class TestCondaParser(TestCase):
         self.assertEqual('0.1', c_libgcc_mutex.version)
         self.assertEqual('pkg:conda/_libgcc_mutex@0.1?build=main&channel=pkgs/main&subdir=linux-64&type=conda',
                          c_libgcc_mutex.purl.to_string())
+        self.assertEqual(0, len(c_libgcc_mutex.hashes), f'{c_libgcc_mutex.hashes}')
+
         c_pycparser = next(filter(lambda c: c.name == 'pycparser', components), None)
         self.assertIsNotNone(c_pycparser)
         self.assertEqual('pycparser', c_pycparser.name)
         self.assertEqual('2.21', c_pycparser.version)
         self.assertEqual('pkg:conda/pycparser@2.21?build=pyhd3eb1b0_0&channel=pkgs/main&subdir=noarch&type=conda',
                          c_pycparser.purl.to_string())
+        self.assertEqual(0, len(c_pycparser.hashes), f'{c_pycparser.hashes}')
+
         c_openmp_mutex = next(filter(lambda c: c.name == '_openmp_mutex', components), None)
         self.assertIsNotNone(c_openmp_mutex)
         self.assertEqual('_openmp_mutex', c_openmp_mutex.name)
         self.assertEqual('4.5', c_openmp_mutex.version)
         self.assertEqual('pkg:conda/_openmp_mutex@4.5?build=1_gnu&channel=pkgs/main&subdir=linux-64&type=tar.bz2',
                          c_openmp_mutex.purl.to_string())
+        self.assertEqual(0, len(c_openmp_mutex.hashes), f'{c_openmp_mutex.hashes}')
 
     def test_conda_list_malformed(self) -> None:
         conda_list_output_file = os.path.join(os.path.dirname(__file__), 'fixtures/conda-list-broken.txt')

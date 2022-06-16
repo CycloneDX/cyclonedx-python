@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v3.3.0 (2022-06-16)
+### Feature
+* Add Conda MD5 hash to Component.hashes, if available - thanks @RodneyRichardson  ([`772c517`](https://github.com/CycloneDX/cyclonedx-python/commit/772c517521da0fd8ddbd1ed8abdf22243f418217))
+
 ## v3.2.2 (2022-06-02)
 ### Fix
 * Add actively used (transitive) dependencies ([#363](https://github.com/CycloneDX/cyclonedx-python/issues/363)) ([`1f45ad9`](https://github.com/CycloneDX/cyclonedx-python/commit/1f45ad9162be511f07e9310414793218c554a097))
