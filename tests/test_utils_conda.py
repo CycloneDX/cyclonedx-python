@@ -60,6 +60,7 @@ class TestUtilsConda(TestCase):
         self.assertEqual('chardet', cp['name'])
         self.assertEqual('osx-64', cp['platform'])
         self.assertEqual('4.0.0', cp['version'])
+        self.assertEqual('conda', cp['package_format'])
         self.assertIsNone(cp['md5_hash'])
 
     def test_parse_conda_list_str_with_hash_1(self) -> None:
@@ -77,6 +78,7 @@ class TestUtilsConda(TestCase):
         self.assertEqual('tzdata', cp['name'])
         self.assertEqual('noarch', cp['platform'])
         self.assertEqual('2021a', cp['version'], )
+        self.assertEqual('conda', cp['package_format'])
         self.assertEqual('d42e4db918af84a470286e4c300604a3', cp['md5_hash'])
 
     def test_parse_conda_list_str_with_hash_2(self) -> None:
@@ -94,6 +96,7 @@ class TestUtilsConda(TestCase):
         self.assertEqual('ca-certificates', cp['name'])
         self.assertEqual('osx-64', cp['platform'])
         self.assertEqual('2021.7.5', cp['version'], )
+        self.assertEqual('conda', cp['package_format'])
         self.assertEqual('c2d0ae65c08dacdcf86770b7b5bbb187', cp['md5_hash'])
 
     def test_parse_conda_list_str_with_hash_3(self) -> None:
@@ -111,6 +114,7 @@ class TestUtilsConda(TestCase):
         self.assertEqual('idna', cp['name'])
         self.assertEqual('noarch', cp['platform'])
         self.assertEqual('2.10', cp['version'], )
+        self.assertEqual('tar.bz2', cp['package_format'])
         self.assertEqual('153ff132f593ea80aae2eea61a629c92', cp['md5_hash'])
 
     def test_parse_conda_list_str_with_hash_4(self) -> None:
@@ -128,6 +132,7 @@ class TestUtilsConda(TestCase):
         self.assertEqual('_libgcc_mutex', cp['name'])
         self.assertEqual('linux-64', cp['platform'])
         self.assertEqual('0.1', cp['version'])
+        self.assertEqual('tar.bz2', cp['package_format'])
         self.assertEqual('d7c89558ba9fa0495403155b64376d81', cp['md5_hash'])
 
     def test_parse_conda_list_build_number(self) -> None:
@@ -144,6 +149,7 @@ class TestUtilsConda(TestCase):
         self.assertEqual('chardet', cp['name'])
         self.assertEqual('osx-64', cp['platform'])
         self.assertEqual('4.0.0', cp['version'])
+        self.assertEqual('conda', cp['package_format'])
         self.assertIsNone(cp['md5_hash'])
 
     def test_parse_conda_list_no_build_number(self) -> None:
@@ -160,6 +166,7 @@ class TestUtilsConda(TestCase):
         self.assertEqual('_libgcc_mutex', cp['name'])
         self.assertEqual('linux-64', cp['platform'])
         self.assertEqual('0.1', cp['version'])
+        self.assertEqual('conda', cp['package_format'])
         self.assertIsNone(cp['md5_hash'])
 
     def test_parse_conda_list_no_build_number2(self) -> None:
@@ -176,4 +183,5 @@ class TestUtilsConda(TestCase):
         self.assertEqual('_openmp_mutex', cp['name'])
         self.assertEqual('linux-64', cp['platform'])
         self.assertEqual('4.5', cp['version'])
+        self.assertEqual('tar.bz2', cp['package_format'])
         self.assertIsNone(cp['md5_hash'])
