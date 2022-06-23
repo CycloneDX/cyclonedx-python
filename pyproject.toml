@@ -51,7 +51,7 @@ coverage = "^6.2"
 mypy = "^0.961"
 flake8 = "^4.0.1"
 flake8-annotations = {version = "^2.7.0", python = ">= 3.6.2"}
-flake8-bugbear = "^22.4.25"
+flake8-bugbear = "^22.6.22"
 flake8-isort = { version = "^4.1.0", python = ">= 3.6.1" }
 # `types-toml` need to stay in sync with version of `toml`
 types-toml = "^0.10.0"
