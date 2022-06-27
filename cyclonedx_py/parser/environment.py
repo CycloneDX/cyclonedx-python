@@ -55,16 +55,16 @@ class EnvironmentParser(BaseParser):
     Best used when you have virtual Python environments per project.
     """
 
-    def __init__(self) -> None:
+    def __init__(self, use_purl_bom_ref: bool = False) -> None:
         super().__init__()
 
         import pkg_resources
 
         i: DistInfoDistribution
         for i in iter(pkg_resources.working_set):
-            c = Component(name=i.project_name, version=i.version, purl=PackageURL(
-                type='pypi', name=i.project_name, version=i.version
-            ))
+            purl = PackageURL(type='pypi', name=i.project_name, version=i.version)
+            bom_ref = purl.to_string() if use_purl_bom_ref else None
+            c = Component(name=i.project_name, bom_ref=bom_ref, version=i.version, purl=purl)
 
             i_metadata = self._get_metadata_for_package(i.project_name)
             if 'Author' in i_metadata:

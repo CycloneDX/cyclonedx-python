@@ -41,6 +41,29 @@ class TestCondaParser(TestCase):
         c_idna = next(filter(lambda c: c.name == 'idna', components), None)
         self.assertIsNotNone(c_idna)
         self.assertEqual('idna', c_idna.name)
+        self.assertNotEqual(c_idna.purl.to_string(), c_idna.bom_ref.value)
+        self.assertEqual('2.10', c_idna.version)
+        self.assertEqual('pkg:conda/idna@2.10?build=pyhd3eb1b0_0&channel=pkgs/main&subdir=noarch',
+                         c_idna.purl.to_string())
+        self.assertEqual(1, len(c_idna.external_references), f'{c_idna.external_references}')
+        self.assertEqual(0, len(c_idna.external_references.pop().hashes))
+        self.assertEqual(0, len(c_idna.hashes), f'{c_idna.hashes}')
+
+    def test_conda_list_json_use_purl_bom_ref(self) -> None:
+        conda_list_output_file = os.path.join(os.path.dirname(__file__),
+                                              'fixtures/conda-list-output.json')
+
+        with (open(conda_list_output_file, 'r')) as conda_list_output_fh:
+            parser = CondaListJsonParser(conda_data=conda_list_output_fh.read(),
+                                         use_purl_bom_ref=True)
+
+        self.assertEqual(34, parser.component_count())
+        components = parser.get_components()
+
+        c_idna = next(filter(lambda c: c.name == 'idna', components), None)
+        self.assertIsNotNone(c_idna)
+        self.assertEqual('idna', c_idna.name)
+        self.assertEqual(c_idna.purl.to_string(), c_idna.bom_ref.value)
         self.assertEqual('2.10', c_idna.version)
         self.assertEqual('pkg:conda/idna@2.10?build=pyhd3eb1b0_0&channel=pkgs/main&subdir=noarch',
                          c_idna.purl.to_string())

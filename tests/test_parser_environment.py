@@ -37,5 +37,23 @@ class TestEnvironmentParser(TestCase):
         # We can only be sure that tox is in the environment, for example as we use tox to run tests
         c_tox = next(filter(lambda c: c.name == 'tox', parser.get_components()), None)
         self.assertIsNotNone(c_tox)
+        self.assertNotEqual(c_tox.purl.to_string(), c_tox.bom_ref.value)
+        self.assertIsNotNone(c_tox.licenses)
+        self.assertEqual('MIT', c_tox.licenses.pop().expression)
+
+    def test_simple_use_purl_bom_ref(self) -> None:
+        """
+        @todo This test is a vague as it will detect the unique environment where tests are being executed -
+                so is this valid?
+
+        :return:
+        """
+        parser = EnvironmentParser(use_purl_bom_ref=True)
+        self.assertGreater(parser.component_count(), 1)
+
+        # We can only be sure that tox is in the environment, for example as we use tox to run tests
+        c_tox = next(filter(lambda c: c.name == 'tox', parser.get_components()), None)
+        self.assertIsNotNone(c_tox)
+        self.assertEqual(c_tox.purl.to_string(), c_tox.bom_ref.value)
         self.assertIsNotNone(c_tox.licenses)
         self.assertEqual('MIT', c_tox.licenses.pop().expression)

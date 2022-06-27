@@ -33,5 +33,18 @@ class TestPoetryParser(TestCase):
         component = next(filter(lambda c: c.name == 'toml', parser.get_components()), None)
         self.assertIsNotNone(component)
         self.assertEqual('toml', component.name)
+        self.assertNotEqual(component.purl.to_string(), component.bom_ref.value)
+        self.assertEqual('0.10.2', component.version)
+        self.assertEqual(2, len(component.external_references), f'{component.external_references}')
+
+    def test_simple_purl_bom_ref(self) -> None:
+        tests_poetry_lock_file = os.path.join(os.path.dirname(__file__), 'fixtures/poetry-lock-simple.txt')
+
+        parser = PoetryFileParser(poetry_lock_filename=tests_poetry_lock_file, use_purl_bom_ref=True)
+        self.assertEqual(1, parser.component_count())
+        component = next(filter(lambda c: c.name == 'toml', parser.get_components()), None)
+        self.assertIsNotNone(component)
+        self.assertEqual('toml', component.name)
+        self.assertEqual(component.purl.to_string(), component.bom_ref.value)
         self.assertEqual('0.10.2', component.version)
         self.assertEqual(2, len(component.external_references), f'{component.external_references}')

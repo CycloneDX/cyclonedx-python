@@ -37,11 +37,11 @@ class _BaseCondaParser(BaseParser, metaclass=ABCMeta):
     """Internal abstract parser - not for programmatic use.
     """
 
-    def __init__(self, conda_data: str) -> None:
+    def __init__(self, conda_data: str, use_purl_bom_ref: bool = False) -> None:
         super().__init__()
         self._conda_packages: List[CondaPackage] = []
         self._parse_to_conda_packages(data_str=conda_data)
-        self._conda_packages_to_components()
+        self._conda_packages_to_components(use_purl_bom_ref=use_purl_bom_ref)
 
     @abstractmethod
     def _parse_to_conda_packages(self, data_str: str) -> None:
@@ -56,15 +56,16 @@ class _BaseCondaParser(BaseParser, metaclass=ABCMeta):
         """
         pass
 
-    def _conda_packages_to_components(self) -> None:
+    def _conda_packages_to_components(self, use_purl_bom_ref: bool) -> None:
         """
         Converts the parsed `CondaPackage` instances into `Component` instances.
 
         """
         for conda_package in self._conda_packages:
             purl = conda_package_to_purl(conda_package)
+            bom_ref = purl.to_string() if use_purl_bom_ref else None
             c = Component(
-                name=conda_package['name'], version=conda_package['version'],
+                name=conda_package['name'], bom_ref=bom_ref, version=conda_package['version'],
                 purl=purl
             )
             c.external_references.add(ExternalReference(

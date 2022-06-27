@@ -231,6 +231,10 @@ class CycloneDxCmd:
             '-F', '--force', action='store_true', dest='output_file_overwrite',
             help='If outputting to a file and the stated file already exists, it will be overwritten.'
         )
+        output_group.add_argument(
+            '-pb', '--purl-bom-ref', action='store_true', dest='use_purl_bom_ref',
+            help='Use a component''s purl for the bom-ref value, instead of a random UUID'
+        )
 
         arg_parser.add_argument('-X', action='store_true', help='Enable debug output', dest='debug_enabled')
 
@@ -279,15 +283,20 @@ class CycloneDxCmd:
             input_data_fh.close()
 
         if self._arguments.input_from_conda_explicit:
-            return CondaListExplicitParser(conda_data=input_data)
+            return CondaListExplicitParser(conda_data=input_data,
+                                           use_purl_bom_ref=self._arguments.use_purl_bom_ref)
         elif self._arguments.input_from_conda_json:
-            return CondaListJsonParser(conda_data=input_data)
+            return CondaListJsonParser(conda_data=input_data,
+                                       use_purl_bom_ref=self._arguments.use_purl_bom_ref)
         elif self._arguments.input_from_pip:
-            return PipEnvParser(pipenv_contents=input_data)
+            return PipEnvParser(pipenv_contents=input_data,
+                                use_purl_bom_ref=self._arguments.use_purl_bom_ref)
         elif self._arguments.input_from_poetry:
-            return PoetryParser(poetry_lock_contents=input_data)
+            return PoetryParser(poetry_lock_contents=input_data,
+                                use_purl_bom_ref=self._arguments.use_purl_bom_ref)
         elif self._arguments.input_from_requirements:
-            return RequirementsParser(requirements_content=input_data)
+            return RequirementsParser(requirements_content=input_data,
+                                      use_purl_bom_ref=self._arguments.use_purl_bom_ref)
         else:
             raise CycloneDxCmdException('Parser type could not be determined.')
 

@@ -29,15 +29,16 @@ from toml import loads as load_toml
 
 class PoetryParser(BaseParser):
 
-    def __init__(self, poetry_lock_contents: str) -> None:
+    def __init__(self, poetry_lock_contents: str, use_purl_bom_ref: bool = False) -> None:
         super().__init__()
         poetry_lock = load_toml(poetry_lock_contents)
 
         for package in poetry_lock['package']:
+            purl = PackageURL(type='pypi', name=package['name'], version=package['version'])
+            bom_ref = purl.to_string() if use_purl_bom_ref else None
             component = Component(
-                name=package['name'], version=package['version'], purl=PackageURL(
-                    type='pypi', name=package['name'], version=package['version']
-                )
+                name=package['name'], bom_ref=bom_ref, version=package['version'],
+                purl=purl
             )
 
             for file_metadata in poetry_lock['metadata']['files'][package['name']]:
@@ -57,6 +58,6 @@ class PoetryParser(BaseParser):
 
 class PoetryFileParser(PoetryParser):
 
-    def __init__(self, poetry_lock_filename: str) -> None:
+    def __init__(self, poetry_lock_filename: str, use_purl_bom_ref: bool = False) -> None:
         with open(poetry_lock_filename) as r:
-            super(PoetryFileParser, self).__init__(poetry_lock_contents=r.read())
+            super(PoetryFileParser, self).__init__(poetry_lock_contents=r.read(), use_purl_bom_ref=use_purl_bom_ref)

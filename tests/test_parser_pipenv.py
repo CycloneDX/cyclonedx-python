@@ -33,6 +33,20 @@ class TestPipEnvParser(TestCase):
         c_toml = next(filter(lambda c: c.name == 'toml', parser.get_components()), None)
         self.assertIsNotNone(c_toml)
         self.assertEqual('toml', c_toml.name)
+        self.assertNotEqual(c_toml.purl.to_string(), c_toml.bom_ref.value)
+        self.assertEqual('0.10.2', c_toml.version)
+        self.assertEqual(2, len(c_toml.external_references), f'{c_toml.external_references}')
+        self.assertEqual(1, len(c_toml.external_references.pop().hashes))
+
+    def test_simple_use_purl_bom_ref(self) -> None:
+        tests_pipfile_lock = os.path.join(os.path.dirname(__file__), 'fixtures/pipfile-lock-simple.txt')
+
+        parser = PipEnvFileParser(pipenv_lock_filename=tests_pipfile_lock, use_purl_bom_ref=True)
+        self.assertEqual(1, parser.component_count())
+        c_toml = next(filter(lambda c: c.name == 'toml', parser.get_components()), None)
+        self.assertIsNotNone(c_toml)
+        self.assertEqual('toml', c_toml.name)
+        self.assertEqual(c_toml.purl.to_string(), c_toml.bom_ref.value)
         self.assertEqual('0.10.2', c_toml.version)
         self.assertEqual(2, len(c_toml.external_references), f'{c_toml.external_references}')
         self.assertEqual(1, len(c_toml.external_references.pop().hashes))

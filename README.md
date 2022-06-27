@@ -94,6 +94,8 @@ SBOM Output Configuration:
                         to STDOUT)
   -F, --force           If outputting to a file and the stated file already
                         exists, it will be overwritten.
+  -pb, --purl-bom-ref   Use a component's purl for the bom-ref value, instead
+                        of a random UUID
 ```
 
 ### Advanced usage and details

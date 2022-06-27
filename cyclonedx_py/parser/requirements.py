@@ -33,7 +33,7 @@ from pip_requirements_parser import RequirementsFile  # type: ignore
 
 class RequirementsParser(BaseParser):
 
-    def __init__(self, requirements_content: str) -> None:
+    def __init__(self, requirements_content: str, use_purl_bom_ref: bool = False) -> None:
         super().__init__()
         parsed_rf: Optional[RequirementsFile] = None
         requirements_file: Optional[_TemporaryFileWrapper[Any]] = None
@@ -63,11 +63,14 @@ class RequirementsParser(BaseParser):
                     )
                 )
             else:
+                purl = PackageURL(type='pypi', name=name, version=version)
+                bom_ref = purl.to_string() if use_purl_bom_ref else None
                 self._components.append(Component(
                     name=name,
+                    bom_ref=bom_ref,
                     version=version,
                     hashes=hashes,
-                    purl=PackageURL(type='pypi', name=name, version=version)
+                    purl=purl
                 ))
 
         if requirements_file:
@@ -76,5 +79,5 @@ class RequirementsParser(BaseParser):
 
 class RequirementsFileParser(RequirementsParser):
 
-    def __init__(self, requirements_file: str) -> None:
-        super().__init__(requirements_content=requirements_file)
+    def __init__(self, requirements_file: str, use_purl_bom_ref: bool = False) -> None:
+        super().__init__(requirements_content=requirements_file, use_purl_bom_ref=use_purl_bom_ref)
