@@ -64,7 +64,7 @@ class _BaseCondaParser(BaseParser, metaclass=ABCMeta):
         for conda_package in self._conda_packages:
             purl = conda_package_to_purl(conda_package)
             c = Component(
-                name=conda_package['name'], bom_ref=purl.to_string(), version=str(conda_package['version']),
+                name=conda_package['name'], bom_ref=purl.to_string(), version=conda_package['version'],
                 purl=purl
             )
             c.external_references.add(ExternalReference(
