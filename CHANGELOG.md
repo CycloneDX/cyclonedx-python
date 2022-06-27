@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v3.5.0 (2022-06-27)
+### Feature
+* Optionally force `bom_ref` to be `purl` rather that the default random UUID format - thanks @RodneyRichardson ([`9659d08`](https://github.com/CycloneDX/cyclonedx-python/commit/9659d08f524fd1ea2eb34234f2449105feb93f62))
+
 ## v3.4.0 (2022-06-16)
 ### Feature
 * Update purl to match specification when ingesting packages from Conda - thanks to @RodneyRichardson ([`072c8f1`](https://github.com/CycloneDX/cyclonedx-python/commit/072c8f11bdef44abb0c6f7f7e99e2b833ab1c875))
