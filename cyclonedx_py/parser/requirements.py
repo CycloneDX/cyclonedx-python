@@ -19,6 +19,7 @@
 
 import os
 import os.path
+from abc import ABCMeta
 from tempfile import NamedTemporaryFile, _TemporaryFileWrapper  # Weak error
 from typing import Any, Optional
 
@@ -31,23 +32,14 @@ from packageurl import PackageURL  # type: ignore
 from pip_requirements_parser import RequirementsFile  # type: ignore
 
 
-class RequirementsParser(BaseParser):
+class _BaseRequirementsParser(BaseParser, metaclass=ABCMeta):
+    """Internal abstract parser - not for programmatic use.
+    """
 
-    def __init__(self, requirements_content: str, use_purl_bom_ref: bool = False) -> None:
+    def __init__(self, requirements_filename: str, include_nested: bool, use_purl_bom_ref: bool = False) -> None:
         super().__init__()
-        parsed_rf: Optional[RequirementsFile] = None
-        requirements_file: Optional[_TemporaryFileWrapper[Any]] = None
-
-        if os.path.exists(requirements_content):
-            parsed_rf = RequirementsFile.from_file(
-                requirements_content, include_nested=True)
-        else:
-            requirements_file = NamedTemporaryFile(mode='w+', delete=False)
-            requirements_file.write(requirements_content)
-            requirements_file.close()
-
-            parsed_rf = RequirementsFile.from_file(
-                requirements_file.name, include_nested=False)
+        parsed_rf: RequirementsFile = RequirementsFile.from_file(
+            requirements_filename, include_nested=include_nested)
 
         for requirement in parsed_rf.requirements:
             name = requirement.link.url if requirement.is_local_path else requirement.name
@@ -73,11 +65,31 @@ class RequirementsParser(BaseParser):
                     purl=purl
                 ))
 
-        if requirements_file:
+
+class RequirementsParser(_BaseRequirementsParser):
+
+    def __init__(self, requirements_content: str, use_purl_bom_ref: bool = False) -> None:
+        requirements_file: Optional[_TemporaryFileWrapper[Any]] = None
+
+        requirements_file = NamedTemporaryFile(mode='w+', delete=False)
+        try:
+            requirements_file.write(requirements_content)
+            requirements_file.close()
+            super().__init__(
+                requirements_filename=requirements_file.name,
+                include_nested=False,
+                use_purl_bom_ref=use_purl_bom_ref)
+        finally:
             os.unlink(requirements_file.name)
 
 
-class RequirementsFileParser(RequirementsParser):
+class RequirementsFileParser(_BaseRequirementsParser):
 
-    def __init__(self, requirements_file: str, use_purl_bom_ref: bool = False) -> None:
-        super().__init__(requirements_content=requirements_file, use_purl_bom_ref=use_purl_bom_ref)
+    def __init__(self,
+                 requirements_filename: str,
+                 include_nested: bool = True,
+                 use_purl_bom_ref: bool = False) -> None:
+        super().__init__(
+            requirements_filename=requirements_filename,
+            include_nested=include_nested,
+            use_purl_bom_ref=use_purl_bom_ref)

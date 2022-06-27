@@ -20,10 +20,23 @@
 import os
 from unittest import TestCase
 
-from cyclonedx_py.parser.poetry import PoetryFileParser
+from cyclonedx_py.parser.poetry import PoetryFileParser, PoetryParser
 
 
 class TestPoetryParser(TestCase):
+
+    def test_simple_parser(self) -> None:
+        tests_poetry_lock_file = os.path.join(os.path.dirname(__file__), 'fixtures/poetry-lock-simple.txt')
+        with (open(tests_poetry_lock_file, 'r')) as tests_poetry_lock_file_fh:
+            parser = PoetryParser(poetry_lock_contents=tests_poetry_lock_file_fh.read())
+
+        self.assertEqual(1, parser.component_count())
+        component = next(filter(lambda c: c.name == 'toml', parser.get_components()), None)
+        self.assertIsNotNone(component)
+        self.assertEqual('toml', component.name)
+        self.assertNotEqual(component.purl.to_string(), component.bom_ref.value)
+        self.assertEqual('0.10.2', component.version)
+        self.assertEqual(2, len(component.external_references), f'{component.external_references}')
 
     def test_simple(self) -> None:
         tests_poetry_lock_file = os.path.join(os.path.dirname(__file__), 'fixtures/poetry-lock-simple.txt')

@@ -117,8 +117,8 @@ class TestRequirementsParser(TestCase):
         # RequirementsFileParser can parse nested requirements files,
         # but RequirementsParser cannot.
         parser = RequirementsFileParser(
-            requirements_file=os.path.join(os.path.dirname(__file__),
-                                           'fixtures/requirements-local-and-remote-packages.txt')
+            requirements_filename=os.path.join(os.path.dirname(__file__),
+                                               'fixtures/requirements-local-and-remote-packages.txt')
         )
         components = parser.get_components()
 

@@ -23,17 +23,42 @@ from unittest import TestCase
 
 from cyclonedx.model import HashAlgorithm, HashType
 
-from cyclonedx_py.parser.conda import CondaListExplicitParser, CondaListJsonParser
+from cyclonedx_py.parser.conda import (
+    CondaListExplicitFileParser,
+    CondaListExplicitParser,
+    CondaListJsonFileParser,
+    CondaListJsonParser,
+)
 
 
 class TestCondaParser(TestCase):
 
-    def test_conda_list_json(self) -> None:
+    def test_conda_list_json_parser(self) -> None:
         conda_list_output_file = os.path.join(os.path.dirname(__file__),
                                               'fixtures/conda-list-output.json')
 
         with (open(conda_list_output_file, 'r')) as conda_list_output_fh:
             parser = CondaListJsonParser(conda_data=conda_list_output_fh.read())
+
+        self.assertEqual(34, parser.component_count())
+        components = parser.get_components()
+
+        c_idna = next(filter(lambda c: c.name == 'idna', components), None)
+        self.assertIsNotNone(c_idna)
+        self.assertEqual('idna', c_idna.name)
+        self.assertNotEqual(c_idna.purl.to_string(), c_idna.bom_ref.value)
+        self.assertEqual('2.10', c_idna.version)
+        self.assertEqual('pkg:conda/idna@2.10?build=pyhd3eb1b0_0&channel=pkgs/main&subdir=noarch',
+                         c_idna.purl.to_string())
+        self.assertEqual(1, len(c_idna.external_references), f'{c_idna.external_references}')
+        self.assertEqual(0, len(c_idna.external_references.pop().hashes))
+        self.assertEqual(0, len(c_idna.hashes), f'{c_idna.hashes}')
+
+    def test_conda_list_json(self) -> None:
+        conda_list_output_file = os.path.join(os.path.dirname(__file__),
+                                              'fixtures/conda-list-output.json')
+
+        parser = CondaListJsonFileParser(conda_filename=conda_list_output_file)
 
         self.assertEqual(34, parser.component_count())
         components = parser.get_components()
@@ -71,12 +96,34 @@ class TestCondaParser(TestCase):
         self.assertEqual(0, len(c_idna.external_references.pop().hashes))
         self.assertEqual(0, len(c_idna.hashes), f'{c_idna.hashes}')
 
-    def test_conda_list_explicit_md5(self) -> None:
+    def test_conda_list_explicit_parser(self) -> None:
         conda_list_output_file = os.path.join(os.path.dirname(__file__),
                                               'fixtures/conda-list-explicit-md5.txt')
 
         with (open(conda_list_output_file, 'r')) as conda_list_output_fh:
             parser = CondaListExplicitParser(conda_data=conda_list_output_fh.read())
+
+        self.assertEqual(34, parser.component_count())
+        components = parser.get_components()
+
+        c_idna = next(filter(lambda c: c.name == 'idna', components), None)
+        self.assertIsNotNone(c_idna)
+        self.assertEqual('idna', c_idna.name)
+        self.assertEqual('2.10', c_idna.version)
+        self.assertEqual('pkg:conda/idna@2.10?build=pyhd3eb1b0_0&channel=pkgs/main&subdir=noarch&type=tar.bz2',
+                         c_idna.purl.to_string())
+        self.assertEqual(1, len(c_idna.external_references), f'{c_idna.external_references}')
+        self.assertEqual(0, len(c_idna.external_references.pop().hashes))
+        self.assertEqual(1, len(c_idna.hashes), f'{c_idna.hashes}')
+        hash: HashType = c_idna.hashes.pop()
+        self.assertEqual(HashAlgorithm.MD5, hash.alg)
+        self.assertEqual('153ff132f593ea80aae2eea61a629c92', hash.content)
+
+    def test_conda_list_explicit_md5(self) -> None:
+        conda_list_output_file = os.path.join(os.path.dirname(__file__),
+                                              'fixtures/conda-list-explicit-md5.txt')
+
+        parser = CondaListExplicitFileParser(conda_filename=conda_list_output_file)
 
         self.assertEqual(34, parser.component_count())
         components = parser.get_components()

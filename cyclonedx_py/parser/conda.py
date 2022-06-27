@@ -96,6 +96,13 @@ class CondaListJsonParser(_BaseCondaParser):
                 self._conda_packages.append(conda_package)
 
 
+class CondaListJsonFileParser(CondaListJsonParser):
+
+    def __init__(self, conda_filename: str, use_purl_bom_ref: bool = False) -> None:
+        with open(conda_filename) as r:
+            super(CondaListJsonFileParser, self).__init__(conda_data=r.read(), use_purl_bom_ref=use_purl_bom_ref)
+
+
 class CondaListExplicitParser(_BaseCondaParser):
     """
     This parser is intended to receive the output from the command `conda list --explicit` or
@@ -108,3 +115,10 @@ class CondaListExplicitParser(_BaseCondaParser):
             conda_package = parse_conda_list_str_to_conda_package(conda_list_str=line)
             if conda_package:
                 self._conda_packages.append(conda_package)
+
+
+class CondaListExplicitFileParser(CondaListExplicitParser):
+
+    def __init__(self, conda_filename: str, use_purl_bom_ref: bool = False) -> None:
+        with open(conda_filename) as r:
+            super(CondaListExplicitFileParser, self).__init__(conda_data=r.read(), use_purl_bom_ref=use_purl_bom_ref)

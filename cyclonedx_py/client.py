@@ -30,11 +30,11 @@ from cyclonedx.model.bom import Bom
 from cyclonedx.output import BaseOutput, OutputFormat, SchemaVersion, get_instance as get_output_instance
 from cyclonedx.parser import BaseParser
 
-from .parser.conda import CondaListExplicitParser, CondaListJsonParser
+from .parser.conda import CondaListExplicitFileParser, CondaListJsonFileParser
 from .parser.environment import EnvironmentParser
-from .parser.pipenv import PipEnvParser
-from .parser.poetry import PoetryParser
-from .parser.requirements import RequirementsParser
+from .parser.pipenv import PipEnvFileParser
+from .parser.poetry import PoetryFileParser
+from .parser.requirements import RequirementsFileParser
 
 
 class CycloneDxCmdException(Exception):
@@ -277,26 +277,26 @@ class CycloneDxCmd:
                     f'No input file was supplied and no input was provided on STDIN:\n{str(e)}'
                 )
 
-        input_data_fh = self._arguments.input_source
-        with input_data_fh:
-            input_data = input_data_fh.read()
-            input_data_fh.close()
-
         if self._arguments.input_from_conda_explicit:
-            return CondaListExplicitParser(conda_data=input_data,
-                                           use_purl_bom_ref=self._arguments.use_purl_bom_ref)
+            return CondaListExplicitFileParser(
+                conda_filename=self._arguments.input_source,
+                use_purl_bom_ref=self._arguments.use_purl_bom_ref)
         elif self._arguments.input_from_conda_json:
-            return CondaListJsonParser(conda_data=input_data,
-                                       use_purl_bom_ref=self._arguments.use_purl_bom_ref)
+            return CondaListJsonFileParser(
+                conda_filename=self._arguments.input_source,
+                use_purl_bom_ref=self._arguments.use_purl_bom_ref)
         elif self._arguments.input_from_pip:
-            return PipEnvParser(pipenv_contents=input_data,
-                                use_purl_bom_ref=self._arguments.use_purl_bom_ref)
+            return PipEnvFileParser(
+                pipenv_filename=self._arguments.input_source,
+                use_purl_bom_ref=self._arguments.use_purl_bom_ref)
         elif self._arguments.input_from_poetry:
-            return PoetryParser(poetry_lock_contents=input_data,
-                                use_purl_bom_ref=self._arguments.use_purl_bom_ref)
+            return PoetryFileParser(
+                poetry_lock_filename=self._arguments.input_source,
+                use_purl_bom_ref=self._arguments.use_purl_bom_ref)
         elif self._arguments.input_from_requirements:
-            return RequirementsParser(requirements_content=input_data,
-                                      use_purl_bom_ref=self._arguments.use_purl_bom_ref)
+            return RequirementsFileParser(
+                requirements_filename=self._arguments.input_source,
+                use_purl_bom_ref=self._arguments.use_purl_bom_ref)
         else:
             raise CycloneDxCmdException('Parser type could not be determined.')
 
