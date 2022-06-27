@@ -287,7 +287,7 @@ class CycloneDxCmd:
                 use_purl_bom_ref=self._arguments.use_purl_bom_ref)
         elif self._arguments.input_from_pip:
             return PipEnvFileParser(
-                pipenv_filename=self._arguments.input_source,
+                pipenv_lock_filename=self._arguments.input_source,
                 use_purl_bom_ref=self._arguments.use_purl_bom_ref)
         elif self._arguments.input_from_poetry:
             return PoetryFileParser(
