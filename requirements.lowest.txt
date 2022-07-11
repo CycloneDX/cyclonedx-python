@@ -6,6 +6,6 @@ packageurl-python == 0.9
 importlib-metadata == 3.4.0 # ; python_version < '3.8'
 pip-requirements-parser == 31.2.0
 setuptools == 47.0.0
-types-setuptools == 57.0.0
+types-setuptools == 62.6.0
 toml == 0.10.0
 types-toml == 0.10.0
