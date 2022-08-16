@@ -5,8 +5,9 @@ description = "CycloneDX Software Bill of Materials (SBOM) generation utility"
 authors = ["Steven Springett <steve.springett@owasp.org>", "Paul Horton <phorton@sonatype.com>"]
 license = "Apache-2.0"
 readme = "README.md"
-homepage = "https://github.com/CycloneDX/cyclonedx-python"
+homepage = "https://github.com/CycloneDX/cyclonedx-python/#readme"
 repository = "https://github.com/CycloneDX/cyclonedx-python"
+documentation = "https://cyclonedx-bom-tool.readthedocs.io/"
 packages = [
     { include = "cyclonedx_py" }
 ]
