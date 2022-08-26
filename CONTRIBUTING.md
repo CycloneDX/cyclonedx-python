@@ -52,7 +52,7 @@ Please sign your commits,
 to show that you agree to publish your changes under the current terms and licenses of the project.
 
 ```shell
-git commit --signed-off ...
+git commit --signoff ...
 ```
 
 [poetry]: https://python-poetry.org
