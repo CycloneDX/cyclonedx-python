@@ -108,7 +108,7 @@ As example:
 
 **Poetry**
 
-We support parsing your ``poetry.lock`` file which should be committed along with your ``pyrpoject.toml`` and details
+We support parsing your ``poetry.lock`` file which should be committed along with your ``pyproject.toml`` and details
 exact pinned versions.
 
 You can then run ``cyclonedx-bom`` as follows:
