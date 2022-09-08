@@ -96,6 +96,9 @@ SBOM Output Configuration:
                         exists, it will be overwritten.
   -pb, --purl-bom-ref   Use a component's purl for the bom-ref value, instead
                         of a random UUID
+  --licence_output_format {expression,license} 
+                        The output format of the license of a component 
+                        (default: expression) 
 ```
 
 ### Advanced usage and details

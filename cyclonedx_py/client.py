@@ -32,6 +32,7 @@ from cyclonedx.parser import BaseParser
 
 from .parser.conda import CondaListExplicitParser, CondaListJsonParser
 from .parser.environment import EnvironmentParser
+from .parser.environment import LICENSE_OUTPUT_FORMAT
 from .parser.pipenv import PipEnvParser
 from .parser.poetry import PoetryParser
 from .parser.requirements import RequirementsParser
@@ -235,6 +236,12 @@ class CycloneDxCmd:
             '-pb', '--purl-bom-ref', action='store_true', dest='use_purl_bom_ref',
             help='Use a component''s purl for the bom-ref value, instead of a random UUID'
         )
+        output_group.add_argument(
+            '--license-format', action='store',
+            choices=[f.value for f in LICENSE_OUTPUT_FORMAT], default=LICENSE_OUTPUT_FORMAT.EXPRESSION.value,
+            help='The output format for licenses of components.',
+            dest='license_output_format'
+        )
 
         arg_parser.add_argument('-X', action='store_true', help='Enable debug output', dest='debug_enabled')
 
@@ -251,7 +258,7 @@ class CycloneDxCmd:
 
     def _get_input_parser(self) -> BaseParser:
         if self._arguments.input_from_environment:
-            return EnvironmentParser()
+            return EnvironmentParser(self._arguments.license_output_format)
 
         # All other Parsers will require some input - grab it now!
         if not self._arguments.input_source:

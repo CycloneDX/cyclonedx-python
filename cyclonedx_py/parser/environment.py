@@ -29,6 +29,7 @@ The Environment Parsers support population of the following data about Component
 """
 
 import sys
+import enum
 
 # See https://github.com/package-url/packageurl-python/issues/65
 from packageurl import PackageURL  # type: ignore
@@ -43,9 +44,15 @@ if sys.version_info >= (3, 8):
 else:
     from importlib_metadata import metadata, PackageMetadata as _MetadataReturn
 
-from cyclonedx.model import LicenseChoice
+from cyclonedx.model import License, LicenseChoice
 from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser
+
+
+@enum.unique
+class LICENSE_OUTPUT_FORMAT(enum.Enum):
+    EXPRESSION = 'expression'
+    LICENSE = 'license'
 
 
 class EnvironmentParser(BaseParser):
@@ -55,7 +62,7 @@ class EnvironmentParser(BaseParser):
     Best used when you have virtual Python environments per project.
     """
 
-    def __init__(self, use_purl_bom_ref: bool = False) -> None:
+    def __init__(self, use_purl_bom_ref: bool = False, licence_output_format: str = 'expression') -> None:
         super().__init__()
 
         import pkg_resources
@@ -71,16 +78,24 @@ class EnvironmentParser(BaseParser):
                 c.author = i_metadata['Author']
 
             if 'License' in i_metadata and i_metadata['License'] != 'UNKNOWN':
-                c.licenses.add(LicenseChoice(license_expression=i_metadata['License']))
+                if licence_output_format == 'expression':
+                    c.licenses.add(LicenseChoice(license_expression=i_metadata['License']))
+                else:
+                    c.licenses.add(LicenseChoice(license_=License(license_name=i_metadata['License'])))
 
-            if 'Classifier' in i_metadata:
-                for classifier in i_metadata['Classifier']:
-                    if str(classifier).startswith('License :: OSI Approved :: '):
-                        c.licenses.add(
-                            LicenseChoice(
-                                license_expression=str(classifier).replace('License :: OSI Approved :: ', '').strip()
+            elif 'Classifier' in i_metadata:
+                for msg_header in i_metadata.items():
+                    if str(msg_header[0]) == 'Classifier' and \
+                            str(msg_header[1]).startswith('License :: OSI Approved :: '):
+                        class_license = str(msg_header[1]).replace('License :: OSI Approved :: ', "").strip()
+                        if licence_output_format == 'expression':
+                            c.licenses.add(
+                                LicenseChoice(
+                                    license_expression=class_license
+                                )
                             )
-                        )
+                        else:
+                            c.licenses.add(LicenseChoice(license_=License(license_name=class_license)))
 
             self._components.append(c)
 
