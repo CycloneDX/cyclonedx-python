@@ -31,8 +31,7 @@ from cyclonedx.output import BaseOutput, OutputFormat, SchemaVersion, get_instan
 from cyclonedx.parser import BaseParser
 
 from .parser.conda import CondaListExplicitParser, CondaListJsonParser
-from .parser.environment import EnvironmentParser
-from .parser.environment import LICENSE_OUTPUT_FORMAT
+from .parser.environment import EnvironmentParser, LicenseOutputFormat
 from .parser.pipenv import PipEnvParser
 from .parser.poetry import PoetryParser
 from .parser.requirements import RequirementsParser
@@ -238,7 +237,7 @@ class CycloneDxCmd:
         )
         output_group.add_argument(
             '--license-format', action='store',
-            choices=[f.value for f in LICENSE_OUTPUT_FORMAT], default=LICENSE_OUTPUT_FORMAT.EXPRESSION.value,
+            choices=[f.value for f in LicenseOutputFormat], default=LicenseOutputFormat.EXPRESSION,
             help='The output format for licenses of components.',
             dest='license_output_format'
         )
@@ -258,7 +257,7 @@ class CycloneDxCmd:
 
     def _get_input_parser(self) -> BaseParser:
         if self._arguments.input_from_environment:
-            return EnvironmentParser(self._arguments.license_output_format)
+            return EnvironmentParser(licence_output_format=self._arguments.license_output_format)
 
         # All other Parsers will require some input - grab it now!
         if not self._arguments.input_source:

@@ -28,8 +28,8 @@ The Environment Parsers support population of the following data about Component
 
 """
 
-import sys
 import enum
+import sys
 
 # See https://github.com/package-url/packageurl-python/issues/65
 from packageurl import PackageURL  # type: ignore
@@ -50,7 +50,7 @@ from cyclonedx.parser import BaseParser
 
 
 @enum.unique
-class LICENSE_OUTPUT_FORMAT(enum.Enum):
+class LicenseOutputFormat(enum.Enum):
     EXPRESSION = 'expression'
     LICENSE = 'license'
 
@@ -62,7 +62,8 @@ class EnvironmentParser(BaseParser):
     Best used when you have virtual Python environments per project.
     """
 
-    def __init__(self, use_purl_bom_ref: bool = False, licence_output_format: str = 'expression') -> None:
+    def __init__(self, use_purl_bom_ref: bool = False,
+                 licence_output_format: LicenseOutputFormat = LicenseOutputFormat.EXPRESSION) -> None:
         super().__init__()
 
         import pkg_resources
@@ -78,24 +79,23 @@ class EnvironmentParser(BaseParser):
                 c.author = i_metadata['Author']
 
             if 'License' in i_metadata and i_metadata['License'] != 'UNKNOWN':
-                if licence_output_format == 'expression':
+                if licence_output_format == LicenseOutputFormat.EXPRESSION:
                     c.licenses.add(LicenseChoice(license_expression=i_metadata['License']))
                 else:
                     c.licenses.add(LicenseChoice(license_=License(license_name=i_metadata['License'])))
 
             elif 'Classifier' in i_metadata:
-                for msg_header in i_metadata.items():
-                    if str(msg_header[0]) == 'Classifier' and \
-                            str(msg_header[1]).startswith('License :: OSI Approved :: '):
-                        class_license = str(msg_header[1]).replace('License :: OSI Approved :: ', "").strip()
-                        if licence_output_format == 'expression':
+                for cl_header in i_metadata.get_all(name='Classifier'):
+                    if str(cl_header).startswith('License :: OSI Approved :: '):
+                        cl_license = str(cl_header).replace('License :: OSI Approved :: ', "").strip()
+                        if licence_output_format == LicenseOutputFormat.EXPRESSION:
                             c.licenses.add(
                                 LicenseChoice(
-                                    license_expression=class_license
+                                    license_expression=cl_license
                                 )
                             )
                         else:
-                            c.licenses.add(LicenseChoice(license_=License(license_name=class_license)))
+                            c.licenses.add(LicenseChoice(license_=License(license_name=cl_license)))
 
             self._components.append(c)
 
