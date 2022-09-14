@@ -10,14 +10,14 @@ Once installed, you can call the tool via the following methods:
 
     $ python3 -m cyclonedx_py
     $ cyclonedx-py
-    $ cyclonedx-bom
+    $ cyclonedx-bom  # deprecated
 
 The full documentation can be issued by running with ``--help``:
 
 .. code-block:: bash
 
-    $ cyclonedx-bom --help
-    usage: cyclonedx-bom [-h] (-c | -cj | -e | -p | -pip | -r) [-i FILE_PATH]
+    $ cyclonedx-py --help
+    usage: cyclonedx-py [-h] (-c | -cj | -e | -p | -pip | -r) [-i FILE_PATH]
                      [--format {json,xml}] [--schema-version {1.4,1.3,1.2,1.1,1.0}]
                      [-o FILE_PATH] [-F] [-X]
 
@@ -48,7 +48,7 @@ The full documentation can be issued by running with ``--help``:
       -X                    Enable debug output
 
     Input Method:
-      Flags to determine how `cyclonedx-bom` obtains it's input
+      Flags to determine how this tool obtains it's input
 
       -i FILE_PATH, --in-file FILE_PATH
                             File to read input from, or STDIN if not specified
@@ -79,7 +79,7 @@ Simply run:
 
 .. code-block:: bash
 
-    cyclonedx-bom -e -o -
+    cyclonedx-py -e -o -
 
 
 This will generate a CycloneDX including all packages installed in your current Python environment and output to STDOUT
@@ -104,25 +104,25 @@ As example:
 
 .. code-block:: bash
 
-    conda list --explicit --md5 | cyclonedx-bom -c -o cyclonedx.xml
+    conda list --explicit --md5 | cyclonedx-py -c -o cyclonedx.xml
 
 **Poetry**
 
 We support parsing your ``poetry.lock`` file which should be committed along with your ``pyproject.toml`` and details
 exact pinned versions.
 
-You can then run ``cyclonedx-bom`` as follows:
+You can then run ``cyclonedx-py`` as follows:
 
 .. code-block:: bash
 
-    cyclonedx-bom -p -i PATH/TO/poetry.lock -o sbom.xml
+    cyclonedx-py -p -i PATH/TO/poetry.lock -o sbom.xml
 
 
 If your ``poetry.lock`` is in the current working directory, you can also shorten this to:
 
 .. code-block:: bash
 
-    cyclonedx-bom -p -o sbom.xml
+    cyclonedx-py -p -o sbom.xml
 
 **Pip**
 
@@ -132,14 +132,14 @@ You can then run ``cyclonedx-bom`` as follows:
 
 .. code-block:: bash
 
-    cyclonedx-bom -pip -i PATH/TO/Pipfile.lock -o sbom.xml
+    cyclonedx-py -pip -i PATH/TO/Pipfile.lock -o sbom.xml
 
 
 If your ``Pipfile.lock`` is in the current working directory, you can also shorten this to:
 
 .. code-block:: bash
 
-    cyclonedx-bom -pip -o sbom.xml
+    cyclonedx-pu -pip -o sbom.xml
 
 
 **Requirements**
@@ -156,13 +156,13 @@ You can then run ``cyclonedx-bom`` as follows:
 
 .. code-block:: bash
 
-    cyclonedx-bom -r -i PATH/TO/requirements.txt -o sbom.xml
+    cyclonedx-py -r -i PATH/TO/requirements.txt -o sbom.xml
 
 If your ``requirements.txt`` is in the current working directory, you can also shorten this to:
 
 .. code-block:: bash
 
-    cyclonedx-bom -r -o sbom.xml
+    cyclonedx-py -r -o sbom.xml
 
 
 This will generate a CycloneDX and output to STDOUT in XML using the default schema version `1.3`.
