@@ -42,11 +42,18 @@ poetry add cyclonedx-bom
 
 ## Usage
 
+Call via one of commands:
+
+```shell
+cyclonedx-py
+python3 -m cyclonedx_py
+```
+
 ## Basic usage
 
 ```text
-$ cyclonedx-bom --help
-usage: cyclonedx-bom [-h] (-c | -cj | -e | -p | -pip | -r) [-i FILE_PATH]
+$ cyclonedx-py --help
+usage: cyclonedx-py [-h] (-c | -cj | -e | -p | -pip | -r) [-i FILE_PATH]
                  [--format {json,xml}] [--schema-version {1.4,1.3,1.2,1.1,1.0}]
                  [-o FILE_PATH] [-F] [-X]
 
@@ -77,7 +84,7 @@ optional arguments:
   -X                    Enable debug output
 
 Input Method:
-  Flags to determine how `cyclonedx-bom` obtains it's input
+  Flags to determine how this tool obtains it's input
 
   -i FILE_PATH, --in-file FILE_PATH
                         File to read input from. Use "-" to read from STDIN.
