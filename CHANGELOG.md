@@ -2,6 +2,14 @@
 
 <!--next-version-placeholder-->
 
+## v3.6.0 (2022-09-16)
+### Feature
+* Enable dependency `cyclonedx-python-lib@^3` ([#418](https://github.com/CycloneDX/cyclonedx-python/issues/418)) ([`05cd51e`](https://github.com/CycloneDX/cyclonedx-python/commit/05cd51e1da261d29fb5c3e1722544a8f00a0cfcd))
+
+### Documentation
+* Describe `cyclonedx-py` rather than `cyclonedx-bom` ([`c04196e`](https://github.com/CycloneDX/cyclonedx-python/commit/c04196e4404efc0513676e5baefeaf03e6b3b8e3))
+* Minor updates to poetry usage details & contributing.md ([#407](https://github.com/CycloneDX/cyclonedx-python/issues/407)) ([`0abe230`](https://github.com/CycloneDX/cyclonedx-python/commit/0abe23049b5423f55b3e0951a00047f4e3f93056))
+
 ## v3.5.0 (2022-06-27)
 ### Feature
 * Optionally force `bom_ref` to be `purl` rather that the default random UUID format - thanks @RodneyRichardson ([`9659d08`](https://github.com/CycloneDX/cyclonedx-python/commit/9659d08f524fd1ea2eb34234f2449105feb93f62))
