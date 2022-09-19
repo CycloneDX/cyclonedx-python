@@ -32,7 +32,7 @@ jobs:
           python -m pip install poetry=="$POETRY_VERSION" --upgrade pip
           poetry config virtualenvs.create false
           poetry install
-          python -m pip install python-semantic-release
+          python -m pip install packaging python-semantic-release
       - name: Apply Pre Release Version
         run: |
           RC_VERSION="$(semantic-release --noop --major print-version)-${{ github.event.inputs.release_candidate_suffix }}"
