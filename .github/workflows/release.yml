@@ -57,10 +57,6 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERISON }}
-      - name: fixes
-        # run some tings that the `python-semantic-release` requires, but does not :-/
-        run: |
-          python -m pip install packaging
       - name: Setup poetry ${{ env.POETRY_VERSION }}
         # see https://github.com/marketplace/actions/setup-poetry
         uses: Gr1N/setup-poetry@v7
@@ -76,7 +72,7 @@ jobs:
         id: semantic-release
         # see https://python-semantic-release.readthedocs.io/en/latest/automatic-releases/github-actions.html
         # see https://github.com/relekang/python-semantic-release
-        uses: relekang/python-semantic-release@v7.28.1
+        uses: relekang/python-semantic-release@v7.31.4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           repository_username: __token__
