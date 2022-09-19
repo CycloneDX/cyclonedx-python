@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v3.6.2 (2022-09-19)
+### Fix
+* CI release pipeline ([`6515071`](https://github.com/CycloneDX/cyclonedx-python/commit/6515071fc95d2b460577d0fbceb7d6c34a18c508))
+
 ## v3.6.1 (2022-09-19)
 ### Fix
 * Properly declare licenses from environment ([#417](https://github.com/CycloneDX/cyclonedx-python/issues/417)) ([`25f9e29`](https://github.com/CycloneDX/cyclonedx-python/commit/25f9e29a162f20918b6f1bbe887cc7b18c623c16))
