@@ -43,7 +43,7 @@ if sys.version_info >= (3, 8):
 else:
     from importlib_metadata import metadata, PackageMetadata as _MetadataReturn
 
-from cyclonedx.model import LicenseChoice
+from cyclonedx.model import License, LicenseChoice
 from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser
 
@@ -71,16 +71,22 @@ class EnvironmentParser(BaseParser):
                 c.author = i_metadata['Author']
 
             if 'License' in i_metadata and i_metadata['License'] != 'UNKNOWN':
-                c.licenses.add(LicenseChoice(license_expression=i_metadata['License']))
+                # Values might be ala `MIT` (SPDX id), `Apache-2.0 license` (arbitrary string), ...
+                # Therefore, just go with a named license.
+                c.licenses.add(LicenseChoice(license_=License(license_name=i_metadata['License'])))
 
             if 'Classifier' in i_metadata:
                 for classifier in i_metadata['Classifier']:
+                    # Trove classifiers - https://packaging.python.org/specifications/core-metadata/#metadata-classifier
+                    # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
                     if str(classifier).startswith('License :: OSI Approved :: '):
-                        c.licenses.add(
-                            LicenseChoice(
-                                license_expression=str(classifier).replace('License :: OSI Approved :: ', '').strip()
-                            )
-                        )
+                        c.licenses.add(LicenseChoice(license_=License(
+                            license_name=str(classifier).replace('License :: OSI Approved :: ', '').strip()
+                        )))
+                    elif str(classifier).startswith('License :: '):
+                        c.licenses.add(LicenseChoice(license_=License(
+                            license_name=str(classifier).replace('License :: ', '').strip()
+                        )))
 
             self._components.append(c)
 
