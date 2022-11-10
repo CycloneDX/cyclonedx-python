@@ -30,7 +30,7 @@ env:
   DIST_DIR: dist
   DIST_ARTIFACT: python-dist
   PYTHON_VERISON: "3.10"
-  POETRY_VERSION: "1.1.11"
+  POETRY_VERSION: "1.1.15"
 
 jobs:
   release-PyPI:
