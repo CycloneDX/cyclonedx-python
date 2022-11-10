@@ -251,7 +251,7 @@ class CycloneDxCmd:
 
     def _get_input_parser(self) -> BaseParser:
         if self._arguments.input_from_environment:
-            return EnvironmentParser()
+            return EnvironmentParser(use_purl_bom_ref=self._arguments.use_purl_bom_ref)
 
         # All other Parsers will require some input - grab it now!
         if not self._arguments.input_source:
