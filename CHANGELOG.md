@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v3.7.1 (2022-11-10)
+### Fix
+* **EnvironmentParser:** Reduced crashes if no Classifiers are found ([#441](https://github.com/CycloneDX/cyclonedx-python/issues/441)) ([`67f56e7`](https://github.com/CycloneDX/cyclonedx-python/commit/67f56e7bfa4fb9d50654ebd07ece1ad14377a355))
+
 ## v3.7.0 (2022-11-10)
 ### Feature
 * Pass purl-bom-ref to EnvironmentParser ([#432](https://github.com/CycloneDX/cyclonedx-python/issues/432)) ([`7cfefeb`](https://github.com/CycloneDX/cyclonedx-python/commit/7cfefeb389b3c63b69ad93aeca1a709231da2901))
