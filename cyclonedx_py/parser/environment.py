@@ -75,18 +75,17 @@ class EnvironmentParser(BaseParser):
                 # Therefore, just go with a named license.
                 c.licenses.add(LicenseChoice(license_=License(license_name=i_metadata['License'])))
 
-            if 'Classifier' in i_metadata:
-                for classifier in i_metadata['Classifier']:
-                    # Trove classifiers - https://packaging.python.org/specifications/core-metadata/#metadata-classifier
-                    # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
-                    if str(classifier).startswith('License :: OSI Approved :: '):
-                        c.licenses.add(LicenseChoice(license_=License(
-                            license_name=str(classifier).replace('License :: OSI Approved :: ', '').strip()
-                        )))
-                    elif str(classifier).startswith('License :: '):
-                        c.licenses.add(LicenseChoice(license_=License(
-                            license_name=str(classifier).replace('License :: ', '').strip()
-                        )))
+            for classifier in i_metadata.get_all("Classifier"):
+                # Trove classifiers - https://packaging.python.org/specifications/core-metadata/#metadata-classifier
+                # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
+                if str(classifier).startswith('License :: OSI Approved :: '):
+                    c.licenses.add(LicenseChoice(license_=License(
+                        license_name=str(classifier).replace('License :: OSI Approved :: ', '').strip()
+                    )))
+                elif str(classifier).startswith('License :: '):
+                    c.licenses.add(LicenseChoice(license_=License(
+                        license_name=str(classifier).replace('License :: ', '').strip()
+                    )))
 
             self._components.append(c)
 

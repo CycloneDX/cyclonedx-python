@@ -19,6 +19,8 @@
 
 from unittest import TestCase
 
+from cyclonedx.model import License, LicenseChoice
+
 from cyclonedx_py.parser.environment import EnvironmentParser
 
 
@@ -39,7 +41,9 @@ class TestEnvironmentParser(TestCase):
         self.assertIsNotNone(c_tox)
         self.assertNotEqual(c_tox.purl.to_string(), c_tox.bom_ref.value)
         self.assertIsNotNone(c_tox.licenses)
-        self.assertEqual('MIT', c_tox.licenses.pop().license.name)
+        self.assertEqual(len(c_tox.licenses), 2)
+        self.assertEqual({LicenseChoice(license_=License(license_name="MIT License")),
+                          LicenseChoice(license_=License(license_name="MIT"))}, c_tox.licenses)
 
     def test_simple_use_purl_bom_ref(self) -> None:
         """
@@ -56,4 +60,6 @@ class TestEnvironmentParser(TestCase):
         self.assertIsNotNone(c_tox)
         self.assertEqual(c_tox.purl.to_string(), c_tox.bom_ref.value)
         self.assertIsNotNone(c_tox.licenses)
-        self.assertEqual('MIT', c_tox.licenses.pop().license.name)
+        self.assertEqual(len(c_tox.licenses), 2)
+        self.assertEqual({LicenseChoice(license_=License(license_name="MIT License")),
+                          LicenseChoice(license_=License(license_name="MIT"))}, c_tox.licenses)
