@@ -47,7 +47,7 @@ toml = "^0.10.0"
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.6.0"
 isort = { version = "^5.10.0", python = ">= 3.6.1" }
-tox = "^3.25.1"
+tox = "^3.27.0"
 coverage = [
    { python = ">=3.6,<3.7", version = "^6.2", extras = ["toml"] },
    { python = ">=3.7",      version = "^6.5", extras = ["toml"] },
