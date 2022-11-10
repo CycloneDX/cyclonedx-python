@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v3.7.0 (2022-11-10)
+### Feature
+* Pass purl-bom-ref to EnvironmentParser ([#432](https://github.com/CycloneDX/cyclonedx-python/issues/432)) ([`7cfefeb`](https://github.com/CycloneDX/cyclonedx-python/commit/7cfefeb389b3c63b69ad93aeca1a709231da2901))
+
 ## v3.6.4 (2022-11-10)
 ### Fix
 * **EnvironmentParser:** Remove code break when classifier parsing in py>=3.8 ([#431](https://github.com/CycloneDX/cyclonedx-python/issues/431)) ([`4ab075e`](https://github.com/CycloneDX/cyclonedx-python/commit/4ab075ee814571a8dc8c1e7b962686b232619330))
