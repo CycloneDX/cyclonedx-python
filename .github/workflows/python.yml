@@ -29,8 +29,8 @@ on:
 
 env:
   REPORTS_DIR: CI_reports
-  PYTHON_VERISON_DEFAULT: "3.10"
-  POETRY_VERSION: "1.1.11"
+  PYTHON_VERISON_DEFAULT: "3.11"
+  POETRY_VERSION: "1.1.15"
 
 jobs:
   coding-standards:
@@ -66,7 +66,7 @@ jobs:
       matrix:
         include:
           - # test with the locked dependencies
-            python-version: '3.10'
+            python-version: '3.11'
             toxenv-factor: 'locked'
           - # test with the lowest dependencies
             python-version: '3.6'
@@ -102,7 +102,8 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
         python-version:
-          - "3.10" # highest supported
+          - "3.11" # highest supported
+          - "3.10"
           - "3.9"
           - "3.8"
           - "3.7"
@@ -113,6 +114,10 @@ jobs:
             os: 'ubuntu-latest'
             python-version: '3.6'
             toxenv-factor: 'lowest'
+        exclude:
+          - # broken poetry installer - see https://github.com/CycloneDX/cyclonedx-python/actions/runs/3435061093/jobs/5727124247#step:6:15
+            os: 'macos-latest'
+            python-version: '3.11'
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
