@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v3.6.4 (2022-11-10)
+### Fix
+* **EnvironmentParser:** Remove code break when classifier parsing in py>=3.8 ([#431](https://github.com/CycloneDX/cyclonedx-python/issues/431)) ([`4ab075e`](https://github.com/CycloneDX/cyclonedx-python/commit/4ab075ee814571a8dc8c1e7b962686b232619330))
+
 ## v3.6.3 (2022-09-19)
 ### Fix
 * CI release pipeline ([`99ccdc6`](https://github.com/CycloneDX/cyclonedx-python/commit/99ccdc671f5a7a941f31199813bce71405bbfdd8))
