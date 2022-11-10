@@ -48,7 +48,10 @@ toml = "^0.10.0"
 autopep8 = "^1.6.0"
 isort = { version = "^5.10.0", python = ">= 3.6.1" }
 tox = "^3.25.1"
-coverage = "^6.2"
+coverage = [
+   { python = ">=3.6,<3.7", version = "^6.2", extras = ["toml"] },
+   { python = ">=3.7",      version = "^6.5", extras = ["toml"] },
+]
 mypy = "^0.971"
 flake8 = "^4.0.1"
 flake8-annotations = {version = "^2.7.0", python = ">= 3.6.2"}
