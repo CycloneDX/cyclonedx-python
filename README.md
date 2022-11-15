@@ -69,16 +69,16 @@ optional arguments:
                         Build a SBOM based on the packages installed in your
                         current Python environment (default)
   -p, --p, --poetry     Build a SBOM based on a Poetry poetry.lock's contents.
-                        Use with -i to specify absolute pathto a `poetry.lock`
+                        Use with -i to specify absolute path to a `poetry.lock`
                         you wish to use, else we'll look for one in the
                         current working directory.
   -pip, --pip           Build a SBOM based on a PipEnv Pipfile.lock's
-                        contents. Use with -i to specify absolute pathto a
+                        contents. Use with -i to specify absolute path to a
                         `Pipefile.lock` you wish to use, else we'll look for
                         one in the current working directory.
   -r, --r, --requirements
                         Build a SBOM based on a requirements.txt's contents.
-                        Use with -i to specify absolute pathto a
+                        Use with -i to specify absolute path to a
                         `requirements.txt` you wish to use, else we'll look
                         for one in the current working directory.
   -X                    Enable debug output
