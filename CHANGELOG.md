@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v3.7.2 (2022-11-15)
+### Fix
+* Add a missing space in the help pages `pathto` -> `path to` ([#443](https://github.com/CycloneDX/cyclonedx-python/issues/443)) ([`bc5fe57`](https://github.com/CycloneDX/cyclonedx-python/commit/bc5fe5760565e608387ad7638126869550d65213))
+
 ## v3.7.1 (2022-11-10)
 ### Fix
 * **EnvironmentParser:** Reduced crashes if no Classifiers are found ([#441](https://github.com/CycloneDX/cyclonedx-python/issues/441)) ([`67f56e7`](https://github.com/CycloneDX/cyclonedx-python/commit/67f56e7bfa4fb9d50654ebd07ece1ad14377a355))
