@@ -23,7 +23,7 @@ import enum
 import os
 import sys
 from datetime import datetime
-from typing import Optional
+from typing import List, Optional
 
 from cyclonedx.model import Tool
 from cyclonedx.model.bom import Bom
@@ -116,7 +116,10 @@ class CycloneDxCmd:
         else:
             from importlib.metadata import version as _md_version
         _this_tool_name = 'cyclonedx-bom'
-        _this_tool_version: Optional[str] = _md_version(_this_tool_name)
+        try:
+            _this_tool_version: Optional[str] = _md_version(_this_tool_name)
+        except:
+            _this_tool_version: Optional[str] = None
         bom.metadata.tools.add(Tool(
             vendor='CycloneDX',
             name=_this_tool_name,
@@ -161,7 +164,7 @@ class CycloneDxCmd:
     def get_arg_parser(*, prog: Optional[str] = None) -> argparse.ArgumentParser:
         arg_parser = argparse.ArgumentParser(prog=prog, description='CycloneDX SBOM Generator')
 
-        input_group = arg_parser.add_mutually_exclusive_group(required=True)
+        input_group = arg_parser.add_mutually_exclusive_group(required=False)
         input_group.add_argument(
             '-c', '--conda', action='store_true',
             help='Build a SBOM based on the output from `conda list --explicit` or `conda list --explicit --md5`',
@@ -172,7 +175,7 @@ class CycloneDxCmd:
             help='Build a SBOM based on the output from `conda list --json`',
             dest='input_from_conda_json'
         )
-        input_group.add_argument(
+        arg_parser.add_argument(
             '-e', '--e', '--environment', action='store_true',
             help='Build a SBOM based on the packages installed in your current Python environment (default)',
             dest='input_from_environment'
@@ -250,8 +253,18 @@ class CycloneDxCmd:
         exit(exit_code)
 
     def _get_input_parser(self) -> BaseParser:
+        if self._arguments.input_source:
+            input_data_fh = self._arguments.input_source
+            with input_data_fh:
+                input_data = input_data_fh.read()
+                input_data_fh.close()
+
         if self._arguments.input_from_environment:
-            return EnvironmentParser(use_purl_bom_ref=self._arguments.use_purl_bom_ref)
+            req_names: Optional[List[str]] = None
+            if self._arguments.input_source and self._arguments.input_from_requirements:
+                req_names = RequirementsParser(requirements_content=input_data).req_names
+
+            return EnvironmentParser(use_purl_bom_ref=self._arguments.use_purl_bom_ref, pkg_filter=req_names)
 
         # All other Parsers will require some input - grab it now!
         if not self._arguments.input_source:
@@ -276,11 +289,6 @@ class CycloneDxCmd:
                 raise CycloneDxCmdNoInputFileSupplied(
                     f'No input file was supplied and no input was provided on STDIN:\n{str(e)}'
                 )
-
-        input_data_fh = self._arguments.input_source
-        with input_data_fh:
-            input_data = input_data_fh.read()
-            input_data_fh.close()
 
         if self._arguments.input_from_conda_explicit:
             return CondaListExplicitParser(conda_data=input_data,

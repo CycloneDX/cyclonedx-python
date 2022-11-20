@@ -20,7 +20,7 @@
 import os
 import os.path
 from tempfile import NamedTemporaryFile, _TemporaryFileWrapper  # Weak error
-from typing import Any, Optional
+from typing import Any, List, Optional
 
 from cyclonedx.model import HashType
 from cyclonedx.model.component import Component
@@ -75,6 +75,8 @@ class RequirementsParser(BaseParser):
 
         if requirements_file:
             os.unlink(requirements_file.name)
+
+        self.req_names: List[str] = [req.name for req in parsed_rf.requirements] if parsed_rf is not None else []
 
 
 class RequirementsFileParser(RequirementsParser):

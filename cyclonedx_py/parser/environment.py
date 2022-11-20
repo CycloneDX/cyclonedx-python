@@ -29,6 +29,7 @@ The Environment Parsers support population of the following data about Component
 """
 
 import sys
+from typing import List, Optional
 
 # See https://github.com/package-url/packageurl-python/issues/65
 from packageurl import PackageURL  # type: ignore
@@ -51,17 +52,20 @@ from cyclonedx.parser import BaseParser
 class EnvironmentParser(BaseParser):
     """
     This will look at the current Python environment and list out all installed packages.
+    An optional filter list of package names can be considered.
 
     Best used when you have virtual Python environments per project.
     """
 
-    def __init__(self, use_purl_bom_ref: bool = False) -> None:
+    def __init__(self, use_purl_bom_ref: bool = False, pkg_filter: Optional[List[str]] = None) -> None:
         super().__init__()
 
         import pkg_resources
 
         i: DistInfoDistribution
         for i in iter(pkg_resources.working_set):
+            if bool(pkg_filter) and i.project_name not in pkg_filter:
+                continue
             purl = PackageURL(type='pypi', name=i.project_name, version=i.version)
             bom_ref = purl.to_string() if use_purl_bom_ref else None
             c = Component(name=i.project_name, bom_ref=bom_ref, version=i.version, purl=purl)
