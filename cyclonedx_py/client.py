@@ -253,18 +253,8 @@ class CycloneDxCmd:
         exit(exit_code)
 
     def _get_input_parser(self) -> BaseParser:
-        if self._arguments.input_source:
-            input_data_fh = self._arguments.input_source
-            with input_data_fh:
-                input_data = input_data_fh.read()
-                input_data_fh.close()
-
-        if self._arguments.input_from_environment:
-            req_names: Optional[List[str]] = None
-            if self._arguments.input_source and self._arguments.input_from_requirements:
-                req_names = RequirementsParser(requirements_content=input_data).req_names
-
-            return EnvironmentParser(use_purl_bom_ref=self._arguments.use_purl_bom_ref, pkg_filter=req_names)
+        if self._arguments.input_from_environment and not self._arguments.input_from_requirements:
+            return EnvironmentParser(use_purl_bom_ref=self._arguments.use_purl_bom_ref)
 
         # All other Parsers will require some input - grab it now!
         if not self._arguments.input_source:
@@ -289,6 +279,18 @@ class CycloneDxCmd:
                 raise CycloneDxCmdNoInputFileSupplied(
                     f'No input file was supplied and no input was provided on STDIN:\n{str(e)}'
                 )
+
+        input_data_fh = self._arguments.input_source
+        with input_data_fh:
+            input_data = input_data_fh.read()
+            input_data_fh.close()
+
+        if self._arguments.input_from_environment:
+            req_names: Optional[List[str]] = None
+            if self._arguments.input_from_requirements:
+                req_names = RequirementsParser(requirements_content=input_data).req_names
+
+            return EnvironmentParser(use_purl_bom_ref=self._arguments.use_purl_bom_ref, pkg_filter=req_names)
 
         if self._arguments.input_from_conda_explicit:
             return CondaListExplicitParser(conda_data=input_data,
