@@ -64,7 +64,7 @@ class EnvironmentParser(BaseParser):
 
         i: DistInfoDistribution
         for i in iter(pkg_resources.working_set):
-            if bool(pkg_filter) and i.project_name not in pkg_filter:
+            if pkg_filter is not None and i.project_name not in pkg_filter:
                 continue
             purl = PackageURL(type='pypi', name=i.project_name, version=i.version)
             bom_ref = purl.to_string() if use_purl_bom_ref else None
