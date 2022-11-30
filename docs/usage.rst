@@ -31,27 +31,37 @@ The full documentation can be issued by running with ``--help``:
                             --json`
       -e, --e, --environment
                             Build a SBOM based on the packages installed in your
-                            current Python environment (default)
-      -p, --p, --poetry     Build a SBOM based on a Poetry poetry.lock's contents.
+                            current Python environment (default).
+
+                            Use with -i to specify absolute path to a `requirements.txt`
+                            you wish to use for filtering packages.
+
+                            User with --location-filter to filter packages based on
+                            their installation location.
+      -p, --p, --poetry     Build a SBOM based on a Poetry poetry.lock''s contents.
                             Use with -i to specify absolute path to a `poetry.lock`
-                            you wish to use, else we'll look for one in the
+                            you wish to use, else we''ll look for one in the
                             current working directory.
-      -pip, --pip           Build a SBOM based on a PipEnv Pipfile.lock's
+      -pip, --pip           Build a SBOM based on a PipEnv Pipfile.lock''s
                             contents. Use with -i to specify absolute path to a
-                            `Pipefile.lock` you wish to use, else we'll look for
+                            `Pipefile.lock` you wish to use, else we''ll look for
                             one in the current working directory.
       -r, --r, --requirements
-                            Build a SBOM based on a requirements.txt's contents.
+                            Build a SBOM based on a requirements.txt''s contents.
                             Use with -i to specify absolute path to a
-                            `requirements.txt` you wish to use, else we'll look
+                            `requirements.txt` you wish to use, else we''ll look
                             for one in the current working directory.
       -X                    Enable debug output
 
     Input Method:
-      Flags to determine how this tool obtains it's input
+      Flags to determine how this tool obtains it''s input
 
       -i FILE_PATH, --in-file FILE_PATH
                             File to read input from, or STDIN if not specified
+
+      --location-filter     When building a SBOM from your current Python environment
+                            (Option -e) only those packages which are located in one
+                            of the specified paths will be considered.
 
     SBOM Output Configuration:
       Choose the output format and schema version
