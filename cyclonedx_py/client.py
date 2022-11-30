@@ -206,6 +206,13 @@ class CycloneDxCmd:
             default=None,
             help='File to read input from. Use "-" to read from STDIN.', dest='input_source', required=False
         )
+        input_method_group.add_argument(
+            '--location-filter', action='store',
+            default=None, nargs='+',
+            help='When building a SBOM from your current Python environment (Option -e) '
+                 'only those packages which are located in one of the specified paths will be considered',
+            dest='location_filter', required=False
+        )
 
         output_group = arg_parser.add_argument_group(
             title='SBOM Output Configuration',
@@ -251,7 +258,14 @@ class CycloneDxCmd:
 
     def _get_input_parser(self) -> BaseParser:
         if self._arguments.input_from_environment:
-            return EnvironmentParser(use_purl_bom_ref=self._arguments.use_purl_bom_ref)
+            input_data_fh = self._arguments.input_source
+            with input_data_fh:
+                input_data = input_data_fh.read()
+                input_data_fh.close()
+
+            return EnvironmentParser(use_purl_bom_ref=self._arguments.use_purl_bom_ref,
+                                     location_filter=self._arguments.location_filter,
+                                     requirements_content=input_data)
 
         # All other Parsers will require some input - grab it now!
         if not self._arguments.input_source:
