@@ -53,7 +53,7 @@ python3 -m cyclonedx_py
 
 ```text
 $ cyclonedx-py --help
-usage: cyclonedx-py [-h] (-c | -cj | -e | -p | -pip | -r) [-i FILE_PATH]
+usage: cyclonedx-py [-h] (-c | -cj | -e | -p | -pip | -r) [-i FILE_PATH] [--location-filter]
                  [--format {json,xml}] [--schema-version {1.4,1.3,1.2,1.1,1.0}]
                  [-o FILE_PATH] [-F] [-X]
 
@@ -67,7 +67,13 @@ optional arguments:
                         --json`
   -e, --e, --environment
                         Build a SBOM based on the packages installed in your
-                        current Python environment (default)
+                        current Python environment (default).
+
+                        Use with `-i` to specify absolute path to a `requirements.txt`
+                        you wish to use for filtering packages.
+
+                        User with `--location-filter` to filter packages based on
+                        their installation location.
   -p, --p, --poetry     Build a SBOM based on a Poetry poetry.lock's contents.
                         Use with -i to specify absolute path to a `poetry.lock`
                         you wish to use, else we'll look for one in the
@@ -88,6 +94,10 @@ Input Method:
 
   -i FILE_PATH, --in-file FILE_PATH
                         File to read input from. Use "-" to read from STDIN.
+
+  --location-filter     When building a SBOM from your current Python environment
+                        (Option -e) only those packages which are located in one
+                        of the specified paths will be considered.
 
 SBOM Output Configuration:
   Choose the output format and schema version
