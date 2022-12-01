@@ -17,7 +17,7 @@ The full documentation can be issued by running with ``--help``:
 .. code-block:: bash
 
     $ cyclonedx-py --help
-    usage: cyclonedx-py [-h] (-c | -cj | -e | -p | -pip | -r) [-i FILE_PATH]
+    usage: cyclonedx-py [-h] (-c | -cj | -e | -p | -pip | -r) [-i FILE_PATH] [--location-filter]
                      [--format {json,xml}] [--schema-version {1.4,1.3,1.2,1.1,1.0}]
                      [-o FILE_PATH] [-F] [-X]
 
@@ -33,17 +33,17 @@ The full documentation can be issued by running with ``--help``:
                             Build a SBOM based on the packages installed in your
                             current Python environment (default).
 
-                            Use with -i to specify absolute path to a `requirements.txt`
+                            Use with `-i` to specify absolute path to a `requirements.txt`
                             you wish to use for filtering packages.
 
-                            User with --location-filter to filter packages based on
+                            User with `--location-filter` to filter packages based on
                             their installation location.
       -p, --p, --poetry     Build a SBOM based on a Poetry poetry.lock''s contents.
-                            Use with -i to specify absolute path to a `poetry.lock`
+                            Use with `-i` to specify absolute path to a `poetry.lock`
                             you wish to use, else we''ll look for one in the
                             current working directory.
       -pip, --pip           Build a SBOM based on a PipEnv Pipfile.lock''s
-                            contents. Use with -i to specify absolute path to a
+                            contents. Use with `-i` to specify absolute path to a
                             `Pipefile.lock` you wish to use, else we''ll look for
                             one in the current working directory.
       -r, --r, --requirements
