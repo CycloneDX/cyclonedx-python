@@ -84,6 +84,11 @@ class EnvironmentParser(BaseParser):
 
             rf_names = set([req.name for req in parsed_rf.requirements])
 
+        if os.name == 'nt' and location_filter:
+            # make all paths lower case to match location properties
+            # from pkg_resources.working_set on Windows
+            location_filter = list(map(str.lower, location_filter))
+
         import pkg_resources
 
         i: DistInfoDistribution
