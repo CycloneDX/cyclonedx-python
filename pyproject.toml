@@ -40,7 +40,7 @@ python = "^3.6"
 cyclonedx-python-lib = ">= 2.0.0, < 4.0.0"
 packageurl-python = ">= 0.9"
 importlib-metadata = { version = ">= 3.4", python = "< 3.8" }
-pip-requirements-parser = "^31.2.0"
+pip-requirements-parser = "^32.0.0"
 setuptools = ">= 47.0.0"
 toml = "^0.10.0"
 
