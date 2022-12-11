@@ -19,7 +19,6 @@ updates:
       day: 'saturday'
     allow:
       - dependency-type: 'all'
-    versioning-strategy: 'auto'
     labels: [ 'dependencies' ]
     commit-message:
       prefix: 'chore'  ## prefix maximum string length of 15
