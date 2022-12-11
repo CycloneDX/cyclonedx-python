@@ -59,7 +59,7 @@ jobs:
         id: after-build
         run: |
           VERSION="$(poetry version --short --no-interaction --no-ansi)"
-          echo "::set-output name=version::$VERSION"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Build Docker image
         env:

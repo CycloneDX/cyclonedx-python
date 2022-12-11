@@ -67,7 +67,7 @@ jobs:
         run: |
           VERSION="$(poetry version --short --no-interaction --no-ansi)"
           # version may be empty at first
-          echo "::set-output name=version::$VERSION"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
       - name: Python Semantic Release
         id: semantic-release
         # see https://python-semantic-release.readthedocs.io/en/latest/automatic-releases/github-actions.html
@@ -83,10 +83,10 @@ jobs:
         run: |
           VERSION="$(poetry version --short --no-interaction --no-ansi)"
           # version may still be empty
-          echo "::set-output name=version::$VERSION"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
           if [ "$VERSION" != "$VERSION_PRE" ]
           then
-            echo "::set-output name=released::true"
+            echo "released=true" >> $GITHUB_OUTPUT
           fi
         env: 
           VERSION_PRE: ${{ steps.before-release.outputs.version }}
