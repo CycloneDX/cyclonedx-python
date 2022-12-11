@@ -30,7 +30,6 @@ jobs:
           fetch-depth: 0
       - name: setup reports-dir
         run: mkdir "$REPORTS_DIR"
-
       - name: Setup python ${{ env.PYTHON_VERISON }}
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v4
@@ -41,7 +40,12 @@ jobs:
         uses: Gr1N/setup-poetry@v7
         with:
           poetry-version: ${{ env.POETRY_VERSION }}
-
+      - name: bump version
+        id: bump-version
+        run: |
+          VERSION="${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}+testing"
+          poetry version "$VERSION"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
       - name: Poetry build
         run: poetry build
       - name: Artifact python dist
@@ -54,22 +58,14 @@ jobs:
           name: ${{ env.RUN_ARTIFACT_PYTHON_DIST }}
           path: ${{ env.DIST_SOURCE_DIR }}/
           if-no-files-found: warn
-
-      - name: post-hook
-        id: after-build
-        run: |
-          VERSION="$(poetry version --short --no-interaction --no-ansi)"
-          echo "::set-output name=version::$VERSION"
-
       - name: Build Docker image
         env:
-          VERSION: ${{ steps.after-build.outputs.version }}
+          VERSION: ${{ steps.bump-version.outputs.version }}
         run: >
           docker build -f Dockerfile
           --build-arg "VERSION=$VERSION"
           -t "$DOCKER_TAG"
           .
-
       - name: Build own SBoM (XML)
         run: >
           docker run --rm "$DOCKER_TAG"
@@ -92,7 +88,6 @@ jobs:
           name: ${{ env.REPORTS_ARTIFACT }}
           path: ${{ env.REPORTS_DIR }}
           if-no-files-found: error
-
       - name: Destroy Docker image
         # run regardless of outcome
         if: ${{ always() }}
