@@ -254,18 +254,18 @@ pyparsing = ">=2.0.2,<3.0.5 || >3.0.5"
 
 [[package]]
 name = "pip-requirements-parser"
-version = "31.2.0"
+version = "32.0.0"
 description = "pip requirements parser - a mostly correct pip requirements parsing library because it uses pip's own code."
 category = "main"
 optional = false
 python-versions = ">=3.6.*"
 
 [package.dependencies]
-packaging = "*"
+packaging = "<22.0.0"
 
 [package.extras]
 docs = ["Sphinx (>=3.3.1)", "sphinx-rtd-theme (>=0.5.0)", "doc8 (>=0.8.1)"]
-testing = ["pytest (>=6)", "pytest-xdist (>=2)"]
+testing = ["pytest (>=6,!=7.0.0)", "pytest-xdist (>=2)", "aboutcode-toolkit (>=6.0.0)", "black"]
 
 [[package]]
 name = "platformdirs"
@@ -451,7 +451,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "393a18c529f4e096c739fbb123f9defa1fa33706033dde2f494b9479b846ca92"
+content-hash = "659ed36c6acf03fff3a84d0030b52ee1597d8b1ab51e65eaeec36fb3662d7b1c"
 
 [metadata.files]
 attrs = [
@@ -643,10 +643,7 @@ packaging = [
     {file = "packaging-21.3-py3-none-any.whl", hash = "sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522"},
     {file = "packaging-21.3.tar.gz", hash = "sha256:dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb"},
 ]
-pip-requirements-parser = [
-    {file = "pip-requirements-parser-31.2.0.tar.gz", hash = "sha256:8c2a6f8e091ac2693824a5ef4e3b250226e34f74a20a91a87b9ab0714b47788f"},
-    {file = "pip_requirements_parser-31.2.0-py3-none-any.whl", hash = "sha256:22fa213a987913385b2484d5698ecfa1d9cf4154978cdf929085548af55355b0"},
-]
+pip-requirements-parser = []
 platformdirs = [
     {file = "platformdirs-2.4.0-py3-none-any.whl", hash = "sha256:8868bbe3c3c80d42f20156f22e7131d2fb321f5bc86a2a345375c6481a67021d"},
     {file = "platformdirs-2.4.0.tar.gz", hash = "sha256:367a5e80b3d04d2428ffa76d33f124cf11e8fff2acdaa9b43d545f5c7d661ef2"},

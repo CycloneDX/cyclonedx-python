@@ -59,7 +59,7 @@ jobs:
 
   static-code-analysis:
     name: Static Coding Analysis (py${{ matrix.python-version}} ${{ matrix.toxenv-factor }})
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 10
     strategy:
       fail-fast: false
@@ -68,9 +68,11 @@ jobs:
           - # test with the locked dependencies
             python-version: '3.11'
             toxenv-factor: 'locked'
+            os: ubuntu-latest
           - # test with the lowest dependencies
             python-version: '3.6'
             toxenv-factor: 'lowest'
+            os: ubuntu-20.04
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
@@ -107,16 +109,23 @@ jobs:
           - "3.9"
           - "3.8"
           - "3.7"
-          - "3.6"  # lowest supported
+          - "3.6"  # lowest supported -- handled in include
         toxenv-factor: ['locked']
         include:
+          - # test with py36 ubuntu20
+            os: ubuntu-20.04
+            python-version: '3.6'
+            toxenv-factor: 'locked'
           - # test with the lowest dependencies
-            os: 'ubuntu-latest'
+            os: ubuntu-20.04
             python-version: '3.6'
             toxenv-factor: 'lowest'
         exclude:
+          - # no py36 with latest ubuntu - see https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json
+            os: ubuntu-latest
+            python-version: '3.6'
           - # broken poetry installer - see https://github.com/CycloneDX/cyclonedx-python/actions/runs/3435061093/jobs/5727124247#step:6:15
-            os: 'macos-latest'
+            os: macos-latest
             python-version: '3.11'
     steps:
       - name: Checkout

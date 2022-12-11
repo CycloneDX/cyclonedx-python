@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cyclonedx-bom"
-version = "3.7.2"
+version = "3.7.3"
 description = "CycloneDX Software Bill of Materials (SBOM) generation utility"
 authors = ["Steven Springett <steve.springett@owasp.org>", "Paul Horton <phorton@sonatype.com>"]
 license = "Apache-2.0"
@@ -40,7 +40,7 @@ python = "^3.6"
 cyclonedx-python-lib = ">= 2.0.0, < 4.0.0"
 packageurl-python = ">= 0.9"
 importlib-metadata = { version = ">= 3.4", python = "< 3.8" }
-pip-requirements-parser = "^31.2.0"
+pip-requirements-parser = "^32.0.0"
 setuptools = ">= 47.0.0"
 toml = "^0.10.0"
 

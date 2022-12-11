@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v3.7.3 (2022-12-11)
+### Fix
+* Adjust dependency `pip-requirements-parser` to a working version ([#450](https://github.com/CycloneDX/cyclonedx-python/issues/450)) ([`6101986`](https://github.com/CycloneDX/cyclonedx-python/commit/610198659be408b5ef17d649aa381944d992a7dd))
+
 ## v3.7.2 (2022-11-15)
 ### Fix
 * Add a missing space in the help pages `pathto` -> `path to` ([#443](https://github.com/CycloneDX/cyclonedx-python/issues/443)) ([`bc5fe57`](https://github.com/CycloneDX/cyclonedx-python/commit/bc5fe5760565e608387ad7638126869550d65213))
