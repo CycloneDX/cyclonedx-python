@@ -67,13 +67,13 @@ class EnvironmentParser(BaseParser):
             c = Component(name=i.project_name, bom_ref=bom_ref, version=i.version, purl=purl)
 
             i_metadata = self._get_metadata_for_package(i.project_name)
-            if 'Author' in i_metadata:
-                c.author = i_metadata['Author']
+            c.author = i_metadata.get('Author')
 
-            if 'License' in i_metadata and i_metadata['License'] != 'UNKNOWN':
+            license = i_metadata.get('License', 'UNKNOWN')
+            if license != 'UNKNOWN':
                 # Values might be ala `MIT` (SPDX id), `Apache-2.0 license` (arbitrary string), ...
                 # Therefore, just go with a named license.
-                c.licenses.add(LicenseChoice(license_=License(license_name=i_metadata['License'])))
+                c.licenses.add(LicenseChoice(license_=License(license_name=license)))
 
             for classifier in i_metadata.get_all("Classifier", []):
                 # Trove classifiers - https://packaging.python.org/specifications/core-metadata/#metadata-classifier
