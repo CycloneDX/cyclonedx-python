@@ -59,7 +59,7 @@ jobs:
         id: after-build
         run: |
           VERSION="$(poetry version --short --no-interaction --no-ansi)"
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "version=$VERSION+${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}" >> $GITHUB_OUTPUT
 
       - name: Build Docker image
         env:
