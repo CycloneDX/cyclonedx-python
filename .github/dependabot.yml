@@ -1,11 +1,12 @@
-# https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+# https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 
 version: 2
 updates:
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
+      day: 'saturday'
     labels: [ 'dependencies' ]
     commit-message:
       prefix: 'chore'   ## prefix maximum string length of 15
@@ -14,7 +15,8 @@ updates:
   - package-ecosystem: 'docker'
     directory: '/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
+      day: 'saturday'
     allow:
       - dependency-type: 'all'
     versioning-strategy: 'auto'
@@ -26,7 +28,8 @@ updates:
   - package-ecosystem: 'pip'
     directory: '/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
+      day: 'saturday'
     allow:
       - dependency-type: 'all'
     versioning-strategy: 'auto'
