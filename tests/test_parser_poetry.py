@@ -25,9 +25,7 @@ from cyclonedx_py.parser.poetry import PoetryFileParser
 
 class TestPoetryParser(TestCase):
 
-    def test_simple(self) -> None:
-        tests_poetry_lock_file = os.path.join(os.path.dirname(__file__), 'fixtures/poetry-lock-simple.txt')
-
+    def simple_lock_file(self, tests_poetry_lock_file: str) -> None:
         parser = PoetryFileParser(poetry_lock_filename=tests_poetry_lock_file)
         self.assertEqual(1, parser.component_count())
         component = next(filter(lambda c: c.name == 'toml', parser.get_components()), None)
@@ -36,6 +34,14 @@ class TestPoetryParser(TestCase):
         self.assertNotEqual(component.purl.to_string(), component.bom_ref.value)
         self.assertEqual('0.10.2', component.version)
         self.assertEqual(2, len(component.external_references), f'{component.external_references}')
+
+    def test_lock_v1(self) -> None:
+        tests_poetry_lock_file = os.path.join(os.path.dirname(__file__), 'fixtures/poetry-lock-simple.txt')
+        self.simple_lock_file(tests_poetry_lock_file)
+
+    def test_lock_v2(self) -> None:
+        tests_poetry_lock_file = os.path.join(os.path.dirname(__file__), 'fixtures/poetry-lock-v2-simple.txt')
+        self.simple_lock_file(tests_poetry_lock_file)
 
     def test_simple_purl_bom_ref(self) -> None:
         tests_poetry_lock_file = os.path.join(os.path.dirname(__file__), 'fixtures/poetry-lock-simple.txt')

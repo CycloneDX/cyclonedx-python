@@ -51,7 +51,12 @@ class PoetryParser(BaseParser):
                 name=package['name'], bom_ref=bom_ref, version=package['version'],
                 purl=purl
             )
-            for file_metadata in poetry_lock['metadata']['files'][package['name']]:
+            # Support poetry lock format 2.0
+            try:
+                files_metadata = package['files']
+            except KeyError:
+                files_metadata = poetry_lock['metadata']['files'][package['name']]
+            for file_metadata in files_metadata:
                 debug_message('processing file_metadata: {!r}', file_metadata)
                 try:
                     component.external_references.add(ExternalReference(
