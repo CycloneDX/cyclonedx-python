@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v3.8.0 (2022-12-12)
+### Feature
+* Error- and debug-output is send to STDERR, instead of STDOUT ([#465](https://github.com/CycloneDX/cyclonedx-python/issues/465)) ([`f543b69`](https://github.com/CycloneDX/cyclonedx-python/commit/f543b69ee4463df3fb4d4b7c86475562f62e4744))
+
 ## v3.7.4 (2022-12-12)
 ### Fix
 * Ignore broken licenses in env parser ([#463](https://github.com/CycloneDX/cyclonedx-python/issues/463)) ([`3118acd`](https://github.com/CycloneDX/cyclonedx-python/commit/3118acdf180b6d8d35a637b3e94dc6ec7c5c5b3d))
