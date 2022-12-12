@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v3.7.4 (2022-12-12)
+### Fix
+* Ignore broken licenses in env parser ([#463](https://github.com/CycloneDX/cyclonedx-python/issues/463)) ([`3118acd`](https://github.com/CycloneDX/cyclonedx-python/commit/3118acdf180b6d8d35a637b3e94dc6ec7c5c5b3d))
+
 ## v3.7.3 (2022-12-11)
 ### Fix
 * Adjust dependency `pip-requirements-parser` to a working version ([#450](https://github.com/CycloneDX/cyclonedx-python/issues/450)) ([`6101986`](https://github.com/CycloneDX/cyclonedx-python/commit/610198659be408b5ef17d649aa381944d992a7dd))
