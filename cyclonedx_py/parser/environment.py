@@ -30,6 +30,8 @@ The Environment Parsers support population of the following data about Component
 
 import sys
 
+from cyclonedx.exception.model import CycloneDxModelException
+
 # See https://github.com/package-url/packageurl-python/issues/65
 from packageurl import PackageURL  # type: ignore
 from pkg_resources import DistInfoDistribution  # type: ignore
@@ -70,22 +72,30 @@ class EnvironmentParser(BaseParser):
             if 'Author' in i_metadata:
                 c.author = i_metadata['Author']
 
-            if 'License' in i_metadata and i_metadata['License'] != 'UNKNOWN':
+            if 'License' in i_metadata and i_metadata['License'] and i_metadata['License'] != 'UNKNOWN':
                 # Values might be ala `MIT` (SPDX id), `Apache-2.0 license` (arbitrary string), ...
                 # Therefore, just go with a named license.
-                c.licenses.add(LicenseChoice(license_=License(license_name=i_metadata['License'])))
+                try:
+                    c.licenses.add(LicenseChoice(license_=License(license_name=i_metadata['License'])))
+                except CycloneDxModelException:
+                    # write a debug message?
+                    pass
 
             for classifier in i_metadata.get_all("Classifier", []):
                 # Trove classifiers - https://packaging.python.org/specifications/core-metadata/#metadata-classifier
                 # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
                 if str(classifier).startswith('License :: OSI Approved :: '):
-                    c.licenses.add(LicenseChoice(license_=License(
-                        license_name=str(classifier).replace('License :: OSI Approved :: ', '').strip()
-                    )))
+                    license_name = str(classifier).replace('License :: OSI Approved :: ', '').strip()
                 elif str(classifier).startswith('License :: '):
-                    c.licenses.add(LicenseChoice(license_=License(
-                        license_name=str(classifier).replace('License :: ', '').strip()
-                    )))
+                    license_name = str(classifier).replace('License :: ', '').strip()
+                else:
+                    license_name = ''
+                if license_name:
+                    try:
+                        c.licenses.add(LicenseChoice(license_=License(license_name=license_name)))
+                    except CycloneDxModelException:
+                        # write a debug message?
+                        pass
 
             self._components.append(c)
 
