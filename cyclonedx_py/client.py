@@ -251,7 +251,8 @@ class CycloneDxCmd:
 
     def _get_input_parser(self) -> BaseParser:
         if self._arguments.input_from_environment:
-            return EnvironmentParser(use_purl_bom_ref=self._arguments.use_purl_bom_ref)
+            return EnvironmentParser(use_purl_bom_ref=self._arguments.use_purl_bom_ref,
+                                     debug_message=self._debug_message)
 
         # All other Parsers will require some input - grab it now!
         if not self._arguments.input_source:
@@ -284,19 +285,24 @@ class CycloneDxCmd:
 
         if self._arguments.input_from_conda_explicit:
             return CondaListExplicitParser(conda_data=input_data,
-                                           use_purl_bom_ref=self._arguments.use_purl_bom_ref)
+                                           use_purl_bom_ref=self._arguments.use_purl_bom_ref,
+                                           debug_message=self._debug_message)
         elif self._arguments.input_from_conda_json:
             return CondaListJsonParser(conda_data=input_data,
-                                       use_purl_bom_ref=self._arguments.use_purl_bom_ref)
+                                       use_purl_bom_ref=self._arguments.use_purl_bom_ref,
+                                       debug_message=self._debug_message)
         elif self._arguments.input_from_pip:
             return PipEnvParser(pipenv_contents=input_data,
-                                use_purl_bom_ref=self._arguments.use_purl_bom_ref)
+                                use_purl_bom_ref=self._arguments.use_purl_bom_ref,
+                                debug_message=self._debug_message)
         elif self._arguments.input_from_poetry:
             return PoetryParser(poetry_lock_contents=input_data,
-                                use_purl_bom_ref=self._arguments.use_purl_bom_ref)
+                                use_purl_bom_ref=self._arguments.use_purl_bom_ref,
+                                debug_message=self._debug_message)
         elif self._arguments.input_from_requirements:
             return RequirementsParser(requirements_content=input_data,
-                                      use_purl_bom_ref=self._arguments.use_purl_bom_ref)
+                                      use_purl_bom_ref=self._arguments.use_purl_bom_ref,
+                                      debug_message=self._debug_message)
         else:
             raise CycloneDxCmdException('Parser type could not be determined.')
 

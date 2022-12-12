@@ -30,11 +30,19 @@ from cyclonedx.parser import BaseParser, ParserWarning
 from packageurl import PackageURL  # type: ignore
 from pip_requirements_parser import RequirementsFile  # type: ignore
 
+from ._debug import T_debug_message_cb, quiet
+
 
 class RequirementsParser(BaseParser):
 
-    def __init__(self, requirements_content: str, use_purl_bom_ref: bool = False) -> None:
+    def __init__(
+            self, requirements_content: str, use_purl_bom_ref: bool = False,
+            *,
+            debug_message: T_debug_message_cb = quiet
+    ) -> None:
         super().__init__()
+        self.debug_message = debug_message
+
         parsed_rf: Optional[RequirementsFile] = None
         requirements_file: Optional[_TemporaryFileWrapper[Any]] = None
 
@@ -79,5 +87,12 @@ class RequirementsParser(BaseParser):
 
 class RequirementsFileParser(RequirementsParser):
 
-    def __init__(self, requirements_file: str, use_purl_bom_ref: bool = False) -> None:
-        super().__init__(requirements_content=requirements_file, use_purl_bom_ref=use_purl_bom_ref)
+    def __init__(
+            self, requirements_file: str, use_purl_bom_ref: bool = False,
+            *,
+            debug_message: T_debug_message_cb = quiet
+    ) -> None:
+        super().__init__(
+            requirements_content=requirements_file, use_purl_bom_ref=use_purl_bom_ref,
+            debug_message=debug_message
+        )

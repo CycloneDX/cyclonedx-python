@@ -49,6 +49,8 @@ from cyclonedx.model import License, LicenseChoice
 from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser
 
+from ._debug import T_debug_message_cb, quiet
+
 
 class EnvironmentParser(BaseParser):
     """
@@ -57,8 +59,13 @@ class EnvironmentParser(BaseParser):
     Best used when you have virtual Python environments per project.
     """
 
-    def __init__(self, use_purl_bom_ref: bool = False) -> None:
+    def __init__(
+            self, use_purl_bom_ref: bool = False,
+            *,
+            debug_message: T_debug_message_cb = quiet
+    ) -> None:
         super().__init__()
+        self._debug_message = debug_message
 
         import pkg_resources
 

@@ -26,11 +26,19 @@ from cyclonedx.parser import BaseParser
 from packageurl import PackageURL  # type: ignore
 from toml import loads as load_toml
 
+from ._debug import T_debug_message_cb, quiet
+
 
 class PoetryParser(BaseParser):
 
-    def __init__(self, poetry_lock_contents: str, use_purl_bom_ref: bool = False) -> None:
+    def __init__(
+            self, poetry_lock_contents: str, use_purl_bom_ref: bool = False,
+            *,
+            debug_message: T_debug_message_cb = quiet
+    ) -> None:
         super().__init__()
+        self.debug_message = debug_message
+
         poetry_lock = load_toml(poetry_lock_contents)
 
         for package in poetry_lock['package']:
@@ -58,6 +66,13 @@ class PoetryParser(BaseParser):
 
 class PoetryFileParser(PoetryParser):
 
-    def __init__(self, poetry_lock_filename: str, use_purl_bom_ref: bool = False) -> None:
+    def __init__(
+            self, poetry_lock_filename: str, use_purl_bom_ref: bool = False,
+            *,
+            debug_message: T_debug_message_cb = quiet
+    ) -> None:
         with open(poetry_lock_filename) as r:
-            super(PoetryFileParser, self).__init__(poetry_lock_contents=r.read(), use_purl_bom_ref=use_purl_bom_ref)
+            super(PoetryFileParser, self).__init__(
+                poetry_lock_contents=r.read(), use_purl_bom_ref=use_purl_bom_ref,
+                debug_message=debug_message
+            )

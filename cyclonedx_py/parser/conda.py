@@ -31,17 +31,23 @@ from ..utils.conda import (
     parse_conda_json_to_conda_package,
     parse_conda_list_str_to_conda_package,
 )
+from ._debug import T_debug_message_cb, quiet
 
 
 class _BaseCondaParser(BaseParser, metaclass=ABCMeta):
     """Internal abstract parser - not for programmatic use.
     """
 
-    def __init__(self, conda_data: str, use_purl_bom_ref: bool = False) -> None:
+    def __init__(
+            self, conda_data: str, use_purl_bom_ref: bool = False,
+            *,
+            debug_message: T_debug_message_cb = quiet
+    ) -> None:
         super().__init__()
         self._conda_packages: List[CondaPackage] = []
         self._parse_to_conda_packages(data_str=conda_data)
         self._conda_packages_to_components(use_purl_bom_ref=use_purl_bom_ref)
+        self._debug_message = debug_message
 
     @abstractmethod
     def _parse_to_conda_packages(self, data_str: str) -> None:

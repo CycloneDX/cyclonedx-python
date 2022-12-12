@@ -27,11 +27,18 @@ from cyclonedx.parser import BaseParser
 # See https://github.com/package-url/packageurl-python/issues/65
 from packageurl import PackageURL  # type: ignore
 
+from ._debug import T_debug_message_cb, quiet
+
 
 class PipEnvParser(BaseParser):
 
-    def __init__(self, pipenv_contents: str, use_purl_bom_ref: bool = False) -> None:
+    def __init__(
+            self, pipenv_contents: str, use_purl_bom_ref: bool = False,
+            *,
+            debug_message: T_debug_message_cb = quiet
+    ) -> None:
         super().__init__()
+        self._debug_message = debug_message
 
         pipfile_lock_contents = json.loads(pipenv_contents)
         pipfile_default: Dict[str, Dict[str, Any]] = pipfile_lock_contents.get('default') or {}
@@ -57,6 +64,13 @@ class PipEnvParser(BaseParser):
 
 class PipEnvFileParser(PipEnvParser):
 
-    def __init__(self, pipenv_lock_filename: str, use_purl_bom_ref: bool = False) -> None:
+    def __init__(
+            self, pipenv_lock_filename: str, use_purl_bom_ref: bool = False,
+            *,
+            debug_message: T_debug_message_cb = quiet
+    ) -> None:
         with open(pipenv_lock_filename) as r:
-            super(PipEnvFileParser, self).__init__(pipenv_contents=r.read(), use_purl_bom_ref=use_purl_bom_ref)
+            super(PipEnvFileParser, self).__init__(
+                pipenv_contents=r.read(), use_purl_bom_ref=use_purl_bom_ref,
+                debug_message=debug_message
+            )
