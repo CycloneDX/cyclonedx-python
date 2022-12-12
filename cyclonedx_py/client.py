@@ -83,25 +83,25 @@ class CycloneDxCmd:
         try:
             parser = self._get_input_parser()
         except CycloneDxCmdNoInputFileSupplied as e:
-            print(f'ERROR: {str(e)}')
+            print(f'ERROR: {str(e)}', file=sys.stderr)
             exit(1)
         except CycloneDxCmdException as e:
-            print(f'ERROR: {str(e)}')
+            print(f'ERROR: {str(e)}', file=sys.stderr)
             exit(1)
 
         if parser and parser.has_warnings():
-            print('')
-            print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-            print('!! Some of your dependencies do not have pinned version !!')
-            print('!! numbers in your requirements.txt                     !!')
-            print('!!                                                      !!')
-            for warning in parser.get_warnings():
-                print('!! -> {} !!'.format(warning.get_item().ljust(49)))
-            print('!!                                                      !!')
-            print('!! The above will NOT be included in the generated      !!')
-            print('!! CycloneDX as version is a mandatory field.           !!')
-            print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-            print('')
+            print('',
+                  '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+                  '!! Some of your dependencies do not have pinned version !!',
+                  '!! numbers in your requirements.txt                     !!',
+                  '!!                                                      !!',
+                  *('!! -> {} !!'.format(warning.get_item().ljust(49)) for warning in parser.get_warnings()),
+                  '!!                                                      !!',
+                  '!! The above will NOT be included in the generated      !!',
+                  '!! CycloneDX as version is a mandatory field.           !!',
+                  '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+                  '',
+                  sep='\n', file=sys.stderr)
 
         bom = Bom.from_parser(parser=parser)
 
@@ -147,7 +147,7 @@ class CycloneDxCmd:
         output = self.get_output()
         if self._arguments.output_file == '-' or not self._arguments.output_file:
             self._debug_message('Returning SBOM to STDOUT')
-            print(output.output_as_string())
+            print(output.output_as_string(), file=sys.stdout)
             return
 
         # Check directory writable
@@ -242,11 +242,11 @@ class CycloneDxCmd:
 
     def _debug_message(self, message: str) -> None:
         if self._DEBUG_ENABLED:
-            print('[DEBUG] - {} - {}'.format(datetime.now(), message))
+            print('[DEBUG] - {} - {}'.format(datetime.now(), message), file=sys.stderr)
 
     @staticmethod
     def _error_and_exit(message: str, exit_code: int = 1) -> None:
-        print('[ERROR] - {} - {}'.format(datetime.now(), message))
+        print('[ERROR] - {} - {}'.format(datetime.now(), message), file=sys.stderr)
         exit(exit_code)
 
     def _get_input_parser(self) -> BaseParser:
