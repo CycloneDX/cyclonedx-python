@@ -41,7 +41,13 @@ class PoetryParser(BaseParser):
                 purl=purl
             )
 
-            for file_metadata in poetry_lock['metadata']['files'][package['name']]:
+            # Support poetry lock format 2.0
+            try:
+                files_metadata = package['files']
+            except KeyError:
+                files_metadata = poetry_lock['metadata']['files'][package['name']]
+
+            for file_metadata in files_metadata:
                 try:
                     component.external_references.add(ExternalReference(
                         reference_type=ExternalReferenceType.DISTRIBUTION,
