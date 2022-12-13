@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v3.9.0 (2022-12-13)
+### Feature
+* Parsers can outbut more debug messages ([#466](https://github.com/CycloneDX/cyclonedx-python/issues/466)) ([`9eedb4f`](https://github.com/CycloneDX/cyclonedx-python/commit/9eedb4ff27bb81f4ad323e9fa0f79230b0710032))
+
 ## v3.8.0 (2022-12-12)
 ### Feature
 * Error- and debug-output is send to STDERR, instead of STDOUT ([#465](https://github.com/CycloneDX/cyclonedx-python/issues/465)) ([`f543b69`](https://github.com/CycloneDX/cyclonedx-python/commit/f543b69ee4463df3fb4d4b7c86475562f62e4744))
