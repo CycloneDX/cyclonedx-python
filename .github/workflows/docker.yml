@@ -69,6 +69,7 @@ jobs:
       - name: Build own SBoM (XML)
         run: >
           docker run --rm "$DOCKER_TAG"
+          -X
           --environment
           --format=xml
           --output=-
@@ -76,6 +77,7 @@ jobs:
       - name: Build own SBoM (JSON)
         run: >
           docker run --rm "$DOCKER_TAG"
+          -X
           --environment
           --format=json
           --output=-
