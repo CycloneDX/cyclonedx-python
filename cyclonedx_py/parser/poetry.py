@@ -44,7 +44,7 @@ class PoetryParser(BaseParser):
 
         poetry_lock_metadata = poetry_lock['metadata']
         try:
-            poetry_lock_version = str(poetry_lock_metadata['lock-version']).split('.')
+            poetry_lock_version = tuple(int(p) for p in str(poetry_lock_metadata['lock-version']).split('.'))
         except Exception:
             poetry_lock_version = (0,)
         debug_message('detected poetry_lock_version: {!r}', poetry_lock_version)
@@ -60,7 +60,7 @@ class PoetryParser(BaseParser):
             )
             debug_message('detecting package_files')
             if poetry_lock_version >= (2,):
-                package_files = package['fies']
+                package_files = package['files']
             else:
                 package_files = poetry_lock_metadata['files'][package['name']]
             debug_message('processing package_files: {!r}', package_files)
