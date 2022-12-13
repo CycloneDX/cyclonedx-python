@@ -36,6 +36,6 @@ else:
 def quiet(message: str, *_: Any, **__: Any) -> None:
     """Do not print anything.
 
-     Must be compatible to :py:data:`Callback_debug_message`.
+     Must be compatible to :py:data:`DebugMessageCallback`.
      """
     pass
