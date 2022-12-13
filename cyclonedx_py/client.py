@@ -23,7 +23,7 @@ import enum
 import os
 import sys
 from datetime import datetime
-from typing import Optional
+from typing import Any, Optional
 
 from cyclonedx.model import Tool
 from cyclonedx.model.bom import Bom
@@ -74,7 +74,7 @@ class CycloneDxCmd:
         if self._arguments.debug_enabled:
             self._DEBUG_ENABLED = True
             self._debug_message('!!! DEBUG MODE ENABLED !!!')
-            self._debug_message('Parsed Arguments: {}'.format(self._arguments))
+            self._debug_message('Parsed Arguments: {}', self._arguments)
 
     def _get_output_format(self) -> _CLI_OUTPUT_FORMAT:
         return _CLI_OUTPUT_FORMAT(str(self._arguments.output_format).lower())
@@ -134,13 +134,13 @@ class CycloneDxCmd:
 
     def execute(self) -> None:
         output_format = self._get_output_format()
-        self._debug_message(f'output_format: {output_format}')
+        self._debug_message('output_format: {}', output_format)
 
         # Quick check for JSON && SchemaVersion <= 1.1
         if output_format == OutputFormat.JSON and \
                 str(self._arguments.output_schema_version) in ['1.0', '1.1']:
             self._error_and_exit(
-                message='CycloneDX schema does not support JSON output in Schema Versions < 1.2',
+                'CycloneDX schema does not support JSON output in Schema Versions < 1.2',
                 exit_code=2
             )
 
@@ -154,7 +154,7 @@ class CycloneDxCmd:
         output_file = self._arguments.output_file
         output_filename = os.path.realpath(
             output_file if isinstance(output_file, str) else _output_default_filenames[output_format])
-        self._debug_message('Will be outputting SBOM to file at: {}'.format(output_filename))
+        self._debug_message('Will be outputting SBOM to file at: {}', output_filename)
         output.output_to_file(filename=output_filename, allow_overwrite=self._arguments.output_file_overwrite)
 
     @staticmethod
@@ -240,19 +240,23 @@ class CycloneDxCmd:
 
         return arg_parser
 
-    def _debug_message(self, message: str) -> None:
+    def _debug_message(self, message: str, *args: Any, **kwargs: Any) -> None:
         if self._DEBUG_ENABLED:
-            print('[DEBUG] - {} - {}'.format(datetime.now(), message), file=sys.stderr)
+            print(
+                f'[DEBUG] - {{__t}} - {message}'.format(*args, __t=datetime.now(), **kwargs),
+                file=sys.stderr)
 
     @staticmethod
-    def _error_and_exit(message: str, exit_code: int = 1) -> None:
-        print('[ERROR] - {} - {}'.format(datetime.now(), message), file=sys.stderr)
+    def _error_and_exit(message: str, *args: Any, exit_code: int = 1, **kwargs: Any) -> None:
+        print(
+            f'[ERROR] - {{__t}} - {message}'.format(*args, __t=datetime.now(), **kwargs),
+            file=sys.stderr)
         exit(exit_code)
 
     def _get_input_parser(self) -> BaseParser:
         if self._arguments.input_from_environment:
             return EnvironmentParser(use_purl_bom_ref=self._arguments.use_purl_bom_ref,
-                                     debug_message=self._debug_message)
+                                     debug_message=lambda m, *a, **k: self._debug_message(f'EnvironmentParser - {m}', *a, **k))
 
         # All other Parsers will require some input - grab it now!
         if not self._arguments.input_source:
@@ -286,23 +290,23 @@ class CycloneDxCmd:
         if self._arguments.input_from_conda_explicit:
             return CondaListExplicitParser(conda_data=input_data,
                                            use_purl_bom_ref=self._arguments.use_purl_bom_ref,
-                                           debug_message=self._debug_message)
+                                           debug_message=lambda m, *a, **k: self._debug_message(f'CondaListExplicitParser - {m}', *a, **k))
         elif self._arguments.input_from_conda_json:
             return CondaListJsonParser(conda_data=input_data,
                                        use_purl_bom_ref=self._arguments.use_purl_bom_ref,
-                                       debug_message=self._debug_message)
+                                       debug_message=lambda m, *a, **k: self._debug_message(f'CondaListJsonParser - {m}', *a, **k))
         elif self._arguments.input_from_pip:
             return PipEnvParser(pipenv_contents=input_data,
                                 use_purl_bom_ref=self._arguments.use_purl_bom_ref,
-                                debug_message=self._debug_message)
+                                debug_message=lambda m, *a, **k: self._debug_message(f'PipEnvParser - {m}', *a, **k))
         elif self._arguments.input_from_poetry:
             return PoetryParser(poetry_lock_contents=input_data,
                                 use_purl_bom_ref=self._arguments.use_purl_bom_ref,
-                                debug_message=self._debug_message)
+                                debug_message=lambda m, *a, **k: self._debug_message(f'PoetryParser - {m}', *a, **k))
         elif self._arguments.input_from_requirements:
             return RequirementsParser(requirements_content=input_data,
                                       use_purl_bom_ref=self._arguments.use_purl_bom_ref,
-                                      debug_message=self._debug_message)
+                                      debug_message=lambda m, *a, **k: self._debug_message(f'RequirementsParser - {m}', *a, **k))
         else:
             raise CycloneDxCmdException('Parser type could not be determined.')
 

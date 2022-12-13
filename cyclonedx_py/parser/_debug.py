@@ -15,11 +15,27 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
+"""The following structures are internal helpers."""
 
-from typing import Callable
+from typing import TYPE_CHECKING, Any, Callable
 
-T_debug_message_cb = Callable[[str], None]
+if TYPE_CHECKING:
+    from mypy_extensions import Arg, KwArg, VarArg
+
+    DebugMessageCallback = Callable[[Arg(str, 'message'), VarArg(Any), KwArg(Any)], None]
+    """Callback for debug messaging.
+    
+    :param message: the format string, 
+    :Other Parameters: the *args: to :func:`str.forma()`
+    :Keyword Arguments: the **kwargs to :func:`str.format()`.
+    """
+else:
+    DebugMessageCallback = Callable[..., None]
 
 
-def quiet(*_, **__) -> None:
+def quiet(message: str, *_: Any, **__: Any) -> None:
+    """Do not print anything.
+
+     Must be compatible to :py:data:`Callback_debug_message`.
+     """
     pass
