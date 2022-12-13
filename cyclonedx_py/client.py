@@ -242,15 +242,13 @@ class CycloneDxCmd:
 
     def _debug_message(self, message: str, *args: Any, **kwargs: Any) -> None:
         if self._DEBUG_ENABLED:
-            print(
-                f'[DEBUG] - {{__t}} - {message}'.format(*args, **kwargs, __t=datetime.now()),
-                file=sys.stderr)
+            print(f'[DEBUG] - {{__t}} - {message}'.format(*args, **kwargs, __t=datetime.now()),
+                  file=sys.stderr)
 
     @staticmethod
     def _error_and_exit(message: str, *args: Any, exit_code: int = 1, **kwargs: Any) -> None:
-        print(
-            f'[ERROR] - {{__t}} - {message}'.format(*args, **kwargs, __t=datetime.now()),
-            file=sys.stderr)
+        print(f'[ERROR] - {{__t}} - {message}'.format(*args, **kwargs, __t=datetime.now()),
+              file=sys.stderr)
         exit(exit_code)
 
     def _get_input_parser(self) -> BaseParser:
