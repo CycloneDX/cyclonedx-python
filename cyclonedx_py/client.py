@@ -266,11 +266,11 @@ class CycloneDxCmd:
             current_directory = os.getcwd()
             try:
                 if self._arguments.input_from_conda_explicit:
-                    raise CycloneDxCmdNoInputFileSupplied('When using input from Conda Explicit, you need to pipe input'
-                                                          'via STDIN')
+                    raise CycloneDxCmdNoInputFileSupplied(
+                        'When using input from Conda Explicit, you need to pipe input via STDIN')
                 elif self._arguments.input_from_conda_json:
-                    raise CycloneDxCmdNoInputFileSupplied('When using input from Conda JSON, you need to pipe input'
-                                                          'via STDIN')
+                    raise CycloneDxCmdNoInputFileSupplied(
+                        'When using input from Conda JSON, you need to pipe input via STDIN')
                 elif self._arguments.input_from_pip:
                     self._arguments.input_source = open(os.path.join(current_directory, 'Pipfile.lock'), 'r')
                 elif self._arguments.input_from_poetry:
@@ -281,7 +281,7 @@ class CycloneDxCmd:
                     raise CycloneDxCmdException('Parser type could not be determined.')
             except FileNotFoundError as error:
                 raise CycloneDxCmdNoInputFileSupplied(
-                    f'No input file was supplied and no input was provided on STDIN:\n{str(error)}',
+                    f'No input file was supplied and no input was provided on STDIN:\n{str(error)}'
                 ) from error
 
         input_data_fh = self._arguments.input_source
