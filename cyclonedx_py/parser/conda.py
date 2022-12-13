@@ -44,7 +44,7 @@ class _BaseCondaParser(BaseParser, metaclass=ABCMeta):
             debug_message: DebugMessageCallback = quiet
     ) -> None:
         super().__init__()
-        debug_message('init')
+        debug_message('init {}', self.__class__.__name__)
         self._debug_message = debug_message
         self._conda_packages: List[CondaPackage] = []
         self._parse_to_conda_packages(data_str=conda_data)

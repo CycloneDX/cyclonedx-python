@@ -40,7 +40,7 @@ class RequirementsParser(BaseParser):
             debug_message: DebugMessageCallback = quiet
     ) -> None:
         super().__init__()
-        debug_message('init')
+        debug_message('init {}', self.__class__.__name__)
 
         if os.path.exists(requirements_content):
             debug_message('create RequirementsFile from file: {}', requirements_content)

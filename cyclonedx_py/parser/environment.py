@@ -65,7 +65,7 @@ class EnvironmentParser(BaseParser):
             debug_message: DebugMessageCallback = quiet
     ) -> None:
         super().__init__()
-        debug_message('init')
+        debug_message('init {}', self.__class__.__name__)
 
         debug_message('late import pkg_resources')
         import pkg_resources
