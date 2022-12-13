@@ -243,13 +243,13 @@ class CycloneDxCmd:
     def _debug_message(self, message: str, *args: Any, **kwargs: Any) -> None:
         if self._DEBUG_ENABLED:
             print(
-                f'[DEBUG] - {{__t}} - {message}'.format(*args, __t=datetime.now(), **kwargs),
+                f'[DEBUG] - {{__t}} - {message}'.format(*args, **kwargs, __t=datetime.now()),
                 file=sys.stderr)
 
     @staticmethod
     def _error_and_exit(message: str, *args: Any, exit_code: int = 1, **kwargs: Any) -> None:
         print(
-            f'[ERROR] - {{__t}} - {message}'.format(*args, __t=datetime.now(), **kwargs),
+            f'[ERROR] - {{__t}} - {message}'.format(*args, **kwargs, __t=datetime.now()),
             file=sys.stderr)
         exit(exit_code)
 
@@ -257,7 +257,7 @@ class CycloneDxCmd:
         if self._arguments.input_from_environment:
             return EnvironmentParser(
                 use_purl_bom_ref=self._arguments.use_purl_bom_ref,
-                debug_message=lambda m, *a, **k: self._debug_message(f'EnvironmentParser - {m}', *a, **k)
+                debug_message=lambda m, *a, **k: self._debug_message(f'EnvironmentParser {m}', *a, **k)
             )
 
         # All other Parsers will require some input - grab it now!
@@ -293,31 +293,31 @@ class CycloneDxCmd:
             return CondaListExplicitParser(
                 conda_data=input_data,
                 use_purl_bom_ref=self._arguments.use_purl_bom_ref,
-                debug_message=lambda m, *a, **k: self._debug_message(f'CondaListExplicitParser - {m}', *a, **k)
+                debug_message=lambda m, *a, **k: self._debug_message(f'CondaListExplicitParser {m}', *a, **k)
             )
         elif self._arguments.input_from_conda_json:
             return CondaListJsonParser(
                 conda_data=input_data,
                 use_purl_bom_ref=self._arguments.use_purl_bom_ref,
-                debug_message=lambda m, *a, **k: self._debug_message(f'CondaListJsonParser - {m}', *a, **k)
+                debug_message=lambda m, *a, **k: self._debug_message(f'CondaListJsonParser {m}', *a, **k)
             )
         elif self._arguments.input_from_pip:
             return PipEnvParser(
                 pipenv_contents=input_data,
                 use_purl_bom_ref=self._arguments.use_purl_bom_ref,
-                debug_message=lambda m, *a, **k: self._debug_message(f'PipEnvParser - {m}', *a, **k)
+                debug_message=lambda m, *a, **k: self._debug_message(f'PipEnvParser {m}', *a, **k)
             )
         elif self._arguments.input_from_poetry:
             return PoetryParser(
                 poetry_lock_contents=input_data,
                 use_purl_bom_ref=self._arguments.use_purl_bom_ref,
-                debug_message=lambda m, *a, **k: self._debug_message(f'PoetryParser - {m}', *a, **k)
+                debug_message=lambda m, *a, **k: self._debug_message(f'PoetryParser {m}', *a, **k)
             )
         elif self._arguments.input_from_requirements:
             return RequirementsParser(
                 requirements_content=input_data,
                 use_purl_bom_ref=self._arguments.use_purl_bom_ref,
-                debug_message=lambda m, *a, **k: self._debug_message(f'RequirementsParser - {m}', *a, **k)
+                debug_message=lambda m, *a, **k: self._debug_message(f'RequirementsParser {m}', *a, **k)
             )
         else:
             raise CycloneDxCmdException('Parser type could not be determined.')
