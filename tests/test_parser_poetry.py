@@ -20,15 +20,19 @@
 import os
 from unittest import TestCase
 
+from ddt import data, ddt
+
 from cyclonedx_py.parser.poetry import PoetryFileParser
 
 
+@ddt
 class TestPoetryParser(TestCase):
 
-    def test_simple(self) -> None:
-        tests_poetry_lock_file = os.path.join(os.path.dirname(__file__), 'fixtures/poetry-lock-simple.txt')
-
-        parser = PoetryFileParser(poetry_lock_filename=tests_poetry_lock_file)
+    @data('poetry-lock11-simple.txt',
+          'poetry-lock20-simple.txt')
+    def test_simple(self, lock_file_name: str) -> None:
+        poetry_lock_filename = os.path.join(os.path.dirname(__file__), 'fixtures', lock_file_name)
+        parser = PoetryFileParser(poetry_lock_filename=poetry_lock_filename)
         self.assertEqual(1, parser.component_count())
         component = next(filter(lambda c: c.name == 'toml', parser.get_components()), None)
         self.assertIsNotNone(component)
@@ -37,10 +41,11 @@ class TestPoetryParser(TestCase):
         self.assertEqual('0.10.2', component.version)
         self.assertEqual(2, len(component.external_references), f'{component.external_references}')
 
-    def test_simple_purl_bom_ref(self) -> None:
-        tests_poetry_lock_file = os.path.join(os.path.dirname(__file__), 'fixtures/poetry-lock-simple.txt')
-
-        parser = PoetryFileParser(poetry_lock_filename=tests_poetry_lock_file, use_purl_bom_ref=True)
+    @data('poetry-lock11-simple.txt',
+          'poetry-lock20-simple.txt')
+    def test_simple_purl_bom_ref(self, lock_file_name: str) -> None:
+        poetry_lock_filename = os.path.join(os.path.dirname(__file__), 'fixtures', lock_file_name)
+        parser = PoetryFileParser(poetry_lock_filename=poetry_lock_filename, use_purl_bom_ref=True)
         self.assertEqual(1, parser.component_count())
         component = next(filter(lambda c: c.name == 'toml', parser.get_components()), None)
         self.assertIsNotNone(component)
