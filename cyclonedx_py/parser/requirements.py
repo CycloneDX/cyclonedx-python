@@ -19,8 +19,7 @@
 
 import os
 import os.path
-from tempfile import NamedTemporaryFile, _TemporaryFileWrapper  # Weak error
-from typing import Any, Optional
+from tempfile import NamedTemporaryFile  # Weak error
 
 from cyclonedx.model import HashType
 from cyclonedx.model.component import Component

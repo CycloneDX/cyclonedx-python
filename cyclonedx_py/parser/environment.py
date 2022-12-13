@@ -90,6 +90,7 @@ class EnvironmentParser(BaseParser):
                 except CycloneDxModelException as error:
                     # @todo traceback and details to the output?
                     debug_message('Warning: suppressed {!r}', error)
+                    del error
 
             debug_message('processing classifiers')
             for classifier in i_metadata.get_all("Classifier", []):
@@ -109,6 +110,7 @@ class EnvironmentParser(BaseParser):
                     except CycloneDxModelException as error:
                         # @todo traceback and details to the output?
                         debug_message('Warning: suppressed {!r}', error)
+                        del error
 
             self._components.append(c)
 

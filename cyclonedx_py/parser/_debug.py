@@ -22,11 +22,11 @@ from typing import TYPE_CHECKING, Any, Callable
 if TYPE_CHECKING:
     from mypy_extensions import Arg, KwArg, VarArg
 
-    DebugMessageCallback = Callable[[Arg(str, 'message'), VarArg(Any), KwArg(Any)], None]
+    DebugMessageCallback = Callable[[Arg(str, 'message'), VarArg(Any), KwArg(Any)], None]  # noqa: F821
     """Callback for debug messaging.
-    
-    :param message: the format string, 
-    :Other Parameters: the *args: to :func:`str.forma()`
+
+    :parameter message: the format string.
+    :Other Parameters: the *args: to :func:`str.forma()`.
     :Keyword Arguments: the **kwargs to :func:`str.format()`.
     """
 else:

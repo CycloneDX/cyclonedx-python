@@ -63,6 +63,7 @@ class PoetryParser(BaseParser):
                 except CycloneDxModelException as error:
                     # @todo traceback and details to the output?
                     debug_message('Warning: suppressed {!r}', error)
+                    del error
 
             self._components.append(component)
 
