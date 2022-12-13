@@ -27,16 +27,26 @@ from cyclonedx.parser import BaseParser
 # See https://github.com/package-url/packageurl-python/issues/65
 from packageurl import PackageURL  # type: ignore
 
+from ._debug import DebugMessageCallback, quiet
+
 
 class PipEnvParser(BaseParser):
 
-    def __init__(self, pipenv_contents: str, use_purl_bom_ref: bool = False) -> None:
+    def __init__(
+            self, pipenv_contents: str, use_purl_bom_ref: bool = False,
+            *,
+            debug_message: DebugMessageCallback = quiet
+    ) -> None:
         super().__init__()
+        debug_message('init {}', self.__class__.__name__)
 
+        debug_message('loading pipenv_contents')
         pipfile_lock_contents = json.loads(pipenv_contents)
         pipfile_default: Dict[str, Dict[str, Any]] = pipfile_lock_contents.get('default') or {}
 
+        debug_message('processing pipfile_default')
         for (package_name, package_data) in pipfile_default.items():
+            debug_message('processing package: {!r} {!r}', package_name, package_data)
             version = str(package_data.get('version') or 'unknown').lstrip('=')
             purl = PackageURL(type='pypi', name=package_name, version=version)
             bom_ref = purl.to_string() if use_purl_bom_ref else None
@@ -44,6 +54,7 @@ class PipEnvParser(BaseParser):
             if isinstance(package_data.get('hashes'), list):
                 # Add download location with hashes stored in Pipfile.lock
                 for pip_hash in package_data['hashes']:
+                    debug_message('processing pip_hash: {!r}', pip_hash)
                     ext_ref = ExternalReference(
                         reference_type=ExternalReferenceType.DISTRIBUTION,
                         url=XsUri(c.get_pypi_url()),
@@ -51,12 +62,19 @@ class PipEnvParser(BaseParser):
                     )
                     ext_ref.hashes.add(HashType.from_composite_str(pip_hash))
                     c.external_references.add(ext_ref)
-
             self._components.append(c)
 
 
 class PipEnvFileParser(PipEnvParser):
 
-    def __init__(self, pipenv_lock_filename: str, use_purl_bom_ref: bool = False) -> None:
-        with open(pipenv_lock_filename) as r:
-            super(PipEnvFileParser, self).__init__(pipenv_contents=r.read(), use_purl_bom_ref=use_purl_bom_ref)
+    def __init__(
+            self, pipenv_lock_filename: str, use_purl_bom_ref: bool = False,
+            *,
+            debug_message: DebugMessageCallback = quiet
+    ) -> None:
+        debug_message('open file: {}', pipenv_lock_filename)
+        with open(pipenv_lock_filename) as plf:
+            super(PipEnvFileParser, self).__init__(
+                pipenv_contents=plf.read(), use_purl_bom_ref=use_purl_bom_ref,
+                debug_message=debug_message
+            )

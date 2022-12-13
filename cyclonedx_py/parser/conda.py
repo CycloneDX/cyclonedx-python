@@ -31,14 +31,21 @@ from ..utils.conda import (
     parse_conda_json_to_conda_package,
     parse_conda_list_str_to_conda_package,
 )
+from ._debug import DebugMessageCallback, quiet
 
 
 class _BaseCondaParser(BaseParser, metaclass=ABCMeta):
     """Internal abstract parser - not for programmatic use.
     """
 
-    def __init__(self, conda_data: str, use_purl_bom_ref: bool = False) -> None:
+    def __init__(
+            self, conda_data: str, use_purl_bom_ref: bool = False,
+            *,
+            debug_message: DebugMessageCallback = quiet
+    ) -> None:
         super().__init__()
+        debug_message('init {}', self.__class__.__name__)
+        self._debug_message = debug_message
         self._conda_packages: List[CondaPackage] = []
         self._parse_to_conda_packages(data_str=conda_data)
         self._conda_packages_to_components(use_purl_bom_ref=use_purl_bom_ref)
@@ -61,7 +68,9 @@ class _BaseCondaParser(BaseParser, metaclass=ABCMeta):
         Converts the parsed `CondaPackage` instances into `Component` instances.
 
         """
+        self._debug_message('processing conda_packages')
         for conda_package in self._conda_packages:
+            self._debug_message('processing conda_package: {!r}', conda_package)
             purl = conda_package_to_purl(conda_package)
             bom_ref = purl.to_string() if use_purl_bom_ref else None
             c = Component(
@@ -89,11 +98,14 @@ class CondaListJsonParser(_BaseCondaParser):
 
     def _parse_to_conda_packages(self, data_str: str) -> None:
         conda_list_content = json.loads(data_str)
-
+        self._debug_message('processing conda_list_content')
         for package in conda_list_content:
+            self._debug_message('processing package: {!r}', package)
             conda_package = parse_conda_json_to_conda_package(conda_json_str=json.dumps(package))
             if conda_package:
                 self._conda_packages.append(conda_package)
+            else:
+                self._debug_message('no conda_package -> skip')
 
 
 class CondaListExplicitParser(_BaseCondaParser):
@@ -103,8 +115,12 @@ class CondaListExplicitParser(_BaseCondaParser):
     """
 
     def _parse_to_conda_packages(self, data_str: str) -> None:
+        self._debug_message('processing data_str')
         for line in data_str.replace('\r\n', '\n').split('\n'):
             line = line.strip()
+            self._debug_message('processing line: {}', line)
             conda_package = parse_conda_list_str_to_conda_package(conda_list_str=line)
             if conda_package:
                 self._conda_packages.append(conda_package)
+            else:
+                self._debug_message('no conda_package -> skip')

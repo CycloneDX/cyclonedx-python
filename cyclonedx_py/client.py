@@ -23,7 +23,7 @@ import enum
 import os
 import sys
 from datetime import datetime
-from typing import Optional
+from typing import Any, Optional
 
 from cyclonedx.model import Tool
 from cyclonedx.model.bom import Bom
@@ -74,7 +74,7 @@ class CycloneDxCmd:
         if self._arguments.debug_enabled:
             self._DEBUG_ENABLED = True
             self._debug_message('!!! DEBUG MODE ENABLED !!!')
-            self._debug_message('Parsed Arguments: {}'.format(self._arguments))
+            self._debug_message('Parsed Arguments: {}', self._arguments)
 
     def _get_output_format(self) -> _CLI_OUTPUT_FORMAT:
         return _CLI_OUTPUT_FORMAT(str(self._arguments.output_format).lower())
@@ -82,11 +82,11 @@ class CycloneDxCmd:
     def get_output(self) -> BaseOutput:
         try:
             parser = self._get_input_parser()
-        except CycloneDxCmdNoInputFileSupplied as e:
-            print(f'ERROR: {str(e)}', file=sys.stderr)
+        except CycloneDxCmdNoInputFileSupplied as error:
+            print(f'ERROR: {str(error)}', file=sys.stderr)
             exit(1)
-        except CycloneDxCmdException as e:
-            print(f'ERROR: {str(e)}', file=sys.stderr)
+        except CycloneDxCmdException as error:
+            print(f'ERROR: {str(error)}', file=sys.stderr)
             exit(1)
 
         if parser and parser.has_warnings():
@@ -134,13 +134,13 @@ class CycloneDxCmd:
 
     def execute(self) -> None:
         output_format = self._get_output_format()
-        self._debug_message(f'output_format: {output_format}')
+        self._debug_message('output_format: {}', output_format)
 
         # Quick check for JSON && SchemaVersion <= 1.1
         if output_format == OutputFormat.JSON and \
                 str(self._arguments.output_schema_version) in ['1.0', '1.1']:
             self._error_and_exit(
-                message='CycloneDX schema does not support JSON output in Schema Versions < 1.2',
+                'CycloneDX schema does not support JSON output in Schema Versions < 1.2',
                 exit_code=2
             )
 
@@ -154,7 +154,7 @@ class CycloneDxCmd:
         output_file = self._arguments.output_file
         output_filename = os.path.realpath(
             output_file if isinstance(output_file, str) else _output_default_filenames[output_format])
-        self._debug_message('Will be outputting SBOM to file at: {}'.format(output_filename))
+        self._debug_message('Will be outputting SBOM to file at: {}', output_filename)
         output.output_to_file(filename=output_filename, allow_overwrite=self._arguments.output_file_overwrite)
 
     @staticmethod
@@ -240,18 +240,23 @@ class CycloneDxCmd:
 
         return arg_parser
 
-    def _debug_message(self, message: str) -> None:
+    def _debug_message(self, message: str, *args: Any, **kwargs: Any) -> None:
         if self._DEBUG_ENABLED:
-            print('[DEBUG] - {} - {}'.format(datetime.now(), message), file=sys.stderr)
+            print(f'[DEBUG] - {{__t}} - {message}'.format(*args, **kwargs, __t=datetime.now()),
+                  file=sys.stderr)
 
     @staticmethod
-    def _error_and_exit(message: str, exit_code: int = 1) -> None:
-        print('[ERROR] - {} - {}'.format(datetime.now(), message), file=sys.stderr)
+    def _error_and_exit(message: str, *args: Any, exit_code: int = 1, **kwargs: Any) -> None:
+        print(f'[ERROR] - {{__t}} - {message}'.format(*args, **kwargs, __t=datetime.now()),
+              file=sys.stderr)
         exit(exit_code)
 
     def _get_input_parser(self) -> BaseParser:
         if self._arguments.input_from_environment:
-            return EnvironmentParser(use_purl_bom_ref=self._arguments.use_purl_bom_ref)
+            return EnvironmentParser(
+                use_purl_bom_ref=self._arguments.use_purl_bom_ref,
+                debug_message=lambda m, *a, **k: self._debug_message(f'EnvironmentParser {m}', *a, **k)
+            )
 
         # All other Parsers will require some input - grab it now!
         if not self._arguments.input_source:
@@ -259,11 +264,11 @@ class CycloneDxCmd:
             current_directory = os.getcwd()
             try:
                 if self._arguments.input_from_conda_explicit:
-                    raise CycloneDxCmdNoInputFileSupplied('When using input from Conda Explicit, you need to pipe input'
-                                                          'via STDIN')
+                    raise CycloneDxCmdNoInputFileSupplied(
+                        'When using input from Conda Explicit, you need to pipe input via STDIN')
                 elif self._arguments.input_from_conda_json:
-                    raise CycloneDxCmdNoInputFileSupplied('When using input from Conda JSON, you need to pipe input'
-                                                          'via STDIN')
+                    raise CycloneDxCmdNoInputFileSupplied(
+                        'When using input from Conda JSON, you need to pipe input via STDIN')
                 elif self._arguments.input_from_pip:
                     self._arguments.input_source = open(os.path.join(current_directory, 'Pipfile.lock'), 'r')
                 elif self._arguments.input_from_poetry:
@@ -272,10 +277,10 @@ class CycloneDxCmd:
                     self._arguments.input_source = open(os.path.join(current_directory, 'requirements.txt'), 'r')
                 else:
                     raise CycloneDxCmdException('Parser type could not be determined.')
-            except FileNotFoundError as e:
+            except FileNotFoundError as error:
                 raise CycloneDxCmdNoInputFileSupplied(
-                    f'No input file was supplied and no input was provided on STDIN:\n{str(e)}'
-                )
+                    f'No input file was supplied and no input was provided on STDIN:\n{str(error)}'
+                ) from error
 
         input_data_fh = self._arguments.input_source
         with input_data_fh:
@@ -283,20 +288,35 @@ class CycloneDxCmd:
             input_data_fh.close()
 
         if self._arguments.input_from_conda_explicit:
-            return CondaListExplicitParser(conda_data=input_data,
-                                           use_purl_bom_ref=self._arguments.use_purl_bom_ref)
+            return CondaListExplicitParser(
+                conda_data=input_data,
+                use_purl_bom_ref=self._arguments.use_purl_bom_ref,
+                debug_message=lambda m, *a, **k: self._debug_message(f'CondaListExplicitParser {m}', *a, **k)
+            )
         elif self._arguments.input_from_conda_json:
-            return CondaListJsonParser(conda_data=input_data,
-                                       use_purl_bom_ref=self._arguments.use_purl_bom_ref)
+            return CondaListJsonParser(
+                conda_data=input_data,
+                use_purl_bom_ref=self._arguments.use_purl_bom_ref,
+                debug_message=lambda m, *a, **k: self._debug_message(f'CondaListJsonParser {m}', *a, **k)
+            )
         elif self._arguments.input_from_pip:
-            return PipEnvParser(pipenv_contents=input_data,
-                                use_purl_bom_ref=self._arguments.use_purl_bom_ref)
+            return PipEnvParser(
+                pipenv_contents=input_data,
+                use_purl_bom_ref=self._arguments.use_purl_bom_ref,
+                debug_message=lambda m, *a, **k: self._debug_message(f'PipEnvParser {m}', *a, **k)
+            )
         elif self._arguments.input_from_poetry:
-            return PoetryParser(poetry_lock_contents=input_data,
-                                use_purl_bom_ref=self._arguments.use_purl_bom_ref)
+            return PoetryParser(
+                poetry_lock_contents=input_data,
+                use_purl_bom_ref=self._arguments.use_purl_bom_ref,
+                debug_message=lambda m, *a, **k: self._debug_message(f'PoetryParser {m}', *a, **k)
+            )
         elif self._arguments.input_from_requirements:
-            return RequirementsParser(requirements_content=input_data,
-                                      use_purl_bom_ref=self._arguments.use_purl_bom_ref)
+            return RequirementsParser(
+                requirements_content=input_data,
+                use_purl_bom_ref=self._arguments.use_purl_bom_ref,
+                debug_message=lambda m, *a, **k: self._debug_message(f'RequirementsParser {m}', *a, **k)
+            )
         else:
             raise CycloneDxCmdException('Parser type could not be determined.')
 

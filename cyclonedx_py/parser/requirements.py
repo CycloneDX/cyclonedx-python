@@ -19,8 +19,7 @@
 
 import os
 import os.path
-from tempfile import NamedTemporaryFile, _TemporaryFileWrapper  # Weak error
-from typing import Any, Optional
+from tempfile import NamedTemporaryFile  # Weak error
 
 from cyclonedx.model import HashType
 from cyclonedx.model.component import Component
@@ -30,30 +29,41 @@ from cyclonedx.parser import BaseParser, ParserWarning
 from packageurl import PackageURL  # type: ignore
 from pip_requirements_parser import RequirementsFile  # type: ignore
 
+from ._debug import DebugMessageCallback, quiet
+
 
 class RequirementsParser(BaseParser):
 
-    def __init__(self, requirements_content: str, use_purl_bom_ref: bool = False) -> None:
+    def __init__(
+            self, requirements_content: str, use_purl_bom_ref: bool = False,
+            *,
+            debug_message: DebugMessageCallback = quiet
+    ) -> None:
         super().__init__()
-        parsed_rf: Optional[RequirementsFile] = None
-        requirements_file: Optional[_TemporaryFileWrapper[Any]] = None
+        debug_message('init {}', self.__class__.__name__)
 
         if os.path.exists(requirements_content):
-            parsed_rf = RequirementsFile.from_file(
-                requirements_content, include_nested=True)
+            debug_message('create RequirementsFile from file: {}', requirements_content)
+            parsed_rf = RequirementsFile.from_file(requirements_content, include_nested=True)
         else:
-            requirements_file = NamedTemporaryFile(mode='w+', delete=False)
-            requirements_file.write(requirements_content)
-            requirements_file.close()
+            with NamedTemporaryFile(mode='w+', delete=False) as requirements_file:
+                debug_message('write requirements_content to TempFile: {}', requirements_file.name)
+                requirements_file.write(requirements_content)
+            try:
+                debug_message('create RequirementsFile from TempFile: {}', requirements_file.name)
+                parsed_rf = RequirementsFile.from_file(requirements_file.name, include_nested=False)
+            finally:
+                debug_message('unlink TempFile: {}', requirements_file.name)
+                os.unlink(requirements_file.name)
+            del requirements_file
 
-            parsed_rf = RequirementsFile.from_file(
-                requirements_file.name, include_nested=False)
-
+        debug_message('processing requirements')
         for requirement in parsed_rf.requirements:
+            debug_message('processing requirement: {!r}', requirement)
             name = requirement.link.url if requirement.is_local_path else requirement.name
             version = requirement.get_pinned_version or requirement.dumps_specifier()
+            debug_message('detected: {!r} {!r}', name, version)
             hashes = map(HashType.from_composite_str, requirement.hash_options)
-
             if not version and not requirement.is_local_path:
                 self._warnings.append(
                     ParserWarning(
@@ -73,11 +83,15 @@ class RequirementsParser(BaseParser):
                     purl=purl
                 ))
 
-        if requirements_file:
-            os.unlink(requirements_file.name)
-
 
 class RequirementsFileParser(RequirementsParser):
 
-    def __init__(self, requirements_file: str, use_purl_bom_ref: bool = False) -> None:
-        super().__init__(requirements_content=requirements_file, use_purl_bom_ref=use_purl_bom_ref)
+    def __init__(
+            self, requirements_file: str, use_purl_bom_ref: bool = False,
+            *,
+            debug_message: DebugMessageCallback = quiet
+    ) -> None:
+        super().__init__(
+            requirements_content=requirements_file, use_purl_bom_ref=use_purl_bom_ref,
+            debug_message=debug_message
+        )

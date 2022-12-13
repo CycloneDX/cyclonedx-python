@@ -17,7 +17,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-from cyclonedx.exception.model import UnknownHashTypeException
+from cyclonedx.exception.model import CycloneDxModelException
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
 from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser
@@ -26,22 +26,33 @@ from cyclonedx.parser import BaseParser
 from packageurl import PackageURL  # type: ignore
 from toml import loads as load_toml
 
+from ._debug import DebugMessageCallback, quiet
+
 
 class PoetryParser(BaseParser):
 
-    def __init__(self, poetry_lock_contents: str, use_purl_bom_ref: bool = False) -> None:
+    def __init__(
+            self, poetry_lock_contents: str, use_purl_bom_ref: bool = False,
+            *,
+            debug_message: DebugMessageCallback = quiet
+    ) -> None:
         super().__init__()
+        debug_message('init {}', self.__class__.__name__)
+
+        debug_message('loading poetry_lock_contents')
         poetry_lock = load_toml(poetry_lock_contents)
 
+        debug_message('processing poetry_lock')
         for package in poetry_lock['package']:
+            debug_message('processing package: {!r}', package)
             purl = PackageURL(type='pypi', name=package['name'], version=package['version'])
             bom_ref = purl.to_string() if use_purl_bom_ref else None
             component = Component(
                 name=package['name'], bom_ref=bom_ref, version=package['version'],
                 purl=purl
             )
-
             for file_metadata in poetry_lock['metadata']['files'][package['name']]:
+                debug_message('processing file_metadata: {!r}', file_metadata)
                 try:
                     component.external_references.add(ExternalReference(
                         reference_type=ExternalReferenceType.DISTRIBUTION,
@@ -49,15 +60,24 @@ class PoetryParser(BaseParser):
                         comment=f'Distribution file: {file_metadata["file"]}',
                         hashes=[HashType.from_composite_str(file_metadata['hash'])]
                     ))
-                except UnknownHashTypeException:
-                    # @todo add logging for this type of exception?
-                    pass
+                except CycloneDxModelException as error:
+                    # @todo traceback and details to the output?
+                    debug_message('Warning: suppressed {!r}', error)
+                    del error
 
             self._components.append(component)
 
 
 class PoetryFileParser(PoetryParser):
 
-    def __init__(self, poetry_lock_filename: str, use_purl_bom_ref: bool = False) -> None:
-        with open(poetry_lock_filename) as r:
-            super(PoetryFileParser, self).__init__(poetry_lock_contents=r.read(), use_purl_bom_ref=use_purl_bom_ref)
+    def __init__(
+            self, poetry_lock_filename: str, use_purl_bom_ref: bool = False,
+            *,
+            debug_message: DebugMessageCallback = quiet
+    ) -> None:
+        debug_message('open file: {}', poetry_lock_filename)
+        with open(poetry_lock_filename) as plf:
+            super(PoetryFileParser, self).__init__(
+                poetry_lock_contents=plf.read(), use_purl_bom_ref=use_purl_bom_ref,
+                debug_message=debug_message
+            )

@@ -49,6 +49,8 @@ from cyclonedx.model import License, LicenseChoice
 from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser
 
+from ._debug import DebugMessageCallback, quiet
+
 
 class EnvironmentParser(BaseParser):
     """
@@ -57,45 +59,58 @@ class EnvironmentParser(BaseParser):
     Best used when you have virtual Python environments per project.
     """
 
-    def __init__(self, use_purl_bom_ref: bool = False) -> None:
+    def __init__(
+            self, use_purl_bom_ref: bool = False,
+            *,
+            debug_message: DebugMessageCallback = quiet
+    ) -> None:
         super().__init__()
+        debug_message('init {}', self.__class__.__name__)
 
+        debug_message('late import pkg_resources')
         import pkg_resources
 
+        debug_message('processing pkg_resources.working_set')
         i: DistInfoDistribution
         for i in iter(pkg_resources.working_set):
+            debug_message('processing working_set item: {!r}', i)
             purl = PackageURL(type='pypi', name=i.project_name, version=i.version)
             bom_ref = purl.to_string() if use_purl_bom_ref else None
             c = Component(name=i.project_name, bom_ref=bom_ref, version=i.version, purl=purl)
 
             i_metadata = self._get_metadata_for_package(i.project_name)
+            debug_message('processing i_metadata')
             if 'Author' in i_metadata:
                 c.author = i_metadata['Author']
-
             if 'License' in i_metadata and i_metadata['License'] and i_metadata['License'] != 'UNKNOWN':
                 # Values might be ala `MIT` (SPDX id), `Apache-2.0 license` (arbitrary string), ...
                 # Therefore, just go with a named license.
                 try:
                     c.licenses.add(LicenseChoice(license_=License(license_name=i_metadata['License'])))
-                except CycloneDxModelException:
-                    # write a debug message?
-                    pass
+                except CycloneDxModelException as error:
+                    # @todo traceback and details to the output?
+                    debug_message('Warning: suppressed {!r}', error)
+                    del error
 
+            debug_message('processing classifiers')
             for classifier in i_metadata.get_all("Classifier", []):
+                debug_message('processing classifier: {!r}', classifier)
+                classifier = str(classifier)
                 # Trove classifiers - https://packaging.python.org/specifications/core-metadata/#metadata-classifier
                 # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
-                if str(classifier).startswith('License :: OSI Approved :: '):
-                    license_name = str(classifier).replace('License :: OSI Approved :: ', '').strip()
-                elif str(classifier).startswith('License :: '):
-                    license_name = str(classifier).replace('License :: ', '').strip()
+                if classifier.startswith('License :: OSI Approved :: '):
+                    license_name = classifier.replace('License :: OSI Approved :: ', '').strip()
+                elif classifier.startswith('License :: '):
+                    license_name = classifier.replace('License :: ', '').strip()
                 else:
                     license_name = ''
                 if license_name:
                     try:
                         c.licenses.add(LicenseChoice(license_=License(license_name=license_name)))
-                    except CycloneDxModelException:
-                        # write a debug message?
-                        pass
+                    except CycloneDxModelException as error:
+                        # @todo traceback and details to the output?
+                        debug_message('Warning: suppressed {!r}', error)
+                        del error
 
             self._components.append(c)
 
