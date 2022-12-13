@@ -59,10 +59,9 @@ class PoetryParser(BaseParser):
                 purl=purl
             )
             debug_message('detecting package_files')
-            if poetry_lock_version >= (2,):
-                package_files = package['files']
-            else:
-                package_files = poetry_lock_metadata['files'][package['name']]
+            package_files = package['files'] \
+                if poetry_lock_version >= (2,) \
+                else poetry_lock_metadata['files'][package['name']]
             debug_message('processing package_files: {!r}', package_files)
             for file_metadata in package_files:
                 debug_message('processing file_metadata: {!r}', file_metadata)
