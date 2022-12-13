@@ -43,19 +43,20 @@ class RequirementsParser(BaseParser):
         super().__init__()
         debug_message('init')
 
-        requirements_file: Optional[_TemporaryFileWrapper[Any]] = None
         if os.path.exists(requirements_content):
             debug_message('create RequirementsFile from file: {}', requirements_content)
-            parsed_rf = RequirementsFile.from_file(
-                requirements_content, include_nested=True)
+            parsed_rf = RequirementsFile.from_file(requirements_content, include_nested=True)
         else:
-            requirements_file = NamedTemporaryFile(mode='w+', delete=False)
-            debug_message('write requirements_content to TempFile: {}', requirements_file.name)
-            requirements_file.write(requirements_content)
-            requirements_file.close()
-            debug_message('create RequirementsFile from TempFile: {}', requirements_file.name)
-            parsed_rf = RequirementsFile.from_file(
-                requirements_file.name, include_nested=False)
+            with NamedTemporaryFile(mode='w+', delete=False) as requirements_file:
+                debug_message('write requirements_content to TempFile: {}', requirements_file.name)
+                requirements_file.write(requirements_content)
+            try:
+                debug_message('create RequirementsFile from TempFile: {}', requirements_file.name)
+                parsed_rf = RequirementsFile.from_file(requirements_file.name, include_nested=False)
+            finally:
+                debug_message('unlink TempFile: {}', requirements_file.name)
+                os.unlink(requirements_file.name)
+            del requirements_file
 
         debug_message('processing requirements')
         for requirement in parsed_rf.requirements:
@@ -82,10 +83,6 @@ class RequirementsParser(BaseParser):
                     hashes=hashes,
                     purl=purl
                 ))
-
-        if requirements_file:
-            debug_message('unlink TempFile: {}', requirements_file.name)
-            os.unlink(requirements_file.name)
 
 
 class RequirementsFileParser(RequirementsParser):

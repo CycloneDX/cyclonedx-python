@@ -75,8 +75,8 @@ class PoetryFileParser(PoetryParser):
             debug_message: DebugMessageCallback = quiet
     ) -> None:
         debug_message('open file: {}', poetry_lock_filename)
-        with open(poetry_lock_filename) as r:
+        with open(poetry_lock_filename) as plf:
             super(PoetryFileParser, self).__init__(
-                poetry_lock_contents=r.read(), use_purl_bom_ref=use_purl_bom_ref,
+                poetry_lock_contents=plf.read(), use_purl_bom_ref=use_purl_bom_ref,
                 debug_message=debug_message
             )
