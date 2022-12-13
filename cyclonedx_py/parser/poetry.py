@@ -42,6 +42,13 @@ class PoetryParser(BaseParser):
         debug_message('loading poetry_lock_contents')
         poetry_lock = load_toml(poetry_lock_contents)
 
+        poetry_lock_metadata = poetry_lock['metadata']
+        try:
+            poetry_lock_version = str(poetry_lock_metadata['lock-version']).split('.')
+        except Exception:
+            poetry_lock_version = (0,)
+        debug_message('detected poetry_lock_version: {!r}', poetry_lock_version)
+
         debug_message('processing poetry_lock')
         for package in poetry_lock['package']:
             debug_message('processing package: {!r}', package)
@@ -51,12 +58,13 @@ class PoetryParser(BaseParser):
                 name=package['name'], bom_ref=bom_ref, version=package['version'],
                 purl=purl
             )
-            # Support poetry lock format 2.0
-            try:
-                files_metadata = package['files']
-            except KeyError:
-                files_metadata = poetry_lock['metadata']['files'][package['name']]
-            for file_metadata in files_metadata:
+            debug_message('detecting package_files')
+            if poetry_lock_version >= (2,):
+                package_files = package['fies']
+            else:
+                package_files = poetry_lock_metadata['files'][package['name']]
+            debug_message('processing package_files: {!r}', package_files)
+            for file_metadata in package_files:
                 debug_message('processing file_metadata: {!r}', file_metadata)
                 try:
                     component.external_references.add(ExternalReference(
@@ -69,7 +77,6 @@ class PoetryParser(BaseParser):
                     # @todo traceback and details to the output?
                     debug_message('Warning: suppressed {!r}', error)
                     del error
-
             self._components.append(component)
 
 
