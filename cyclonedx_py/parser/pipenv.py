@@ -46,7 +46,7 @@ class PipEnvParser(BaseParser):
 
         debug_message('processing pipfile_default')
         for (package_name, package_data) in pipfile_default.items():
-            debug_message('processing {!s}: {!r}', package_name, package_data)
+            debug_message('processing package: {!r} {!r}', package_name, package_data)
             version = str(package_data.get('version') or 'unknown').lstrip('=')
             purl = PackageURL(type='pypi', name=package_name, version=version)
             bom_ref = purl.to_string() if use_purl_bom_ref else None
