@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v3.10.0 (2022-12-13)
+### Feature
+* Add support for poetry lock format v2.0 ([#469](https://github.com/CycloneDX/cyclonedx-python/issues/469)) ([`0b1e07f`](https://github.com/CycloneDX/cyclonedx-python/commit/0b1e07f91aada201088605a84ea394182ce0f10e))
+
 ## v3.9.0 (2022-12-13)
 ### Feature
 * Parsers can outbut more debug messages ([#466](https://github.com/CycloneDX/cyclonedx-python/issues/466)) ([`9eedb4f`](https://github.com/CycloneDX/cyclonedx-python/commit/9eedb4ff27bb81f4ad323e9fa0f79230b0710032))
