@@ -53,6 +53,9 @@ def conda_package_to_purl(pkg: CondaPackage) -> PackageURL:
     Return the purl for the specified package.
     See https://github.com/package-url/purl-spec/blob/master/PURL-TYPES.rst#conda
     """
+    if pkg['channel'] == 'pypi' and pkg['platform'] == 'pypi':
+        return _conda_package_to_pypi_purl(pkg)
+
     qualifiers = {
         'build': pkg['build_string'],
         'channel': pkg['channel'],
@@ -63,6 +66,19 @@ def conda_package_to_purl(pkg: CondaPackage) -> PackageURL:
 
     purl = PackageURL(
         type='conda', name=pkg['name'], version=pkg['version'], qualifiers=qualifiers
+    )
+    return purl
+
+
+def _conda_package_to_pypi_purl(pkg: CondaPackage) -> PackageURL:
+    """
+    Return the purl for a pip-installed package in a conda environment.
+    These packages are listed as if from the pseudo-channel "pypi".
+    See https://github.com/package-url/purl-spec/blob/master/PURL-TYPES.rst#pypi
+    """
+    name = pkg['name'].lower().replace('_', '-')
+    purl = PackageURL(
+        type='pypi', name=name, version=pkg['version']
     )
     return purl
 

@@ -49,6 +49,32 @@ class TestCondaParser(TestCase):
         self.assertEqual(0, len(c_idna.external_references.pop().hashes))
         self.assertEqual(0, len(c_idna.hashes), f'{c_idna.hashes}')
 
+    def test_conda_list_json_mixed(self) -> None:
+        # conda environment which has both conda and pypi packages
+        # see https://github.com/CycloneDX/cyclonedx-python/issues/462
+        conda_list_output_file = os.path.join(os.path.dirname(__file__),
+                                              'fixtures/conda-list-issue462.json')
+
+        with (open(conda_list_output_file, 'r')) as conda_list_output_fh:
+            parser = CondaListJsonParser(conda_data=conda_list_output_fh.read())
+
+        self.assertEqual(25, parser.component_count())
+        components = parser.get_components()
+
+        c_libffi = next(filter(lambda c: c.name == 'libffi', components), None)
+        self.assertIsNotNone(c_libffi)
+        self.assertEqual('libffi', c_libffi.name)
+        self.assertEqual('3.4.2', c_libffi.version)
+        self.assertEqual('pkg:conda/libffi@3.4.2?build=h6a678d5_6&channel=pkgs/main&subdir=linux-64',
+                         c_libffi.purl.to_string())
+
+        c_seawater = next(filter(lambda c: c.name == 'seawater', components), None)
+        self.assertIsNotNone(c_seawater)
+        self.assertEqual('seawater', c_seawater.name)
+        self.assertEqual('3.3.4', c_seawater.version)
+        self.assertEqual('pkg:pypi/seawater@3.3.4',
+                         c_seawater.purl.to_string())
+
     def test_conda_list_json_use_purl_bom_ref(self) -> None:
         conda_list_output_file = os.path.join(os.path.dirname(__file__),
                                               'fixtures/conda-list-output.json')
