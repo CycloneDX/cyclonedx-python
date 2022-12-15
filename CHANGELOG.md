@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## v3.10.1 (2022-12-15)
+### Fix
+* PURL for PyPI packages from 'conda list' have the correct format now ([#471](https://github.com/CycloneDX/cyclonedx-python/issues/471)) ([`1573064`](https://github.com/CycloneDX/cyclonedx-python/commit/157306483a21583d752714a77ad7d0c7395291e5))
+
+### Documentation
+* Improve CONTRIBUTION instructions - sign-off step ([#470](https://github.com/CycloneDX/cyclonedx-python/issues/470)) ([`578c0a8`](https://github.com/CycloneDX/cyclonedx-python/commit/578c0a88e63c804b1462e3d3b617f56b53b6012e))
+
 ## v3.10.0 (2022-12-13)
 ### Feature
 * Add support for poetry lock format v2.0 ([#469](https://github.com/CycloneDX/cyclonedx-python/issues/469)) ([`0b1e07f`](https://github.com/CycloneDX/cyclonedx-python/commit/0b1e07f91aada201088605a84ea394182ce0f10e))
