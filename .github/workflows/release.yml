@@ -59,7 +59,7 @@ jobs:
           python-version: ${{ env.PYTHON_VERISON }}
       - name: Setup poetry ${{ env.POETRY_VERSION }}
         # see https://github.com/marketplace/actions/setup-poetry
-        uses: Gr1N/setup-poetry@v7
+        uses: Gr1N/setup-poetry@v8
         with:
           poetry-version: ${{ env.POETRY_VERSION }}
       - name: pre-hook
