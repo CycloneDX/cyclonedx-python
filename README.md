@@ -4,7 +4,7 @@
 [![shield_rtfd]][link_rtfd]
 [![shield_pypi-version]][link_pypi]
 [![shield_docker-version]][link_docker]
-[![shield_license]][license_file]  
+[![shield_license]][license_file]
 [![shield_website]][link_website]
 [![shield_slack]][link_slack]
 [![shield_groups]][link_discussion]
@@ -74,7 +74,7 @@ optional arguments:
                         current working directory.
   -pip, --pip           Build a SBOM based on a PipEnv Pipfile.lock's
                         contents. Use with -i to specify absolute path to a
-                        `Pipefile.lock` you wish to use, else we'll look for
+                        `Pipfile.lock` you wish to use, else we'll look for
                         one in the current working directory.
   -r, --r, --requirements
                         Build a SBOM based on a requirements.txt's contents.
@@ -116,13 +116,13 @@ However, some features may not be possible/present in older Python versions due 
 
 ## Contributing
 
-Feel free to open issues, bugreports or pull requests.  
+Feel free to open issues, bugreports or pull requests.
 See the [CONTRIBUTING][contributing_file] file for details.
 
 ## Copyright & License
 
-CycloneDX BOM is Copyright (c) OWASP Foundation. All Rights Reserved.  
-Permission to modify and redistribute is granted under the terms of the Apache 2.0 license.  
+CycloneDX BOM is Copyright (c) OWASP Foundation. All Rights Reserved.
+Permission to modify and redistribute is granted under the terms of the Apache 2.0 license.
 See the [LICENSE][license_file] file for the full license.
 
 [license_file]: https://github.com/CycloneDX/cyclonedx-python/blob/master/LICENSE

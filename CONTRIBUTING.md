@@ -17,8 +17,8 @@ poetry install
 
 ## Code style
 
-This project uses [PEP8] Style Guide for Python Code.  
-This project loves sorted imports.  
+This project uses [PEP8] Style Guide for Python Code.
+This project loves sorted imports.
 Get it all applied via:
 
 ```shell
