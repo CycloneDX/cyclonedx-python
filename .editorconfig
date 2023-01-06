@@ -1,0 +1,37 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+root = true
+
+[*]
+insert_final_newline = true
+charset = utf-8
+trim_trailing_whitespace = true
+end_of_line = lf
+
+[*.py]
+indent_style = space
+indent_size = 4
+
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+[*.toml]
+indent_style = space
+indent_size = 2
+
+[*.md]
+charset = latin1
+indent_style = space
+indent_size = 2
+# 2 trailing spaces indicate line breaks.
+trim_trailing_whitespace = false
+
+[*.{rst,txt}]
+indent_style = space
+indent_size = 4
+
+[*.ini]
+charset = latin1
+indent_style = space
+indent_size = 4
