@@ -38,7 +38,7 @@ The full documentation can be issued by running with ``--help``:
                             current working directory.
       -pip, --pip           Build a SBOM based on a PipEnv Pipfile.lock's
                             contents. Use with -i to specify absolute path to a
-                            `Pipefile.lock` you wish to use, else we'll look for
+                            `Pipfile.lock` you wish to use, else we'll look for
                             one in the current working directory.
       -r, --r, --requirements
                             Build a SBOM based on a requirements.txt's contents.

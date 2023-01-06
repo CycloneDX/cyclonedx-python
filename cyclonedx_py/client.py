@@ -186,7 +186,7 @@ class CycloneDxCmd:
         input_group.add_argument(
             '-pip', '--pip', action='store_true',
             help='Build a SBOM based on a PipEnv Pipfile.lock\'s contents. Use with -i to specify absolute path '
-                 'to a `Pipefile.lock` you wish to use, else we\'ll look for one in the current working directory.',
+                 'to a `Pipfile.lock` you wish to use, else we\'ll look for one in the current working directory.',
             dest='input_from_pip'
         )
         input_group.add_argument(
