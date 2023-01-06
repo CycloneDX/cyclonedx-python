@@ -122,7 +122,7 @@ See the [CONTRIBUTING][contributing_file] file for details.
 ## Copyright & License
 
 CycloneDX BOM is Copyright (c) OWASP Foundation. All Rights Reserved.  
-Permission to modify and redistribute is granted under the terms of the Apache 2.0 license.
+Permission to modify and redistribute is granted under the terms of the Apache 2.0 license.  
 See the [LICENSE][license_file] file for the full license.
 
 [license_file]: https://github.com/CycloneDX/cyclonedx-python/blob/master/LICENSE
