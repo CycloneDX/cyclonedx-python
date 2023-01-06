@@ -4,7 +4,7 @@
 [![shield_rtfd]][link_rtfd]
 [![shield_pypi-version]][link_pypi]
 [![shield_docker-version]][link_docker]
-[![shield_license]][license_file]
+[![shield_license]][license_file]  
 [![shield_website]][link_website]
 [![shield_slack]][link_slack]
 [![shield_groups]][link_discussion]
@@ -116,12 +116,12 @@ However, some features may not be possible/present in older Python versions due 
 
 ## Contributing
 
-Feel free to open issues, bugreports or pull requests.
+Feel free to open issues, bugreports or pull requests.  
 See the [CONTRIBUTING][contributing_file] file for details.
 
 ## Copyright & License
 
-CycloneDX BOM is Copyright (c) OWASP Foundation. All Rights Reserved.
+CycloneDX BOM is Copyright (c) OWASP Foundation. All Rights Reserved.  
 Permission to modify and redistribute is granted under the terms of the Apache 2.0 license.
 See the [LICENSE][license_file] file for the full license.
 
