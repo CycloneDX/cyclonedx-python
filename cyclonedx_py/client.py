@@ -233,7 +233,7 @@ class CycloneDxCmd:
         )
         output_group.add_argument(
             '-pb', '--purl-bom-ref', action='store_true', dest='use_purl_bom_ref',
-            help='Use a component''s purl for the bom-ref value, instead of a random UUID'
+            help="Use a component's PURL for the bom-ref value, instead of a random UUID"
         )
 
         arg_parser.add_argument('-X', action='store_true', help='Enable debug output', dest='debug_enabled')
