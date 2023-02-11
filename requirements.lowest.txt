@@ -2,7 +2,7 @@
 # see pyptoject file for ranges
 
 cyclonedx-python-lib == 2.0.0
-packageurl-python == 0.10.3
+packageurl-python == 0.10.4
 importlib-metadata == 3.4.0 # ; python_version < '3.8'
 pip-requirements-parser == 32.0.1
 setuptools == 47.0.0
