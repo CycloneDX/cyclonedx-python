@@ -8,4 +8,4 @@ pip-requirements-parser == 32.0.1
 setuptools == 47.0.0
 types-setuptools == 57.0.0
 toml == 0.10.0
-types-toml == 0.10.0
+types-toml == 0.10.8.3
