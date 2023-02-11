@@ -2,6 +2,15 @@
 
 <!--next-version-placeholder-->
 
+## v3.11.0 (2023-02-11)
+### Feature
+* Deprecated CLI command `cyclonedx-bom` prints deprecation warning on STDERR before execution ([#489](https://github.com/CycloneDX/cyclonedx-python/issues/489)) ([`2009236`](https://github.com/CycloneDX/cyclonedx-python/commit/2009236c537af212aab1d5907e02f2b003f3062c))
+
+### Documentation
+* Fix typo in CLI help page ([#490](https://github.com/CycloneDX/cyclonedx-python/issues/490)) ([`a8a8445`](https://github.com/CycloneDX/cyclonedx-python/commit/a8a844504494d10c217ba4739e6ff09b4ca34f67))
+* Fix typos ([#482](https://github.com/CycloneDX/cyclonedx-python/issues/482)) ([`edbe3d4`](https://github.com/CycloneDX/cyclonedx-python/commit/edbe3d4e0ee62396ac10b42dd9ee5d6094817675))
+* Fix shields ([#473](https://github.com/CycloneDX/cyclonedx-python/issues/473)) ([`e32b288`](https://github.com/CycloneDX/cyclonedx-python/commit/e32b28894a8859925f22a1f45aec8608e7cd8bc3))
+
 ## v3.10.1 (2022-12-15)
 ### Fix
 * PURL for PyPI packages from 'conda list' have the correct format now ([#471](https://github.com/CycloneDX/cyclonedx-python/issues/471)) ([`1573064`](https://github.com/CycloneDX/cyclonedx-python/commit/157306483a21583d752714a77ad7d0c7395291e5))
