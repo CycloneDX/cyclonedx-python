@@ -43,7 +43,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.6"
-# ATTENTION: keep `requirements.lowest.txt` file in sync
+# ATTENTION: keep `constraints.lowest.txt` file in sync
 cyclonedx-python-lib = ">= 2.0.0, < 4.0.0"
 packageurl-python = ">= 0.9"
 importlib-metadata = { version = ">= 3.4", python = "< 3.8" }
@@ -67,7 +67,7 @@ flake8-annotations = {version = "^2.7.0", python = ">= 3.6.2"}
 flake8-bugbear = "^22.9.23"
 flake8-isort = { version = "^4.2.0", python = ">= 3.6.1" }
 # `types-toml` need to stay in sync with version of `toml`
-types-toml = "^0.10.8"
+types-toml = "^0.10.0"
 # `types-setuptools` need to stay in sync with version of `setuptools` - but 47 was not typed...
 types-setuptools = ">= 57.0.0"
 
