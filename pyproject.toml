@@ -43,7 +43,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.6"
-# ATTENTION: keep `constraints.lowest.txt` file in sync
+# ATTENTION: keep `.lowest-constraints.txt` file in sync
 cyclonedx-python-lib = ">= 2.0.0, < 4.0.0"
 packageurl-python = ">= 0.9"
 importlib-metadata = { version = ">= 3.4", python = "< 3.8" }
