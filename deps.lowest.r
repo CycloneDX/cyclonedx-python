@@ -9,3 +9,5 @@ setuptools == 47.0.0
 types-setuptools == 57.0.0
 toml == 0.10.0
 types-toml == 0.10.0
+
+# file name is a untypical one, so dependabot does not bump this file
