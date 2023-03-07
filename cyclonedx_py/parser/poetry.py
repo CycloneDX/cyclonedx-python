@@ -67,7 +67,7 @@ class PoetryParser(BaseParser):
                 debug_message('processing file_metadata: {!r}', file_metadata)
                 try:
                     component.external_references.add(ExternalReference(
-                        reference_type=ExternalReferenceType.DISTRIBUTION,
+                        type=ExternalReferenceType.DISTRIBUTION,
                         url=XsUri(component.get_pypi_url()),
                         comment=f'Distribution file: {file_metadata["file"]}',
                         hashes=[HashType.from_composite_str(file_metadata['hash'])]

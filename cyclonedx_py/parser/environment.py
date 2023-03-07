@@ -86,7 +86,7 @@ class EnvironmentParser(BaseParser):
                 # Values might be ala `MIT` (SPDX id), `Apache-2.0 license` (arbitrary string), ...
                 # Therefore, just go with a named license.
                 try:
-                    c.licenses.add(LicenseChoice(license_=License(license_name=i_metadata['License'])))
+                    c.licenses.add(LicenseChoice(license=License(name=i_metadata['License'])))
                 except CycloneDxModelException as error:
                     # @todo traceback and details to the output?
                     debug_message('Warning: suppressed {!r}', error)
@@ -106,7 +106,7 @@ class EnvironmentParser(BaseParser):
                     license_name = ''
                 if license_name:
                     try:
-                        c.licenses.add(LicenseChoice(license_=License(license_name=license_name)))
+                        c.licenses.add(LicenseChoice(license=License(name=license_name)))
                     except CycloneDxModelException as error:
                         # @todo traceback and details to the output?
                         debug_message('Warning: suppressed {!r}', error)

@@ -78,14 +78,14 @@ class _BaseCondaParser(BaseParser, metaclass=ABCMeta):
                 purl=purl
             )
             c.external_references.add(ExternalReference(
-                reference_type=ExternalReferenceType.DISTRIBUTION,
+                type=ExternalReferenceType.DISTRIBUTION,
                 url=XsUri(conda_package['base_url']),
                 comment=f"Distribution name {conda_package['dist_name']}"
             ))
             if conda_package['md5_hash'] is not None:
                 c.hashes.add(HashType(
-                    algorithm=HashAlgorithm.MD5,
-                    hash_value=str(conda_package['md5_hash'])
+                    alg=HashAlgorithm.MD5,
+                    content=str(conda_package['md5_hash'])
                 ))
 
             self._components.append(c)

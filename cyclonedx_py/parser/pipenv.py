@@ -56,7 +56,7 @@ class PipEnvParser(BaseParser):
                 for pip_hash in package_data['hashes']:
                     debug_message('processing pip_hash: {!r}', pip_hash)
                     ext_ref = ExternalReference(
-                        reference_type=ExternalReferenceType.DISTRIBUTION,
+                        type=ExternalReferenceType.DISTRIBUTION,
                         url=XsUri(c.get_pypi_url()),
                         comment='Distribution available from pypi.org'
                     )
