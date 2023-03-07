@@ -8,7 +8,7 @@ env:
   DIST_DIR: dist
   DIST_ARTIFACT: python-dist
   PYTHON_VERSION: "3.11"
-  POETRY_VERSION: "1.1.15"
+  POETRY_VERSION: "1.4.0"
 
 jobs:
   release_candidate:

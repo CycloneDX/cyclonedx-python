@@ -12,7 +12,7 @@ on:
 env:
   REPORTS_DIR: CI_reports
   PYTHON_VERSION: "3.11"
-  POETRY_VERSION: "1.1.15"
+  POETRY_VERSION: "1.4.0"
 
 jobs:
   test:
