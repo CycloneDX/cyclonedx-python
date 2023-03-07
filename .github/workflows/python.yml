@@ -25,12 +25,12 @@ on:
     branches-ignore: ['dependabot/**']
   push:
     tags: [ 'v*.*.*' ]  # run again on release tags to have tools mark them
-    branches: [ 'master' ]
+    branches: [ 'main' ]
 
 env:
   REPORTS_DIR: CI_reports
-  PYTHON_VERISON_DEFAULT: "3.11"
-  POETRY_VERSION: "1.1.15"
+  PYTHON_VERSION_DEFAULT: "3.11"
+  POETRY_VERSION: "1.4.0"
 
 jobs:
   coding-standards:
@@ -41,19 +41,23 @@ jobs:
       - name: Checkout
         # see https://github.com/actions/checkout
         uses: actions/checkout@v3
+
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ env.PYTHON_VERISON_DEFAULT }}
+          python-version: ${{ env.PYTHON_VERSION_DEFAULT }}
           architecture: 'x64'
+
       - name: Install poetry
         # see https://github.com/marketplace/actions/setup-poetry
         uses: Gr1N/setup-poetry@v8
         with:
           poetry-version: ${{ env.POETRY_VERSION }}
+
       - name: Install dependencies
-        run: poetry install
+        run: poetry install --no-root
+
       - name: Run tox
         run: poetry run tox -e flake8 -s false
 
@@ -70,26 +74,30 @@ jobs:
             toxenv-factor: 'locked'
             os: ubuntu-latest
           - # test with the lowest dependencies
-            python-version: '3.6'
+            python-version: '3.7'
             toxenv-factor: 'lowest'
             os: ubuntu-20.04
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
         uses: actions/checkout@v3
+
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
           architecture: 'x64'
+
       - name: Install poetry
         # see https://github.com/marketplace/actions/setup-poetry
         uses: Gr1N/setup-poetry@v8
         with:
           poetry-version: ${{ env.POETRY_VERSION }}
+
       - name: Install dependencies
-        run: poetry install
+        run: poetry install --no-root
+
       - name: Run tox
         run: poetry run tox -e mypy-${{ matrix.toxenv-factor }} -s false
 
@@ -108,53 +116,53 @@ jobs:
           - "3.10"
           - "3.9"
           - "3.8"
-          - "3.7"
-          - "3.6"  # lowest supported -- handled in include
+          - "3.7"  # lowest supported -- handled in include
         toxenv-factor: ['locked']
         include:
-          - # test with py36 ubuntu20
+          - # test with py37 ubuntu20
             os: ubuntu-20.04
-            python-version: '3.6'
+            python-version: '3.7'
             toxenv-factor: 'locked'
           - # test with the lowest dependencies
             os: ubuntu-20.04
-            python-version: '3.6'
+            python-version: '3.7'
             toxenv-factor: 'lowest'
-        exclude:
-          - # no py36 with latest ubuntu - see https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json
-            os: ubuntu-latest
-            python-version: '3.6'
-          - # broken poetry installer - see https://github.com/CycloneDX/cyclonedx-python/actions/runs/3435061093/jobs/5727124247#step:6:15
-            os: macos-latest
-            python-version: '3.11'
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
         uses: actions/checkout@v3
+
       - name: Create reports directory
         run: mkdir ${{ env.REPORTS_DIR }}
+
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
           architecture: 'x64'
+
       - name: Install poetry
         # see https://github.com/marketplace/actions/setup-poetry
         uses: Gr1N/setup-poetry@v8
         with:
           poetry-version: ${{ env.POETRY_VERSION }}
+
       - name: Install dependencies
-        run: poetry install
+        run: poetry install --no-root
+
       - name: Ensure build successful
         run: poetry build
+
       - name: Run tox
         run: poetry run tox -e py-${{ matrix.toxenv-factor }} -s false
+
       - name: Generate coverage reports
         run: >
           poetry run coverage report &&
           poetry run coverage xml -o ${{ env.REPORTS_DIR }}/coverage-${{ matrix.os }}-${{ matrix.python-version }}-${{ matrix.toxenv-factor }}.xml &&
           poetry run coverage html -d ${{ env.REPORTS_DIR }}
+
       - name: Artifact reports
         if: ${{ ! cancelled() }}
         # see https://github.com/actions/upload-artifact

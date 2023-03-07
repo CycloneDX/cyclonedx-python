@@ -27,8 +27,9 @@ from typing import Any, Optional
 
 from cyclonedx.model import Tool
 from cyclonedx.model.bom import Bom
-from cyclonedx.output import BaseOutput, OutputFormat, SchemaVersion, get_instance as get_output_instance
+from cyclonedx.output import BaseOutput, get_instance as get_output_instance
 from cyclonedx.parser import BaseParser
+from cyclonedx.schema import OutputFormat, SchemaVersion
 
 from .parser.conda import CondaListExplicitParser, CondaListJsonParser
 from .parser.environment import EnvironmentParser

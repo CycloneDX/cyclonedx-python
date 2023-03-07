@@ -29,8 +29,8 @@ env:
   REPORTS_DIR: CI_reports
   DIST_DIR: dist
   DIST_ARTIFACT: python-dist
-  PYTHON_VERISON: "3.10"
-  POETRY_VERSION: "1.1.15"
+  PYTHON_VERSION: "3.11"
+  POETRY_VERSION: "1.4.0"
 
 jobs:
   release-PyPI:
@@ -52,32 +52,38 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0  # action `relekang/python-semantic-release` requires all git history
-      - name: Setup python ${{ env.PYTHON_VERISON }}
+
+      - name: Setup python ${{ env.PYTHON_VERSION }}
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ env.PYTHON_VERISON }}
+          python-version: ${{ env.PYTHON_VERSION }}
+          architecture: 'x64'
+
       - name: Setup poetry ${{ env.POETRY_VERSION }}
         # see https://github.com/marketplace/actions/setup-poetry
         uses: Gr1N/setup-poetry@v8
         with:
           poetry-version: ${{ env.POETRY_VERSION }}
+
       - name: pre-hook
         id: before-release
         run: |
           VERSION="$(poetry version --short --no-interaction --no-ansi)"
           # version may be empty at first
           echo "version=$VERSION" >> $GITHUB_OUTPUT
+
       - name: Python Semantic Release
         id: semantic-release
         # see https://python-semantic-release.readthedocs.io/en/latest/automatic-releases/github-actions.html
         # see https://github.com/relekang/python-semantic-release
-        uses: relekang/python-semantic-release@v7.33.1
+        uses: relekang/python-semantic-release@v7.33.2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token:        ${{ secrets.GITHUB_TOKEN }}
           repository_username: __token__
           repository_password: ${{ secrets.PYPI_TOKEN }}
-          pypi_token: ${{ secrets.PYPI_TOKEN }}
+          pypi_token:          ${{ secrets.PYPI_TOKEN }}
+
       - name: post-hook
         id: after-release
         run: |
@@ -88,8 +94,9 @@ jobs:
           then
             echo "released=true" >> $GITHUB_OUTPUT
           fi
-        env: 
+        env:
           VERSION_PRE: ${{ steps.before-release.outputs.version }}
+
       - name: Artifact python dist
         if: |
           !failure() && !cancelled() &&
@@ -102,7 +109,7 @@ jobs:
           if-no-files-found: error
           # Dist results are required for further processing.
           # Therefore, make sure that python-semantic-release is configuret to keep dist.
-          # see https://python-semantic-release.readthedocs.io/en/latest/configuration.html?highlight=remove_dist#remove-dist 
+          # see https://python-semantic-release.readthedocs.io/en/latest/configuration.html?highlight=remove_dist#remove-dist
 
   release-DockerHub:
     name: "Release: DockerHub"
@@ -125,16 +132,19 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: v${{ env.VERSION }}
+
       - name: setup dirs
         run: |
           mkdir "$REPORTS_DIR"
           mkdir "$DIST_DIR"
+
       - name: Fetch python dist artifact
         # see https://github.com/actions/download-artifact
         uses: actions/download-artifact@v3
-        with: 
+        with:
           name: ${{ env.DIST_ARTIFACT }}
           path: ${{ env.DIST_DIR }}/
+
       - name: Build Docker Image (${{ env.VERSION }})
         run: >
           docker build -f Dockerfile
@@ -142,6 +152,7 @@ jobs:
           -t "$DOCKER_REPO:$VERSION"
           -t "$DOCKER_REPO:latest"
           .
+
       - name: Build own SBoM (XML)
         run: >
           docker run --rm "$DOCKER_REPO:$VERSION"
@@ -149,6 +160,7 @@ jobs:
           --format=xml
           --output=-
           > "$REPORTS_DIR/$ARTIFACT_DOCKER_SBOM.bom.xml"
+
       - name: Build own SBoM (JSON)
         run: >
           docker run --rm "$DOCKER_REPO:$VERSION"
@@ -156,6 +168,7 @@ jobs:
           --format=json
           --output=-
           > "$REPORTS_DIR/$ARTIFACT_DOCKER_SBOM.bom.json"
+
       - name: Artifact reports
         if: ${{ ! cancelled() }}
         # see https://github.com/actions/upload-artifact
@@ -164,6 +177,7 @@ jobs:
           name: ${{ env.ARTIFACT_DOCKER_SBOM }}
           path: ${{ env.REPORTS_DIR }}/*.bom.*
           if-no-files-found: error
+
       # publish AFTER the boms were build, as the bom-generation is kind of a test if the image works
       - name: Publish Docker Image(s)
         run: |
@@ -172,7 +186,8 @@ jobs:
           docker push "$DOCKER_REPO:latest"
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+          DOCKERHUB_TOKEN:    ${{ secrets.DOCKERHUB_TOKEN }}
+
       # TODO: publish all files in $REPORTS_DIR as release assets - see https://github.com/actions/upload-release-asset
       - name: Destroy Docker image
         # run regardless of outcome
