@@ -68,7 +68,6 @@ types-toml = "^0.10.0"
 types-setuptools = ">= 57.0.0"
 
 [tool.poetry.scripts]
-cyclonedx-bom = 'cyclonedx_py.client:main_deprecated'  # deprecated as of https://github.com/CycloneDX/cyclonedx-python/issues/488
 cyclonedx-py  = 'cyclonedx_py.client:main'
 
 [build-system]
