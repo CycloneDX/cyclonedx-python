@@ -23,7 +23,7 @@ Get it all applied via:
 
 ```shell
 poetry run isort .
-poetry run autopep8 --in-place -r .
+poetry run flake8 cyclonedx/ tests/
 ```
 
 ## Documentation
