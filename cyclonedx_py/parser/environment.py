@@ -34,7 +34,7 @@ from cyclonedx.exception.model import CycloneDxModelException
 
 # See https://github.com/package-url/packageurl-python/issues/65
 from packageurl import PackageURL  # type: ignore
-from pkg_resources import DistInfoDistribution  # type: ignore
+from pkg_resources import Distribution, DistInfoDistribution
 
 if sys.version_info >= (3, 8):
     if sys.version_info >= (3, 10):
@@ -71,7 +71,7 @@ class EnvironmentParser(BaseParser):
         import pkg_resources
 
         debug_message('processing pkg_resources.working_set')
-        i: DistInfoDistribution
+        i: Distribution
         for i in iter(pkg_resources.working_set):
             debug_message('processing working_set item: {!r}', i)
             purl = PackageURL(type='pypi', name=i.project_name, version=i.version)
