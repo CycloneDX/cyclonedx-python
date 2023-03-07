@@ -139,7 +139,7 @@ class CycloneDxCmd:
 
         # Quick check for JSON && SchemaVersion <= 1.1
         if output_format == OutputFormat.JSON and \
-                str(self._arguments.output_schema_version) in ['1.0', '1.1']:
+            str(self._arguments.output_schema_version) in ['1.0', '1.1']:
             self._error_and_exit(
                 'CycloneDX schema does not support JSON output in Schema Versions < 1.2',
                 exit_code=2
@@ -322,21 +322,10 @@ class CycloneDxCmd:
             raise CycloneDxCmdException('Parser type could not be determined.')
 
 
-def main(*, prog_name: Optional[str] = None, prog_name_instead: Optional[str] = None) -> None:
+def main(*, prog_name: Optional[str] = None) -> None:
     parser = CycloneDxCmd.get_arg_parser(prog=prog_name)
-    if prog_name_instead:
-        print('',
-              '!!! DEPRECATION WARNING !!!',
-              f'! The used call method "{parser.prog}" is deprecated.',
-              f'! Use "{prog_name_instead}" instead.',
-              '',
-              sep='\n', file=sys.stderr)
     args = parser.parse_args()
     CycloneDxCmd(args).execute()
-
-
-def main_deprecated(*, prog_name: Optional[str] = None) -> None:
-    main(prog_name=prog_name, prog_name_instead='cyclonedx-py')
 
 
 if __name__ == "__main__":
