@@ -10,7 +10,6 @@ Once installed, you can call the tool via the following methods:
 
     $ python3 -m cyclonedx_py
     $ cyclonedx-py
-    $ cyclonedx-bom  # deprecated
 
 The full documentation can be issued by running with ``--help``:
 
@@ -83,7 +82,7 @@ Simply run:
 
 
 This will generate a CycloneDX including all packages installed in your current Python environment and output to STDOUT
-in XML using the default schema version ``1.3`` by default.
+in XML using the default schema version ``1.4`` by default.
 
 From your Python application manifest
 
