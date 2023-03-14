@@ -66,7 +66,7 @@ class MakeBomCommand(BaseCommand):
         return 'make-bom'
 
     def get_argument_parser_help(self) -> str:
-        return 'Make a BOM from your environment as specified.'
+        return 'Make a BOM from your environment as specified'
 
     def setup_argument_parser(self, arg_parser: ArgumentParser) -> None:
         input_group = arg_parser.add_mutually_exclusive_group(required=True)
