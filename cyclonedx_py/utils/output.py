@@ -13,16 +13,24 @@
 # limitations under the License.
 #
 # SPDX-License-Identifier: Apache-2.0
-#
+# Copyright (c) OWASP Foundation. All Rights Reserved.
 
-"""
-Exceptions that are specific to the CycloneDX Python implementation.
-"""
+import enum
 
-
-class CycloneDxCmdException(Exception):
-    pass
+from cyclonedx.schema import OutputFormat
 
 
-class CycloneDxCmdNoInputFileSupplied(CycloneDxCmdException):
-    pass
+@enum.unique
+class CLI_OUTPUT_FORMAT(enum.Enum):
+    XML = 'xml'
+    JSON = 'json'
+
+
+OUTPUT_FORMATS = {
+    CLI_OUTPUT_FORMAT.XML: OutputFormat.XML,
+    CLI_OUTPUT_FORMAT.JSON: OutputFormat.JSON,
+}
+OUTPUT_DEFAULT_FILENAMES = {
+    CLI_OUTPUT_FORMAT.XML: 'cyclonedx.xml',
+    CLI_OUTPUT_FORMAT.JSON: 'cyclonedx.json',
+}
