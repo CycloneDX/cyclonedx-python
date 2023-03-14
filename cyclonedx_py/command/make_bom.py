@@ -17,6 +17,7 @@
 import os
 import sys
 from argparse import ArgumentParser, FileType
+from typing import Optional
 
 from cyclonedx.model import Tool
 from cyclonedx.model.bom import Bom
@@ -145,6 +146,7 @@ class MakeBomCommand(BaseCommand):
         )
 
     def get_output(self) -> BaseOutput:
+        parser: Optional[BaseParser] = None
         try:
             parser = self._get_input_parser()
         except CycloneDxCmdNoInputFileSupplied as error:
@@ -154,7 +156,10 @@ class MakeBomCommand(BaseCommand):
             print(f'ERROR: {str(error)}', file=sys.stderr)
             exit(1)
 
-        if parser and parser.has_warnings():
+        if not parser:
+            self._error_and_exit('No Parser created - check the code!')
+
+        if parser.has_warnings():
             print('',
                   '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
                   '!! Some of your dependencies do not have pinned version !!',
