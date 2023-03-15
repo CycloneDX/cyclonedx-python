@@ -306,15 +306,15 @@ class CycloneDxCmd:
         elif self._arguments.input_from_pip:
             return PipEnvParser(
                 pipenv_contents=input_data,
-                use_purl_bom_ref=self._arguments.use_purl_bom_ref,
                 omit_category=self._arguments.omit,
+                use_purl_bom_ref=self._arguments.use_purl_bom_ref,
                 debug_message=lambda m, *a, **k: self._debug_message(f'PipEnvParser {m}', *a, **k)
             )
         elif self._arguments.input_from_poetry:
             return PoetryParser(
                 poetry_lock_contents=input_data,
-                use_purl_bom_ref=self._arguments.use_purl_bom_ref,
                 omit_category=self._arguments.omit,
+                use_purl_bom_ref=self._arguments.use_purl_bom_ref,
                 debug_message=lambda m, *a, **k: self._debug_message(f'PoetryParser {m}', *a, **k)
             )
         elif self._arguments.input_from_requirements:

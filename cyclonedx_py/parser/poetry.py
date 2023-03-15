@@ -17,6 +17,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
+from enum import Enum
 from typing import Set
 
 from cyclonedx.exception.model import CycloneDxModelException
@@ -31,11 +32,17 @@ from toml import loads as load_toml
 from ._debug import DebugMessageCallback, quiet
 
 
+class OmitCategory(str, Enum):
+    """Supported values for omit_category."""
+    DEV = "dev"
+
+
 class PoetryParser(BaseParser):
 
     def __init__(
-            self, poetry_lock_contents: str, use_purl_bom_ref: bool = False,
-            omit_category: Set[str] = set(),  # noqa: B006
+            self, poetry_lock_contents: str,
+            omit_category: Set[str],
+            use_purl_bom_ref: bool = False,
             *,
             debug_message: DebugMessageCallback = quiet
     ) -> None:
@@ -56,7 +63,7 @@ class PoetryParser(BaseParser):
         for package in poetry_lock['package']:
             debug_message('processing package: {!r}', package)
 
-            if package['category'] == "dev":
+            if package['category'] == OmitCategory.DEV:
                 if "dev" in omit_category:
                     debug_message("Ignoring development package!")
                     continue
@@ -67,10 +74,9 @@ class PoetryParser(BaseParser):
                 name=package['name'], bom_ref=bom_ref, version=package['version'],
                 purl=purl
             )
-            prop = Property(
+            component.properties.add(Property(
                 name='cdx:poetry:package:group',
-                value=package['category'])
-            component.properties.add(prop)
+                value=package['category']))
             debug_message('detecting package_files')
             package_files = package['files'] \
                 if poetry_lock_version >= (2,) \
@@ -95,8 +101,9 @@ class PoetryParser(BaseParser):
 class PoetryFileParser(PoetryParser):
 
     def __init__(
-            self, poetry_lock_filename: str, use_purl_bom_ref: bool = False,
-            omit_category: Set[str] = set(),  # noqa: B006
+            self, poetry_lock_filename: str,
+            omit_category: Set[str],
+            use_purl_bom_ref: bool = False,
             *,
             debug_message: DebugMessageCallback = quiet
     ) -> None:

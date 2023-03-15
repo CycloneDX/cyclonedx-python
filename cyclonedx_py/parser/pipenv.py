@@ -18,6 +18,7 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 import json
+from enum import Enum
 from typing import Any, Dict, Set
 
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
@@ -30,11 +31,17 @@ from packageurl import PackageURL  # type: ignore
 from ._debug import DebugMessageCallback, quiet
 
 
+class OmitCategory(str, Enum):
+    """Supported values for omit_category."""
+    DEV = "dev"
+
+
 class PipEnvParser(BaseParser):
 
     def __init__(
-            self, pipenv_contents: str, use_purl_bom_ref: bool = False,
-            omit_category: Set[str] = set(),  # noqa: B006
+            self, pipenv_contents: str,
+            omit_category: Set[str],
+            use_purl_bom_ref: bool = False,
             *,
             debug_message: DebugMessageCallback = quiet
     ) -> None:
@@ -46,7 +53,7 @@ class PipEnvParser(BaseParser):
         pipfile_default: Dict[str, Dict[str, Any]] = pipfile_lock_contents.get('default') or {}
         self._process_items(pipfile_default, 'default', use_purl_bom_ref, debug_message=debug_message)
 
-        if "dev" not in omit_category:
+        if OmitCategory.DEV not in omit_category:
             pipfile_develop: Dict[str, Dict[str, Any]] = pipfile_lock_contents.get('develop') or {}
             self._process_items(pipfile_develop, 'develop', use_purl_bom_ref, debug_message=debug_message)
 
@@ -60,10 +67,9 @@ class PipEnvParser(BaseParser):
             purl = PackageURL(type='pypi', name=package_name, version=version)
             bom_ref = purl.to_string() if use_purl_bom_ref else None
             c = Component(name=package_name, bom_ref=bom_ref, version=version, purl=purl)
-            prop = Property(
+            c.properties.add(Property(
                 name='cdx:pipenv:package:category',
-                value=group)
-            c.properties.add(prop)
+                value=group))
             if isinstance(package_data.get('hashes'), list):
                 # Add download location with hashes stored in Pipfile.lock
                 for pip_hash in package_data['hashes']:
@@ -81,8 +87,9 @@ class PipEnvParser(BaseParser):
 class PipEnvFileParser(PipEnvParser):
 
     def __init__(
-            self, pipenv_lock_filename: str, use_purl_bom_ref: bool = False,
-            omit_category: Set[str] = set(),  # noqa: B006
+            self, pipenv_lock_filename: str,
+            omit_category: Set[str],
+            use_purl_bom_ref: bool = False,
             *,
             debug_message: DebugMessageCallback = quiet
     ) -> None:
