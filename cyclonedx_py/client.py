@@ -236,7 +236,7 @@ class CycloneDxCmd:
             help="Use a component's PURL for the bom-ref value, instead of a random UUID"
         )
         arg_parser.add_argument(
-            "-omit", "--omit", dest="omit", action="append",
+            "--omit", dest="omit", action="append",
             help="Omit specified items when using Poetry or PipEnv (currently supported is dev)",
         )
 
