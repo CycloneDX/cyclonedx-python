@@ -61,7 +61,7 @@ class PipEnvParser(BaseParser):
             bom_ref = purl.to_string() if use_purl_bom_ref else None
             c = Component(name=package_name, bom_ref=bom_ref, version=version, purl=purl)
             prop = Property(
-                name='cdx:poetry:pipenv:group',
+                name='cdx:pipenv:package:category',
                 value=group)
             c.properties.add(prop)
             if isinstance(package_data.get('hashes'), list):

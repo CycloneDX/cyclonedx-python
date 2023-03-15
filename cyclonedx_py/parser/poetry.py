@@ -68,7 +68,7 @@ class PoetryParser(BaseParser):
                 purl=purl
             )
             prop = Property(
-                name='cdx:poetry:component:category',
+                name='cdx:poetry:package:group',
                 value=package['category'])
             component.properties.add(prop)
             debug_message('detecting package_files')
