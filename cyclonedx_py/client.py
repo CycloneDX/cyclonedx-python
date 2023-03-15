@@ -235,6 +235,10 @@ class CycloneDxCmd:
             '-pb', '--purl-bom-ref', action='store_true', dest='use_purl_bom_ref',
             help="Use a component's PURL for the bom-ref value, instead of a random UUID"
         )
+        arg_parser.add_argument(
+            "-omit", "--omit", dest="omit", action="append",
+            help="Omit specified items when using Poetry or PipEnv (currently supported is dev)",
+        )
 
         arg_parser.add_argument('-X', action='store_true', help='Enable debug output', dest='debug_enabled')
 
@@ -303,12 +307,14 @@ class CycloneDxCmd:
             return PipEnvParser(
                 pipenv_contents=input_data,
                 use_purl_bom_ref=self._arguments.use_purl_bom_ref,
+                omit_category=self._arguments.omit,
                 debug_message=lambda m, *a, **k: self._debug_message(f'PipEnvParser {m}', *a, **k)
             )
         elif self._arguments.input_from_poetry:
             return PoetryParser(
                 poetry_lock_contents=input_data,
                 use_purl_bom_ref=self._arguments.use_purl_bom_ref,
+                omit_category=self._arguments.omit,
                 debug_message=lambda m, *a, **k: self._debug_message(f'PoetryParser {m}', *a, **k)
             )
         elif self._arguments.input_from_requirements:

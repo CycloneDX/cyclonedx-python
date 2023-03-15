@@ -17,8 +17,10 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
+from typing import Set
+
 from cyclonedx.exception.model import CycloneDxModelException
-from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
+from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
 from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser
 
@@ -33,6 +35,7 @@ class PoetryParser(BaseParser):
 
     def __init__(
             self, poetry_lock_contents: str, use_purl_bom_ref: bool = False,
+            omit_category: Set[str] = set(),  # noqa: B006
             *,
             debug_message: DebugMessageCallback = quiet
     ) -> None:
@@ -52,12 +55,22 @@ class PoetryParser(BaseParser):
         debug_message('processing poetry_lock')
         for package in poetry_lock['package']:
             debug_message('processing package: {!r}', package)
+
+            if package['category'] == "dev":
+                if "dev" in omit_category:
+                    debug_message("Ignoring development package!")
+                    continue
+
             purl = PackageURL(type='pypi', name=package['name'], version=package['version'])
             bom_ref = purl.to_string() if use_purl_bom_ref else None
             component = Component(
                 name=package['name'], bom_ref=bom_ref, version=package['version'],
                 purl=purl
             )
+            prop = Property(
+                name='cdx:poetry:component:category',
+                value=package['category'])
+            component.properties.add(prop)
             debug_message('detecting package_files')
             package_files = package['files'] \
                 if poetry_lock_version >= (2,) \
@@ -83,12 +96,15 @@ class PoetryFileParser(PoetryParser):
 
     def __init__(
             self, poetry_lock_filename: str, use_purl_bom_ref: bool = False,
+            omit_category: Set[str] = set(),  # noqa: B006
             *,
             debug_message: DebugMessageCallback = quiet
     ) -> None:
         debug_message('open file: {}', poetry_lock_filename)
         with open(poetry_lock_filename) as plf:
             super(PoetryFileParser, self).__init__(
-                poetry_lock_contents=plf.read(), use_purl_bom_ref=use_purl_bom_ref,
+                poetry_lock_contents=plf.read(),
+                use_purl_bom_ref=use_purl_bom_ref,
+                omit_category=omit_category,
                 debug_message=debug_message
             )
