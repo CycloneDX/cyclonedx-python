@@ -44,7 +44,7 @@ class PoetryParser(BaseParser):
             self, poetry_lock_contents: str,
             use_purl_bom_ref: bool = False,
             *,
-            omit_category: Optional[Set[str]],
+            omit_category: Optional[Set[OmitCategory]],
             debug_message: DebugMessageCallback = quiet
     ) -> None:
         super().__init__()
@@ -105,7 +105,7 @@ class PoetryFileParser(PoetryParser):
             self, poetry_lock_filename: str,
             use_purl_bom_ref: bool = False,
             *,
-            omit_category: Optional[Set[str]],
+            omit_category: Optional[Set[OmitCategory]],
             debug_message: DebugMessageCallback = quiet
     ) -> None:
         debug_message('open file: {}', poetry_lock_filename)
