@@ -19,7 +19,7 @@
 
 import json
 from enum import Enum
-from typing import Any, Dict, Set
+from typing import Any, Dict, Optional, Set
 
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
 from cyclonedx.model.component import Component
@@ -40,9 +40,9 @@ class PipEnvParser(BaseParser):
 
     def __init__(
             self, pipenv_contents: str,
-            omit_category: Set[str],
             use_purl_bom_ref: bool = False,
             *,
+            omit_category: Optional[Set[str]],
             debug_message: DebugMessageCallback = quiet
     ) -> None:
         super().__init__()
@@ -53,7 +53,7 @@ class PipEnvParser(BaseParser):
         pipfile_default: Dict[str, Dict[str, Any]] = pipfile_lock_contents.get('default') or {}
         self._process_items(pipfile_default, 'default', use_purl_bom_ref, debug_message=debug_message)
 
-        if OmitCategory.DEV not in omit_category:
+        if not omit_category or (OmitCategory.DEV not in omit_category):
             pipfile_develop: Dict[str, Dict[str, Any]] = pipfile_lock_contents.get('develop') or {}
             self._process_items(pipfile_develop, 'develop', use_purl_bom_ref, debug_message=debug_message)
 
@@ -88,9 +88,9 @@ class PipEnvFileParser(PipEnvParser):
 
     def __init__(
             self, pipenv_lock_filename: str,
-            omit_category: Set[str],
             use_purl_bom_ref: bool = False,
             *,
+            omit_category: Optional[Set[str]],
             debug_message: DebugMessageCallback = quiet
     ) -> None:
         debug_message('open file: {}', pipenv_lock_filename)

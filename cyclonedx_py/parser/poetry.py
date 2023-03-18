@@ -18,7 +18,7 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 from enum import Enum
-from typing import Set
+from typing import Optional, Set
 
 from cyclonedx.exception.model import CycloneDxModelException
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
@@ -41,9 +41,9 @@ class PoetryParser(BaseParser):
 
     def __init__(
             self, poetry_lock_contents: str,
-            omit_category: Set[str],
             use_purl_bom_ref: bool = False,
             *,
+            omit_category: Optional[Set[str]],
             debug_message: DebugMessageCallback = quiet
     ) -> None:
         super().__init__()
@@ -63,7 +63,7 @@ class PoetryParser(BaseParser):
         for package in poetry_lock['package']:
             debug_message('processing package: {!r}', package)
 
-            if package['category'] == OmitCategory.DEV:
+            if omit_category and (OmitCategory.DEV in omit_category) and package['category'] == OmitCategory.DEV:
                 if "dev" in omit_category:
                     debug_message("Ignoring development package!")
                     continue
@@ -102,9 +102,9 @@ class PoetryFileParser(PoetryParser):
 
     def __init__(
             self, poetry_lock_filename: str,
-            omit_category: Set[str],
             use_purl_bom_ref: bool = False,
             *,
+            omit_category: Optional[Set[str]],
             debug_message: DebugMessageCallback = quiet
     ) -> None:
         debug_message('open file: {}', poetry_lock_filename)
