@@ -22,7 +22,7 @@ from unittest import TestCase
 
 from ddt import data, ddt
 
-from cyclonedx_py.parser.poetry import PoetryFileParser
+from cyclonedx_py.parser.poetry import OmitCategory, PoetryFileParser
 
 
 @ddt
@@ -94,7 +94,7 @@ class TestPoetryParser(TestCase):
         # with omit
         parser = PoetryFileParser(
             poetry_lock_filename=poetry_lock_filename,
-            omit_category={'dev'},
+            omit_category={OmitCategory.DEV},
             use_purl_bom_ref=True)
         self.assertEqual(1, parser.component_count())
         component = next(filter(lambda c: c.name == 'toml', parser.get_components()), None)

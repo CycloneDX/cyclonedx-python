@@ -20,7 +20,7 @@
 import os
 from unittest import TestCase
 
-from cyclonedx_py.parser.pipenv import PipEnvFileParser
+from cyclonedx_py.parser.pipenv import OmitCategory, PipEnvFileParser
 
 
 class TestPipEnvParser(TestCase):
@@ -105,7 +105,7 @@ class TestPipEnvParser(TestCase):
 
         parser = PipEnvFileParser(
             pipenv_lock_filename=tests_pipfile_lock,
-            omit_category={'dev'},
+            omit_category={OmitCategory.DEV},
             use_purl_bom_ref=True)
         self.assertEqual(1, parser.component_count())
         c_toml = next(filter(lambda c: c.name == 'toml', parser.get_components()), None)
