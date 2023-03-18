@@ -84,7 +84,7 @@ class TestPipEnvParser(TestCase):
 
         parser = PipEnvFileParser(
             pipenv_lock_filename=tests_pipfile_lock,
-            omit_category={},
+            omit_category=set(),
             use_purl_bom_ref=True)
         self.assertEqual(2, parser.component_count())
         c_toml = next(filter(lambda c: c.name == 'toml', parser.get_components()), None)
