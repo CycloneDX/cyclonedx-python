@@ -18,7 +18,7 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 import json
-from enum import Enum
+from enum import Enum, unique
 from typing import Any, Dict, Optional, Set
 
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
@@ -31,6 +31,7 @@ from packageurl import PackageURL  # type: ignore
 from ._debug import DebugMessageCallback, quiet
 
 
+@unique
 class OmitCategory(str, Enum):
     """Supported values for omit_category."""
     DEV = "dev"

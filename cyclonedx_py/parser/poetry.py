@@ -17,7 +17,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-from enum import Enum
+from enum import Enum, unique
 from typing import Optional, Set
 
 from cyclonedx.exception.model import CycloneDxModelException
@@ -32,6 +32,7 @@ from toml import loads as load_toml
 from ._debug import DebugMessageCallback, quiet
 
 
+@unique
 class OmitCategory(str, Enum):
     """Supported values for omit_category."""
     DEV = "dev"
