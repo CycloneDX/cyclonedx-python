@@ -144,6 +144,10 @@ class MakeBomCommand(BaseCommand):
             '-pb', '--purl-bom-ref', action='store_true', dest='use_purl_bom_ref',
             help="Use a component's PURL for the bom-ref value, instead of a random UUID"
         )
+        output_group.add_argument(
+            "--omit", dest="omit", action="append",
+            help="Omit specified items when using Poetry or PipEnv (currently supported is dev)"
+        )
 
     def get_output(self) -> BaseOutput:
         parser: Optional[BaseParser] = None

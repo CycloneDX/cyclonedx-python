@@ -51,6 +51,9 @@ Use the ``make-bom`` subcommand to generate a BOM given your defined inputs.
                             Output file path for your SBOM (set to '-' to output to STDOUT)
       -F, --force           If outputting to a file and the stated file already exists, it will be overwritten.
       -pb, --purl-bom-ref   Use a component's PURL for the bom-ref value, instead of a random UUID
+      --omit OMIT
+                            Omit specified items when using Poetry or PipEnv
+                            (currently supported is dev)
 
 
 From your current Python Environment
