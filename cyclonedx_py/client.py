@@ -53,9 +53,11 @@ class _CLI_OUTPUT_FORMAT(enum.Enum):
     XML = 'xml'
     JSON = 'json'
 
+
 @enum.unique
 class _CLI_OMITTABLE(enum.Enum):
     DevDependencies = 'dev'
+
 
 _output_formats = {
     _CLI_OUTPUT_FORMAT.XML: OutputFormat.XML,
@@ -330,7 +332,7 @@ class CycloneDxCmd:
         else:
             raise CycloneDxCmdException('Parser type could not be determined.')
 
-    def _component_filter (self, component: Component) -> bool:
+    def _component_filter(self, component: Component) -> bool:
         if _CLI_OMITTABLE.DevDependencies.value in self._arguments.omit:
             for prop in component.properties:
                 if prop.name == PipenvProps.PackageCategory.value:
