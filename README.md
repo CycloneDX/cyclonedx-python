@@ -81,6 +81,9 @@ optional arguments:
                         Use with -i to specify absolute path to a
                         `requirements.txt` you wish to use, else we'll look
                         for one in the current working directory.
+  -omit OMIT, --omit OMIT
+                        Omit specified items when using Poetry or PipEnv
+                        (currently supported is dev)
   -X                    Enable debug output
 
 Input Method:

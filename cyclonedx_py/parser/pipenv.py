@@ -18,9 +18,10 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 import json
-from typing import Any, Dict
+from enum import Enum, unique
+from typing import Any, Dict, Optional, Set
 
-from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
+from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
 from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser
 
@@ -30,11 +31,19 @@ from packageurl import PackageURL  # type: ignore
 from ._debug import DebugMessageCallback, quiet
 
 
+@unique
+class OmitCategory(str, Enum):
+    """Supported values for omit_category."""
+    DEV = "dev"
+
+
 class PipEnvParser(BaseParser):
 
     def __init__(
-            self, pipenv_contents: str, use_purl_bom_ref: bool = False,
+            self, pipenv_contents: str,
+            use_purl_bom_ref: bool = False,
             *,
+            omit_category: Optional[Set[OmitCategory]],
             debug_message: DebugMessageCallback = quiet
     ) -> None:
         super().__init__()
@@ -43,14 +52,25 @@ class PipEnvParser(BaseParser):
         debug_message('loading pipenv_contents')
         pipfile_lock_contents = json.loads(pipenv_contents)
         pipfile_default: Dict[str, Dict[str, Any]] = pipfile_lock_contents.get('default') or {}
+        self._process_items(pipfile_default, 'default', use_purl_bom_ref, debug_message=debug_message)
 
+        if not omit_category or (OmitCategory.DEV not in omit_category):
+            pipfile_develop: Dict[str, Dict[str, Any]] = pipfile_lock_contents.get('develop') or {}
+            self._process_items(pipfile_develop, 'develop', use_purl_bom_ref, debug_message=debug_message)
+
+    def _process_items(self, items: Dict[str, Dict[str, Any]], group: str,
+                       use_purl_bom_ref: bool,
+                       debug_message: DebugMessageCallback) -> None:
         debug_message('processing pipfile_default')
-        for (package_name, package_data) in pipfile_default.items():
+        for (package_name, package_data) in items.items():
             debug_message('processing package: {!r} {!r}', package_name, package_data)
             version = str(package_data.get('version') or 'unknown').lstrip('=')
             purl = PackageURL(type='pypi', name=package_name, version=version)
             bom_ref = purl.to_string() if use_purl_bom_ref else None
             c = Component(name=package_name, bom_ref=bom_ref, version=version, purl=purl)
+            c.properties.add(Property(
+                name='cdx:pipenv:package:category',
+                value=group))
             if isinstance(package_data.get('hashes'), list):
                 # Add download location with hashes stored in Pipfile.lock
                 for pip_hash in package_data['hashes']:
@@ -68,13 +88,17 @@ class PipEnvParser(BaseParser):
 class PipEnvFileParser(PipEnvParser):
 
     def __init__(
-            self, pipenv_lock_filename: str, use_purl_bom_ref: bool = False,
+            self, pipenv_lock_filename: str,
+            use_purl_bom_ref: bool = False,
             *,
+            omit_category: Optional[Set[OmitCategory]],
             debug_message: DebugMessageCallback = quiet
     ) -> None:
         debug_message('open file: {}', pipenv_lock_filename)
         with open(pipenv_lock_filename) as plf:
             super(PipEnvFileParser, self).__init__(
-                pipenv_contents=plf.read(), use_purl_bom_ref=use_purl_bom_ref,
+                pipenv_contents=plf.read(),
+                use_purl_bom_ref=use_purl_bom_ref,
+                omit_category=omit_category,
                 debug_message=debug_message
             )
