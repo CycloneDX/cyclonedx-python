@@ -27,15 +27,17 @@ from typing import Any, Optional
 
 from cyclonedx.model import Tool
 from cyclonedx.model.bom import Bom
+from cyclonedx.model.component import Component
 from cyclonedx.output import BaseOutput, get_instance as get_output_instance
 from cyclonedx.parser import BaseParser
 from cyclonedx.schema import OutputFormat, SchemaVersion
 
 from .parser.conda import CondaListExplicitParser, CondaListJsonParser
 from .parser.environment import EnvironmentParser
-from .parser.pipenv import PipEnvParser
-from .parser.poetry import PoetryParser
+from .parser.pipenv import PipEnvParser, PipenvPackageCategoryGroupWellknown
+from .parser.poetry import PoetryParser, PoetryGroupWellknown
 from .parser.requirements import RequirementsParser
+from .parser._cdx_properties import Poetry as PoetryProp, Pipenv as PipenvProps
 
 
 class CycloneDxCmdException(Exception):
@@ -51,6 +53,9 @@ class _CLI_OUTPUT_FORMAT(enum.Enum):
     XML = 'xml'
     JSON = 'json'
 
+@enum.unique
+class _CLI_OMITTABLE(enum.Enum):
+    DevDependencies = 'dev'
 
 _output_formats = {
     _CLI_OUTPUT_FORMAT.XML: OutputFormat.XML,
@@ -104,7 +109,7 @@ class CycloneDxCmd:
                   '',
                   sep='\n', file=sys.stderr)
 
-        bom = Bom.from_parser(parser=parser)
+        bom = Bom(components=filter(self._component_filter, parser.get_components()))
 
         # region Add cyclonedx_bom as a Tool to record it being part of the CycloneDX SBOM generation process
         if sys.version_info < (3, 8):
@@ -237,7 +242,8 @@ class CycloneDxCmd:
         )
         arg_parser.add_argument(
             "--omit", dest="omit", action="append",
-            help="Omit specified items when using Poetry or PipEnv (currently supported is dev)",
+            default=[],
+            help=f'Omit specified items when using Poetry or PipEnv (choice: {_CLI_OMITTABLE.DevDependencies.value})',
         )
 
         arg_parser.add_argument('-X', action='store_true', help='Enable debug output', dest='debug_enabled')
@@ -306,14 +312,12 @@ class CycloneDxCmd:
         elif self._arguments.input_from_pip:
             return PipEnvParser(
                 pipenv_contents=input_data,
-                omit_category=self._arguments.omit,
                 use_purl_bom_ref=self._arguments.use_purl_bom_ref,
                 debug_message=lambda m, *a, **k: self._debug_message(f'PipEnvParser {m}', *a, **k)
             )
         elif self._arguments.input_from_poetry:
             return PoetryParser(
                 poetry_lock_contents=input_data,
-                omit_category=self._arguments.omit,
                 use_purl_bom_ref=self._arguments.use_purl_bom_ref,
                 debug_message=lambda m, *a, **k: self._debug_message(f'PoetryParser {m}', *a, **k)
             )
@@ -325,6 +329,18 @@ class CycloneDxCmd:
             )
         else:
             raise CycloneDxCmdException('Parser type could not be determined.')
+
+    def _component_filter (self, component: Component) -> bool:
+        if _CLI_OMITTABLE.DevDependencies.value in self._arguments.omit:
+            for prop in component.properties:
+                if prop.name == PipenvProps.PackageCategory.value:
+                    if prop.value == PipenvPackageCategoryGroupWellknown.Develop.value:
+                        return False
+                if prop.name == PoetryProp.PackageGroup.value:
+                    if prop.value == PoetryGroupWellknown.Dev.value:
+                        return False
+
+        return True
 
 
 def main(*, prog_name: Optional[str] = None) -> None:
