@@ -32,12 +32,12 @@ from cyclonedx.output import BaseOutput, get_instance as get_output_instance
 from cyclonedx.parser import BaseParser
 from cyclonedx.schema import OutputFormat, SchemaVersion
 
+from .parser._cdx_properties import Pipenv as PipenvProps, Poetry as PoetryProp
 from .parser.conda import CondaListExplicitParser, CondaListJsonParser
 from .parser.environment import EnvironmentParser
-from .parser.pipenv import PipEnvParser, PipenvPackageCategoryGroupWellknown
-from .parser.poetry import PoetryParser, PoetryGroupWellknown
+from .parser.pipenv import PipenvPackageCategoryGroupWellknown, PipEnvParser
+from .parser.poetry import PoetryGroupWellknown, PoetryParser
 from .parser.requirements import RequirementsParser
-from .parser._cdx_properties import Poetry as PoetryProp, Pipenv as PipenvProps
 
 
 class CycloneDxCmdException(Exception):

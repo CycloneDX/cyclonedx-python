@@ -28,8 +28,8 @@ from cyclonedx.parser import BaseParser
 from packageurl import PackageURL  # type: ignore
 from toml import loads as load_toml
 
-from ._debug import DebugMessageCallback, quiet
 from ._cdx_properties import Poetry as PoetryProps
+from ._debug import DebugMessageCallback, quiet
 
 
 @unique
