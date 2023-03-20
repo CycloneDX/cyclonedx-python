@@ -42,6 +42,7 @@ class TestPoetryParser(TestCase):
         self.assertEqual('0.10.2', component.version)
         self.assertEqual(2, len(component.external_references), f'{component.external_references}')
         c_property = next(filter(lambda p: p.name == 'cdx:poetry:package:group', component.properties), None)
+        self.assertIsNotNone(c_property)
         self.assertEqual('main', c_property.value)
 
         component = next(filter(lambda c: c.name == 'ddt', parser.get_components()), None)
@@ -52,6 +53,7 @@ class TestPoetryParser(TestCase):
         self.assertEqual(2, len(component.external_references), f'{component.external_references}')
         self.assertEqual(1, len(component.properties))
         c_property = next(filter(lambda p: p.name == 'cdx:poetry:package:group', component.properties), None)
+        self.assertIsNotNone(c_property)
         self.assertEqual('dev', c_property.value)
 
     @data('poetry-lock11-simple.txt',
@@ -69,6 +71,7 @@ class TestPoetryParser(TestCase):
         self.assertEqual('0.10.2', component.version)
         self.assertEqual(2, len(component.external_references), f'{component.external_references}')
         c_property = next(filter(lambda p: p.name == 'cdx:poetry:package:group', component.properties), None)
+        self.assertIsNotNone(c_property)
         self.assertEqual('main', c_property.value)
 
         component = next(filter(lambda c: c.name == 'ddt', parser.get_components()), None)
@@ -79,4 +82,5 @@ class TestPoetryParser(TestCase):
         self.assertEqual(2, len(component.external_references), f'{component.external_references}')
         self.assertEqual(1, len(component.properties))
         c_property = next(filter(lambda p: p.name == 'cdx:poetry:package:group', component.properties), None)
+        self.assertIsNotNone(c_property)
         self.assertEqual('dev', c_property.value)
