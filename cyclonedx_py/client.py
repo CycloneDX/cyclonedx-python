@@ -338,7 +338,7 @@ class CycloneDxCmd:
                 if prop.name == PipenvProps.PackageCategory.value:
                     if prop.value == PipenvPackageCategoryGroupWellknown.Develop.value:
                         return False
-                if prop.name == PoetryProp.PackageGroup.value:
+                elif prop.name == PoetryProp.PackageGroup.value:
                     if prop.value == PoetryGroupWellknown.Dev.value:
                         return False
 
