@@ -18,7 +18,6 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 from enum import Enum, unique
-from typing import Optional, Set
 
 from cyclonedx.exception.model import CycloneDxModelException
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
@@ -29,13 +28,17 @@ from cyclonedx.parser import BaseParser
 from packageurl import PackageURL  # type: ignore
 from toml import loads as load_toml
 
+from ._cdx_properties import Poetry as PoetryProps
 from ._debug import DebugMessageCallback, quiet
 
 
 @unique
-class OmitCategory(str, Enum):
-    """Supported values for omit_category."""
-    DEV = "dev"
+class PoetryGroupWellknown(Enum):
+    """Wellknown Poetry groups.
+    See https://python-poetry.org/docs/managing-dependencies/#dependency-groups
+    """
+    Main = "main"
+    Dev = "dev"
 
 
 class PoetryParser(BaseParser):
@@ -44,7 +47,6 @@ class PoetryParser(BaseParser):
             self, poetry_lock_contents: str,
             use_purl_bom_ref: bool = False,
             *,
-            omit_category: Optional[Set[OmitCategory]],
             debug_message: DebugMessageCallback = quiet
     ) -> None:
         super().__init__()
@@ -64,20 +66,17 @@ class PoetryParser(BaseParser):
         for package in poetry_lock['package']:
             debug_message('processing package: {!r}', package)
 
-            if omit_category and (OmitCategory.DEV in omit_category) and package['category'] == OmitCategory.DEV:
-                if "dev" in omit_category:
-                    debug_message("Ignoring development package!")
-                    continue
-
             purl = PackageURL(type='pypi', name=package['name'], version=package['version'])
             bom_ref = purl.to_string() if use_purl_bom_ref else None
             component = Component(
                 name=package['name'], bom_ref=bom_ref, version=package['version'],
                 purl=purl
             )
-            component.properties.add(Property(
-                name='cdx:poetry:package:group',
-                value=package['category']))
+            package_category = package.get('category')
+            if package_category:
+                component.properties.add(Property(
+                    name=PoetryProps.PackageGroup.value,
+                    value=package_category))
             debug_message('detecting package_files')
             package_files = package['files'] \
                 if poetry_lock_version >= (2,) \
@@ -105,7 +104,6 @@ class PoetryFileParser(PoetryParser):
             self, poetry_lock_filename: str,
             use_purl_bom_ref: bool = False,
             *,
-            omit_category: Optional[Set[OmitCategory]],
             debug_message: DebugMessageCallback = quiet
     ) -> None:
         debug_message('open file: {}', poetry_lock_filename)
@@ -113,6 +111,5 @@ class PoetryFileParser(PoetryParser):
             super(PoetryFileParser, self).__init__(
                 poetry_lock_contents=plf.read(),
                 use_purl_bom_ref=use_purl_bom_ref,
-                omit_category=omit_category,
                 debug_message=debug_message
             )
