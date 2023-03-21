@@ -15,27 +15,17 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-import enum
 
-from cyclonedx.schema import OutputFormat
-
-
-@enum.unique
-class CLI_OMITTABLE(enum.Enum):
-    DevDependencies = 'dev'
+from enum import Enum
 
 
-@enum.unique
-class CLI_OUTPUT_FORMAT(enum.Enum):
-    XML = 'xml'
-    JSON = 'json'
+class Poetry(Enum):
+    """See https://github.com/CycloneDX/cyclonedx-property-taxonomy/blob/main/cdx/poetry.md"""
+
+    PackageGroup = 'cdx:poetry:package:group'
 
 
-OUTPUT_FORMATS = {
-    CLI_OUTPUT_FORMAT.XML: OutputFormat.XML,
-    CLI_OUTPUT_FORMAT.JSON: OutputFormat.JSON,
-}
-OUTPUT_DEFAULT_FILENAMES = {
-    CLI_OUTPUT_FORMAT.XML: 'cyclonedx.xml',
-    CLI_OUTPUT_FORMAT.JSON: 'cyclonedx.json',
-}
+class Pipenv(Enum):
+    """See https://github.com/CycloneDX/cyclonedx-property-taxonomy/blob/main/cdx/pipenv.md"""
+
+    PackageCategory = 'cdx:pipenv:package:category'

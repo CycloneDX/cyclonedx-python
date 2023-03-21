@@ -21,17 +21,19 @@ from typing import Optional
 
 from cyclonedx.model import Tool
 from cyclonedx.model.bom import Bom
+from cyclonedx.model.component import Component
 from cyclonedx.output import BaseOutput, get_instance as get_output_instance
 from cyclonedx.parser import BaseParser
 from cyclonedx.schema import OutputFormat, SchemaVersion
 
 from ..exception import CycloneDxCmdException, CycloneDxCmdNoInputFileSupplied
+from ..parser._cdx_properties import Pipenv as PipenvProps, Poetry as PoetryProp
 from ..parser.conda import CondaListExplicitParser, CondaListJsonParser
 from ..parser.environment import EnvironmentParser
-from ..parser.pipenv import PipEnvParser
-from ..parser.poetry import PoetryParser
+from ..parser.pipenv import PipenvPackageCategoryGroupWellknown, PipEnvParser
+from ..parser.poetry import PoetryGroupWellknown, PoetryParser
 from ..parser.requirements import RequirementsParser
-from ..utils.output import CLI_OUTPUT_FORMAT, OUTPUT_DEFAULT_FILENAMES, OUTPUT_FORMATS
+from ..utils.output import CLI_OMITTABLE, CLI_OUTPUT_FORMAT, OUTPUT_DEFAULT_FILENAMES, OUTPUT_FORMATS
 from . import BaseCommand, cdx_version
 
 
@@ -144,9 +146,10 @@ class MakeBomCommand(BaseCommand):
             '-pb', '--purl-bom-ref', action='store_true', dest='use_purl_bom_ref',
             help="Use a component's PURL for the bom-ref value, instead of a random UUID"
         )
-        output_group.add_argument(
+        arg_parser.add_argument(
             "--omit", dest="omit", action="append",
-            help="Omit specified items when using Poetry or PipEnv (currently supported is dev)"
+            default=[],
+            help=f'Omit specified items when using Poetry or PipEnv (choice: {CLI_OMITTABLE.DevDependencies.value})',
         )
 
     def get_output(self) -> BaseOutput:
@@ -177,7 +180,7 @@ class MakeBomCommand(BaseCommand):
                   '',
                   sep='\n', file=sys.stderr)
 
-        bom = Bom.from_parser(parser=parser)
+        bom = Bom(components=filter(self._component_filter, parser.get_components()))
         bom.metadata.tools.add(Tool(
             vendor='CycloneDX',
             name='cyclonedx-bom',
@@ -260,6 +263,18 @@ class MakeBomCommand(BaseCommand):
             )
         else:
             raise CycloneDxCmdException('Parser type could not be determined.')
+
+    def _component_filter(self, component: Component) -> bool:
+        if CLI_OMITTABLE.DevDependencies.value in self.arguments.omit:
+            for prop in component.properties:
+                if prop.name == PipenvProps.PackageCategory.value:
+                    if prop.value == PipenvPackageCategoryGroupWellknown.Develop.value:
+                        return False
+                elif prop.name == PoetryProp.PackageGroup.value:
+                    if prop.value == PoetryGroupWellknown.Dev.value:
+                        return False
+
+        return True
 
     def _get_output_format(self) -> CLI_OUTPUT_FORMAT:
         return CLI_OUTPUT_FORMAT(str(self.arguments.output_format).lower())
