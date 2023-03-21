@@ -27,7 +27,7 @@ on:
 
 concurrency:
   group: ${{ github.workflow }}
-  cancel-in-progress: false
+  cancel-in-progress: false  # prevent hickups with semantic-release
 
 env:
   REPORTS_DIR: CI_reports

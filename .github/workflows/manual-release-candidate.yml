@@ -3,10 +3,6 @@ name: Manual Pre Release Publish
 on:
   workflow_dispatch:
 
-concurrency:
-  group: ${{ github.workflow }}
-  cancel-in-progress: false
-
 env:
   REPORTS_DIR: CI_reports
   DIST_DIR: dist
