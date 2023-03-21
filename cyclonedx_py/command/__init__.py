@@ -28,7 +28,7 @@ else:
 
 cdx_version: str = 'TBC'
 try:
-    cdx_version = str(meta_version('cyclonedx-bom'))  # type: ignore[no-untyped-call]
+    cdx_version = str(meta_version('cyclonedx-bom'))
 except Exception:
     cdx_version = 'DEVELOPMENT'
 
