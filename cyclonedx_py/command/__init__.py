@@ -90,7 +90,7 @@ def input_python_options(f: FC) -> Callable[[FC], FC]:
     @click.option('-i', '--in-file', type=click.File('r'),
                   help='File to read input from. Use "-" to read from STDIN.')
     @functools.wraps(f)
-    def wrapper_common_options(*args, **kwargs):
+    def wrapper_common_options(*args: Any, **kwargs: Any) -> Any:
         return f(*args, **kwargs)
 
     return wrapper_common_options
@@ -108,12 +108,12 @@ def output_cyclonedx_options(f: FC) -> Callable[[FC], FC]:
                   help='Output file path for your SBOM. Use "-" to write to STDOUT.')
     @click.option('--omit', type=click.Choice([CLI_OMITTABLE.DevDependencies.value]),
                   help='Omit specified items when using Poetry or PipEnv')
-    @click.option('--schema-version', 'schema_version', type=click.Choice(SCHEMA_VERSIONS.keys()),
+    @click.option('--schema-version', 'schema_version', type=click.Choice(list(SCHEMA_VERSIONS.keys())),
                   default=LATEST_SUPPORTED_SCHEMA_VERSION.to_version(),
                   help=f'The CycloneDX schema version for your SBOM '
                        f'(default: {LATEST_SUPPORTED_SCHEMA_VERSION.to_version()})')
     @functools.wraps(f)
-    def wrapper_common_options(*args, **kwargs):
+    def wrapper_common_options(*args: Any, **kwargs: Any) -> Any:
         return f(*args, **kwargs)
 
     return wrapper_common_options

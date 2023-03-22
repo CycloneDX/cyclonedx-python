@@ -13,12 +13,12 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
-import click
 import os
 import sys
 from io import TextIOWrapper
 from typing import Iterable, Optional
 
+import click
 from cyclonedx.model import Tool
 from cyclonedx.model.bom import Bom
 from cyclonedx.model.component import Component
@@ -26,8 +26,6 @@ from cyclonedx.output import BaseOutput, get_instance as get_output_instance
 from cyclonedx.parser import BaseParser
 from cyclonedx.schema import OutputFormat, SchemaVersion
 
-from . import _get_output_format, cdx_version, cli, root_cdx_command, input_python_options, \
-    output_cyclonedx_options, BaseCommand, CycloneDxCmd
 from ..exception import CycloneDxCmdException, CycloneDxCmdNoInputFileSupplied
 from ..parser._cdx_properties import Pipenv as PipenvProps, Poetry as PoetryProp
 from ..parser.conda import CondaListExplicitParser, CondaListJsonParser
@@ -36,6 +34,16 @@ from ..parser.pipenv import PipenvPackageCategoryGroupWellknown, PipEnvParser
 from ..parser.poetry import PoetryGroupWellknown, PoetryParser
 from ..parser.requirements import RequirementsParser
 from ..utils.output import CLI_OMITTABLE, OUTPUT_DEFAULT_FILENAMES, OUTPUT_FORMATS
+from . import (
+    BaseCommand,
+    CycloneDxCmd,
+    _get_output_format,
+    cdx_version,
+    cli,
+    input_python_options,
+    output_cyclonedx_options,
+    root_cdx_command,
+)
 
 
 @cli.command(help='Generate a CycloneDX BOM from a Python Environment or Application')
@@ -119,7 +127,6 @@ class MakeBomCommand(BaseCommand):
             return 0
 
         # Check directory writable
-        output_file = self.output
         output_filename = os.path.realpath(
             self.output if isinstance(self.output, str) else OUTPUT_DEFAULT_FILENAMES[output_format])
         self.debug_message('Will be outputting SBOM to file at: {}', self.output)

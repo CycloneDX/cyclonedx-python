@@ -17,16 +17,11 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
-from .command import cli, cdx_version
+from .command import cli
 from .command.make_bom import make_bom
+from .command.version import version
 
-_SUPPORTED_COMMANDS = [make_bom]
-
-
-@cli.command(help='Show which version of CycloneDX BOM Generator you are running')
-def version() -> None:
-    print(f'You are running CycloneDX Python BOM Generator version {cdx_version}')
-
+_SUPPORTED_COMMANDS = [make_bom, version]
 
 if __name__ == "__main__":
     cli()
