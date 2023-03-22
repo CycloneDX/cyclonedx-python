@@ -14,6 +14,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
+import sys
 from .command import cli
 from .command.make_bom import make_bom
 from .command.version import version
@@ -21,4 +22,4 @@ from .command.version import version
 _SUPPORTED_COMMANDS = [make_bom, version]
 
 if __name__ == "__main__":
-    cli()
+    sys.exit(cli())
