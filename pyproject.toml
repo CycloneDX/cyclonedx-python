@@ -64,6 +64,8 @@ mypy-extensions = "^1.0.0"
 tox = "^3.25.1"
 # `types-toml` need to stay in sync with version of `toml`
 types-toml = "^0.10.0"
+# `types-setuptools` need to stay in sync with version of `setuptools` - but 47 was not typed...
+types-setuptools = ">= 57.0.0"
 
 [tool.poetry.scripts]
 cyclonedx-py = 'cyclonedx_py.client:main'
