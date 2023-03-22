@@ -23,5 +23,10 @@ from .command.version import version
 
 _SUPPORTED_COMMANDS = [make_bom, version]
 
-if __name__ == "__main__":
+
+def main() -> None:
     cli()
+
+
+if __name__ == "__main__":
+    main()
