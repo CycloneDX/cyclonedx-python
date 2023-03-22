@@ -30,7 +30,7 @@ from ..utils.output import CLI_OMITTABLE, CLI_OUTPUT_FORMAT
 if sys.version_info >= (3, 8):
     from importlib.metadata import version as meta_version
 else:
-    from importlib_metadata import version as meta_version
+    from importlib_metadata import version as meta_version  # type: ignore[no-untyped-call]
 
 cdx_version: str = 'TBC'
 try:
