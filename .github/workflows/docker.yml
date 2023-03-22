@@ -12,11 +12,11 @@ on:
 env:
   REPORTS_DIR: CI_reports
   PYTHON_VERSION: "3.11"
-  POETRY_VERSION: "1.4.0"
+  POETRY_VERSION: "1.4.1"
 
 jobs:
   test:
-    name: Build and test docker image
+    name: Build and test Docker Image
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
@@ -29,17 +29,17 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: setup reports-dir
+      - name: Setup reports-dir
         run: mkdir "$REPORTS_DIR"
 
-      - name: Setup python ${{ env.PYTHON_VERSION }}
+      - name: Setup Python ${{ env.PYTHON_VERSION }}
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           architecture: 'x64'
 
-      - name: Setup poetry ${{ env.POETRY_VERSION }}
+      - name: Setup Poetry ${{ env.POETRY_VERSION }}
         # see https://github.com/marketplace/actions/setup-poetry
         uses: Gr1N/setup-poetry@v8
         with:
