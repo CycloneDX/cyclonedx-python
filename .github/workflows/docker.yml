@@ -79,6 +79,7 @@ jobs:
         run: >
           docker run --rm "$DOCKER_TAG"
           -X
+          make-bom
           --environment
           --format=xml
           --output=-
@@ -88,6 +89,7 @@ jobs:
         run: >
           docker run --rm "$DOCKER_TAG"
           -X
+          make-bom
           --environment
           --format=json
           --output=-
