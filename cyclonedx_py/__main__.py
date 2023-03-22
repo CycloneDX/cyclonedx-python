@@ -15,6 +15,6 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-from .client import main
+from .client import cli
 
-main(prog_name=__package__)
+cli()

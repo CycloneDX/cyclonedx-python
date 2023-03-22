@@ -15,19 +15,17 @@ The full documentation can be issued by running with ``--help``:
 
 .. code-block:: bash
 
-    usage: cyclonedx-py [-h] [-v] [-w] [-X]  ...
+    usage: cyclonedx-py [OPTIONS] COMMAND [ARGS]...
 
-    CycloneDX BOM Generator
+    Options:
+      -w, --warn-only  Prevents exit with non-zero code when issues have been
+                       detected
+      -X, --debug      Enable debug output
+      --help           Show this message and exit.
 
-    options:
-      -h, --help       show this help message and exit
-      -v, --version    show which version of CycloneDX BOM Generator you are running
-      -w, --warn-only  prevents exit with non-zero code when issues have been detected
-      -X               enable debug output
-
-    CycloneDX BOM Generator sub-commands:
-
-        make-bom       Make a BOM from your environment as specified
+    Commands:
+      make-bom  Generate a CycloneDX BOM from a Python Environment or...
+      version   Show which version of CycloneDX BOM Generator you are running
 
 
 .. toctree::
@@ -35,3 +33,4 @@ The full documentation can be issued by running with ``--help``:
    :caption: Sub Commands:
 
    usage-make-bom
+   usage-version

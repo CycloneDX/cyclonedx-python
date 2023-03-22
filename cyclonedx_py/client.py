@@ -17,68 +17,16 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
+from .command import cli, cdx_version
+from .command.make_bom import make_bom
 
-from argparse import ArgumentParser, Namespace
-from typing import Dict, Optional
-
-from .command import BaseCommand, cdx_version
-from .command.make_bom import MakeBomCommand
-
-_SUB_COMMANDS: Dict[str, BaseCommand] = {
-    'make-bom': MakeBomCommand()
-}
+_SUPPORTED_COMMANDS = [make_bom]
 
 
-class CycloneDxCmd:
-
-    def __init__(self, args: Namespace) -> None:
-        self._arguments = args
-
-        if self._arguments.debug_enabled:
-            self._debug_enabled = True
-
-    @property
-    def debug_enabled(self) -> bool:
-        return self._debug_enabled
-
-    def execute(self) -> None:
-        # Determine primary command and then hand off to that Command handler
-        if self._arguments.cmd and self._arguments.cmd in _SUB_COMMANDS.keys():
-            command = _SUB_COMMANDS[self._arguments.cmd]
-            exit_code: int = command.execute(arguments=self._arguments)
-            exit(exit_code)
-        else:
-            CycloneDxCmd.get_arg_parser().print_help()
-
-    @staticmethod
-    def get_arg_parser(*, prog: Optional[str] = None) -> ArgumentParser:
-        arg_parser = ArgumentParser(prog=prog, description='CycloneDX BOM Generator')
-
-        # Add global options
-        arg_parser.add_argument('-v', '--version', help='show which version of CycloneDX BOM Generator you are running',
-                                action='version',
-                                version=f'CycloneDX BOM Generator {cdx_version}')
-        arg_parser.add_argument('-w', '--warn-only', action='store_true', dest='warn_only',
-                                help='prevents exit with non-zero code when issues have been detected')
-        arg_parser.add_argument('-X', action='store_true', help='enable debug output', dest='debug_enabled')
-
-        subparsers = arg_parser.add_subparsers(title='CycloneDX BOM Generator sub-commands', dest='cmd', metavar='')
-        for subcommand in _SUB_COMMANDS.keys():
-            _SUB_COMMANDS[subcommand].setup_argument_parser(
-                arg_parser=subparsers.add_parser(
-                    name=_SUB_COMMANDS[subcommand].get_argument_parser_name(),
-                    help=_SUB_COMMANDS[subcommand].get_argument_parser_help()
-                )
-            )
-
-        return arg_parser
-
-
-def main(*, prog_name: Optional[str] = None) -> None:
-    parser = CycloneDxCmd.get_arg_parser(prog=prog_name)
-    args = parser.parse_args()
-    CycloneDxCmd(args=args).execute()
+@cli.command(help='Show which version of CycloneDX BOM Generator you are running')
+def version() -> None:
+    print(f'You are running CycloneDX Python BOM Generator version {cdx_version}')
 
 
 if __name__ == "__main__":
-    main()
+    cli()

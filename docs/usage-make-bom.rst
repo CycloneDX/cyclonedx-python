@@ -21,39 +21,49 @@ Use the ``make-bom`` subcommand to generate a BOM given your defined inputs.
 
 .. code-block:: bash
 
-    $ cyclonedx-py make-bom --help
-    usage: cyclonedx-py make-bom [-h] (-c | -cj | -e | -p | -pip | -r) [-i FILE_PATH] [--format {xml,json}] [--schema-version {1.4,1.3,1.2,1.1,1.0}] [-o FILE_PATH] [-F] [-pb]
+    $ cyclonedx-py make-bom [OPTIONS]
 
-    options:
-      -h, --help            show this help message and exit
-      -c, --conda           Build a SBOM based on the output from `conda list --explicit` or `conda list --explicit --md5`
-      -cj, --conda-json     Build a SBOM based on the output from `conda list --json`
-      -e, --e, --environment
-                            Build a SBOM based on the packages installed in your current Python environment (default)
-      -p, --p, --poetry     Build a SBOM based on a Poetry poetry.lock's contents. Use with -i to specify absolute path to a `poetry.lock` you wish to use, else we'll look for one in the current working directory.
-      -pip, --pip           Build a SBOM based on a PipEnv Pipfile.lock's contents. Use with -i to specify absolute path to a `Pipfile.lock` you wish to use, else we'll look for one in the current working directory.
-      -r, --r, --requirements
-                            Build a SBOM based on a requirements.txt's contents. Use with -i to specify absolute path to a `requirements.txt` you wish to use, else we'll look for one in the current working directory.
+    Generate a CycloneDX BOM from a Python Environment or Application
 
-    Input Method:
-      Flags to determine how this tool obtains it's input
-
-      -i FILE_PATH, --in-file FILE_PATH
-                            File to read input from. Use "-" to read from STDIN.
-
-    SBOM Output Configuration:
-      Choose the output format and schema version
-
-      --format {xml,json}   The output format for your SBOM (default: xml)
-      --schema-version {1.4,1.3,1.2,1.1,1.0}
-                            The CycloneDX schema version for your SBOM (default: 1.4)
-      -o FILE_PATH, --o FILE_PATH, --output FILE_PATH
-                            Output file path for your SBOM (set to '-' to output to STDOUT)
-      -F, --force           If outputting to a file and the stated file already exists, it will be overwritten.
-      -pb, --purl-bom-ref   Use a component's PURL for the bom-ref value, instead of a random UUID
-      --omit OMIT
-                            Omit specified items when using Poetry or PipEnv
-                            (currently supported is dev)
+    Options:
+      -c, --conda                     Build a SBOM based on the output from `conda
+                                      list --explicit` or `conda list --explicit
+                                      --md5`
+      -cj, --conda-json               Build a SBOM based on the output from `conda
+                                      list --json`
+      -e, --e, --environment          Build a SBOM based on the packages installed
+                                      in your current Python environment (DEFAULT)
+      -p, --p, --poetry               Build a SBOM based on a Poetry poetry.lock's
+                                      contents. Use with -i to specify absolute
+                                      path to a `poetry.lock` you wish to use,
+                                      else we'll look for one in the current
+                                      working directory.
+      -pip, --pip                     Build a SBOM based on a PipEnv
+                                      Pipfile.lock's contents. Use with -i to
+                                      specify absolute path to a `Pipfile.lock`
+                                      you wish to use, else we'll look for one in
+                                      the current working directory.
+      -r, --r, --requirements         Build a SBOM based on a requirements.txt's
+                                      contents. Use with -i to specify absolute
+                                      path to a `requirements.txt` you wish to
+                                      use, else we'll look for one in the current
+                                      working directory.
+      -i, --in-file FILENAME          File to read input from. Use "-" to read
+                                      from STDIN.
+      --format [xml|json]             The output format for your SBOM (default:
+                                      xml)
+      -F, --force                     If outputting to a file and the stated file
+                                      already exists, it will be overwritten.
+      -pb, --purl-bom-ref             Use a component's PURL for the bom-ref
+                                      value, instead of a random UUID
+      -o, --o, --output PATH          Output file path for your SBOM. Use "-" to
+                                      write to STDOUT.
+      --omit [dev]                    Omit specified items when using Poetry or
+                                      PipEnv
+      --schema-version [1.0|1.1|1.2|1.3|1.4]
+                                      The CycloneDX schema version for your SBOM
+                                      (default: 1.4)
+      --help                          Show this message and exit.
 
 
 From your current Python Environment
@@ -61,6 +71,14 @@ From your current Python Environment
 
 This will produce the most accurate and complete CycloneDX BOM as it will include all transitive dependencies required
 by the packages defined in your project's manifest (think ``requirements.txt``).
+
+.. note::
+
+    Generating from your Python Environment will report and include EVERY package installed in the current
+    Python Environment.
+
+    It is therefore best practice to use Virtual Environments to provide isolation from other applications and their
+    dependencies.
 
 When using *Environment* as the source, any license information available from the installed packages will also be
 included in the generated CycloneDX BOM.
@@ -73,7 +91,7 @@ Simply run:
 
 
 This will generate a CycloneDX including all packages installed in your current Python environment and output to STDOUT
-in XML using the default schema version ``1.4`` by default.
+in XML using the default schema version ``1.4``.
 
 From your Python application manifest
 
@@ -94,7 +112,7 @@ As example:
 
 .. code-block:: bash
 
-    conda list --explicit --md5 | cyclonedx-py -c -o cyclonedx.xml
+    conda list --explicit --md5 | cyclonedx-py make-bom -c -o cyclonedx.xml
 
 **Poetry**
 
