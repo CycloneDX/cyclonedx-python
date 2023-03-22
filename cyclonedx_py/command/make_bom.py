@@ -26,6 +26,14 @@ from cyclonedx.output import BaseOutput, get_instance as get_output_instance
 from cyclonedx.parser import BaseParser
 from cyclonedx.schema import OutputFormat, SchemaVersion
 
+from ..exception import CycloneDxCmdException, CycloneDxCmdNoInputFileSupplied
+from ..parser._cdx_properties import Pipenv as PipenvProps, Poetry as PoetryProp
+from ..parser.conda import CondaListExplicitParser, CondaListJsonParser
+from ..parser.environment import EnvironmentParser
+from ..parser.pipenv import PipenvPackageCategoryGroupWellknown, PipEnvParser
+from ..parser.poetry import PoetryGroupWellknown, PoetryParser
+from ..parser.requirements import RequirementsParser
+from ..utils.output import CLI_OMITTABLE, OUTPUT_DEFAULT_FILENAMES, OUTPUT_FORMATS
 from . import (
     BaseCommand,
     CycloneDxCmd,
@@ -36,14 +44,6 @@ from . import (
     output_cyclonedx_options,
     root_cdx_command,
 )
-from ..exception import CycloneDxCmdException, CycloneDxCmdNoInputFileSupplied
-from ..parser._cdx_properties import Pipenv as PipenvProps, Poetry as PoetryProp
-from ..parser.conda import CondaListExplicitParser, CondaListJsonParser
-from ..parser.environment import EnvironmentParser
-from ..parser.pipenv import PipenvPackageCategoryGroupWellknown, PipEnvParser
-from ..parser.poetry import PoetryGroupWellknown, PoetryParser
-from ..parser.requirements import RequirementsParser
-from ..utils.output import CLI_OMITTABLE, OUTPUT_DEFAULT_FILENAMES, OUTPUT_FORMATS
 
 
 @cli.command(help='Generate a CycloneDX BOM from a Python Environment or Application')

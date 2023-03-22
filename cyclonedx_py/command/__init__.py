@@ -17,7 +17,7 @@ import functools
 import sys
 from abc import ABC, abstractmethod
 from datetime import datetime
-from typing import Any, Callable
+from typing import Any, Callable, Optional
 
 import click
 from click import Context
@@ -30,11 +30,10 @@ from ..utils.output import CLI_OMITTABLE, CLI_OUTPUT_FORMAT
 if sys.version_info >= (3, 8):
     from importlib.metadata import version as meta_version
 else:
-    from importlib_metadata import version as meta_version  # type: ignore[no-untyped-call]
+    from importlib_metadata import version as meta_version
 
-cdx_version: str = 'TBC'
 try:
-    cdx_version = str(meta_version('cyclonedx-bom'))
+    cdx_version: Optional[str] = str(meta_version('cyclonedx-bom'))  # type: ignore[no-untyped-call]
 except Exception:
     cdx_version = 'DEVELOPMENT'
 
