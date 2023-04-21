@@ -21,9 +21,9 @@ from enum import Enum, unique
 
 from cyclonedx.exception.model import CycloneDxModelException
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
+from cyclonedx.model.bom import BomMetaData
 from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser
-from cyclonedx.model.bom import BomMetaData
 
 # See https://github.com/package-url/packageurl-python/issues/65
 from packageurl import PackageURL  # type: ignore
@@ -98,10 +98,10 @@ class PoetryParser(BaseParser):
                     debug_message('Warning: suppressed {!r}', error)
                     del error
             self._components.append(component)
-        
+
         if pyproject_toml_contents:
             poetry_toml = load_toml(pyproject_toml_contents)
-            poetry_toml_metadata = poetry_toml.get('tool','').get('poetry','')
+            poetry_toml_metadata = poetry_toml.get('tool', '').get('poetry', '')
             metadata_component = Component(
                 name=poetry_toml_metadata['name'], version=poetry_toml_metadata['version']
             )

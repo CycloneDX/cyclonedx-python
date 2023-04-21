@@ -249,7 +249,8 @@ class CycloneDxCmd:
         )
 
         arg_parser.add_argument('-X', action='store_true', help='Enable debug output', dest='debug_enabled')
-        arg_parser.add_argument('--add-metadata', action='store', help='File to read metadata from', dest='input_metadata')
+        arg_parser.add_argument('--add-metadata', action='store', help='File to read metadata from',
+                                dest='input_metadata')
 
         return arg_parser
 
