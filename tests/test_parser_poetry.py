@@ -84,3 +84,12 @@ class TestPoetryParser(TestCase):
         c_property = next(filter(lambda p: p.name == 'cdx:poetry:package:group', component.properties), None)
         self.assertIsNotNone(c_property)
         self.assertEqual('dev', c_property.value)
+
+    @data('poetry-pytoml.txt')
+    def test_metadata(self, toml_file_name: str) -> None:
+        poetry_lock_filename = os.path.join(os.path.dirname(__file__), 'fixtures', 'poetry-lock11-simple.txt')
+        poetry_toml_filename = os.path.join(os.path.dirname(__file__), 'fixtures', toml_file_name)
+        parser = PoetryFileParser(poetry_lock_filename=poetry_lock_filename,
+                                  use_purl_bom_ref=True,
+                                  poetry_toml_filename=poetry_toml_filename)
+        self.assertEqual('cyclonedx-bom', parser._metadata.component.name)

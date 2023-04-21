@@ -111,7 +111,7 @@ class CycloneDxCmd:
                   '',
                   sep='\n', file=sys.stderr)
 
-        bom = Bom(components=filter(self._component_filter, parser.get_components()))
+        bom = Bom(components=filter(self._component_filter, parser.get_components()), metadata=parser._metadata)
 
         # region Add cyclonedx_bom as a Tool to record it being part of the CycloneDX SBOM generation process
         if sys.version_info < (3, 8):
@@ -249,6 +249,7 @@ class CycloneDxCmd:
         )
 
         arg_parser.add_argument('-X', action='store_true', help='Enable debug output', dest='debug_enabled')
+        arg_parser.add_argument('--add-metadata', action='store', help='File to read metadata from', dest='input_metadata')
 
         return arg_parser
 
@@ -299,6 +300,14 @@ class CycloneDxCmd:
             input_data = input_data_fh.read()
             input_data_fh.close()
 
+        if self._arguments.input_metadata:
+            input_metainformation_fh = open(self._arguments.input_metadata, 'r')
+            with input_metainformation_fh:
+                input_metainformation = input_metainformation_fh.read()
+                input_metainformation_fh.close()
+        else:
+            input_metainformation = ""
+
         if self._arguments.input_from_conda_explicit:
             return CondaListExplicitParser(
                 conda_data=input_data,
@@ -321,7 +330,8 @@ class CycloneDxCmd:
             return PoetryParser(
                 poetry_lock_contents=input_data,
                 use_purl_bom_ref=self._arguments.use_purl_bom_ref,
-                debug_message=lambda m, *a, **k: self._debug_message(f'PoetryParser {m}', *a, **k)
+                debug_message=lambda m, *a, **k: self._debug_message(f'PoetryParser {m}', *a, **k),
+                pyproject_toml_contents=input_metainformation
             )
         elif self._arguments.input_from_requirements:
             return RequirementsParser(

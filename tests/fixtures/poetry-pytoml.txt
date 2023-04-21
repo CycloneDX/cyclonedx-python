@@ -1,0 +1,68 @@
+[tool.poetry]
+name = "cyclonedx-bom"
+version = "3.11.0"
+description = "CycloneDX Software Bill of Materials (SBOM) generation utility"
+authors = [
+  "Steven Springett <steve.springett@owasp.org>",
+  "Paul Horton <phorton@sonatype.com>",
+]
+maintainers = [
+  "Paul Horton <phorton@sonatype.com>",
+  "Jan Kowalleck <jan.kowalleck@gmail.com>",
+]
+license = "Apache-2.0"
+readme = "README.md"
+homepage = "https://github.com/CycloneDX/cyclonedx-python/#readme"
+repository = "https://github.com/CycloneDX/cyclonedx-python"
+documentation = "https://cyclonedx-bom-tool.readthedocs.io/"
+packages = [
+    { include = "cyclonedx_py" }
+]
+include = [
+    "LICENSE", "NOTICE"
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+# ATTENTION: keep `deps.lowest.r` file in sync
+cyclonedx-python-lib = ">= 4.0.0, < 5.0.0"
+packageurl-python = ">= 0.9"
+importlib-metadata = { version = ">= 3.4", python = "< 3.8" }
+pip-requirements-parser = "^32.0.0"
+setuptools = ">= 47.0.0"
+toml = "^0.10.0"
+
+[tool.poetry.dev-dependencies]
+coverage = "^7.2.1"
+ddt = "^1.6.0"
+flake8 = "^5.0.4" # last version supporting Python 3.7
+flake8-annotations = "^2.9.1" # last version supporting Python 3.7
+flake8-bugbear = "^22.7.1"
+flake8-isort = "^4.1.2"
+isort = "^5.11.5" # last version supporting Python 3.7
+mypy = "^1.1.1"
+mypy-extensions = "^1.0.0"
+tox = "^3.25.1"
+# `types-toml` need to stay in sync with version of `toml`
+types-toml = "^0.10.0"
+# `types-setuptools` need to stay in sync with version of `setuptools` - but 47 was not typed...
+types-setuptools = ">= 57.0.0"
+
+[tool.poetry.scripts]
+cyclonedx-py  = 'cyclonedx_py.client:main'
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.semantic_release]
+# https://python-semantic-release.readthedocs.io/en/latest/configuration.html
+version_variable = [
+    "pyproject.toml:version"
+]
+branch = "main"
+upload_to_pypi = true
+upload_to_repository = true
+upload_to_release = true
+build_command = "pip install poetry && poetry build"
+remove_dist = false  # dist results required for some CI automation
