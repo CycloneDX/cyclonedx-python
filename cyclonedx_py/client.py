@@ -181,7 +181,10 @@ class CycloneDxCmd:
         )
         input_group.add_argument(
             '-e', '--e', '--environment', action='store_true',
-            help='Build a SBOM based on the packages installed in your current Python environment (default)',
+            help='Build a SBOM based on the packages installed in your current Python environment (default). '
+                 'Use with --env to look for packages in an alternative directory instead of the current Python '
+                 'environment. In a virtual environment packages are typically installed into the '
+                 '`lib/pythonX.Y/site-packages` subdirectory.',
             dest='input_from_environment'
         )
         input_group.add_argument(
@@ -212,6 +215,12 @@ class CycloneDxCmd:
             type=argparse.FileType('r'),  # FileType does handle '-'
             default=None,
             help='File to read input from. Use "-" to read from STDIN.', dest='input_source', required=False
+        )
+        input_method_group.add_argument(
+            '--env', action='store', metavar='ENVIRONMENT_PATH',
+            default=None, required=False, type=_is_valid_dir,
+            help='Path to a directory where packages are installed.',
+            dest='input_environment_source',
         )
 
         output_group = arg_parser.add_argument_group(
@@ -267,7 +276,8 @@ class CycloneDxCmd:
         if self._arguments.input_from_environment:
             return EnvironmentParser(
                 use_purl_bom_ref=self._arguments.use_purl_bom_ref,
-                debug_message=lambda m, *a, **k: self._debug_message(f'EnvironmentParser {m}', *a, **k)
+                debug_message=lambda m, *a, **k: self._debug_message(f'EnvironmentParser {m}', *a, **k),
+                environment_path=self._arguments.input_environment_source
             )
 
         # All other Parsers will require some input - grab it now!
@@ -343,6 +353,12 @@ class CycloneDxCmd:
                         return False
 
         return True
+
+
+def _is_valid_dir(path: str) -> str:
+    if not os.path.isdir(path):
+        raise argparse.ArgumentTypeError(f'"{path}" is not a path to valid directory')
+    return path
 
 
 def main(*, prog_name: Optional[str] = None) -> None:

@@ -24,26 +24,32 @@ These parsers look at installed packages only - not what you have defined in any
 if you want to derive CycloneDX from declared dependencies.
 
 
-The Environment Parsers support population of the following data about Components:
+The EnvironmentParser supports population of the following data about Components:
+
+* ``name``
+* ``author``
+* ``version``
+* ``licenses``
+* ``purl``
 
 """
 
 import sys
+from typing import Iterable, Optional
 
 from cyclonedx.exception.model import CycloneDxModelException
 
 # See https://github.com/package-url/packageurl-python/issues/65
 from packageurl import PackageURL  # type: ignore
-from pkg_resources import Distribution
 
 if sys.version_info >= (3, 8):
     if sys.version_info >= (3, 10):
         from importlib.metadata import PackageMetadata as _MetadataReturn
     else:
         from email.message import Message as _MetadataReturn
-    from importlib.metadata import metadata
+    from importlib.metadata import Distribution, distributions
 else:
-    from importlib_metadata import metadata, PackageMetadata as _MetadataReturn
+    from importlib_metadata import Distribution, distributions, PackageMetadata as _MetadataReturn
 
 from cyclonedx.model import License, LicenseChoice
 from cyclonedx.model.component import Component
@@ -54,7 +60,7 @@ from ._debug import DebugMessageCallback, quiet
 
 class EnvironmentParser(BaseParser):
     """
-    This will look at the current Python environment and list out all installed packages.
+    This will look at either the current Python environment or a given path to list out all installed packages.
 
     Best used when you have virtual Python environments per project.
     """
@@ -62,23 +68,22 @@ class EnvironmentParser(BaseParser):
     def __init__(
             self, use_purl_bom_ref: bool = False,
             *,
-            debug_message: DebugMessageCallback = quiet
+            debug_message: DebugMessageCallback = quiet,
+            environment_path: Optional[str] = None
     ) -> None:
         super().__init__()
         debug_message('init {}', self.__class__.__name__)
 
-        debug_message('late import pkg_resources')
-        import pkg_resources
+        debug_message('processing importlib-metadata.distributions')
+        for i in self._distribution_iterator(environment_path):
+            i_metadata = i.metadata  # type: _MetadataReturn
+            i_name = i_metadata["Name"]
 
-        debug_message('processing pkg_resources.working_set')
-        i: Distribution
-        for i in iter(pkg_resources.working_set):
-            debug_message('processing working_set item: {!r}', i)
-            purl = PackageURL(type='pypi', name=i.project_name, version=i.version)
+            debug_message('processing distribution: {}', i_name)
+            purl = PackageURL(type='pypi', name=i_name, version=i_metadata["Version"])
             bom_ref = purl.to_string() if use_purl_bom_ref else None
-            c = Component(name=i.project_name, bom_ref=bom_ref, version=i.version, purl=purl)
+            c = Component(name=i_name, bom_ref=bom_ref, version=i_metadata["Version"], purl=purl)
 
-            i_metadata = self._get_metadata_for_package(i.project_name)
             debug_message('processing i_metadata')
             if 'Author' in i_metadata:
                 c.author = i_metadata['Author']
@@ -115,5 +120,17 @@ class EnvironmentParser(BaseParser):
             self._components.append(c)
 
     @staticmethod
-    def _get_metadata_for_package(package_name: str) -> _MetadataReturn:
-        return metadata(package_name)
+    def _distribution_iterator(environment_path: Optional[str]) -> Iterable[Distribution]:
+        # @todo remove this if/else once support for python 3.7 is dropped or a minimal 'importlib_metadata' version
+        #   with included typing information is used. this exists only to trick mypy into accepting the call to the
+        #   untyped 'distributions' function.
+        if sys.version_info < (3, 8):
+            from typing import Callable
+
+            md_distributions: Callable[..., Iterable[Distribution]] = distributions
+        else:
+            md_distributions = distributions
+
+        if environment_path:
+            return md_distributions(path=[environment_path])
+        return md_distributions()

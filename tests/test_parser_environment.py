@@ -17,6 +17,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
+import os
 from unittest import TestCase
 
 from cyclonedx.model import License, LicenseChoice
@@ -63,3 +64,19 @@ class TestEnvironmentParser(TestCase):
         self.assertEqual(len(c_tox.licenses), 2)
         self.assertEqual({LicenseChoice(license=License(name="MIT License")),
                           LicenseChoice(license=License(name="MIT"))}, c_tox.licenses)
+
+    def test_alternative_environment_path(self) -> None:
+        env_path = os.path.join(os.path.dirname(__file__), "fixtures/venv-simple/lib/python3.10/site-packages")
+        parser = EnvironmentParser(environment_path=env_path)
+
+        self.assertEqual(parser.component_count(), 1)
+
+        c_packaging = parser.get_components()[0]
+        self.assertEqual(c_packaging.name, "packaging")
+        self.assertEqual(c_packaging.version, "23.1")
+        self.assertNotEqual(c_packaging.purl.to_string(), c_packaging.bom_ref.value)
+        self.assertIsNotNone(c_packaging.licenses)
+        self.assertEqual(len(c_packaging.licenses), 2)
+        self.assertEqual({LicenseChoice(license=License(name="BSD License")),
+                          LicenseChoice(license=License(name="Apache Software License"))},
+                         c_packaging.licenses)

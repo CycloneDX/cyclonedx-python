@@ -23,7 +23,7 @@ Get it all applied via:
 
 ```shell
 poetry run isort .
-poetry run flake8 cyclonedx/ tests/
+poetry run flake8 cyclonedx_py/ tests/
 ```
 
 ## Documentation

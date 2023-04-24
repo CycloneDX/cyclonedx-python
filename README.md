@@ -31,13 +31,13 @@ Install this from [PyPi.org][link_pypi] using your preferred Python package mana
 Example using `pip`:
 
 ```shell
-pip install cyclonedx-bom
+pip install cyclonedx-py
 ```
 
 Example using `poetry`:
 
 ```shell
-poetry add cyclonedx-bom
+poetry add cyclonedx-py
 ```
 
 ## Usage
@@ -54,12 +54,13 @@ python3 -m cyclonedx_py
 ```text
 $ cyclonedx-py --help
 usage: cyclonedx-py [-h] (-c | -cj | -e | -p | -pip | -r) [-i FILE_PATH]
-                 [--format {json,xml}] [--schema-version {1.4,1.3,1.2,1.1,1.0}]
-                 [-o FILE_PATH] [-F] [-X]
+                    [--env ENVIRONMENT_PATH] [--format {json,xml}]
+                    [--schema-version {1.4,1.3,1.2,1.1,1.0}] [-o FILE_PATH]
+                    [-F] [-pb] [-X]
 
 CycloneDX SBOM Generator
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -c, --conda           Build a SBOM based on the output from `conda list
                         --explicit` or `conda list --explicit --md5`
@@ -67,7 +68,11 @@ optional arguments:
                         --json`
   -e, --e, --environment
                         Build a SBOM based on the packages installed in your
-                        current Python environment (default)
+                        current Python environment (default). Use with --env
+                        to look for packages in an alternative directory
+                        instead of the current Python environment. Packages
+                        can typically be found in the `lib/pythonX.Y/site-
+                        packages` directory of a virtual environment.
   -p, --p, --poetry     Build a SBOM based on a Poetry poetry.lock's contents.
                         Use with -i to specify absolute path to a `poetry.lock`
                         you wish to use, else we'll look for one in the
@@ -91,6 +96,8 @@ Input Method:
 
   -i FILE_PATH, --in-file FILE_PATH
                         File to read input from. Use "-" to read from STDIN.
+  --env ENVIRONMENT_PATH
+                        Path to a directory where packages are installed.
 
 SBOM Output Configuration:
   Choose the output format and schema version

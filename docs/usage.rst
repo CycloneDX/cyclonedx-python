@@ -13,16 +13,17 @@ Once installed, you can call the tool via the following methods:
 
 The full documentation can be issued by running with ``--help``:
 
-.. code-block:: bash
+.. code-block:: text
 
     $ cyclonedx-py --help
     usage: cyclonedx-py [-h] (-c | -cj | -e | -p | -pip | -r) [-i FILE_PATH]
-                     [--format {json,xml}] [--schema-version {1.4,1.3,1.2,1.1,1.0}]
-                     [-o FILE_PATH] [-F] [-X]
+                        [--env ENVIRONMENT_PATH] [--format {json,xml}]
+                        [--schema-version {1.4,1.3,1.2,1.1,1.0}] [-o FILE_PATH]
+                        [-F] [-pb] [-X]
 
     CycloneDX SBOM Generator
 
-    optional arguments:
+    options:
       -h, --help            show this help message and exit
       -c, --conda           Build a SBOM based on the output from `conda list
                             --explicit` or `conda list --explicit --md5`
@@ -30,7 +31,11 @@ The full documentation can be issued by running with ``--help``:
                             --json`
       -e, --e, --environment
                             Build a SBOM based on the packages installed in your
-                            current Python environment (default)
+                            current Python environment (default). Use with --env
+                            to look for packages in an alternative directory
+                            instead of the current Python environment. In a
+                            virtual environment packages are typically installed
+                            into the `lib/pythonX.Y/site-packages` subdirectory.
       -p, --p, --poetry     Build a SBOM based on a Poetry poetry.lock's contents.
                             Use with -i to specify absolute path to a `poetry.lock`
                             you wish to use, else we'll look for one in the
@@ -53,7 +58,9 @@ The full documentation can be issued by running with ``--help``:
       Flags to determine how this tool obtains it's input
 
       -i FILE_PATH, --in-file FILE_PATH
-                            File to read input from, or STDIN if not specified
+                            File to read input from. Use "-" to read from STDIN.
+      --env ENVIRONMENT_PATH
+                            Path to a directory where packages are installed.
 
     SBOM Output Configuration:
       Choose the output format and schema version
@@ -61,15 +68,17 @@ The full documentation can be issued by running with ``--help``:
       --format {json,xml}   The output format for your SBOM (default: xml)
       --schema-version {1.4,1.3,1.2,1.1,1.0}
                             The CycloneDX schema version for your SBOM (default:
-                            1.3)
+                            1.4)
       -o FILE_PATH, --o FILE_PATH, --output FILE_PATH
                             Output file path for your SBOM (set to '-' to output
                             to STDOUT)
       -F, --force           If outputting to a file and the stated file already
                             exists, it will be overwritten.
+      -pb, --purl-bom-ref   Use a component's PURL for the bom-ref value, instead
+                            of a random UUID
 
-From your current Python Environment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+From your Python Environment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This will produce the most accurate and complete CycloneDX BOM as it will include all transitive dependencies required
 by the packages defined in your project's manifest (think ``requirements.txt``).
@@ -84,10 +93,21 @@ Simply run:
     cyclonedx-py -e -o -
 
 
-This will generate a CycloneDX including all packages installed in your current Python environment and output to STDOUT
-in XML using the default schema version ``1.4`` by default.
+This will generate a CycloneDX BOM including all packages installed in your current Python environment and output to STDOUT
+in XML using the schema version ``1.4`` by default.
+
+To generate the BOM for an environment different to the current one you can use the ``--env`` option and specify a path
+to a directory where your packages are installed. For example:
+
+.. code-block:: bash
+
+    cyclonedx-py -e --env PATH/TO/VENV/lib/pythonX.Y/site-packages -o -
+
+Note that packages installed in a virtual environment are typically located in the ``lib/pythonX.Y/site-packages``
+subdirectory (with ``X.Y`` being the respectively used python version).
 
 From your Python application manifest
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. note::
 
@@ -130,7 +150,7 @@ If your ``poetry.lock`` is in the current working directory, you can also shorte
 
 We currently support ``Pipfile.lock`` manifest files.
 
-You can then run ``cyclonedx-bom`` as follows:
+You can then run ``cyclonedx-py`` as follows:
 
 .. code-block:: bash
 
@@ -154,7 +174,7 @@ therefore if you wish to generate a BOM from a ``requirements.txt``, these must 
     pip freeze > requirements.txt
 
 
-You can then run ``cyclonedx-bom`` as follows:
+You can then run ``cyclonedx-py`` as follows:
 
 .. code-block:: bash
 
@@ -167,11 +187,11 @@ If your ``requirements.txt`` is in the current working directory, you can also s
     cyclonedx-py -r -o sbom.xml
 
 
-This will generate a CycloneDX and output to STDOUT in XML using the default schema version `1.3`.
+This will generate a CycloneDX and output to STDOUT in XML using the default schema version ``1.4``.
 
 .. note::
 
-    If you failed to freeze your dependencies before passing the ``requirements.txt`` data to ``cyclonedx-bom``,
+    If you failed to freeze your dependencies before passing the ``requirements.txt`` data to ``cyclonedx-py``,
     you'll be warned about this and the dependencies that do not have pinned versions WILL NOT be included in the
     resulting CycloneDX output.
 
@@ -205,8 +225,8 @@ Conda
 Environment
 ~~~~~~~~~~~
 
-* :py:mod:`cyclonedx_py.parser.environment.EnvironmentParser`: Looks at the packages installed in your current Python
-  environment
+* :py:mod:`cyclonedx_py.parser.environment.EnvironmentParser`: Looks at the packages installed in either your current Python
+  environment or at a given directory.
 
 Pip
 ~~~~~~~
@@ -228,7 +248,7 @@ Requirements
 * :py:mod:`cyclonedx_py.parser.requirements.RequirementsFileParser`: Parses a file that you provide the path to that conforms to the ``requirements.txt`` :pep:`508` standard.
   It supports nested files, so if there is a line in your ``requirements.txt`` file with the ``-r requirements-nested.txt`` syntax, it'll parse the nested file as part of the same file.
 
-CycloneDX software bill-of-materials require pinned versions of requirements. If your `requirements.txt` does not have
+CycloneDX software bill-of-materials require pinned versions of requirements. If your ``requirements.txt`` does not have
 pinned versions, warnings will be recorded and the dependencies without pinned versions will be excluded from the
 generated CycloneDX. CycloneDX schemas (from version 1.0+) require a component to have a version when included in a
 CycloneDX bill of materials (according to schema).
@@ -317,13 +337,13 @@ xPath is used to refer to data attributes according to the `Cyclone DX Specifica
 
 **Notes**
 
-1. If contained in the packaages ``METADATA``
-2. MD5 hashses are available when using the ``CondaListExplicitParser`` with output from the
+1. If contained in the packages ``METADATA``
+2. MD5 hashes are available when using the ``CondaListExplicitParser`` with output from the
    conda command ``conda list --explicit --md5`` only
 3. Python packages are regularly available as both ``.whl`` and ``.tar.gz`` packages. This means for that for a given
    package and version multiple artefacts are possible - which would mean multiple hashes are possible. CycloneDX
    supports only a single set of hashes identifying a single artefact at ``component.hashes``. To cater for this
-   situation in Python, we add the hashes to `component.externalReferences`, as we cannot determine which package was
+   situation in Python, we add the hashes to ``component.externalReferences``, as we cannot determine which package was
    actually obtained and installed to meet a given dependency.
 
 .. _Cyclone DX Specification: https://cyclonedx.org/docs/latest
