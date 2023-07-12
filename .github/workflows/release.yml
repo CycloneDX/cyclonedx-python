@@ -44,7 +44,6 @@ jobs:
       github.ref == 'refs/heads/master' &&
       !contains(github.event.head_commit.message, 'chore(release):')
     runs-on: ubuntu-latest
-    concurrency: release-PyPI  # one release at a time, prevent hickups
     outputs:
       version-before: ${{ steps.before-release.outputs.version }}  # version may be empty
       released:       ${{ steps.after-release.outputs.released }}  # optional bool-ish string
@@ -117,7 +116,6 @@ jobs:
       needs.release-PyPI.outputs.released &&
       needs.release-PyPI.outputs.version-after
     runs-on: ubuntu-latest
-    concurrency: release-DockerHub  # because of the 'latest' tag
     env:
       VERSION: ${{ needs.release-PyPI.outputs.version-after }}
       ARTIFACT_DOCKER_SBOM: 'docker-image-bom'
