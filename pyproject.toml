@@ -84,7 +84,7 @@ build-backend = "poetry.core.masonry.api"
 version_variable = [
     "pyproject.toml:version"
 ]
-branch = "master"
+branch = "main"
 upload_to_pypi = true
 upload_to_repository = true
 upload_to_release = true
