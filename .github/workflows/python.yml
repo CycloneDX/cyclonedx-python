@@ -25,7 +25,7 @@ on:
     branches-ignore: ['dependabot/**']
   push:
     tags: [ 'v*.*.*' ]  # run again on release tags to have tools mark them
-    branches: [ 'master' ]
+    branches: [ 'main' ]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
