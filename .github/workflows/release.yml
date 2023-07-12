@@ -41,7 +41,7 @@ jobs:
     # https://github.community/t/how-do-i-specify-job-dependency-running-in-another-workflow/16482
     # limit this to being run on regular commits, not the commits that semantic-release will create
     if: |
-      github.ref == 'refs/heads/master' &&
+      github.ref == 'refs/heads/main' &&
       !contains(github.event.head_commit.message, 'chore(release):')
     runs-on: ubuntu-latest
     outputs:
