@@ -198,7 +198,7 @@ class CycloneDxCmd:
 
         input_method_group = arg_parser.add_argument_group(
             title='Input Method',
-            description='Flags to determine how this tool obtains it\'s input'
+            description='Flags to determine how this tool obtains its input'
         )
         input_method_group.add_argument(
             '-i', '--in-file', action='store', metavar='FILE_PATH',
