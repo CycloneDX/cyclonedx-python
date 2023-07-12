@@ -22,7 +22,6 @@ env:
 jobs:
   release_candidate:
     runs-on: ubuntu-latest
-    concurrency: release_candidate
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
