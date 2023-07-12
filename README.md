@@ -84,7 +84,7 @@ optional arguments:
   -X                    Enable debug output
 
 Input Method:
-  Flags to determine how this tool obtains it's input
+  Flags to determine how this tool obtains its input
 
   -i FILE_PATH, --in-file FILE_PATH
                         File to read input from. Use "-" to read from STDIN.

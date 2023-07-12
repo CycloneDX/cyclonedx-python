@@ -174,7 +174,7 @@ def split_package_build_string(build_string: str) -> Tuple[str, Optional[int]]:
 
     _pos = build_string.rindex('_') if '_' in build_string else -1
     if _pos >= 1:
-        # Build number will be the last part - check if it's an integer
+        # Build number will be the last part - check if it is an integer
         # Updated logic given https://github.com/CycloneDX/cyclonedx-python-lib/issues/65
         build_number = build_string[_pos + 1:]
         if build_number.isdigit():
