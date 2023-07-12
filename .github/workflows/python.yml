@@ -102,7 +102,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os:
+          - ubuntu-latest
+          - macos-latest
+          # tem disabled: - windows-latest
+          # tests on windows have issues caused by `virtualenv`<=20.21 as a dependency from `tox`
+          # see https://github.com/CycloneDX/cyclonedx-python/actions/runs/5534372036
         python-version:
           - "3.11" # highest supported
           - "3.10"
@@ -120,6 +125,12 @@ jobs:
             os: ubuntu-20.04
             python-version: '3.6'
             toxenv-factor: 'lowest'
+          - os: windows-latest
+            python-version: '3.7'
+            toxenv-factor: 'locked'
+          - os: windows-latest
+            python-version: '3.6'
+            toxenv-factor: 'locked'
         exclude:
           - # no py36 with latest ubuntu - see https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json
             os: ubuntu-latest
