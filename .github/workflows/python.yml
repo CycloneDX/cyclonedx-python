@@ -30,7 +30,7 @@ on:
 env:
   REPORTS_DIR: CI_reports
   PYTHON_VERISON_DEFAULT: "3.11"
-  POETRY_VERSION: "1.1.15"
+  POETRY_VERSION: "1.4.2"
 
 jobs:
   coding-standards:

@@ -3,7 +3,7 @@
 
 name: Docker CI
 
-on: 
+on:
   push:
     branches: ["master"]
   pull_request:
@@ -12,7 +12,7 @@ on:
 env:
   REPORTS_DIR: CI_reports
   PYTHON_VERISON: "3.10"
-  POETRY_VERSION: "1.1.15"
+  POETRY_VERSION: "1.4.2"
 
 jobs:
   test:
