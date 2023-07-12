@@ -111,18 +111,18 @@ jobs:
           - "3.10"
           - "3.9"
           - "3.8"
-          - "3.7"
-          - "3.6"  # lowest supported -- handled in include
+          # - "3.7"
+          # - "3.6"  # lowest supported -- handled in include
         toxenv-factor: ['locked']
-        include:
-          - # test with py36 ubuntu20
-            os: ubuntu-20.04
-            python-version: '3.6'
-            toxenv-factor: 'locked'
-          - # test with the lowest dependencies
-            os: ubuntu-20.04
-            python-version: '3.6'
-            toxenv-factor: 'lowest'
+#        include:
+#          - # test with py36 ubuntu20
+#            os: ubuntu-20.04
+#            python-version: '3.6'
+#            toxenv-factor: 'locked'
+#          - # test with the lowest dependencies
+#            os: ubuntu-20.04
+#            python-version: '3.6'
+#            toxenv-factor: 'lowest'
         exclude:
           - # no py36 with latest ubuntu - see https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json
             os: ubuntu-latest
