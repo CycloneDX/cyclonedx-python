@@ -27,6 +27,10 @@ on:
     tags: [ 'v*.*.*' ]  # run again on release tags to have tools mark them
     branches: [ 'master' ]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   REPORTS_DIR: CI_reports
   PYTHON_VERISON_DEFAULT: "3.11"

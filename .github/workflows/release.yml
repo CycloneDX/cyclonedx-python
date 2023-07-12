@@ -25,6 +25,10 @@ on:
       - master
   workflow_dispatch:
 
+concurrency:
+  group: release
+  cancel-in-progress: false
+
 env:
   REPORTS_DIR: CI_reports
   DIST_DIR: dist
@@ -88,7 +92,7 @@ jobs:
           then
             echo "released=true" >> $GITHUB_OUTPUT
           fi
-        env: 
+        env:
           VERSION_PRE: ${{ steps.before-release.outputs.version }}
       - name: Artifact python dist
         if: |
@@ -102,7 +106,7 @@ jobs:
           if-no-files-found: error
           # Dist results are required for further processing.
           # Therefore, make sure that python-semantic-release is configuret to keep dist.
-          # see https://python-semantic-release.readthedocs.io/en/latest/configuration.html?highlight=remove_dist#remove-dist 
+          # see https://python-semantic-release.readthedocs.io/en/latest/configuration.html?highlight=remove_dist#remove-dist
 
   release-DockerHub:
     name: "Release: DockerHub"
@@ -132,7 +136,7 @@ jobs:
       - name: Fetch python dist artifact
         # see https://github.com/actions/download-artifact
         uses: actions/download-artifact@v3
-        with: 
+        with:
           name: ${{ env.DIST_ARTIFACT }}
           path: ${{ env.DIST_DIR }}/
       - name: Build Docker Image (${{ env.VERSION }})

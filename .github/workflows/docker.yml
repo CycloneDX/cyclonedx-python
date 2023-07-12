@@ -3,11 +3,15 @@
 
 name: Docker CI
 
-on: 
+on:
   push:
     branches: ["master"]
   pull_request:
   workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
   REPORTS_DIR: CI_reports
