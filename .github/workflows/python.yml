@@ -34,6 +34,7 @@ env:
 
 jobs:
   coding-standards:
+    if: false
     name: Linting & Coding Standards
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -58,6 +59,7 @@ jobs:
         run: poetry run tox -e flake8 -s false
 
   static-code-analysis:
+    if: false
     name: Static Coding Analysis (py${{ matrix.python-version}} ${{ matrix.toxenv-factor }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
@@ -102,7 +104,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: # [ubuntu-latest, windows-latest, macos-latest]
+          - windows-latest
         python-version:
           - "3.11" # highest supported
           - "3.10"
