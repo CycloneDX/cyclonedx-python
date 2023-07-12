@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v3.11.2 (2023-07-12)
+
+### Fix
+
+* Referenced branch `main`, instead of `master` ([#562](https://github.com/CycloneDX/cyclonedx-python/issues/562)) ([`830d15c`](https://github.com/CycloneDX/cyclonedx-python/commit/830d15c27fadb475fa9a15918b1d5930cd71834d))
+
 ## v3.11.1 (2023-07-12)
 
 ### Fix
