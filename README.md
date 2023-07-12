@@ -125,11 +125,11 @@ CycloneDX BOM is Copyright (c) OWASP Foundation. All Rights Reserved.
 Permission to modify and redistribute is granted under the terms of the Apache 2.0 license.  
 See the [LICENSE][license_file] file for the full license.
 
-[license_file]: https://github.com/CycloneDX/cyclonedx-python/blob/master/LICENSE
-[contributing_file]: https://github.com/CycloneDX/cyclonedx-python/blob/master/CONTRIBUTING.md
+[license_file]: https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE
+[contributing_file]: https://github.com/CycloneDX/cyclonedx-python/blob/main/CONTRIBUTING.md
 [link_rtfd]: https://cyclonedx-bom-tool.readthedocs.io/
 
-[shield_gh-workflow-test]: https://img.shields.io/github/actions/workflow/status/CycloneDX/cyclonedx-python/python.yml?branch=master&logo=GitHub&logoColor=white "build"
+[shield_gh-workflow-test]: https://img.shields.io/github/actions/workflow/status/CycloneDX/cyclonedx-python/python.yml?branch=main&logo=GitHub&logoColor=white "build"
 [shield_rtfd]: https://img.shields.io/readthedocs/cyclonedx-bom-tool?logo=readthedocs&logoColor=white
 [shield_pypi-version]: https://img.shields.io/pypi/v/cyclonedx-bom?logo=Python&logoColor=white&label=PyPI "PyPI"
 [shield_docker-version]: https://img.shields.io/docker/v/cyclonedx/cyclonedx-python?logo=docker&logoColor=white&label=docker "docker"
@@ -138,7 +138,7 @@ See the [LICENSE][license_file] file for the full license.
 [shield_slack]: https://img.shields.io/badge/slack-join-blue?logo=Slack&logoColor=white "slack join"
 [shield_groups]: https://img.shields.io/badge/discussion-groups.io-blue.svg "groups discussion"
 [shield_twitter-follow]: https://img.shields.io/badge/Twitter-follow-blue?logo=Twitter&logoColor=white "twitter follow"
-[link_gh-workflow-test]: https://github.com/CycloneDX/cyclonedx-python/actions/workflows/python.yml?query=branch%3Amaster
+[link_gh-workflow-test]: https://github.com/CycloneDX/cyclonedx-python/actions/workflows/python.yml?query=branch%3Amain
 [link_pypi]: https://pypi.org/project/cyclonedx-bom/
 [link_docker]: https://hub.docker.com/r/cyclonedx/cyclonedx-python
 [link_website]: https://cyclonedx.org/
