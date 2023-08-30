@@ -9,7 +9,7 @@
 [![shield_slack]][link_slack]
 [![shield_groups]][link_discussion]
 [![shield_twitter-follow]][link_twitter]
-
+[![shield_scorecard]][scorecard]
 ----
 
 This project provides a runnable Python-based application for generating CycloneDX bill-of-material documents from either:
@@ -138,6 +138,7 @@ See the [LICENSE][license_file] file for the full license.
 [shield_slack]: https://img.shields.io/badge/slack-join-blue?logo=Slack&logoColor=white "slack join"
 [shield_groups]: https://img.shields.io/badge/discussion-groups.io-blue.svg "groups discussion"
 [shield_twitter-follow]: https://img.shields.io/badge/Twitter-follow-blue?logo=Twitter&logoColor=white "twitter follow"
+[shield_scorecard]: https://api.securityscorecards.dev/projects/github.com/CycloneDX/cyclonedx-python/badge "OpenSSF Scorecard"
 [link_gh-workflow-test]: https://github.com/CycloneDX/cyclonedx-python/actions/workflows/python.yml?query=branch%3Amain
 [link_pypi]: https://pypi.org/project/cyclonedx-bom/
 [link_docker]: https://hub.docker.com/r/cyclonedx/cyclonedx-python
@@ -145,3 +146,4 @@ See the [LICENSE][license_file] file for the full license.
 [link_slack]: https://cyclonedx.org/slack/invite
 [link_discussion]: https://groups.io/g/CycloneDX
 [link_twitter]: https://twitter.com/CycloneDX_Spec
+[link_scorecard]: https://api.securityscorecards.dev/projects/github.com/CycloneDX/cyclonedx-python
