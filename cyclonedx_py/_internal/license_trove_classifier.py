@@ -23,8 +23,8 @@ All in here may have breaking change without notice.
 """
 
 __all__ = [
-    'TROVE_CLASSIFIER_PREFIX_LICENSE', 'TROVE_CLASSIFIER_PREFIX_OSI_APPROVED',
-    'trove_classifier_license_to_spdx_id', 'trove_classifier_license_clean'
+    'PREFIX_LICENSE', 'PREFIX_OSI_APPROVED',
+    'tidy', 'to_spdx',
 ]
 
 
