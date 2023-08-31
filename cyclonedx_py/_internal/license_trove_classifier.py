@@ -35,10 +35,10 @@ PREFIX_OSI_APPROVED = 'OSI Approved :: '
 
 
 """
-Map of trove classifiers to SPDX license ID.
+Map of trove classifiers to SPDX license ID or SPDX license expression.
 
 Some could be mapped to SPDX expressions, in case the version was not clear - like `(EFL-1.0 OR EFL-2.0)`.
-But this was not done yet, for uncertainties of [PEP639](https://peps.python.org/pep-0639)
+! But this was not done yet, for uncertainties of [PEP639](https://peps.python.org/pep-0639)
 
 classifiers: https://packaging.python.org/specifications/core-metadata/#metadata-classifier
 - of list A: https://pypi.org/pypi?%3Aaction=list_classifiers
