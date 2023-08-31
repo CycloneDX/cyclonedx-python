@@ -49,7 +49,11 @@ from cyclonedx.factory.license import LicenseChoiceFactory, LicenseFactory
 from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser
 
-from .._internal.trove_classifier_license import trove_classifier_license_to_spdx_id
+from .._internal.trove_classifier_license import (
+    TROVE_CLASSIFIER_PREFIX_LICENSE as _TC_PREFIX_LICENSE,
+    trove_classifier_license_clean as _tc_license_clean,
+    trove_classifier_license_to_spdx_id as _tc_license2spdx,
+)
 from ._debug import DebugMessageCallback, quiet
 
 
@@ -97,12 +101,10 @@ class EnvironmentParser(BaseParser):
             for classifier in i_metadata.get_all("Classifier", []):
                 debug_message('processing classifier: {!r}', classifier)
                 classifier = str(classifier).strip()
-                if classifier.startswith('License :: '):
+                if classifier.startswith(_TC_PREFIX_LICENSE):
+                    license_string = _tc_license2spdx(classifier) or _tc_license_clean(classifier)
                     try:
-                        c.licenses.add(lcfac.make_from_string(
-                            trove_classifier_license_to_spdx_id(classifier)
-                            or classifier.replace('License :: ', '').replace('OSI Approved :: ', '')
-                        ))
+                        c.licenses.add(lcfac.make_from_string(license_string))
                     except CycloneDxModelException as error:
                         # @todo traceback and details to the output?
                         debug_message('Warning: suppressed {!r}', error)

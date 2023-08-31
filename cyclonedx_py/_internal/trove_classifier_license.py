@@ -22,10 +22,17 @@ This module is internal - it is not public API.
 All in here may have breaking change without notice.
 """
 
-__all__ = ['trove_classifier_license_to_spdx_id']
+__all__ = [
+    'TROVE_CLASSIFIER_PREFIX_LICENSE', 'TROVE_CLASSIFIER_PREFIX_OSI_APPROVED',
+    'trove_classifier_license_to_spdx_id', 'trove_classifier_license_clean'
+]
 
 
 from typing import Optional
+
+TROVE_CLASSIFIER_PREFIX_LICENSE = 'License :: '
+TROVE_CLASSIFIER_PREFIX_OSI_APPROVED = 'OSI Approved :: '
+
 
 """
 Map of trove classifiers to SPDX license ID.
@@ -41,7 +48,7 @@ SPDX license IDs: https://spdx.org/licenses/
 
 See also: https://peps.python.org/pep-0639/#mapping-license-classifiers-to-spdx-identifiers
 """
-__MAP = {
+__TO_SPDX_MAP = {
     # region not  OSI Approved
     'License :: Aladdin Free Public License (AFPL)': 'Aladdin',
     'License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication': 'CC0-1.0',
@@ -153,6 +160,10 @@ __MAP = {
 }
 
 
-def trove_classifier_license_to_spdx_id(trove: str) -> Optional[str]:
+def trove_classifier_license_to_spdx_id(classifier: str) -> Optional[str]:
     """return the SPDX id for a given trove classifier"""
-    return __MAP.get(trove)
+    return __TO_SPDX_MAP.get(classifier)
+
+
+def trove_classifier_license_clean(classifier: str) -> str:
+    return classifier.replace(TROVE_CLASSIFIER_PREFIX_LICENSE, '').replace(TROVE_CLASSIFIER_PREFIX_OSI_APPROVED, '')
