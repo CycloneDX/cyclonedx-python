@@ -46,10 +46,10 @@ else:
     from importlib_metadata import metadata, PackageMetadata as _MetadataReturn
 
 from cyclonedx.factory.license import LicenseChoiceFactory, LicenseFactory
-from cyclonedx.model import License, LicenseChoice
 from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser
 
+from .._internal.trove_classifier_license import trove_classifier_license_to_spdx_id
 from ._debug import DebugMessageCallback, quiet
 
 
@@ -71,7 +71,7 @@ class EnvironmentParser(BaseParser):
         debug_message('late import pkg_resources')
         import pkg_resources
 
-        licenseChoiceFactory = LicenseChoiceFactory(license_factory=LicenseFactory())
+        lcfac = LicenseChoiceFactory(license_factory=LicenseFactory())
 
         debug_message('processing pkg_resources.working_set')
         i: Distribution
@@ -86,9 +86,8 @@ class EnvironmentParser(BaseParser):
             if 'Author' in i_metadata:
                 c.author = i_metadata['Author']
             if 'License' in i_metadata and i_metadata['License'] and i_metadata['License'] != 'UNKNOWN':
-                # Values might be ala `MIT` (SPDX id), `Apache-2.0 license` (arbitrary string), ...
                 try:
-                    c.licenses.add(licenseChoiceFactory.make_from_string(i_metadata['License']))
+                    c.licenses.add(lcfac.make_from_string(i_metadata['License']))
                 except CycloneDxModelException as error:
                     # @todo traceback and details to the output?
                     debug_message('Warning: suppressed {!r}', error)
@@ -97,25 +96,17 @@ class EnvironmentParser(BaseParser):
             debug_message('processing classifiers')
             for classifier in i_metadata.get_all("Classifier", []):
                 debug_message('processing classifier: {!r}', classifier)
-                classifier = str(classifier)
-                # Trove classifiers - https://packaging.python.org/specifications/core-metadata/#metadata-classifier
-                # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
-                # @TODO use mapping to SPDX. see issue https://github.com/CycloneDX/cyclonedx-python/issues/459
-                if classifier.startswith('License :: OSI Approved :: '):
-                    license_name = classifier.replace('License :: OSI Approved :: ', '').strip()
-                elif classifier.startswith('License :: '):
-                    license_name = classifier.replace('License :: ', '').strip()
-                else:
-                    license_name = ''
-                if license_name:
+                classifier = str(classifier).strip()
+                if classifier.startswith('License :: '):
                     try:
-                        c.licenses.add(licenseChoiceFactory.make_from_string(license_name))
+                        c.licenses.add(lcfac.make_from_string(
+                            trove_classifier_license_to_spdx_id(classifier)
+                            or classifier.replace('License :: ', '').replace('OSI Approved :: ', '')
+                        ))
                     except CycloneDxModelException as error:
                         # @todo traceback and details to the output?
                         debug_message('Warning: suppressed {!r}', error)
                         del error
-
-            # @TODO clean duplicate licenses. see issue https://github.com/CycloneDX/cyclonedx-python/issues/57
 
             self._components.append(c)
 
