@@ -13,7 +13,6 @@ on:
     - cron: '24 10 * * 6'
   push:
     branches: 
-      - "OpenSSFscorecard"
       - "main"
 
 # Declare default permissions as read only.
