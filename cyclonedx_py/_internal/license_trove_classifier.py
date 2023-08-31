@@ -30,15 +30,15 @@ __all__ = [
 
 from typing import Optional
 
-TROVE_CLASSIFIER_PREFIX_LICENSE = 'License :: '
-TROVE_CLASSIFIER_PREFIX_OSI_APPROVED = 'OSI Approved :: '
+PREFIX_LICENSE = 'License :: '
+PREFIX_OSI_APPROVED = 'OSI Approved :: '
 
 
 """
 Map of trove classifiers to SPDX license ID.
 
 Some could be mapped to SPDX expressions, in case the version was not clear - like `(EFL-1.0 OR EFL-2.0)`.
-But this was not done, for uncertainties of [PEP639](https://peps.python.org/pep-0639)
+But this was not done yet, for uncertainties of [PEP639](https://peps.python.org/pep-0639)
 
 classifiers: https://packaging.python.org/specifications/core-metadata/#metadata-classifier
 - of list A: https://pypi.org/pypi?%3Aaction=list_classifiers
@@ -160,10 +160,11 @@ __TO_SPDX_MAP = {
 }
 
 
-def trove_classifier_license_to_spdx_id(classifier: str) -> Optional[str]:
-    """return the SPDX id for a given trove classifier"""
+def to_spdx(classifier: str) -> Optional[str]:
+    """return the SPDX id or expression for a given trove classifier"""
     return __TO_SPDX_MAP.get(classifier)
 
 
-def trove_classifier_license_clean(classifier: str) -> str:
-    return classifier.replace(TROVE_CLASSIFIER_PREFIX_LICENSE, '').replace(TROVE_CLASSIFIER_PREFIX_OSI_APPROVED, '')
+def tidy(classifier: str) -> str:
+    """strip license trove classifier prefixes"""
+    return classifier.replace(PREFIX_LICENSE, '').replace(PREFIX_OSI_APPROVED, '')

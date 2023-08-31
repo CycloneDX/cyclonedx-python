@@ -49,10 +49,10 @@ from cyclonedx.factory.license import LicenseChoiceFactory, LicenseFactory
 from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser
 
-from .._internal.trove_classifier_license import (
-    TROVE_CLASSIFIER_PREFIX_LICENSE as _TC_PREFIX_LICENSE,
-    trove_classifier_license_clean as _tc_license_clean,
-    trove_classifier_license_to_spdx_id as _tc_license2spdx,
+from .._internal.license_trove_classifier import (
+    PREFIX_LICENSE as _LTC_PREFIX,
+    tidy as _ltc_tidy,
+    to_spdx as _ltc_to_spdx,
 )
 from ._debug import DebugMessageCallback, quiet
 
@@ -103,8 +103,8 @@ class EnvironmentParser(BaseParser):
             for classifier in i_metadata.get_all("Classifier", []):
                 debug_message('processing classifier: {!r}', classifier)
                 classifier = str(classifier).strip()
-                if classifier.startswith(_TC_PREFIX_LICENSE):
-                    license_string = _tc_license2spdx(classifier) or _tc_license_clean(classifier)
+                if classifier.startswith(_LTC_PREFIX):
+                    license_string = _ltc_to_spdx(classifier) or _ltc_tidy(classifier)
                     try:
                         c.licenses.add(lcfac.make_from_string(license_string))
                     except CycloneDxModelException as error:
