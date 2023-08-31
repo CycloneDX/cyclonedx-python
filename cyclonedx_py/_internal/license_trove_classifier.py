@@ -161,7 +161,7 @@ __TO_SPDX_MAP = {
 
 
 def to_spdx(classifier: str) -> Optional[str]:
-    """return the SPDX id or expression for a given trove classifier"""
+    """return the SPDX id or expression for a given license trove classifier"""
     return __TO_SPDX_MAP.get(classifier)
 
 
