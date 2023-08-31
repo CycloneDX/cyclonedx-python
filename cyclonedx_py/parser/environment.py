@@ -88,8 +88,10 @@ class EnvironmentParser(BaseParser):
             i_metadata = self._get_metadata_for_package(i.project_name)
             debug_message('processing i_metadata')
             if 'Author' in i_metadata:
+                debug_message('processing i_metadata Author: {!r}', i_metadata['Author'])
                 c.author = i_metadata['Author']
             if 'License' in i_metadata and i_metadata['License'] and i_metadata['License'] != 'UNKNOWN':
+                debug_message('processing i_metadata License: {!r}', i_metadata['License'])
                 try:
                     c.licenses.add(lcfac.make_from_string(i_metadata['License']))
                 except CycloneDxModelException as error:
