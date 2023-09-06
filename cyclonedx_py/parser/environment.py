@@ -45,10 +45,15 @@ if sys.version_info >= (3, 8):
 else:
     from importlib_metadata import metadata, PackageMetadata as _MetadataReturn
 
-from cyclonedx.model import License, LicenseChoice
+from cyclonedx.factory.license import LicenseChoiceFactory, LicenseFactory
 from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser
 
+from .._internal.license_trove_classifier import (
+    PREFIX_LICENSE as _LTC_PREFIX,
+    tidy as _ltc_tidy,
+    to_spdx as _ltc_to_spdx,
+)
 from ._debug import DebugMessageCallback, quiet
 
 
@@ -70,6 +75,8 @@ class EnvironmentParser(BaseParser):
         debug_message('late import pkg_resources')
         import pkg_resources
 
+        lcfac = LicenseChoiceFactory(license_factory=LicenseFactory())
+
         debug_message('processing pkg_resources.working_set')
         i: Distribution
         for i in iter(pkg_resources.working_set):
@@ -81,12 +88,12 @@ class EnvironmentParser(BaseParser):
             i_metadata = self._get_metadata_for_package(i.project_name)
             debug_message('processing i_metadata')
             if 'Author' in i_metadata:
+                debug_message('processing i_metadata Author: {!r}', i_metadata['Author'])
                 c.author = i_metadata['Author']
             if 'License' in i_metadata and i_metadata['License'] and i_metadata['License'] != 'UNKNOWN':
-                # Values might be ala `MIT` (SPDX id), `Apache-2.0 license` (arbitrary string), ...
-                # Therefore, just go with a named license.
+                debug_message('processing i_metadata License: {!r}', i_metadata['License'])
                 try:
-                    c.licenses.add(LicenseChoice(license=License(name=i_metadata['License'])))
+                    c.licenses.add(lcfac.make_from_string(i_metadata['License']))
                 except CycloneDxModelException as error:
                     # @todo traceback and details to the output?
                     debug_message('Warning: suppressed {!r}', error)
@@ -95,18 +102,11 @@ class EnvironmentParser(BaseParser):
             debug_message('processing classifiers')
             for classifier in i_metadata.get_all("Classifier", []):
                 debug_message('processing classifier: {!r}', classifier)
-                classifier = str(classifier)
-                # Trove classifiers - https://packaging.python.org/specifications/core-metadata/#metadata-classifier
-                # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
-                if classifier.startswith('License :: OSI Approved :: '):
-                    license_name = classifier.replace('License :: OSI Approved :: ', '').strip()
-                elif classifier.startswith('License :: '):
-                    license_name = classifier.replace('License :: ', '').strip()
-                else:
-                    license_name = ''
-                if license_name:
+                classifier = str(classifier).strip()
+                if classifier.startswith(_LTC_PREFIX):
+                    license_string = _ltc_to_spdx(classifier) or _ltc_tidy(classifier)
                     try:
-                        c.licenses.add(LicenseChoice(license=License(name=license_name)))
+                        c.licenses.add(lcfac.make_from_string(license_string))
                     except CycloneDxModelException as error:
                         # @todo traceback and details to the output?
                         debug_message('Warning: suppressed {!r}', error)

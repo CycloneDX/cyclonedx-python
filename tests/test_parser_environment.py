@@ -41,9 +41,8 @@ class TestEnvironmentParser(TestCase):
         self.assertIsNotNone(c_tox)
         self.assertNotEqual(c_tox.purl.to_string(), c_tox.bom_ref.value)
         self.assertIsNotNone(c_tox.licenses)
-        self.assertEqual(len(c_tox.licenses), 2)
-        self.assertEqual({LicenseChoice(license=License(name="MIT License")),
-                          LicenseChoice(license=License(name="MIT"))}, c_tox.licenses)
+        self.assertEqual(len(c_tox.licenses), 1)
+        self.assertEqual({LicenseChoice(license=License(id="MIT"))}, c_tox.licenses)
 
     def test_simple_use_purl_bom_ref(self) -> None:
         """
@@ -60,6 +59,5 @@ class TestEnvironmentParser(TestCase):
         self.assertIsNotNone(c_tox)
         self.assertEqual(c_tox.purl.to_string(), c_tox.bom_ref.value)
         self.assertIsNotNone(c_tox.licenses)
-        self.assertEqual(len(c_tox.licenses), 2)
-        self.assertEqual({LicenseChoice(license=License(name="MIT License")),
-                          LicenseChoice(license=License(name="MIT"))}, c_tox.licenses)
+        self.assertEqual(len(c_tox.licenses), 1)
+        self.assertEqual({LicenseChoice(license=License(id="MIT"))}, c_tox.licenses)
