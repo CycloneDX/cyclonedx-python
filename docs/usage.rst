@@ -50,7 +50,7 @@ The full documentation can be issued by running with ``--help``:
       -X                    Enable debug output
 
     Input Method:
-      Flags to determine how this tool obtains it's input
+      Flags to determine how this tool obtains its input
 
       -i FILE_PATH, --in-file FILE_PATH
                             File to read input from, or STDIN if not specified
@@ -317,8 +317,8 @@ xPath is used to refer to data attributes according to the `Cyclone DX Specifica
 
 **Notes**
 
-1. If contained in the packaages ``METADATA``
-2. MD5 hashses are available when using the ``CondaListExplicitParser`` with output from the
+1. If contained in the packages ``METADATA``
+2. MD5 hashes are available when using the ``CondaListExplicitParser`` with output from the
    conda command ``conda list --explicit --md5`` only
 3. Python packages are regularly available as both ``.whl`` and ``.tar.gz`` packages. This means for that for a given
    package and version multiple artefacts are possible - which would mean multiple hashes are possible. CycloneDX
