@@ -26,7 +26,7 @@ from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser
 
 # See https://github.com/package-url/packageurl-python/issues/65
-from packageurl import PackageURL  # type: ignore
+from packageurl import PackageURL
 
 from ._cdx_properties import Pipenv as PipenvProps
 from ._debug import DebugMessageCallback, quiet

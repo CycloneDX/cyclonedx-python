@@ -25,7 +25,7 @@ from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser
 
 # See https://github.com/package-url/packageurl-python/issues/65
-from packageurl import PackageURL  # type: ignore
+from packageurl import PackageURL
 from toml import loads as load_toml
 
 from ._cdx_properties import Poetry as PoetryProps

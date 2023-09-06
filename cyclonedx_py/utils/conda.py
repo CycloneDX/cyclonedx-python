@@ -24,7 +24,7 @@ from typing import Optional, Tuple
 from urllib.parse import urlparse
 
 # See https://github.com/package-url/packageurl-python/issues/65
-from packageurl import PackageURL  # type: ignore
+from packageurl import PackageURL
 
 if sys.version_info >= (3, 8):
     from typing import TypedDict
