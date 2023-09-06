@@ -33,7 +33,7 @@ import sys
 from cyclonedx.exception.model import CycloneDxModelException
 
 # See https://github.com/package-url/packageurl-python/issues/65
-from packageurl import PackageURL  # type: ignore
+from packageurl import PackageURL
 from pkg_resources import Distribution
 
 if sys.version_info >= (3, 8):
