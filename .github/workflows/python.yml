@@ -126,6 +126,12 @@ jobs:
             os: ubuntu-20.04
             python-version: '3.7'
             toxenv-factor: 'lowest'
+          - os: macos-latest
+            python-version: '3.7'
+            toxenv-factor: 'lowest'
+          - os: windows-latest
+            python-version: '3.7'
+            toxenv-factor: 'lowest'
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout

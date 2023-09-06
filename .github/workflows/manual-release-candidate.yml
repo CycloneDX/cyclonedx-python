@@ -7,6 +7,10 @@ concurrency:
   group: release
   cancel-in-progress: false
 
+concurrency:
+  group: release
+  cancel-in-progress: false
+
 env:
   REPORTS_DIR: CI_reports
   DIST_DIR: dist
