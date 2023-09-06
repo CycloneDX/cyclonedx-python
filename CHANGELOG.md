@@ -2,6 +2,18 @@
 
 <!--next-version-placeholder-->
 
+## v3.11.2 (2023-07-12)
+
+### Fix
+
+* Referenced branch `main`, instead of `master` ([#562](https://github.com/CycloneDX/cyclonedx-python/issues/562)) ([`830d15c`](https://github.com/CycloneDX/cyclonedx-python/commit/830d15c27fadb475fa9a15918b1d5930cd71834d))
+
+## v3.11.1 (2023-07-12)
+
+### Fix
+
+* Fix typo in help page ([#552](https://github.com/CycloneDX/cyclonedx-python/issues/552)) ([`19bf41a`](https://github.com/CycloneDX/cyclonedx-python/commit/19bf41a52a698ee3ddee5fafc5d293ea3d9427be))
+
 ## v3.11.0 (2023-02-11)
 ### Feature
 * Deprecated CLI command `cyclonedx-bom` prints deprecation warning on STDERR before execution ([#489](https://github.com/CycloneDX/cyclonedx-python/issues/489)) ([`2009236`](https://github.com/CycloneDX/cyclonedx-python/commit/2009236c537af212aab1d5907e02f2b003f3062c))
