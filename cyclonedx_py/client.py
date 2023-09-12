@@ -114,15 +114,7 @@ class CycloneDxCmd:
         bom = Bom(components=filter(self._component_filter, parser.get_components()))
 
         # region Add cyclonedx_bom as a Tool to record it being part of the CycloneDX SBOM generation process
-        if sys.version_info < (3, 8):
-            from typing import Callable
-
-            from importlib_metadata import version as __md_version
-
-            # this stupid kind of code is needed to satisfy mypy/typing
-            _md_version: Callable[[str], str] = __md_version
-        else:
-            from importlib.metadata import version as _md_version
+        from importlib.metadata import version as _md_version
         _this_tool_name = 'cyclonedx-bom'
         _this_tool_version: Optional[str] = _md_version(_this_tool_name)
         bom.metadata.tools.add(Tool(

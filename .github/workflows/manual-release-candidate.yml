@@ -7,16 +7,12 @@ concurrency:
   group: release
   cancel-in-progress: false
 
-concurrency:
-  group: release
-  cancel-in-progress: false
-
 env:
   REPORTS_DIR: CI_reports
   DIST_DIR: dist
   DIST_ARTIFACT: python-dist
   PYTHON_VERSION: "3.11"
-  POETRY_VERSION: "1.4.0"
+  POETRY_VERSION: "1.4.1"
 
 jobs:
   release_candidate:

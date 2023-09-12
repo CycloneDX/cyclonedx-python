@@ -3,7 +3,6 @@
 
 cyclonedx-python-lib == 4.2.1
 packageurl-python == 0.11.1
-importlib-metadata == 3.4.0 # ; python_version < '3.8'
 pip-requirements-parser == 32.0.0
 setuptools == 47.0.0
 types-setuptools == 57.0.0

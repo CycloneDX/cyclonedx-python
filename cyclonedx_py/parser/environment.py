@@ -29,25 +29,21 @@ The Environment Parsers support population of the following data about Component
 """
 
 import sys
+from importlib.metadata import metadata
+
+if sys.version_info >= (3, 10):
+    from importlib.metadata import PackageMetadata as _MetadataReturn
+else:
+    from email.message import Message as _MetadataReturn
 
 from cyclonedx.exception.model import CycloneDxModelException
+from cyclonedx.factory.license import LicenseChoiceFactory, LicenseFactory
+from cyclonedx.model.component import Component
+from cyclonedx.parser import BaseParser
 
 # See https://github.com/package-url/packageurl-python/issues/65
 from packageurl import PackageURL
 from pkg_resources import Distribution
-
-if sys.version_info >= (3, 8):
-    if sys.version_info >= (3, 10):
-        from importlib.metadata import PackageMetadata as _MetadataReturn
-    else:
-        from email.message import Message as _MetadataReturn
-    from importlib.metadata import metadata
-else:
-    from importlib_metadata import metadata, PackageMetadata as _MetadataReturn
-
-from cyclonedx.factory.license import LicenseChoiceFactory, LicenseFactory
-from cyclonedx.model.component import Component
-from cyclonedx.parser import BaseParser
 
 from .._internal.license_trove_classifier import (
     PREFIX_LICENSE as _LTC_PREFIX,
