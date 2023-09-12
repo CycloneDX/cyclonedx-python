@@ -23,7 +23,7 @@ Get it all applied via:
 
 ```shell
 poetry run isort .
-poetry run flake8 cyclonedx_py/ tests/
+poetry run autopep8 -ir cyclonedx_py/ tests/
 ```
 
 ## Documentation
@@ -43,7 +43,7 @@ make html
 ## Testing
 
 ```shell
-poetry run tox
+poetry run tox run
 ```
 
 ## Sign off your commits

@@ -59,7 +59,7 @@ jobs:
       - name: Install dependencies
         run: poetry install --no-root
       - name: Run tox
-        run: poetry run tox -e flake8 -s false
+        run: poetry run tox r -e flake8 -s false
 
   static-code-analysis:
     name: Static Coding Analysis (py${{ matrix.python-version}} ${{ matrix.toxenv-factor }})
@@ -76,7 +76,7 @@ jobs:
           - # test with the lowest dependencies
             python-version: '3.8'
             toxenv-factor: 'lowest'
-            os: ubuntu-20.04
+            os: ubuntu-latest
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
@@ -95,7 +95,7 @@ jobs:
       - name: Install dependencies
         run: poetry install --no-root
       - name: Run tox
-        run: poetry run tox -e mypy-${{ matrix.toxenv-factor }} -s false
+        run: poetry run tox r -e mypy-${{ matrix.toxenv-factor }} -s false
 
   build-and-test:
     name: Test (${{ matrix.os }} py${{ matrix.python-version }} ${{ matrix.toxenv-factor }})
@@ -149,7 +149,7 @@ jobs:
       - name: Ensure build successful
         run: poetry build
       - name: Run tox
-        run: poetry run tox -e py-${{ matrix.toxenv-factor }} -s false
+        run: poetry run tox r -e py-${{ matrix.toxenv-factor }} -s false
       - name: Generate coverage reports
         run: >
           poetry run coverage report &&

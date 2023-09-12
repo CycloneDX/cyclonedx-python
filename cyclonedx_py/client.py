@@ -137,7 +137,7 @@ class CycloneDxCmd:
         self._debug_message('output_format: {}', output_format)
 
         # Quick check for JSON && SchemaVersion <= 1.1
-        if output_format == OutputFormat.JSON and str(self._arguments.output_schema_version) in ['1.0', '1.1']:
+        if output_format is _CLI_OUTPUT_FORMAT.JSON and str(self._arguments.output_schema_version) in ['1.0', '1.1']:
             self._error_and_exit(
                 'CycloneDX schema does not support JSON output in Schema Versions < 1.2',
                 exit_code=2
