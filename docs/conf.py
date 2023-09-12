@@ -22,7 +22,8 @@ copyright = '2022, Copyright (c) OWASP Foundation'
 author = 'Paul Horton, Jan Kowalleck, Steve Springett, Patrick Dwyer'
 
 # The full version, including alpha/beta/rc tags
-release = pkg_resources.get_distribution("cyclonedx-bom").version
+# !! version is managed by semantic_release
+release = "4.0.0.dev0"
 
 # -- General configuration ---------------------------------------------------
 

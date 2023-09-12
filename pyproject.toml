@@ -76,8 +76,10 @@ build-backend = "poetry.core.masonry.api"
 [tool.semantic_release]
 # https://python-semantic-release.readthedocs.io/en/latest/configuration.html
 version_variable = [
-    "pyproject.toml:version"
+  "cyclonedx_py/__init__.py:__version__",
+  "docs/conf.py:release",
 ]
+version_toml = "pyproject.toml:tool.poetry.version"
 branch = "main"
 upload_to_pypi = true
 upload_to_repository = true
