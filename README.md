@@ -51,7 +51,7 @@ python3 -m cyclonedx_py
 
 ## Basic usage
 
-```text
+```shellSession
 $ cyclonedx-py --help
 usage: cyclonedx-py [-h] [--version] 
                  (-c | -cj | -e | -p | -pip | -r) [-i FILE_PATH]
