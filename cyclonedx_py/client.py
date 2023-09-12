@@ -32,6 +32,7 @@ from cyclonedx.output import BaseOutput, get_instance as get_output_instance
 from cyclonedx.parser import BaseParser
 from cyclonedx.schema import OutputFormat, SchemaVersion
 
+from . import __version__ as _this_tool_version
 from .parser._cdx_properties import Pipenv as PipenvProps, Poetry as PoetryProp
 from .parser.conda import CondaListExplicitParser, CondaListJsonParser
 from .parser.environment import EnvironmentParser
@@ -113,16 +114,11 @@ class CycloneDxCmd:
 
         bom = Bom(components=filter(self._component_filter, parser.get_components()))
 
-        # region Add cyclonedx_bom as a Tool to record it being part of the CycloneDX SBOM generation process
-        from importlib.metadata import version as _md_version
-        _this_tool_name = 'cyclonedx-bom'
-        _this_tool_version: Optional[str] = _md_version(_this_tool_name)
         bom.metadata.tools.add(Tool(
             vendor='CycloneDX',
-            name=_this_tool_name,
+            name='cyclonedx-bom',
             version=_this_tool_version
         ))
-        # endregion
 
         return get_output_instance(
             bom=bom,
@@ -159,6 +155,7 @@ class CycloneDxCmd:
     @staticmethod
     def get_arg_parser(*, prog: Optional[str] = None) -> argparse.ArgumentParser:
         arg_parser = argparse.ArgumentParser(prog=prog, description='CycloneDX SBOM Generator')
+        arg_parser.add_argument('--version', action='version', version=_this_tool_version)
 
         input_group = arg_parser.add_mutually_exclusive_group(required=True)
         input_group.add_argument(

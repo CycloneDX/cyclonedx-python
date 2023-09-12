@@ -53,14 +53,17 @@ python3 -m cyclonedx_py
 
 ```text
 $ cyclonedx-py --help
-usage: cyclonedx-py [-h] (-c | -cj | -e | -p | -pip | -r) [-i FILE_PATH]
+usage: cyclonedx-py [-h] [--version] 
+                 (-c | -cj | -e | -p | -pip | -r) [-i FILE_PATH]
                  [--format {json,xml}] [--schema-version {1.4,1.3,1.2,1.1,1.0}]
-                 [-o FILE_PATH] [-F] [-X]
+                 [-o FILE_PATH] 
+                 [-F] [-X]
 
 CycloneDX SBOM Generator
 
 optional arguments:
   -h, --help            show this help message and exit
+  --version             show program's version number and exit
   -c, --conda           Build a SBOM based on the output from `conda list
                         --explicit` or `conda list --explicit --md5`
   -cj, --conda-json     Build a SBOM based on the output from `conda list
