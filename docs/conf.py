@@ -13,7 +13,6 @@
 # limitations under the License.
 #
 # SPDX-License-Identifier: Apache-2.0
-import pkg_resources
 
 # -- Project information -----------------------------------------------------
 
@@ -23,7 +22,7 @@ author = 'Paul Horton, Jan Kowalleck, Steve Springett, Patrick Dwyer'
 
 # The full version, including alpha/beta/rc tags
 # !! version is managed by semantic_release
-release = "4.0.0.dev0"
+release = "4.0.0-alpha.0"
 
 # -- General configuration ---------------------------------------------------
 
