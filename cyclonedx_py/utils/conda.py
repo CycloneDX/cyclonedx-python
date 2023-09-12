@@ -18,18 +18,12 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 import json
-import sys
 from json import JSONDecodeError
-from typing import Optional, Tuple
+from typing import Optional, Tuple, TypedDict
 from urllib.parse import urlparse
 
 # See https://github.com/package-url/packageurl-python/issues/65
 from packageurl import PackageURL
-
-if sys.version_info >= (3, 8):
-    from typing import TypedDict
-else:
-    from typing_extensions import TypedDict
 
 
 class CondaPackage(TypedDict):

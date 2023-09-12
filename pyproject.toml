@@ -33,20 +33,18 @@ classifiers = [
     'Topic :: Software Development',
     'Topic :: System :: Software Distribution',
     'License :: OSI Approved :: Apache Software License',
-    'Programming Language :: Python :: 3.6',
-    'Programming Language :: Python :: 3.7',
     'Programming Language :: Python :: 3.8',
     'Programming Language :: Python :: 3.9',
     'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
     'Typing :: Typed'
 ]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8"
 # ATTENTION: keep `deps.lowest.r` file in sync
 cyclonedx-python-lib = "^4.2.1"
 packageurl-python = ">= 0.11"
-importlib-metadata = { version = ">= 3.4", python = "< 3.8" }
 pip-requirements-parser = "^32.0.0"
 setuptools = ">= 47.0.0"
 toml = "^0.10.0"
