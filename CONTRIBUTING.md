@@ -43,7 +43,7 @@ make html
 ## Testing
 
 ```shell
-poetry run tox
+poetry run tox run
 ```
 
 ## Sign off your commits
