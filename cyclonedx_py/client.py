@@ -161,6 +161,7 @@ class CycloneDxCmd:
             )
 
         output = self.get_output().output_as_string()
+
         if self._arguments.output_validate:
             self._debug_message('Validating SBOM result ...')
             validation_errors = self.get_validator().validate_str(output)
@@ -171,6 +172,8 @@ class CycloneDxCmd:
                     'Invalid SBOM result. Error:\n{}', validation_errors.data,
                     exit_code=3
                 )
+        else:
+            self._debug_message('Validating SBOM result skipped.')
 
         if self._arguments.output_file == '-' or not self._arguments.output_file:
             self._debug_message('Returning SBOM to STDOUT')
