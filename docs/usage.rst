@@ -67,6 +67,8 @@ The full documentation can be issued by running with ``--help``:
                             to STDOUT)
       -F, --force           If outputting to a file and the stated file already
                             exists, it will be overwritten.
+      --validate, --no-validate
+
 
 From your current Python Environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
