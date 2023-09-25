@@ -80,6 +80,7 @@ class EnvironmentParser(BaseParser):
             purl = PackageURL(type='pypi', name=i.project_name, version=i.version)
             bom_ref = purl.to_string() if use_purl_bom_ref else None
             c = Component(name=i.project_name, bom_ref=bom_ref, version=i.version, purl=purl)
+            licenses = set()
 
             i_metadata = self._get_metadata_for_package(i.project_name)
             debug_message('processing i_metadata')
@@ -89,7 +90,7 @@ class EnvironmentParser(BaseParser):
             if 'License' in i_metadata and i_metadata['License'] and i_metadata['License'] != 'UNKNOWN':
                 debug_message('processing i_metadata License: {!r}', i_metadata['License'])
                 try:
-                    c.licenses.add(lcfac.make_from_string(i_metadata['License']))
+                    licenses.add(lcfac.make_from_string(i_metadata['License']))
                 except CycloneDxModelException as error:
                     # @todo traceback and details to the output?
                     debug_message('Warning: suppressed {!r}', error)
@@ -102,11 +103,20 @@ class EnvironmentParser(BaseParser):
                 if classifier.startswith(_LTC_PREFIX):
                     license_string = _ltc_to_spdx(classifier) or _ltc_tidy(classifier)
                     try:
-                        c.licenses.add(lcfac.make_from_string(license_string))
+                        licenses.add(lcfac.make_from_string(license_string))
                     except CycloneDxModelException as error:
                         # @todo traceback and details to the output?
                         debug_message('Warning: suppressed {!r}', error)
                         del error
+
+            expression = next((license for license in licenses if license.expression), None)
+            if expression and len(licenses) > 1:
+                # prefer any LicenseExpression over multiple licenses
+                # see https://github.com/CycloneDX/specification/pull/205
+                debug_message('Using expression {!r}, omitting other licenses of {!r}', expression, licenses)
+                c.licenses = [expression]
+            else:
+                c.licenses = licenses
 
             self._components.append(c)
 
