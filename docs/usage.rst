@@ -6,7 +6,7 @@ Command Line Usage
 
 Once installed, you can call the tool via the following methods:
 
-.. code-block:: bash
+.. code-block:: shell-session
 
     $ python3 -m cyclonedx_py
     $ cyclonedx-py
@@ -14,7 +14,7 @@ Once installed, you can call the tool via the following methods:
 
 The full documentation can be issued by running with ``--help``:
 
-.. code-block:: bash
+.. code-block:: shell-session
 
     $ cyclonedx-py --help
     usage: cyclonedx-py [-h] (-c | -cj | -e | -p | -pip | -r) [-i FILE_PATH]
@@ -77,7 +77,7 @@ included in the generated CycloneDX BOM.
 
 Simply run:
 
-.. code-block:: bash
+.. code-block:: sh
 
     cyclonedx-py -e -o -
 
@@ -102,7 +102,7 @@ We support parsing output from Conda in various formats:
 
 As example:
 
-.. code-block:: bash
+.. code-block:: sh
 
     conda list --explicit --md5 | cyclonedx-py -c -o cyclonedx.xml
 
@@ -113,14 +113,14 @@ exact pinned versions.
 
 You can then run ``cyclonedx-py`` as follows:
 
-.. code-block:: bash
+.. code-block:: sh
 
     cyclonedx-py -p -i PATH/TO/poetry.lock -o sbom.xml
 
 
 If your ``poetry.lock`` is in the current working directory, you can also shorten this to:
 
-.. code-block:: bash
+.. code-block:: sh
 
     cyclonedx-py -p -o sbom.xml
 
@@ -130,14 +130,14 @@ We currently support ``Pipfile.lock`` manifest files.
 
 You can then run ``cyclonedx-bom`` as follows:
 
-.. code-block:: bash
+.. code-block:: sh
 
     cyclonedx-py -pip -i PATH/TO/Pipfile.lock -o sbom.xml
 
 
 If your ``Pipfile.lock`` is in the current working directory, you can also shorten this to:
 
-.. code-block:: bash
+.. code-block:: sh
 
     cyclonedx-pu -pip -o sbom.xml
 
@@ -147,20 +147,20 @@ If your ``Pipfile.lock`` is in the current working directory, you can also short
 We support ``requirements.txt`` manifest files. Note that a SBOM such as CycloneDX expects exact version numbers,
 therefore if you wish to generate a BOM from a ``requirements.txt``, these must be frozen. This can be accomplished via:
 
-.. code-block:: bash
+.. code-block:: sh
 
     pip freeze > requirements.txt
 
 
 You can then run ``cyclonedx-bom`` as follows:
 
-.. code-block:: bash
+.. code-block:: sh
 
     cyclonedx-py -r -i PATH/TO/requirements.txt -o sbom.xml
 
 If your ``requirements.txt`` is in the current working directory, you can also shorten this to:
 
-.. code-block:: bash
+.. code-block:: sh
 
     cyclonedx-py -r -o sbom.xml
 
@@ -234,7 +234,7 @@ CycloneDX bill of materials (according to schema).
 If you need to use a ``requirements.txt`` in your project that does not have pinned versions an acceptable workaround
 might be to:
 
-.. code-block:: bash
+.. code-block:: sh
 
    pip install -r requirements.txt
    pip freeze > requirements-frozen.txt
