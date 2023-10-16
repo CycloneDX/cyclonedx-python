@@ -150,14 +150,14 @@ toml = ["tomli"]
 
 [[package]]
 name = "cyclonedx-python-lib"
-version = "4.2.1"
+version = "4.2.3"
 description = "A library for producing CycloneDX SBOM (Software Bill of Materials) files."
 category = "main"
 optional = false
 python-versions = ">=3.7,<4.0"
 files = [
-    {file = "cyclonedx_python_lib-4.2.1-py3-none-any.whl", hash = "sha256:b6b3818d48ed932545d3c5c819cbfe9a1fe452fba363388d2005ba9b054c81cb"},
-    {file = "cyclonedx_python_lib-4.2.1.tar.gz", hash = "sha256:adcb074d00e5171754fc2f04269987cdf11342d2dbce2b9eeee7ebb218b1ed94"},
+    {file = "cyclonedx_python_lib-4.2.3-py3-none-any.whl", hash = "sha256:e9b923af525b6acf7bab917a35360b4b562b85dc15fde9eaa500828949adf73a"},
+    {file = "cyclonedx_python_lib-4.2.3.tar.gz", hash = "sha256:904068b55d1665f0ea96f38307603cc14f95c3b421f1687fc2411326aefde3a6"},
 ]
 
 [package.dependencies]
@@ -697,4 +697,4 @@ test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "1cd06159f8f934615b330426a90205bc1a3647369c4855f2e8f6c455b141178b"
+content-hash = "3d769d7787e62011fac5accab289a83e8ddd6711b19490b8c79be44ab26a57fb"
