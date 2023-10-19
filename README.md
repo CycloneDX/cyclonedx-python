@@ -1,9 +1,10 @@
 # CycloneDX Python SBOM Generation Tool
 
-[![shield_gh-workflow-test]][link_gh-workflow-test]
-[![shield_rtfd]][link_rtfd]
 [![shield_pypi-version]][link_pypi]
 [![shield_docker-version]][link_docker]
+[![shield_rtfd]][link_rtfd]
+[![shield_gh-workflow-test]][link_gh-workflow-test]
+[![shield_coverage]][link_codacy]
 [![shield_license]][license_file]  
 [![shield_website]][link_website]
 [![shield_slack]][link_slack]
@@ -139,8 +140,10 @@ See the [LICENSE][license_file] file for the full license.
 [shield_groups]: https://img.shields.io/badge/discussion-groups.io-blue.svg "groups discussion"
 [shield_twitter-follow]: https://img.shields.io/badge/Twitter-follow-blue?logo=Twitter&logoColor=white "twitter follow"
 [link_gh-workflow-test]: https://github.com/CycloneDX/cyclonedx-python/actions/workflows/python.yml?query=branch%3Amain
+[shield_coverage]: https://img.shields.io/codacy/coverage/682ceda9a1044832a087afb95ae280fe?logo=Codacy&logoColor=white "test coverage"
 [link_pypi]: https://pypi.org/project/cyclonedx-bom/
 [link_docker]: https://hub.docker.com/r/cyclonedx/cyclonedx-python
+[link_codacy]: https://app.codacy.com/gh/CycloneDX/cyclonedx-python
 [link_website]: https://cyclonedx.org/
 [link_slack]: https://cyclonedx.org/slack/invite
 [link_discussion]: https://groups.io/g/CycloneDX

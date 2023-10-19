@@ -32,9 +32,10 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  REPORTS_DIR: CI_reports
   PYTHON_VERISON_DEFAULT: "3.11"
   POETRY_VERSION: "1.1.15"
+  REPORTS_DIR: CI_reports
+  TESTS_REPORTS_ARTIFACT: tests-reports
 
 jobs:
   coding-standards:
@@ -101,8 +102,6 @@ jobs:
     name: Test (${{ matrix.os }} py${{ matrix.python-version }} ${{ matrix.toxenv-factor }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
-    env:
-      REPORTS_ARTIFACT: tests-reports
     strategy:
       fail-fast: false
       matrix:
@@ -166,15 +165,39 @@ jobs:
       - name: Run tox
         run: poetry run tox -e py-${{ matrix.toxenv-factor }} -s false
       - name: Generate coverage reports
-        run: >
-          poetry run coverage report &&
-          poetry run coverage xml -o ${{ env.REPORTS_DIR }}/coverage-${{ matrix.os }}-${{ matrix.python-version }}-${{ matrix.toxenv-factor }}.xml &&
-          poetry run coverage html -d ${{ env.REPORTS_DIR }}
+        if: ${{ failure() || success() }}
+        shell: bash
+        run: |
+          set -eux
+          poetry run coverage report -m
+          poetry run coverage xml -o '${{ env.REPORTS_DIR }}/coverage/${{ matrix.os }}_${{ matrix.python-version }}_${{ matrix.toxenv-factor }}.cobertura.xml'
       - name: Artifact reports
         if: ${{ ! cancelled() }}
         # see https://github.com/actions/upload-artifact
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ env.REPORTS_ARTIFACT }}
+          name: ${{ env.TESTS_REPORTS_ARTIFACT }}
           path: ${{ env.REPORTS_DIR }}
           if-no-files-found: error
+
+  report-coverage:
+    name: Publish test coverage
+    needs: [ "build-and-test" ]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: fetch test artifacts
+        # see https://github.com/actions/download-artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.TESTS_REPORTS_ARTIFACT }}
+          path: ${{ env.REPORTS_DIR }}
+      - name: Run codacy-coverage-reporter
+        env:
+          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
+        if: ${{ env.CODACY_PROJECT_TOKEN != '' }} ## see https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-using-secrets
+        # see https://github.com/codacy/codacy-coverage-reporter-action
+        uses: codacy/codacy-coverage-reporter-action@v1
+        with:
+          project-token: ${{ env.CODACY_PROJECT_TOKEN }}
+          coverage-reports: ${{ env.REPORTS_DIR }}/coverage/*
