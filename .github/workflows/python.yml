@@ -32,9 +32,10 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  REPORTS_DIR: CI_reports
   PYTHON_VERISON_DEFAULT: "3.11"
   POETRY_VERSION: "1.1.15"
+  REPORTS_DIR: CI_reports
+  TESTS_REPORTS_ARTIFACT: tests-reports
 
 jobs:
   coding-standards:
@@ -101,8 +102,6 @@ jobs:
     name: Test (${{ matrix.os }} py${{ matrix.python-version }} ${{ matrix.toxenv-factor }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
-    env:
-      TESTS_REPORTS_ARTIFACT: tests-reports
     strategy:
       fail-fast: false
       matrix:
@@ -193,9 +192,6 @@ jobs:
         with:
           name: ${{ env.TESTS_REPORTS_ARTIFACT }}
           path: ${{ env.REPORTS_DIR }}
-      - name: Display structure of downloaded files
-        run: ls -R
-        working-directory: ${{ env.REPORTS_DIR }}
       - name: Run codacy-coverage-reporter
         env:
           CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
