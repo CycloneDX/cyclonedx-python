@@ -50,7 +50,10 @@ importlib-metadata = { version = ">= 3.4", python = "< 3.8" }
 pip-requirements-parser = "^32.0.0"
 setuptools = ">= 47.0.0"
 toml = "^0.10.0"
-faust-cchardet = "^2.1.19"
+chardet = [
+  {version = "^4.0", python = "=3.6"},
+  {version = "^5.2", python = ">=3.7"},
+]
 
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.6.0"

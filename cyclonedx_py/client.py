@@ -25,7 +25,7 @@ import sys
 from datetime import datetime
 from typing import Any, Optional
 
-import cchardet
+import chardet
 from cyclonedx.model import Tool
 from cyclonedx.model.bom import Bom
 from cyclonedx.output import BaseOutput, OutputFormat, SchemaVersion, get_instance as get_output_instance
@@ -271,9 +271,9 @@ class CycloneDxCmd:
                     raise CycloneDxCmdNoInputFileSupplied(
                         'When using input from Conda JSON, you need to pipe input via STDIN')
                 elif self._arguments.input_from_pip:
-                    self._arguments.input_source = open(os.path.join(current_directory, 'Pipfile.lock'), 'rb')
+                    self._arguments.input_source = open(os.path.join(current_directory, 'Pipfile.lock'), 'r', encoding="utf8")
                 elif self._arguments.input_from_poetry:
-                    self._arguments.input_source = open(os.path.join(current_directory, 'poetry.lock'), 'rb')
+                    self._arguments.input_source = open(os.path.join(current_directory, 'poetry.lock'), 'r', encoding="utf8")
                 elif self._arguments.input_from_requirements:
                     self._arguments.input_source = open(os.path.join(current_directory, 'requirements.txt'), 'rb')
                 else:
@@ -285,9 +285,10 @@ class CycloneDxCmd:
 
         input_data_fh = self._arguments.input_source
         with input_data_fh:
-            input_data_bytes = input_data_fh.read()
-            input_encoding = cchardet.detect(input_data_bytes)['encoding']
-            input_data = input_data_bytes.decode(input_encoding)
+            input_data = input_data_fh.read()
+            if isinstance(input_data, bytes):
+                input_encoding = chardet.detect(input_data)['encoding']
+                input_data = input_data.decode(input_encoding)
             input_data_fh.close()
 
         if self._arguments.input_from_conda_explicit:
