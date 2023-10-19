@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v3.11.4 (2023-10-19)
+
+### Fix
+
+* Input file encoding fallback ([`0bc7296`](https://github.com/CycloneDX/cyclonedx-python/commit/0bc72964d0578f713f405bc101742ef096bf8fd7))
+
 ## v3.11.3 (2023-10-19)
 
 ### Fix
