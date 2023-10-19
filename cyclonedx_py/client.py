@@ -271,9 +271,9 @@ class CycloneDxCmd:
                     raise CycloneDxCmdNoInputFileSupplied(
                         'When using input from Conda JSON, you need to pipe input via STDIN')
                 elif self._arguments.input_from_pip:
-                    self._arguments.input_source = open(os.path.join(current_directory, 'Pipfile.lock'), 'r', encoding="utf8")
+                    self._arguments.input_source = open(os.path.join(current_directory, 'Pipfile.lock'), 'r', encoding="UTF-8")
                 elif self._arguments.input_from_poetry:
-                    self._arguments.input_source = open(os.path.join(current_directory, 'poetry.lock'), 'r', encoding="utf8")
+                    self._arguments.input_source = open(os.path.join(current_directory, 'poetry.lock'), 'r', encoding="UTF-8")
                 elif self._arguments.input_from_requirements:
                     self._arguments.input_source = open(os.path.join(current_directory, 'requirements.txt'), 'rb')
                 else:
@@ -287,7 +287,7 @@ class CycloneDxCmd:
         with input_data_fh:
             input_data = input_data_fh.read()
             if isinstance(input_data, bytes):
-                input_encoding = chardet.detect(input_data)['encoding']
+                input_encoding = chardet.detect(input_data)['encoding'].replace('Windows-', 'cp')
                 input_data = input_data.decode(input_encoding)
             input_data_fh.close()
 
