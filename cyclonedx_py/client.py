@@ -25,7 +25,7 @@ import sys
 from datetime import datetime
 from typing import Any, Optional
 
-import chardet
+from chardet import detect as chardetect  # type:ignore[import]
 from cyclonedx.model import Tool
 from cyclonedx.model.bom import Bom
 from cyclonedx.output import BaseOutput, OutputFormat, SchemaVersion, get_instance as get_output_instance
@@ -289,7 +289,7 @@ class CycloneDxCmd:
         with input_data_fh:
             input_data = input_data_fh.read()
             if isinstance(input_data, bytes):
-                input_encoding = chardet.detect(input_data)['encoding'].replace(
+                input_encoding = chardetect(input_data)['encoding'].replace(
                     # replace Windows-encoding with code-page
                     'Windows-', 'cp')
                 input_data = input_data.decode(input_encoding)
