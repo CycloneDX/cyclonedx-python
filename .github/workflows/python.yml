@@ -201,4 +201,4 @@ jobs:
         uses: codacy/codacy-coverage-reporter-action@v1
         with:
           project-token: ${{ env.CODACY_PROJECT_TOKEN }}
-          coverage-reports: ${{ env.REPORTS_DIR }}/coverage/*.cobertura.xml
+          coverage-reports: ${{ env.REPORTS_DIR }}/coverage/*
