@@ -193,6 +193,9 @@ jobs:
         with:
           name: ${{ env.TESTS_REPORTS_ARTIFACT }}
           path: ${{ env.REPORTS_DIR }}
+      - name: Display structure of downloaded files
+        run: ls -R
+        working-directory: ${{ env.REPORTS_DIR }}
       - name: Run codacy-coverage-reporter
         env:
           CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
