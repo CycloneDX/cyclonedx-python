@@ -1,0 +1,4 @@
+
+[*.cp1252.txt.bin]
+charset = unset
+end_of_line = crlf

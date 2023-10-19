@@ -2,6 +2,18 @@
 
 <!--next-version-placeholder-->
 
+## v3.11.3 (2023-10-19)
+
+### Fix
+
+* Input file encoding ([#596](https://github.com/CycloneDX/cyclonedx-python/issues/596)) ([`a9dda4b`](https://github.com/CycloneDX/cyclonedx-python/commit/a9dda4bfd0e68529628eab99b6db00fb5214bfc3))
+
+### Documentation
+
+* Publish coverage ([#600](https://github.com/CycloneDX/cyclonedx-python/issues/600)) ([`bd4f48e`](https://github.com/CycloneDX/cyclonedx-python/commit/bd4f48ef7f3c4c890a138c45dbc87f6ca3e2cf7b))
+* Adjust syntax hilight for code blocks ([#592](https://github.com/CycloneDX/cyclonedx-python/issues/592)) ([`ccac31e`](https://github.com/CycloneDX/cyclonedx-python/commit/ccac31eb4d0996236da24ca9efb57af66bd1a020))
+* Mark `ShellSession` in README ([`411cf3d`](https://github.com/CycloneDX/cyclonedx-python/commit/411cf3d0a4b5005c1591211ecdc464d4747d69f1))
+
 ## v3.11.2 (2023-07-12)
 
 ### Fix

@@ -25,6 +25,7 @@ import sys
 from datetime import datetime
 from typing import Any, Optional
 
+from chardet import detect as chardetect  # type:ignore[import]
 from cyclonedx.model import Tool
 from cyclonedx.model.bom import Bom
 from cyclonedx.model.component import Component
@@ -271,11 +272,13 @@ class CycloneDxCmd:
                     raise CycloneDxCmdNoInputFileSupplied(
                         'When using input from Conda JSON, you need to pipe input via STDIN')
                 elif self._arguments.input_from_pip:
-                    self._arguments.input_source = open(os.path.join(current_directory, 'Pipfile.lock'), 'r')
+                    self._arguments.input_source = open(os.path.join(current_directory, 'Pipfile.lock'),
+                                                        'rt', encoding="UTF-8")
                 elif self._arguments.input_from_poetry:
-                    self._arguments.input_source = open(os.path.join(current_directory, 'poetry.lock'), 'r')
+                    self._arguments.input_source = open(os.path.join(current_directory, 'poetry.lock'),
+                                                        'rt', encoding="UTF-8")
                 elif self._arguments.input_from_requirements:
-                    self._arguments.input_source = open(os.path.join(current_directory, 'requirements.txt'), 'r')
+                    self._arguments.input_source = open(os.path.join(current_directory, 'requirements.txt'), 'rb')
                 else:
                     raise CycloneDxCmdException('Parser type could not be determined.')
             except FileNotFoundError as error:
@@ -286,6 +289,11 @@ class CycloneDxCmd:
         input_data_fh = self._arguments.input_source
         with input_data_fh:
             input_data = input_data_fh.read()
+            if isinstance(input_data, bytes):
+                input_encoding = chardetect(input_data)['encoding'].replace(
+                    # replace Windows-encoding with code-page
+                    'Windows-', 'cp')
+                input_data = input_data.decode(input_encoding)
             input_data_fh.close()
 
         if self._arguments.input_from_conda_explicit:

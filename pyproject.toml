@@ -48,6 +48,7 @@ packageurl-python = ">= 0.11"
 pip-requirements-parser = "^32.0.0"
 setuptools = ">= 47.0.0"
 toml = "^0.10.0"
+chardet = "^5.1"
 
 [tool.poetry.dev-dependencies]
 # pin to exact versions, if the tool/lib/plugin is process-relevant
