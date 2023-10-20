@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v3.11.5 (2023-10-20)
+
+### Fix
+
+* Custom input encoding ([#601](https://github.com/CycloneDX/cyclonedx-python/issues/601)) ([`363934c`](https://github.com/CycloneDX/cyclonedx-python/commit/363934c0bc69ebbb23472f1173bf3c6b1e3c023a))
+
 ## v3.11.4 (2023-10-19)
 
 ### Fix
