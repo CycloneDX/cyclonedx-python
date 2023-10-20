@@ -203,7 +203,8 @@ class CycloneDxCmd:
         )
         input_method_group.add_argument(
             '-i', '--in-file', action='store', metavar='FILE_PATH',
-            type=argparse.FileType('r'),  # FileType does handle '-'
+            # custom input shall be treated as binary, the actual encoding is detected later
+            type=argparse.FileType('rb'),  # FileType does handle '-'
             default=None,
             help='File to read input from. Use "-" to read from STDIN.', dest='input_source', required=False
         )
