@@ -170,14 +170,14 @@ toml = ["tomli"]
 
 [[package]]
 name = "cyclonedx-python-lib"
-version = "5.0.0rc2"
+version = "5.0.0"
 description = "A library for producing CycloneDX SBOM (Software Bill of Materials) files."
 category = "main"
 optional = false
 python-versions = ">=3.8,<4.0"
 files = [
-    {file = "cyclonedx_python_lib-5.0.0rc2-py3-none-any.whl", hash = "sha256:47af40088a70599e135904f0f307d1e84a718127ca88b0ee78dff696c7104cfd"},
-    {file = "cyclonedx_python_lib-5.0.0rc2.tar.gz", hash = "sha256:596390f2414eaf2a088d0c883d27ffd78c7b7ef8576249840021c54595134793"},
+    {file = "cyclonedx_python_lib-5.0.0-py3-none-any.whl", hash = "sha256:58977088814c3defa9480c52352468986eae4330cb7cf879f29513010075763d"},
+    {file = "cyclonedx_python_lib-5.0.0.tar.gz", hash = "sha256:46cdad7308a10cbad078e025ceb6ab9b27fa929d28cd7981f82a47653911b4aa"},
 ]
 
 [package.dependencies]
@@ -1198,4 +1198,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "1d38c86d332137a9e916fa1250fa31990af9ec33ee8de71b0750cb8f5de591b0"
+content-hash = "b8d4f9272fedc87233ab50ed6b2e61cf9fafe31be8c7fc5b19f7229163380c4d"
