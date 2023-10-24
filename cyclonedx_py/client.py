@@ -263,7 +263,8 @@ class CycloneDxCmd:
         )
         output_group.add_argument(
             '--validate', dest='output_validate',
-            action=argparse.BooleanOptionalAction,
+            # BooleanOptionalAction is not available before py39
+            action=getattr(argparse, 'BooleanOptionalAction', 'store_true'),
             default=True
         )
 
