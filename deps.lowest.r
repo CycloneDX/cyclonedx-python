@@ -1,7 +1,7 @@
 # exactly pinned dependencies to the lowest version regardless of python_version
 # see pyproject file for ranges
 
-cyclonedx-python-lib == 4.2.1
+cyclonedx-python-lib == 5.0.0rc2[validation]
 packageurl-python == 0.11.1
 pip-requirements-parser == 32.0.0
 chardet == 5.1.0
