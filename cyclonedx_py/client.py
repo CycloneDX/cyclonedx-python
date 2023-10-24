@@ -32,8 +32,7 @@ from cyclonedx.model.component import Component
 from cyclonedx.output import BaseOutput, get_instance as get_output_instance
 from cyclonedx.parser import BaseParser
 from cyclonedx.schema import OutputFormat, SchemaVersion
-from cyclonedx.validation.json import JsonStrictValidator
-from cyclonedx.validation.xml import XmlValidator
+from cyclonedx.validation import make_schemabased_validator
 
 from . import __version__ as _this_tool_version
 from .parser._cdx_properties import Pipenv as PipenvProps, Poetry as PoetryProp
@@ -42,9 +41,6 @@ from .parser.environment import EnvironmentParser
 from .parser.pipenv import PipenvPackageCategoryGroupWellknown, PipEnvParser
 from .parser.poetry import PoetryGroupWellknown, PoetryParser
 from .parser.requirements import RequirementsParser
-
-if TYPE_CHECKING:
-    from cyclonedx.validation import Validator as CdxValidator
 
 
 class CycloneDxCmdException(Exception):
@@ -73,10 +69,6 @@ _output_formats = {
 _output_default_filenames = {
     _CLI_OUTPUT_FORMAT.XML: 'cyclonedx.xml',
     _CLI_OUTPUT_FORMAT.JSON: 'cyclonedx.json',
-}
-_output_validators = {
-    _CLI_OUTPUT_FORMAT.XML: XmlValidator,
-    _CLI_OUTPUT_FORMAT.JSON: JsonStrictValidator,
 }
 
 
@@ -133,18 +125,15 @@ class CycloneDxCmd:
         return get_output_instance(
             bom=bom,
             output_format=self.cdx_output_formats,
-            schema_version=self.cd_schema_version
+            schema_version=self.cdx_schema_version
         )
-
-    def get_validator(self) -> 'CdxValidator':
-        return _output_validators[self._get_output_format()](self.cd_schema_version)
 
     @property
     def cdx_output_formats(self) -> OutputFormat:
         return _output_formats[self._get_output_format()]
 
     @property
-    def cd_schema_version(self) -> SchemaVersion:
+    def cdx_schema_version(self) -> SchemaVersion:
         return SchemaVersion['V{}'.format(
             str(self._arguments.output_schema_version).replace('.', '_')
         )]
@@ -164,7 +153,10 @@ class CycloneDxCmd:
 
         if self._arguments.output_validate:
             self._debug_message('Validating SBOM result ...')
-            validation_errors = self.get_validator().validate_str(output)
+            validation_errors = make_schemabased_validator(
+                self.cdx_output_formats,
+                self.cdx_schema_version
+            ).validate_str(output)
             if validation_errors is None:
                 self._debug_message('Valid SBOM result.')
             else:
