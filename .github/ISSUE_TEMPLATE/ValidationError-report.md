@@ -11,10 +11,10 @@ assignees: ''
 
 Steps to reproduce the behavior:
 
-1. How was _cyclonedx-bom_  called?
+1. How was _cyclonedx-py_  called?
    <!-- e.g. `cyclonedx-py --omit=dev ...` -->
 2. What kind of evidence was processed?
-   <!-- upload a complete project or set other evidences to this issue, or a pastebin of you choice and put the link here. -->
+   <!-- upload a complete project or set of other evidences to this issue, or a pastebin of you choice and put the link here. -->
 3. Error report:
    <!-- upload the complete output to this issue, or a pastebin of you choice and put the link here. -->
 4. Expected result:
@@ -24,7 +24,7 @@ Steps to reproduce the behavior:
 
 ## Environment
 
-- _cyclonedx-bom_ version: <!-- e.g. `v3.2.0`. get via `cyclonedx-py --version` -->
+- _cyclonedx-py_ version: <!-- e.g. `v3.2.0`. get via `cyclonedx-py --version` -->
 - Python version: <!-- get via `python --version` -->
 - OS: <!-- e.g. windows 11, ubuntu linux, ... -->
  

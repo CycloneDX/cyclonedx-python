@@ -25,7 +25,7 @@ If applicable, add screenshots or past the output to help explain your problem.
 
 ## Environment
 
-- _cyclonedx-bom_ version: <!-- e.g. `v3.2.0`. get via `cyclonedx-py --version` -->
+- _cyclonedx-py_ version: <!-- e.g. `v3.2.0`. get via `cyclonedx-py --version` -->
 - Python version: <!-- get via `python --version` -->
 - OS: <!-- e.g. windows 11, ubuntu linux, ... -->
 
