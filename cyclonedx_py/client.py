@@ -160,10 +160,13 @@ class CycloneDxCmd:
             if validation_errors is None:
                 self._debug_message('Valid SBOM result.')
             else:
+                self._debug_message('Validation Error: {!r}', validation_errors.data)
                 self._error_and_exit(
-                    'Invalid SBOM result. Error:\n{}', validation_errors.data,
-                    exit_code=3
-                )
+                    'Failed to generate valid BOM.\n\n'
+                    'Please report the issue and provide all input data to:\n'
+                    'https://github.com/CycloneDX/cyclonedx-python/issues/new?'
+                    'template=ValidationError-report.md&labels=ValidationError&title=%5BValidationError%5D',
+                    exit_code=3)
         else:
             self._debug_message('Validating SBOM result skipped.')
 
