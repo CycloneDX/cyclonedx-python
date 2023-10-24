@@ -23,7 +23,7 @@ import enum
 import os
 import sys
 from datetime import datetime
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, Optional
 
 from chardet import detect as chardetect
 from cyclonedx.model import Tool
