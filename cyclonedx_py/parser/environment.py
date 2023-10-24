@@ -31,13 +31,15 @@ The Environment Parsers support population of the following data about Component
 import sys
 from importlib.metadata import metadata
 
+from cyclonedx.model.license import LicenseExpression
+
 if sys.version_info >= (3, 10):
     from importlib.metadata import PackageMetadata as _MetadataReturn
 else:
     from email.message import Message as _MetadataReturn
 
 from cyclonedx.exception.model import CycloneDxModelException
-from cyclonedx.factory.license import LicenseChoiceFactory, LicenseFactory
+from cyclonedx.factory.license import LicenseFactory
 from cyclonedx.model.component import Component
 from cyclonedx.parser import BaseParser
 
@@ -71,7 +73,7 @@ class EnvironmentParser(BaseParser):
         debug_message('late import pkg_resources')
         import pkg_resources
 
-        lcfac = LicenseChoiceFactory(license_factory=LicenseFactory())
+        lcfac = LicenseFactory()
 
         debug_message('processing pkg_resources.working_set')
         i: Distribution
@@ -80,6 +82,7 @@ class EnvironmentParser(BaseParser):
             purl = PackageURL(type='pypi', name=i.project_name, version=i.version)
             bom_ref = purl.to_string() if use_purl_bom_ref else None
             c = Component(name=i.project_name, bom_ref=bom_ref, version=i.version, purl=purl)
+            licenses = set()
 
             i_metadata = self._get_metadata_for_package(i.project_name)
             debug_message('processing i_metadata')
@@ -89,7 +92,7 @@ class EnvironmentParser(BaseParser):
             if 'License' in i_metadata and i_metadata['License'] and i_metadata['License'] != 'UNKNOWN':
                 debug_message('processing i_metadata License: {!r}', i_metadata['License'])
                 try:
-                    c.licenses.add(lcfac.make_from_string(i_metadata['License']))
+                    licenses.add(lcfac.make_from_string(i_metadata['License']))
                 except CycloneDxModelException as error:
                     # @todo traceback and details to the output?
                     debug_message('Warning: suppressed {!r}', error)
@@ -102,11 +105,15 @@ class EnvironmentParser(BaseParser):
                 if classifier.startswith(_LTC_PREFIX):
                     license_string = _ltc_to_spdx(classifier) or _ltc_tidy(classifier)
                     try:
-                        c.licenses.add(lcfac.make_from_string(license_string))
+                        licenses.add(lcfac.make_from_string(license_string))
                     except CycloneDxModelException as error:
                         # @todo traceback and details to the output?
                         debug_message('Warning: suppressed {!r}', error)
                         del error
+
+            # assert per schema: either one expression or multiple non-expressions
+            lexp = next((li for li in licenses if isinstance(li, LicenseExpression)), None)
+            c.licenses.update([lexp] if lexp else licenses)
 
             self._components.append(c)
 
