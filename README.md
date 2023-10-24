@@ -110,6 +110,8 @@ SBOM Output Configuration:
                         exists, it will be overwritten.
   -pb, --purl-bom-ref   Use a component's PURL for the bom-ref value, instead
                         of a random UUID
+  --validate, --no-validate
+                        Whether validate the result before outputting
 ```
 
 ### Advanced usage and details

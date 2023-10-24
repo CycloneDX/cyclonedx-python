@@ -31,10 +31,12 @@ class TestCli(TestCase):
 
         # Test whether the call passed, is fair enough for now.
         # Additional tests may come later, to check output etc.
-        returncode = subprocess.call(
+        ran = subprocess.run(
             args,
-            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE,
             shell=False,
         )
 
-        self.assertEqual(0, returncode, msg='subprocess returned unexpected non-zero')
+        self.assertEqual(0, ran.returncode, msg='subprocess returned unexpected non-zero\n'
+                                                f'out: {ran.stdout}\n'
+                                                f'err: {ran.stderr}')

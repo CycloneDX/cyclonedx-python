@@ -23,7 +23,7 @@ import enum
 import os
 import sys
 from datetime import datetime
-from typing import Any, Optional
+from typing import Any, Optional, Type
 
 from chardet import detect as chardetect
 from cyclonedx.model import Tool
@@ -32,6 +32,7 @@ from cyclonedx.model.component import Component
 from cyclonedx.output import BaseOutput, get_instance as get_output_instance
 from cyclonedx.parser import BaseParser
 from cyclonedx.schema import OutputFormat, SchemaVersion
+from cyclonedx.validation import make_schemabased_validator
 
 from . import __version__ as _this_tool_version
 from .parser._cdx_properties import Pipenv as PipenvProps, Poetry as PoetryProp
@@ -123,11 +124,19 @@ class CycloneDxCmd:
 
         return get_output_instance(
             bom=bom,
-            output_format=_output_formats[self._get_output_format()],
-            schema_version=SchemaVersion['V{}'.format(
-                str(self._arguments.output_schema_version).replace('.', '_')
-            )]
+            output_format=self.cdx_output_formats,
+            schema_version=self.cdx_schema_version
         )
+
+    @property
+    def cdx_output_formats(self) -> OutputFormat:
+        return _output_formats[self._get_output_format()]
+
+    @property
+    def cdx_schema_version(self) -> SchemaVersion:
+        return SchemaVersion['V{}'.format(
+            str(self._arguments.output_schema_version).replace('.', '_')
+        )]
 
     def execute(self) -> None:
         output_format = self._get_output_format()
@@ -140,18 +149,40 @@ class CycloneDxCmd:
                 exit_code=2
             )
 
-        output = self.get_output()
+        output = self.get_output().output_as_string()
+
+        if self._arguments.output_validate:
+            self._debug_message('Validating SBOM result ...')
+            validation_errors = make_schemabased_validator(
+                self.cdx_output_formats,
+                self.cdx_schema_version
+            ).validate_str(output)
+            if validation_errors is None:
+                self._debug_message('Valid SBOM result.')
+            else:
+                self._debug_message('Validation Error: {!r}', validation_errors.data)
+                self._error_and_exit(
+                    'Failed to generate valid BOM.\n\n'
+                    'Please report the issue and provide all input data to:\n'
+                    'https://github.com/CycloneDX/cyclonedx-python/issues/new?'
+                    'template=ValidationError-report.md&labels=ValidationError&title=%5BValidationError%5D',
+                    exit_code=3)
+        else:
+            self._debug_message('Validating SBOM result skipped.')
+
         if self._arguments.output_file == '-' or not self._arguments.output_file:
             self._debug_message('Returning SBOM to STDOUT')
-            print(output.output_as_string(), file=sys.stdout)
-            return
-
-        # Check directory writable
-        output_file = self._arguments.output_file
-        output_filename = os.path.realpath(
-            output_file if isinstance(output_file, str) else _output_default_filenames[output_format])
-        self._debug_message('Will be outputting SBOM to file at: {}', output_filename)
-        output.output_to_file(filename=output_filename, allow_overwrite=self._arguments.output_file_overwrite)
+            print(output, file=sys.stdout)
+        else:
+            output_file = self._arguments.output_file
+            output_filename = os.path.realpath(
+                output_file if isinstance(output_file, str) else _output_default_filenames[output_format])
+            self._debug_message('Will be outputting SBOM to file: {}', output_filename)
+            with open(output_filename,
+                      mode='w' if self._arguments.output_file_overwrite else 'x'
+                      ) as f_out:
+                wrote = f_out.write(output)
+                self._debug_message('Wrote {} bytes to file: {}', wrote, output_filename)
 
     @staticmethod
     def get_arg_parser(*, prog: Optional[str] = None) -> argparse.ArgumentParser:
@@ -233,6 +264,29 @@ class CycloneDxCmd:
             '-pb', '--purl-bom-ref', action='store_true', dest='use_purl_bom_ref',
             help="Use a component's PURL for the bom-ref value, instead of a random UUID"
         )
+        _BooleanOptionalAction: Optional[Type[argparse.Action]] = getattr(argparse, 'BooleanOptionalAction', None)
+        # BooleanOptionalAction is not available before py39
+        if _BooleanOptionalAction:
+            output_group.add_argument(
+                '--validate', dest='output_validate',
+                help="Whether validate the result before outputting",
+                # BooleanOptionalAction is not available before py39
+                action=_BooleanOptionalAction,
+                default=True
+            )
+        else:
+            output_group.add_argument(
+                '--validate', dest='output_validate',
+                help="Validate the result before outputting",
+                action='store_true',
+                default=True
+            )
+            output_group.add_argument(
+                '--no-validate', dest='output_validate',
+                help="Do not validate the result before outputting",
+                action='store_false'
+            )
+
         arg_parser.add_argument(
             "--omit", dest="omit", action="append",
             default=[],
