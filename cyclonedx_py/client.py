@@ -23,7 +23,7 @@ import enum
 import os
 import sys
 from datetime import datetime
-from typing import Any, Optional
+from typing import Any, Optional, Type
 
 from chardet import detect as chardetect
 from cyclonedx.model import Tool
@@ -261,13 +261,28 @@ class CycloneDxCmd:
             '-pb', '--purl-bom-ref', action='store_true', dest='use_purl_bom_ref',
             help="Use a component's PURL for the bom-ref value, instead of a random UUID"
         )
-        output_group.add_argument(
-            '--validate', dest='output_validate',
-            help="validate the result before outputting",
-            # BooleanOptionalAction is not available before py39
-            action=getattr(argparse, 'BooleanOptionalAction', 'store_true'),
-            default=True
-        )
+        _BooleanOptionalAction: Optional[Type[argparse.Action]] = getattr(argparse, 'BooleanOptionalAction', None)
+        # BooleanOptionalAction is not available before py39
+        if _BooleanOptionalAction:
+            output_group.add_argument(
+                '--validate', dest='output_validate',
+                help="Whether validate the result before outputting",
+                # BooleanOptionalAction is not available before py39
+                action=_BooleanOptionalAction,
+                default=True
+            )
+        else:
+            output_group.add_argument(
+                '--validate', dest='output_validate',
+                help="Validate the result before outputting",
+                action='store_true',
+                default=True
+            )
+            output_group.add_argument(
+                '--no-validate', dest='output_validate',
+                help="Do not validate the result before outputting",
+                action='store_false'
+            )
 
         arg_parser.add_argument(
             "--omit", dest="omit", action="append",
