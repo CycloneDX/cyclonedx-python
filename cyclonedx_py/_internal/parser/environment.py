@@ -47,11 +47,7 @@ from cyclonedx.parser import BaseParser
 from packageurl import PackageURL
 from pkg_resources import Distribution
 
-from .._internal.license_trove_classifier import (
-    PREFIX_LICENSE as _LTC_PREFIX,
-    tidy as _ltc_tidy,
-    to_spdx as _ltc_to_spdx,
-)
+from ..license_trove_classifier import PREFIX_LICENSE as _LTC_PREFIX, tidy as _ltc_tidy, to_spdx as _ltc_to_spdx
 from ._debug import DebugMessageCallback, quiet
 
 

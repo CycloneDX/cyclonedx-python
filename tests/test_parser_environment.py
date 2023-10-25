@@ -21,7 +21,7 @@ from unittest import TestCase
 
 from cyclonedx.model.license import DisjunctiveLicense
 
-from cyclonedx_py.parser.environment import EnvironmentParser
+from cyclonedx_py._internal.parser.environment import EnvironmentParser
 
 
 class TestEnvironmentParser(TestCase):

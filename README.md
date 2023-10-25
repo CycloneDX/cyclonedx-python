@@ -123,6 +123,13 @@ See the full [documentation][link_rtfd] for advanced usage and details on input 
 We endeavour to support all functionality for all [current actively supported Python versions](https://www.python.org/downloads/).
 However, some features may not be possible/present in older Python versions due to their lack of support.
 
+## Internals
+
+This tool utilizes the [CycloneDX library][cyclonedx-library] to generate the actual data structures, and serialize and validate them.  
+Validation requires [transitive optional dependencies](https://github.com/CycloneDX/cyclonedx-python-lib/blob/main/docs/install.rst#extras).
+
+This tool does **not** expose any additional _public_ API or classes - all code is intended to be internal and might change without any notice during version upgrades.
+
 ## Contributing
 
 Feel free to open issues, bugreports or pull requests.  
@@ -137,6 +144,8 @@ See the [LICENSE][license_file] file for the full license.
 [license_file]: https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE
 [contributing_file]: https://github.com/CycloneDX/cyclonedx-python/blob/main/CONTRIBUTING.md
 [link_rtfd]: https://cyclonedx-bom-tool.readthedocs.io/
+
+[cyclonedx-library]: https://pypi.org/project/cyclonedx-python-lib
 
 [shield_gh-workflow-test]: https://img.shields.io/github/actions/workflow/status/CycloneDX/cyclonedx-python/python.yml?branch=main&logo=GitHub&logoColor=white "build"
 [shield_rtfd]: https://img.shields.io/readthedocs/cyclonedx-bom-tool?logo=readthedocs&logoColor=white

@@ -23,7 +23,7 @@ from unittest import TestCase
 
 from cyclonedx.model import HashAlgorithm, HashType
 
-from cyclonedx_py.parser.conda import CondaListExplicitParser, CondaListJsonParser
+from cyclonedx_py._internal.parser.conda import CondaListExplicitParser, CondaListJsonParser
 
 
 class TestCondaParser(TestCase):

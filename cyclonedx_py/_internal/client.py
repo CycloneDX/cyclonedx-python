@@ -34,7 +34,7 @@ from cyclonedx.parser import BaseParser
 from cyclonedx.schema import OutputFormat, SchemaVersion
 from cyclonedx.validation import make_schemabased_validator
 
-from . import __version__ as _this_tool_version
+from .. import __version__ as _this_tool_version
 from .parser._cdx_properties import Pipenv as PipenvProps, Poetry as PoetryProp
 from .parser.conda import CondaListExplicitParser, CondaListJsonParser
 from .parser.environment import EnvironmentParser
@@ -401,7 +401,3 @@ def main(*, prog_name: Optional[str] = None) -> None:
     parser = CycloneDxCmd.get_arg_parser(prog=prog_name)
     args = parser.parse_args()
     CycloneDxCmd(args).execute()
-
-
-if __name__ == "__main__":
-    main()
