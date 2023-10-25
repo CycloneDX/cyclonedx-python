@@ -19,7 +19,7 @@
 
 from unittest import TestCase
 
-from cyclonedx_py.utils.conda import (
+from cyclonedx_py._internal.utils.conda import (
     CondaPackage,
     parse_conda_json_to_conda_package,
     parse_conda_list_str_to_conda_package,

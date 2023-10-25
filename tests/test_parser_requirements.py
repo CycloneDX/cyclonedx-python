@@ -23,7 +23,7 @@ from unittest import TestCase
 from cyclonedx.model import HashAlgorithm, HashType
 from cyclonedx.model.component import Component
 
-from cyclonedx_py.parser.requirements import RequirementsFileParser, RequirementsParser
+from cyclonedx_py._internal.parser.requirements import RequirementsFileParser, RequirementsParser
 
 
 class TestRequirementsParser(TestCase):

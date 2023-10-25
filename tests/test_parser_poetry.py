@@ -22,7 +22,7 @@ from unittest import TestCase
 
 from ddt import data, ddt
 
-from cyclonedx_py.parser.poetry import PoetryFileParser
+from cyclonedx_py._internal.parser.poetry import PoetryFileParser
 
 
 @ddt
