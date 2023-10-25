@@ -17,7 +17,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-import subprocess
+import subprocess  # nosec B404
 import sys
 from unittest import TestCase
 
@@ -31,10 +31,10 @@ class TestCli(TestCase):
 
         # Test whether the call passed, is fair enough for now.
         # Additional tests may come later, to check output etc.
-        ran = subprocess.run(
+        ran = subprocess.run(  # nosec B603
             args,
             stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-            shell=False,
+            shell=False
         )
 
         self.assertEqual(0, ran.returncode, msg='subprocess returned unexpected non-zero\n'
