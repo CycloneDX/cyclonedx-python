@@ -61,6 +61,7 @@ flake8-isort = "6.0.0"
 isort = "5.12.0"
 autopep8 = "2.0.4"
 mypy = "1.5.1"
+bandit = "1.7.5"
 tox = "4.11.3"
 # `types-toml` need to stay in sync with version of `toml`
 types-toml = "^0.10.0"
