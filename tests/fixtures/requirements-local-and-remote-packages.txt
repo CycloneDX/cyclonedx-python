@@ -1,8 +1,0 @@
-./myproject/certifi # comment
-./myproject/chardet
--e ./myproject/idna.whl
-./myproject/requests --hash=sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804
-./myproject/urllib3
-https://example.com/mypackage-0.0.1-cp37-none-linux_amd64.whl  # WHL filename must be conformant to PEP-440
-
--r requirements-nested.txt
