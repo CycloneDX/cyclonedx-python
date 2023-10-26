@@ -1,3 +1,5 @@
+# This file is part of CycloneDX Python Lib
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -13,6 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-# !! version is managed by semantic_release
-# do not use typing here, or else `semantic_release` might have issues finding the variable
-__version__ = "4.0.0-alpha.0"
+"""
+This package is internal - it is not public API.
+All in here may have breaking change without notice.
+"""

@@ -13,6 +13,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-# !! version is managed by semantic_release
-# do not use typing here, or else `semantic_release` might have issues finding the variable
-__version__ = "4.0.0-alpha.0"
+from ._internal.cli import main
+import sys
+
+sys.exit(main(prog=f'python3 -m {__package__}'))
