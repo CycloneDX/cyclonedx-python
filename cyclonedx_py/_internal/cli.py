@@ -16,8 +16,8 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 import argparse
 from abc import ABC, abstractmethod
-from sys import stderr, stdin, stdout
-from typing import Any, Optional, Type
+from sys import stderr
+from typing import Any, BinaryIO, List, Optional, TextIO, Type, Union
 
 from cyclonedx.model.bom import Bom
 from cyclonedx.output import make_outputter
@@ -33,8 +33,9 @@ class CS_BomBuilder(ABC):
     def make_argument_parser(**kwargs: Any) -> argparse.ArgumentParser:
         ...
 
-    def __init__(self, args: argparse.Namespace) -> None:
-        self._args = args
+    @abstractmethod
+    def __init__(self, **kwargs: Any) -> None:
+        ...
 
     @abstractmethod
     def __call__(self) -> Bom:
@@ -45,9 +46,17 @@ class CS_foo(CS_BomBuilder):
     @staticmethod
     def make_argument_parser(**kwargs: Any) -> argparse.ArgumentParser:
         p = argparse.ArgumentParser(description='description CS_foo TODO', **kwargs)
-        p.add_argument('-i', '--infile', help='I HELP TODO',
-                       type=argparse.FileType('rb'), default='poetry.lock')
+        p.add_argument('-i', '--infile',
+                       help='I HELP TODO',
+                       type=argparse.FileType('rb'),
+                       default='poetry.lock')
         return p
+
+    def __init__(self,
+                 infile: BinaryIO,
+                 **kwargs: Any) -> None:
+        del kwargs
+        self._infile = infile
 
     def __call__(self) -> Bom:
         # print(self._args, file=stderr)
@@ -58,9 +67,18 @@ class CS_bar(CS_BomBuilder):
     @staticmethod
     def make_argument_parser(**kwargs: Any) -> argparse.ArgumentParser:
         p = argparse.ArgumentParser(description='description CS_bar TODO', **kwargs)
-        p.add_argument('-i', '--infile', help='I HELP TODO.\nSet to "-" to read from STDIN.', nargs=argparse.ONE_OR_MORE,
-                       type=argparse.FileType('rb'), default='-')
+        p.add_argument('-i', '--infile',
+                       help='I HELP TODO.\nSet to "-" to read from STDIN.',
+                       nargs=argparse.ONE_OR_MORE,
+                       type=argparse.FileType('rb'),
+                       default='-')
         return p
+
+    def __init__(self,
+                 infile: Union[List[BinaryIO], BinaryIO],
+                 **kwargs: Any) -> None:
+        del kwargs
+        self._infile = infile if isinstance(infile, list) else [infile]
 
     def __call__(self) -> Bom:
         # print(self._args, file=stderr)
@@ -93,16 +111,16 @@ class Command:
                         type=argparse.FileType('w', encoding='utf8'),
                         default='-')
         op.add_argument('--schema-version',
-                        help='SV TODO'
-                             f'\n{{choice: {", ".join(sorted((v.to_version() for v in SchemaVersion), reverse=True))}}}',
+                        help='SV TODO\n'
+                             f'{{choice: {", ".join(sorted((v.to_version() for v in SchemaVersion), reverse=True))}}}',
                         metavar='',
                         dest='schemaVersion',
                         choices=SchemaVersion,
                         type=SchemaVersion.from_version,
                         default=SchemaVersion.V1_4.to_version())
         op.add_argument('--output-format',
-                        help='OF TODO'
-                             f'\n{{choice: {", ".join(sorted(f.name for f in OutputFormat))}}}',
+                        help='OF TODO\n'
+                             f'{{choice: {", ".join(sorted(f.name for f in OutputFormat))}}}',
                         metavar='FORMAT',
                         dest='outputFormat',
                         choices=OutputFormat,
@@ -125,11 +143,7 @@ class Command:
                             help='no-validate HELP TODO',
                             dest='validate',
                             action='store_false')
-            del vg
 
-        sct: str
-        scc: Type[CS_BomBuilder]
-        scd: str
         for sct, scc, scd in (
             ('foo', CS_foo, 'foo description'),
             ('bar', CS_bar, 'bar description'),
@@ -142,30 +156,38 @@ class Command:
                           formatter_class=p.formatter_class,
                           allow_abbrev=p.allow_abbrev,
                           ).set_defaults(bbc=scc)
-            del sct, scc, scd
 
         return p
 
-    def __init__(self, args: argparse.Namespace) -> None:
-        self._args = args
+    def __init__(self, *,
+                 validate: bool,
+                 outfile: TextIO,
+                 outputFormat: OutputFormat,
+                 schemaVersion: SchemaVersion,
+                 bbc: Type[CS_BomBuilder],
+                 **kwargs: Any) -> None:
+        self._outfile = outfile
+        self._outputFormat = outputFormat
+        self._schemaVersion = schemaVersion
+        self._validate = validate
+        self._bbc = bbc(**kwargs)
 
     def __call__(self) -> int:
-        print('DEBUG: args =', self._args, file=stderr)
         print('Generating SBOM ...', file=stderr)
         try:
-            bom = self._args.bbc(self._args)()
+            bom = self._bbc()
         # TODO: expected error handling ...
         except Exception as error:
             print(f'{error.__class__.__qualname__}:', error, file=stderr)
             return 1
-        print(f'Serializing SBOM: {self._args.schemaVersion.to_version()}/{self._args.outputFormat.name}', file=stderr)
+        print(f'Serializing SBOM: {self._schemaVersion.to_version()}/{self._outputFormat.name}', file=stderr)
         try:
-            outputter = make_outputter(bom, self._args.outputFormat, self._args.schemaVersion)
+            outputter = make_outputter(bom, self._outputFormat, self._schemaVersion)
             output = outputter.output_as_string(indent=2)
         except Exception as error:
             print('Serialization Errors:', error, file=stderr)
             return 1
-        if self._args.validate:
+        if self._validate:
             print('Validating ...', file=stderr)
             validation_error = make_schemabased_validator(
                 outputter.output_format,
@@ -177,13 +199,12 @@ class Command:
             print('Valid.', file=stderr)
         else:
             print('Skipped validation.', file=stderr)
-        print('Writing to:', self._args.outfile.name, file=stderr)
-        written = self._args.outfile.write(output)
-        self._args.outfile.close()
+        print('Writing to:', self._outfile.name, file=stderr)
+        written = self._outfile.write(output)
         # start with a line break, to finalize possibly unterminated output.
-        print('\nWrote', written, 'bytes to', self._args.outfile.name, file=stderr)
+        print('\nWrote', written, 'bytes to', self._outfile.name, file=stderr)
         return 0
 
 
 def main(**kwargs: Any) -> int:
-    return Command(Command.make_argument_parser(**kwargs).parse_args())()
+    return Command(**vars(Command.make_argument_parser(**kwargs).parse_args()))()
