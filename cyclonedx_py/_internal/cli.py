@@ -58,7 +58,7 @@ class CS_bar(CS_BomBuilder):
     @staticmethod
     def make_argument_parser(**kwargs: Any) -> argparse.ArgumentParser:
         p = argparse.ArgumentParser(description='description CS_bar TODO', **kwargs)
-        p.add_argument('-i', '--infile', help='I HELP TODO', nargs=argparse.ONE_OR_MORE,
+        p.add_argument('-i', '--infile', help='I HELP TODO.\nSet to "-" to read from STDIN.', nargs=argparse.ONE_OR_MORE,
                        type=argparse.FileType('rb'), default='-')
         return p
 
@@ -88,7 +88,7 @@ class Command:
 
         op = argparse.ArgumentParser(add_help=False)
         op.add_argument('-o', '--outfile',
-                        help='O HELP TODO',
+                        help='O HELP TODO.\nSet to "-" to write to STDOUT.',
                         dest='outfile',
                         type=argparse.FileType('w', encoding='utf8'),
                         default='-')
