@@ -15,13 +15,19 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 import argparse
-from sys import stdin, stdout, stderr
 from abc import ABC, abstractmethod
+from sys import stderr, stdin, stdout
 from typing import Any, Optional, Type
+
+from cyclonedx.model.bom import Bom
+from cyclonedx.output import make_outputter
+from cyclonedx.schema import OutputFormat, SchemaVersion
+from cyclonedx.validation import make_schemabased_validator
+
 from .. import __version__
 
 
-class CS_Proto(ABC):
+class CS_BomBuilder(ABC):
     @staticmethod
     @abstractmethod
     def make_argument_parser(**kwargs: Any) -> argparse.ArgumentParser:
@@ -31,71 +37,139 @@ class CS_Proto(ABC):
         self._args = args
 
     @abstractmethod
-    def __call__(self) -> int:
+    def __call__(self) -> Bom:
         ...
 
 
-class CS_foo(CS_Proto):
+class CS_foo(CS_BomBuilder):
     @staticmethod
     def make_argument_parser(**kwargs: Any) -> argparse.ArgumentParser:
         p = argparse.ArgumentParser(description='description CS_foo TODO', **kwargs)
-        p.add_argument('-i', '--infile', help='I HELP TODO', nargs='+', type=argparse.FileType('rb'), default='poetry.lock')
+        p.add_argument('-i', '--infile', help='I HELP TODO',
+                       type=argparse.FileType('rb'), default='poetry.lock')
         return p
 
-    def __call__(self) -> int:
-        print(self._args, file=stderr)
-        return 0
+    def __call__(self) -> Bom:
+        # print(self._args, file=stderr)
+        return Bom()
 
 
-class CS_bar(CS_Proto):
+class CS_bar(CS_BomBuilder):
     @staticmethod
     def make_argument_parser(**kwargs: Any) -> argparse.ArgumentParser:
         p = argparse.ArgumentParser(description='description CS_bar TODO', **kwargs)
-        p.add_argument('-i', '--infile', help='I HELP TODO', nargs='?', type=argparse.FileType('rb'), default='-')
+        p.add_argument('-i', '--infile', help='I HELP TODO', nargs=argparse.ONE_OR_MORE,
+                       type=argparse.FileType('rb'), default=[stdin.buffer])
         return p
 
+    def __call__(self) -> Bom:
+        # print(self._args, file=stderr)
+        return Bom()
+
+
+class Command:
+    @staticmethod
+    def make_argument_parser(**kwargs: Any) -> argparse.ArgumentParser:
+        BooleanOptionalAction: Optional[argparse.Action] = getattr(argparse, 'BooleanOptionalAction', None)
+
+        p = argparse.ArgumentParser(
+            description='description TODO',
+            formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+            **kwargs)
+        p.add_argument('--version', action='version', version=__version__)
+        sp = p.add_subparsers(metavar='command', required=True)
+
+        op = argparse.ArgumentParser(add_help=False, formatter_class=p.formatter_class)
+        op.add_argument('-o', '--outfile',
+                        help='O HELP TODO',
+                        dest='outfile',
+                        type=argparse.FileType('w', encoding='utf8'),
+                        default='-')
+        op.add_argument('--schema-version',
+                        dest='schemaVersion',
+                        metavar='SCHEMA_VERSION',
+                        choices=sorted((v.to_version() for v in SchemaVersion), reverse=True),
+                        type=SchemaVersion.from_version,
+                        default=SchemaVersion.V1_4.to_version())
+        op.add_argument('--output-format',
+                        dest='outputFormat',
+                        metavar='OUTPUT_FORMAT',
+                        choices=sorted(f.name for f in OutputFormat),
+                        type=lambda v: OutputFormat[v.upper()],
+                        default=OutputFormat.JSON.name)
+        if BooleanOptionalAction:
+            op.add_argument('--validate',
+                            help='validate HELP TODO',
+                            dest='validate',
+                            action=argparse.BooleanOptionalAction,
+                            default=True)
+        else:
+            vg = op.add_mutually_exclusive_group()
+            vg.add_argument('--validate',
+                            help='validate HELP TODO',
+                            dest='validate',
+                            action='store_true',
+                            default=True)
+            vg.add_argument('--no-validate',
+                            help='no-validate HELP TODO',
+                            dest='validate',
+                            action='store_false')
+            del vg
+
+        sct: str
+        scc: Type[CS_BomBuilder]
+        scd: str
+        for sct, scc, scd in (
+            ('foo', CS_foo, 'foo description'),
+            ('bar', CS_bar, 'bar description'),
+        ):
+            spp = scc.make_argument_parser(add_help=False, formatter_class=p.formatter_class)
+            sp.add_parser(sct,
+                          help=scd,
+                          description=spp.description,
+                          parents=[spp, op],
+                          formatter_class=p.formatter_class
+                          ).set_defaults(bbc=scc)
+            del sct, scc, scd
+
+        return p
+
+    def __init__(self, args: argparse.Namespace) -> None:
+        self._args = args
+
     def __call__(self) -> int:
-        print(self._args, file=stderr)
+        print('generating bom...', file=stderr)
+        try:
+            bom = self._args.bbc(self._args)()
+        except Exception as error:
+            print('Unexpected Error:', error, file=stderr)
+            return 1
+        print('generating bom result...', file=stderr)
+        try:
+            outputter = make_outputter(bom, self._args.outputFormat, self._args.schemaVersion)
+            output = outputter.output_as_string(indent=2)
+        except Exception as error:
+            print('Output Errors:', error, file=stderr)
+            return 1
+        if self._args.validate:
+            print('validating bom result...', file=stderr)
+            validation_error = make_schemabased_validator(
+                outputter.output_format,
+                outputter.schema_version
+            ).validate_str(output)
+            if validation_error is not None:
+                print('Validation Errors:', validation_error.data, file=stderr)
+                return 2
+            print('bom result valid.', file=stderr)
+        else:
+            print('skipped validation.', file=stderr)
+        print('writing to', self._args.outfile.name, file=stderr)
+        written = self._args.outfile.write(output)
+        self._args.outfile.close()
+        # start with a line break, to finalize possibly unterminated output.
+        print('\nwrote', written, 'bytes to', self._args.outfile.name, file=stderr)
         return 0
 
 
-def make_cli(**kwargs: Any) -> argparse.ArgumentParser:
-    p = argparse.ArgumentParser(
-        description='description TODO',
-        **kwargs)
-    p.add_argument('--version', action='version', version=__version__)
-    sp = p.add_subparsers(metavar='command', required=True)
-
-    op = argparse.ArgumentParser(add_help=False)
-    opg = op.add_argument_group(title='OPG TODO')
-    opg.add_argument('-o', '--outfile', help='O HELP TODO', nargs='?', type=argparse.FileType('w', encoding='utf8'), default='-')
-    BooleanOptionalAction: Optional[argparse.Action] = getattr(argparse, 'BooleanOptionalAction', None)
-    if BooleanOptionalAction:
-        opg.add_argument('--validate', help='validate HELP TODO', action=argparse.BooleanOptionalAction, default=True)
-    else:
-        vg = opg.add_mutually_exclusive_group()
-        vg.add_argument('--validate', help='validate HELP TODO', action='store_true', default=True)
-        vg.add_argument('--no-validate', help='no-validate HELP TODO', action='store_false')
-        del vg
-
-    sct: str
-    scc: Type[CS_Proto]
-    scd: str
-    for sct, scc, scd in (
-        ('foo', CS_foo, 'foo description'),
-        ('bar', CS_bar, 'bar description'),
-    ):
-        spp = scc.make_argument_parser(add_help=False)
-        sp.add_parser(sct,
-                      help=scd,
-                      description=spp.description,
-                      parents=[spp, opg]
-                      ).set_defaults(scc=scc)
-        del spp
-
-    return p
-
-
 def main(**kwargs: Any) -> int:
-    args = make_cli(**kwargs).parse_args()
-    return args.scc(args)()
+    return Command(Command.make_argument_parser(**kwargs).parse_args())()

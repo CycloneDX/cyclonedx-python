@@ -13,7 +13,8 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-from ._internal.cli import main
 import sys
+
+from ._internal.cli import main
 
 sys.exit(main(prog=f'python3 -m {__package__}'))
