@@ -14,107 +14,56 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
-import argparse
-import logging
-from abc import ABC, abstractmethod
-from sys import stderr
-from typing import Any, BinaryIO, Dict, List, Optional, TextIO, Type, Union
 
-from cyclonedx.model.bom import Bom
+
+from argparse import ArgumentDefaultsHelpFormatter, ArgumentParser, ArgumentTypeError, FileType
+from typing import TYPE_CHECKING, Any, Dict, Optional, TextIO, Type
+
 from cyclonedx.output import make_outputter
 from cyclonedx.schema import OutputFormat, SchemaVersion
 from cyclonedx.validation import make_schemabased_validator
 
 from .. import __version__
+from .demo import Demo
 
+if TYPE_CHECKING:
+    from argparse import Action
+    from logging import Logger
 
-class CS_BomBuilder(ABC):
-    @staticmethod
-    @abstractmethod
-    def make_argument_parser(**kwargs: Any) -> argparse.ArgumentParser:
-        ...
+    from cyclonedx.model.bom import Bom
 
-    @abstractmethod
-    def __init__(self,
-                 logger: logging.Logger,
-                 **kwargs: Any) -> None:
-        ...
+    from . import BomBuilder
 
-    @abstractmethod
-    def __call__(self, **kwargs: Any) -> Bom:
-        ...
+    BooleanOptionalAction: Optional[Type[Action]]
 
-
-class CS_foo(CS_BomBuilder):
-    @staticmethod
-    def make_argument_parser(**kwargs: Any) -> argparse.ArgumentParser:
-        p = argparse.ArgumentParser(description='description CS_foo TODO', **kwargs)
-        p.add_argument('-i', '--infile',
-                       help='I HELP TODO',
-                       type=argparse.FileType('rb'),
-                       default='poetry.lock')
-        return p
-
-    def __init__(self,
-                 logger: logging.Logger,
-                 **kwargs: Any) -> None:
-        self._logger = logger
-
-    def __call__(self,  # type:ignore[override]
-                 infile: BinaryIO,
-                 **kwargs: Any) -> Bom:
-        self._logger.info('ogogog')
-        return Bom()
-
-
-class CS_bar(CS_BomBuilder):
-    @staticmethod
-    def make_argument_parser(**kwargs: Any) -> argparse.ArgumentParser:
-        p = argparse.ArgumentParser(description='description CS_bar TODO', **kwargs)
-        p.add_argument('-i', '--infile',
-                       help='I HELP TODO.\nSet to "-" to read from STDIN.',
-                       nargs=argparse.ONE_OR_MORE,
-                       type=argparse.FileType('rb'),
-                       default='-')
-        return p
-
-    def __init__(self,
-                 logger: logging.Logger,
-                 **kwargs: Any) -> None:
-        self._logger = logger
-
-    def __call__(self,  # type:ignore[override]
-                 infile: Union[List[BinaryIO], BinaryIO],
-                 **kwargs: Any) -> Bom:
-        infile = infile if isinstance(infile, list) else [infile]
-        self._logger.info('lololol')
-        return Bom()
+try:
+    from argparse import BooleanOptionalAction
+except ImportError:
+    BooleanOptionalAction = None
 
 
 class Command:
     @staticmethod
-    def make_argument_parser(sco: argparse.ArgumentParser, **kwargs: Any) -> argparse.ArgumentParser:
-        BooleanOptionalAction: Optional[argparse.Action] = getattr(argparse, 'BooleanOptionalAction', None)
-
+    def make_argument_parser(sco: ArgumentParser, **kwargs: Any) -> ArgumentParser:
         def mk_OutputFormatCI(value: str) -> OutputFormat:
             try:
                 return OutputFormat[value.upper()]
             except KeyError:
-                raise argparse.ArgumentTypeError(f'unsupported value {value!r}')
+                raise ArgumentTypeError(f'unsupported value {value!r}')
 
-        p = argparse.ArgumentParser(
+        p = ArgumentParser(
             description='description TODO',
-            formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+            formatter_class=ArgumentDefaultsHelpFormatter,
             allow_abbrev=False,
             **kwargs)
         p.add_argument('--version', action='version', version=__version__)
         sp = p.add_subparsers(metavar='command', required=True)
 
-        op = argparse.ArgumentParser(add_help=False)
+        op = ArgumentParser(add_help=False)
         op.add_argument('-o', '--outfile',
                         help='O HELP TODO.\nSet to "-" to write to STDOUT.',
                         dest='outfile',
-                        type=argparse.FileType('w', encoding='utf8'),
+                        type=FileType('w', encoding='utf8'),
                         default='-')
         op.add_argument('--schema-version',
                         help='SV TODO\n'
@@ -136,7 +85,7 @@ class Command:
             op.add_argument('--validate',
                             help='validate HELP TODO',
                             dest='validate',
-                            action=argparse.BooleanOptionalAction,
+                            action=BooleanOptionalAction,
                             default=True)
         else:
             vg = op.add_mutually_exclusive_group()
@@ -151,8 +100,7 @@ class Command:
                             action='store_false')
 
         for sct, scc, scd in (
-            ('foo', CS_foo, 'foo description'),
-            ('bar', CS_bar, 'bar description'),
+            ('demo', Demo, 'Demo TODO'),
         ):
             spp = scc.make_argument_parser(add_help=False)
             sp.add_parser(sct,
@@ -172,11 +120,11 @@ class Command:
         return {k: kwargs[k] for k in kwargs if k not in cls.__OWN_ARGS}
 
     def __init__(self, *,
-                 logger: logging.Logger,
+                 logger: 'Logger',
                  validate: bool,
                  output_format: OutputFormat,
                  schema_version: SchemaVersion,
-                 bbc: Type[CS_BomBuilder],
+                 bbc: Type['BomBuilder'],
                  **kwargs: Any) -> None:
         self._logger = logger
         self._output_format = output_format
@@ -206,7 +154,7 @@ class Command:
         self._logger.info('Wrote %i bytes to %s', written, outfile.name)
         return written
 
-    def make_output(self, bom: Bom) -> str:
+    def make_output(self, bom: 'Bom') -> str:
         self._logger.info('Serializing SBOM: %s/%s', self._schema_version.to_version(), self._output_format.name)
         return make_outputter(
             bom,
@@ -214,7 +162,7 @@ class Command:
             self._schema_version
         ).output_as_string(indent=2)
 
-    def make_bom(self, **kwargs: Any) -> Bom:
+    def make_bom(self, **kwargs: Any) -> 'Bom':
         self._logger.info('Generating SBOM ...')
         return self._bbc(**self._clean_kwargs(kwargs))
 
@@ -227,7 +175,10 @@ class Command:
 
 
 def main(**kwargs: Any) -> int:
-    arg_co = argparse.ArgumentParser(add_help=False)
+    import logging
+    from sys import stderr
+
+    arg_co = ArgumentParser(add_help=False)
     arg_co.add_argument('-v', '--verbose',
                         help='verbose help TODO',
                         dest='verbosity',

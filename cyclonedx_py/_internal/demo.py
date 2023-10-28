@@ -16,34 +16,34 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
-"""
-This package is internal - it is not public API.
-All in here may have breaking change without notice.
-"""
+from argparse import ArgumentParser, FileType
+from typing import TYPE_CHECKING, Any, BinaryIO
 
+from cyclonedx.model.bom import Bom
 
-from abc import ABC, abstractmethod
-from typing import TYPE_CHECKING, Any
+from . import BomBuilder
 
 if TYPE_CHECKING:
-    from argparse import ArgumentParser
     from logging import Logger
 
-    from cyclonedx.model.bom import Bom
 
-
-class BomBuilder(ABC):
+class Demo(BomBuilder):
     @staticmethod
-    @abstractmethod
-    def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':
-        ...
+    def make_argument_parser(**kwargs: Any) -> ArgumentParser:
+        p = ArgumentParser(description='description Demo TODO', **kwargs)
+        p.add_argument('-i', '--infile',
+                       help='I HELP TODO',
+                       type=FileType('rb'),
+                       default='poetry.lock')
+        return p
 
-    @abstractmethod
     def __init__(self,
                  logger: 'Logger',
                  **kwargs: Any) -> None:
-        ...
+        self._logger = logger
 
-    @abstractmethod
-    def __call__(self, **kwargs: Any) -> 'Bom':
-        ...
+    def __call__(self,  # type:ignore[override]
+                 infile: BinaryIO,
+                 **kwargs: Any) -> Bom:
+        self._logger.info('ogogog')
+        return Bom()
