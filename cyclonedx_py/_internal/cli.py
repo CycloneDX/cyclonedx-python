@@ -15,7 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-
+import sys
 from argparse import ArgumentDefaultsHelpFormatter, ArgumentParser, ArgumentTypeError, FileType
 from typing import TYPE_CHECKING, Any, Dict, Optional, TextIO, Type
 
@@ -36,9 +36,9 @@ if TYPE_CHECKING:
 
     BooleanOptionalAction: Optional[Type[Action]]
 
-try:
+if sys.version_info >= (3, 9):
     from argparse import BooleanOptionalAction
-except ImportError:
+else:
     BooleanOptionalAction = None
 
 
