@@ -66,7 +66,7 @@ class Command:
         op.add_argument('-o', '--outfile',
                         help='Output file path for your SBOM (set to "-" to output to STDOUT) (default: %(default)s)',
                         dest='outfile',
-                        type=FileType('w', encoding='utf8'),
+                        type=FileType('wt', encoding='utf8'),
                         default='-')
         op.add_argument('--sv', '--schema-version',
                         help='The CycloneDX schema version for your SBOM'
