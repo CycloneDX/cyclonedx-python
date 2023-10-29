@@ -16,7 +16,7 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
-from argparse import ArgumentParser, FileType, ONE_OR_MORE
+from argparse import ONE_OR_MORE, ArgumentParser, FileType
 from textwrap import dedent
 from typing import TYPE_CHECKING, Any, BinaryIO, List, Union
 
