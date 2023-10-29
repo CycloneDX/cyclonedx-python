@@ -44,13 +44,14 @@ else:
 
 class Command:
     @staticmethod
-    def make_argument_parser(sco: ArgumentParser, **kwargs: Any) -> ArgumentParser:
-        def mk_OutputFormatCI(value: str) -> OutputFormat:
-            try:
-                return OutputFormat[value.upper()]
-            except KeyError:
-                raise ArgumentTypeError(f'unsupported value {value!r}')
+    def _mk_OutputFormatCI(value: str) -> OutputFormat:
+        try:
+            return OutputFormat[value.upper()]
+        except KeyError:
+            raise ArgumentTypeError(f'unsupported value {value!r}')
 
+    @classmethod
+    def make_argument_parser(cls, sco: ArgumentParser, **kwargs: Any) -> ArgumentParser:
         p = ArgumentParser(
             description='description TODO',
             formatter_class=ArgumentDefaultsHelpFormatter,
@@ -79,7 +80,7 @@ class Command:
                         metavar='FORMAT',
                         dest='output_format',
                         choices=OutputFormat,
-                        type=mk_OutputFormatCI,
+                        type=cls._mk_OutputFormatCI,
                         default=OutputFormat.JSON.name)
         if BooleanOptionalAction:
             op.add_argument('--validate',
