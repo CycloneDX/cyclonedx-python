@@ -16,9 +16,9 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
-from argparse import ArgumentParser, FileType
+from argparse import ArgumentParser, FileType, ONE_OR_MORE
 from textwrap import dedent
-from typing import TYPE_CHECKING, Any, BinaryIO
+from typing import TYPE_CHECKING, Any, BinaryIO, List, Union
 
 from cyclonedx.model.bom import Bom
 
@@ -28,10 +28,10 @@ if TYPE_CHECKING:
     from logging import Logger
 
 
-class Demo(BomBuilder):
+class RequirementsBB(BomBuilder):
     @staticmethod
     def make_argument_parser(**kwargs: Any) -> ArgumentParser:
-        p = ArgumentParser(description='description Demo TODO',
+        p = ArgumentParser(description='Build an SBOM based on `requirements.txt`-like structures.',
                            epilog=dedent('''\
                            example usage:
                               %(prog)s -i requirements/*.txt
@@ -39,6 +39,7 @@ class Demo(BomBuilder):
                            **kwargs)
         p.add_argument('-i', '--infile',
                        help='I HELP TODO',
+                       nargs=ONE_OR_MORE,
                        type=FileType('rb'),
                        default='requirements.txt')
         return p
@@ -49,7 +50,9 @@ class Demo(BomBuilder):
         self._logger = logger
 
     def __call__(self,  # type:ignore[override]
-                 infile: BinaryIO,
+                 infile: Union[List[BinaryIO], BinaryIO],
                  **kwargs: Any) -> Bom:
+        if not isinstance(infile, list):
+            infile = [infile]
         self._logger.info('ogogog')
         return Bom()

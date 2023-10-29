@@ -16,8 +16,7 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 import sys
-from argparse import ArgumentDefaultsHelpFormatter, ArgumentParser, ArgumentTypeError, FileType, \
-    RawDescriptionHelpFormatter
+from argparse import ArgumentParser, ArgumentTypeError, FileType, RawDescriptionHelpFormatter
 from typing import TYPE_CHECKING, Any, Dict, Optional, TextIO, Type
 
 from cyclonedx.output import make_outputter
@@ -25,7 +24,7 @@ from cyclonedx.schema import OutputFormat, SchemaVersion
 from cyclonedx.validation import make_schemabased_validator
 
 from .. import __version__
-from .demo import Demo
+from .requirements import RequirementsBB
 
 if TYPE_CHECKING:
     from argparse import Action
@@ -51,36 +50,37 @@ class Command:
         except KeyError:
             raise ArgumentTypeError(f'unsupported value {value!r}')
 
-    class _MyArgFormatter(ArgumentDefaultsHelpFormatter,RawDescriptionHelpFormatter):
-        pass
-
     @classmethod
     def make_argument_parser(cls, sco: ArgumentParser, **kwargs: Any) -> ArgumentParser:
         p = ArgumentParser(
-            description='description TODO',
-            formatter_class=cls._MyArgFormatter,
+            description='Creates CycloneDX Software Bill of Materials (SBOM) from Python projects and environments.',
+            formatter_class=RawDescriptionHelpFormatter,
             allow_abbrev=False,
             **kwargs)
         p.add_argument('--version', action='version', version=__version__)
-        sp = p.add_subparsers(metavar='command', required=True)
+        sp = p.add_subparsers(metavar='command', dest='command',
+                              # not required. if omitted: show help and exit
+                              required=False)
 
         op = ArgumentParser(add_help=False)
         op.add_argument('-o', '--outfile',
-                        help='O HELP TODO.\nSet to "-" to write to STDOUT.',
+                        help='Output file path for your SBOM (set to "-" to output to STDOUT) (default: %(default)s)',
                         dest='outfile',
                         type=FileType('w', encoding='utf8'),
                         default='-')
-        op.add_argument('--schema-version',
-                        help='SV TODO\n'
-                             f'{{choice: {", ".join(sorted((v.to_version() for v in SchemaVersion), reverse=True))}}}',
-                        metavar='',
+        op.add_argument('--sv', '--schema-version',
+                        help='The CycloneDX schema version for your SBOM'
+                             f' {{choice: {", ".join(sorted((v.to_version() for v in SchemaVersion), reverse=True))}}}'
+                             ' (default: %(default)s)',
+                        metavar='VERSION',
                         dest='schema_version',
                         choices=SchemaVersion,
                         type=SchemaVersion.from_version,
                         default=SchemaVersion.V1_4.to_version())
-        op.add_argument('--output-format',
-                        help='OF TODO\n'
-                             f'{{choice: {", ".join(sorted(f.name for f in OutputFormat))}}}',
+        op.add_argument('--of', '--output-format',
+                        help='The output format for your SBOM'
+                             f' {{choice: {", ".join(sorted(f.name for f in OutputFormat))}}}'
+                             ' (default: %(default)s)',
                         metavar='FORMAT',
                         dest='output_format',
                         choices=OutputFormat,
@@ -88,24 +88,24 @@ class Command:
                         default=OutputFormat.JSON.name)
         if BooleanOptionalAction:
             op.add_argument('--validate',
-                            help='validate HELP TODO',
+                            help='Whether validate the result before outputting (default: %(default)s)',
                             dest='validate',
                             action=BooleanOptionalAction,
                             default=True)
         else:
             vg = op.add_mutually_exclusive_group()
             vg.add_argument('--validate',
-                            help='validate HELP TODO',
+                            help='Validate the result before outputting (default: %(default)s)',
                             dest='validate',
                             action='store_true',
                             default=True)
             vg.add_argument('--no-validate',
-                            help='no-validate HELP TODO',
+                            help='Do not validate the result before outputting',
                             dest='validate',
                             action='store_false')
 
         for sct, scc, scd in (
-            ('demo', Demo, 'Demo TODO'),
+            ('requirements', RequirementsBB, 'HELP TODO'),
         ):
             spp = scc.make_argument_parser(add_help=False)
             sp.add_parser(sct,
@@ -186,7 +186,7 @@ def main(**kwargs: Any) -> int:
 
     arg_co = ArgumentParser(add_help=False)
     arg_co.add_argument('-v', '--verbose',
-                        help='verbose help TODO',
+                        help='Increase the verbosity of messages (multiple for more effect) (default: silent)',
                         dest='verbosity',
                         action='count',
                         default=0)
@@ -194,11 +194,15 @@ def main(**kwargs: Any) -> int:
     del arg_co
     args = vars(arg_parser.parse_args())
 
+    if args['command'] is None:
+        arg_parser.print_help()
+        return 1
+
     ll = (logging.ERROR, logging.WARNING, logging.INFO, logging.DEBUG)[min(3, args.pop('verbosity'))]
     lh = logging.StreamHandler(stderr)
     lh.setLevel(ll)
-    lh.setFormatter(logging.Formatter('%(levelname)-8s | %(message)s'))
-    logger = logging.getLogger(__name__)
+    lh.setFormatter(logging.Formatter('%(levelname)-8s | %(name)s > %(message)s'))
+    logger = logging.getLogger('CDX')
     logger.propagate = False
     logger.setLevel(ll)
     logger.addHandler(lh)
