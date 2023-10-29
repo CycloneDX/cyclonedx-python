@@ -149,8 +149,12 @@ class Command:
         ).validate_str(output)
         if validation_error:
             self._logger.debug('Validation Errors: %r', validation_error.data)
-            raise ValueError('output is schema-invalid to '
-                             f'{self._schema_version.to_version()}/{self._output_format.name}')
+            self._logger.error('The output is invalid to schema '
+                               f'{self._schema_version.to_version()}/{self._output_format.name}')
+            self._logger.error('Please report the issue and provide all input data to: '
+                               'https://github.com/CycloneDX/cyclonedx-python/issues/new?'
+                               'template=ValidationError-report.md&labels=ValidationError&title=%5BValidationError%5D')
+            raise ValueError('Output is schema-invalid')
         self._logger.info('Valid.')
         return True
 
@@ -212,6 +216,7 @@ def main(**kwargs: Any) -> int:
     try:
         Command(logger=logger, **args)(**args)
     except Exception as error:
-        logger.exception('Error: %s', error, exc_info=error)
+        logger.debug('Error: %s', error, exc_info=error)
+        logger.critical(f'{error}')
         return 1
     return 0
