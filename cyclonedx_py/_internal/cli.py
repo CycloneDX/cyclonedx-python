@@ -16,7 +16,8 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 import sys
-from argparse import ArgumentDefaultsHelpFormatter, ArgumentParser, ArgumentTypeError, FileType
+from argparse import ArgumentDefaultsHelpFormatter, ArgumentParser, ArgumentTypeError, FileType, \
+    RawDescriptionHelpFormatter
 from typing import TYPE_CHECKING, Any, Dict, Optional, TextIO, Type
 
 from cyclonedx.output import make_outputter
@@ -50,11 +51,14 @@ class Command:
         except KeyError:
             raise ArgumentTypeError(f'unsupported value {value!r}')
 
+    class _MyArgFormatter(ArgumentDefaultsHelpFormatter,RawDescriptionHelpFormatter):
+        pass
+
     @classmethod
     def make_argument_parser(cls, sco: ArgumentParser, **kwargs: Any) -> ArgumentParser:
         p = ArgumentParser(
             description='description TODO',
-            formatter_class=ArgumentDefaultsHelpFormatter,
+            formatter_class=cls._MyArgFormatter,
             allow_abbrev=False,
             **kwargs)
         p.add_argument('--version', action='version', version=__version__)
@@ -107,6 +111,7 @@ class Command:
             sp.add_parser(sct,
                           help=scd,
                           description=spp.description,
+                          epilog=spp.epilog,
                           parents=[spp, op, sco],
                           formatter_class=p.formatter_class,
                           allow_abbrev=p.allow_abbrev,

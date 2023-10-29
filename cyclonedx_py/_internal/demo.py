@@ -17,6 +17,7 @@
 
 
 from argparse import ArgumentParser, FileType
+from textwrap import dedent
 from typing import TYPE_CHECKING, Any, BinaryIO
 
 from cyclonedx.model.bom import Bom
@@ -30,11 +31,16 @@ if TYPE_CHECKING:
 class Demo(BomBuilder):
     @staticmethod
     def make_argument_parser(**kwargs: Any) -> ArgumentParser:
-        p = ArgumentParser(description='description Demo TODO', **kwargs)
+        p = ArgumentParser(description='description Demo TODO',
+                           epilog=dedent('''\
+                           example usage:
+                              %(prog)s -i requirements/*.txt
+                           '''),
+                           **kwargs)
         p.add_argument('-i', '--infile',
                        help='I HELP TODO',
                        type=FileType('rb'),
-                       default='poetry.lock')
+                       default='requirements.txt')
         return p
 
     def __init__(self,
