@@ -38,11 +38,18 @@ class RequirementsBB(BomBuilder):
         from argparse import OPTIONAL, ArgumentParser, FileType
         from textwrap import dedent
 
-        p = ArgumentParser(description='Build an SBOM from requirements file.',
+        p = ArgumentParser(description='Build an SBOM from frozen requirements.',
                            epilog=dedent('''\
                            Example Usage:
+                             • Build an SBOM from a frozen requirements file:
+                                   $ %(prog)s requirements-prod.txt
                              • Merge multiple files and build an SBOM from it:
                                    $ cat requirements/*.txt | %(prog)s -
+                             • Build an inventory for all installed packages:
+                                   $ python3 -m pip freeze --all | %(prog)s -
+                             • Build an inventory from an unfrozen manifest:
+                                   $ python3 -m pip install -r dependencies.txt && \\
+                                     python3 -m pip freeze | %(prog)s -
                            '''),
                            **kwargs)
         p.add_argument('infile',
