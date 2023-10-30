@@ -24,6 +24,8 @@ from cyclonedx.schema import OutputFormat, SchemaVersion
 from cyclonedx.validation import make_schemabased_validator
 
 from .. import __version__
+from .pipenv import PipenvBB
+from .poetry import PoetryBB
 from .requirements import RequirementsBB
 
 if TYPE_CHECKING:
@@ -106,6 +108,8 @@ class Command:
 
         for sct, scc, scd in (
             ('requirements', RequirementsBB, 'HELP TODO'),
+            ('pipenv', PipenvBB, 'HELP TODO'),
+            ('poetry', PoetryBB, 'HELP TODO'),
         ):
             spp = scc.make_argument_parser(add_help=False)
             sp.add_parser(sct,

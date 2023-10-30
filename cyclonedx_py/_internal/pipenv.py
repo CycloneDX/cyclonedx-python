@@ -17,7 +17,6 @@
 
 
 from argparse import OPTIONAL, ArgumentParser, FileType
-from textwrap import dedent
 from typing import TYPE_CHECKING, Any, BinaryIO
 
 from cyclonedx.model.bom import Bom
@@ -28,21 +27,16 @@ if TYPE_CHECKING:
     from logging import Logger
 
 
-class RequirementsBB(BomBuilder):
+class PipenvBB(BomBuilder):
     @staticmethod
     def make_argument_parser(**kwargs: Any) -> ArgumentParser:
-        p = ArgumentParser(description='Build an SBOM from requirements file.',
-                           epilog=dedent('''\
-                           Example Usage:
-                             • Merge multiple files and build an SBOM from it:
-                                   $ cat requirements/*.txt | %(prog)s -
-                           '''),
+        p = ArgumentParser(description='Build an SBOM based on PipEnv',
                            **kwargs)
-        p.add_argument('infile',
+        p.add_argument('lock-file',
                        help='I HELP TODO (default: %(default)s)',
                        nargs=OPTIONAL,
                        type=FileType('rb'),
-                       default='requirements.txt')
+                       default='Pipfile.lock')
         return p
 
     def __init__(self,
@@ -53,5 +47,7 @@ class RequirementsBB(BomBuilder):
     def __call__(self,  # type:ignore[override]
                  infile: BinaryIO,
                  **kwargs: Any) -> Bom:
+        if not isinstance(infile, list):
+            infile = [infile]
         # TODO
         return Bom()
