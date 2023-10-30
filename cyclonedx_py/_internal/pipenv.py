@@ -16,20 +16,27 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
-from argparse import OPTIONAL, ArgumentParser, FileType
 from typing import TYPE_CHECKING, Any, BinaryIO
-
-from cyclonedx.model.bom import Bom
 
 from . import BomBuilder
 
 if TYPE_CHECKING:
+    from argparse import ArgumentParser
     from logging import Logger
+
+    from cyclonedx.model.bom import Bom
+
+
+# !!! be as lazy loading as possible, as greedy as needed
+# TODO: measure with `time -v` for max resident size and see if this changes when global imports are used
 
 
 class PipenvBB(BomBuilder):
+
     @staticmethod
-    def make_argument_parser(**kwargs: Any) -> ArgumentParser:
+    def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':
+        from argparse import OPTIONAL, ArgumentParser, FileType
+
         p = ArgumentParser(description='Build an SBOM based on PipEnv',
                            **kwargs)
         p.add_argument('lock-file',
@@ -46,7 +53,9 @@ class PipenvBB(BomBuilder):
 
     def __call__(self,  # type:ignore[override]
                  infile: BinaryIO,
-                 **kwargs: Any) -> Bom:
+                 **kwargs: Any) -> 'Bom':
+        from cyclonedx.model.bom import Bom
+
         if not isinstance(infile, list):
             infile = [infile]
         # TODO

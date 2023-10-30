@@ -19,9 +19,7 @@ import sys
 from argparse import ArgumentParser, ArgumentTypeError, FileType, RawDescriptionHelpFormatter
 from typing import TYPE_CHECKING, Any, Dict, Optional, TextIO, Type
 
-from cyclonedx.output import make_outputter
 from cyclonedx.schema import OutputFormat, SchemaVersion
-from cyclonedx.validation import make_schemabased_validator
 
 from .. import __version__
 from .pipenv import PipenvBB
@@ -45,6 +43,7 @@ else:
 
 
 class Command:
+
     @staticmethod
     def _mk_OutputFormatCI(value: str) -> OutputFormat:
         try:
@@ -146,7 +145,10 @@ class Command:
         if not self._validate:
             self._logger.warning('Validation skipped.')
             return False
+
         self._logger.info('Validating to schema: %s/%s', self._schema_version.to_version(), self._output_format.name)
+        from cyclonedx.validation import make_schemabased_validator
+
         validation_error = make_schemabased_validator(
             self._output_format,
             self._schema_version
@@ -170,6 +172,8 @@ class Command:
 
     def make_output(self, bom: 'Bom') -> str:
         self._logger.info('Serializing SBOM: %s/%s', self._schema_version.to_version(), self._output_format.name)
+        from cyclonedx.output import make_outputter
+
         return make_outputter(
             bom,
             self._output_format,

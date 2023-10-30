@@ -16,12 +16,6 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
-"""
-This package is internal - it is not public API.
-All in here may have breaking change without notice.
-"""
-
-
 from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING, Any
 
