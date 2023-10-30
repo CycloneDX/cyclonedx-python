@@ -12,14 +12,14 @@ assignees: ''
 Steps to reproduce the behavior:
 
 1. How was _cyclonedx-py_  called?
-   <!-- e.g. `cyclonedx-py --omit=dev ...` -->
+   <!-- e.g. `cyclonedx-py requirements ...` -->
 2. What kind of evidence was processed?
    <!-- upload a complete project or set of other evidences to this issue, or a pastebin of you choice and put the link here. -->
 3. Error report:
    <!-- upload the complete output to this issue, or a pastebin of you choice and put the link here. -->
 4. Expected result:
    <!-- run the original call again
-   with parameters `--no-validate -o -`, 
+   with parameters `--no-validate -vvv -o -`, 
    then upload the output this issue, or to a pastebin of you choice and put the link here. -->
 
 ## Environment
