@@ -1,0 +1,4 @@
+# duplicate call
+
+colorama>=0.4
+colorama==0.4.6

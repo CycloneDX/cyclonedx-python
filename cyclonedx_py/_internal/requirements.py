@@ -88,8 +88,8 @@ class RequirementsBB(BomBuilder):
             download_url = requirement.link and requirement.link.url or None
             bom_ref = requirement.name or 'unknown'
             bom_refs[bom_ref] += 1
-            if bom_refs['bom_ref'] > 1:
-                bom_ref += f'-{bom_refs["bom_ref"]:x}'
+            if bom_refs[bom_ref] > 1:
+                bom_ref += f'-{bom_refs[bom_ref]:x}'
             component = Component(
                 type=ComponentType.LIBRARY,
                 name=requirement.name or 'unknown',

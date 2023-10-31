@@ -1,7 +1,0 @@
-# requirements from VCS -- https://pip.pypa.io/en/stable/reference/requirements-file-format/#example
-
-# named
-urllib3 @ https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip
-
-# unnamed
-http://wxpython.org/Phoenix/snapshot-builds/wxPython_Phoenix-3.0.3.dev1820+49a8884-cp34-none-win_amd64.whl
