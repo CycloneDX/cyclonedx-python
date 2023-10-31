@@ -91,7 +91,7 @@ class RequirementsBB(BomBuilder):
                 purl=PackageURL(type='pypi', name=requirement.name, version=version,
                                 qualifiers=download_url and {'download_url': download_url}
                                 ) if requirement.name else None,
-                bom_ref=requirement.name or None,
+                bom_ref=requirement.name or f'requirements#{requirement.line}',
                 external_references=[
                     ExternalReference(type=ExternalReferenceType.DISTRIBUTION, url=XsUri(download_url))
                 ] if download_url else None

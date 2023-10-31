@@ -22,7 +22,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="d775aa0f-078c-4b6e-9938-b65e549ad7cc">
+    <component type="library" bom-ref="requirements#./myproject/chardet">
       <name>unknown</name>
       <version/>
       <externalReferences>
@@ -31,7 +31,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="842f21b1-23ea-4cfa-a37b-05cb8eff4dcc">
+    <component type="library" bom-ref="requirements#./myproject/requests --hash=sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804">
       <name>unknown</name>
       <version/>
       <hashes>
@@ -43,7 +43,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="b4138bc7-397b-4262-9f40-bb0adbaba540">
+    <component type="library" bom-ref="requirements#-e ./myproject/idna.whl">
       <name>unknown</name>
       <version/>
       <externalReferences>
@@ -54,10 +54,10 @@
     </component>
   </components>
   <dependencies>
-    <dependency ref="842f21b1-23ea-4cfa-a37b-05cb8eff4dcc"/>
-    <dependency ref="b4138bc7-397b-4262-9f40-bb0adbaba540"/>
-    <dependency ref="d775aa0f-078c-4b6e-9938-b65e549ad7cc"/>
     <dependency ref="foo"/>
     <dependency ref="numpy"/>
+    <dependency ref="requirements#-e ./myproject/idna.whl"/>
+    <dependency ref="requirements#./myproject/chardet"/>
+    <dependency ref="requirements#./myproject/requests --hash=sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804"/>
   </dependencies>
 </bom>

@@ -21,7 +21,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="e7a4a3e9-4127-471b-ab91-51d048ab7516">
+    <component type="library" bom-ref="requirements#./myproject/chardet">
       <name>unknown</name>
       <version/>
       <externalReferences>
@@ -30,7 +30,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="f24a231f-842e-4fcf-a580-0b8c870aad05">
+    <component type="library" bom-ref="requirements#./myproject/requests --hash=sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804">
       <name>unknown</name>
       <version/>
       <hashes>
@@ -42,7 +42,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="f07e11a9-901c-4c64-a988-c1a34b3d530d">
+    <component type="library" bom-ref="requirements#-e ./myproject/idna.whl">
       <name>unknown</name>
       <version/>
       <externalReferences>

@@ -27,7 +27,7 @@
       "version": "1.9.2"
     },
     {
-      "bom-ref": "4ea17845-3a27-4384-afd3-dac51f5e34a6",
+      "bom-ref": "requirements#./myproject/chardet",
       "externalReferences": [
         {
           "type": "distribution",
@@ -39,7 +39,7 @@
       "version": ""
     },
     {
-      "bom-ref": "b94348cb-157e-4aa8-8acc-ae4e884c1ee3",
+      "bom-ref": "requirements#./myproject/requests --hash=sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804",
       "externalReferences": [
         {
           "type": "distribution",
@@ -57,7 +57,7 @@
       "version": ""
     },
     {
-      "bom-ref": "68c97a06-ff16-48b6-bfd1-85fe465b7a65",
+      "bom-ref": "requirements#-e ./myproject/idna.whl",
       "externalReferences": [
         {
           "type": "distribution",
@@ -71,19 +71,19 @@
   ],
   "dependencies": [
     {
-      "ref": "4ea17845-3a27-4384-afd3-dac51f5e34a6"
-    },
-    {
-      "ref": "68c97a06-ff16-48b6-bfd1-85fe465b7a65"
-    },
-    {
-      "ref": "b94348cb-157e-4aa8-8acc-ae4e884c1ee3"
-    },
-    {
       "ref": "foo"
     },
     {
       "ref": "numpy"
+    },
+    {
+      "ref": "requirements#-e ./myproject/idna.whl"
+    },
+    {
+      "ref": "requirements#./myproject/chardet"
+    },
+    {
+      "ref": "requirements#./myproject/requests --hash=sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804"
     }
   ],
   "metadata": {},
