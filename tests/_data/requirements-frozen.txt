@@ -1,0 +1,3 @@
+# all dependencies are pinned to an exact version
+chardet==5.2.0
+colorama==0.4.6

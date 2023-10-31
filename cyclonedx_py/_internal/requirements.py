@@ -48,7 +48,7 @@ class RequirementsBB(BomBuilder):
                              • Build an inventory for all installed packages:
                                    $ python3 -m pip freeze --all | %(prog)s -
                              • Build an inventory from an unfrozen manifest:
-                                   $ python3 -m pip install -r dependencies.txt && \\
+                                   $ python3 -m pip install -r dependencies.txt &&\\
                                      python3 -m pip freeze | %(prog)s -
                            '''),
                            **kwargs)
@@ -67,8 +67,46 @@ class RequirementsBB(BomBuilder):
     def __call__(self,  # type:ignore[override]
                  infile: BinaryIO,
                  **kwargs: Any) -> 'Bom':
+        from collections import Counter
+
+        from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
         from cyclonedx.model.bom import Bom
+        from cyclonedx.model.component import Component, ComponentType
+        from packageurl import PackageURL
+        from pip_requirements_parser import RequirementsFile
 
-        # TODO
+        from .utils.io import io2file
 
-        return Bom()
+        bom = Bom()
+        bom_refs = Counter()
+
+        with io2file(infile) as ff:
+            requirements = RequirementsFile.from_file(ff.name).requirements
+        for requirement in requirements:
+            name = requirement.name or None  # paths/urls may have no name
+            version = requirement.get_pinned_version or None
+            download_url = requirement.link.url if requirement.link else None
+            bom_ref = name
+            bom_refs[bom_ref] += 1
+            if bom_refs['bom_ref'] > 1:
+                bom_ref += f'-{bom_refs["bom_ref"]:x}'
+            component = Component(
+                type=ComponentType.LIBRARY,
+                name=name or 'unknown',
+                version=version,
+                hashes=map(HashType.from_composite_str, requirement.hash_options),
+                purl=PackageURL(type='pypi', name=name, version=version,
+                                qualifiers={'download_url': download_url} if download_url else None
+                                ) if name else None,
+                bom_ref=bom_ref,
+                external_references=[
+                    ExternalReference(type=ExternalReferenceType.DISTRIBUTION, url=XsUri(download_url))
+                ] if download_url else None
+            )
+
+            self._logger.debug('Add component: %r', component)
+            if not component.version:
+                self._logger.warning('Component has no version: %r', component)
+            bom.components.add(component)
+
+        return bom

@@ -1,0 +1,7 @@
+# requirements from local path
+
+# named
+foo @ ../foo
+
+# unnamed
+./downloads/numpy-1.9.2-cp34-none-win32.whl
