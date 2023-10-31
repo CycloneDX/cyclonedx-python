@@ -59,12 +59,12 @@ class RequirementsBB(BomBuilder):
                        default='requirements.txt')
         return p
 
-    def __init__(self,
+    def __init__(self, *,
                  logger: 'Logger',
                  **kwargs: Any) -> None:
         self._logger = logger
 
-    def __call__(self,  # type:ignore[override]
+    def __call__(self, *,  # type:ignore[override]
                  infile: BinaryIO,
                  **kwargs: Any) -> 'Bom':
         from collections import Counter

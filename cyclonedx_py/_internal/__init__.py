@@ -30,15 +30,15 @@ class BomBuilder(ABC):
 
     @staticmethod
     @abstractmethod
-    def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':
+    def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':  # pragma: no cover
         ...
 
     @abstractmethod
-    def __init__(self,
+    def __init__(self, *,
                  logger: 'Logger',
-                 **kwargs: Any) -> None:
+                 **kwargs: Any) -> None:  # pragma: no cover
         ...
 
     @abstractmethod
-    def __call__(self, **kwargs: Any) -> 'Bom':
+    def __call__(self, **kwargs: Any) -> 'Bom':  # pragma: no cover
         ...

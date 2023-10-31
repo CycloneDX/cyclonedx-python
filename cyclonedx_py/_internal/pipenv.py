@@ -46,12 +46,12 @@ class PipenvBB(BomBuilder):
                        default='Pipfile.lock')
         return p
 
-    def __init__(self,
+    def __init__(self, *,
                  logger: 'Logger',
                  **kwargs: Any) -> None:
         self._logger = logger
 
-    def __call__(self,  # type:ignore[override]
+    def __call__(self, *,  # type:ignore[override]
                  infile: BinaryIO,
                  **kwargs: Any) -> 'Bom':
         from cyclonedx.model.bom import Bom
