@@ -78,7 +78,6 @@ class RequirementsBB(BomBuilder):
         from .utils.io import io2textfile
 
         bom = Bom()
-        bom_refs: Dict[str, int] = Counter()
 
         # no support for `include_nested` intended, so a temp file instead the original path is fine
         with io2textfile(infile) as ff:
@@ -86,10 +85,6 @@ class RequirementsBB(BomBuilder):
         for requirement in requirements:
             version = requirement.get_pinned_version or None
             download_url = requirement.link and requirement.link.url or None
-            bom_ref = requirement.name or 'unknown'
-            bom_refs[bom_ref] += 1
-            if bom_refs[bom_ref] > 1:
-                bom_ref += f'-{bom_refs[bom_ref]:x}'
             component = Component(
                 type=ComponentType.LIBRARY,
                 name=requirement.name or 'unknown',
@@ -98,7 +93,7 @@ class RequirementsBB(BomBuilder):
                 purl=PackageURL(type='pypi', name=requirement.name, version=version,
                                 qualifiers=download_url and {'download_url': download_url}
                                 ) if requirement.name else None,
-                bom_ref=bom_ref,
+                bom_ref=requirement.name or None,
                 external_references=[
                     ExternalReference(type=ExternalReferenceType.DISTRIBUTION, url=XsUri(download_url))
                 ] if download_url else None
