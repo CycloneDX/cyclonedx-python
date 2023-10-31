@@ -1,0 +1,6 @@
+# This is a regression test for https://github.com/CycloneDX/cyclonedx-python/issues/448
+# This file is in `cp1252` encoding - on purpose
+# This file uses CRLF for line endings - on purpose
+# some encoding specific characters: ���������������������������
+
+requirements_parser==0.2.0

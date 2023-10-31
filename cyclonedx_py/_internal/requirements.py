@@ -80,24 +80,24 @@ class RequirementsBB(BomBuilder):
         bom = Bom()
         bom_refs = Counter()
 
+        # no support for `include_nested` intended, so a temp file instead the original path is fine
         with io2file(infile) as ff:
-            requirements = RequirementsFile.from_file(ff.name).requirements
+            requirements = RequirementsFile.from_file(ff.name, include_nested=False).requirements
         for requirement in requirements:
-            name = requirement.name or None  # paths/urls may have no name
             version = requirement.get_pinned_version or None
-            download_url = requirement.link.url if requirement.link else None
-            bom_ref = name
+            download_url = requirement.link and requirement.link.url or None
+            bom_ref = requirement.name or 'unknown'
             bom_refs[bom_ref] += 1
             if bom_refs['bom_ref'] > 1:
                 bom_ref += f'-{bom_refs["bom_ref"]:x}'
             component = Component(
                 type=ComponentType.LIBRARY,
-                name=name or 'unknown',
+                name=requirement.name or 'unknown',
                 version=version,
                 hashes=map(HashType.from_composite_str, requirement.hash_options),
-                purl=PackageURL(type='pypi', name=name, version=version,
-                                qualifiers={'download_url': download_url} if download_url else None
-                                ) if name else None,
+                purl=PackageURL(type='pypi', name=requirement.name, version=version,
+                                qualifiers=download_url and {'download_url': download_url}
+                                ) if requirement.name else None,
                 bom_ref=bom_ref,
                 external_references=[
                     ExternalReference(type=ExternalReferenceType.DISTRIBUTION, url=XsUri(download_url))

@@ -1,0 +1,3 @@
+*.bin       binary
+*.txt.bin   binary diff=text
+

@@ -34,7 +34,7 @@ def io2str(io: BinaryIO) -> str:
 
 
 def io2file(io: BinaryIO) -> '_TemporaryFileWrapper':
-    tf = NamedTemporaryFile('wt', encoding='utf8')
-    tf.write(io2str(io))
+    tf = NamedTemporaryFile('wb')
+    tf.write(io.read())
     tf.flush()
     return tf
