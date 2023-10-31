@@ -1,0 +1,49 @@
+{
+  "components": [
+    {
+      "bom-ref": "certifi",
+      "name": "certifi",
+      "purl": "pkg:pypi/certifi",
+      "type": "library",
+      "version": ""
+    },
+    {
+      "bom-ref": "chardet",
+      "name": "chardet",
+      "purl": "pkg:pypi/chardet",
+      "type": "library",
+      "version": ""
+    },
+    {
+      "bom-ref": "urllib3",
+      "name": "urllib3",
+      "purl": "pkg:pypi/urllib3",
+      "type": "library",
+      "version": ""
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "certifi"
+    },
+    {
+      "ref": "chardet"
+    },
+    {
+      "ref": "urllib3"
+    }
+  ],
+  "metadata": {
+    "tools": [
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "5.0.1"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.2b.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.2"
+}

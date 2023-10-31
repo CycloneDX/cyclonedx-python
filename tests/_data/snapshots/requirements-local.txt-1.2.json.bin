@@ -1,0 +1,102 @@
+{
+  "components": [
+    {
+      "bom-ref": "foo",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "file://../foo"
+        }
+      ],
+      "name": "foo",
+      "purl": "pkg:pypi/foo?download_url=file://../foo",
+      "type": "library",
+      "version": ""
+    },
+    {
+      "bom-ref": "numpy",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "./downloads/numpy-1.9.2-cp34-none-win32.whl"
+        }
+      ],
+      "name": "numpy",
+      "purl": "pkg:pypi/numpy@1.9.2?download_url=./downloads/numpy-1.9.2-cp34-none-win32.whl",
+      "type": "library",
+      "version": "1.9.2"
+    },
+    {
+      "bom-ref": "unknown",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "./myproject/chardet"
+        }
+      ],
+      "name": "unknown",
+      "type": "library",
+      "version": ""
+    },
+    {
+      "bom-ref": "unknown-2",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "./myproject/requests"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804"
+        }
+      ],
+      "name": "unknown",
+      "type": "library",
+      "version": ""
+    },
+    {
+      "bom-ref": "unknown-3",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "./myproject/idna.whl"
+        }
+      ],
+      "name": "unknown",
+      "type": "library",
+      "version": ""
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "foo"
+    },
+    {
+      "ref": "numpy"
+    },
+    {
+      "ref": "unknown"
+    },
+    {
+      "ref": "unknown-2"
+    },
+    {
+      "ref": "unknown-3"
+    }
+  ],
+  "metadata": {
+    "tools": [
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "5.0.1"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.2b.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.2"
+}

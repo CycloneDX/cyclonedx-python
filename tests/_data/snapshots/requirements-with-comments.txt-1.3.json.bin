@@ -1,0 +1,69 @@
+{
+  "components": [
+    {
+      "bom-ref": "certifi",
+      "name": "certifi",
+      "purl": "pkg:pypi/certifi@2021.5.30",
+      "type": "library",
+      "version": "2021.5.30"
+    },
+    {
+      "bom-ref": "chardet",
+      "name": "chardet",
+      "purl": "pkg:pypi/chardet@4.0.0",
+      "type": "library",
+      "version": "4.0.0"
+    },
+    {
+      "bom-ref": "idna",
+      "name": "idna",
+      "purl": "pkg:pypi/idna@2.10",
+      "type": "library",
+      "version": "2.10"
+    },
+    {
+      "bom-ref": "requests",
+      "name": "requests",
+      "purl": "pkg:pypi/requests@2.25.1",
+      "type": "library",
+      "version": "2.25.1"
+    },
+    {
+      "bom-ref": "urllib3",
+      "name": "urllib3",
+      "purl": "pkg:pypi/urllib3@1.26.5",
+      "type": "library",
+      "version": "1.26.5"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "certifi"
+    },
+    {
+      "ref": "chardet"
+    },
+    {
+      "ref": "idna"
+    },
+    {
+      "ref": "requests"
+    },
+    {
+      "ref": "urllib3"
+    }
+  ],
+  "metadata": {
+    "tools": [
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "5.0.1"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.3a.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.3"
+}

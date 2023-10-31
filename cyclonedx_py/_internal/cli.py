@@ -17,7 +17,7 @@
 
 import sys
 from argparse import ArgumentParser, ArgumentTypeError, FileType, RawDescriptionHelpFormatter
-from typing import TYPE_CHECKING, Any, Dict, Optional, TextIO, Type
+from typing import TYPE_CHECKING, Any, Dict, List, Optional, TextIO, Type
 
 from cyclonedx.schema import OutputFormat, SchemaVersion
 
@@ -26,7 +26,7 @@ from .pipenv import PipenvBB
 from .poetry import PoetryBB
 from .requirements import RequirementsBB
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from argparse import Action
     from logging import Logger
 
@@ -192,7 +192,7 @@ class Command:
         self.write(output, outfile)
 
 
-def main(**kwargs: Any) -> int:
+def main(*, args: Optional[List[str]] = None, **kwargs: Any) -> int:
     import logging
     from sys import stderr
 
@@ -204,7 +204,7 @@ def main(**kwargs: Any) -> int:
                         default=0)
     arg_parser = Command.make_argument_parser(sco=arg_co, **kwargs)
     del arg_co
-    args = vars(arg_parser.parse_args())
+    args = vars(arg_parser.parse_args(args))
 
     if args['command'] is None:
         arg_parser.print_help()

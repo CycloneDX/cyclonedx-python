@@ -20,7 +20,7 @@ from typing import TYPE_CHECKING, Any, BinaryIO
 
 from . import BomBuilder
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from argparse import ArgumentParser
     from logging import Logger
 
@@ -75,13 +75,13 @@ class RequirementsBB(BomBuilder):
         from packageurl import PackageURL
         from pip_requirements_parser import RequirementsFile
 
-        from .utils.io import io2file
+        from .utils.io import io2textfile
 
         bom = Bom()
         bom_refs = Counter()
 
         # no support for `include_nested` intended, so a temp file instead the original path is fine
-        with io2file(infile) as ff:
+        with io2textfile(infile) as ff:
             requirements = RequirementsFile.from_file(ff.name, include_nested=False).requirements
         for requirement in requirements:
             version = requirement.get_pinned_version or None

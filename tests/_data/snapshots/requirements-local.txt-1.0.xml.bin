@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.0" version="1">
+  <components>
+    <component type="library">
+      <name>foo</name>
+      <version/>
+      <purl>pkg:pypi/foo?download_url=file://../foo</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>numpy</name>
+      <version>1.9.2</version>
+      <purl>pkg:pypi/numpy@1.9.2?download_url=./downloads/numpy-1.9.2-cp34-none-win32.whl</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>unknown</name>
+      <version/>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>unknown</name>
+      <version/>
+      <hashes>
+        <hash alg="SHA-256">27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804</hash>
+      </hashes>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>unknown</name>
+      <version/>
+      <modified>false</modified>
+    </component>
+  </components>
+</bom>

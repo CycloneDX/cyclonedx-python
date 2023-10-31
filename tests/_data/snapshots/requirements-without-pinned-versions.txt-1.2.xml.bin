@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.2" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>5.0.1</version>
+      </tool>
+    </tools>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="certifi">
+      <name>certifi</name>
+      <version/>
+      <purl>pkg:pypi/certifi</purl>
+    </component>
+    <component type="library" bom-ref="chardet">
+      <name>chardet</name>
+      <version/>
+      <purl>pkg:pypi/chardet</purl>
+    </component>
+    <component type="library" bom-ref="urllib3">
+      <name>urllib3</name>
+      <version/>
+      <purl>pkg:pypi/urllib3</purl>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="certifi"/>
+    <dependency ref="chardet"/>
+    <dependency ref="urllib3"/>
+  </dependencies>
+</bom>

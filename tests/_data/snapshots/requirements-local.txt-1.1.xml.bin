@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.1" version="1">
+  <components>
+    <component type="library" bom-ref="foo">
+      <name>foo</name>
+      <version/>
+      <purl>pkg:pypi/foo?download_url=file://../foo</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>file://../foo</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="numpy">
+      <name>numpy</name>
+      <version>1.9.2</version>
+      <purl>pkg:pypi/numpy@1.9.2?download_url=./downloads/numpy-1.9.2-cp34-none-win32.whl</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>./downloads/numpy-1.9.2-cp34-none-win32.whl</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="unknown">
+      <name>unknown</name>
+      <version/>
+      <externalReferences>
+        <reference type="distribution">
+          <url>./myproject/chardet</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="unknown-2">
+      <name>unknown</name>
+      <version/>
+      <hashes>
+        <hash alg="SHA-256">27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804</hash>
+      </hashes>
+      <externalReferences>
+        <reference type="distribution">
+          <url>./myproject/requests</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="unknown-3">
+      <name>unknown</name>
+      <version/>
+      <externalReferences>
+        <reference type="distribution">
+          <url>./myproject/idna.whl</url>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+</bom>

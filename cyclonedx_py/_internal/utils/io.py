@@ -21,7 +21,7 @@ from typing import TYPE_CHECKING, BinaryIO
 
 from chardet import detect as chardetect
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from tempfile import _TemporaryFileWrapper
 
 
@@ -33,8 +33,8 @@ def io2str(io: BinaryIO) -> str:
     return data.decode(encoding)
 
 
-def io2file(io: BinaryIO) -> '_TemporaryFileWrapper':
-    tf = NamedTemporaryFile('wb')
-    tf.write(io.read())
+def io2textfile(io: BinaryIO) -> '_TemporaryFileWrapper':
+    tf = NamedTemporaryFile('wt', encoding='utf8')
+    tf.write(io2str(io))
     tf.flush()
     return tf

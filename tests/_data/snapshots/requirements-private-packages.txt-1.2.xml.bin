@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.2" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>5.0.1</version>
+      </tool>
+    </tools>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="mypackage">
+      <name>mypackage</name>
+      <version>1.2.3</version>
+      <purl>pkg:pypi/mypackage@1.2.3</purl>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="mypackage"/>
+  </dependencies>
+</bom>

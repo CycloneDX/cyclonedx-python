@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.1" version="1">
+  <components>
+    <component type="library" bom-ref="certifi">
+      <name>certifi</name>
+      <version/>
+      <purl>pkg:pypi/certifi</purl>
+    </component>
+    <component type="library" bom-ref="chardet">
+      <name>chardet</name>
+      <version/>
+      <purl>pkg:pypi/chardet</purl>
+    </component>
+    <component type="library" bom-ref="urllib3">
+      <name>urllib3</name>
+      <version/>
+      <purl>pkg:pypi/urllib3</purl>
+    </component>
+  </components>
+</bom>

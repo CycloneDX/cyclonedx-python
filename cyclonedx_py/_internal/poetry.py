@@ -20,7 +20,7 @@ from typing import TYPE_CHECKING, Any, BinaryIO
 
 from . import BomBuilder
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from argparse import ArgumentParser
     from logging import Logger
 

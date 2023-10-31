@@ -1,0 +1,79 @@
+{
+  "components": [
+    {
+      "bom-ref": "certifi",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "2bbf76fd432960138b3ef6dda3dde0544f27cbf8546c458e60baf371917ba9ee"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "50b1e4f8446b06f41be7dd6338db18e0990601dce795c2b1686458aa7e8fa7d8"
+        }
+      ],
+      "name": "certifi",
+      "purl": "pkg:pypi/certifi@2021.5.30",
+      "type": "library",
+      "version": "2021.5.30"
+    },
+    {
+      "bom-ref": "requests",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "c210084e36a42ae6b9219e00e48287def368a26d03a048ddad7bfee44f75871e"
+        }
+      ],
+      "name": "requests",
+      "purl": "pkg:pypi/requests@2.25.1",
+      "type": "library",
+      "version": "2.25.1"
+    },
+    {
+      "bom-ref": "urllib3",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "753a0374df26658f99d826cfe40394a686d05985786d946fbe4165b5148f5a7c"
+        },
+        {
+          "alg": "SHA-256",
+          "content": "a7acd0977125325f516bda9735fa7142b909a8d01e8b2e4c8108d0984e6e0098"
+        }
+      ],
+      "name": "urllib3",
+      "purl": "pkg:pypi/urllib3@1.26.5",
+      "type": "library",
+      "version": "1.26.5"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "certifi"
+    },
+    {
+      "ref": "requests"
+    },
+    {
+      "ref": "urllib3"
+    }
+  ],
+  "metadata": {
+    "tools": [
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "5.0.1"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.2b.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.2"
+}

@@ -14,31 +14,3 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
-
-
-from abc import ABC, abstractmethod
-from typing import TYPE_CHECKING, Any
-
-if TYPE_CHECKING:  # pragma: no cover
-    from argparse import ArgumentParser
-    from logging import Logger
-
-    from cyclonedx.model.bom import Bom
-
-
-class BomBuilder(ABC):
-
-    @staticmethod
-    @abstractmethod
-    def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':
-        ...
-
-    @abstractmethod
-    def __init__(self,
-                 logger: 'Logger',
-                 **kwargs: Any) -> None:
-        ...
-
-    @abstractmethod
-    def __call__(self, **kwargs: Any) -> 'Bom':
-        ...

@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.0" version="1">
+  <components>
+    <component type="library">
+      <name>packageurl-python</name>
+      <version/>
+      <purl>pkg:pypi/packageurl-python</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>requirements_parser</name>
+      <version/>
+      <purl>pkg:pypi/requirements-parser</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>setuptools</name>
+      <version/>
+      <purl>pkg:pypi/setuptools</purl>
+      <modified>false</modified>
+    </component>
+  </components>
+</bom>

@@ -1,0 +1,49 @@
+{
+  "components": [
+    {
+      "bom-ref": "packageurl-python",
+      "name": "packageurl-python",
+      "purl": "pkg:pypi/packageurl-python",
+      "type": "library",
+      "version": ""
+    },
+    {
+      "bom-ref": "requirements_parser",
+      "name": "requirements_parser",
+      "purl": "pkg:pypi/requirements-parser",
+      "type": "library",
+      "version": ""
+    },
+    {
+      "bom-ref": "setuptools",
+      "name": "setuptools",
+      "purl": "pkg:pypi/setuptools",
+      "type": "library",
+      "version": ""
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "packageurl-python"
+    },
+    {
+      "ref": "requirements_parser"
+    },
+    {
+      "ref": "setuptools"
+    }
+  ],
+  "metadata": {
+    "tools": [
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "5.0.1"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.3a.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.3"
+}

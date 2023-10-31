@@ -1,0 +1,80 @@
+{
+  "components": [
+    {
+      "bom-ref": "certifi",
+      "name": "certifi",
+      "purl": "pkg:pypi/certifi",
+      "type": "library"
+    },
+    {
+      "bom-ref": "chardet",
+      "name": "chardet",
+      "purl": "pkg:pypi/chardet",
+      "type": "library"
+    },
+    {
+      "bom-ref": "urllib3",
+      "name": "urllib3",
+      "purl": "pkg:pypi/urllib3",
+      "type": "library"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "certifi"
+    },
+    {
+      "ref": "chardet"
+    },
+    {
+      "ref": "urllib3"
+    }
+  ],
+  "metadata": {
+    "tools": [
+      {
+        "externalReferences": [
+          {
+            "type": "build-system",
+            "url": "https://github.com/CycloneDX/cyclonedx-python-lib/actions"
+          },
+          {
+            "type": "distribution",
+            "url": "https://pypi.org/project/cyclonedx-python-lib/"
+          },
+          {
+            "type": "documentation",
+            "url": "https://cyclonedx.github.io/cyclonedx-python-lib/"
+          },
+          {
+            "type": "issue-tracker",
+            "url": "https://github.com/CycloneDX/cyclonedx-python-lib/issues"
+          },
+          {
+            "type": "license",
+            "url": "https://github.com/CycloneDX/cyclonedx-python-lib/blob/main/LICENSE"
+          },
+          {
+            "type": "release-notes",
+            "url": "https://github.com/CycloneDX/cyclonedx-python-lib/blob/main/CHANGELOG.md"
+          },
+          {
+            "type": "vcs",
+            "url": "https://github.com/CycloneDX/cyclonedx-python-lib"
+          },
+          {
+            "type": "website",
+            "url": "https://cyclonedx.org"
+          }
+        ],
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "5.0.1"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.4.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.4"
+}
