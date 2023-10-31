@@ -15,6 +15,8 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
+
+import logging
 import sys
 from argparse import ArgumentParser, ArgumentTypeError, FileType, RawDescriptionHelpFormatter
 from typing import TYPE_CHECKING, Any, Dict, List, Optional, TextIO, Type
@@ -192,10 +194,7 @@ class Command:
         self.write(output, outfile)
 
 
-def main(*, args: Optional[List[str]] = None, **kwargs: Any) -> int:
-    import logging
-    from sys import stderr
-
+def main(*, argv: Optional[List[str]] = None, **kwargs: Any) -> int:
     arg_co = ArgumentParser(add_help=False)
     arg_co.add_argument('-v', '--verbose',
                         help='Increase the verbosity of messages (multiple for more effect) (default: silent)',
@@ -204,14 +203,15 @@ def main(*, args: Optional[List[str]] = None, **kwargs: Any) -> int:
                         default=0)
     arg_parser = Command.make_argument_parser(sco=arg_co, **kwargs)
     del arg_co
-    args = vars(arg_parser.parse_args(args))
-
+    args = vars(arg_parser.parse_args(argv))
     if args['command'] is None:
+        # print the help page on error, instead of usage
         arg_parser.print_help()
         return 1
+    del arg_parser, argv
 
     ll = (logging.ERROR, logging.WARNING, logging.INFO, logging.DEBUG)[min(3, args.pop('verbosity'))]
-    lh = logging.StreamHandler(stderr)
+    lh = logging.StreamHandler(sys.stderr)
     lh.setLevel(ll)
     lh.setFormatter(logging.Formatter('%(levelname)-8s | %(name)s > %(message)s'))
     logger = logging.getLogger('CDX')

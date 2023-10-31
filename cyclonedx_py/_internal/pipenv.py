@@ -56,7 +56,5 @@ class PipenvBB(BomBuilder):
                  **kwargs: Any) -> 'Bom':
         from cyclonedx.model.bom import Bom
 
-        if not isinstance(infile, list):
-            infile = [infile]
         # TODO
         return Bom()

@@ -16,7 +16,7 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
-from typing import TYPE_CHECKING, Any, BinaryIO
+from typing import TYPE_CHECKING, Any, BinaryIO, Dict
 
 from . import BomBuilder
 
@@ -73,12 +73,12 @@ class RequirementsBB(BomBuilder):
         from cyclonedx.model.bom import Bom
         from cyclonedx.model.component import Component, ComponentType
         from packageurl import PackageURL
-        from pip_requirements_parser import RequirementsFile
+        from pip_requirements_parser import RequirementsFile  # type: ignore[import-untyped]
 
         from .utils.io import io2textfile
 
         bom = Bom()
-        bom_refs = Counter()
+        bom_refs: Dict[str, int] = Counter()
 
         # no support for `include_nested` intended, so a temp file instead the original path is fine
         with io2textfile(infile) as ff:
