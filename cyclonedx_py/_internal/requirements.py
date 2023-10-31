@@ -14,8 +14,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
-
-
+import os
 from typing import TYPE_CHECKING, Any, BinaryIO
 
 from . import BomBuilder
@@ -67,6 +66,8 @@ class RequirementsBB(BomBuilder):
     def __call__(self, *,  # type:ignore[override]
                  infile: BinaryIO,
                  **kwargs: Any) -> 'Bom':
+        from os import unlink
+
         from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
         from cyclonedx.model.component import Component, ComponentType
         from packageurl import PackageURL
@@ -78,8 +79,11 @@ class RequirementsBB(BomBuilder):
         bom = make_bom()
 
         # no support for `include_nested` intended, so a temp file instead the original path is fine
-        with io2textfile(infile) as ff:
-            requirements = RequirementsFile.from_file(ff.name, include_nested=False).requirements
+        ff = io2textfile(infile)
+        try:
+            requirements = RequirementsFile.from_file(ff, include_nested=False).requirements
+        finally:
+            unlink(ff)
         for requirement in requirements:
             version = requirement.get_pinned_version or None
             download_url = requirement.link and requirement.link.url or None

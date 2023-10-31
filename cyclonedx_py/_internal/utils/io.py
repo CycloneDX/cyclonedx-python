@@ -33,10 +33,9 @@ def io2str(io: BinaryIO) -> str:
     return data.decode(encoding)
 
 
-def io2textfile(io: BinaryIO) -> '_TemporaryFileWrapper[str]':
-    # prevent
-    tf = NamedTemporaryFile('w+t', encoding='utf8')
+def io2textfile(io: BinaryIO) -> str:
+    # prevent issues on windows: https://github.com/python/cpython/issues/58451
+    tf = NamedTemporaryFile('wt', encoding='utf8', delete=False)
     tf.write(io2str(io))
-    tf.flush()
-    tf.seek(0, 0)
-    return tf
+    tf.close()
+    return tf.name
