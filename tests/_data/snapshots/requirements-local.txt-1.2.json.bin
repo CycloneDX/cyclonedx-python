@@ -27,7 +27,7 @@
       "version": "1.9.2"
     },
     {
-      "bom-ref": "unknown",
+      "bom-ref": "4ea17845-3a27-4384-afd3-dac51f5e34a6",
       "externalReferences": [
         {
           "type": "distribution",
@@ -39,7 +39,7 @@
       "version": ""
     },
     {
-      "bom-ref": "unknown-2",
+      "bom-ref": "b94348cb-157e-4aa8-8acc-ae4e884c1ee3",
       "externalReferences": [
         {
           "type": "distribution",
@@ -57,7 +57,7 @@
       "version": ""
     },
     {
-      "bom-ref": "unknown-3",
+      "bom-ref": "68c97a06-ff16-48b6-bfd1-85fe465b7a65",
       "externalReferences": [
         {
           "type": "distribution",
@@ -71,30 +71,22 @@
   ],
   "dependencies": [
     {
+      "ref": "4ea17845-3a27-4384-afd3-dac51f5e34a6"
+    },
+    {
+      "ref": "68c97a06-ff16-48b6-bfd1-85fe465b7a65"
+    },
+    {
+      "ref": "b94348cb-157e-4aa8-8acc-ae4e884c1ee3"
+    },
+    {
       "ref": "foo"
     },
     {
       "ref": "numpy"
-    },
-    {
-      "ref": "unknown"
-    },
-    {
-      "ref": "unknown-2"
-    },
-    {
-      "ref": "unknown-3"
     }
   ],
-  "metadata": {
-    "tools": [
-      {
-        "name": "cyclonedx-python-lib",
-        "vendor": "CycloneDX",
-        "version": "5.0.1"
-      }
-    ]
-  },
+  "metadata": {},
   "version": 1,
   "$schema": "http://cyclonedx.org/schema/bom-1.2b.schema.json",
   "bomFormat": "CycloneDX",

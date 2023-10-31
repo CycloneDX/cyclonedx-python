@@ -54,7 +54,9 @@ class PoetryBB(BomBuilder):
     def __call__(self, *,  # type:ignore[override]
                  infile: BinaryIO,
                  **kwargs: Any) -> 'Bom':
-        from cyclonedx.model.bom import Bom
+        from .utils.bom import make_bom
 
+        bom = make_bom()
         # TODO
-        return Bom()
+
+        return bom

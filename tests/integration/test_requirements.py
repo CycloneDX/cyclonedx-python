@@ -22,7 +22,9 @@ from glob import glob
 from io import StringIO
 from os.path import basename, join
 from unittest import TestCase
+from unittest.mock import patch
 
+from cyclonedx.model.bom import Bom
 from cyclonedx.schema import OutputFormat, SchemaVersion
 from ddt import ddt, named_data
 
@@ -36,6 +38,14 @@ unsupported_of_sf = [
 ]
 
 
+def make_bank_bom() -> Bom:
+    bom = Bom()
+    bom.serial_number = None
+    bom.metadata.tools.clear()
+    bom.metadata.timestamp = None
+    return bom
+
+
 @ddt
 class TestRequirements(TestCase, SnapshotMixin):
 
@@ -46,12 +56,13 @@ class TestRequirements(TestCase, SnapshotMixin):
         for of in OutputFormat
         if (of, sv) not in unsupported_of_sf
     ))
+    @patch('cyclonedx_py._internal.utils.bom.make_bom', make_bank_bom)
     def test_cli_as_expected(self, infile: str, sv: SchemaVersion, of: OutputFormat) -> None:
         with StringIO() as err, StringIO() as out:
             err.name = 'fakeerr'
             out.name = 'fakeout'
             with redirect_stderr(err), redirect_stdout(out):
-                res = main(args=[
+                res = main(argv=[
                     'requirements',
                     '-vvv',
                     f'--sv={sv.to_version()}',
@@ -62,13 +73,10 @@ class TestRequirements(TestCase, SnapshotMixin):
             out = out.getvalue()
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(
-            self._make_reproducible(out, of),
+            out,
             f'{basename(infile)}-{sv.to_version()}.{of.name.lower()}')
 
     __REPR_SUB_PATTERN = {
         OutputFormat.JSON: re.compile(r'\s*"(?:timestamp|serialNumber)":\s*".*?",?'),
         OutputFormat.XML: re.compile(r'\s*<timestamp>.*?</timestamp>| serialNumber=".*?"'),
     }
-
-    def _make_reproducible(self, value: str, of: OutputFormat) -> str:
-        return self.__REPR_SUB_PATTERN[of].sub('', value)

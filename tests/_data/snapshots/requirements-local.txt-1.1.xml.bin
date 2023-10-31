@@ -21,7 +21,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="unknown">
+    <component type="library" bom-ref="e7a4a3e9-4127-471b-ab91-51d048ab7516">
       <name>unknown</name>
       <version/>
       <externalReferences>
@@ -30,7 +30,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="unknown-2">
+    <component type="library" bom-ref="f24a231f-842e-4fcf-a580-0b8c870aad05">
       <name>unknown</name>
       <version/>
       <hashes>
@@ -42,7 +42,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="unknown-3">
+    <component type="library" bom-ref="f07e11a9-901c-4c64-a988-c1a34b3d530d">
       <name>unknown</name>
       <version/>
       <externalReferences>

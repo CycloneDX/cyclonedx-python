@@ -99,15 +99,7 @@
       "ref": "wxPython-Phoenix"
     }
   ],
-  "metadata": {
-    "tools": [
-      {
-        "name": "cyclonedx-python-lib",
-        "vendor": "CycloneDX",
-        "version": "5.0.1"
-      }
-    ]
-  },
+  "metadata": {},
   "version": 1,
   "$schema": "http://cyclonedx.org/schema/bom-1.3a.schema.json",
   "bomFormat": "CycloneDX",

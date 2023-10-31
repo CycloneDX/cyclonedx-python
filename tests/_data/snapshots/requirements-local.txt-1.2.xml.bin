@@ -1,14 +1,6 @@
 <?xml version="1.0" ?>
 <bom xmlns="http://cyclonedx.org/schema/bom/1.2" version="1">
-  <metadata>
-    <tools>
-      <tool>
-        <vendor>CycloneDX</vendor>
-        <name>cyclonedx-python-lib</name>
-        <version>5.0.1</version>
-      </tool>
-    </tools>
-  </metadata>
+  <metadata/>
   <components>
     <component type="library" bom-ref="foo">
       <name>foo</name>
@@ -30,7 +22,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="unknown">
+    <component type="library" bom-ref="4a3ae09d-8bb2-45e6-af57-74b4a1fb9d86">
       <name>unknown</name>
       <version/>
       <externalReferences>
@@ -39,7 +31,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="unknown-2">
+    <component type="library" bom-ref="47553a97-d40e-43c0-b30f-8dbb40a352a1">
       <name>unknown</name>
       <version/>
       <hashes>
@@ -51,7 +43,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="unknown-3">
+    <component type="library" bom-ref="d026fdd1-9647-49ef-becf-26e621524c48">
       <name>unknown</name>
       <version/>
       <externalReferences>
@@ -62,10 +54,10 @@
     </component>
   </components>
   <dependencies>
+    <dependency ref="47553a97-d40e-43c0-b30f-8dbb40a352a1"/>
+    <dependency ref="4a3ae09d-8bb2-45e6-af57-74b4a1fb9d86"/>
+    <dependency ref="d026fdd1-9647-49ef-becf-26e621524c48"/>
     <dependency ref="foo"/>
     <dependency ref="numpy"/>
-    <dependency ref="unknown"/>
-    <dependency ref="unknown-2"/>
-    <dependency ref="unknown-3"/>
   </dependencies>
 </bom>

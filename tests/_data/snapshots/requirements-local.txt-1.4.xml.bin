@@ -1,40 +1,6 @@
 <?xml version="1.0" ?>
 <bom xmlns="http://cyclonedx.org/schema/bom/1.4" version="1">
-  <metadata>
-    <tools>
-      <tool>
-        <vendor>CycloneDX</vendor>
-        <name>cyclonedx-python-lib</name>
-        <version>5.0.1</version>
-        <externalReferences>
-          <reference type="build-system">
-            <url>https://github.com/CycloneDX/cyclonedx-python-lib/actions</url>
-          </reference>
-          <reference type="distribution">
-            <url>https://pypi.org/project/cyclonedx-python-lib/</url>
-          </reference>
-          <reference type="documentation">
-            <url>https://cyclonedx.github.io/cyclonedx-python-lib/</url>
-          </reference>
-          <reference type="issue-tracker">
-            <url>https://github.com/CycloneDX/cyclonedx-python-lib/issues</url>
-          </reference>
-          <reference type="license">
-            <url>https://github.com/CycloneDX/cyclonedx-python-lib/blob/main/LICENSE</url>
-          </reference>
-          <reference type="release-notes">
-            <url>https://github.com/CycloneDX/cyclonedx-python-lib/blob/main/CHANGELOG.md</url>
-          </reference>
-          <reference type="vcs">
-            <url>https://github.com/CycloneDX/cyclonedx-python-lib</url>
-          </reference>
-          <reference type="website">
-            <url>https://cyclonedx.org</url>
-          </reference>
-        </externalReferences>
-      </tool>
-    </tools>
-  </metadata>
+  <metadata/>
   <components>
     <component type="library" bom-ref="foo">
       <name>foo</name>
@@ -55,7 +21,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="unknown">
+    <component type="library" bom-ref="07b75482-33f1-4fd8-be0a-94c6a9609768">
       <name>unknown</name>
       <externalReferences>
         <reference type="distribution">
@@ -63,7 +29,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="unknown-2">
+    <component type="library" bom-ref="8b237f27-c5e8-4322-8357-084637c845e4">
       <name>unknown</name>
       <hashes>
         <hash alg="SHA-256">27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804</hash>
@@ -74,7 +40,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="unknown-3">
+    <component type="library" bom-ref="70288f16-f9a0-40c5-bc05-0b8dee97b7c2">
       <name>unknown</name>
       <externalReferences>
         <reference type="distribution">
@@ -84,10 +50,10 @@
     </component>
   </components>
   <dependencies>
+    <dependency ref="07b75482-33f1-4fd8-be0a-94c6a9609768"/>
+    <dependency ref="70288f16-f9a0-40c5-bc05-0b8dee97b7c2"/>
+    <dependency ref="8b237f27-c5e8-4322-8357-084637c845e4"/>
     <dependency ref="foo"/>
     <dependency ref="numpy"/>
-    <dependency ref="unknown"/>
-    <dependency ref="unknown-2"/>
-    <dependency ref="unknown-3"/>
   </dependencies>
 </bom>
