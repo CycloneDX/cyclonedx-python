@@ -19,12 +19,12 @@
 from cyclonedx.model import Tool
 from cyclonedx.model.bom import Bom
 
-from cyclonedx_py import __name__, __version__
+from cyclonedx_py import __version__
 
 
 def make_bom() -> Bom:
     bom = Bom()
-    bom.metadata.tools.add(Tool(name=__name__,
+    bom.metadata.tools.add(Tool(name='cyclonedx-bom',
                                 vendor='CycloneDX',
                                 version=__version__))
     return bom
