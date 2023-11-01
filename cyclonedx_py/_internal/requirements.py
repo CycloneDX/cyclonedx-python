@@ -26,7 +26,7 @@ if TYPE_CHECKING:  # pragma: no cover
     from logging import Logger
 
     from cyclonedx.model.bom import Bom
-    from pip_requirements_parser import InstallRequirement
+    from pip_requirements_parser import InstallRequirement  # type:ignore[import-untyped]
 
 
 # !!! be as lazy loading as possible, as greedy as needed
@@ -69,7 +69,7 @@ class RequirementsBB(BomBuilder):
     def __call__(self, *,  # type:ignore[override]
                  infile: BinaryIO,
                  **kwargs: Any) -> 'Bom':
-        from pip_requirements_parser import RequirementsFile  # type: ignore[import-untyped]
+        from pip_requirements_parser import RequirementsFile
 
         from .utils.io import io2textfile
 
