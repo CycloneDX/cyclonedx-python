@@ -2,13 +2,14 @@
 <bom xmlns="http://cyclonedx.org/schema/bom/1.3" version="1">
   <metadata/>
   <components>
-    <component type="library" bom-ref="mypackage">
+    <component type="library" bom-ref="requirements-L3">
       <name>mypackage</name>
       <version>1.2.3</version>
+      <description>requirements line 3: mypackage==1.2.3</description>
       <purl>pkg:pypi/mypackage@1.2.3</purl>
     </component>
   </components>
   <dependencies>
-    <dependency ref="mypackage"/>
+    <dependency ref="requirements-L3"/>
   </dependencies>
 </bom>

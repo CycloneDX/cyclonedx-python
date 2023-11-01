@@ -14,8 +14,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
-import os
-from typing import TYPE_CHECKING, Any, BinaryIO
+
+
+from os import unlink
+from typing import TYPE_CHECKING, Any, BinaryIO, Iterable
 
 from . import BomBuilder
 
@@ -24,6 +26,7 @@ if TYPE_CHECKING:  # pragma: no cover
     from logging import Logger
 
     from cyclonedx.model.bom import Bom
+    from pip_requirements_parser import InstallRequirement
 
 
 # !!! be as lazy loading as possible, as greedy as needed
@@ -66,39 +69,69 @@ class RequirementsBB(BomBuilder):
     def __call__(self, *,  # type:ignore[override]
                  infile: BinaryIO,
                  **kwargs: Any) -> 'Bom':
-        from os import unlink
+        from pip_requirements_parser import RequirementsFile  # type: ignore[import-untyped]
 
+        from .utils.io import io2textfile
+
+        # no support for `include_nested` intended, so a temp file instead the original path is fine
+        rf = io2textfile(infile)
+        try:
+            return self._make_bom(
+                RequirementsFile.from_file(rf, include_nested=False).requirements
+            )
+        finally:
+            unlink(rf)
+
+    def _make_bom(self, requirements: Iterable['InstallRequirement']) -> 'Bom':
+        from cyclonedx.exception.model import InvalidUriException
         from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
         from cyclonedx.model.component import Component, ComponentType
         from packageurl import PackageURL
-        from pip_requirements_parser import RequirementsFile  # type: ignore[import-untyped]
 
         from .utils.bom import make_bom
-        from .utils.io import io2textfile
 
         bom = make_bom()
 
-        # no support for `include_nested` intended, so a temp file instead the original path is fine
-        ff = io2textfile(infile)
-        try:
-            requirements = RequirementsFile.from_file(ff, include_nested=False).requirements
-        finally:
-            unlink(ff)
         for requirement in requirements:
+            name = requirement.name
             version = requirement.get_pinned_version or None
-            download_url = requirement.link and requirement.link.url or None
+            external_references = []
+            purl_qualifiers = {}  # see https://github.com/package-url/purl-spec/blob/master/PURL-SPECIFICATION.rst
+
+            # workaround for https://github.com/nexB/pip-requirements-parser/issues/24
+            is_local = requirement.is_local_path and (not requirement.link or requirement.link.scheme in ['', 'file'])
+            if is_local:
+                if requirement.is_wheel or requirement.is_archive:
+                    purl_qualifiers['file_name'] = requirement.link.url
+                    try:
+                        external_references.append(ExternalReference(
+                            comment='local path to wheel/archive',
+                            type=ExternalReferenceType.OTHER,
+                            url=XsUri(requirement.link.url)))
+                    except InvalidUriException:
+                        pass  # safe to pass, as the actual line is documented as `description`
+            elif requirement.is_url:
+                if 'pythonhosted.org/' not in requirement.link.url:
+                    # skip PURL bloat, do not add implicit information
+                    purl_qualifiers['vcs_url' if requirement.is_vcs_url else 'download_url'] = requirement.link.url
+                try:
+                    external_references.append(ExternalReference(
+                        type=ExternalReferenceType.VCS if requirement.is_vcs_url else ExternalReferenceType.DISTRIBUTION,
+                        url=XsUri(requirement.link.url)))
+                except InvalidUriException:
+                    pass  # safe to pass, as the actual line is documented as `description`
+
             component = Component(
+                bom_ref=f'requirements-L{requirement.line_number}',
+                description=f'requirements line {requirement.line_number}: {requirement.line}',
                 type=ComponentType.LIBRARY,
-                name=requirement.name or 'unknown',
+                name=name or 'unknown',
                 version=version,
                 hashes=map(HashType.from_composite_str, requirement.hash_options),
                 purl=PackageURL(type='pypi', name=requirement.name, version=version,
-                                qualifiers=download_url and {'download_url': download_url}
-                                ) if requirement.name else None,
-                bom_ref=requirement.name or f'requirements#{requirement.line}',
-                external_references=[
-                    ExternalReference(type=ExternalReferenceType.DISTRIBUTION, url=XsUri(download_url))
-                ] if download_url else None
+                                qualifiers=purl_qualifiers
+                                ) if not is_local and name else None,
+                external_references=external_references,
             )
 
             self._logger.debug('Add component: %r', component)

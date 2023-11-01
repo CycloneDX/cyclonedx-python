@@ -21,9 +21,6 @@ from typing import TYPE_CHECKING, BinaryIO
 
 from chardet import detect as chardetect
 
-if TYPE_CHECKING:  # pragma: no cover
-    from tempfile import _TemporaryFileWrapper
-
 
 def io2str(io: BinaryIO) -> str:
     data = io.read()

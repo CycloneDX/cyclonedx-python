@@ -16,12 +16,10 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
-import re
 from contextlib import redirect_stderr, redirect_stdout
 from glob import glob
 from io import StringIO
 from os.path import basename, join
-from typing import Union
 from unittest import TestCase
 from unittest.mock import patch
 

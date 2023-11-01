@@ -10,8 +10,12 @@ git+https://github.com/path/to/package-three@0.1#egg=package-three
 git+https://github.com/path/to/package-four@releases/tag/v3.7.1#egg=package-four
 
 
-# http
+# http build dist
 http://wxpython.org/Phoenix/snapshot-builds/wxPython_Phoenix-3.0.3.dev1820+49a8884-cp34-none-win_amd64.whl
 
-# named
+# http source dist
+https://files.pythonhosted.org/packages/78/23/f78fd8311e0f710fe1d065d50b92ce0057fe877b8ed7fd41b28ad6865bfc/numpy-1.26.1.tar.gz
+
+
+# named repo ref
 urllib3 @ https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip

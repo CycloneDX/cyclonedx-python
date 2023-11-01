@@ -4,23 +4,25 @@
     <component type="library">
       <name>foo</name>
       <version/>
-      <purl>pkg:pypi/foo?download_url=file://../foo</purl>
+      <description>requirements line 14: foo @ file://../foo</description>
       <modified>false</modified>
     </component>
     <component type="library">
       <name>numpy</name>
       <version>1.9.2</version>
-      <purl>pkg:pypi/numpy@1.9.2?download_url=./downloads/numpy-1.9.2-cp34-none-win32.whl</purl>
+      <description>requirements line 17: ./downloads/numpy-1.9.2-cp34-none-win32.whl</description>
       <modified>false</modified>
     </component>
     <component type="library">
       <name>unknown</name>
       <version/>
+      <description>requirements line 2: ./myproject/chardet</description>
       <modified>false</modified>
     </component>
     <component type="library">
       <name>unknown</name>
       <version/>
+      <description>requirements line 5: ./myproject/requests --hash=sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804</description>
       <hashes>
         <hash alg="SHA-256">27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804</hash>
       </hashes>
@@ -29,6 +31,13 @@
     <component type="library">
       <name>unknown</name>
       <version/>
+      <description>requirements line 8: -e ./myproject/idna.whl</description>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>unknown</name>
+      <version/>
+      <description>requirements line 20: ./downloads/numpy-1.26.1.tar.gz</description>
       <modified>false</modified>
     </component>
   </components>

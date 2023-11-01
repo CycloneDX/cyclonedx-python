@@ -1,19 +1,22 @@
 {
   "components": [
     {
-      "bom-ref": "certifi",
+      "bom-ref": "requirements-L1",
+      "description": "requirements line 1: certifi>=2021.5.30",
       "name": "certifi",
       "purl": "pkg:pypi/certifi",
       "type": "library"
     },
     {
-      "bom-ref": "chardet",
+      "bom-ref": "requirements-L2",
+      "description": "requirements line 2: chardet >= 4.0.0 , < 5",
       "name": "chardet",
       "purl": "pkg:pypi/chardet",
       "type": "library"
     },
     {
-      "bom-ref": "urllib3",
+      "bom-ref": "requirements-L3",
+      "description": "requirements line 3: urllib3",
       "name": "urllib3",
       "purl": "pkg:pypi/urllib3",
       "type": "library"
@@ -21,13 +24,13 @@
   ],
   "dependencies": [
     {
-      "ref": "certifi"
+      "ref": "requirements-L1"
     },
     {
-      "ref": "chardet"
+      "ref": "requirements-L2"
     },
     {
-      "ref": "urllib3"
+      "ref": "requirements-L3"
     }
   ],
   "metadata": {},

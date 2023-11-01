@@ -1,51 +1,36 @@
 {
   "components": [
     {
-      "bom-ref": "foo",
-      "externalReferences": [
-        {
-          "type": "distribution",
-          "url": "file://../foo"
-        }
-      ],
+      "bom-ref": "requirements-L14",
+      "description": "requirements line 14: foo @ file://../foo",
       "name": "foo",
-      "purl": "pkg:pypi/foo?download_url=file://../foo",
       "type": "library",
       "version": ""
     },
     {
-      "bom-ref": "numpy",
+      "bom-ref": "requirements-L17",
+      "description": "requirements line 17: ./downloads/numpy-1.9.2-cp34-none-win32.whl",
       "externalReferences": [
         {
-          "type": "distribution",
+          "comment": "local path to wheel/archive",
+          "type": "other",
           "url": "./downloads/numpy-1.9.2-cp34-none-win32.whl"
         }
       ],
       "name": "numpy",
-      "purl": "pkg:pypi/numpy@1.9.2?download_url=./downloads/numpy-1.9.2-cp34-none-win32.whl",
       "type": "library",
       "version": "1.9.2"
     },
     {
-      "bom-ref": "requirements#./myproject/chardet",
-      "externalReferences": [
-        {
-          "type": "distribution",
-          "url": "./myproject/chardet"
-        }
-      ],
+      "bom-ref": "requirements-L2",
+      "description": "requirements line 2: ./myproject/chardet",
       "name": "unknown",
       "type": "library",
       "version": ""
     },
     {
-      "bom-ref": "requirements#./myproject/requests --hash=sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804",
-      "externalReferences": [
-        {
-          "type": "distribution",
-          "url": "./myproject/requests"
-        }
-      ],
+      "bom-ref": "requirements-L5",
+      "description": "requirements line 5: ./myproject/requests --hash=sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804",
       "hashes": [
         {
           "alg": "SHA-256",
@@ -57,11 +42,27 @@
       "version": ""
     },
     {
-      "bom-ref": "requirements#-e ./myproject/idna.whl",
+      "bom-ref": "requirements-L8",
+      "description": "requirements line 8: -e ./myproject/idna.whl",
       "externalReferences": [
         {
-          "type": "distribution",
+          "comment": "local path to wheel/archive",
+          "type": "other",
           "url": "./myproject/idna.whl"
+        }
+      ],
+      "name": "unknown",
+      "type": "library",
+      "version": ""
+    },
+    {
+      "bom-ref": "requirements-L20",
+      "description": "requirements line 20: ./downloads/numpy-1.26.1.tar.gz",
+      "externalReferences": [
+        {
+          "comment": "local path to wheel/archive",
+          "type": "other",
+          "url": "./downloads/numpy-1.26.1.tar.gz"
         }
       ],
       "name": "unknown",
@@ -71,19 +72,22 @@
   ],
   "dependencies": [
     {
-      "ref": "foo"
+      "ref": "requirements-L14"
     },
     {
-      "ref": "numpy"
+      "ref": "requirements-L17"
     },
     {
-      "ref": "requirements#-e ./myproject/idna.whl"
+      "ref": "requirements-L2"
     },
     {
-      "ref": "requirements#./myproject/chardet"
+      "ref": "requirements-L20"
     },
     {
-      "ref": "requirements#./myproject/requests --hash=sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804"
+      "ref": "requirements-L5"
+    },
+    {
+      "ref": "requirements-L8"
     }
   ],
   "metadata": {},

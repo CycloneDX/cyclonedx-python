@@ -4,6 +4,7 @@
     <component type="library">
       <name>mypackage</name>
       <version>1.2.3</version>
+      <description>requirements line 3: mypackage==1.2.3</description>
       <purl>pkg:pypi/mypackage@1.2.3</purl>
       <modified>false</modified>
     </component>

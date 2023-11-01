@@ -13,6 +13,8 @@
 # named
 foo @ file://../foo
 
-# unnamed
+# unnamed build distribution
 ./downloads/numpy-1.9.2-cp34-none-win32.whl
 
+# unnamed source distribution
+./downloads/numpy-1.26.1.tar.gz
