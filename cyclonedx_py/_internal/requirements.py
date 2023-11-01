@@ -26,6 +26,7 @@ if TYPE_CHECKING:  # pragma: no cover
     from logging import Logger
 
     from cyclonedx.model.bom import Bom
+    from cyclonedx.model.component import Component
     from pip_requirements_parser import InstallRequirement  # type:ignore[import-untyped]
 
 
@@ -83,60 +84,62 @@ class RequirementsBB(BomBuilder):
             unlink(rf)
 
     def _make_bom(self, requirements: Iterable['InstallRequirement']) -> 'Bom':
-        from cyclonedx.exception.model import InvalidUriException
-        from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
-        from cyclonedx.model.component import Component, ComponentType
-        from packageurl import PackageURL
-
         from .utils.bom import make_bom
 
         bom = make_bom()
 
         for requirement in requirements:
-            name = requirement.name
-            version = requirement.get_pinned_version or None
-            external_references = []
-            purl_qualifiers = {}  # see https://github.com/package-url/purl-spec/blob/master/PURL-SPECIFICATION.rst
-
-            # workaround for https://github.com/nexB/pip-requirements-parser/issues/24
-            is_local = requirement.is_local_path and (not requirement.link or requirement.link.scheme in ['', 'file'])
-            if is_local:
-                if requirement.is_wheel or requirement.is_archive:
-                    purl_qualifiers['file_name'] = requirement.link.url
-                    try:
-                        external_references.append(ExternalReference(
-                            comment='local path to wheel/archive',
-                            type=ExternalReferenceType.OTHER,
-                            url=XsUri(requirement.link.url)))
-                    except InvalidUriException:
-                        pass  # safe to pass, as the actual line is documented as `description`
-            elif requirement.is_url:
-                if 'pythonhosted.org/' not in requirement.link.url:
-                    # skip PURL bloat, do not add implicit information
-                    purl_qualifiers['vcs_url' if requirement.is_vcs_url else 'download_url'] = requirement.link.url
-                try:
-                    external_references.append(ExternalReference(
-                        type=ExternalReferenceType.VCS if requirement.is_vcs_url else ExternalReferenceType.DISTRIBUTION,
-                        url=XsUri(requirement.link.url)))
-                except InvalidUriException:
-                    pass  # safe to pass, as the actual line is documented as `description`
-
-            component = Component(
-                bom_ref=f'requirements-L{requirement.line_number}',
-                description=f'requirements line {requirement.line_number}: {requirement.line}',
-                type=ComponentType.LIBRARY,
-                name=name or 'unknown',
-                version=version,
-                hashes=map(HashType.from_composite_str, requirement.hash_options),
-                purl=PackageURL(type='pypi', name=requirement.name, version=version,
-                                qualifiers=purl_qualifiers
-                                ) if not is_local and name else None,
-                external_references=external_references,
-            )
-
+            component = self.__make_component(requirement)
             self._logger.debug('Add component: %r', component)
             if not component.version:
                 self._logger.warning('Component has no version: %r', component)
             bom.components.add(component)
 
         return bom
+
+    def __make_component(self, req: 'InstallRequirement') -> 'Component':
+        from cyclonedx.exception.model import InvalidUriException
+        from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
+        from cyclonedx.model.component import Component, ComponentType
+        from packageurl import PackageURL
+
+        name = req.name
+        version = req.get_pinned_version or None
+        external_references = []
+        purl_qualifiers = {}  # see https://github.com/package-url/purl-spec/blob/master/PURL-SPECIFICATION.rst
+
+        # workaround for https://github.com/nexB/pip-requirements-parser/issues/24
+        is_local = req.is_local_path and (not req.link or req.link.scheme in ['', 'file'])
+        if is_local:
+            if req.is_wheel or req.is_archive:
+                purl_qualifiers['file_name'] = req.link.url
+                try:
+                    external_references.append(ExternalReference(
+                        comment='local path to wheel/archive',
+                        type=ExternalReferenceType.OTHER,
+                        url=XsUri(req.link.url)))
+                except InvalidUriException:
+                    pass  # safe to pass, as the actual line is documented as `description`
+        elif req.is_url:
+            if 'pythonhosted.org/' not in req.link.url:
+                # skip PURL bloat, do not add implicit information
+                purl_qualifiers['vcs_url' if req.is_vcs_url else 'download_url'] = req.link.url
+            try:
+                external_references.append(ExternalReference(
+                    type=ExternalReferenceType.VCS if req.is_vcs_url else ExternalReferenceType.DISTRIBUTION,
+                    url=XsUri(req.link.url)))
+            except InvalidUriException:
+                pass  # safe to pass, as the actual line is documented as `description`
+
+        return Component(
+            bom_ref=f'requirements-L{req.line_number}',
+            description=f'requirements line {req.line_number}: {req.line}',
+            type=ComponentType.LIBRARY,
+            name=name or 'unknown',
+            version=version,
+            hashes=map(HashType.from_composite_str, req.hash_options),
+            purl=PackageURL(type='pypi', name=req.name, version=version,
+                            qualifiers=purl_qualifiers
+                            ) if not is_local and name else None,
+            external_references=external_references,
+        )

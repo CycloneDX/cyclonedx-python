@@ -17,7 +17,7 @@
 
 
 from tempfile import NamedTemporaryFile
-from typing import TYPE_CHECKING, BinaryIO
+from typing import BinaryIO
 
 from chardet import detect as chardetect
 
