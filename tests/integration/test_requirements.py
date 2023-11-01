@@ -21,6 +21,7 @@ from contextlib import redirect_stderr, redirect_stdout
 from glob import glob
 from io import StringIO
 from os.path import basename, join
+from typing import Union
 from unittest import TestCase
 from unittest.mock import patch
 
@@ -31,7 +32,7 @@ from ddt import ddt, named_data
 from cyclonedx_py._internal.cli import main
 from tests import INFILES_DIRECTORY, SnapshotMixin
 
-files = glob(join(INFILES_DIRECTORY, 'requirements-*'))
+infiles = glob(join(INFILES_DIRECTORY, 'requirements', '*'))
 unsupported_of_sf = [
     (OutputFormat.JSON, SchemaVersion.V1_1),
     (OutputFormat.JSON, SchemaVersion.V1_0),
@@ -50,8 +51,8 @@ def make_bank_bom() -> Bom:
 class TestRequirements(TestCase, SnapshotMixin):
 
     @named_data(*(
-        [f'{basename(file)}-{sv.name}-{of.name}', file, sv, of]
-        for file in files
+        [f'{basename(infile)}-{sv.name}-{of.name}', infile, sv, of]
+        for infile in infiles
         for sv in SchemaVersion
         for of in OutputFormat
         if (of, sv) not in unsupported_of_sf
@@ -76,7 +77,5 @@ class TestRequirements(TestCase, SnapshotMixin):
             out,
             f'{basename(infile)}-{sv.to_version()}.{of.name.lower()}')
 
-    __REPR_SUB_PATTERN = {
-        OutputFormat.JSON: re.compile(r'\s*"(?:timestamp|serialNumber)":\s*".*?",?'),
-        OutputFormat.XML: re.compile(r'\s*<timestamp>.*?</timestamp>| serialNumber=".*?"'),
-    }
+    def assertEqualSnapshot(self, actual: str, snapshot_name: str) -> None:
+        super().assertEqualSnapshot(actual, join('requirements', snapshot_name))

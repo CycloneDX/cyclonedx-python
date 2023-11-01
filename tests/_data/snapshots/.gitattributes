@@ -1,3 +1,4 @@
 # files are compared bype-wise, so they need to be treated as binary
-xml/**      linguist-generated binary diff=xml
-json/**     linguist-generated binary diff=json
+*.bin       linguist-generated binary
+*.xml.bin   linguist-generated binary diff=xml
+*.json.bin  linguist-generated binary diff=json
