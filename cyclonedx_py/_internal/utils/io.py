@@ -32,7 +32,11 @@ def io2str(io: BinaryIO) -> str:
 
 def io2file(io: BinaryIO) -> str:
     # prevent issues on windows: https://github.com/python/cpython/issues/58451
-    tf = NamedTemporaryFile('wb', delete=False)
-    tf.write(io.read())
+    tf = NamedTemporaryFile('wt', delete=False,
+                            # we prefer utf8 encoded strings, but ...
+                            # - must not change newlines
+                            # - must not  change encoding, fallback to system encoding for compatibility
+                            newline='', encoding=None)
+    tf.write(io2str(io))
     tf.close()
     return tf.name
