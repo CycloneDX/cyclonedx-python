@@ -72,10 +72,10 @@ class RequirementsBB(BomBuilder):
                  **kwargs: Any) -> 'Bom':
         from pip_requirements_parser import RequirementsFile
 
-        from .utils.io import io2textfile
+        from .utils.io import io2file
 
         # no support for `include_nested` intended, so a temp file instead the original path is fine
-        rf = io2textfile(infile)
+        rf = io2file(infile)
         try:
             return self._make_bom(
                 RequirementsFile.from_file(rf, include_nested=False).requirements
