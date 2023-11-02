@@ -15,6 +15,6 @@
 
 import sys
 
-from ._internal.cli import main
+from ._internal.cli import run
 
-sys.exit(main(prog=f'python3 -m {__package__}'))
+sys.exit(run(prog=f'python3 -m {__package__}'))

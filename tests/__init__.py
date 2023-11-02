@@ -14,12 +14,16 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
-
-
+import re
+from json import dumps as json_dumps
 from os import getenv
 from os.path import dirname, join
 from typing import Union
 from unittest import TestCase
+
+from cyclonedx.schema import OutputFormat
+
+from cyclonedx_py import __version__ as thisVersion
 
 _TESTDATA_DIRECTORY = join(dirname(__file__), '_data')
 
@@ -58,3 +62,56 @@ class SnapshotMixin:
             self.assertEqual(actual, self.readSnapshot(snapshot_name))
         finally:
             self.maxDiff = _omd
+
+
+# region reproducible test results
+
+def make_xml_comparable(bom: str) -> str:
+    bom = re.sub(' serialNumber=".+?"', '', bom)
+    bom = re.sub(r'\s*<timestamp>.*?</timestamp>', '', bom)
+    bom = bom.replace(  # replace metadata.tools.version
+        '        <vendor>CycloneDX</vendor>\n'
+        '        <name>cyclonedx-bom</name>\n'
+        f'        <version>{thisVersion}</version>',
+        '        <vendor>CycloneDX</vendor>\n'
+        '        <name>cyclonedx-bom</name>\n'
+        '        <version>thisVersion-testing</version>')
+    bom = re.sub(  # replace metadata.tools.version
+        '        <vendor>CycloneDX</vendor>\n'
+        '        <name>cyclonedx-python-lib</name>\n'
+        '        <version>.*?</version>',
+        '        <vendor>CycloneDX</vendor>\n'
+        '        <name>cyclonedx-python-lib</name>\n'
+        '        <version>libVersion-testing</version>',
+        bom)
+    return bom
+
+
+def make_json_comparable(bom: str) -> str:
+    bom = re.sub(r'\s*"(?:timestamp|serialNumber)": ".+?",?', '', bom)
+    bom = bom.replace(  # replace metadata.tools.version
+        '        "name": "cyclonedx-bom",\n'
+        '        "vendor": "CycloneDX",\n'
+        f'        "version": {json_dumps(thisVersion)}',
+        '        "name": "cyclonedx-bom",\n'
+        '        "vendor": "CycloneDX",\n'
+        '        "version": "thisVersion-testing"')
+    bom = re.sub(  # replace metadata.tools.version
+        '        "name": "cyclonedx-python-lib",\n'
+        '        "vendor": "CycloneDX",\n'
+        '        "version": ".*?"',
+        '        "name": "cyclonedx-python-lib",\n'
+        '        "vendor": "CycloneDX",\n'
+        '        "version": "libVersion-testing"',
+        bom)
+    return bom
+
+
+def make_comparable(bom: str, of: OutputFormat) -> str:
+    if of is OutputFormat.XML:
+        return make_xml_comparable(bom)
+    if of is OutputFormat.JSON:
+        return make_json_comparable(bom)
+    raise NotImplementedError(f'unknown OutputFormat: {of!r}')
+
+# endregion reproducible test results

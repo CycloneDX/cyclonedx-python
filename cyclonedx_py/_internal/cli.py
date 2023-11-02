@@ -194,7 +194,7 @@ class Command:
         self.write(output, outfile)
 
 
-def main(*, argv: Optional[List[str]] = None, **kwargs: Any) -> int:
+def run(*, argv: Optional[List[str]] = None, **kwargs: Any) -> int:
     arg_co = ArgumentParser(add_help=False)
     arg_co.add_argument('-v', '--verbose',
                         help='Increase the verbosity of messages (multiple for more effect) (default: silent)',

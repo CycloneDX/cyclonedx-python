@@ -43,7 +43,7 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.8"
 # ATTENTION: keep `deps.lowest.r` file in sync
-cyclonedx-python-lib = { version="^5.1.0", extras=['validation'] }
+cyclonedx-python-lib = { version="^5.1.1", extras=['validation'] }
 packageurl-python = ">= 0.11"
 pip-requirements-parser = "^32.0.0"
 setuptools = ">= 47.0.0"

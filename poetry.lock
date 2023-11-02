@@ -194,14 +194,14 @@ toml = ["tomli"]
 
 [[package]]
 name = "cyclonedx-python-lib"
-version = "5.1.0"
+version = "5.1.1"
 description = "Python library for CycloneDX"
 category = "main"
 optional = false
 python-versions = ">=3.8,<4.0"
 files = [
-    {file = "cyclonedx_python_lib-5.1.0-py3-none-any.whl", hash = "sha256:4cf64c2e8e3e12051b56560744ad690b15670c46a15835e3d6725b8521c537bf"},
-    {file = "cyclonedx_python_lib-5.1.0.tar.gz", hash = "sha256:c315cd977c4e6052b5145f96c8eea446e49755ed337e67e55462a1a4e1de47a4"},
+    {file = "cyclonedx_python_lib-5.1.1-py3-none-any.whl", hash = "sha256:2989db0cd8bb4c0c442423d71ed7a84ae059e16a2d0f932cc4bf92da7385cdb3"},
+    {file = "cyclonedx_python_lib-5.1.1.tar.gz", hash = "sha256:215a636a4e77385d2cf4c6c9801c9bad4791849634f2c6daa45ab2c6cb0a85f6"},
 ]
 
 [package.dependencies]
@@ -1426,4 +1426,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "6a869b3dfd89b9a131aec381d9c0b251fd786fe8ea356851df8a43698eee832d"
+content-hash = "7e410d8f751215f035bfad448ade1f2123914538be86085c166c75706e63b56d"

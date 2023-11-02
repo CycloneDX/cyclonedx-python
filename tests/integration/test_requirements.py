@@ -21,28 +21,18 @@ from glob import glob
 from io import StringIO
 from os.path import basename, join
 from unittest import TestCase
-from unittest.mock import patch
 
-from cyclonedx.model.bom import Bom
 from cyclonedx.schema import OutputFormat, SchemaVersion
 from ddt import ddt, named_data
 
-from cyclonedx_py._internal.cli import main
-from tests import INFILES_DIRECTORY, SnapshotMixin
+from cyclonedx_py._internal.cli import run as run_cli
+from tests import INFILES_DIRECTORY, SnapshotMixin, make_comparable
 
 infiles = glob(join(INFILES_DIRECTORY, 'requirements', '*'))
 unsupported_of_sf = [
     (OutputFormat.JSON, SchemaVersion.V1_1),
     (OutputFormat.JSON, SchemaVersion.V1_0),
 ]
-
-
-def make_bank_bom() -> Bom:
-    bom = Bom()
-    bom.serial_number = None
-    bom.metadata.tools.clear()
-    bom.metadata.timestamp = None
-    return bom
 
 
 @ddt
@@ -55,13 +45,12 @@ class TestRequirements(TestCase, SnapshotMixin):
         for of in OutputFormat
         if (of, sv) not in unsupported_of_sf
     ))
-    @patch('cyclonedx_py._internal.utils.bom.make_bom', make_bank_bom)
     def test_cli_as_expected(self, infile: str, sv: SchemaVersion, of: OutputFormat) -> None:
         with StringIO() as err, StringIO() as out:
-            err.name = 'fakeerr'
-            out.name = 'fakeout'
+            err.name = '<fakeerr>'
+            out.name = '<fakeout>'
             with redirect_stderr(err), redirect_stdout(out):
-                res = main(argv=[
+                res = run_cli(argv=[
                     'requirements',
                     '-vvv',
                     f'--sv={sv.to_version()}',
@@ -72,7 +61,7 @@ class TestRequirements(TestCase, SnapshotMixin):
             out = out.getvalue()
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(
-            out,
+            make_comparable(out, of),
             f'{basename(infile)}-{sv.to_version()}.{of.name.lower()}')
 
     def assertEqualSnapshot(self, actual: str, snapshot_name: str) -> None:

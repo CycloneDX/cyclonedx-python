@@ -35,7 +35,7 @@ def io2file(io: BinaryIO) -> str:
     tf = NamedTemporaryFile('wt', delete=False,
                             # we prefer utf8 encoded strings, but ...
                             # - must not change newlines
-                            # - must not  change encoding, fallback to system encoding for compatibility
+                            # - must not change encoding, fallback to system encoding for compatibility
                             newline='', encoding=None)
     tf.write(io2str(io))
     tf.close()
