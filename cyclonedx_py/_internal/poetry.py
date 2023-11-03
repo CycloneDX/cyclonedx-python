@@ -39,7 +39,8 @@ class PoetryBB(BomBuilder):
 
         p = ArgumentParser(description='Build an SBOM based on Poetry environment.',
                            **kwargs)
-        p.add_argument('lock-file',
+        p.add_argument('lock',
+                       metavar='lock-file',
                        help='I HELP TODO (default: %(default)s)',
                        nargs=OPTIONAL,
                        type=FileType('rb'),
@@ -52,7 +53,7 @@ class PoetryBB(BomBuilder):
         self._logger = logger
 
     def __call__(self, *,  # type:ignore[override]
-                 infile: BinaryIO,
+                 lock: BinaryIO,
                  **kwargs: Any) -> 'Bom':
         from .utils.bom import make_bom
 

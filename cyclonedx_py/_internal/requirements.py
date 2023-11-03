@@ -55,7 +55,8 @@ class RequirementsBB(BomBuilder):
                                      python3 -m pip freeze | %(prog)s -
                            '''),
                            **kwargs)
-        p.add_argument('infile',
+        p.add_argument('requirements',
+                       metavar='requirements-file',
                        help='I HELP TODO (default: %(default)s)',
                        nargs=OPTIONAL,
                        type=FileType('rb'),
@@ -68,14 +69,14 @@ class RequirementsBB(BomBuilder):
         self._logger = logger
 
     def __call__(self, *,  # type:ignore[override]
-                 infile: BinaryIO,
+                 requirements: BinaryIO,
                  **kwargs: Any) -> 'Bom':
         from pip_requirements_parser import RequirementsFile
 
         from .utils.io import io2file
 
         # no support for `include_nested` intended, so a temp file instead the original path is fine
-        rf = io2file(infile)
+        rf = io2file(requirements)
         try:
             return self._make_bom(
                 RequirementsFile.from_file(rf, include_nested=False).requirements
