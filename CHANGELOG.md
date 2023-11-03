@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v3.11.7 (2023-11-03)
+
+### Fix
+
+* Toml-compatible fingers-crossed handling for failed input data decoding ([#613](https://github.com/CycloneDX/cyclonedx-python/issues/613)) ([`fb3d7bf`](https://github.com/CycloneDX/cyclonedx-python/commit/fb3d7bfd1216ad8b5328a1d348fea04fee31d3a4))
+
 ## v3.11.6 (2023-11-03)
 
 ### Fix
