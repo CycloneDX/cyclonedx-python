@@ -40,9 +40,9 @@ unsupported_of_sf = [
 test_data = [
     (f'{basename(infile)}-{sv.name}-{of.name}', infile, sv, of)
     for infile in infiles
-    for sv in [SchemaVersion.V1_4]
-    for of in [OutputFormat.JSON]
-    if (of, sv) not in unsupported_of_sf and 'private' in infile
+    for sv in SchemaVersion
+    for of in OutputFormat
+    if (of, sv) not in unsupported_of_sf
 ]
 
 if os.name == 'nt':
