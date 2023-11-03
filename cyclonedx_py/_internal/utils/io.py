@@ -15,28 +15,28 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-
+from sys import getdefaultencoding
 from tempfile import NamedTemporaryFile
 from typing import BinaryIO
 
 from chardet import detect as chardetect
 
 
-def io2str(io: BinaryIO) -> str:
+def io2str(io: BinaryIO, *, errors: str = 'strict') -> str:
     data = io.read()
-    encoding = (chardetect(data)['encoding'] or '').replace(
+    encoding = (chardetect(data)['encoding'] or getdefaultencoding()).replace(
         # replace Windows-encoding with code-page
         'Windows-', 'cp')
-    return data.decode(encoding)
+    return data.decode(encoding, errors)
 
 
-def io2file(io: BinaryIO) -> str:
+def io2file(io: BinaryIO, *, errors: str = 'strict') -> str:
     # prevent issues on windows: https://github.com/python/cpython/issues/58451
     tf = NamedTemporaryFile('wt', delete=False,
                             # we prefer utf8 encoded strings, but ...
                             # - must not change newlines
                             # - must not change encoding, fallback to system encoding for compatibility
                             newline='', encoding=None)
-    tf.write(io2str(io))
+    tf.write(io2str(io, errors=errors))
     tf.close()
     return tf.name
