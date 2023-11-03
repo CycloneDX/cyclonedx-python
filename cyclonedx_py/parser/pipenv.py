@@ -73,7 +73,7 @@ class PipEnvFileParser(PipEnvParser):
             debug_message: DebugMessageCallback = quiet
     ) -> None:
         debug_message('open file: {}', pipenv_lock_filename)
-        with open(pipenv_lock_filename) as plf:
+        with open(pipenv_lock_filename, encoding="UTF-8", errors='replace') as plf:
             super(PipEnvFileParser, self).__init__(
                 pipenv_contents=plf.read(), use_purl_bom_ref=use_purl_bom_ref,
                 debug_message=debug_message

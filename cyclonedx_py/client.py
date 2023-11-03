@@ -273,10 +273,10 @@ class CycloneDxCmd:
                         'When using input from Conda JSON, you need to pipe input via STDIN')
                 elif self._arguments.input_from_pip:
                     self._arguments.input_source = open(os.path.join(current_directory, 'Pipfile.lock'),
-                                                        'rt', encoding="UTF-8")
+                                                        'rt', encoding="UTF-8", errors='replace')
                 elif self._arguments.input_from_poetry:
                     self._arguments.input_source = open(os.path.join(current_directory, 'poetry.lock'),
-                                                        'rt', encoding="UTF-8")
+                                                        'rt', encoding="UTF-8", errors='replace')
                 elif self._arguments.input_from_requirements:
                     self._arguments.input_source = open(os.path.join(current_directory, 'requirements.txt'), 'rb')
                 else:
@@ -297,7 +297,7 @@ class CycloneDxCmd:
                     input_data = input_data.decode(input_encoding)
                 except ValueError:
                     # last resort: try utf8 and hope for the best
-                    input_data = input_data.decode('utf-8', 'backslashreplace')
+                    input_data = input_data.decode('utf-8', 'replace')
             input_data_fh.close()
 
         if self._arguments.input_from_conda_explicit:
