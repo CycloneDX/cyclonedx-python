@@ -27,7 +27,7 @@ if TYPE_CHECKING:  # pragma: no cover
 
     from cyclonedx.model.bom import Bom
     from cyclonedx.model.component import Component
-    from pip_requirements_parser import InstallRequirement  # type:ignore[import-untyped]
+    from pip_requirements_parser import InstallRequirement, RequirementsFile  # type:ignore[import-untyped]
 
 
 # !!! be as lazy loading as possible, as greedy as needed
@@ -76,31 +76,31 @@ class RequirementsBB(BomBuilder):
             from sys import stdin
 
             from .utils.io import io2file
-            rf = io2file(stdin.buffer)
+            rt = io2file(stdin.buffer)
             try:
-                rs = RequirementsFile.from_file(rf, include_nested=False).requirements
+                rf = RequirementsFile.from_file(rf, include_nested=False)
             finally:
-                unlink(rf)
+                unlink(rt)
         else:
-            rs = RequirementsFile.from_file(requirements_file, include_nested=True).requirements
+            rf = RequirementsFile.from_file(requirements_file, include_nested=True)
 
-        return self._make_bom(rs)
+        return self._make_bom(rf)
 
-    def _make_bom(self, requirements: Iterable['InstallRequirement']) -> 'Bom':
+    def _make_bom(self, rf: 'RequirementsFile') -> 'Bom':
         from .utils.bom import make_bom
 
         bom = make_bom()
 
-        for requirement in requirements:
-            component = self.__make_component(requirement)
+        for requirement in rf.requirements:
+            component = self._make_component(requirement)
             self._logger.debug('Add component: %r', component)
             if not component.version:
-                self._logger.warning('Component has no version: %r', component)
+                self._logger.warning('Component has no pinned version: %r', component)
             bom.components.add(component)
 
         return bom
 
-    def __make_component(self, req: 'InstallRequirement') -> 'Component':
+    def _make_component(self, req: 'InstallRequirement') -> 'Component':
         from cyclonedx.exception.model import InvalidUriException
         from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
         from cyclonedx.model.component import Component, ComponentType

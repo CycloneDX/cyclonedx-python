@@ -1,3 +1,6 @@
+## pip option to use an alternative package registry
+## !!!! not implemented, yet -- should reflect this in the PURL and other places.
+
 --extra-index-url https://mypi.org/simple/
 
 mypackage==1.2.3
