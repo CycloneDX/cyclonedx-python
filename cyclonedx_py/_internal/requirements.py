@@ -17,7 +17,7 @@
 
 
 from os import unlink
-from typing import TYPE_CHECKING, Any, Iterable
+from typing import TYPE_CHECKING, Any
 
 from . import BomBuilder
 
