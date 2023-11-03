@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v3.11.6 (2023-11-03)
+
+### Fix
+
+* Added a fingers-crossed handling for failed input data decoding ([#612](https://github.com/CycloneDX/cyclonedx-python/issues/612)) ([`be55902`](https://github.com/CycloneDX/cyclonedx-python/commit/be559020e482795c6603f36e98713c6f7bde1e34))
+
 ## v3.11.5 (2023-10-20)
 
 ### Fix
