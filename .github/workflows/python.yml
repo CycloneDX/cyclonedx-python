@@ -123,7 +123,7 @@ jobs:
         run: poetry run tox run -e bandit -s false
 
   install-and-run:
-    name: install & run "${{matrix.command}}" (${{matrix.os}} py${{matrox.python-version}})
+    name: install & run "${{matrix.command}}" (${{matrix.os}})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
     strategy:
