@@ -70,9 +70,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - # test with the locked dependencies
+          - # test with the latest dependencies
             python-version: '3.12'
-            toxenv-factor: 'locked'
+            toxenv-factor: 'latest'
             os: ubuntu-latest
           - # test with the lowest dependencies
             python-version: '3.8'
@@ -172,7 +172,7 @@ jobs:
           - "3.10"
           - "3.9"
           - "3.8"  # lowest supported -- handled in include
-        toxenv-factor: ['locked']
+        toxenv-factor: ['latest']
         include:
           # test with the lowest dependencies
           - os: ubuntu-latest
