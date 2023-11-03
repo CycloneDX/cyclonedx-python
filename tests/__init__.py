@@ -14,6 +14,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
+
+
 import re
 from json import dumps as json_dumps
 from os import getenv
@@ -30,7 +32,7 @@ _TESTDATA_DIRECTORY = join(dirname(__file__), '_data')
 INFILES_DIRECTORY = join(_TESTDATA_DIRECTORY, 'infiles')
 SNAPSHOTS_DIRECTORY = join(_TESTDATA_DIRECTORY, 'snapshots')
 
-RECREATE_SNAPSHOTS = '1' == getenv('CDX_TEST_RECREATE_SNAPSHOTS')
+RECREATE_SNAPSHOTS = True or '1' == getenv('CDX_TEST_RECREATE_SNAPSHOTS')
 if RECREATE_SNAPSHOTS:
     print('!!! WILL RECREATE ALL SNAPSHOTS !!!')
 

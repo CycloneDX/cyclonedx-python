@@ -16,11 +16,14 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
+import os
 from contextlib import redirect_stderr, redirect_stdout
 from glob import glob
-from io import StringIO
+from io import StringIO, TextIOWrapper
 from os.path import basename, join
+from typing import Any, Tuple
 from unittest import TestCase
+from unittest.mock import patch
 
 from cyclonedx.schema import OutputFormat, SchemaVersion
 from ddt import ddt, named_data
@@ -34,18 +37,45 @@ unsupported_of_sf = [
     (OutputFormat.JSON, SchemaVersion.V1_0),
 ]
 
+test_data = [
+    (f'{basename(infile)}-{sv.name}-{of.name}', infile, sv, of)
+    for infile in infiles
+    for sv in SchemaVersion
+    for of in OutputFormat
+    if (of, sv) not in unsupported_of_sf
+]
+
+if os.name == 'nt':
+    def test_data_os_filter(data: Any) -> bool:
+        return True
+else:
+    def test_data_os_filter(data: Tuple[Any, str, Any, Any]) -> bool:
+        # skip windows encoded files on non-windows
+        return '.cp125' not in data[1]
+
 
 @ddt
 class TestRequirements(TestCase, SnapshotMixin):
 
-    @named_data(*(
-        [f'{basename(infile)}-{sv.name}-{of.name}', infile, sv, of]
-        for infile in infiles
-        for sv in SchemaVersion
-        for of in OutputFormat
-        if (of, sv) not in unsupported_of_sf
-    ))
-    def test_cli_as_expected(self, infile: str, sv: SchemaVersion, of: OutputFormat) -> None:
+    def test_cli_with_file_not_found(self) -> None:
+        with StringIO() as err, StringIO() as out:
+            err.name = '<fakeerr>'
+            out.name = '<fakeout>'
+            with redirect_stderr(err), redirect_stdout(out):
+                res = run_cli(argv=[
+                    'requirements',
+                    '-vvv',
+                    f'--sv={SchemaVersion.V1_4.to_version()}',
+                    f'--of={OutputFormat.XML.name}',
+                    '--outfile=-',
+                    'something-that-must-not-exist.testing'])
+            err = err.getvalue()
+            out = out.getvalue()
+        self.assertNotEqual(0, res, err)
+        self.assertIn("No such file or directory: 'something-that-must-not-exist.testing'", err)
+
+    @named_data(*filter(test_data_os_filter, test_data))
+    def test_cli_with_file_as_expected(self, infile: str, sv: SchemaVersion, of: OutputFormat) -> None:
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
             out.name = '<fakeout>'
@@ -62,7 +92,28 @@ class TestRequirements(TestCase, SnapshotMixin):
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(
             make_comparable(out, of),
-            f'{basename(infile)}-{sv.to_version()}.{of.name.lower()}')
+            f'{basename(infile)}-{sv.to_version()}.{of.name.lower()}-file')
+
+    @named_data(*test_data)
+    def test_cli_with_stream_as_expected(self, infile: str, sv: SchemaVersion, of: OutputFormat) -> None:
+        with StringIO() as err, StringIO() as out, open(infile, 'rb') as inp:
+            err.name = '<fakeerr>'
+            out.name = '<fakeout>'
+            with redirect_stderr(err), redirect_stdout(out):
+                with patch('sys.stdin', TextIOWrapper(inp)):
+                    res = run_cli(argv=[
+                        'requirements',
+                        '-vvv',
+                        f'--sv={sv.to_version()}',
+                        f'--of={of.name}',
+                        '--outfile=-',
+                        '-'])
+            err = err.getvalue()
+            out = out.getvalue()
+        self.assertEqual(0, res, err)
+        self.assertEqualSnapshot(
+            make_comparable(out, of),
+            f'{basename(infile)}-{sv.to_version()}.{of.name.lower()}-stream')
 
     def assertEqualSnapshot(self, actual: str, snapshot_name: str) -> None:
         super().assertEqualSnapshot(actual, join('requirements', snapshot_name))

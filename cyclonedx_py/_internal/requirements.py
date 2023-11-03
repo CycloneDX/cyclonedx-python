@@ -17,7 +17,7 @@
 
 
 from os import unlink
-from typing import TYPE_CHECKING, Any, BinaryIO, Iterable
+from typing import TYPE_CHECKING, Any, Iterable
 
 from . import BomBuilder
 
@@ -38,7 +38,7 @@ class RequirementsBB(BomBuilder):
 
     @staticmethod
     def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':
-        from argparse import OPTIONAL, ArgumentParser, FileType
+        from argparse import OPTIONAL, ArgumentParser
         from textwrap import dedent
 
         p = ArgumentParser(description='Build an SBOM from frozen requirements.',
@@ -55,11 +55,10 @@ class RequirementsBB(BomBuilder):
                                      python3 -m pip freeze | %(prog)s -
                            '''),
                            **kwargs)
-        p.add_argument('requirements',
+        p.add_argument('requirements_file',
                        metavar='requirements-file',
                        help='I HELP TODO (default: %(default)s)',
                        nargs=OPTIONAL,
-                       type=FileType('rb'),
                        default='requirements.txt')
         return p
 
@@ -69,20 +68,23 @@ class RequirementsBB(BomBuilder):
         self._logger = logger
 
     def __call__(self, *,  # type:ignore[override]
-                 requirements: BinaryIO,
+                 requirements_file: str,
                  **kwargs: Any) -> 'Bom':
         from pip_requirements_parser import RequirementsFile
 
-        from .utils.io import io2file
+        if requirements_file == '-':
+            from sys import stdin
 
-        # no support for `include_nested` intended, so a temp file instead the original path is fine
-        rf = io2file(requirements)
-        try:
-            return self._make_bom(
-                RequirementsFile.from_file(rf, include_nested=False).requirements
-            )
-        finally:
-            unlink(rf)
+            from .utils.io import io2file
+            rf = io2file(stdin.buffer)
+            try:
+                rs = RequirementsFile.from_file(rf, include_nested=False).requirements
+            finally:
+                unlink(rf)
+        else:
+            rs = RequirementsFile.from_file(requirements_file, include_nested=True).requirements
+
+        return self._make_bom(rs)
 
     def _make_bom(self, requirements: Iterable['InstallRequirement']) -> 'Bom':
         from .utils.bom import make_bom

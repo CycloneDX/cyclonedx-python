@@ -218,7 +218,7 @@ def run(*, argv: Optional[List[str]] = None, **kwargs: Any) -> int:
     logger.propagate = False
     logger.setLevel(ll)
     logger.addHandler(lh)
-    del lh, ll
+    del ll
     logger.debug('args: %s', args)
 
     try:
@@ -227,4 +227,7 @@ def run(*, argv: Optional[List[str]] = None, **kwargs: Any) -> int:
         logger.debug('Error: %s', error, exc_info=error)
         logger.critical(f'{error}')
         return 1
-    return 0
+    else:
+        return 0
+    finally:
+        logger.removeHandler(lh)

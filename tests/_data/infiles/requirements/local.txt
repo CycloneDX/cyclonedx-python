@@ -7,9 +7,6 @@
 # editable install
 -e ./myproject/idna.whl
 
-# nested file -- expected to be ignored
--r requirements-nested.txt
-
 # named
 foo @ file://../foo
 

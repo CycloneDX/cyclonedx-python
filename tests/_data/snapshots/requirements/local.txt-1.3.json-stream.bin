@@ -1,15 +1,15 @@
 {
   "components": [
     {
-      "bom-ref": "requirements-L14",
-      "description": "requirements line 14: foo @ file://../foo",
+      "bom-ref": "requirements-L11",
+      "description": "requirements line 11: foo @ file://../foo",
       "name": "foo",
       "type": "library",
       "version": ""
     },
     {
-      "bom-ref": "requirements-L17",
-      "description": "requirements line 17: ./downloads/numpy-1.9.2-cp34-none-win32.whl",
+      "bom-ref": "requirements-L14",
+      "description": "requirements line 14: ./downloads/numpy-1.9.2-cp34-none-win32.whl",
       "externalReferences": [
         {
           "comment": "local path to wheel/archive",
@@ -56,8 +56,8 @@
       "version": ""
     },
     {
-      "bom-ref": "requirements-L20",
-      "description": "requirements line 20: ./downloads/numpy-1.26.1.tar.gz",
+      "bom-ref": "requirements-L17",
+      "description": "requirements line 17: ./downloads/numpy-1.26.1.tar.gz",
       "externalReferences": [
         {
           "comment": "local path to wheel/archive",
@@ -72,6 +72,9 @@
   ],
   "dependencies": [
     {
+      "ref": "requirements-L11"
+    },
+    {
       "ref": "requirements-L14"
     },
     {
@@ -79,9 +82,6 @@
     },
     {
       "ref": "requirements-L2"
-    },
-    {
-      "ref": "requirements-L20"
     },
     {
       "ref": "requirements-L5"
@@ -105,7 +105,7 @@
     ]
   },
   "version": 1,
-  "$schema": "http://cyclonedx.org/schema/bom-1.2b.schema.json",
+  "$schema": "http://cyclonedx.org/schema/bom-1.3a.schema.json",
   "bomFormat": "CycloneDX",
-  "specVersion": "1.2"
+  "specVersion": "1.3"
 }

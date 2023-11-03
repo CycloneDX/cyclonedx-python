@@ -67,59 +67,25 @@
     </tools>
   </metadata>
   <components>
-    <component type="library" bom-ref="requirements-L14">
-      <name>foo</name>
-      <description>requirements line 14: foo @ file://../foo</description>
-    </component>
-    <component type="library" bom-ref="requirements-L17">
-      <name>numpy</name>
-      <version>1.9.2</version>
-      <description>requirements line 17: ./downloads/numpy-1.9.2-cp34-none-win32.whl</description>
-      <externalReferences>
-        <reference type="other">
-          <url>./downloads/numpy-1.9.2-cp34-none-win32.whl</url>
-          <comment>local path to wheel/archive</comment>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="requirements-L2">
-      <name>unknown</name>
-      <description>requirements line 2: ./myproject/chardet</description>
-    </component>
-    <component type="library" bom-ref="requirements-L5">
-      <name>unknown</name>
-      <description>requirements line 5: ./myproject/requests --hash=sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804</description>
+    <component type="library" bom-ref="requirements-L7">
+      <name>FooProject</name>
+      <version>1.2</version>
+      <description>requirements line 7: FooProject == 1.2   --hash=sha256:2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824   --hash=sha256:486ea46224d1bb4fb680f34f7c9ad96a8f24ec88be73ea8e5a6c65260e9cb8a7</description>
       <hashes>
-        <hash alg="SHA-256">27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804</hash>
+        <hash alg="SHA-256">2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824</hash>
+        <hash alg="SHA-256">486ea46224d1bb4fb680f34f7c9ad96a8f24ec88be73ea8e5a6c65260e9cb8a7</hash>
       </hashes>
+      <purl>pkg:pypi/fooproject@1.2</purl>
     </component>
-    <component type="library" bom-ref="requirements-L8">
-      <name>unknown</name>
-      <description>requirements line 8: -e ./myproject/idna.whl</description>
-      <externalReferences>
-        <reference type="other">
-          <url>./myproject/idna.whl</url>
-          <comment>local path to wheel/archive</comment>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="requirements-L20">
-      <name>unknown</name>
-      <description>requirements line 20: ./downloads/numpy-1.26.1.tar.gz</description>
-      <externalReferences>
-        <reference type="other">
-          <url>./downloads/numpy-1.26.1.tar.gz</url>
-          <comment>local path to wheel/archive</comment>
-        </reference>
-      </externalReferences>
+    <component type="library" bom-ref="requirements-L4">
+      <name>colorama</name>
+      <version>0.4.6</version>
+      <description>requirements line 4: colorama==0.4.6</description>
+      <purl>pkg:pypi/colorama@0.4.6</purl>
     </component>
   </components>
   <dependencies>
-    <dependency ref="requirements-L14"/>
-    <dependency ref="requirements-L17"/>
-    <dependency ref="requirements-L2"/>
-    <dependency ref="requirements-L20"/>
-    <dependency ref="requirements-L5"/>
-    <dependency ref="requirements-L8"/>
+    <dependency ref="requirements-L4"/>
+    <dependency ref="requirements-L7"/>
   </dependencies>
 </bom>

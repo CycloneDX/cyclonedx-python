@@ -4,13 +4,13 @@
     <component type="library">
       <name>foo</name>
       <version/>
-      <description>requirements line 14: foo @ file://../foo</description>
+      <description>requirements line 11: foo @ file://../foo</description>
       <modified>false</modified>
     </component>
     <component type="library">
       <name>numpy</name>
       <version>1.9.2</version>
-      <description>requirements line 17: ./downloads/numpy-1.9.2-cp34-none-win32.whl</description>
+      <description>requirements line 14: ./downloads/numpy-1.9.2-cp34-none-win32.whl</description>
       <modified>false</modified>
     </component>
     <component type="library">
@@ -37,7 +37,7 @@
     <component type="library">
       <name>unknown</name>
       <version/>
-      <description>requirements line 20: ./downloads/numpy-1.26.1.tar.gz</description>
+      <description>requirements line 17: ./downloads/numpy-1.26.1.tar.gz</description>
       <modified>false</modified>
     </component>
   </components>
