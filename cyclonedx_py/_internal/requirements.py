@@ -78,7 +78,7 @@ class RequirementsBB(BomBuilder):
             from .utils.io import io2file
             rt = io2file(stdin.buffer)
             try:
-                rf = RequirementsFile.from_file(rf, include_nested=False)
+                rf = RequirementsFile.from_file(rt, include_nested=False)
             finally:
                 unlink(rt)
         else:

@@ -1,8 +1,8 @@
 {
   "components": [
     {
-      "bom-ref": "requirements-L3",
-      "description": "requirements line 3: mypackage==1.2.3",
+      "bom-ref": "requirements-L6",
+      "description": "requirements line 6: mypackage==1.2.3",
       "name": "mypackage",
       "purl": "pkg:pypi/mypackage@1.2.3",
       "type": "library",
@@ -11,7 +11,7 @@
   ],
   "dependencies": [
     {
-      "ref": "requirements-L3"
+      "ref": "requirements-L6"
     }
   ],
   "metadata": {
