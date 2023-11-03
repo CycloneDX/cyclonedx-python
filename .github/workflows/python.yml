@@ -71,7 +71,7 @@ jobs:
       matrix:
         include:
           - # test with the locked dependencies
-            python-version: '3.11'
+            python-version: '3.12'
             toxenv-factor: 'locked'
             os: ubuntu-latest
           - # test with the lowest dependencies
@@ -136,8 +136,6 @@ jobs:
           - ubuntu-latest
           - macos-latest
           - windows-latest
-        python-version:
-          - "3.11"
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
@@ -169,7 +167,8 @@ jobs:
           - macos-latest
           - windows-latest
         python-version:
-          - "3.11" # highest supported
+          - "3.12" # highest supported
+          - "3.11"
           - "3.10"
           - "3.9"
           - "3.8"  # lowest supported -- handled in include
