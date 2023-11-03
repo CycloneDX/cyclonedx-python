@@ -290,10 +290,14 @@ class CycloneDxCmd:
         with input_data_fh:
             input_data = input_data_fh.read()
             if isinstance(input_data, bytes):
-                input_encoding = (chardetect(input_data)['encoding'] or '').replace(
-                    # replace Windows-encoding with code-page
-                    'Windows-', 'cp')
-                input_data = input_data.decode(input_encoding)
+                try:
+                    input_encoding = (chardetect(input_data)['encoding'] or sys.getdefaultencoding()).replace(
+                        # replace Windows-encoding with code-page
+                        'Windows-', 'cp')
+                    input_data = input_data.decode(input_encoding)
+                except ValueError:
+                    # last resort: try utf8 and hope for the best
+                    input_data = input_data.decode('utf-8', 'backslashreplace')
             input_data_fh.close()
 
         if self._arguments.input_from_conda_explicit:
