@@ -17,7 +17,7 @@
 
 
 from os import unlink
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, Generator
 
 from . import BomBuilder
 
@@ -25,6 +25,7 @@ if TYPE_CHECKING:  # pragma: no cover
     from argparse import ArgumentParser
     from logging import Logger
 
+    from cyclonedx.model import HashType
     from cyclonedx.model.bom import Bom
     from cyclonedx.model.component import Component
     from pip_requirements_parser import InstallRequirement, RequirementsFile  # type:ignore[import-untyped]
@@ -101,14 +102,26 @@ class RequirementsBB(BomBuilder):
 
         return bom
 
+    def __hashes4req(self, req: 'InstallRequirement') -> Generator['HashType', None, None]:
+        from cyclonedx.exception.model import UnknownHashTypeException
+        from cyclonedx.model import HashType
+
+        for hash in req.hash_options:
+            try:
+                yield HashType.from_composite_str(hash)
+            except UnknownHashTypeException as error:
+                self._logger.debug('skipping hash %s', hash, exc_info=error)
+                del error
+
     def _make_component(self, req: 'InstallRequirement') -> 'Component':
         from cyclonedx.exception.model import InvalidUriException
-        from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
+        from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
         from cyclonedx.model.component import Component, ComponentType
         from packageurl import PackageURL
 
         name = req.name
         version = req.get_pinned_version or None
+        hashes = list(self.__hashes4req(req))
         external_references = []
         purl_qualifiers = {}  # see https://github.com/package-url/purl-spec/blob/master/PURL-SPECIFICATION.rst
 
@@ -122,8 +135,9 @@ class RequirementsBB(BomBuilder):
                         comment='local path to wheel/archive',
                         type=ExternalReferenceType.OTHER,
                         url=XsUri(req.link.url)))
-                except InvalidUriException:
-                    pass  # safe to pass, as the actual line is documented as `description`
+                except InvalidUriException as error:
+                    self._logger.debug('skipping location for line: %s', req.line, exc_info=error)
+                    del error
         elif req.is_url:
             if 'pythonhosted.org/' not in req.link.url:
                 # skip PURL bloat, do not add implicit information
@@ -132,20 +146,30 @@ class RequirementsBB(BomBuilder):
                 external_references.append(ExternalReference(
                     type=ExternalReferenceType.VCS if req.is_vcs_url else ExternalReferenceType.DISTRIBUTION,
                     url=XsUri(req.link.url),
-                    hashes=[]  # TODO
+                    hashes=hashes
                 ))
-            except InvalidUriException:
-                pass  # safe to pass, as the actual line is documented as `description`
-
-        return Component(
+            except InvalidUriException as error:
+                self._logger.debug('skipping URL for line: %s', req.line, exc_info=error)
+                del error
+        component = Component(
             bom_ref=f'requirements-L{req.line_number}',
             description=f'requirements line {req.line_number}: {req.line}',
             type=ComponentType.LIBRARY,
             name=name or 'unknown',
             version=version,
-            hashes=map(HashType.from_composite_str, req.hash_options),
             purl=PackageURL(type='pypi', name=req.name, version=version,
                             qualifiers=purl_qualifiers
                             ) if not is_local and name else None,
             external_references=external_references,
         )
+        if len(hashes) > 0 and len(external_references) == 0:
+            try:
+                component.external_references.add(ExternalReference(
+                    type=ExternalReferenceType.DISTRIBUTION,
+                    url=XsUri(component.get_pypi_url()),
+                    hashes=hashes
+                ))
+            except InvalidUriException as error:
+                self._logger.debug('skipped hashes for: %s', req.line, exc_info=error)
+                del error
+        return component

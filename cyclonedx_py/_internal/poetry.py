@@ -106,12 +106,13 @@ class PoetryBB(BomBuilder):
             if 'hash' in file:
                 try:
                     yield HashType.from_composite_str(file['hash'])
-                except UnknownHashTypeException:
-                    pass
+                except UnknownHashTypeException as error:
+                    self._logger.debug('skipping hash %s', file['hash'], exc_info=error)
+                    del error
 
     def __make_component(self, package: 'NameDict', files: List['NameDict']) -> 'Component':
-        from cyclonedx.model import Property, XsUri, ExternalReference, ExternalReferenceType, HashType
         from cyclonedx.exception.model import InvalidUriException
+        from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
         from cyclonedx.model.component import Component, ComponentScope
         from packageurl import PackageURL
 
@@ -139,7 +140,8 @@ class PoetryBB(BomBuilder):
                     hashes=[HashType.from_composite_str(file["hash"])]
                 ))
             except InvalidUriException as error:
-                self._logger.debug(f'%s skipped file: %r', package['name'], file, exc_info=error)
+                self._logger.debug(f'%s skipped extRef for: %r', package['name'], file, exc_info=error)
+                del error
         return component
 
     def _make_bom_v1(self, lock: 'NameDict') -> 'Bom':

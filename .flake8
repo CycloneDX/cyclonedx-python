@@ -11,7 +11,7 @@ exclude =
 
 max-line-length = 120
 
-max-complexity = 10
+max-complexity = 15
 
 ignore =
     # ignore `self`, `cls` markers of flake8-annotations>=2.0

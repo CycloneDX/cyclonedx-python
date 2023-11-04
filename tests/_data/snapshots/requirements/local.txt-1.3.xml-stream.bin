@@ -40,9 +40,14 @@
       <name>unknown</name>
       <version/>
       <description>requirements line 5: ./myproject/requests --hash=sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804</description>
-      <hashes>
-        <hash alg="SHA-256">27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804</hash>
-      </hashes>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/project/unknown</url>
+          <hashes>
+            <hash alg="SHA-256">27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
     </component>
     <component type="library" bom-ref="requirements-L8">
       <name>unknown</name>
