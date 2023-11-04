@@ -17,7 +17,7 @@
 
 
 from enum import Enum
-from typing import TYPE_CHECKING, Any, TextIO, Tuple, Generator, List, Dict
+from typing import TYPE_CHECKING, Any, Dict, Generator, List, Optional, TextIO, Tuple
 
 from . import BomBuilder
 
@@ -28,6 +28,8 @@ if TYPE_CHECKING:  # pragma: no cover
     from cyclonedx.model import HashType
     from cyclonedx.model.bom import Bom
     from cyclonedx.model.component import Component
+
+    NameDict = Dict[str, Any]
 
 
 # !!! be as lazy loading as possible, as greedy as needed
@@ -88,12 +90,14 @@ class PoetryBB(BomBuilder):
         return self._make_bom_v1(locker)
 
     @staticmethod
-    def __get_lock_version(locker: Dict[str, Any]) -> Tuple[int, ...]:
+    def __get_lock_version(locker: 'NameDict') -> Tuple[int, ...]:
         # no version defined -- assume 1.0
-        return tuple(int(v) for v in locker.get['metadata'].get('lock-version', '1.0').split('.'))
+        return tuple(int(v) for v in locker['metadata'].get('lock-version', '1.0').split('.'))
 
-    def __hashes4file(self, files: List[Dict[str, Any]]) -> Generator['HashType', None, None]:
-        from cyclonedx.model import HashType, UnknownHashTypeException
+    def __hashes4file(self, files: List['NameDict']) -> Generator['HashType', None, None]:
+        from cyclonedx.exception.model import UnknownHashTypeException
+        from cyclonedx.model import HashType
+
         for file in files:
             if 'hash' in file:
                 try:
@@ -101,42 +105,51 @@ class PoetryBB(BomBuilder):
                 except UnknownHashTypeException:
                     pass
 
-    def __make_component(self, package: dict, files: List[Dict[str, Any]] = None) -> 'Component':
-        from cyclonedx.model.component import Component, ComponentScope
+    def __make_component(self, package: 'NameDict', files: Optional[List['NameDict']] = None) -> 'Component':
         from cyclonedx.model import Property
+        from cyclonedx.model.component import Component, ComponentScope
 
         return Component(
             name=package['name'],
-            version=package.get('version'),
+            version=package['version'],
             description=package.get('description'),
             scope=ComponentScope.OPTIONAL if package.get('optional') else None,
-            properties=[
+            properties=filter(None, [
                 Property(  # for backwards compatibility: category -> group
                     name=_CdxProperty.PackageGroup.value,
                     value=package['category']
                 ) if 'category' in package else None
                 # TODO actual groups -- from `pyproject.toml`
-            ],
+            ]),
             hashes=self.__hashes4file(files or package.get('files', []))
         )
 
-    def _make_bom_v1(self, lock: Dict[str, Any]) -> 'Bom':
+    def _make_bom_v1(self, lock: 'NameDict') -> 'Bom':
         from cyclonedx.model.bom import Bom
 
         metavar_files = lock.get('metavar', {}).get('files', {})
 
         bom = Bom()
 
-        components: Dict[str, Component] = {}
-
         for package in lock.get('package', []):
             component = self.__make_component(package, metavar_files.get(package['name'], []))
+            self._logger.debug('Add component: %r', component)
             bom.components.add(component)
-            components[component.name] = component
 
         # TODO dependency tree
 
         return bom
 
-    def _make_bom_v2(self, lock: Dict[str, Any]) -> 'Bom':
-        pass
+    def _make_bom_v2(self, lock: 'NameDict') -> 'Bom':
+        from cyclonedx.model.bom import Bom
+
+        bom = Bom()
+
+        for package in lock.get('package', []):
+            component = self.__make_component(package)
+            self._logger.debug('Add component: %r', component)
+            bom.components.add(component)
+
+        # TODO dependency tree
+
+        return bom
