@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "simple"
+version = "0.1.0"
+description = "a simple set of dependnecies"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+toml = "^0.10.2"
+
+[tool.poetry.dev-dependencies]
+ddt = "^1.6.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

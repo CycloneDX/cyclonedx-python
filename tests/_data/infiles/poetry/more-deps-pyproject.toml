@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "more-deps"
+version = "0.1.0"
+description = "dependencies, extras, transitive dependencies"
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+cyclonedx-python-lib = {extras = ["validation"], version = "^5.1.1"}
+
+[tool.poetry.dev-dependencies]
+isoduration = "^20.11.0"
+ddt = "^1.6.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
