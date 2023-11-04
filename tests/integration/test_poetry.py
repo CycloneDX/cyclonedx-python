@@ -16,14 +16,11 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
-import os
 from contextlib import redirect_stderr, redirect_stdout
 from glob import glob
-from io import StringIO, TextIOWrapper
+from io import StringIO
 from os.path import basename, join
-from typing import Any, Tuple
 from unittest import TestCase
-from unittest.mock import patch
 
 from cyclonedx.schema import OutputFormat, SchemaVersion
 from ddt import ddt, named_data

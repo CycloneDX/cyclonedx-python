@@ -17,7 +17,7 @@
 
 
 from enum import Enum
-from typing import TYPE_CHECKING, Any, Dict, Generator, List, Optional, TextIO, Tuple
+from typing import TYPE_CHECKING, Any, Dict, Generator, List, TextIO, Tuple
 
 from . import BomBuilder
 
@@ -140,7 +140,7 @@ class PoetryBB(BomBuilder):
                     hashes=[HashType.from_composite_str(file["hash"])]
                 ))
             except InvalidUriException as error:
-                self._logger.debug(f'%s skipped extRef for: %r', package['name'], file, exc_info=error)
+                self._logger.debug('%s skipped extRef for: %r', package['name'], file, exc_info=error)
                 del error
         return component
 
