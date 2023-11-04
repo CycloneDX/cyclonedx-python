@@ -1,0 +1,65 @@
+{
+  "components": [
+    {
+      "bom-ref": "ddt@1.6.0",
+      "description": "Data-Driven/Decorated Tests",
+      "externalReferences": [
+        {
+          "comment": "file: ddt-1.6.0-py2.py3-none-any.whl",
+          "type": "distribution",
+          "url": "https://pypi.org/project/ddt/1.6.0"
+        },
+        {
+          "comment": "file: ddt-1.6.0.tar.gz",
+          "type": "distribution",
+          "url": "https://pypi.org/project/ddt/1.6.0"
+        }
+      ],
+      "name": "ddt",
+      "purl": "pkg:pypi/ddt@1.6.0",
+      "type": "library",
+      "version": "1.6.0"
+    },
+    {
+      "bom-ref": "toml@0.10.2",
+      "description": "Python Library for Tom's Obvious, Minimal Language",
+      "externalReferences": [
+        {
+          "comment": "file: toml-0.10.2-py2.py3-none-any.whl",
+          "type": "distribution",
+          "url": "https://pypi.org/project/toml/0.10.2"
+        },
+        {
+          "comment": "file: toml-0.10.2.tar.gz",
+          "type": "distribution",
+          "url": "https://pypi.org/project/toml/0.10.2"
+        }
+      ],
+      "name": "toml",
+      "purl": "pkg:pypi/toml@0.10.2",
+      "type": "library",
+      "version": "0.10.2"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "ddt@1.6.0"
+    },
+    {
+      "ref": "toml@0.10.2"
+    }
+  ],
+  "metadata": {
+    "tools": [
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.2b.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.2"
+}

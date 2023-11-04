@@ -53,6 +53,11 @@ class PoetryBB(BomBuilder):
                        help='I HELP TODO (default: %(default)s)',
                        nargs=OPTIONAL,
                        default='poetry.lock')
+        # TODO: filtering as allowed by poetry itself
+        #  --without=GROUP     The dependency groups to ignore. (multiple values allowed)
+        #  --with=GROUP        The optional dependency groups to include. (multiple values allowed)
+        #  --only=GROUP        The only dependency groups to include. (multiple values allowed)
+        #  --dev / --no-dev    ala: Do not install the development dependencies.
         return p
 
     def __init__(self, *,
@@ -65,7 +70,6 @@ class PoetryBB(BomBuilder):
                  **kwargs: Any) -> 'Bom':
 
         try:
-            #
             lock = open(lock_file, 'rt', errors='replace')
         except OSError as err:
             raise ValueError(f"can't open {lock_file!r}: {err}")
@@ -105,11 +109,14 @@ class PoetryBB(BomBuilder):
                 except UnknownHashTypeException:
                     pass
 
-    def __make_component(self, package: 'NameDict', files: Optional[List['NameDict']] = None) -> 'Component':
-        from cyclonedx.model import Property
+    def __make_component(self, package: 'NameDict', files: List['NameDict']) -> 'Component':
+        from cyclonedx.model import Property, XsUri, ExternalReference, ExternalReferenceType, HashType
+        from cyclonedx.exception.model import InvalidUriException
         from cyclonedx.model.component import Component, ComponentScope
+        from packageurl import PackageURL
 
-        return Component(
+        component = Component(
+            bom_ref=f'{package["name"]}@{package["version"]}',
             name=package['name'],
             version=package['version'],
             description=package.get('description'),
@@ -121,8 +128,19 @@ class PoetryBB(BomBuilder):
                 ) if 'category' in package else None
                 # TODO actual groups -- from `pyproject.toml`
             ]),
-            hashes=self.__hashes4file(files or package.get('files', []))
+            purl=PackageURL(type='pypi', name=package['name'], version=package['version']),
         )
+        for file in files:
+            try:
+                'hash' in file and component.external_references.add(ExternalReference(
+                    type=ExternalReferenceType.DISTRIBUTION,
+                    url=XsUri(component.get_pypi_url()),
+                    comment=f'file: {file["file"]}',
+                    hashes=[HashType.from_composite_str(file["hash"])]
+                ))
+            except InvalidUriException as error:
+                self._logger.debug(f'%s skipped file: %r', package['name'], file, exc_info=error)
+        return component
 
     def _make_bom_v1(self, lock: 'NameDict') -> 'Bom':
         from cyclonedx.model.bom import Bom
@@ -146,7 +164,7 @@ class PoetryBB(BomBuilder):
         bom = Bom()
 
         for package in lock.get('package', []):
-            component = self.__make_component(package)
+            component = self.__make_component(package, package.get('files', []))
             self._logger.debug('Add component: %r', component)
             bom.components.add(component)
 

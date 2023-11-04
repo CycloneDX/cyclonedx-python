@@ -131,7 +131,9 @@ class RequirementsBB(BomBuilder):
             try:
                 external_references.append(ExternalReference(
                     type=ExternalReferenceType.VCS if req.is_vcs_url else ExternalReferenceType.DISTRIBUTION,
-                    url=XsUri(req.link.url)))
+                    url=XsUri(req.link.url),
+                    hashes=[]  # TODO
+                ))
             except InvalidUriException:
                 pass  # safe to pass, as the actual line is documented as `description`
 
