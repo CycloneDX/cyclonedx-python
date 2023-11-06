@@ -1,0 +1,4 @@
+- local deps
+- private package
+- from urls: wheel, soure-archive, vcs-tag, vcs-commit, vcs-branch
+- extras , direct & transitive
