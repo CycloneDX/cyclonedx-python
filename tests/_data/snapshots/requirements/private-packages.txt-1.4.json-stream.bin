@@ -1,8 +1,15 @@
 {
   "components": [
     {
-      "bom-ref": "requirements-L6",
-      "description": "requirements line 6: mypackage==1.2.3",
+      "bom-ref": "requirements-L5",
+      "description": "requirements line 5: mypackage==1.2.3",
+      "externalReferences": [
+        {
+          "comment": "implicit dist url",
+          "type": "distribution",
+          "url": "https://mypi.org/simple//mypackage/"
+        }
+      ],
       "name": "mypackage",
       "purl": "pkg:pypi/mypackage@1.2.3",
       "type": "library",
@@ -11,7 +18,7 @@
   ],
   "dependencies": [
     {
-      "ref": "requirements-L6"
+      "ref": "requirements-L5"
     }
   ],
   "metadata": {

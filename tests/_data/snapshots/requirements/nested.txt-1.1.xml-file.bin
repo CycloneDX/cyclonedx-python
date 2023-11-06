@@ -8,7 +8,8 @@
       <purl>pkg:pypi/fooproject@1.2</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>https://pypi.org/project/FooProject/1.2</url>
+          <url>https://pypi.org/simple/FooProject/</url>
+          <comment>implicit dist url</comment>
         </reference>
       </externalReferences>
     </component>
@@ -17,6 +18,12 @@
       <version>0.4.6</version>
       <description>requirements line 4: colorama==0.4.6</description>
       <purl>pkg:pypi/colorama@0.4.6</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/colorama/</url>
+          <comment>implicit dist url</comment>
+        </reference>
+      </externalReferences>
     </component>
   </components>
 </bom>

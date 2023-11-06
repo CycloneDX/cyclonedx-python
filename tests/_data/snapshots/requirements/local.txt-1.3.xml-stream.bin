@@ -19,6 +19,12 @@
       <name>foo</name>
       <version/>
       <description>requirements line 11: foo @ file://../foo</description>
+      <externalReferences>
+        <reference type="other">
+          <url>file://../foo</url>
+          <comment>explicit local path</comment>
+        </reference>
+      </externalReferences>
     </component>
     <component type="library" bom-ref="requirements-L14">
       <name>numpy</name>
@@ -27,7 +33,7 @@
       <externalReferences>
         <reference type="other">
           <url>./downloads/numpy-1.9.2-cp34-none-win32.whl</url>
-          <comment>local path to wheel/archive</comment>
+          <comment>explicit local path</comment>
         </reference>
       </externalReferences>
     </component>
@@ -35,14 +41,21 @@
       <name>unknown</name>
       <version/>
       <description>requirements line 2: ./myproject/chardet</description>
+      <externalReferences>
+        <reference type="other">
+          <url>./myproject/chardet</url>
+          <comment>explicit local path</comment>
+        </reference>
+      </externalReferences>
     </component>
     <component type="library" bom-ref="requirements-L5">
       <name>unknown</name>
       <version/>
       <description>requirements line 5: ./myproject/requests --hash=sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804</description>
       <externalReferences>
-        <reference type="distribution">
-          <url>https://pypi.org/project/unknown</url>
+        <reference type="other">
+          <url>./myproject/requests</url>
+          <comment>explicit local path</comment>
           <hashes>
             <hash alg="SHA-256">27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804</hash>
           </hashes>
@@ -56,7 +69,7 @@
       <externalReferences>
         <reference type="other">
           <url>./myproject/idna.whl</url>
-          <comment>local path to wheel/archive</comment>
+          <comment>explicit local path</comment>
         </reference>
       </externalReferences>
     </component>
@@ -67,7 +80,7 @@
       <externalReferences>
         <reference type="other">
           <url>./downloads/numpy-1.26.1.tar.gz</url>
-          <comment>local path to wheel/archive</comment>
+          <comment>explicit local path</comment>
         </reference>
       </externalReferences>
     </component>

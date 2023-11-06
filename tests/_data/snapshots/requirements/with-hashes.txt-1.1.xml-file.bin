@@ -8,7 +8,8 @@
       <purl>pkg:pypi/fooproject@1.2</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>https://pypi.org/project/FooProject/1.2</url>
+          <url>https://pypi.org/simple/FooProject/</url>
+          <comment>implicit dist url</comment>
         </reference>
       </externalReferences>
     </component>
@@ -19,7 +20,8 @@
       <purl>pkg:pypi/certifi@2021.5.30</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>https://pypi.org/project/certifi/2021.5.30</url>
+          <url>https://pypi.org/simple/certifi/</url>
+          <comment>implicit dist url</comment>
         </reference>
       </externalReferences>
     </component>
@@ -31,6 +33,7 @@
       <externalReferences>
         <reference type="distribution">
           <url>https://github.com/tartley/colorama/archive/refs/tags/0.4.6.tar.gz</url>
+          <comment>explicit dist url</comment>
         </reference>
       </externalReferences>
     </component>
@@ -41,7 +44,8 @@
       <purl>pkg:pypi/urllib3@1.26.5</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>https://pypi.org/project/urllib3/1.26.5</url>
+          <url>https://pypi.org/simple/urllib3/</url>
+          <comment>implicit dist url</comment>
         </reference>
       </externalReferences>
     </component>

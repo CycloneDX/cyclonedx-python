@@ -1,10 +1,11 @@
 {
   "components": [
     {
-      "bom-ref": "requirements-L10",
-      "description": "requirements line 10: git+https://github.com/path/to/package-four@releases/tag/v3.7.1#egg=package-four",
+      "bom-ref": "requirements-L11",
+      "description": "requirements line 11: git+https://github.com/path/to/package-four@releases/tag/v3.7.1#egg=package-four",
       "externalReferences": [
         {
+          "comment": "explicit dist url",
           "type": "vcs",
           "url": "git+https://github.com/path/to/package-four@releases/tag/v3.7.1#egg=package-four"
         }
@@ -14,10 +15,11 @@
       "type": "library"
     },
     {
-      "bom-ref": "requirements-L4",
-      "description": "requirements line 4: git+https://github.com/path/to/package-one@41b95ec#egg=package-one",
+      "bom-ref": "requirements-L5",
+      "description": "requirements line 5: git+https://github.com/path/to/package-one@41b95ec#egg=package-one",
       "externalReferences": [
         {
+          "comment": "explicit dist url",
           "type": "vcs",
           "url": "git+https://github.com/path/to/package-one@41b95ec#egg=package-one"
         }
@@ -27,10 +29,11 @@
       "type": "library"
     },
     {
-      "bom-ref": "requirements-L8",
-      "description": "requirements line 8: git+https://github.com/path/to/package-three@0.1#egg=package-three",
+      "bom-ref": "requirements-L9",
+      "description": "requirements line 9: git+https://github.com/path/to/package-three@0.1#egg=package-three",
       "externalReferences": [
         {
+          "comment": "explicit dist url",
           "type": "vcs",
           "url": "git+https://github.com/path/to/package-three@0.1#egg=package-three"
         }
@@ -40,10 +43,11 @@
       "type": "library"
     },
     {
-      "bom-ref": "requirements-L6",
-      "description": "requirements line 6: git+https://github.com/path/to/package-two@master#egg=package-two",
+      "bom-ref": "requirements-L7",
+      "description": "requirements line 7: git+https://github.com/path/to/package-two@master#egg=package-two",
       "externalReferences": [
         {
+          "comment": "explicit dist url",
           "type": "vcs",
           "url": "git+https://github.com/path/to/package-two@master#egg=package-two"
         }
@@ -53,10 +57,11 @@
       "type": "library"
     },
     {
-      "bom-ref": "requirements-L17",
-      "description": "requirements line 17: https://files.pythonhosted.org/packages/78/23/f78fd8311e0f710fe1d065d50b92ce0057fe877b8ed7fd41b28ad6865bfc/numpy-1.26.1.tar.gz",
+      "bom-ref": "requirements-L19",
+      "description": "requirements line 19: https://files.pythonhosted.org/packages/78/23/f78fd8311e0f710fe1d065d50b92ce0057fe877b8ed7fd41b28ad6865bfc/numpy-1.26.1.tar.gz",
       "externalReferences": [
         {
+          "comment": "explicit dist url",
           "type": "distribution",
           "url": "https://files.pythonhosted.org/packages/78/23/f78fd8311e0f710fe1d065d50b92ce0057fe877b8ed7fd41b28ad6865bfc/numpy-1.26.1.tar.gz"
         }
@@ -65,10 +70,11 @@
       "type": "library"
     },
     {
-      "bom-ref": "requirements-L21",
-      "description": "requirements line 21: urllib3 @ https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip",
+      "bom-ref": "requirements-L23",
+      "description": "requirements line 23: urllib3 @ https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip",
       "externalReferences": [
         {
+          "comment": "explicit dist url",
           "type": "distribution",
           "url": "https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip"
         }
@@ -78,10 +84,11 @@
       "type": "library"
     },
     {
-      "bom-ref": "requirements-L14",
-      "description": "requirements line 14: http://wxpython.org/Phoenix/snapshot-builds/wxPython_Phoenix-3.0.3.dev1820+49a8884-cp34-none-win_amd64.whl",
+      "bom-ref": "requirements-L15",
+      "description": "requirements line 15: http://wxpython.org/Phoenix/snapshot-builds/wxPython_Phoenix-3.0.3.dev1820+49a8884-cp34-none-win_amd64.whl",
       "externalReferences": [
         {
+          "comment": "explicit dist url",
           "type": "distribution",
           "url": "http://wxpython.org/Phoenix/snapshot-builds/wxPython_Phoenix-3.0.3.dev1820+49a8884-cp34-none-win_amd64.whl"
         }
@@ -94,25 +101,25 @@
   ],
   "dependencies": [
     {
-      "ref": "requirements-L10"
+      "ref": "requirements-L11"
     },
     {
-      "ref": "requirements-L14"
+      "ref": "requirements-L15"
     },
     {
-      "ref": "requirements-L17"
+      "ref": "requirements-L19"
     },
     {
-      "ref": "requirements-L21"
+      "ref": "requirements-L23"
     },
     {
-      "ref": "requirements-L4"
+      "ref": "requirements-L5"
     },
     {
-      "ref": "requirements-L6"
+      "ref": "requirements-L7"
     },
     {
-      "ref": "requirements-L8"
+      "ref": "requirements-L9"
     }
   ],
   "metadata": {

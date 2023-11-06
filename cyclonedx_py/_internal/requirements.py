@@ -56,6 +56,14 @@ class RequirementsBB(BomBuilder):
                                      python3 -m pip freeze | %(prog)s -
                            '''),
                            **kwargs)
+        p.add_argument('-i', '--index-url',
+                       metavar='URL',
+                       help='Base URL of the Python Package Index'
+                            ' (default: %(default)s) '
+                            ' This should point to a repository compliant with PEP 503 (the simple repository API)'
+                            ' or a local directory laid out in the same format.',
+                       dest='index_url',
+                       default='https://pypi.org/simple')
         p.add_argument('requirements_file',
                        metavar='requirements-file',
                        help='I HELP TODO (default: %(default)r in current working directory)',
@@ -65,8 +73,10 @@ class RequirementsBB(BomBuilder):
 
     def __init__(self, *,
                  logger: 'Logger',
+                 index_url: str,
                  **kwargs: Any) -> None:
         self._logger = logger
+        self._index_url = index_url
 
     def __call__(self, *,  # type:ignore[override]
                  requirements_file: str,
@@ -93,8 +103,13 @@ class RequirementsBB(BomBuilder):
 
         bom = make_bom()
 
+        index_url = self._index_url
+        for opt in rf.options:
+            index_url = opt.options.get('index_url') or index_url
+        self._logger.debug('index_url = %r', index_url)
+
         for requirement in rf.requirements:
-            component = self._make_component(requirement)
+            component = self._make_component(requirement, index_url=index_url)
             self._logger.debug('Add component: %r', component)
             if not component.version:
                 self._logger.warning('Component has no pinned version: %r', component)
@@ -113,7 +128,8 @@ class RequirementsBB(BomBuilder):
                 self._logger.debug('skipping hash %s', hash, exc_info=error)
                 del error
 
-    def _make_component(self, req: 'InstallRequirement') -> 'Component':
+    def _make_component(self, req: 'InstallRequirement',
+                        *, index_url: str = None) -> 'Component':
         from cyclonedx.exception.model import InvalidUriException
         from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
         from cyclonedx.model.component import Component, ComponentType
@@ -127,31 +143,33 @@ class RequirementsBB(BomBuilder):
 
         # workaround for https://github.com/nexB/pip-requirements-parser/issues/24
         is_local = req.is_local_path and (not req.link or req.link.scheme in ['', 'file'])
-        if is_local:
-            if req.is_wheel or req.is_archive:
-                purl_qualifiers['file_name'] = req.link.url
-                try:
-                    external_references.append(ExternalReference(
-                        comment='local path to wheel/archive',
-                        type=ExternalReferenceType.OTHER,
-                        url=XsUri(req.link.url)))
-                except InvalidUriException as error:
-                    self._logger.debug('skipping location for line: %s', req.line, exc_info=error)
-                    del error
-        elif req.is_url:
-            if '://files.pythonhosted.org/' not in req.link.url:
-                # skip PURL bloat, do not add implicit information
-                purl_qualifiers['vcs_url' if req.is_vcs_url else 'download_url'] = req.link.url
-            try:
+        try:
+            if is_local:
                 external_references.append(ExternalReference(
+                    comment='explicit local path',
+                    type=ExternalReferenceType.OTHER,
+                    url=XsUri(req.link.url),
+                    hashes=hashes))
+            elif req.is_url:
+                if '://files.pythonhosted.org/' not in req.link.url:
+                    # skip PURL bloat, do not add implicit information
+                    purl_qualifiers['vcs_url' if req.is_vcs_url else 'download_url'] = req.link.url
+                external_references.append(ExternalReference(
+                    comment='explicit dist url',
                     type=ExternalReferenceType.VCS if req.is_vcs_url else ExternalReferenceType.DISTRIBUTION,
                     url=XsUri(req.link.url),
-                    hashes=hashes
-                ))
-            except InvalidUriException as error:
-                self._logger.debug('skipping URL for line: %s', req.line, exc_info=error)
-                del error
-        component = Component(
+                    hashes=hashes))
+            else:
+                external_references.append(ExternalReference(
+                    comment='implicit dist url',
+                    type=ExternalReferenceType.DISTRIBUTION,
+                    # url based on https://warehouse.pypa.io/api-reference/legacy.html
+                    url=XsUri(f'{index_url or self._index_url}/{name}/'),
+                    hashes=hashes))
+        except InvalidUriException as error:
+            self._logger.debug('failed ExternalReference/url URL for: %s', req.line, exc_info=error)
+            del error
+        return Component(
             bom_ref=f'requirements-L{req.line_number}',
             description=f'requirements line {req.line_number}: {req.line}',
             type=ComponentType.LIBRARY,
@@ -160,17 +178,4 @@ class RequirementsBB(BomBuilder):
             purl=PackageURL(type='pypi', name=req.name, version=version,
                             qualifiers=purl_qualifiers
                             ) if not is_local and name else None,
-            external_references=external_references,
-        )
-        if len(hashes) > 0 and len(external_references) == 0 and name:
-            try:
-                component.external_references.add(ExternalReference(
-                    type=ExternalReferenceType.DISTRIBUTION,
-                    # url based on https://warehouse.pypa.io/api-reference/legacy.html
-                    url=XsUri(f'https://pypi.org/simple/{name}/'),
-                    hashes=hashes
-                ))
-            except InvalidUriException as error:
-                self._logger.debug('skipped hashes for: %s', req.line, exc_info=error)
-                del error
-        return component
+            external_references=external_references)
