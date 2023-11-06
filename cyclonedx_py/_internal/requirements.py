@@ -162,11 +162,12 @@ class RequirementsBB(BomBuilder):
                             ) if not is_local and name else None,
             external_references=external_references,
         )
-        if len(hashes) > 0 and len(external_references) == 0:
+        if len(hashes) > 0 and len(external_references) == 0 and name:
             try:
                 component.external_references.add(ExternalReference(
                     type=ExternalReferenceType.DISTRIBUTION,
-                    url=XsUri(component.get_pypi_url()),
+                    # url based on https://warehouse.pypa.io/api-reference/legacy.html
+                    url=XsUri(f'https://pypi.org/simple/{name}/'),
                     hashes=hashes
                 ))
             except InvalidUriException as error:
