@@ -40,6 +40,8 @@ classifiers = [
   'Programming Language :: Python :: 3.12',
   'Typing :: Typed'
 ]
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/CycloneDX/cyclonedx-python/issues"
 
 [tool.poetry.dependencies]
 python = "^3.8"
