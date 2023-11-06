@@ -58,7 +58,7 @@ class RequirementsBB(BomBuilder):
                            **kwargs)
         p.add_argument('requirements_file',
                        metavar='requirements-file',
-                       help='I HELP TODO (default: %(default)s)',
+                       help='I HELP TODO (default: %(default)r in current working directory)',
                        nargs=OPTIONAL,
                        default='requirements.txt')
         return p
