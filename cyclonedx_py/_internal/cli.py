@@ -18,7 +18,7 @@
 
 import logging
 import sys
-from argparse import ArgumentParser, ArgumentTypeError, FileType, RawDescriptionHelpFormatter
+from argparse import ArgumentParser, FileType, RawDescriptionHelpFormatter
 from typing import TYPE_CHECKING, Any, Dict, List, Optional, TextIO, Type
 
 from cyclonedx.schema import OutputFormat, SchemaVersion
@@ -45,16 +45,9 @@ else:
 
 
 class Command:
-
-    @staticmethod
-    def _mk_OutputFormatCI(value: str) -> OutputFormat:
-        try:
-            return OutputFormat[value.upper()]
-        except KeyError:
-            raise ArgumentTypeError(f'unsupported value {value!r}')
-
     @classmethod
     def make_argument_parser(cls, sco: ArgumentParser, **kwargs: Any) -> ArgumentParser:
+        from .utils.args import argparse_type4enum, choices4enum
         p = ArgumentParser(
             description='Creates CycloneDX Software Bill of Materials (SBOM) from Python projects and environments.',
             formatter_class=RawDescriptionHelpFormatter,
@@ -81,13 +74,11 @@ class Command:
                         type=SchemaVersion.from_version,
                         default=SchemaVersion.V1_4.to_version())
         op.add_argument('--of', '--output-format',
-                        help='The output format for your SBOM'
-                             f' {{choice: {", ".join(sorted(f.name for f in OutputFormat))}}}'
-                             ' (default: %(default)s)',
+                        help=f'The output format for your SBOM {choices4enum(OutputFormat)} (default: %(default)s)',
                         metavar='FORMAT',
                         dest='output_format',
                         choices=OutputFormat,
-                        type=cls._mk_OutputFormatCI,
+                        type=argparse_type4enum(OutputFormat),
                         default=OutputFormat.JSON.name)
         if BooleanOptionalAction:
             op.add_argument('--validate',
@@ -201,7 +192,7 @@ def run(*, argv: Optional[List[str]] = None, **kwargs: Any) -> int:
                         dest='verbosity',
                         action='count',
                         default=0)
-    arg_parser = Command.make_argument_parser(sco=arg_co, **kwargs)
+    arg_parser = Command.make_argument_parser(**kwargs, sco=arg_co)
     del arg_co
     args = vars(arg_parser.parse_args(argv))
     if args['command'] is None:
@@ -222,7 +213,7 @@ def run(*, argv: Optional[List[str]] = None, **kwargs: Any) -> int:
     logger.debug('args: %s', args)
 
     try:
-        Command(logger=logger, **args)(**args)
+        Command(**args, logger=logger)(**args)
     except Exception as error:
         logger.debug('Error: %s', error, exc_info=error)
         logger.critical(f'{error}')
