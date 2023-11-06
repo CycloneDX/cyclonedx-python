@@ -139,7 +139,7 @@ class RequirementsBB(BomBuilder):
                     self._logger.debug('skipping location for line: %s', req.line, exc_info=error)
                     del error
         elif req.is_url:
-            if 'pythonhosted.org/' not in req.link.url:
+            if '://files.pythonhosted.org/' not in req.link.url:
                 # skip PURL bloat, do not add implicit information
                 purl_qualifiers['vcs_url' if req.is_vcs_url else 'download_url'] = req.link.url
             try:
