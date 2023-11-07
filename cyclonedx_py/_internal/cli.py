@@ -60,22 +60,23 @@ class Command:
 
         op = ArgumentParser(add_help=False)
         op.add_argument('-o', '--outfile',
+                        metavar='FILE',
                         help='Output file path for your SBOM (set to "-" to output to STDOUT) (default: %(default)s)',
-                        dest='outfile',
                         type=FileType('wt', encoding='utf8'),
+                        dest='outfile',
                         default='-')
         op.add_argument('--sv', '--schema-version',
+                        metavar='VERSION',
                         help='The CycloneDX schema version for your SBOM'
                              f' {{choice: {", ".join(sorted((v.to_version() for v in SchemaVersion), reverse=True))}}}'
                              ' (default: %(default)s)',
-                        metavar='VERSION',
                         dest='schema_version',
                         choices=SchemaVersion,
                         type=SchemaVersion.from_version,
                         default=SchemaVersion.V1_4.to_version())
         op.add_argument('--of', '--output-format',
-                        help=f'The output format for your SBOM {choices4enum(OutputFormat)} (default: %(default)s)',
                         metavar='FORMAT',
+                        help=f'The output format for your SBOM {choices4enum(OutputFormat)} (default: %(default)s)',
                         dest='output_format',
                         choices=OutputFormat,
                         type=argparse_type4enum(OutputFormat),
@@ -83,15 +84,15 @@ class Command:
         if BooleanOptionalAction:
             op.add_argument('--validate',
                             help='Whether validate the result before outputting (default: %(default)s)',
-                            dest='validate',
                             action=BooleanOptionalAction,
+                            dest='validate',
                             default=True)
         else:
             vg = op.add_mutually_exclusive_group()
             vg.add_argument('--validate',
                             help='Validate the result before outputting (default: %(default)s)',
-                            dest='validate',
                             action='store_true',
+                            dest='validate',
                             default=True)
             vg.add_argument('--no-validate',
                             help='Do not validate the result before outputting',
