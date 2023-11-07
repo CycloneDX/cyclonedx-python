@@ -29,7 +29,7 @@ if TYPE_CHECKING:  # pragma: no cover
 
     from cyclonedx.model import HashType
     from cyclonedx.model.bom import Bom
-    from cyclonedx.model.component import Component
+    from cyclonedx.model.component import Component, ComponentType
 
     NameDict = Dict[str, Any]
 
@@ -106,6 +106,7 @@ class PoetryBB(BomBuilder):
                        help='Type of the main component'
                             f' {{choice: {", ".join(t.value for t in _mc_types)}}}'
                             ' (default: %(default)s)',
+                       dest='mc_type',
                        choices=_mc_types,
                        type=argparse_type4enum(ComponentType),
                        default=ComponentType.APPLICATION.value)
@@ -121,6 +122,7 @@ class PoetryBB(BomBuilder):
                  groups_without: List[str], groups_with: List[str], groups_only: List[str],
                  no_dev: bool,
                  extras: List[str], all_extras: bool,
+                 mc_type: 'ComponentType',
                  **kwargs: Any) -> 'Bom':
         from os.path import join
         import sys
@@ -168,6 +170,7 @@ class PoetryBB(BomBuilder):
                 project, toml_loads(lock.read()),
                 groups,
                 set(po_cfg.get('extras', {}).keys() if all_extras else ','.join(extras).split(',')),
+                mc_type,
             )
 
     class _LockEntry(NamedTuple):
@@ -177,7 +180,8 @@ class PoetryBB(BomBuilder):
         extras: Dict[str, Set[str]]
 
     def _make_bom(self, project: 'NameDict', locker: 'NameDict',
-                  use_groups: Set[str], use_extras: Set[str]) -> 'Bom':
+                  use_groups: Set[str], use_extras: Set[str],
+                  mc_type: 'ComponentType') -> 'Bom':
         from cyclonedx.model import Property
 
         from .utils.bom import make_bom
@@ -189,7 +193,9 @@ class PoetryBB(BomBuilder):
 
         po_cfg = project['tool']['poetry']
 
-        bom.metadata.component = root_c = self.__component4poetryproj(po_cfg)
+        bom.metadata.component = root_c = self.__component4poetryproj(po_cfg, mc_type)
+        self._logger.debug('root-component: %r', root_c)
+
         lock_data: Dict[str, self._LockEntry] = {le.name: le for le in self._parse_lock(locker)}
 
         extra_deps = set(chain.from_iterable(
@@ -248,15 +254,15 @@ class PoetryBB(BomBuilder):
 
         return bom
 
-    def __component4poetryproj(self, po_cfg: 'NameDict') -> 'Component':
+    def __component4poetryproj(self, po_cfg: 'NameDict', c_type: 'ComponentType') -> 'Component':
         from cyclonedx.factory.license import LicenseFactory
         from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri, InvalidUriException
-        from cyclonedx.model.component import Component, ComponentType
+        from cyclonedx.model.component import Component
 
         # see spec: https://python-poetry.org/docs/pyproject/
         comp = Component(
             bom_ref=str(po_cfg.get('name', 'root-component')),
-            type=ComponentType.APPLICATION,  # TODO configurable,
+            type=c_type,
             name=str(po_cfg.get('name', 'unnamed')),
             version=str(po_cfg.get('version', '')) or None,
             description=str(po_cfg.get('description', '')) or None,
