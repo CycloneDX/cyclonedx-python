@@ -43,7 +43,11 @@ class RequirementsBB(BomBuilder):
         from argparse import OPTIONAL, ArgumentParser
         from textwrap import dedent
 
-        p = ArgumentParser(description='Build an SBOM from frozen requirements.',
+        p = ArgumentParser(description=dedent('''\
+                           Build an SBOM from frozen requirements.
+
+                           The options mimic the respective ones from Pip.
+                           '''),
                            epilog=dedent('''\
                            Example Usage:
                              • Build an SBOM from a frozen requirements file:
@@ -57,6 +61,7 @@ class RequirementsBB(BomBuilder):
                                      python3 -m pip freeze | %(prog)s -
                            '''),
                            **kwargs)
+        # the args shall mimic the ones from Pip
         p.add_argument('-i', '--index-url',
                        metavar='URL',
                        help='Base URL of the Python Package Index'

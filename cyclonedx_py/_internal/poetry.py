@@ -57,7 +57,7 @@ class PoetryBB(BomBuilder):
                            The options mimic the respective ones from Poetry.
                            '''),
                            **kwargs)
-        # the args shall mimic the ones from poetry, which uses comma-separated lists and multi-use
+        # the args shall mimic the ones from Poetry, which uses comma-separated lists and multi-use
         p.add_argument('--without',
                          metavar='GROUPS',
                          help='The dependency groups to ignore (multiple values allowed)',
