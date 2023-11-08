@@ -50,7 +50,7 @@ class RequirementsBB(BomBuilder):
                            '''),
                            epilog=dedent('''\
                            Example Usage:
-                             • Build an SBOM from a frozen requirements file:
+                             • Build an SBOM from a requirements file:
                                    $ %(prog)s requirements-prod.txt
                              • Merge multiple files and build an SBOM from it:
                                    $ cat requirements/*.txt | %(prog)s -
