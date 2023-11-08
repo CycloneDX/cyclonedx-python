@@ -16,8 +16,9 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
+from functools import reduce
 from os import unlink
-from typing import TYPE_CHECKING, Any, Generator
+from typing import TYPE_CHECKING, Any, Generator, List, Set
 
 from . import BomBuilder
 
@@ -64,6 +65,13 @@ class RequirementsBB(BomBuilder):
                             ' or a local directory laid out in the same format.',
                        dest='index_url',
                        default='https://pypi.org/simple')
+        p.add_argument('--extra-index-url',
+                       metavar='URL',
+                       help='Extra URLs of package indexes to use in addition to --index-url.'
+                            ' Should follow the same rules as --index-url',
+                       action='append',
+                       dest='extra_index_urls',
+                       default=[])
         p.add_argument('requirements_file',
                        metavar='requirements-file',
                        help='I HELP TODO (default: %(default)r in current working directory)',
@@ -74,9 +82,11 @@ class RequirementsBB(BomBuilder):
     def __init__(self, *,
                  logger: 'Logger',
                  index_url: str,
+                 extra_index_urls: List[str],
                  **kwargs: Any) -> None:
         self._logger = logger
         self._index_url = index_url
+        self._extra_index_urls = set(extra_index_urls)
 
     def __call__(self, *,  # type:ignore[override]
                  requirements_file: str,
@@ -103,13 +113,14 @@ class RequirementsBB(BomBuilder):
 
         bom = make_bom()
 
-        index_url = self._index_url
-        for opt in rf.options:
-            index_url = opt.options.get('index_url') or index_url
+        index_url = reduce(lambda c, i: i.options.get('index_url') or c, rf.options, self._index_url)
+        extra_index_urls = self._extra_index_urls.union(
+            *filter(None, map(lambda i: i.options.get('extra_index_urls'), rf.options)))
         self._logger.debug('index_url = %r', index_url)
+        self._logger.debug('extra_index_urls = %r', extra_index_urls)
 
         for requirement in rf.requirements:
-            component = self._make_component(requirement, index_url=index_url)
+            component = self._make_component(requirement, index_url, extra_index_urls)
             self._logger.debug('Add component: %r', component)
             if not component.version:
                 self._logger.warning('Component has no pinned version: %r', component)
@@ -129,7 +140,7 @@ class RequirementsBB(BomBuilder):
                 del error
 
     def _make_component(self, req: 'InstallRequirement',
-                        *, index_url: str = None) -> 'Component':
+                        index_url: str, extra_index_urls: Set[str]) -> 'Component':
         from cyclonedx.exception.model import InvalidUriException
         from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
         from cyclonedx.model.component import Component, ComponentType
@@ -160,12 +171,18 @@ class RequirementsBB(BomBuilder):
                     url=XsUri(req.link.url),
                     hashes=hashes))
             else:
+                # url based on https://warehouse.pypa.io/api-reference/legacy.html
                 external_references.append(ExternalReference(
                     comment='implicit dist url',
                     type=ExternalReferenceType.DISTRIBUTION,
-                    # url based on https://warehouse.pypa.io/api-reference/legacy.html
                     url=XsUri(f'{index_url or self._index_url}/{name}/'),
                     hashes=hashes))
+                for eiurl in extra_index_urls:
+                    external_references.append(ExternalReference(
+                        comment='implicit dist extra-url',
+                        type=ExternalReferenceType.DISTRIBUTION,
+                        url=XsUri(f'{eiurl}/{name}/'),
+                        hashes=hashes))
         except InvalidUriException as error:
             self._logger.debug('failed ExternalReference/url URL for: %s', req.line, exc_info=error)
             del error

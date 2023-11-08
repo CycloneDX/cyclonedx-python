@@ -1,24 +1,34 @@
 {
   "components": [
     {
-      "bom-ref": "requirements-L5",
-      "description": "requirements line 5: mypackage==1.2.3",
+      "bom-ref": "requirements-L7",
+      "description": "requirements line 7: my-package==1.2.3",
       "externalReferences": [
+        {
+          "comment": "implicit dist extra-url",
+          "type": "distribution",
+          "url": "https://legacy1.pypackages.acme.org/simple//my-package/"
+        },
+        {
+          "comment": "implicit dist extra-url",
+          "type": "distribution",
+          "url": "https://legacy2.pypackages.acme.org/simple//my-package/"
+        },
         {
           "comment": "implicit dist url",
           "type": "distribution",
-          "url": "https://mypi.org/simple//mypackage/"
+          "url": "https://pypackages.acme.org/simple//my-package/"
         }
       ],
-      "name": "mypackage",
-      "purl": "pkg:pypi/mypackage@1.2.3",
+      "name": "my-package",
+      "purl": "pkg:pypi/my-package@1.2.3",
       "type": "library",
       "version": "1.2.3"
     }
   ],
   "dependencies": [
     {
-      "ref": "requirements-L5"
+      "ref": "requirements-L7"
     }
   ],
   "metadata": {
