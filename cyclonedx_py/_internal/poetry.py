@@ -267,7 +267,7 @@ class PoetryBB(BomBuilder):
             version=str(po_cfg.get('version', '')) or None,
             description=str(po_cfg.get('description', '')) or None,
             licenses=[LicenseFactory().make_from_string(po_cfg['license'])] if 'license' in po_cfg else None,
-            author='; '.join(po_cfg['authors']) if 'authors' in po_cfg else None,
+            author=' | '.join(po_cfg['authors']) if 'authors' in po_cfg else None,
         )
         for ers, ert in [
             ('homepage', ExternalReferenceType.WEBSITE),
