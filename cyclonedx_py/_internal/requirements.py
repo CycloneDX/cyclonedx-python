@@ -119,8 +119,8 @@ class RequirementsBB(BomBuilder):
         bom = make_bom()
 
         index_url = reduce(lambda c, i: i.options.get('index_url') or c, rf.options, self._index_url)
-        extra_index_urls = self._extra_index_urls.union(
-            *filter(None, map(lambda i: i.options.get('extra_index_urls'), rf.options)))
+        extra_index_urls = self._extra_index_urls.union(*(
+            i.options['extra_index_urls'] for i in rf.options if 'extra_index_urls' in i.options))
         self._logger.debug('index_url = %r', index_url)
         self._logger.debug('extra_index_urls = %r', extra_index_urls)
 
