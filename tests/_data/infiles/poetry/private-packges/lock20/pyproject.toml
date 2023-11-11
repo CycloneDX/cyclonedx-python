@@ -33,12 +33,6 @@ priority = "supplemental"
 
 
 [[tool.poetry.source]]
-name = "secondary-src"
-url = "http://pysrc4.acme.org:8080/simple/"
-priority = "secondary"
-
-
-[[tool.poetry.source]]
 name = "testpypi"
 url = "https://test.pypi.org/simple/"
 priority = "explicit"
@@ -55,11 +49,8 @@ priority = "primary"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.13"
-# toml = "^0.10.2"
-# colorama = "*"
-# isoduration = "^20.11.0"
 jax = {version = "0.4.20", source = "jax-src"}
-toml = {version = "*", source = "explicit-src"}
+toml = {version = "^0.10.2", source = "explicit-src"}
 colorama = "*"
 
 

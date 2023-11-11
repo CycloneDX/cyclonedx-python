@@ -279,4 +279,4 @@ reference = "default-src"
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.13"
-content-hash = "228a7fd53acf41383b1bee6612d2f4b118658ffd166e41400c30a57cabe81263"
+content-hash = "87eb1466760484f7ffadfcf73d1454c99635627aa82e8fd8b9ec68444462aecf"

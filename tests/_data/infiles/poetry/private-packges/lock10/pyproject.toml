@@ -5,62 +5,41 @@ description = "packages from aternative package repositories"
 authors = ["Your Name <you@example.com>"]
 
 
-# see https://python-poetry.org/docs/repositories/
+# see https://github.com/python-poetry/poetry/blob/1.1/docs/repositories.md
 # run the `pypi-proxy.py` to setup a pypi proxy
 
-
-[[xtool.poetry.source]]
+[[tool.poetry.source]]
 name = "PyPI"
-priority = "primary"
-
+url = "https://pypi.org/simple/"
+default = false
+secondary = false
 
 [[tool.poetry.source]]
 name = "default-src"
 url = "http://pysrc1.acme.org:8080/simple/"
-priority = "default"
-
-
-[[tool.poetry.source]]
-name = "explicit-src"
-url = "http://pysrc2.acme.org:8080/simple/"
-priority = "explicit"
-
-
-[[tool.poetry.source]]
-name = "supplemental-src"
-url = "http://pysrc3.acme.org:8080/simple/"
-priority = "supplemental"
+default = true
+secondary = false
 
 
 [[tool.poetry.source]]
 name = "secondary-src"
 url = "http://pysrc4.acme.org:8080/simple/"
-priority = "secondary"
+default = false
+secondary = true
 
 
 [[tool.poetry.source]]
-name = "testpypi"
-url = "https://test.pypi.org/simple/"
-priority = "explicit"
-
-
-
-[[tool.poetry.source]]
-name = "jax-src"
-url = "https://storage.googleapis.com/jax-releases/jax_releases.html"
-priority = "primary"
-
+name = "explicit-src"
+url = "http://pysrc2.acme.org:8080/simple/"
+default = false
+secondary = true
 
 
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.13"
-# toml = "^0.10.2"
-# colorama = "*"
-# isoduration = "^20.11.0"
-jax = {version = "0.4.20", source = "jax-src"}
-toml = {version = "*", source = "explicit-src"}
-colorama = "*"
+toml = {version = "^0.10.2", source = "explicit-src"}
+colorama = "^0.4.6"
 
 
 [build-system]
