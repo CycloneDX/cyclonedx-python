@@ -81,10 +81,12 @@ def make_xml_comparable(bom: str) -> str:
     bom = re.sub(  # replace metadata.tools.version
         '        <vendor>CycloneDX</vendor>\n'
         '        <name>cyclonedx-python-lib</name>\n'
-        '        <version>.*?</version>',
+        '        <version>.*?</version>\n'
+        r'        <externalReferences>[\s\S]*?</externalReferences>',
         '        <vendor>CycloneDX</vendor>\n'
         '        <name>cyclonedx-python-lib</name>\n'
-        '        <version>libVersion-testing</version>',
+        '        <version>libVersion-testing</version>\n'
+        '        <externalReferences><!-- stripped --></externalReferences>',
         bom)
     return bom
 
@@ -99,9 +101,11 @@ def make_json_comparable(bom: str) -> str:
         '        "vendor": "CycloneDX",\n'
         '        "version": "thisVersion-testing"')
     bom = re.sub(  # replace metadata.tools.version
+        r'        "externalReferences": \[[\s\S]*?\],\n'
         '        "name": "cyclonedx-python-lib",\n'
         '        "vendor": "CycloneDX",\n'
         '        "version": ".*?"',
+        '        "externalReferences": [   ],\n'
         '        "name": "cyclonedx-python-lib",\n'
         '        "vendor": "CycloneDX",\n'
         '        "version": "libVersion-testing"',

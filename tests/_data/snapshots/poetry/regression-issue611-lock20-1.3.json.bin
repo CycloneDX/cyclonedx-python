@@ -66,7 +66,7 @@
       {
         "name": "cyclonedx-python-lib",
         "vendor": "CycloneDX",
-        "version": "libVersion-testing"
+        "version": "5.1.1"
       }
     ]
   },
