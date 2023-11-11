@@ -1,0 +1,73 @@
+{
+  "components": [
+    {
+      "bom-ref": "colorama@0.4.6",
+      "description": "Cross-platform colored terminal text.",
+      "name": "colorama",
+      "properties": [
+        {
+          "name": "cdx:poetry:package:group",
+          "value": "main"
+        }
+      ],
+      "purl": "pkg:pypi/colorama@0.4.6",
+      "type": "library",
+      "version": "0.4.6"
+    },
+    {
+      "bom-ref": "toml@0.10.2",
+      "description": "Python Library for Tom's Obvious, Minimal Language",
+      "name": "toml",
+      "properties": [
+        {
+          "name": "cdx:poetry:package:group",
+          "value": "main"
+        }
+      ],
+      "purl": "pkg:pypi/toml@0.10.2",
+      "type": "library",
+      "version": "0.10.2"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "colorama@0.4.6"
+    },
+    {
+      "dependsOn": [
+        "colorama@0.4.6",
+        "toml@0.10.2"
+      ],
+      "ref": "private-packges"
+    },
+    {
+      "ref": "toml@0.10.2"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "author": "Your Name <you@example.com>",
+      "bom-ref": "private-packges",
+      "description": "packages from aternative package repositories",
+      "name": "private-packges",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "tools": [
+      {
+        "name": "cyclonedx-bom",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.3a.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.3"
+}

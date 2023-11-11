@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.1" version="1">
+  <components>
+    <component type="library" bom-ref="colorama@0.4.6">
+      <name>colorama</name>
+      <version>0.4.6</version>
+      <description>Cross-platform colored terminal text.</description>
+      <purl>pkg:pypi/colorama@0.4.6</purl>
+    </component>
+    <component type="library" bom-ref="toml@0.10.2">
+      <name>toml</name>
+      <version>0.10.2</version>
+      <description>Python Library for Tom's Obvious, Minimal Language</description>
+      <purl>pkg:pypi/toml@0.10.2</purl>
+    </component>
+  </components>
+</bom>

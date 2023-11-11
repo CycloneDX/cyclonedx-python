@@ -1,0 +1,109 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.2" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-bom</name>
+        <version>thisVersion-testing</version>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="private-packges">
+      <author>Your Name &lt;you@example.com&gt;</author>
+      <name>private-packges</name>
+      <version>0.1.0</version>
+      <description>packages from aternative package repositories</description>
+    </component>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="colorama@0.4.6">
+      <name>colorama</name>
+      <version>0.4.6</version>
+      <description>Cross-platform colored terminal text.</description>
+      <purl>pkg:pypi/colorama@0.4.6</purl>
+    </component>
+    <component type="library" bom-ref="importlib-metadata@6.8.0">
+      <name>importlib-metadata</name>
+      <version>6.8.0</version>
+      <description>Read metadata from Python packages</description>
+      <purl>pkg:pypi/importlib-metadata@6.8.0</purl>
+    </component>
+    <component type="library" bom-ref="jax@0.4.20">
+      <name>jax</name>
+      <version>0.4.20</version>
+      <description>Differentiate, compile, and transform Numpy code.</description>
+      <purl>pkg:pypi/jax@0.4.20</purl>
+    </component>
+    <component type="library" bom-ref="ml-dtypes@0.3.1">
+      <name>ml-dtypes</name>
+      <version>0.3.1</version>
+      <description/>
+      <purl>pkg:pypi/ml-dtypes@0.3.1</purl>
+    </component>
+    <component type="library" bom-ref="numpy@1.26.1">
+      <name>numpy</name>
+      <version>1.26.1</version>
+      <description>Fundamental package for array computing in Python</description>
+      <purl>pkg:pypi/numpy@1.26.1</purl>
+    </component>
+    <component type="library" bom-ref="opt-einsum@3.3.0">
+      <name>opt-einsum</name>
+      <version>3.3.0</version>
+      <description>Optimizing numpys einsum function</description>
+      <purl>pkg:pypi/opt-einsum@3.3.0</purl>
+    </component>
+    <component type="library" bom-ref="scipy@1.11.3">
+      <name>scipy</name>
+      <version>1.11.3</version>
+      <description>Fundamental algorithms for scientific computing in Python</description>
+      <purl>pkg:pypi/scipy@1.11.3</purl>
+    </component>
+    <component type="library" bom-ref="toml@0.10.2">
+      <name>toml</name>
+      <version>0.10.2</version>
+      <description>Python Library for Tom's Obvious, Minimal Language</description>
+      <purl>pkg:pypi/toml@0.10.2</purl>
+    </component>
+    <component type="library" bom-ref="zipp@3.17.0">
+      <name>zipp</name>
+      <version>3.17.0</version>
+      <description>Backport of pathlib-compatible object wrapper for zip files</description>
+      <purl>pkg:pypi/zipp@3.17.0</purl>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="colorama@0.4.6"/>
+    <dependency ref="importlib-metadata@6.8.0">
+      <dependency ref="zipp@3.17.0"/>
+    </dependency>
+    <dependency ref="jax@0.4.20">
+      <dependency ref="importlib-metadata@6.8.0"/>
+      <dependency ref="ml-dtypes@0.3.1"/>
+      <dependency ref="numpy@1.26.1"/>
+      <dependency ref="opt-einsum@3.3.0"/>
+      <dependency ref="scipy@1.11.3"/>
+    </dependency>
+    <dependency ref="ml-dtypes@0.3.1">
+      <dependency ref="numpy@1.26.1"/>
+    </dependency>
+    <dependency ref="numpy@1.26.1"/>
+    <dependency ref="opt-einsum@3.3.0">
+      <dependency ref="numpy@1.26.1"/>
+    </dependency>
+    <dependency ref="private-packges">
+      <dependency ref="colorama@0.4.6"/>
+      <dependency ref="jax@0.4.20"/>
+      <dependency ref="toml@0.10.2"/>
+    </dependency>
+    <dependency ref="scipy@1.11.3">
+      <dependency ref="numpy@1.26.1"/>
+    </dependency>
+    <dependency ref="toml@0.10.2"/>
+    <dependency ref="zipp@3.17.0"/>
+  </dependencies>
+</bom>

@@ -1,0 +1,158 @@
+{
+  "components": [
+    {
+      "bom-ref": "colorama@0.4.6",
+      "description": "Cross-platform colored terminal text.",
+      "name": "colorama",
+      "purl": "pkg:pypi/colorama@0.4.6",
+      "type": "library",
+      "version": "0.4.6"
+    },
+    {
+      "bom-ref": "importlib-metadata@6.8.0",
+      "description": "Read metadata from Python packages",
+      "name": "importlib-metadata",
+      "purl": "pkg:pypi/importlib-metadata@6.8.0",
+      "type": "library",
+      "version": "6.8.0"
+    },
+    {
+      "bom-ref": "jax@0.4.20",
+      "description": "Differentiate, compile, and transform Numpy code.",
+      "name": "jax",
+      "purl": "pkg:pypi/jax@0.4.20",
+      "type": "library",
+      "version": "0.4.20"
+    },
+    {
+      "bom-ref": "ml-dtypes@0.3.1",
+      "description": "",
+      "name": "ml-dtypes",
+      "purl": "pkg:pypi/ml-dtypes@0.3.1",
+      "type": "library",
+      "version": "0.3.1"
+    },
+    {
+      "bom-ref": "numpy@1.26.1",
+      "description": "Fundamental package for array computing in Python",
+      "name": "numpy",
+      "purl": "pkg:pypi/numpy@1.26.1",
+      "type": "library",
+      "version": "1.26.1"
+    },
+    {
+      "bom-ref": "opt-einsum@3.3.0",
+      "description": "Optimizing numpys einsum function",
+      "name": "opt-einsum",
+      "purl": "pkg:pypi/opt-einsum@3.3.0",
+      "type": "library",
+      "version": "3.3.0"
+    },
+    {
+      "bom-ref": "scipy@1.11.3",
+      "description": "Fundamental algorithms for scientific computing in Python",
+      "name": "scipy",
+      "purl": "pkg:pypi/scipy@1.11.3",
+      "type": "library",
+      "version": "1.11.3"
+    },
+    {
+      "bom-ref": "toml@0.10.2",
+      "description": "Python Library for Tom's Obvious, Minimal Language",
+      "name": "toml",
+      "purl": "pkg:pypi/toml@0.10.2",
+      "type": "library",
+      "version": "0.10.2"
+    },
+    {
+      "bom-ref": "zipp@3.17.0",
+      "description": "Backport of pathlib-compatible object wrapper for zip files",
+      "name": "zipp",
+      "purl": "pkg:pypi/zipp@3.17.0",
+      "type": "library",
+      "version": "3.17.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "colorama@0.4.6"
+    },
+    {
+      "dependsOn": [
+        "zipp@3.17.0"
+      ],
+      "ref": "importlib-metadata@6.8.0"
+    },
+    {
+      "dependsOn": [
+        "importlib-metadata@6.8.0",
+        "ml-dtypes@0.3.1",
+        "numpy@1.26.1",
+        "opt-einsum@3.3.0",
+        "scipy@1.11.3"
+      ],
+      "ref": "jax@0.4.20"
+    },
+    {
+      "dependsOn": [
+        "numpy@1.26.1"
+      ],
+      "ref": "ml-dtypes@0.3.1"
+    },
+    {
+      "ref": "numpy@1.26.1"
+    },
+    {
+      "dependsOn": [
+        "numpy@1.26.1"
+      ],
+      "ref": "opt-einsum@3.3.0"
+    },
+    {
+      "dependsOn": [
+        "colorama@0.4.6",
+        "jax@0.4.20",
+        "toml@0.10.2"
+      ],
+      "ref": "private-packges"
+    },
+    {
+      "dependsOn": [
+        "numpy@1.26.1"
+      ],
+      "ref": "scipy@1.11.3"
+    },
+    {
+      "ref": "toml@0.10.2"
+    },
+    {
+      "ref": "zipp@3.17.0"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "author": "Your Name <you@example.com>",
+      "bom-ref": "private-packges",
+      "description": "packages from aternative package repositories",
+      "name": "private-packges",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "tools": [
+      {
+        "name": "cyclonedx-bom",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.2b.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.2"
+}
