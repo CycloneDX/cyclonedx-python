@@ -19,7 +19,7 @@
 from contextlib import redirect_stderr, redirect_stdout
 from glob import glob
 from io import StringIO
-from os.path import basename, join
+from os.path import basename, dirname, join
 from unittest import TestCase
 
 from cyclonedx.schema import OutputFormat, SchemaVersion
@@ -28,15 +28,17 @@ from ddt import ddt, named_data
 from cyclonedx_py._internal.cli import run as run_cli
 from tests import INFILES_DIRECTORY, SnapshotMixin, make_comparable
 
-infiles = glob(join(INFILES_DIRECTORY, 'poetry', '*poetry.lock'))
+lockfiles = glob(join(INFILES_DIRECTORY, 'poetry', '*', '*', 'poetry.lock'))
+projectdirs = list(dirname(lockfile) for lockfile in lockfiles)
+
 unsupported_of_sf = [
     (OutputFormat.JSON, SchemaVersion.V1_1),
     (OutputFormat.JSON, SchemaVersion.V1_0),
 ]
 
 test_data = [
-    (f'{basename(infile)}-{sv.name}-{of.name}', infile, sv, of)
-    for infile in infiles
+    (f'{basename(dirname(projectdir))}-{basename(projectdir)}-{sv.name}-{of.name}', projectdir, sv, of)
+    for projectdir in projectdirs
     for sv in SchemaVersion
     for of in OutputFormat
     if (of, sv) not in unsupported_of_sf
@@ -61,10 +63,10 @@ class TestPoetry(TestCase, SnapshotMixin):
             err = err.getvalue()
             out = out.getvalue()
         self.assertNotEqual(0, res, err)
-        self.assertIn("No such file or directory: 'something-that-must-not-exist.testing'", err)
+        self.assertIn("No such file or directory: 'something-that-must-not-exist.testing", err)
 
-    @named_data(* test_data)
-    def test_cli_with_file_as_expected(self, infile: str, sv: SchemaVersion, of: OutputFormat) -> None:
+    @named_data(*test_data)
+    def test_cli_with_file_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
             out.name = '<fakeout>'
@@ -75,13 +77,13 @@ class TestPoetry(TestCase, SnapshotMixin):
                     f'--sv={sv.to_version()}',
                     f'--of={of.name}',
                     '--outfile=-',
-                    infile])
+                    projectdir])
             err = err.getvalue()
             out = out.getvalue()
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(
             make_comparable(out, of),
-            f'{basename(infile)}-{sv.to_version()}.{of.name.lower()}-file')
+            f'{basename(dirname(projectdir))}-{basename(projectdir)}-{sv.to_version()}.{of.name.lower()}')
 
     def assertEqualSnapshot(self, actual: str, snapshot_name: str) -> None:
         super().assertEqualSnapshot(actual, join('poetry', snapshot_name))

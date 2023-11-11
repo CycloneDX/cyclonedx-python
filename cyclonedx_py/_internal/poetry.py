@@ -169,7 +169,6 @@ class PoetryBB(BomBuilder):
             else:
                 groups_with = ','.join(groups_with).split(',')
                 groups_without = ','.join(groups_without).split(',')
-                print(repr(po_cfg.get('group')))
                 groups = (set(groups_with) | set(
                     gn for gn, gc in po_cfg.get('group', {}).items()
                     if not gc.get('optional')
@@ -353,20 +352,21 @@ class PoetryBB(BomBuilder):
         )
 
     def __extrefs4lock(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
-        from cyclonedx.exception.model import InvalidUriException
+        from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
         from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
 
         source = package.get('source', {'type': 'legacy', 'url': 'https://pypi.org/simple'})
-        if source.get('type') == 'legacy' and source.get('url'):
-            for file in package.get('files', []):
-                try:
-                    yield ExternalReference(
-                        type=ExternalReferenceType.DISTRIBUTION,
-                        url=XsUri(f'{source["url"]}/{package["name"]}/'),
-                        comment=f'file: {file["file"]}',
-                        hashes=[HashType.from_composite_str(file['hash'])]
-                    )
-                except InvalidUriException as error:
-                    self._logger.debug('%s skipped dist-extRef for: %r', package['name'], file,
-                                       exc_info=error)
-                    del error
+        if source.get('type') != 'legacy' or not source.get('url'):
+            return
+
+        for file in package.get('files', []):
+            try:
+                yield ExternalReference(
+                    type=ExternalReferenceType.DISTRIBUTION,
+                    url=XsUri(f'{source["url"]}/{package["name"]}/#{file["file"]}'),
+                    hashes=[HashType.from_composite_str(file['hash'])]
+                )
+            except (InvalidUriException, UnknownHashTypeException) as error:
+                self._logger.debug('%s skipped dist-extRef for: %r', package['name'], file,
+                                   exc_info=error)
+                del error
