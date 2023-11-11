@@ -17,13 +17,13 @@
 
 
 from argparse import ArgumentTypeError
-from typing import Type, Callable, TypeVar
 from enum import Enum
+from typing import Callable, Type, TypeVar
 
 _E = TypeVar('_E', bound=Enum)
 
 
-def argparse_type4enum(enum: Type[_E]) -> Callable[str, _E]:
+def argparse_type4enum(enum: Type[_E]) -> Callable[[str], _E]:
     def str2case(value: str) -> _E:
         try:
             return enum[value.upper()]

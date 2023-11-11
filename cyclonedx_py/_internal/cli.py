@@ -99,12 +99,13 @@ class Command:
                             dest='validate',
                             action='store_false')
 
-        for sct, scc, scd in (
+        scbbc: Type['BomBuilder']
+        for sct, scbbc, scd in (  # type:ignore[assignment]
             ('requirements', RequirementsBB, 'HELP TODO'),
             ('pipenv', PipenvBB, 'HELP TODO'),
             ('poetry', PoetryBB, 'HELP TODO'),
         ):
-            spp = scc.make_argument_parser(add_help=False)
+            spp = scbbc.make_argument_parser(add_help=False)
             sp.add_parser(sct,
                           help=scd,
                           description=spp.description,
@@ -112,7 +113,7 @@ class Command:
                           parents=[spp, op, sco],
                           formatter_class=p.formatter_class,
                           allow_abbrev=p.allow_abbrev,
-                          ).set_defaults(bbc=scc)
+                          ).set_defaults(_bbc=scbbc)
 
         return p
 
@@ -127,13 +128,14 @@ class Command:
                  validate: bool,
                  output_format: OutputFormat,
                  schema_version: SchemaVersion,
-                 bbc: Type['BomBuilder'],
+                 _bbc: Type['BomBuilder'],
                  **kwargs: Any) -> None:
         self._logger = logger
         self._output_format = output_format
         self._schema_version = schema_version
         self._validate = validate
-        self._bbc = bbc(logger=self._logger.getChild(bbc.__name__), **self._clean_kwargs(kwargs))
+        self._bbc = _bbc(**self._clean_kwargs(kwargs),
+                         logger=self._logger.getChild(_bbc.__name__))
 
     def validate(self, output: str) -> bool:
         if not self._validate:

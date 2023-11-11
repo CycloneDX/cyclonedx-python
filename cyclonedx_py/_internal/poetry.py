@@ -19,7 +19,7 @@
 import re
 from enum import Enum
 from itertools import chain
-from typing import TYPE_CHECKING, Any, Dict, Generator, List, TextIO, Set, NamedTuple, Iterable, Optional
+from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, List, NamedTuple, Optional, Set
 
 from . import BomBuilder
 
@@ -27,7 +27,7 @@ if TYPE_CHECKING:  # pragma: no cover
     from argparse import ArgumentParser
     from logging import Logger
 
-    from cyclonedx.model import HashType
+    from cyclonedx.model import ExternalReference, HashType
     from cyclonedx.model.bom import Bom
     from cyclonedx.model.component import Component, ComponentType
 
@@ -42,13 +42,22 @@ class _CdxProperty(Enum):
     PackageGroup = 'cdx:poetry:package:group'
 
 
+class _LockEntry(NamedTuple):
+    name: str
+    component: 'Component'
+    dependencies: Set[str]
+    extras: Dict[str, Set[str]]
+
+
 class PoetryBB(BomBuilder):
 
     @staticmethod
     def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':
-        from argparse import ArgumentParser, OPTIONAL
+        from argparse import OPTIONAL, ArgumentParser
         from textwrap import dedent
+
         from cyclonedx.model.component import ComponentType
+
         from .utils.args import argparse_type4enum
 
         p = ArgumentParser(description=dedent('''\
@@ -59,27 +68,27 @@ class PoetryBB(BomBuilder):
                            **kwargs)
         # the args shall mimic the ones from Poetry, which uses comma-separated lists and multi-use
         p.add_argument('--without',
-                         metavar='GROUPS',
-                         help='The dependency groups to ignore (multiple values allowed)',
-                         action='append',
-                         dest='groups_without',
-                         default=[])
+                       metavar='GROUPS',
+                       help='The dependency groups to ignore (multiple values allowed)',
+                       action='append',
+                       dest='groups_without',
+                       default=[])
         p.add_argument('--with',
-                         metavar='GROUPS',
-                         help='The optional dependency groups to include (multiple values allowed)',
-                         action='append',
-                         dest='groups_with',
-                         default=[])
+                       metavar='GROUPS',
+                       help='The optional dependency groups to include (multiple values allowed)',
+                       action='append',
+                       dest='groups_with',
+                       default=[])
         p.add_argument('--only',
-                        metavar='GROUPS',
-                        help='The only dependency groups to include (multiple values allowed)',
-                        action='append',
-                        dest='groups_only',
-                        default=[])
+                       metavar='GROUPS',
+                       help='The only dependency groups to include (multiple values allowed)',
+                       action='append',
+                       dest='groups_only',
+                       default=[])
         p.add_argument('--no-dev',
-                        help='Explicitly force: --only main',
-                        dest='no_dev',
-                        action='store_true')
+                       help='Explicitly force: --only main',
+                       dest='no_dev',
+                       action='store_true')
         eg = p.add_mutually_exclusive_group()
         eg.add_argument('--extras',
                         metavar='EXTRAS',
@@ -124,8 +133,8 @@ class PoetryBB(BomBuilder):
                  extras: List[str], all_extras: bool,
                  mc_type: 'ComponentType',
                  **kwargs: Any) -> 'Bom':
-        from os.path import join
         import sys
+        from os.path import join
         if sys.version_info < (3, 11):
             from toml import loads as toml_loads
         else:
@@ -173,12 +182,6 @@ class PoetryBB(BomBuilder):
                 mc_type,
             )
 
-    class _LockEntry(NamedTuple):
-        name: str
-        component: 'Component'
-        dependencies: Set[str]
-        extras: Dict[str, Set[str]]
-
     def _make_bom(self, project: 'NameDict', locker: 'NameDict',
                   use_groups: Set[str], use_extras: Set[str],
                   mc_type: 'ComponentType') -> 'Bom':
@@ -196,7 +199,7 @@ class PoetryBB(BomBuilder):
         bom.metadata.component = root_c = self.__component4poetryproj(po_cfg, mc_type)
         self._logger.debug('root-component: %r', root_c)
 
-        lock_data: Dict[str, self._LockEntry] = {le.name: le for le in self._parse_lock(locker)}
+        lock_data: Dict[str, _LockEntry] = {le.name: le for le in self._parse_lock(locker)}
 
         extra_deps = set(chain.from_iterable(
             eds for en, eds in po_cfg.get('extras', {}).items() if en in use_extras))
@@ -224,6 +227,8 @@ class PoetryBB(BomBuilder):
             ):
                 self._logger.debug('component %r depends on %r', name, dep)
                 depm = _dep_pattern.match(dep)
+                if depm is None:
+                    continue
                 depends_on.append(_add_ld(
                     depm.group('name'),
                     set(map(str.strip, (depm.group('extras') or '').split(',')))
@@ -255,8 +260,9 @@ class PoetryBB(BomBuilder):
         return bom
 
     def __component4poetryproj(self, po_cfg: 'NameDict', c_type: 'ComponentType') -> 'Component':
+        from cyclonedx.exception.model import InvalidUriException
         from cyclonedx.factory.license import LicenseFactory
-        from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri, InvalidUriException
+        from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
         from cyclonedx.model.component import Component
 
         # see spec: https://python-poetry.org/docs/pyproject/
@@ -302,7 +308,7 @@ class PoetryBB(BomBuilder):
         package: 'NameDict'
         for package in locker['package']:
             package.setdefault('files', metavar_files.get(package['name'], []))
-            yield self._LockEntry(
+            yield _LockEntry(
                 package['name'],
                 self.__make_component4lock(package),
                 set(package.get('dependencies', {}).keys()),
@@ -324,20 +330,19 @@ class PoetryBB(BomBuilder):
     def __make_component4lock(self, package: 'NameDict') -> 'Component':
         # TODO:
         #   - local deps
-        #   - private package
         #   - from urls: wheel, soure-archive, vcs-tag, vcs-commit, vcs-branch
 
-        from cyclonedx.exception.model import InvalidUriException
-        from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
+        from cyclonedx.model import Property
         from cyclonedx.model.component import Component, ComponentScope
         from packageurl import PackageURL
 
-        component = Component(
+        return Component(
             bom_ref=f'{package["name"]}@{package["version"]}',
             name=package['name'],
             version=package['version'],
             description=package.get('description'),
             scope=ComponentScope.OPTIONAL if package.get('optional') else None,
+            external_references=self.__extrefs4lock(package),
             properties=filter(None, [
                 Property(  # for backwards compatibility: category -> group
                     name=_CdxProperty.PackageGroup.value,
@@ -346,22 +351,22 @@ class PoetryBB(BomBuilder):
             ]),
             purl=PackageURL(type='pypi', name=package['name'], version=package['version']),
         )
-        """TODO
-        fles and hashes eixts, regardless of the source ...
-        need to incorporate proper with URL/local files/ etc ...
 
-        package_host = 'https://files.pythonhosted.org'
-        for file in package.get('files', []):
-            try:
-                'hash' in file and component.external_references.add(ExternalReference(
-                    type=ExternalReferenceType.DISTRIBUTION,
-                    url=XsUri(
-                        # see https://warehouse.pypa.io/api-reference/integration-guide.html#predictable-urls
-                        f'{package_host}/packages/source/{component.name[0]}/{component.name}/{file["file"]}'),
-                    hashes=[HashType.from_composite_str(file["hash"])]
-                ))
-            except InvalidUriException as error:
-                self._logger.debug('%s skipped extRef for: %r', package['name'], file, exc_info=error)
-                del error
-        """
-        return component
+    def __extrefs4lock(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
+        from cyclonedx.exception.model import InvalidUriException
+        from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
+
+        source = package.get('source', {'type': 'legacy', 'url': 'https://pypi.org/simple'})
+        if source.get('type') == 'legacy' and source.get('url'):
+            for file in package.get('files', []):
+                try:
+                    yield ExternalReference(
+                        type=ExternalReferenceType.DISTRIBUTION,
+                        url=XsUri(f'{source["url"]}/{package["name"]}/'),
+                        comment=f'file: {file["file"]}',
+                        hashes=[HashType.from_composite_str(file['hash'])]
+                    )
+                except InvalidUriException as error:
+                    self._logger.debug('%s skipped dist-extRef for: %r', package['name'], file,
+                                       exc_info=error)
+                    del error
