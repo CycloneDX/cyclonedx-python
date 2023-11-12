@@ -19,7 +19,7 @@
 import re
 from enum import Enum
 from itertools import chain
-from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, List, NamedTuple, Optional, Set
+from typing import TYPE_CHECKING, Any, Dict, FrozenSet, Generator, Iterable, List, NamedTuple, Optional, Set
 
 from . import BomBuilder
 
@@ -47,6 +47,18 @@ class _LockEntry(NamedTuple):
     component: 'Component'
     dependencies: Set[str]
     extras: Dict[str, Set[str]]
+
+
+class GroupsNotFoundError(ValueError):
+    def __init__(self, groups: Iterable[str]):
+        self.__groups = frozenset(groups)
+
+    @property
+    def groups(self) -> FrozenSet[str]:
+        return self.__groups
+
+    def __str__(self) -> str:
+        return 'Group(s) not found: ' + ', '.join(sorted(self.__groups))
 
 
 class PoetryBB(BomBuilder):
@@ -161,21 +173,36 @@ class PoetryBB(BomBuilder):
 
             # the group-args shall mimic the ones from poetry, which uses comma-separated lists and multi-use
             # values be like: ['foo', 'bar,bazz'] -> ['foo', 'bar', 'bazz']
+            groups_only_s = set(','.join(groups_only).split(','))
+            groups_with_s = set(','.join(groups_with).split(','))
+            groups_without_s = set(','.join(groups_without).split(','))
+            del groups_only, groups_with, groups_without
+            groups_not_found = set(
+                (gn, srcn) for gns, srcn in [
+                    (groups_only_s, 'only'),
+                    (groups_with_s, 'with'),
+                    (groups_without_s, 'without'),
+                ] for gn in gns
+                if gn not in po_cfg['group'].keys())
+            self._logger.debug('groups_not_found: %r', groups_not_found)
+            if len(groups_not_found):
+                error = GroupsNotFoundError(f'{gn!r} (via {srcn})' for gn, srcn in groups_not_found)
+                self._logger.error(error)
+                raise ValueError(f'some poetry groups are undefined') from error
+            del groups_not_found
             if no_dev:
                 groups = {'main', }
-            elif len(groups_only) > 0:
-                groups_only = ','.join(groups_only).split(',')
-                groups = set(groups_only)
+            elif len(groups_only_s) > 0:
+                groups = groups_only_s
             else:
-                groups_with = ','.join(groups_with).split(',')
-                groups_without = ','.join(groups_without).split(',')
                 # When used together, `--without` takes precedence over `--with`.
                 # see https://python-poetry.org/docs/managing-dependencies/#installing-group-dependencies
                 groups = set(
-                    gn for gn, gc in po_cfg.get('group', {}).items()
+                    gn for gn, gc in po_cfg['group'].items()
                     # all non-optionals and the `with`-whitelisted optionals
-                    if not gc.get('optional') or gn in groups_with
-                ) - set(groups_without)
+                    if not gc.get('optional') or gn in groups_with_s
+                ) - groups_without_s
+            del groups_only_s, groups_with_s, groups_without_s
 
             return self._make_bom(
                 project, toml_loads(lock.read()),
@@ -241,7 +268,7 @@ class PoetryBB(BomBuilder):
         depends_on = []
         for group_name in use_groups:
             self._logger.debug('processing group %r ...', group_name)
-            for dep_name, dep_spec in po_cfg['group'].get(group_name, {}).get('dependencies', {}).items():
+            for dep_name, dep_spec in po_cfg['group'][group_name].get('dependencies', {}).items():
                 self._logger.debug('root-component depends on %s', dep_name)
                 if dep_name == 'python':
                     continue

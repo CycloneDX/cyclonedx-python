@@ -16,6 +16,7 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
+import random
 from contextlib import redirect_stderr, redirect_stdout
 from glob import glob
 from io import StringIO
@@ -48,7 +49,7 @@ test_data = [
 @ddt
 class TestPoetry(TestCase, SnapshotMixin):
 
-    def test_cli_with_file_not_found(self) -> None:
+    def test_cli_fails_with_dir_not_found(self) -> None:
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
             out.name = '<fakeout>'
@@ -64,6 +65,36 @@ class TestPoetry(TestCase, SnapshotMixin):
             out = out.getvalue()
         self.assertNotEqual(0, res, err)
         self.assertIn("No such file or directory: 'something-that-must-not-exist.testing", err)
+
+    def test_cli_fails_with_groups_not_found(self) -> None:
+        projectdir = random.choice(projectdirs)
+        with StringIO() as err, StringIO() as out:
+            err.name = '<fakeerr>'
+            out.name = '<fakeout>'
+            with redirect_stderr(err), redirect_stdout(out):
+                res = run_cli(argv=[
+                    'poetry',
+                    '-vvv',
+                    '--with', 'MNE-with-A',
+                    '--with', 'MNE-with-B,MNE-with-C',
+                    '--without', 'MNE-without-A',
+                    '--without', 'MNE-without-B,MNE-without-C',
+                    '--only', 'MNE-only-A',
+                    '--only', 'MNE-only-B,MNE-only-C',
+                    projectdir])
+            err = err.getvalue()
+            out = out.getvalue()
+        self.assertNotEqual(0, res, err)
+        self.assertIn('Group(s) not found:'
+                      " 'MNE-only-A' (via only),"
+                      " 'MNE-only-B' (via only),"
+                      " 'MNE-only-C' (via only),"
+                      " 'MNE-with-A' (via with),"
+                      " 'MNE-with-B' (via with),"
+                      " 'MNE-with-C' (via with),"
+                      " 'MNE-without-A' (via without),"
+                      " 'MNE-without-B' (via without),"
+                      " 'MNE-without-C' (via without)", err)
 
     @named_data(*test_data)
     def test_cli_with_file_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
