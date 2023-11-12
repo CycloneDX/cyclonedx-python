@@ -19,7 +19,7 @@
 import re
 from enum import Enum
 from itertools import chain
-from typing import TYPE_CHECKING, Any, Dict, FrozenSet, Generator, Iterable, List, NamedTuple, Optional, Set
+from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, List, NamedTuple, Optional, Set
 
 from . import BomBuilder
 
@@ -50,12 +50,8 @@ class _LockEntry(NamedTuple):
 
 
 class GroupsNotFoundError(ValueError):
-    def __init__(self, groups: Iterable[str]):
+    def __init__(self, groups: Iterable[str]) -> None:
         self.__groups = frozenset(groups)
-
-    @property
-    def groups(self) -> FrozenSet[str]:
-        return self.__groups
 
     def __str__(self) -> str:
         return 'Group(s) not found: ' + ', '.join(sorted(self.__groups))
@@ -102,7 +98,7 @@ class PoetryBB(BomBuilder):
                        dest='no_dev',
                        action='store_true')
         eg = p.add_mutually_exclusive_group()
-        eg.add_argument('--extras',
+        eg.add_argument('-E', '--extras',
                         metavar='EXTRAS',
                         help='Extra sets of dependencies to include (multiple values allowed)',
                         action='append',
@@ -170,6 +166,7 @@ class PoetryBB(BomBuilder):
             po_cfg.setdefault('group', {})
             po_cfg['group'].setdefault('main', {'dependencies': po_cfg.get('dependencies', {})})
             po_cfg['group'].setdefault('dev', {'dependencies': po_cfg.get('dev-dependencies', {})})
+            po_cfg.setdefault('extras', {})
 
             # the group-args shall mimic the ones from poetry, which uses comma-separated lists and multi-use
             # values be like: ['foo', 'bar,bazz'] -> ['foo', 'bar', 'bazz']
@@ -185,10 +182,10 @@ class PoetryBB(BomBuilder):
                 ] for gn in gns
                 if gn not in po_cfg['group'].keys())
             self._logger.debug('groups_not_found: %r', groups_not_found)
-            if len(groups_not_found):
+            if len(groups_not_found) > 0:
                 error = GroupsNotFoundError(f'{gn!r} (via {srcn})' for gn, srcn in groups_not_found)
                 self._logger.error(error)
-                raise ValueError(f'some poetry groups are undefined') from error
+                raise ValueError('some Poetry groups are unknown') from error
             del groups_not_found
             if no_dev:
                 groups = {'main', }
@@ -204,10 +201,16 @@ class PoetryBB(BomBuilder):
                 ) - groups_without_s
             del groups_only_s, groups_with_s, groups_without_s
 
+            extras_defined = set(po_cfg['extras'].keys())
+            extras_s = set(filter(None, ','.join(extras).split(',')))
+            extras_not_found = extras_s - extras_defined
+            if len(extras_not_found) > 0:
+                pass  # TODO error handling
+
             return self._make_bom(
                 project, toml_loads(lock.read()),
                 groups,
-                set(po_cfg.get('extras', {}).keys() if all_extras else ','.join(extras).split(',')),
+                extras_defined if all_extras else extras_s,
                 mc_type,
             )
 
@@ -230,8 +233,7 @@ class PoetryBB(BomBuilder):
 
         lock_data: Dict[str, _LockEntry] = {le.name: le for le in self._parse_lock(locker)}
 
-        extra_deps = set(chain.from_iterable(
-            eds for en, eds in po_cfg.get('extras', {}).items() if en in use_extras))
+        extra_deps = set(chain.from_iterable(po_cfg['extras'][extra] for extra in use_extras))
 
         _dep_pattern = re.compile(r'^(?P<name>.+?)(?:\[(?P<extras>.*?)\]])?$')
         _added_components = set()  # required to prevent hickups and flips
