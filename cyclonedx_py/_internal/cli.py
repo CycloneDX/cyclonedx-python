@@ -206,7 +206,7 @@ def run(*, argv: Optional[List[str]] = None, **kwargs: Any) -> int:
         return 1
     del arg_parser, argv
 
-    ll = (logging.ERROR, logging.WARNING, logging.INFO, logging.DEBUG)[min(3, args.pop('verbosity'))]
+    ll = (logging.NOTSET, logging.WARNING, logging.INFO, logging.DEBUG)[min(3, args.pop('verbosity'))]
     lh = logging.StreamHandler(sys.stderr)
     lh.setLevel(ll)
     lh.setFormatter(logging.Formatter('%(levelname)-8s | %(name)s > %(message)s'))
