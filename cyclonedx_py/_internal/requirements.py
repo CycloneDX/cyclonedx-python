@@ -31,7 +31,7 @@ if TYPE_CHECKING:  # pragma: no cover
 
 
 # !!! be as lazy loading as possible, as greedy as needed
-# TODO: measure with `time -v` for max resident size and see if this changes when global imports are used
+# TODO: measure with `/bin/time -v` for max resident size and see if this changes when global imports are used
 
 
 class RequirementsBB(BomBuilder):
