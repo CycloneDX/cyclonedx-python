@@ -32,6 +32,7 @@ from cyclonedx_py._internal.cli import run as run_cli
 from tests import INFILES_DIRECTORY, SnapshotMixin, make_comparable
 
 infiles = glob(join(INFILES_DIRECTORY, 'requirements', '*'))
+
 unsupported_of_sf = [
     (OutputFormat.JSON, SchemaVersion.V1_1),
     (OutputFormat.JSON, SchemaVersion.V1_0),
