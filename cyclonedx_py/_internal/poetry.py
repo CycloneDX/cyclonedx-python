@@ -173,9 +173,9 @@ class PoetryBB(BomBuilder):
 
             # the group-args shall mimic the ones from poetry, which uses comma-separated lists and multi-use
             # values be like: ['foo', 'bar,bazz'] -> ['foo', 'bar', 'bazz']
-            groups_only_s = set(','.join(groups_only).split(','))
-            groups_with_s = set(','.join(groups_with).split(','))
-            groups_without_s = set(','.join(groups_without).split(','))
+            groups_only_s = set(filter(None, ','.join(groups_only).split(',')))
+            groups_with_s = set(filter(None, ','.join(groups_with).split(',')))
+            groups_without_s = set(filter(None, ','.join(groups_without).split(',')))
             del groups_only, groups_with, groups_without
             groups_not_found = set(
                 (gn, srcn) for gns, srcn in [
