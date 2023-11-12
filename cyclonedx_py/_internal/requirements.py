@@ -16,8 +16,6 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
-from functools import reduce
-from os import unlink
 from typing import TYPE_CHECKING, Any, Generator, List, Set
 
 from . import BomBuilder
@@ -96,6 +94,8 @@ class RequirementsBB(BomBuilder):
     def __call__(self, *,  # type:ignore[override]
                  requirements_file: str,
                  **kwargs: Any) -> 'Bom':
+        from os import unlink
+
         from pip_requirements_parser import RequirementsFile
 
         if requirements_file == '-':
@@ -114,6 +114,8 @@ class RequirementsBB(BomBuilder):
         return self._make_bom(rf)
 
     def _make_bom(self, rf: 'RequirementsFile') -> 'Bom':
+        from functools import reduce
+
         from .utils.bom import make_bom
 
         bom = make_bom()

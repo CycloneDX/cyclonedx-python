@@ -16,9 +16,7 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
-import re
 from enum import Enum
-from itertools import chain
 from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, List, NamedTuple, Optional, Set
 
 from . import BomBuilder
@@ -217,6 +215,9 @@ class PoetryBB(BomBuilder):
     def _make_bom(self, project: 'NameDict', locker: 'NameDict',
                   use_groups: Set[str], use_extras: Set[str],
                   mc_type: 'ComponentType') -> 'Bom':
+        from itertools import chain
+        from re import compile as re_compile
+
         from cyclonedx.model import Property
 
         from .utils.bom import make_bom
@@ -235,7 +236,7 @@ class PoetryBB(BomBuilder):
 
         extra_deps = set(chain.from_iterable(po_cfg['extras'][extra] for extra in use_extras))
 
-        _dep_pattern = re.compile(r'^(?P<name>.+?)(?:\[(?P<extras>.*?)\]])?$')
+        _dep_pattern = re_compile(r'^(?P<name>.+?)(?:\[(?P<extras>.*?)\]])?$')
         _added_components = set()  # required to prevent hickups and flips
 
         def _add_ld(name: str, extras: Iterable[str]) -> Optional['Component']:
