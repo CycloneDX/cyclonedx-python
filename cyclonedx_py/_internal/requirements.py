@@ -42,7 +42,7 @@ class RequirementsBB(BomBuilder):
         from textwrap import dedent
 
         p = ArgumentParser(description=dedent('''\
-                           Build an SBOM from frozen requirements.
+                           Build an SBOM from Pip requirements.
 
                            The options mimic the respective ones from Pip.
                            '''),
