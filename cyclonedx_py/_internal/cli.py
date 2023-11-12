@@ -24,6 +24,7 @@ from typing import TYPE_CHECKING, Any, Dict, List, Optional, TextIO, Type
 from cyclonedx.schema import OutputFormat, SchemaVersion
 
 from .. import __version__
+from .environment import EnvironmentBB
 from .pipenv import PipenvBB
 from .poetry import PoetryBB
 from .requirements import RequirementsBB
@@ -101,9 +102,10 @@ class Command:
 
         scbbc: Type['BomBuilder']
         for sct, scbbc, scd in (  # type:ignore[assignment]
-            ('requirements', RequirementsBB, 'HELP TODO'),
+            ('environment', EnvironmentBB, 'HELP TODO'),
             ('pipenv', PipenvBB, 'HELP TODO'),
             ('poetry', PoetryBB, 'HELP TODO'),
+            ('requirements', RequirementsBB, 'HELP TODO'),
         ):
             spp = scbbc.make_argument_parser(add_help=False)
             sp.add_parser(sct,
