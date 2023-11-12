@@ -169,10 +169,13 @@ class PoetryBB(BomBuilder):
             else:
                 groups_with = ','.join(groups_with).split(',')
                 groups_without = ','.join(groups_without).split(',')
-                groups = (set(groups_with) | set(
+                # When used together, `--without` takes precedence over `--with`.
+                # see https://python-poetry.org/docs/managing-dependencies/#installing-group-dependencies
+                groups = set(
                     gn for gn, gc in po_cfg.get('group', {}).items()
-                    if not gc.get('optional')
-                )) - set(groups_without)
+                    # all non-optionals and the `with`-whitelisted optionals
+                    if not gc.get('optional') or gn in groups_with
+                ) - set(groups_without)
 
             return self._make_bom(
                 project, toml_loads(lock.read()),
