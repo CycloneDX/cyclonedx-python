@@ -88,6 +88,8 @@
       </externalReferences>
       <properties>
         <property name="cdx:poetry:group">main</property>
+        <property name="cdx:python:package:extra">json-validation</property>
+        <property name="cdx:python:package:extra">xml-validation</property>
       </properties>
     </component>
     <component type="library" bom-ref="defusedxml@0.7.1">
@@ -236,6 +238,9 @@
           </hashes>
         </reference>
       </externalReferences>
+      <properties>
+        <property name="cdx:python:package:extra">format</property>
+      </properties>
     </component>
     <component type="library" bom-ref="jsonschema-specifications@2023.7.1">
       <name>jsonschema-specifications</name>

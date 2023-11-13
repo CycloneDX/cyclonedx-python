@@ -16,6 +16,7 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
+from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, List, NamedTuple, Optional, Set
 
 from . import BomBuilder
@@ -35,11 +36,14 @@ if TYPE_CHECKING:  # pragma: no cover
 # TODO: measure with `/bin/time -v` for max resident size and see if this changes when global imports are used
 
 
-class _LockEntry(NamedTuple):
+@dataclass
+class _LockEntry:
     name: str
     component: 'Component'
     dependencies: Set[str]
-    extras: Dict[str, Set[str]]
+    extra_deps: Dict[str, Set[str]]
+    added2bom: bool
+    added2bom_extras: Set[str]
 
 
 class GroupsNotFoundError(ValueError):
@@ -244,36 +248,50 @@ class PoetryBB(BomBuilder):
 
         lock_data: Dict[str, _LockEntry] = {le.name: le for le in self._parse_lock(locker)}
 
+        lock_data[root_c.name] = _LockEntry(  # needed for circle dependencies
+            name=root_c.name,
+            component=root_c,
+            dependencies=set(),
+            extra_deps=dict(),
+            added2bom=True,
+            added2bom_extras=use_extras
+        )
         extra_deps = set(chain.from_iterable(po_cfg['extras'][extra] for extra in use_extras))
 
-        _dep_pattern = re_compile(r'^(?P<name>.+?)(?:\[(?P<extras>.*?)\]])?$')
-        _added_components = set()  # required to prevent hickups and flips
+        _dep_pattern = re_compile(r'^(?P<name>[^\[]+)(?:\[(?P<extras>.*)\])?$')
 
-        def _add_ld(name: str, extras: Iterable[str]) -> Optional['Component']:
+        def _add_ld(name: str, extras: Set[str]) -> Optional['Component']:
             if name == 'python':
                 return None
             le = lock_data.get(name)
             if le is None:
                 self._logger.warning('skip unlocked component: %s', name)
                 return None
-            if id(le.component) in _added_components:
-                self._logger.debug('skipped existing component: %s', name)
-                return le.component
-            self._logger.debug('add component: %r', le.component)
-            bom.components.add(le.component)
-            _added_components.add(id(le.component))
+            _existed = le.added2bom
+            if not _existed:
+                self._logger.debug('add component: %r', le.component)
+                le.added2bom = True
+                bom.components.add(le.component)
+            missing_extras = extras - le.added2bom_extras
+            self._logger.debug('missing extras for %r: %r', le.component, missing_extras)
+            le.added2bom_extras.update(missing_extras)
+            le.component.properties.update(Property(
+                name=PropertyName.PackageExtra.value,
+                value=extra
+            ) for extra in missing_extras)
             depends_on = []
-            for dep in chain(
-                le.dependencies,
-                chain.from_iterable(le.extras.get(extra, []) for extra in extras)
-            ):
-                self._logger.debug('component %r depends on %r', name, dep)
+            for dep in set(chain(
+                [] if _existed else le.dependencies,
+                chain.from_iterable(le.extra_deps.get(extra, []) for extra in missing_extras)
+            )):
+                self._logger.debug('component %r depends on %r', le.component, dep)
                 depm = _dep_pattern.match(dep)
-                if depm is None:
+                if depm is None:  # pragma: nocover
+                    self._logger.warning('skipping malformed dependency: %r', dep)
                     continue
                 depends_on.append(_add_ld(
                     depm.group('name'),
-                    set(map(str.strip, (depm.group('extras') or '').split(',')))
+                    set(filter(None, map(str.strip, (depm.group('extras') or '').split(','))))
                 ))
             bom.register_dependency(le.component, filter(None, depends_on))
             return le.component
@@ -296,7 +314,7 @@ class PoetryBB(BomBuilder):
                 if dep_spec.get('optional', False) and dep_name not in extra_deps:
                     self._logger.debug('skip optional dependency: %s', dep_name)
                     continue
-                depends_on.append(_add_ld(dep_name, dep_spec.get('extras') or []))
+                depends_on.append(_add_ld(dep_name, set(dep_spec.get('extras', []))))
         bom.register_dependency(root_c, filter(None, depends_on))
 
         return bom
@@ -351,10 +369,13 @@ class PoetryBB(BomBuilder):
         for package in locker['package']:
             package.setdefault('files', metavar_files.get(package['name'], []))
             yield _LockEntry(
-                package['name'],
-                self.__make_component4lock(package),
-                set(package.get('dependencies', {}).keys()),
-                {e: set(d.split(' ')[0] for d in ds) for e, ds in package.get('extras', {}).items()}
+                name=package['name'],
+                component=self.__make_component4lock(package),
+                dependencies=set(dn for dn, ds in package.get('dependencies', {}).items()
+                                 if not isinstance(ds, dict) or not ds.get('optional', False)),
+                extra_deps={en: set(di.split(' ')[0] for di in ds) for en, ds in package.get('extras', {}).items()},
+                added2bom=False,
+                added2bom_extras=set()
             )
 
     def __hashes4file(self, files: List['NameDict']) -> Generator['HashType', None, None]:
