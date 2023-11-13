@@ -28,4 +28,3 @@ if sys.version_info >= (3, 11):
     from tomllib import loads as toml_loads
 else:
     from tomli import loads as toml_loads
-

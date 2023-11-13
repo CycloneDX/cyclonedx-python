@@ -17,7 +17,7 @@
 
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, List, NamedTuple, Optional, Set
+from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, List, Optional, Set
 
 from . import BomBuilder
 
