@@ -37,7 +37,7 @@ class EnvironmentBB(BomBuilder):
     def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':
         from argparse import ArgumentParser
 
-        p = ArgumentParser(description='Build an SBOM based on python environment',
+        p = ArgumentParser(description='Build an SBOM from Python environment',
                            **kwargs)
         # TODO
         return p

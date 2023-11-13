@@ -101,15 +101,15 @@ class Command:
                             action='store_false')
 
         scbbc: Type['BomBuilder']
-        for sct, scbbc, scd in (  # type:ignore[assignment]
-            ('environment', EnvironmentBB, 'HELP TODO'),
-            ('pipenv', PipenvBB, 'HELP TODO'),
-            ('poetry', PoetryBB, 'HELP TODO'),
-            ('requirements', RequirementsBB, 'HELP TODO'),
+        for sct, scbbc in (  # type:ignore[assignment]
+            ('environment', EnvironmentBB),
+            ('pipenv', PipenvBB),
+            ('poetry', PoetryBB),
+            ('requirements', RequirementsBB),
         ):
             spp = scbbc.make_argument_parser(add_help=False)
             sp.add_parser(sct,
-                          help=scd,
+                          help=spp.description.split('\n')[0].strip('. '),
                           description=spp.description,
                           epilog=spp.epilog,
                           parents=[spp, op, sco],

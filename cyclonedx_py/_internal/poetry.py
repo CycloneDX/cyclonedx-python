@@ -67,7 +67,7 @@ class PoetryBB(BomBuilder):
         from .utils.args import argparse_type4enum
 
         p = ArgumentParser(description=dedent('''\
-                           Build an SBOM based on Poetry project.
+                           Build an SBOM from Poetry project.
 
                            The options mimic the respective ones from Poetry.
                            '''),

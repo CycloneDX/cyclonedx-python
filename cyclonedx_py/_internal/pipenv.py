@@ -37,7 +37,7 @@ class PipenvBB(BomBuilder):
     def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':
         from argparse import OPTIONAL, ArgumentParser, FileType
 
-        p = ArgumentParser(description='Build an SBOM based on PipEnv',
+        p = ArgumentParser(description='Build an SBOM from Pipenv',
                            **kwargs)
         p.add_argument('lock',
                        metavar='lock-file',
