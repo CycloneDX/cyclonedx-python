@@ -6,7 +6,7 @@
       "name": "colorama",
       "properties": [
         {
-          "name": "cdx:poetry:package:group",
+          "name": "cdx:poetry:group",
           "value": "main"
         }
       ],
@@ -20,7 +20,7 @@
       "name": "importlib-metadata",
       "properties": [
         {
-          "name": "cdx:poetry:package:group",
+          "name": "cdx:poetry:group",
           "value": "main"
         }
       ],
@@ -34,7 +34,7 @@
       "name": "jax",
       "properties": [
         {
-          "name": "cdx:poetry:package:group",
+          "name": "cdx:poetry:group",
           "value": "main"
         }
       ],
@@ -48,7 +48,7 @@
       "name": "ml-dtypes",
       "properties": [
         {
-          "name": "cdx:poetry:package:group",
+          "name": "cdx:poetry:group",
           "value": "main"
         }
       ],
@@ -62,7 +62,7 @@
       "name": "numpy",
       "properties": [
         {
-          "name": "cdx:poetry:package:group",
+          "name": "cdx:poetry:group",
           "value": "main"
         }
       ],
@@ -76,7 +76,7 @@
       "name": "opt-einsum",
       "properties": [
         {
-          "name": "cdx:poetry:package:group",
+          "name": "cdx:poetry:group",
           "value": "main"
         }
       ],
@@ -90,7 +90,7 @@
       "name": "scipy",
       "properties": [
         {
-          "name": "cdx:poetry:package:group",
+          "name": "cdx:poetry:group",
           "value": "main"
         }
       ],
@@ -104,7 +104,7 @@
       "name": "toml",
       "properties": [
         {
-          "name": "cdx:poetry:package:group",
+          "name": "cdx:poetry:group",
           "value": "main"
         }
       ],
@@ -118,7 +118,7 @@
       "name": "zipp",
       "properties": [
         {
-          "name": "cdx:poetry:package:group",
+          "name": "cdx:poetry:group",
           "value": "main"
         }
       ],

@@ -55,10 +55,10 @@ class PropertyName(Enum):
 
     # region poetry
     # see https://github.com/CycloneDX/cyclonedx-property-taxonomy/blob/main/cdx/poetry.md
-    PoetryPackageGroup = 'cdx:poetry:package:group'
+    PoetryGroup = 'cdx:poetry:group'
     # endregion poetry
 
     # region pipenv
     # see https://github.com/CycloneDX/cyclonedx-property-taxonomy/blob/main/cdx/pipenv.md
-    PipenvPackageCategory = 'cdx:pipenv:package:category'
+    PipenvCategory = 'cdx:pipenv:category'
     # endregion pipenv

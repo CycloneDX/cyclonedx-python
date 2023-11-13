@@ -50,6 +50,14 @@ class GroupsNotFoundError(ValueError):
         return 'Group(s) not found: ' + ', '.join(sorted(self.__groups))
 
 
+class ExtrasNotFoundError(ValueError):
+    def __init__(self, extras: Iterable[str]) -> None:
+        self.__extras = frozenset(extras)
+
+    def __str__(self) -> str:
+        return f'Extra(s) [{",".join(sorted(self.__extras))}] not specified.'
+
+
 class PoetryBB(BomBuilder):
 
     @staticmethod
@@ -180,6 +188,15 @@ class PoetryBB(BomBuilder):
                 self._logger.error(error)
                 raise ValueError('some Poetry groups are unknown') from error
             del groups_not_found
+
+            extras_defined = set(po_cfg['extras'].keys())
+            extras_s = set(filter(None, ','.join(extras).split(',')))
+            extras_not_found = extras_s - extras_defined
+            if len(extras_not_found) > 0:
+                error = ExtrasNotFoundError(extras_not_found)
+                self._logger.error(error)
+                raise ValueError('some package extras are unknown') from error
+
             if no_dev:
                 groups = {'main', }
             elif len(groups_only_s) > 0:
@@ -193,12 +210,6 @@ class PoetryBB(BomBuilder):
                     if not gc.get('optional') or gn in groups_with_s
                 ) - groups_without_s
             del groups_only_s, groups_with_s, groups_without_s
-
-            extras_defined = set(po_cfg['extras'].keys())
-            extras_s = set(filter(None, ','.join(extras).split(',')))
-            extras_not_found = extras_s - extras_defined
-            if len(extras_not_found) > 0:
-                pass  # TODO error handling
 
             return self._make_bom(
                 project, toml_loads(lock.read()),
@@ -279,7 +290,7 @@ class PoetryBB(BomBuilder):
                     self._logger.warning('skip unlocked dependency: %s', dep_name)
                     continue
                 lock_data[dep_name].component.properties.add(Property(
-                    name=PropertyName.PoetryPackageGroup.value,
+                    name=PropertyName.PoetryGroup.value,
                     value=group_name
                 ))
                 dep_spec = dep_spec if isinstance(dep_spec, dict) else {'version': dep_spec}
@@ -377,7 +388,7 @@ class PoetryBB(BomBuilder):
             scope=ComponentScope.OPTIONAL if package.get('optional') else None,
             external_references=self.__extrefs4lock(package),
             properties=[Property(  # for backwards compatibility: category -> group
-                name=PropertyName.PoetryPackageGroup.value,
+                name=PropertyName.PoetryGroup.value,
                 value=package['category']
             )] if 'category' in package else [],
             purl=PackageURL(type='pypi', name=package['name'], version=package['version']),

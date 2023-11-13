@@ -28,7 +28,7 @@
       "name": "colorama",
       "properties": [
         {
-          "name": "cdx:poetry:package:group",
+          "name": "cdx:poetry:group",
           "value": "main"
         }
       ],
@@ -94,7 +94,7 @@
       "name": "jax",
       "properties": [
         {
-          "name": "cdx:poetry:package:group",
+          "name": "cdx:poetry:group",
           "value": "main"
         }
       ],
@@ -930,7 +930,7 @@
       "name": "toml",
       "properties": [
         {
-          "name": "cdx:poetry:package:group",
+          "name": "cdx:poetry:group",
           "value": "main"
         }
       ],

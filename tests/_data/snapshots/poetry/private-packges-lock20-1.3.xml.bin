@@ -41,7 +41,7 @@
         </reference>
       </externalReferences>
       <properties>
-        <property name="cdx:poetry:package:group">main</property>
+        <property name="cdx:poetry:group">main</property>
       </properties>
     </component>
     <component type="library" bom-ref="importlib-metadata@6.8.0">
@@ -84,7 +84,7 @@
         </reference>
       </externalReferences>
       <properties>
-        <property name="cdx:poetry:package:group">main</property>
+        <property name="cdx:poetry:group">main</property>
       </properties>
     </component>
     <component type="library" bom-ref="ml-dtypes@0.3.1">
@@ -595,7 +595,7 @@
         </reference>
       </externalReferences>
       <properties>
-        <property name="cdx:poetry:package:group">main</property>
+        <property name="cdx:poetry:group">main</property>
       </properties>
     </component>
     <component type="library" bom-ref="zipp@3.17.0">

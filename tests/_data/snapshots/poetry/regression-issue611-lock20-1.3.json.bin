@@ -28,7 +28,7 @@
       "name": "pyhumps",
       "properties": [
         {
-          "name": "cdx:poetry:package:group",
+          "name": "cdx:poetry:group",
           "value": "main"
         }
       ],

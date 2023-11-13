@@ -40,55 +40,28 @@
           </hashes>
         </reference>
       </externalReferences>
-      <properties>
-        <property name="cdx:poetry:package:group">dev</property>
-      </properties>
     </component>
-    <component type="library" bom-ref="colorama@0.4.6">
-      <name>colorama</name>
-      <version>0.4.6</version>
-      <description>Cross-platform colored terminal text.</description>
-      <purl>pkg:pypi/colorama@0.4.6</purl>
-      <externalReferences>
-        <reference type="distribution">
-          <url>https://pypi.org/simple/colorama/#colorama-0.4.6-py2.py3-none-any.whl</url>
-          <hashes>
-            <hash alg="SHA-256">4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6</hash>
-          </hashes>
-        </reference>
-        <reference type="distribution">
-          <url>https://pypi.org/simple/colorama/#colorama-0.4.6.tar.gz</url>
-          <hashes>
-            <hash alg="SHA-256">08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44</hash>
-          </hashes>
-        </reference>
-      </externalReferences>
-      <properties>
-        <property name="cdx:poetry:package:group">dev</property>
-        <property name="cdx:poetry:package:group">groupA</property>
-      </properties>
-    </component>
-    <component type="library" bom-ref="ddt@1.6.0">
+    <component type="library" bom-ref="ddt@1.7.0">
       <name>ddt</name>
-      <version>1.6.0</version>
+      <version>1.7.0</version>
       <description>Data-Driven/Decorated Tests</description>
-      <purl>pkg:pypi/ddt@1.6.0</purl>
+      <purl>pkg:pypi/ddt@1.7.0</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>https://pypi.org/simple/ddt/#ddt-1.6.0-py2.py3-none-any.whl</url>
+          <url>https://pypi.org/simple/ddt/#ddt-1.7.0-py2.py3-none-any.whl</url>
           <hashes>
-            <hash alg="SHA-256">e3c93b961a108b4f4d5a6c7f2263513d928baf3bb5b32af8e1c804bfb041141d</hash>
+            <hash alg="SHA-256">a0719acde99dd32767cff64e653ef99c01ad5b042ff265f2ebecd28796ffd114</hash>
           </hashes>
         </reference>
         <reference type="distribution">
-          <url>https://pypi.org/simple/ddt/#ddt-1.6.0.tar.gz</url>
+          <url>https://pypi.org/simple/ddt/#ddt-1.7.0.tar.gz</url>
           <hashes>
-            <hash alg="SHA-256">f71b348731b8c78c3100bffbd951a769fbd439088d1fdbb3841eee019af80acd</hash>
+            <hash alg="SHA-256">d178d115abf25a1b8327e94f85a03ef09b1d7b0ca256f6203284b024f2fc70df</hash>
           </hashes>
         </reference>
       </externalReferences>
       <properties>
-        <property name="cdx:poetry:package:group">dev</property>
+        <property name="cdx:poetry:group">dev</property>
       </properties>
     </component>
     <component type="library" bom-ref="isoduration@20.11.0">
@@ -111,9 +84,7 @@
         </reference>
       </externalReferences>
       <properties>
-        <property name="cdx:poetry:package:group">dev</property>
-        <property name="cdx:poetry:package:group">groupA</property>
-        <property name="cdx:poetry:package:group">groupB</property>
+        <property name="cdx:poetry:group">groupB</property>
       </properties>
     </component>
     <component type="library" bom-ref="python-dateutil@2.8.2">
@@ -135,9 +106,6 @@
           </hashes>
         </reference>
       </externalReferences>
-      <properties>
-        <property name="cdx:poetry:package:group">dev</property>
-      </properties>
     </component>
     <component type="library" bom-ref="six@1.16.0">
       <name>six</name>
@@ -158,9 +126,6 @@
           </hashes>
         </reference>
       </externalReferences>
-      <properties>
-        <property name="cdx:poetry:package:group">dev</property>
-      </properties>
     </component>
     <component type="library" bom-ref="toml@0.10.2">
       <name>toml</name>
@@ -182,7 +147,7 @@
         </reference>
       </externalReferences>
       <properties>
-        <property name="cdx:poetry:package:group">main</property>
+        <property name="cdx:poetry:group">main</property>
       </properties>
     </component>
     <component type="library" bom-ref="types-python-dateutil@2.8.19.14">
@@ -204,9 +169,6 @@
           </hashes>
         </reference>
       </externalReferences>
-      <properties>
-        <property name="cdx:poetry:package:group">dev</property>
-      </properties>
     </component>
   </components>
   <dependencies>
@@ -214,11 +176,9 @@
       <dependency ref="python-dateutil@2.8.2"/>
       <dependency ref="types-python-dateutil@2.8.19.14"/>
     </dependency>
-    <dependency ref="colorama@0.4.6"/>
-    <dependency ref="ddt@1.6.0"/>
+    <dependency ref="ddt@1.7.0"/>
     <dependency ref="group-deps">
-      <dependency ref="colorama@0.4.6"/>
-      <dependency ref="ddt@1.6.0"/>
+      <dependency ref="ddt@1.7.0"/>
       <dependency ref="isoduration@20.11.0"/>
       <dependency ref="toml@0.10.2"/>
     </dependency>

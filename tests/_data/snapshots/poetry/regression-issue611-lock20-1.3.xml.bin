@@ -41,7 +41,7 @@
         </reference>
       </externalReferences>
       <properties>
-        <property name="cdx:poetry:package:group">main</property>
+        <property name="cdx:poetry:group">main</property>
       </properties>
     </component>
   </components>

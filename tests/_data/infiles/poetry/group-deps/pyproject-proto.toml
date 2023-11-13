@@ -18,6 +18,9 @@ ddt = "^1.6.0"
 [tool.poetry.group.groupB.dependencies]
 isoduration = "^20.11.0"
 
+[tool.poetry.group.groupA]
+optional = true
+
 [tool.poetry.group.groupA.dependencies]
 isoduration = "^20.11.0"
 colorama = "^0.4.6"

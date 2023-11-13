@@ -54,7 +54,7 @@
       <description>Cross-platform colored terminal text.</description>
       <purl>pkg:pypi/colorama@0.4.6</purl>
       <properties>
-        <property name="cdx:poetry:package:group">main</property>
+        <property name="cdx:poetry:group">main</property>
       </properties>
     </component>
     <component type="library" bom-ref="importlib-metadata@6.8.0">
@@ -63,7 +63,7 @@
       <description>Read metadata from Python packages</description>
       <purl>pkg:pypi/importlib-metadata@6.8.0</purl>
       <properties>
-        <property name="cdx:poetry:package:group">main</property>
+        <property name="cdx:poetry:group">main</property>
       </properties>
     </component>
     <component type="library" bom-ref="jax@0.4.20">
@@ -72,7 +72,7 @@
       <description>Differentiate, compile, and transform Numpy code.</description>
       <purl>pkg:pypi/jax@0.4.20</purl>
       <properties>
-        <property name="cdx:poetry:package:group">main</property>
+        <property name="cdx:poetry:group">main</property>
       </properties>
     </component>
     <component type="library" bom-ref="ml-dtypes@0.3.1">
@@ -81,7 +81,7 @@
       <description/>
       <purl>pkg:pypi/ml-dtypes@0.3.1</purl>
       <properties>
-        <property name="cdx:poetry:package:group">main</property>
+        <property name="cdx:poetry:group">main</property>
       </properties>
     </component>
     <component type="library" bom-ref="numpy@1.26.1">
@@ -90,7 +90,7 @@
       <description>Fundamental package for array computing in Python</description>
       <purl>pkg:pypi/numpy@1.26.1</purl>
       <properties>
-        <property name="cdx:poetry:package:group">main</property>
+        <property name="cdx:poetry:group">main</property>
       </properties>
     </component>
     <component type="library" bom-ref="opt-einsum@3.3.0">
@@ -99,7 +99,7 @@
       <description>Optimizing numpys einsum function</description>
       <purl>pkg:pypi/opt-einsum@3.3.0</purl>
       <properties>
-        <property name="cdx:poetry:package:group">main</property>
+        <property name="cdx:poetry:group">main</property>
       </properties>
     </component>
     <component type="library" bom-ref="scipy@1.11.3">
@@ -108,7 +108,7 @@
       <description>Fundamental algorithms for scientific computing in Python</description>
       <purl>pkg:pypi/scipy@1.11.3</purl>
       <properties>
-        <property name="cdx:poetry:package:group">main</property>
+        <property name="cdx:poetry:group">main</property>
       </properties>
     </component>
     <component type="library" bom-ref="toml@0.10.2">
@@ -117,7 +117,7 @@
       <description>Python Library for Tom's Obvious, Minimal Language</description>
       <purl>pkg:pypi/toml@0.10.2</purl>
       <properties>
-        <property name="cdx:poetry:package:group">main</property>
+        <property name="cdx:poetry:group">main</property>
       </properties>
     </component>
     <component type="library" bom-ref="zipp@3.17.0">
@@ -126,7 +126,7 @@
       <description>Backport of pathlib-compatible object wrapper for zip files</description>
       <purl>pkg:pypi/zipp@3.17.0</purl>
       <properties>
-        <property name="cdx:poetry:package:group">main</property>
+        <property name="cdx:poetry:group">main</property>
       </properties>
     </component>
   </components>

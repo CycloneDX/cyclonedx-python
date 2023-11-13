@@ -27,7 +27,7 @@
       <description>Better dates &amp; times for Python</description>
       <purl>pkg:pypi/arrow@1.3.0</purl>
       <properties>
-        <property name="cdx:poetry:package:group">dev</property>
+        <property name="cdx:poetry:group">dev</property>
       </properties>
     </component>
     <component type="library" bom-ref="colorama@0.4.6">
@@ -36,7 +36,7 @@
       <description>Cross-platform colored terminal text.</description>
       <purl>pkg:pypi/colorama@0.4.6</purl>
       <properties>
-        <property name="cdx:poetry:package:group">main</property>
+        <property name="cdx:poetry:group">main</property>
       </properties>
     </component>
     <component type="library" bom-ref="isoduration@20.11.0">
@@ -45,7 +45,7 @@
       <description>Operations with ISO 8601 durations</description>
       <purl>pkg:pypi/isoduration@20.11.0</purl>
       <properties>
-        <property name="cdx:poetry:package:group">dev</property>
+        <property name="cdx:poetry:group">dev</property>
       </properties>
     </component>
     <component type="library" bom-ref="python-dateutil@2.8.2">
@@ -54,7 +54,7 @@
       <description>Extensions to the standard Python datetime module</description>
       <purl>pkg:pypi/python-dateutil@2.8.2</purl>
       <properties>
-        <property name="cdx:poetry:package:group">dev</property>
+        <property name="cdx:poetry:group">dev</property>
       </properties>
     </component>
     <component type="library" bom-ref="six@1.16.0">
@@ -63,7 +63,7 @@
       <description>Python 2 and 3 compatibility utilities</description>
       <purl>pkg:pypi/six@1.16.0</purl>
       <properties>
-        <property name="cdx:poetry:package:group">dev</property>
+        <property name="cdx:poetry:group">dev</property>
       </properties>
     </component>
     <component type="library" bom-ref="toml@0.10.2">
@@ -72,7 +72,7 @@
       <description>Python Library for Tom's Obvious, Minimal Language</description>
       <purl>pkg:pypi/toml@0.10.2</purl>
       <properties>
-        <property name="cdx:poetry:package:group">main</property>
+        <property name="cdx:poetry:group">main</property>
       </properties>
     </component>
     <component type="library" bom-ref="types-python-dateutil@2.8.19.14">
@@ -81,7 +81,7 @@
       <description>Typing stubs for python-dateutil</description>
       <purl>pkg:pypi/types-python-dateutil@2.8.19.14</purl>
       <properties>
-        <property name="cdx:poetry:package:group">dev</property>
+        <property name="cdx:poetry:group">dev</property>
       </properties>
     </component>
   </components>

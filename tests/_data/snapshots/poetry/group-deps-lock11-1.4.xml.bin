@@ -54,26 +54,16 @@
       <description>Better dates &amp; times for Python</description>
       <purl>pkg:pypi/arrow@1.3.0</purl>
       <properties>
-        <property name="cdx:poetry:package:group">dev</property>
+        <property name="cdx:poetry:group">dev</property>
       </properties>
     </component>
-    <component type="library" bom-ref="colorama@0.4.6">
-      <name>colorama</name>
-      <version>0.4.6</version>
-      <description>Cross-platform colored terminal text.</description>
-      <purl>pkg:pypi/colorama@0.4.6</purl>
-      <properties>
-        <property name="cdx:poetry:package:group">dev</property>
-        <property name="cdx:poetry:package:group">groupA</property>
-      </properties>
-    </component>
-    <component type="library" bom-ref="ddt@1.6.0">
+    <component type="library" bom-ref="ddt@1.7.0">
       <name>ddt</name>
-      <version>1.6.0</version>
+      <version>1.7.0</version>
       <description>Data-Driven/Decorated Tests</description>
-      <purl>pkg:pypi/ddt@1.6.0</purl>
+      <purl>pkg:pypi/ddt@1.7.0</purl>
       <properties>
-        <property name="cdx:poetry:package:group">dev</property>
+        <property name="cdx:poetry:group">dev</property>
       </properties>
     </component>
     <component type="library" bom-ref="isoduration@20.11.0">
@@ -82,9 +72,8 @@
       <description>Operations with ISO 8601 durations</description>
       <purl>pkg:pypi/isoduration@20.11.0</purl>
       <properties>
-        <property name="cdx:poetry:package:group">dev</property>
-        <property name="cdx:poetry:package:group">groupA</property>
-        <property name="cdx:poetry:package:group">groupB</property>
+        <property name="cdx:poetry:group">dev</property>
+        <property name="cdx:poetry:group">groupB</property>
       </properties>
     </component>
     <component type="library" bom-ref="python-dateutil@2.8.2">
@@ -93,7 +82,7 @@
       <description>Extensions to the standard Python datetime module</description>
       <purl>pkg:pypi/python-dateutil@2.8.2</purl>
       <properties>
-        <property name="cdx:poetry:package:group">dev</property>
+        <property name="cdx:poetry:group">dev</property>
       </properties>
     </component>
     <component type="library" bom-ref="six@1.16.0">
@@ -102,7 +91,7 @@
       <description>Python 2 and 3 compatibility utilities</description>
       <purl>pkg:pypi/six@1.16.0</purl>
       <properties>
-        <property name="cdx:poetry:package:group">dev</property>
+        <property name="cdx:poetry:group">dev</property>
       </properties>
     </component>
     <component type="library" bom-ref="toml@0.10.2">
@@ -111,7 +100,7 @@
       <description>Python Library for Tom's Obvious, Minimal Language</description>
       <purl>pkg:pypi/toml@0.10.2</purl>
       <properties>
-        <property name="cdx:poetry:package:group">main</property>
+        <property name="cdx:poetry:group">main</property>
       </properties>
     </component>
     <component type="library" bom-ref="types-python-dateutil@2.8.19.14">
@@ -120,7 +109,7 @@
       <description>Typing stubs for python-dateutil</description>
       <purl>pkg:pypi/types-python-dateutil@2.8.19.14</purl>
       <properties>
-        <property name="cdx:poetry:package:group">dev</property>
+        <property name="cdx:poetry:group">dev</property>
       </properties>
     </component>
   </components>
@@ -129,11 +118,9 @@
       <dependency ref="python-dateutil@2.8.2"/>
       <dependency ref="types-python-dateutil@2.8.19.14"/>
     </dependency>
-    <dependency ref="colorama@0.4.6"/>
-    <dependency ref="ddt@1.6.0"/>
+    <dependency ref="ddt@1.7.0"/>
     <dependency ref="group-deps">
-      <dependency ref="colorama@0.4.6"/>
-      <dependency ref="ddt@1.6.0"/>
+      <dependency ref="ddt@1.7.0"/>
       <dependency ref="isoduration@20.11.0"/>
       <dependency ref="toml@0.10.2"/>
     </dependency>

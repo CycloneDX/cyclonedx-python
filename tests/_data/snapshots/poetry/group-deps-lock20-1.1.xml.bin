@@ -15,31 +15,17 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="colorama@0.4.6">
-      <name>colorama</name>
-      <version>0.4.6</version>
-      <description>Cross-platform colored terminal text.</description>
-      <purl>pkg:pypi/colorama@0.4.6</purl>
-      <externalReferences>
-        <reference type="distribution">
-          <url>https://pypi.org/simple/colorama/#colorama-0.4.6-py2.py3-none-any.whl</url>
-        </reference>
-        <reference type="distribution">
-          <url>https://pypi.org/simple/colorama/#colorama-0.4.6.tar.gz</url>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="ddt@1.6.0">
+    <component type="library" bom-ref="ddt@1.7.0">
       <name>ddt</name>
-      <version>1.6.0</version>
+      <version>1.7.0</version>
       <description>Data-Driven/Decorated Tests</description>
-      <purl>pkg:pypi/ddt@1.6.0</purl>
+      <purl>pkg:pypi/ddt@1.7.0</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>https://pypi.org/simple/ddt/#ddt-1.6.0-py2.py3-none-any.whl</url>
+          <url>https://pypi.org/simple/ddt/#ddt-1.7.0-py2.py3-none-any.whl</url>
         </reference>
         <reference type="distribution">
-          <url>https://pypi.org/simple/ddt/#ddt-1.6.0.tar.gz</url>
+          <url>https://pypi.org/simple/ddt/#ddt-1.7.0.tar.gz</url>
         </reference>
       </externalReferences>
     </component>

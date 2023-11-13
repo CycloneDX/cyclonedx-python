@@ -26,91 +26,45 @@
         }
       ],
       "name": "arrow",
-      "properties": [
-        {
-          "name": "cdx:poetry:package:group",
-          "value": "dev"
-        }
-      ],
       "purl": "pkg:pypi/arrow@1.3.0",
       "type": "library",
       "version": "1.3.0"
     },
     {
-      "bom-ref": "colorama@0.4.6",
-      "description": "Cross-platform colored terminal text.",
-      "externalReferences": [
-        {
-          "hashes": [
-            {
-              "alg": "SHA-256",
-              "content": "4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"
-            }
-          ],
-          "type": "distribution",
-          "url": "https://pypi.org/simple/colorama/#colorama-0.4.6-py2.py3-none-any.whl"
-        },
-        {
-          "hashes": [
-            {
-              "alg": "SHA-256",
-              "content": "08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44"
-            }
-          ],
-          "type": "distribution",
-          "url": "https://pypi.org/simple/colorama/#colorama-0.4.6.tar.gz"
-        }
-      ],
-      "name": "colorama",
-      "properties": [
-        {
-          "name": "cdx:poetry:package:group",
-          "value": "dev"
-        },
-        {
-          "name": "cdx:poetry:package:group",
-          "value": "groupA"
-        }
-      ],
-      "purl": "pkg:pypi/colorama@0.4.6",
-      "type": "library",
-      "version": "0.4.6"
-    },
-    {
-      "bom-ref": "ddt@1.6.0",
+      "bom-ref": "ddt@1.7.0",
       "description": "Data-Driven/Decorated Tests",
       "externalReferences": [
         {
           "hashes": [
             {
               "alg": "SHA-256",
-              "content": "e3c93b961a108b4f4d5a6c7f2263513d928baf3bb5b32af8e1c804bfb041141d"
+              "content": "a0719acde99dd32767cff64e653ef99c01ad5b042ff265f2ebecd28796ffd114"
             }
           ],
           "type": "distribution",
-          "url": "https://pypi.org/simple/ddt/#ddt-1.6.0-py2.py3-none-any.whl"
+          "url": "https://pypi.org/simple/ddt/#ddt-1.7.0-py2.py3-none-any.whl"
         },
         {
           "hashes": [
             {
               "alg": "SHA-256",
-              "content": "f71b348731b8c78c3100bffbd951a769fbd439088d1fdbb3841eee019af80acd"
+              "content": "d178d115abf25a1b8327e94f85a03ef09b1d7b0ca256f6203284b024f2fc70df"
             }
           ],
           "type": "distribution",
-          "url": "https://pypi.org/simple/ddt/#ddt-1.6.0.tar.gz"
+          "url": "https://pypi.org/simple/ddt/#ddt-1.7.0.tar.gz"
         }
       ],
       "name": "ddt",
       "properties": [
         {
-          "name": "cdx:poetry:package:group",
+          "name": "cdx:poetry:group",
           "value": "dev"
         }
       ],
-      "purl": "pkg:pypi/ddt@1.6.0",
+      "purl": "pkg:pypi/ddt@1.7.0",
       "type": "library",
-      "version": "1.6.0"
+      "version": "1.7.0"
     },
     {
       "bom-ref": "isoduration@20.11.0",
@@ -140,15 +94,7 @@
       "name": "isoduration",
       "properties": [
         {
-          "name": "cdx:poetry:package:group",
-          "value": "dev"
-        },
-        {
-          "name": "cdx:poetry:package:group",
-          "value": "groupA"
-        },
-        {
-          "name": "cdx:poetry:package:group",
+          "name": "cdx:poetry:group",
           "value": "groupB"
         }
       ],
@@ -182,12 +128,6 @@
         }
       ],
       "name": "python-dateutil",
-      "properties": [
-        {
-          "name": "cdx:poetry:package:group",
-          "value": "dev"
-        }
-      ],
       "purl": "pkg:pypi/python-dateutil@2.8.2",
       "type": "library",
       "version": "2.8.2"
@@ -218,12 +158,6 @@
         }
       ],
       "name": "six",
-      "properties": [
-        {
-          "name": "cdx:poetry:package:group",
-          "value": "dev"
-        }
-      ],
       "purl": "pkg:pypi/six@1.16.0",
       "type": "library",
       "version": "1.16.0"
@@ -256,7 +190,7 @@
       "name": "toml",
       "properties": [
         {
-          "name": "cdx:poetry:package:group",
+          "name": "cdx:poetry:group",
           "value": "main"
         }
       ],
@@ -290,12 +224,6 @@
         }
       ],
       "name": "types-python-dateutil",
-      "properties": [
-        {
-          "name": "cdx:poetry:package:group",
-          "value": "dev"
-        }
-      ],
       "purl": "pkg:pypi/types-python-dateutil@2.8.19.14",
       "type": "library",
       "version": "2.8.19.14"
@@ -310,15 +238,11 @@
       "ref": "arrow@1.3.0"
     },
     {
-      "ref": "colorama@0.4.6"
-    },
-    {
-      "ref": "ddt@1.6.0"
+      "ref": "ddt@1.7.0"
     },
     {
       "dependsOn": [
-        "colorama@0.4.6",
-        "ddt@1.6.0",
+        "ddt@1.7.0",
         "isoduration@20.11.0",
         "toml@0.10.2"
       ],

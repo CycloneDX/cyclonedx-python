@@ -88,7 +88,7 @@
         </reference>
       </externalReferences>
       <properties>
-        <property name="cdx:poetry:package:group">main</property>
+        <property name="cdx:poetry:group">main</property>
       </properties>
     </component>
     <component type="library" bom-ref="isoduration@20.11.0">
@@ -111,7 +111,7 @@
         </reference>
       </externalReferences>
       <properties>
-        <property name="cdx:poetry:package:group">dev</property>
+        <property name="cdx:poetry:group">dev</property>
       </properties>
     </component>
     <component type="library" bom-ref="python-dateutil@2.8.2">
@@ -174,7 +174,7 @@
         </reference>
       </externalReferences>
       <properties>
-        <property name="cdx:poetry:package:group">main</property>
+        <property name="cdx:poetry:group">main</property>
       </properties>
     </component>
     <component type="library" bom-ref="types-python-dateutil@2.8.19.14">

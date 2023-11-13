@@ -6,7 +6,7 @@
       "name": "arrow",
       "properties": [
         {
-          "name": "cdx:poetry:package:group",
+          "name": "cdx:poetry:group",
           "value": "dev"
         }
       ],
@@ -20,7 +20,7 @@
       "name": "colorama",
       "properties": [
         {
-          "name": "cdx:poetry:package:group",
+          "name": "cdx:poetry:group",
           "value": "main"
         }
       ],
@@ -34,7 +34,7 @@
       "name": "isoduration",
       "properties": [
         {
-          "name": "cdx:poetry:package:group",
+          "name": "cdx:poetry:group",
           "value": "dev"
         }
       ],
@@ -48,7 +48,7 @@
       "name": "python-dateutil",
       "properties": [
         {
-          "name": "cdx:poetry:package:group",
+          "name": "cdx:poetry:group",
           "value": "dev"
         }
       ],
@@ -62,7 +62,7 @@
       "name": "six",
       "properties": [
         {
-          "name": "cdx:poetry:package:group",
+          "name": "cdx:poetry:group",
           "value": "dev"
         }
       ],
@@ -76,7 +76,7 @@
       "name": "toml",
       "properties": [
         {
-          "name": "cdx:poetry:package:group",
+          "name": "cdx:poetry:group",
           "value": "main"
         }
       ],
@@ -90,7 +90,7 @@
       "name": "types-python-dateutil",
       "properties": [
         {
-          "name": "cdx:poetry:package:group",
+          "name": "cdx:poetry:group",
           "value": "dev"
         }
       ],
