@@ -21,7 +21,7 @@ from contextlib import redirect_stderr, redirect_stdout
 from glob import glob
 from io import StringIO
 from os.path import basename, dirname, join
-from typing import Generator, Type, Any
+from typing import Any, Generator
 from unittest import TestCase
 
 from cyclonedx.schema import OutputFormat, SchemaVersion
@@ -99,8 +99,7 @@ class TestPoetry(TestCase, SnapshotMixin):
                       " 'MNE-with-C' (via with),"
                       " 'MNE-without-A' (via without),"
                       " 'MNE-without-B' (via without),"
-                      " 'MNE-without-C' (via without)"
-                      , err)
+                      " 'MNE-without-C' (via without)", err)
 
     def test_cli_fails_with_extras_not_found(self) -> None:
         projectdir = random.choice(projectdirs)
@@ -121,8 +120,7 @@ class TestPoetry(TestCase, SnapshotMixin):
                       "MNE-extra-A,"
                       "MNE-extra-B,"
                       "MNE-extra-C"
-                      '] not specified'
-                      , err)
+                      '] not specified', err)
 
     @named_data(*test_data)
     def test_cli_with_file_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:

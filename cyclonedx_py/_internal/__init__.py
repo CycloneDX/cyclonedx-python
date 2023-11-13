@@ -17,6 +17,7 @@
 
 
 from abc import ABC, abstractmethod
+from enum import Enum
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -42,9 +43,6 @@ class BomBuilder(ABC):
     @abstractmethod
     def __call__(self, **kwargs: Any) -> 'Bom':  # pragma: no cover
         ...
-
-
-from enum import Enum
 
 
 class PropertyName(Enum):

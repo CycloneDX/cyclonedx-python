@@ -109,7 +109,7 @@ class Command:
         ):
             spp = scbbc.make_argument_parser(add_help=False)
             sp.add_parser(sct,
-                          help=spp.description.split('\n')[0].strip('. '),
+                          help=(spp.description or '').split('\n')[0].strip('. '),
                           description=spp.description,
                           epilog=spp.epilog,
                           parents=[spp, op, sco],

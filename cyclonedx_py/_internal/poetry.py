@@ -184,18 +184,20 @@ class PoetryBB(BomBuilder):
                 if gn not in po_cfg['group'].keys())
             self._logger.debug('groups_not_found: %r', groups_not_found)
             if len(groups_not_found) > 0:
-                error = GroupsNotFoundError(f'{gn!r} (via {srcn})' for gn, srcn in groups_not_found)
-                self._logger.error(error)
-                raise ValueError('some Poetry groups are unknown') from error
+                groups_error = GroupsNotFoundError(f'{gn!r} (via {srcn})' for gn, srcn in groups_not_found)
+                self._logger.error(groups_error)
+                raise ValueError('some Poetry groups are unknown') from groups_error
             del groups_not_found
 
-            extras_defined = set(po_cfg['extras'].keys())
             extras_s = set(filter(None, ','.join(extras).split(',')))
+            del extras
+            extras_defined = set(po_cfg['extras'].keys())
             extras_not_found = extras_s - extras_defined
             if len(extras_not_found) > 0:
-                error = ExtrasNotFoundError(extras_not_found)
-                self._logger.error(error)
-                raise ValueError('some package extras are unknown') from error
+                extras_error = ExtrasNotFoundError(extras_not_found)
+                self._logger.error(extras_error)
+                raise ValueError('some package extras are unknown') from extras_error
+            del extras_not_found
 
             if no_dev:
                 groups = {'main', }
@@ -226,8 +228,8 @@ class PoetryBB(BomBuilder):
 
         from cyclonedx.model import Property
 
-        from .utils.bom import make_bom
         from . import PropertyName
+        from .utils.bom import make_bom
 
         self._logger.debug('use_groups: %r', use_groups)
         self._logger.debug('use_extras: %r', use_extras)
@@ -378,6 +380,7 @@ class PoetryBB(BomBuilder):
         from cyclonedx.model import Property
         from cyclonedx.model.component import Component, ComponentScope
         from packageurl import PackageURL
+
         from . import PropertyName
 
         return Component(

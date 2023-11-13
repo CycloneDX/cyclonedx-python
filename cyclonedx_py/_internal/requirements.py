@@ -149,10 +149,10 @@ class RequirementsBB(BomBuilder):
     def _make_component(self, req: 'InstallRequirement',
                         index_url: str, extra_index_urls: Set[str]) -> 'Component':
         from cyclonedx.exception.model import InvalidUriException
-        from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
+        from cyclonedx.model import ExternalReference, ExternalReferenceType, Property, XsUri
         from cyclonedx.model.component import Component, ComponentType
         from packageurl import PackageURL
-        from cyclonedx.model import Property
+
         from . import PropertyName
 
         name = req.name
