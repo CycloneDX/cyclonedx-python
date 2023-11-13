@@ -31,7 +31,7 @@ from urllib.request import urlretrieve
 class PypiProxyReqHandler(BaseHTTPRequestHandler):
     def do_GET(self) -> None:
         print('> ', self.path, file=sys.stderr)
-        p, m = urlretrieve(f'https://pypi.org{self.path}')
+        p, m = urlretrieve(f'https://pypi.org{self.path}')  # nosec B310
         print('< ', p, file=sys.stderr)
         self.send_response(200)
         for k, v in m.items():

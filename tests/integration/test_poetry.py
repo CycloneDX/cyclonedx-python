@@ -72,7 +72,7 @@ class TestPoetry(TestCase, SnapshotMixin):
         self.assertIn("No such file or directory: 'something-that-must-not-exist.testing", err)
 
     def test_cli_fails_with_groups_not_found(self) -> None:
-        projectdir = random.choice(projectdirs)
+        projectdir = random.choice(projectdirs)  # nosec B311
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
             out.name = '<fakeout>'
@@ -102,7 +102,7 @@ class TestPoetry(TestCase, SnapshotMixin):
                       " 'MNE-without-C' (via without)", err)
 
     def test_cli_fails_with_extras_not_found(self) -> None:
-        projectdir = random.choice(projectdirs)
+        projectdir = random.choice(projectdirs)  # nosec B311
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
             out.name = '<fakeout>'
