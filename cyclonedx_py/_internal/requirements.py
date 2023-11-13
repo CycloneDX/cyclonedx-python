@@ -152,6 +152,8 @@ class RequirementsBB(BomBuilder):
         from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
         from cyclonedx.model.component import Component, ComponentType
         from packageurl import PackageURL
+        from cyclonedx.model import Property
+        from . import PropertyName
 
         name = req.name
         version = req.get_pinned_version or None
@@ -202,4 +204,9 @@ class RequirementsBB(BomBuilder):
             purl=PackageURL(type='pypi', name=req.name, version=version,
                             qualifiers=purl_qualifiers
                             ) if not is_local and name else None,
-            external_references=external_references)
+            external_references=external_references,
+            properties=(Property(
+                name=PropertyName.PackageExtra.value,
+                value=extra
+            ) for extra in req.extras)
+        )

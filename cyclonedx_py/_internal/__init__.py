@@ -42,3 +42,23 @@ class BomBuilder(ABC):
     @abstractmethod
     def __call__(self, **kwargs: Any) -> 'Bom':  # pragma: no cover
         ...
+
+
+from enum import Enum
+
+
+class PropertyName(Enum):
+    # region python
+    # TODO: register -- name might not be final, find better one
+    PackageExtra = 'cdx:python:package:extra'
+    # endregion python
+
+    # region poetry
+    # see https://github.com/CycloneDX/cyclonedx-property-taxonomy/blob/main/cdx/poetry.md
+    PoetryPackageGroup = 'cdx:poetry:package:group'
+    # endregion poetry
+
+    # region pipenv
+    # see https://github.com/CycloneDX/cyclonedx-property-taxonomy/blob/main/cdx/pipenv.md
+    PipenvPackageCategory = 'cdx:pipenv:package:category'
+    # endregion pipenv

@@ -1,0 +1,3 @@
+# package with extras
+
+cyclonedx-python-lib[json-validation,xml-validation] == 5.1.1

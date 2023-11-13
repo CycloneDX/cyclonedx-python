@@ -16,7 +16,6 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
-from enum import Enum
 from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, List, NamedTuple, Optional, Set
 
 from . import BomBuilder
@@ -34,10 +33,6 @@ if TYPE_CHECKING:  # pragma: no cover
 
 # !!! be as lazy loading as possible, as greedy as needed
 # TODO: measure with `/bin/time -v` for max resident size and see if this changes when global imports are used
-
-
-class _CdxProperty(Enum):
-    PackageGroup = 'cdx:poetry:package:group'
 
 
 class _LockEntry(NamedTuple):
@@ -221,6 +216,7 @@ class PoetryBB(BomBuilder):
         from cyclonedx.model import Property
 
         from .utils.bom import make_bom
+        from . import PropertyName
 
         self._logger.debug('use_groups: %r', use_groups)
         self._logger.debug('use_extras: %r', use_extras)
@@ -230,6 +226,10 @@ class PoetryBB(BomBuilder):
         po_cfg = project['tool']['poetry']
 
         bom.metadata.component = root_c = self.__component4poetryproj(po_cfg, mc_type)
+        root_c.properties.update(Property(
+            name=PropertyName.PackageExtra.value,
+            value=extra
+        ) for extra in use_extras)
         self._logger.debug('root-component: %r', root_c)
 
         lock_data: Dict[str, _LockEntry] = {le.name: le for le in self._parse_lock(locker)}
@@ -279,7 +279,7 @@ class PoetryBB(BomBuilder):
                     self._logger.warning('skip unlocked dependency: %s', dep_name)
                     continue
                 lock_data[dep_name].component.properties.add(Property(
-                    name=_CdxProperty.PackageGroup.value,
+                    name=PropertyName.PoetryPackageGroup.value,
                     value=group_name
                 ))
                 dep_spec = dep_spec if isinstance(dep_spec, dict) else {'version': dep_spec}
@@ -367,6 +367,7 @@ class PoetryBB(BomBuilder):
         from cyclonedx.model import Property
         from cyclonedx.model.component import Component, ComponentScope
         from packageurl import PackageURL
+        from . import PropertyName
 
         return Component(
             bom_ref=f'{package["name"]}@{package["version"]}',
@@ -375,12 +376,10 @@ class PoetryBB(BomBuilder):
             description=package.get('description'),
             scope=ComponentScope.OPTIONAL if package.get('optional') else None,
             external_references=self.__extrefs4lock(package),
-            properties=filter(None, [
-                Property(  # for backwards compatibility: category -> group
-                    name=_CdxProperty.PackageGroup.value,
-                    value=package['category']
-                ) if 'category' in package else None
-            ]),
+            properties=[Property(  # for backwards compatibility: category -> group
+                name=PropertyName.PoetryPackageGroup.value,
+                value=package['category']
+            )] if 'category' in package else [],
             purl=PackageURL(type='pypi', name=package['name'], version=package['version']),
         )
 
