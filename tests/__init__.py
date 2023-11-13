@@ -45,13 +45,13 @@ class SnapshotMixin:
 
     @classmethod
     def writeSnapshot(cls, snapshot_name: str, data: str) -> None:  # noqa: N802
-        with open(cls.getSnapshotFile(snapshot_name), 'wt', encoding='utf8') as s:
-            s.write(data)
+        with open(cls.getSnapshotFile(snapshot_name), 'wt', encoding='utf8', newline='\n') as sf:
+            sf.write(data)
 
     @classmethod
     def readSnapshot(cls, snapshot_name: str) -> str:  # noqa: N802
-        with open(cls.getSnapshotFile(snapshot_name), 'rt', encoding='utf8') as s:
-            return s.read()
+        with open(cls.getSnapshotFile(snapshot_name), 'rt', encoding='utf8', newline='\n') as sf:
+            return sf.read()
 
     def assertEqualSnapshot(self: Union[TestCase, 'SnapshotMixin'],  # noqa: N802
                             actual: str, snapshot_name: str) -> None:
