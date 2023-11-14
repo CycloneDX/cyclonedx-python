@@ -396,10 +396,15 @@ class PoetryBB(BomBuilder):
                     del error
 
     __PACKAGE_SRC_VCS = ['git']
+    __PACKAGE_SRC_LOCAL = ['file', 'directory']
 
     @classmethod
     def __is_package_src_vcs(cls, package: 'NameDict') -> bool:
         return package['source'].get('type') in cls.__PACKAGE_SRC_VCS
+
+    @classmethod
+    def __is_package_src_local(cls, package: 'NameDict') -> bool:
+        return package['source'].get('type') in cls.__PACKAGE_SRC_LOCAL
 
     def __make_component4lock(self, package: 'NameDict') -> 'Component':
         from cyclonedx.model import Property
@@ -408,8 +413,8 @@ class PoetryBB(BomBuilder):
 
         from . import PropertyName
 
-        _is_public = package['source'].get('type') not in ['file', 'directory']
         _is_package_src_vcs = self.__is_package_src_vcs(package)
+        _is_local = self.__is_package_src_local(package)
 
         return Component(
             bom_ref=f'{package["name"]}@{package["version"]}',
@@ -432,7 +437,10 @@ class PoetryBB(BomBuilder):
                     value=package['source']['resolved_reference']
                 ) if _is_package_src_vcs and 'resolved_reference' in package['source'] else None,
             ]),
-            purl=PackageURL(type='pypi', name=package['name'], version=package['version']) if _is_public else None,
+            purl=None if _is_local else PackageURL(
+                type='pypi',
+                name=package['name'],
+                version=package['version'])
         )
 
     def __extrefs4lock(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
