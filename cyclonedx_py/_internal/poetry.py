@@ -268,21 +268,23 @@ class PoetryBB(BomBuilder):
                 self._logger.warning('skip unlocked component: %s', name)
                 return None
             _existed = le.added2bom
-            if not _existed:
+            if _existed:
+                self._logger.debug('existing component: %r', le.component)
+            else:
                 self._logger.debug('add component: %r', le.component)
                 le.added2bom = True
                 bom.components.add(le.component)
-            missing_extras = extras - le.added2bom_extras
-            self._logger.debug('missing extras for %r: %r', le.component, missing_extras)
-            le.added2bom_extras.update(missing_extras)
+            new_extras = extras - le.added2bom_extras
+            self._logger.debug('new extras for %r: %r', le.component, new_extras)
+            le.added2bom_extras.update(new_extras)
             le.component.properties.update(Property(
                 name=PropertyName.PackageExtra.value,
                 value=extra
-            ) for extra in missing_extras)
+            ) for extra in new_extras)
             depends_on = []
             for dep in set(chain(
                 [] if _existed else le.dependencies,
-                chain.from_iterable(le.extra_deps.get(extra, []) for extra in missing_extras)
+                chain.from_iterable(le.extra_deps.get(extra, []) for extra in new_extras)
             )):
                 self._logger.debug('component %r depends on %r', le.component, dep)
                 depm = _dep_pattern.match(dep)
@@ -390,6 +392,12 @@ class PoetryBB(BomBuilder):
                     self._logger.debug('skipping hash %s', file['hash'], exc_info=error)
                     del error
 
+    __PACKAGE_SRC_VCS = ['git']
+
+    @classmethod
+    def __is_package_src_vcs(cls, package: 'NameDict') -> bool:
+        return package['source'].get('type') in cls.__PACKAGE_SRC_VCS
+
     def __make_component4lock(self, package: 'NameDict') -> 'Component':
         from cyclonedx.model import Property
         from cyclonedx.model.component import Component, ComponentScope
@@ -414,11 +422,11 @@ class PoetryBB(BomBuilder):
                 Property(
                     name=PropertyName.PoetryPackageSourceReference.value,
                     value=package['source']['reference']
-                ) if 'reference' in package['source'] else None,
+                ) if self.__is_package_src_vcs(package) and 'reference' in package['source'] else None,
                 Property(
                     name=PropertyName.PoetryPackageSourceResolvedReference.value,
                     value=package['source']['resolved_reference']
-                ) if 'resolved_reference' in package['source'] else None,
+                ) if self.__is_package_src_vcs(package) and 'resolved_reference' in package['source'] else None,
             ]),
             purl=PackageURL(type='pypi', name=package['name'], version=package['version']),
         )
@@ -442,7 +450,7 @@ class PoetryBB(BomBuilder):
                         hashes=[HashType.from_composite_str(file['hash'])]
                     )
                 except (InvalidUriException, UnknownHashTypeException) as error:  # pragma: nocover
-                    self._logger.debug('skipped dist-extRef for: %r', package['name'], exc_info=error)
+                    self._logger.debug('skipped dist-extRef for: %r | %r', package['name'], file, exc_info=error)
                     del error
         elif 'url' == source_type:
             try:
@@ -455,7 +463,7 @@ class PoetryBB(BomBuilder):
             except (InvalidUriException, UnknownHashTypeException) as error:  # pragma: nocover
                 self._logger.debug('%s skipped dist-extRef for: %r', package['name'], exc_info=error)
                 del error
-        elif 'git' == source_type:
+        elif source_type in self.__PACKAGE_SRC_VCS:
             try:
                 yield ExternalReference(
                     comment=f'from git (resolved_reference={package["source"].get("resolved_reference")})',
