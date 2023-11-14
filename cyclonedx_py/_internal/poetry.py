@@ -365,7 +365,7 @@ class PoetryBB(BomBuilder):
         lock_version = tuple(int(v) for v in locker['metadata'].get('lock-version', '1.0').split('.'))
         self._logger.debug('lock_version: %r', lock_version)
 
-        metavar_files = locker['metavar'].get('files', {}) if lock_version < (2,) else {}
+        metavar_files = locker['metadata'].get('files', {}) if lock_version < (2,) else {}
 
         package: 'NameDict'
         for package in locker['package']:
@@ -439,6 +439,7 @@ class PoetryBB(BomBuilder):
         #   - local deps
 
         source_type = package['source'].get('type', 'legacy')
+        self._logger.debug('ref 4 package files = %r', package['files'])
         if 'legacy' == source_type:
             source_url = package['source'].get('url', 'https://pypi.org/simple')
             for file in package['files']:
