@@ -29,7 +29,7 @@ from urllib.request import urlretrieve
 
 
 class PypiProxyReqHandler(BaseHTTPRequestHandler):
-    def do_GET(self) -> None:
+    def do_GET(self) -> None:  # noqa:N802
         print('> ', self.path, file=sys.stderr)
         p, m = urlretrieve(f'https://pypi.org{self.path}')  # nosec B310
         print('< ', p, file=sys.stderr)

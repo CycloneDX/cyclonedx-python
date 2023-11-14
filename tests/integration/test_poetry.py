@@ -117,9 +117,9 @@ class TestPoetry(TestCase, SnapshotMixin):
             out = out.getvalue()
         self.assertNotEqual(0, res, err)
         self.assertIn('Extra(s) ['
-                      "MNE-extra-A,"
-                      "MNE-extra-B,"
-                      "MNE-extra-C"
+                      'MNE-extra-A,'
+                      'MNE-extra-B,'
+                      'MNE-extra-C'
                       '] not specified', err)
 
     @named_data(*test_data)
@@ -185,5 +185,5 @@ class TestPoetry(TestCase, SnapshotMixin):
             make_comparable(out, of),
             f'some-extras-{basename(projectdir)}-{sv.to_version()}.{of.name.lower()}')
 
-    def assertEqualSnapshot(self, actual: str, snapshot_name: str) -> None:
+    def assertEqualSnapshot(self, actual: str, snapshot_name: str) -> None:  # noqa:N802
         super().assertEqualSnapshot(actual, join('poetry', snapshot_name))

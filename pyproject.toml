@@ -60,11 +60,14 @@ coverage = "7.3.1"
 ddt = "1.6.0"
 flake8 = { version = "6.1.0", python = ">=3.8.1" }
 flake8-annotations = { version = "3.0.1", python = ">=3.8.1" }
-flake8-bugbear = { version = "23.7.10", python = ">=3.8.1" }
-flake8-isort = "6.0.0"
+flake8-bugbear = { version = "23.9.16", python = ">=3.8.1" }
+flake8-isort = "6.1.1"
+flake8-quotes = "3.3.2"
+flake8-use-fstring = "1.4"
+pep8-naming = "0.13.3"
 isort = "5.12.0"
 autopep8 = "2.0.4"
-mypy = "1.6.1"
+mypy = "1.7.0"
 bandit = "1.7.5"
 tox = "4.11.3"
 # `types-toml` need to stay in sync with version of `toml`

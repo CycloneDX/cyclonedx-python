@@ -116,5 +116,5 @@ class TestRequirements(TestCase, SnapshotMixin):
             make_comparable(out, of),
             f'{basename(infile)}-{sv.to_version()}.{of.name.lower()}-stream')
 
-    def assertEqualSnapshot(self, actual: str, snapshot_name: str) -> None:
+    def assertEqualSnapshot(self, actual: str, snapshot_name: str) -> None:  # noqa:N802
         super().assertEqualSnapshot(actual, join('requirements', snapshot_name))

@@ -73,11 +73,11 @@ class PoetryBB(BomBuilder):
 
         from .utils.args import argparse_type4enum
 
-        p = ArgumentParser(description=dedent('''\
+        p = ArgumentParser(description=dedent("""\
                            Build an SBOM from Poetry project.
 
                            The options mimic the respective ones from Poetry.
-                           '''),
+                           """),
                            **kwargs)
         # the args shall mimic the ones from Poetry, which uses comma-separated lists and multi-use
         p.add_argument('--without',

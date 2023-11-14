@@ -25,7 +25,7 @@ from unittest import TestCase
 
 from cyclonedx.schema import OutputFormat
 
-from cyclonedx_py import __version__ as thisVersion
+from cyclonedx_py import __version__ as __this_version
 
 _TESTDATA_DIRECTORY = join(dirname(__file__), '_data')
 
@@ -74,7 +74,7 @@ def make_xml_comparable(bom: str) -> str:
     bom = bom.replace(  # replace metadata.tools.version
         '        <vendor>CycloneDX</vendor>\n'
         '        <name>cyclonedx-bom</name>\n'
-        f'        <version>{thisVersion}</version>',
+        f'        <version>{__this_version}</version>',
         '        <vendor>CycloneDX</vendor>\n'
         '        <name>cyclonedx-bom</name>\n'
         '        <version>thisVersion-testing</version>')
@@ -96,7 +96,7 @@ def make_json_comparable(bom: str) -> str:
     bom = bom.replace(  # replace metadata.tools.version
         '        "name": "cyclonedx-bom",\n'
         '        "vendor": "CycloneDX",\n'
-        f'        "version": {json_dumps(thisVersion)}',
+        f'        "version": {json_dumps(__this_version)}',
         '        "name": "cyclonedx-bom",\n'
         '        "vendor": "CycloneDX",\n'
         '        "version": "thisVersion-testing"')

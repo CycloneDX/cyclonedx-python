@@ -41,12 +41,12 @@ class RequirementsBB(BomBuilder):
         from argparse import OPTIONAL, ArgumentParser
         from textwrap import dedent
 
-        p = ArgumentParser(description=dedent('''\
+        p = ArgumentParser(description=dedent(""""\
                            Build an SBOM from Pip requirements.
 
                            The options mimic the respective ones from Pip.
-                           '''),
-                           epilog=dedent('''\
+                           """),
+                           epilog=dedent("""\
                            Example Usage:
                              • Build an SBOM from a requirements file:
                                    $ %(prog)s requirements-prod.txt
@@ -57,7 +57,7 @@ class RequirementsBB(BomBuilder):
                              • Build an inventory from an unfrozen manifest:
                                    $ python3 -m pip install -r dependencies.txt &&\\
                                      python3 -m pip freeze | %(prog)s -
-                           '''),
+                           """),
                            **kwargs)
         # the args shall mimic the ones from Pip
         p.add_argument('-i', '--index-url',
