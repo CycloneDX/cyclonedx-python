@@ -370,6 +370,7 @@ class PoetryBB(BomBuilder):
         package: 'NameDict'
         for package in locker['package']:
             package.setdefault('files', metavar_files.get(package['name'], []))
+            package.setdefault('source', {})
             yield _LockEntry(
                 name=package['name'],
                 component=self.__make_component4lock(package),
@@ -404,8 +405,6 @@ class PoetryBB(BomBuilder):
         from packageurl import PackageURL
 
         from . import PropertyName
-
-        package.setdefault('source', {})
 
         return Component(
             bom_ref=f'{package["name"]}@{package["version"]}',
