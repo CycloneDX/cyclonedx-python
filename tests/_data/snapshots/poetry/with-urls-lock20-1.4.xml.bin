@@ -56,7 +56,7 @@
       <externalReferences>
         <reference type="vcs">
           <url>git+https://github.com/python-pillow/Pillow.git#10.1.0</url>
-          <comment>from git (resolved_reference=da59ad000d1405eaecd557175e29083a87d19f7c)</comment>
+          <comment>from VCS (resolved_reference=da59ad000d1405eaecd557175e29083a87d19f7c)</comment>
         </reference>
       </externalReferences>
       <properties>
@@ -91,7 +91,7 @@
       <externalReferences>
         <reference type="vcs">
           <url>git+ssh://git@github.com/benjaminp/six.git#1.16.0</url>
-          <comment>from git (resolved_reference=65486e4383f9f411da95937451205d3c7b61b9e1)</comment>
+          <comment>from VCS (resolved_reference=65486e4383f9f411da95937451205d3c7b61b9e1)</comment>
         </reference>
       </externalReferences>
       <properties>

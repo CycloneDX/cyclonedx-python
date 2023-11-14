@@ -5,7 +5,7 @@
       "description": "Python Imaging Library (Fork)",
       "externalReferences": [
         {
-          "comment": "from git (resolved_reference=da59ad000d1405eaecd557175e29083a87d19f7c)",
+          "comment": "from VCS (resolved_reference=da59ad000d1405eaecd557175e29083a87d19f7c)",
           "type": "vcs",
           "url": "git+https://github.com/python-pillow/Pillow.git#10.1.0"
         }
@@ -61,7 +61,7 @@
       "description": "Python 2 and 3 compatibility utilities",
       "externalReferences": [
         {
-          "comment": "from git (resolved_reference=65486e4383f9f411da95937451205d3c7b61b9e1)",
+          "comment": "from VCS (resolved_reference=65486e4383f9f411da95937451205d3c7b61b9e1)",
           "type": "vcs",
           "url": "git+ssh://git@github.com/benjaminp/six.git#1.16.0"
         }

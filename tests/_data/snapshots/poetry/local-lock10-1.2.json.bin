@@ -1,0 +1,91 @@
+{
+  "components": [
+    {
+      "bom-ref": "package-a@23.42",
+      "description": "some package A",
+      "externalReferences": [
+        {
+          "comment": "from file",
+          "type": "distribution",
+          "url": "../local_pckages/a/dist/package_a-23.42.tar.gz"
+        }
+      ],
+      "name": "package-a",
+      "type": "library",
+      "version": "23.42"
+    },
+    {
+      "bom-ref": "package-b@1.33.7",
+      "description": "some package B",
+      "externalReferences": [
+        {
+          "comment": "from file",
+          "type": "distribution",
+          "url": "../local_pckages/b/dist/package_b-1.33.7-py2.py3-none-any.whl"
+        }
+      ],
+      "name": "package-b",
+      "type": "library",
+      "version": "1.33.7"
+    },
+    {
+      "bom-ref": "package-c@80.0.85",
+      "description": "",
+      "externalReferences": [
+        {
+          "comment": "from directory",
+          "type": "distribution",
+          "url": "../local_pckages/c"
+        }
+      ],
+      "name": "package-c",
+      "type": "library",
+      "version": "80.0.85"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "package-a@23.42",
+        "package-b@1.33.7",
+        "package-c@80.0.85"
+      ],
+      "ref": "local"
+    },
+    {
+      "ref": "package-a@23.42"
+    },
+    {
+      "ref": "package-b@1.33.7"
+    },
+    {
+      "ref": "package-c@80.0.85"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "author": "Your Name <you@example.com>",
+      "bom-ref": "local",
+      "description": "packages from local paths",
+      "name": "local",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "tools": [
+      {
+        "name": "cyclonedx-bom",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "5.1.1"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.2b.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.2"
+}

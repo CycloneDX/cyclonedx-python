@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "package-b"
+version = "1.33.7"
+description = "some package B"
+license = "Apache-2.0"
+authors = []
+packages = [
+  { include = "module_b.py" }
+]
+
+[tool.poetry.dependencies]
+python = "*"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

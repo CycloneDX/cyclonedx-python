@@ -408,6 +408,9 @@ class PoetryBB(BomBuilder):
 
         from . import PropertyName
 
+        _is_public = package['source'].get('type') not in ['file', 'directory']
+        _is_package_src_vcs = self.__is_package_src_vcs(package)
+
         return Component(
             bom_ref=f'{package["name"]}@{package["version"]}',
             name=package['name'],
@@ -423,55 +426,97 @@ class PoetryBB(BomBuilder):
                 Property(
                     name=PropertyName.PoetryPackageSourceReference.value,
                     value=package['source']['reference']
-                ) if self.__is_package_src_vcs(package) and 'reference' in package['source'] else None,
+                ) if _is_package_src_vcs and 'reference' in package['source'] else None,
                 Property(
                     name=PropertyName.PoetryPackageSourceResolvedReference.value,
                     value=package['source']['resolved_reference']
-                ) if self.__is_package_src_vcs(package) and 'resolved_reference' in package['source'] else None,
+                ) if _is_package_src_vcs and 'resolved_reference' in package['source'] else None,
             ]),
-            purl=PackageURL(type='pypi', name=package['name'], version=package['version']),
+            purl=PackageURL(type='pypi', name=package['name'], version=package['version']) if _is_public else None,
         )
 
     def __extrefs4lock(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
+        source_type = package['source'].get('type', 'legacy')
+        if 'legacy' == source_type:
+            yield from self.__extrefs4lock_legacy(package)
+        elif 'url' == source_type:
+            yield from self.__extrefs4lock_url(package)
+        elif 'file' == source_type:
+            yield from self.__extrefs4lock_file(package)
+        elif 'directory' == source_type:
+            yield from self.__extrefs4lock_directory(package)
+        elif source_type in self.__PACKAGE_SRC_VCS:
+            yield from self.__extrefs4lock_vcs(package)
+
+    def __extrefs4lock_legacy(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
         from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
         from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
 
-        # TODO:
-        #   - local deps
-
-        source_type = package['source'].get('type', 'legacy')
-        if 'legacy' == source_type:
-            source_url = package['source'].get('url', 'https://pypi.org/simple')
-            for file in package['files']:
-                try:
-                    yield ExternalReference(
-                        comment='from legacy-api',
-                        type=ExternalReferenceType.DISTRIBUTION,
-                        url=XsUri(f'{source_url}/{package["name"]}/#{file["file"]}'),
-                        hashes=[HashType.from_composite_str(file['hash'])]
-                    )
-                except (InvalidUriException, UnknownHashTypeException) as error:  # pragma: nocover
-                    self._logger.debug('skipped dist-extRef for: %r | %r', package['name'], file, exc_info=error)
-                    del error
-        elif 'url' == source_type:
+        source_url = package['source'].get('url', 'https://pypi.org/simple')
+        for file in package['files']:
             try:
                 yield ExternalReference(
-                    comment='from url',
+                    comment='from legacy-api',
                     type=ExternalReferenceType.DISTRIBUTION,
-                    url=XsUri(package['source']['url']),
-                    hashes=[HashType.from_composite_str(package['files'][0]['hash'])] if len(package['files']) else None
+                    url=XsUri(f'{source_url}/{package["name"]}/#{file["file"]}'),
+                    hashes=[HashType.from_composite_str(file['hash'])]
                 )
             except (InvalidUriException, UnknownHashTypeException) as error:  # pragma: nocover
-                self._logger.debug('%s skipped dist-extRef for: %r', package['name'], exc_info=error)
+                self._logger.debug('skipped dist-extRef for: %r | %r', package['name'], file, exc_info=error)
                 del error
-        elif source_type in self.__PACKAGE_SRC_VCS:
-            try:
-                yield ExternalReference(
-                    comment=f'from git (resolved_reference={package["source"].get("resolved_reference")})',
-                    type=ExternalReferenceType.VCS,
-                    url=XsUri(f'git+{package["source"]["url"]}#{package["source"].get("reference")}')
-                    # no hashes, has source.reference instead, which is a property
-                )
-            except (InvalidUriException, UnknownHashTypeException) as error:  # pragma: nocover
-                self._logger.debug('%s skipped dist-extRef for: %r', package['name'], exc_info=error)
-                del error
+
+    def __extrefs4lock_url(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
+        from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
+        from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
+
+        try:
+            yield ExternalReference(
+                comment='from url',
+                type=ExternalReferenceType.DISTRIBUTION,
+                url=XsUri(package['source']['url']),
+                hashes=[HashType.from_composite_str(package['files'][0]['hash'])] if len(package['files']) else None
+            )
+        except (InvalidUriException, UnknownHashTypeException) as error:  # pragma: nocover
+            self._logger.debug('%s skipped dist-extRef for: %r', package['name'], exc_info=error)
+
+    def __extrefs4lock_file(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
+        from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
+        from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
+
+        try:
+            yield ExternalReference(
+                comment='from file',
+                type=ExternalReferenceType.DISTRIBUTION,
+                url=XsUri(package['source']['url']),
+                hashes=[HashType.from_composite_str(package['files'][0]['hash'])] if len(package['files']) else None
+            )
+        except (InvalidUriException, UnknownHashTypeException) as error:  # pragma: nocover
+            self._logger.debug('%s skipped dist-extRef for: %r', package['name'], exc_info=error)
+
+    def __extrefs4lock_directory(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
+        from cyclonedx.exception.model import InvalidUriException
+        from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
+
+        try:
+            yield ExternalReference(
+                comment='from directory',
+                type=ExternalReferenceType.DISTRIBUTION,
+                url=XsUri(package['source']['url'])
+                # no hash for a source-directory
+            )
+        except InvalidUriException as error:  # pragma: nocover
+            self._logger.debug('%s skipped dist-extRef for: %r', package['name'], exc_info=error)
+
+    def __extrefs4lock_vcs(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
+        from cyclonedx.exception.model import InvalidUriException
+        from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
+
+        try:
+            yield ExternalReference(
+                comment=f'from VCS (resolved_reference={package["source"].get("resolved_reference")})',
+                type=ExternalReferenceType.VCS,
+                url=XsUri(f'git+{package["source"]["url"]}#{package["source"].get("reference")}')
+                # no hashes, has source.resolved_reference instead, which is a property
+            )
+        except InvalidUriException as error:  # pragma: nocover
+            self._logger.debug('%s skipped dist-extRef for: %r', package['name'], exc_info=error)
