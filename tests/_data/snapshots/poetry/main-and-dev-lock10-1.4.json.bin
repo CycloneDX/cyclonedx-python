@@ -17,6 +17,30 @@
     {
       "bom-ref": "colorama@0.4.6",
       "description": "Cross-platform colored terminal text.",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/colorama/#colorama-0.4.6-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/colorama/#colorama-0.4.6.tar.gz"
+        }
+      ],
       "name": "colorama",
       "properties": [
         {
@@ -45,6 +69,30 @@
     {
       "bom-ref": "python-dateutil@2.8.2",
       "description": "Extensions to the standard Python datetime module",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/python-dateutil/#python-dateutil-2.8.2.tar.gz"
+        },
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/python-dateutil/#python_dateutil-2.8.2-py2.py3-none-any.whl"
+        }
+      ],
       "name": "python-dateutil",
       "properties": [
         {
@@ -59,6 +107,30 @@
     {
       "bom-ref": "six@1.16.0",
       "description": "Python 2 and 3 compatibility utilities",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/six/#six-1.16.0-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/six/#six-1.16.0.tar.gz"
+        }
+      ],
       "name": "six",
       "properties": [
         {
@@ -73,6 +145,30 @@
     {
       "bom-ref": "toml@0.10.2",
       "description": "Python Library for Tom's Obvious, Minimal Language",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/toml/#toml-0.10.2-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/toml/#toml-0.10.2.tar.gz"
+        }
+      ],
       "name": "toml",
       "properties": [
         {

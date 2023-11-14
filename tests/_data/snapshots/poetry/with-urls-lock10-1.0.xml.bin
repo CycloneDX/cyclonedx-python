@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.0" version="1">
+  <components>
+    <component type="library">
+      <name>Pillow</name>
+      <version>10.1.0</version>
+      <description>Python Imaging Library (Fork)</description>
+      <purl>pkg:pypi/pillow@10.1.0</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>numpy</name>
+      <version>1.24.4</version>
+      <description>Fundamental package for array computing in Python</description>
+      <purl>pkg:pypi/numpy@1.24.4</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>six</name>
+      <version>1.16.0</version>
+      <description>Python 2 and 3 compatibility utilities</description>
+      <purl>pkg:pypi/six@1.16.0</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>wxPython</name>
+      <version>4.2.2a1.dev5618+1f82021f</version>
+      <description>Cross platform GUI toolkit for Python, &quot;Phoenix&quot; version</description>
+      <purl>pkg:pypi/wxpython@4.2.2a1.dev5618%2B1f82021f</purl>
+      <modified>false</modified>
+    </component>
+  </components>
+</bom>

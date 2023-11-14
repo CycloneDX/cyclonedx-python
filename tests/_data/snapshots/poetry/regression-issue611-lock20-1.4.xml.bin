@@ -56,12 +56,14 @@
       <externalReferences>
         <reference type="distribution">
           <url>https://pypi.org/simple/pyhumps/#pyhumps-3.7.1-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
           <hashes>
             <hash alg="SHA-256">c6f2d833f2c7afae039d71b7dc0aba5412ae5b8c8c33d4a208c1d412de17229e</hash>
           </hashes>
         </reference>
         <reference type="distribution">
           <url>https://pypi.org/simple/pyhumps/#pyhumps-3.7.1.tar.gz</url>
+          <comment>from legacy-api</comment>
           <hashes>
             <hash alg="SHA-256">5616f0afdbc73ef479fa9999f4abdcb336a0232707ff1a0b86e29fc9339e18da</hash>
           </hashes>

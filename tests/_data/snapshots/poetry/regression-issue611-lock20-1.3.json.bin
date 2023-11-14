@@ -5,6 +5,7 @@
       "description": "\ud83d\udc2b  Convert strings (and dictionary keys) between snake case, camel case and pascal case in Python. Inspired by Humps for Node",
       "externalReferences": [
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -15,6 +16,7 @@
           "url": "https://pypi.org/simple/pyhumps/#pyhumps-3.7.1-py3-none-any.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",

@@ -5,6 +5,7 @@
       "description": "Cross-platform colored terminal text.",
       "externalReferences": [
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -15,6 +16,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/colorama/#colorama-0.4.6-py2.py3-none-any.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -41,6 +43,7 @@
       "description": "Read metadata from Python packages",
       "externalReferences": [
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -51,6 +54,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/importlib-metadata/#importlib_metadata-6.8.0-py3-none-any.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -71,6 +75,7 @@
       "description": "Differentiate, compile, and transform Numpy code.",
       "externalReferences": [
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -81,6 +86,7 @@
           "url": "https://storage.googleapis.com/jax-releases/jax_releases.html/jax/#jax-0.4.20-py3-none-any.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -107,6 +113,7 @@
       "description": "",
       "externalReferences": [
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -117,6 +124,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/ml-dtypes/#ml_dtypes-0.3.1-cp310-cp310-macosx_10_9_universal2.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -127,6 +135,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/ml-dtypes/#ml_dtypes-0.3.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -137,6 +146,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/ml-dtypes/#ml_dtypes-0.3.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -147,6 +157,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/ml-dtypes/#ml_dtypes-0.3.1-cp310-cp310-win_amd64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -157,6 +168,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/ml-dtypes/#ml_dtypes-0.3.1-cp311-cp311-macosx_10_9_universal2.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -167,6 +179,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/ml-dtypes/#ml_dtypes-0.3.1-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -177,6 +190,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/ml-dtypes/#ml_dtypes-0.3.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -187,6 +201,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/ml-dtypes/#ml_dtypes-0.3.1-cp311-cp311-win_amd64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -197,6 +212,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/ml-dtypes/#ml_dtypes-0.3.1-cp312-cp312-macosx_10_9_universal2.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -207,6 +223,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/ml-dtypes/#ml_dtypes-0.3.1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -217,6 +234,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/ml-dtypes/#ml_dtypes-0.3.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -227,6 +245,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/ml-dtypes/#ml_dtypes-0.3.1-cp312-cp312-win_amd64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -237,6 +256,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/ml-dtypes/#ml_dtypes-0.3.1-cp39-cp39-macosx_10_9_universal2.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -247,6 +267,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/ml-dtypes/#ml_dtypes-0.3.1-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -257,6 +278,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/ml-dtypes/#ml_dtypes-0.3.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -267,6 +289,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/ml-dtypes/#ml_dtypes-0.3.1-cp39-cp39-win_amd64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -287,6 +310,7 @@
       "description": "Fundamental package for array computing in Python",
       "externalReferences": [
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -297,6 +321,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp310-cp310-macosx_10_9_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -307,6 +332,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp310-cp310-macosx_11_0_arm64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -317,6 +343,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -327,6 +354,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -337,6 +365,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp310-cp310-musllinux_1_1_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -347,6 +376,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp310-cp310-win32.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -357,6 +387,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp310-cp310-win_amd64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -367,6 +398,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp311-cp311-macosx_10_9_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -377,6 +409,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp311-cp311-macosx_11_0_arm64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -387,6 +420,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -397,6 +431,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -407,6 +442,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp311-cp311-musllinux_1_1_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -417,6 +453,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp311-cp311-win32.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -427,6 +464,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp311-cp311-win_amd64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -437,6 +475,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp312-cp312-macosx_10_9_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -447,6 +486,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp312-cp312-macosx_11_0_arm64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -457,6 +497,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -467,6 +508,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -477,6 +519,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp312-cp312-musllinux_1_1_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -487,6 +530,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp312-cp312-win32.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -497,6 +541,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp312-cp312-win_amd64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -507,6 +552,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp39-cp39-macosx_10_9_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -517,6 +563,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp39-cp39-macosx_11_0_arm64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -527,6 +574,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -537,6 +585,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -547,6 +596,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp39-cp39-musllinux_1_1_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -557,6 +607,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp39-cp39-win32.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -567,6 +618,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp39-cp39-win_amd64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -577,6 +629,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-pp39-pypy39_pp73-macosx_10_9_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -587,6 +640,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-pp39-pypy39_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -597,6 +651,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-pp39-pypy39_pp73-win_amd64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -617,6 +672,7 @@
       "description": "Optimizing numpys einsum function",
       "externalReferences": [
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -627,6 +683,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/opt-einsum/#opt_einsum-3.3.0-py3-none-any.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -647,6 +704,7 @@
       "description": "Fundamental algorithms for scientific computing in Python",
       "externalReferences": [
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -657,6 +715,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/scipy/#scipy-1.11.3-cp310-cp310-macosx_10_9_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -667,6 +726,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/scipy/#scipy-1.11.3-cp310-cp310-macosx_12_0_arm64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -677,6 +737,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/scipy/#scipy-1.11.3-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -687,6 +748,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/scipy/#scipy-1.11.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -697,6 +759,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/scipy/#scipy-1.11.3-cp310-cp310-musllinux_1_1_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -707,6 +770,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/scipy/#scipy-1.11.3-cp310-cp310-win_amd64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -717,6 +781,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/scipy/#scipy-1.11.3-cp311-cp311-macosx_10_9_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -727,6 +792,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/scipy/#scipy-1.11.3-cp311-cp311-macosx_12_0_arm64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -737,6 +803,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/scipy/#scipy-1.11.3-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -747,6 +814,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/scipy/#scipy-1.11.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -757,6 +825,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/scipy/#scipy-1.11.3-cp311-cp311-musllinux_1_1_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -767,6 +836,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/scipy/#scipy-1.11.3-cp311-cp311-win_amd64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -777,6 +847,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/scipy/#scipy-1.11.3-cp312-cp312-macosx_10_9_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -787,6 +858,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/scipy/#scipy-1.11.3-cp312-cp312-macosx_12_0_arm64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -797,6 +869,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/scipy/#scipy-1.11.3-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -807,6 +880,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/scipy/#scipy-1.11.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -817,6 +891,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/scipy/#scipy-1.11.3-cp312-cp312-musllinux_1_1_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -827,6 +902,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/scipy/#scipy-1.11.3-cp312-cp312-win_amd64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -837,6 +913,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/scipy/#scipy-1.11.3-cp39-cp39-macosx_10_9_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -847,6 +924,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/scipy/#scipy-1.11.3-cp39-cp39-macosx_12_0_arm64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -857,6 +935,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/scipy/#scipy-1.11.3-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -867,6 +946,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/scipy/#scipy-1.11.3-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -877,6 +957,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/scipy/#scipy-1.11.3-cp39-cp39-musllinux_1_1_x86_64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -887,6 +968,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/scipy/#scipy-1.11.3-cp39-cp39-win_amd64.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -907,6 +989,7 @@
       "description": "Python Library for Tom's Obvious, Minimal Language",
       "externalReferences": [
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -917,6 +1000,7 @@
           "url": "http://pysrc2.acme.org:8080/simple/toml/#toml-0.10.2-py2.py3-none-any.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -943,6 +1027,7 @@
       "description": "Backport of pathlib-compatible object wrapper for zip files",
       "externalReferences": [
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",
@@ -953,6 +1038,7 @@
           "url": "http://pysrc1.acme.org:8080/simple/zipp/#zipp-3.17.0-py3-none-any.whl"
         },
         {
+          "comment": "from legacy-api",
           "hashes": [
             {
               "alg": "SHA-256",

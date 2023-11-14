@@ -29,9 +29,11 @@
       <externalReferences>
         <reference type="distribution">
           <url>https://pypi.org/simple/pyhumps/#pyhumps-3.7.1-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
         </reference>
         <reference type="distribution">
           <url>https://pypi.org/simple/pyhumps/#pyhumps-3.7.1.tar.gz</url>
+          <comment>from legacy-api</comment>
         </reference>
       </externalReferences>
     </component>

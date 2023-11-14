@@ -11,6 +11,18 @@
     {
       "bom-ref": "colorama@0.4.6",
       "description": "Cross-platform colored terminal text.",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/colorama/#colorama-0.4.6-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/colorama/#colorama-0.4.6.tar.gz"
+        }
+      ],
       "name": "colorama",
       "purl": "pkg:pypi/colorama@0.4.6",
       "type": "library",
@@ -27,6 +39,18 @@
     {
       "bom-ref": "python-dateutil@2.8.2",
       "description": "Extensions to the standard Python datetime module",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/python-dateutil/#python-dateutil-2.8.2.tar.gz"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/python-dateutil/#python_dateutil-2.8.2-py2.py3-none-any.whl"
+        }
+      ],
       "name": "python-dateutil",
       "purl": "pkg:pypi/python-dateutil@2.8.2",
       "type": "library",
@@ -35,6 +59,18 @@
     {
       "bom-ref": "six@1.16.0",
       "description": "Python 2 and 3 compatibility utilities",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/six/#six-1.16.0-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/six/#six-1.16.0.tar.gz"
+        }
+      ],
       "name": "six",
       "purl": "pkg:pypi/six@1.16.0",
       "type": "library",
@@ -43,6 +79,18 @@
     {
       "bom-ref": "toml@0.10.2",
       "description": "Python Library for Tom's Obvious, Minimal Language",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/toml/#toml-0.10.2-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/toml/#toml-0.10.2.tar.gz"
+        }
+      ],
       "name": "toml",
       "purl": "pkg:pypi/toml@0.10.2",
       "type": "library",
