@@ -54,6 +54,8 @@ class PropertyName(Enum):
     # region poetry
     # see https://github.com/CycloneDX/cyclonedx-property-taxonomy/blob/main/cdx/poetry.md
     PoetryGroup = 'cdx:poetry:group'
+    PoetryPackageSourceReference = 'cdx:poetry:source:package:reference'
+    PoetryPackageSourceResolvedReference = 'cdx:poetry:package:source:resolved_reference'
     # endregion poetry
 
     # region pipenv

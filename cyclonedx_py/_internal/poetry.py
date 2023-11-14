@@ -391,15 +391,13 @@ class PoetryBB(BomBuilder):
                     del error
 
     def __make_component4lock(self, package: 'NameDict') -> 'Component':
-        # TODO:
-        #   - local deps
-        #   - from urls: wheel, soure-archive, vcs-tag, vcs-commit, vcs-branch
-
         from cyclonedx.model import Property
         from cyclonedx.model.component import Component, ComponentScope
         from packageurl import PackageURL
 
         from . import PropertyName
+
+        package.setdefault('source', {})
 
         return Component(
             bom_ref=f'{package["name"]}@{package["version"]}',
@@ -408,10 +406,20 @@ class PoetryBB(BomBuilder):
             description=package.get('description'),
             scope=ComponentScope.OPTIONAL if package.get('optional') else None,
             external_references=self.__extrefs4lock(package),
-            properties=[Property(  # for backwards compatibility: category -> group
-                name=PropertyName.PoetryGroup.value,
-                value=package['category']
-            )] if 'category' in package else [],
+            properties=filter(lambda p: p and p.value, [  # type: ignore[arg-type]
+                Property(  # for backwards compatibility: category -> group
+                    name=PropertyName.PoetryGroup.value,
+                    value=package['category']
+                ) if 'category' in package else None,
+                Property(
+                    name=PropertyName.PoetryPackageSourceReference.value,
+                    value=package['source']['reference']
+                ) if 'reference' in package['source'] else None,
+                Property(
+                    name=PropertyName.PoetryPackageSourceResolvedReference.value,
+                    value=package['source']['resolved_reference']
+                ) if 'resolved_reference' in package['source'] else None,
+            ]),
             purl=PackageURL(type='pypi', name=package['name'], version=package['version']),
         )
 
@@ -419,18 +427,42 @@ class PoetryBB(BomBuilder):
         from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
         from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
 
-        source = package.get('source', {'type': 'legacy', 'url': 'https://pypi.org/simple'})
-        if source.get('type') != 'legacy' or not source.get('url'):
-            return
+        # TODO:
+        #   - local deps
 
-        for file in package.get('files', []):
+        source_type = package['source'].get('type', 'legacy')
+        if 'legacy' == source_type:
+            source_url = package['source'].get('url', 'https://pypi.org/simple')
+            for file in package['files']:
+                try:
+                    yield ExternalReference(
+                        comment='from legacy-api',
+                        type=ExternalReferenceType.DISTRIBUTION,
+                        url=XsUri(f'{source_url}/{package["name"]}/#{file["file"]}'),
+                        hashes=[HashType.from_composite_str(file['hash'])]
+                    )
+                except (InvalidUriException, UnknownHashTypeException) as error:  # pragma: nocover
+                    self._logger.debug('skipped dist-extRef for: %r', package['name'], exc_info=error)
+                    del error
+        elif 'url' == source_type:
             try:
                 yield ExternalReference(
+                    comment='from url',
                     type=ExternalReferenceType.DISTRIBUTION,
-                    url=XsUri(f'{source["url"]}/{package["name"]}/#{file["file"]}'),
-                    hashes=[HashType.from_composite_str(file['hash'])]
+                    url=XsUri(package['source']['url']),
+                    hashes=[HashType.from_composite_str(package['files'][0]['hash'])] if len(package['files']) else None
                 )
-            except (InvalidUriException, UnknownHashTypeException) as error:
-                self._logger.debug('%s skipped dist-extRef for: %r', package['name'], file,
-                                   exc_info=error)
+            except (InvalidUriException, UnknownHashTypeException) as error:  # pragma: nocover
+                self._logger.debug('%s skipped dist-extRef for: %r', package['name'], exc_info=error)
+                del error
+        elif 'git' == source_type:
+            try:
+                yield ExternalReference(
+                    comment=f'from git (resolved_reference={package["source"].get("resolved_reference")})',
+                    type=ExternalReferenceType.VCS,
+                    url=XsUri(f'git+{package["source"]["url"]}#{package["source"].get("reference")}')
+                    # no hashes, has source.reference instead, which is a property
+                )
+            except (InvalidUriException, UnknownHashTypeException) as error:  # pragma: nocover
+                self._logger.debug('%s skipped dist-extRef for: %r', package['name'], exc_info=error)
                 del error
