@@ -246,7 +246,7 @@ class PoetryBB(BomBuilder):
         ) for extra in use_extras)
         self._logger.debug('root-component: %r', root_c)
 
-        lock_data: Dict[str, _LockEntry] = {le.name: le for le in self._parse_lock(locker)}
+        lock_data: Dict[str, _LockEntry] = {le.name.lower(): le for le in self._parse_lock(locker)}
 
         lock_data[root_c.name] = _LockEntry(  # needed for circle dependencies
             name=root_c.name,
@@ -256,11 +256,12 @@ class PoetryBB(BomBuilder):
             added2bom=True,
             added2bom_extras=use_extras
         )
-        extra_deps = set(chain.from_iterable(po_cfg['extras'][extra] for extra in use_extras))
+        extra_deps = set(map(str.lower, chain.from_iterable(po_cfg['extras'][extra] for extra in use_extras)))
 
         _dep_pattern = re_compile(r'^(?P<name>[^\[]+)(?:\[(?P<extras>.*)\])?$')
 
         def _add_ld(name: str, extras: Set[str]) -> Optional['Component']:
+            name = name.lower()
             if name == 'python':
                 return None
             le = lock_data.get(name)
@@ -302,6 +303,7 @@ class PoetryBB(BomBuilder):
         for group_name in use_groups:
             self._logger.debug('processing group %r ...', group_name)
             for dep_name, dep_spec in po_cfg['group'][group_name].get('dependencies', {}).items():
+                dep_name = dep_name.lower()
                 self._logger.debug('root-component depends on %s', dep_name)
                 if dep_name == 'python':
                     continue
@@ -438,7 +440,6 @@ class PoetryBB(BomBuilder):
         #   - local deps
 
         source_type = package['source'].get('type', 'legacy')
-        self._logger.debug('ref 4 package files = %r', package['files'])
         if 'legacy' == source_type:
             source_url = package['source'].get('url', 'https://pypi.org/simple')
             for file in package['files']:
