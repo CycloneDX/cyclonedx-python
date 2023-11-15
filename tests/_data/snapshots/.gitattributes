@@ -1,4 +1,5 @@
 # files are compared bype-wise, so they need to be treated as binary
-*.bin       linguist-generated binary
-*.xml*.bin   linguist-generated binary diff=xml
-*.json*.bin  linguist-generated binary diff=json
+*            linguist-generated
+*.bin        binary
+*.xml*.bin   diff=xml
+*.json*.bin  diff=json
