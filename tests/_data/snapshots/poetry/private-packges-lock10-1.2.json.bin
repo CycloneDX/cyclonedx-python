@@ -16,7 +16,7 @@
         }
       ],
       "name": "colorama",
-      "purl": "pkg:pypi/colorama@0.4.6",
+      "purl": "pkg:pypi/colorama@0.4.6?repository_url=http://pysrc1.acme.org:8080/simple",
       "type": "library",
       "version": "0.4.6"
     },
@@ -36,7 +36,7 @@
         }
       ],
       "name": "toml",
-      "purl": "pkg:pypi/toml@0.10.2",
+      "purl": "pkg:pypi/toml@0.10.2?repository_url=http://pysrc2.acme.org:8080/simple",
       "type": "library",
       "version": "0.10.2"
     }

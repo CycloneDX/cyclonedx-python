@@ -409,18 +409,6 @@ class PoetryBB(BomBuilder):
         is_vcs = source.get('type') in self.__PACKAGE_SRC_VCS
         is_local = source.get('type') in self.__PACKAGE_SRC_LOCAL
 
-        purl_qualifiers = {}  # see https://github.com/package-url/purl-spec/blob/master/PURL-SPECIFICATION.rst
-        if is_vcs:
-            # see section 3.7.4 in https://github.com/spdx/spdx-spec/blob/cfa1b9d08903/chapters/3-package-information.md
-            # > For version-controlled files, the VCS location syntax is similar to a URL and has the:
-            # > `<vcs_tool>+<transport>://<host_name>[/<path_to_repository>][@<revision_tag_or_branch>][#<sub_path>]`
-            purl_qualifiers['vcs_url'] = f'{source["type"]}+{source["url"]}@' +\
-                                         source.get('resolved_reference', source.get('reference', ''))
-        elif package['source'].get('type') == 'url':
-            if '://files.pythonhosted.org/' not in package['source']['url']:
-                # skip PURL bloat, do not add implicit information
-                purl_qualifiers['download_url'] = package['source']['url']
-
         return Component(
             bom_ref=f'{package["name"]}@{package["version"]}',
             name=package['name'],
@@ -445,9 +433,34 @@ class PoetryBB(BomBuilder):
             purl=PackageURL(type='pypi',
                             name=package['name'],
                             version=package['version'],
-                            qualifiers=purl_qualifiers
+                            qualifiers=self.__purl_qualifiers4lock(package)
                             ) if not is_local else None
         )
+
+    def __purl_qualifiers4lock(self, package: 'NameDict') -> 'NameDict':
+        # see https://github.com/package-url/purl-spec/blob/master/PURL-SPECIFICATION.rst
+        qs = dict()
+
+        source = package['source']
+        source_type = package['source'].get('type')
+
+        if source_type in self.__PACKAGE_SRC_VCS:
+            # see section 3.7.4 in https://github.com/spdx/spdx-spec/blob/cfa1b9d08903/chapters/3-package-information.md
+            # > For version-controlled files, the VCS location syntax is similar to a URL and has the:
+            # > `<vcs_tool>+<transport>://<host_name>[/<path_to_repository>][@<revision_tag_or_branch>][#<sub_path>]`
+            qs['vcs_url'] = f'{source["type"]}+{source["url"]}@' + \
+                source.get('resolved_reference', source.get('reference', ''))
+        elif source_type == 'url':
+            if '://files.pythonhosted.org/' not in package['source']['url']:
+                # skip PURL bloat, do not add implicit information
+                qs['download_url'] = package['source']['url']
+        elif source_type == 'legacy':
+            source_url = package['source'].get('url', 'https://pypi.org/simple')
+            if '://pypi.org/' not in source_url:
+                # skip PURL bloat, do not add implicit information
+                qs['repository_url'] = source_url
+
+        return qs
 
     def __extrefs4lock(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
         source_type = package['source'].get('type', 'legacy')

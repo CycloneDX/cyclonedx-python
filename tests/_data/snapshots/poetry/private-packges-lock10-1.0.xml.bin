@@ -5,14 +5,14 @@
       <name>colorama</name>
       <version>0.4.6</version>
       <description>Cross-platform colored terminal text.</description>
-      <purl>pkg:pypi/colorama@0.4.6</purl>
+      <purl>pkg:pypi/colorama@0.4.6?repository_url=http://pysrc1.acme.org:8080/simple</purl>
       <modified>false</modified>
     </component>
     <component type="library">
       <name>toml</name>
       <version>0.10.2</version>
       <description>Python Library for Tom's Obvious, Minimal Language</description>
-      <purl>pkg:pypi/toml@0.10.2</purl>
+      <purl>pkg:pypi/toml@0.10.2?repository_url=http://pysrc2.acme.org:8080/simple</purl>
       <modified>false</modified>
     </component>
   </components>

@@ -52,7 +52,7 @@
       <name>colorama</name>
       <version>0.4.6</version>
       <description>Cross-platform colored terminal text.</description>
-      <purl>pkg:pypi/colorama@0.4.6</purl>
+      <purl>pkg:pypi/colorama@0.4.6?repository_url=http://pysrc1.acme.org:8080/simple</purl>
       <externalReferences>
         <reference type="distribution">
           <url>http://pysrc1.acme.org:8080/simple/colorama/#colorama-0.4.6-py2.py3-none-any.whl</url>
@@ -77,7 +77,7 @@
       <name>importlib-metadata</name>
       <version>6.8.0</version>
       <description>Read metadata from Python packages</description>
-      <purl>pkg:pypi/importlib-metadata@6.8.0</purl>
+      <purl>pkg:pypi/importlib-metadata@6.8.0?repository_url=http://pysrc1.acme.org:8080/simple</purl>
       <externalReferences>
         <reference type="distribution">
           <url>http://pysrc1.acme.org:8080/simple/importlib-metadata/#importlib_metadata-6.8.0-py3-none-any.whl</url>
@@ -99,7 +99,7 @@
       <name>jax</name>
       <version>0.4.20</version>
       <description>Differentiate, compile, and transform Numpy code.</description>
-      <purl>pkg:pypi/jax@0.4.20</purl>
+      <purl>pkg:pypi/jax@0.4.20?repository_url=https://storage.googleapis.com/jax-releases/jax_releases.html</purl>
       <externalReferences>
         <reference type="distribution">
           <url>https://storage.googleapis.com/jax-releases/jax_releases.html/jax/#jax-0.4.20-py3-none-any.whl</url>
@@ -124,7 +124,7 @@
       <name>ml-dtypes</name>
       <version>0.3.1</version>
       <description/>
-      <purl>pkg:pypi/ml-dtypes@0.3.1</purl>
+      <purl>pkg:pypi/ml-dtypes@0.3.1?repository_url=http://pysrc1.acme.org:8080/simple</purl>
       <externalReferences>
         <reference type="distribution">
           <url>http://pysrc1.acme.org:8080/simple/ml-dtypes/#ml_dtypes-0.3.1-cp310-cp310-macosx_10_9_universal2.whl</url>
@@ -251,7 +251,7 @@
       <name>numpy</name>
       <version>1.26.1</version>
       <description>Fundamental package for array computing in Python</description>
-      <purl>pkg:pypi/numpy@1.26.1</purl>
+      <purl>pkg:pypi/numpy@1.26.1?repository_url=http://pysrc1.acme.org:8080/simple</purl>
       <externalReferences>
         <reference type="distribution">
           <url>http://pysrc1.acme.org:8080/simple/numpy/#numpy-1.26.1-cp310-cp310-macosx_10_9_x86_64.whl</url>
@@ -483,7 +483,7 @@
       <name>opt-einsum</name>
       <version>3.3.0</version>
       <description>Optimizing numpys einsum function</description>
-      <purl>pkg:pypi/opt-einsum@3.3.0</purl>
+      <purl>pkg:pypi/opt-einsum@3.3.0?repository_url=http://pysrc1.acme.org:8080/simple</purl>
       <externalReferences>
         <reference type="distribution">
           <url>http://pysrc1.acme.org:8080/simple/opt-einsum/#opt_einsum-3.3.0-py3-none-any.whl</url>
@@ -505,7 +505,7 @@
       <name>scipy</name>
       <version>1.11.3</version>
       <description>Fundamental algorithms for scientific computing in Python</description>
-      <purl>pkg:pypi/scipy@1.11.3</purl>
+      <purl>pkg:pypi/scipy@1.11.3?repository_url=http://pysrc1.acme.org:8080/simple</purl>
       <externalReferences>
         <reference type="distribution">
           <url>http://pysrc1.acme.org:8080/simple/scipy/#scipy-1.11.3-cp310-cp310-macosx_10_9_x86_64.whl</url>
@@ -688,7 +688,7 @@
       <name>toml</name>
       <version>0.10.2</version>
       <description>Python Library for Tom's Obvious, Minimal Language</description>
-      <purl>pkg:pypi/toml@0.10.2</purl>
+      <purl>pkg:pypi/toml@0.10.2?repository_url=http://pysrc2.acme.org:8080/simple</purl>
       <externalReferences>
         <reference type="distribution">
           <url>http://pysrc2.acme.org:8080/simple/toml/#toml-0.10.2-py2.py3-none-any.whl</url>
@@ -713,7 +713,7 @@
       <name>zipp</name>
       <version>3.17.0</version>
       <description>Backport of pathlib-compatible object wrapper for zip files</description>
-      <purl>pkg:pypi/zipp@3.17.0</purl>
+      <purl>pkg:pypi/zipp@3.17.0?repository_url=http://pysrc1.acme.org:8080/simple</purl>
       <externalReferences>
         <reference type="distribution">
           <url>http://pysrc1.acme.org:8080/simple/zipp/#zipp-3.17.0-py3-none-any.whl</url>

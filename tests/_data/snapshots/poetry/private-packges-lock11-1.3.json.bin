@@ -34,7 +34,7 @@
           "value": "main"
         }
       ],
-      "purl": "pkg:pypi/colorama@0.4.6",
+      "purl": "pkg:pypi/colorama@0.4.6?repository_url=http://pysrc1.acme.org:8080/simple",
       "type": "library",
       "version": "0.4.6"
     },
@@ -72,7 +72,7 @@
           "value": "main"
         }
       ],
-      "purl": "pkg:pypi/importlib-metadata@6.8.0",
+      "purl": "pkg:pypi/importlib-metadata@6.8.0?repository_url=http://pysrc1.acme.org:8080/simple",
       "type": "library",
       "version": "6.8.0"
     },
@@ -110,7 +110,7 @@
           "value": "main"
         }
       ],
-      "purl": "pkg:pypi/jax@0.4.20",
+      "purl": "pkg:pypi/jax@0.4.20?repository_url=https://storage.googleapis.com/jax-releases/jax_releases.html",
       "type": "library",
       "version": "0.4.20"
     },
@@ -313,7 +313,7 @@
           "value": "main"
         }
       ],
-      "purl": "pkg:pypi/ml-dtypes@0.3.1",
+      "purl": "pkg:pypi/ml-dtypes@0.3.1?repository_url=http://pysrc1.acme.org:8080/simple",
       "type": "library",
       "version": "0.3.1"
     },
@@ -681,7 +681,7 @@
           "value": "main"
         }
       ],
-      "purl": "pkg:pypi/numpy@1.26.1",
+      "purl": "pkg:pypi/numpy@1.26.1?repository_url=http://pysrc1.acme.org:8080/simple",
       "type": "library",
       "version": "1.26.1"
     },
@@ -719,7 +719,7 @@
           "value": "main"
         }
       ],
-      "purl": "pkg:pypi/opt-einsum@3.3.0",
+      "purl": "pkg:pypi/opt-einsum@3.3.0?repository_url=http://pysrc1.acme.org:8080/simple",
       "type": "library",
       "version": "3.3.0"
     },
@@ -1010,7 +1010,7 @@
           "value": "main"
         }
       ],
-      "purl": "pkg:pypi/scipy@1.11.3",
+      "purl": "pkg:pypi/scipy@1.11.3?repository_url=http://pysrc1.acme.org:8080/simple",
       "type": "library",
       "version": "1.11.3"
     },
@@ -1048,7 +1048,7 @@
           "value": "main"
         }
       ],
-      "purl": "pkg:pypi/toml@0.10.2",
+      "purl": "pkg:pypi/toml@0.10.2?repository_url=http://pysrc2.acme.org:8080/simple",
       "type": "library",
       "version": "0.10.2"
     },
@@ -1086,7 +1086,7 @@
           "value": "main"
         }
       ],
-      "purl": "pkg:pypi/zipp@3.17.0",
+      "purl": "pkg:pypi/zipp@3.17.0?repository_url=http://pysrc1.acme.org:8080/simple",
       "type": "library",
       "version": "3.17.0"
     }
