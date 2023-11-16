@@ -29,51 +29,8 @@
       "name": "my-app",
       "purl": "pkg:generic/testing/my-app@1",
       "type": "application"
-    },
-    "timestamp": "2023-11-16T18:36:26.776733+00:00",
-    "tools": [
-      {
-        "externalReferences": [
-          {
-            "type": "build-system",
-            "url": "https://github.com/CycloneDX/cyclonedx-python-lib/actions"
-          },
-          {
-            "type": "distribution",
-            "url": "https://pypi.org/project/cyclonedx-python-lib/"
-          },
-          {
-            "type": "documentation",
-            "url": "https://cyclonedx-python-library.readthedocs.io/"
-          },
-          {
-            "type": "issue-tracker",
-            "url": "https://github.com/CycloneDX/cyclonedx-python-lib/issues"
-          },
-          {
-            "type": "license",
-            "url": "https://github.com/CycloneDX/cyclonedx-python-lib/blob/main/LICENSE"
-          },
-          {
-            "type": "release-notes",
-            "url": "https://github.com/CycloneDX/cyclonedx-python-lib/blob/main/CHANGELOG.md"
-          },
-          {
-            "type": "vcs",
-            "url": "https://github.com/CycloneDX/cyclonedx-python-lib"
-          },
-          {
-            "type": "website",
-            "url": "https://github.com/CycloneDX/cyclonedx-python-lib/#readme"
-          }
-        ],
-        "name": "cyclonedx-python-lib",
-        "vendor": "CycloneDX",
-        "version": "5.1.1"
-      }
-    ]
+    }
   },
-  "serialNumber": "urn:uuid:53536fcb-778a-4a9c-ad6e-ef4e3ae8153b",
   "version": 1,
   "$schema": "http://cyclonedx.org/schema/bom-1.4.schema.json",
   "bomFormat": "CycloneDX",

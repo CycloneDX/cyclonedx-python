@@ -58,6 +58,9 @@ class TestCli(TestCase, SnapshotMixin):
                 purl=PackageURL('generic', 'testing', 'my-lib-A-sub', None, 'foo=bar', 'bazz')
             )]
         ))
+        bom.serial_number = None
+        bom.metadata.timestamp = None
+        bom.metadata.tools.clear()
 
         class MyBBC(BomBuilder):
             def __new__(cls, *args: Any, **kwargs: Any) -> BomBuilder:
