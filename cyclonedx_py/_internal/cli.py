@@ -34,6 +34,7 @@ if TYPE_CHECKING:  # pragma: no cover
     from logging import Logger
 
     from cyclonedx.model.bom import Bom
+    from cyclonedx.model.component import Component
 
     from . import BomBuilder
 
@@ -60,6 +61,13 @@ class Command:
                               required=False)
 
         op = ArgumentParser(add_help=False)
+        op.add_argument('--short-PURLs',
+                        help='Omit all qualifiers from PackageURLs.\n'
+                             'This causes information loss in trade-off shorter PURLs, '
+                             'which might improve ingesting these strings.',
+                        action='store_true',
+                        dest='short_purls',
+                        default=False)
         op.add_argument('-o', '--outfile',
                         metavar='FILE',
                         help='Output file path for your SBOM (set to "-" to output to STDOUT) (default: %(default)s)',
@@ -69,7 +77,7 @@ class Command:
         op.add_argument('--sv', '--schema-version',
                         metavar='VERSION',
                         help='The CycloneDX schema version for your SBOM'
-                             f' {{choice: {", ".join(sorted((v.to_version() for v in SchemaVersion), reverse=True))}}}'
+                             f' {{choices: {", ".join(sorted((v.to_version() for v in SchemaVersion), reverse=True))}}}'
                              ' (default: %(default)s)',
                         dest='schema_version',
                         choices=SchemaVersion,
@@ -86,7 +94,7 @@ class Command:
             op.add_argument('--validate',
                             help='Whether validate the result before outputting (default: %(default)s)',
                             action=BooleanOptionalAction,
-                            dest='validate',
+                            dest='should_validate',
                             default=True)
         else:
             vg = op.add_mutually_exclusive_group()
@@ -127,20 +135,45 @@ class Command:
 
     def __init__(self, *,
                  logger: 'Logger',
-                 validate: bool,
+                 short_purls: bool,
                  output_format: OutputFormat,
                  schema_version: SchemaVersion,
+                 should_validate: bool,
                  _bbc: Type['BomBuilder'],
                  **kwargs: Any) -> None:
         self._logger = logger
+        self._short_purls = short_purls
         self._output_format = output_format
         self._schema_version = schema_version
-        self._validate = validate
+        self._should_validate = should_validate
         self._bbc = _bbc(**self._clean_kwargs(kwargs),
                          logger=self._logger.getChild(_bbc.__name__))
 
-    def validate(self, output: str) -> bool:
-        if not self._validate:
+    def _shorten_purls(self, bom: 'Bom') -> bool:
+        if not self._short_purls:
+            return False
+
+        from itertools import chain
+
+        self._logger.info('Shorting purls...')
+        component: 'Component'
+        for component in chain(
+            bom.metadata.component.get_all_nested_components(True) if bom.metadata.component else [],
+            chain.from_iterable(
+                component.get_all_nested_components(True) for component in bom.components
+            )
+        ):
+            if component.purl is not None:
+                component.purl = type(component.purl)(
+                    type=component.purl.type,  # type:ignore[arg-type]
+                    namespace=component.purl.namespace,  # type:ignore[arg-type]
+                    name=component.purl.name,  # type:ignore[arg-type]
+                    version=component.purl.version  # type:ignore[arg-type]
+                )
+        return True
+
+    def _validate(self, output: str) -> bool:
+        if not self._should_validate:
             self._logger.warning('Validation skipped.')
             return False
 
@@ -158,17 +191,17 @@ class Command:
             self._logger.error('Please report the issue and provide all input data to: '
                                'https://github.com/CycloneDX/cyclonedx-python/issues/new?'
                                'template=ValidationError-report.md&labels=ValidationError&title=%5BValidationError%5D')
-            raise ValueError('Output is schema-invalid')
+            raise ValueError('result is schema-invalid')
         self._logger.info('Valid.')
         return True
 
-    def write(self, output: str, outfile: TextIO) -> int:
+    def _write(self, output: str, outfile: TextIO) -> int:
         self._logger.info('Writing to: %s', outfile.name)
         written = outfile.write(output)
         self._logger.info('Wrote %i bytes to %s', written, outfile.name)
         return written
 
-    def make_output(self, bom: 'Bom') -> str:
+    def _make_output(self, bom: 'Bom') -> str:
         self._logger.info('Serializing SBOM: %s/%s', self._schema_version.to_version(), self._output_format.name)
         from cyclonedx.output import make_outputter
 
@@ -178,16 +211,19 @@ class Command:
             self._schema_version
         ).output_as_string(indent=2)
 
-    def make_bom(self, **kwargs: Any) -> 'Bom':
+    def _make_bom(self, **kwargs: Any) -> 'Bom':
         self._logger.info('Generating SBOM ...')
         return self._bbc(**self._clean_kwargs(kwargs))
 
     def __call__(self,
                  outfile: TextIO,
                  **kwargs: Any) -> None:
-        output = self.make_output(self.make_bom(**kwargs))
-        self.validate(output)
-        self.write(output, outfile)
+        bom = self._make_bom(**kwargs)
+        self._shorten_purls(bom)
+        output = self._make_output(bom)
+        del bom
+        self._validate(output)
+        self._write(output, outfile)
 
 
 def run(*, argv: Optional[List[str]] = None, **kwargs: Any) -> int:
@@ -212,9 +248,9 @@ def run(*, argv: Optional[List[str]] = None, **kwargs: Any) -> int:
     lh.setFormatter(logging.Formatter('%(levelname)-8s | %(name)s > %(message)s'))
     logger = logging.getLogger('CDX')
     logger.propagate = False
-    logger.setLevel(ll)
+    logger.setLevel(lh.level)
     logger.addHandler(lh)
-    del ll
+
     logger.debug('args: %s', args)
 
     try:

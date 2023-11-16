@@ -126,7 +126,7 @@ class PoetryBB(BomBuilder):
         p.add_argument('--mc-type',
                        metavar='TYPE',
                        help='Type of the main component'
-                            f' {{choice: {", ".join(t.value for t in _mc_types)}}}'
+                            f' {{choices: {", ".join(t.value for t in _mc_types)}}}'
                             ' (default: %(default)s)',
                        dest='mc_type',
                        choices=_mc_types,

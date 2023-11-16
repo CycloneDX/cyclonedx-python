@@ -14,24 +14,3 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
-
-
-from argparse import ArgumentTypeError
-from enum import Enum
-from typing import Callable, Type, TypeVar
-
-_E = TypeVar('_E', bound=Enum)
-
-
-def argparse_type4enum(enum: Type[_E]) -> Callable[[str], _E]:
-    def str2case(value: str) -> _E:
-        try:
-            return enum[value.upper()]
-        except KeyError:
-            raise ArgumentTypeError(f'unsupported value {value!r}')
-
-    return str2case
-
-
-def choices4enum(enum: Type[Enum]) -> str:
-    return f'{{choices: {", ".join(sorted(c.name for c in enum))}}}'
