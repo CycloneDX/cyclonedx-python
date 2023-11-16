@@ -17,9 +17,9 @@
 
 
 import logging
-import unittest
 from io import StringIO
 from os.path import join
+from typing import Any
 from unittest import TestCase
 from unittest.mock import Mock
 
@@ -60,7 +60,7 @@ class TestCli(TestCase, SnapshotMixin):
         ))
 
         class MyBBC(BomBuilder):
-            def __new__(cls, *args, **kwargs) -> BomBuilder:
+            def __new__(cls, *args: Any, **kwargs: Any) -> BomBuilder:
                 return Mock(spec=BomBuilder, return_value=bom)
 
         with StringIO() as logs, StringIO() as outs:
@@ -83,14 +83,13 @@ class TestCli(TestCase, SnapshotMixin):
             )
             command(outfile=outs)
 
-            log = logs.getvalue()
             out = outs.getvalue()
 
         self.assertEqualSnapshot(out, f'purls-{"short" if short_purls else "normal"}.json')
 
     def test_validation_throws_with_invalid(self) -> None:
         class MyBBC(BomBuilder):
-            def __new__(cls, *args, **kwargs) -> BomBuilder:
+            def __new__(cls, *args: Any, **kwargs: Any) -> BomBuilder:
                 return Mock(spec=BomBuilder, return_value=Mock(spec=Bom))
 
         with StringIO() as logs, StringIO() as outs:
@@ -116,12 +115,9 @@ class TestCli(TestCase, SnapshotMixin):
             with self.assertRaisesRegex(ValueError, 'is schema-invalid'):
                 command(outfile=outs)
 
-            log = logs.getvalue()
-            out = outs.getvalue()
-
     def test_validation_skip_with_invalid(self) -> None:
         class MyBBC(BomBuilder):
-            def __new__(cls, *args, **kwargs) -> BomBuilder:
+            def __new__(cls, *args: Any, **kwargs: Any) -> BomBuilder:
                 return Mock(spec=BomBuilder, return_value=Mock(spec=Bom))
 
         with StringIO() as logs, StringIO() as outs:
@@ -154,5 +150,5 @@ class TestCli(TestCase, SnapshotMixin):
         self.assertEqual('["invalid to CDX schema"]', out)
         self.assertIn('WARNING: Validation skipped', log)
 
-    def assertEqualSnapshot(self, actual: str, snapshot_name: str) -> None:
+    def assertEqualSnapshot(self, actual: str, snapshot_name: str) -> None:  # noqa: N802
         super().assertEqualSnapshot(actual, join('cli', snapshot_name))
