@@ -101,11 +101,11 @@ class Command:
             vg.add_argument('--validate',
                             help='Validate the result before outputting (default: %(default)s)',
                             action='store_true',
-                            dest='validate',
+                            dest='should_validate',
                             default=True)
             vg.add_argument('--no-validate',
                             help='Do not validate the result before outputting',
-                            dest='validate',
+                            dest='should_validate',
                             action='store_false')
 
         scbbc: Type['BomBuilder']
