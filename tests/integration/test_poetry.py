@@ -164,6 +164,48 @@ class TestPoetry(TestCase, SnapshotMixin):
             make_comparable(out, of),
             f'some-groups-{basename(projectdir)}-{sv.to_version()}.{of.name.lower()}')
 
+    @named_data(*test_data_file_filter('group-deps'))
+    def test_cli_only_groups_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
+        with StringIO() as err, StringIO() as out:
+            err.name = '<fakeerr>'
+            out.name = '<fakeout>'
+            with redirect_stderr(err), redirect_stdout(out):
+                res = run_cli(argv=[
+                    'poetry',
+                    '-vvv',
+                    '--only', 'groupB',
+                    f'--sv={sv.to_version()}',
+                    f'--of={of.name}',
+                    '--outfile=-',
+                    projectdir])
+            err = err.getvalue()
+            out = out.getvalue()
+        self.assertEqual(0, res, err)
+        self.assertEqualSnapshot(
+            make_comparable(out, of),
+            f'only-groups-{basename(projectdir)}-{sv.to_version()}.{of.name.lower()}')
+
+    @named_data(*test_data_file_filter('group-deps'))
+    def test_cli_nodev_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
+        with StringIO() as err, StringIO() as out:
+            err.name = '<fakeerr>'
+            out.name = '<fakeout>'
+            with redirect_stderr(err), redirect_stdout(out):
+                res = run_cli(argv=[
+                    'poetry',
+                    '-vvv',
+                    '--no-dev',
+                    f'--sv={sv.to_version()}',
+                    f'--of={of.name}',
+                    '--outfile=-',
+                    projectdir])
+            err = err.getvalue()
+            out = out.getvalue()
+        self.assertEqual(0, res, err)
+        self.assertEqualSnapshot(
+            make_comparable(out, of),
+            f'no-dev-{basename(projectdir)}-{sv.to_version()}.{of.name.lower()}')
+
     @named_data(*test_data_file_filter('with-extras'))
     def test_cli_with_extras_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
         with StringIO() as err, StringIO() as out:

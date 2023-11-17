@@ -18,6 +18,14 @@
       <modified>false</modified>
     </component>
     <component type="library">
+      <name>boolean-py</name>
+      <version>4.0</version>
+      <description>Define boolean algebras, create and parse boolean expressions and create custom boolean DSL.</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/boolean-py@4.0</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
       <name>cyclonedx-python-lib</name>
       <version>5.1.1</version>
       <description>Python library for CycloneDX</description>

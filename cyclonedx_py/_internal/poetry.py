@@ -17,7 +17,7 @@
 
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, List, Optional, Set
+from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, List, Optional, Set, Tuple
 
 from . import BomBuilder
 
@@ -260,10 +260,15 @@ class PoetryBB(BomBuilder):
 
         _dep_pattern = re_compile(r'^(?P<name>[^\[]+)(?:\[(?P<extras>.*)\])?$')
 
+        lock_version = self._getLockfile_version(locker)
+        should_tidy_lock_names = lock_version >= (2,)
+
         def _add_ld(name: str, extras: Set[str]) -> Optional['Component']:
             name = name.lower()
             if name == 'python':
                 return None
+            if should_tidy_lock_names:
+                name = name.replace('.', '-')
             le = lock_data.get(name)
             if le is None:
                 self._logger.warning('skip unlocked component: %s', name)
@@ -304,6 +309,8 @@ class PoetryBB(BomBuilder):
             self._logger.debug('processing group %r ...', group_name)
             for dep_name, dep_spec in po_cfg['group'][group_name].get('dependencies', {}).items():
                 dep_name = dep_name.lower()
+                if should_tidy_lock_names:
+                    dep_name = dep_name.replace('.', '-')
                 self._logger.debug('root-component depends on %s', dep_name)
                 if dep_name == 'python':
                     continue
@@ -360,11 +367,15 @@ class PoetryBB(BomBuilder):
                 pass
         return comp
 
+    @staticmethod
+    def _getLockfile_version(locker: 'NameDict') -> Tuple[int, ...]:
+        return tuple(int(v) for v in locker['metadata'].get('lock-version', '1.0').split('.'))
+
     def _parse_lock(self, locker: 'NameDict') -> Generator[_LockEntry, None, None]:
         locker.setdefault('metavar', {})
         locker.setdefault('package', [])
 
-        lock_version = tuple(int(v) for v in locker['metadata'].get('lock-version', '1.0').split('.'))
+        lock_version = self._getLockfile_version(locker)
         self._logger.debug('lock_version: %r', lock_version)
 
         metavar_files = locker['metadata'].get('files', {}) if lock_version < (2,) else {}

@@ -97,6 +97,29 @@
         </reference>
       </externalReferences>
     </component>
+    <component type="library" bom-ref="boolean-py@4.0">
+      <name>boolean-py</name>
+      <version>4.0</version>
+      <description>Define boolean algebras, create and parse boolean expressions and create custom boolean DSL.</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/boolean-py@4.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/boolean-py/#boolean.py-4.0-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">2876f2051d7d6394a531d82dc6eb407faa0b01a0a0b3083817ccd7323b8d96bd</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/boolean-py/#boolean.py-4.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">17b9a181630e43dde1851d42bef546d616d5d9b4480357514597e78b203d06e4</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
     <component type="library" bom-ref="cyclonedx-python-lib@5.1.1">
       <name>cyclonedx-python-lib</name>
       <version>5.1.1</version>
@@ -1996,6 +2019,7 @@
       <dependency ref="types-python-dateutil@2.8.19.14"/>
     </dependency>
     <dependency ref="attrs@23.1.0"/>
+    <dependency ref="boolean-py@4.0"/>
     <dependency ref="cyclonedx-python-lib@5.1.1">
       <dependency ref="jsonschema@4.19.2"/>
       <dependency ref="license-expression@30.1.1"/>
@@ -2034,7 +2058,9 @@
       <dependency ref="uri-template@1.3.0"/>
       <dependency ref="webcolors@1.13"/>
     </dependency>
-    <dependency ref="license-expression@30.1.1"/>
+    <dependency ref="license-expression@30.1.1">
+      <dependency ref="boolean-py@4.0"/>
+    </dependency>
     <dependency ref="lxml@4.9.3"/>
     <dependency ref="packageurl-python@0.11.2"/>
     <dependency ref="pkgutil-resolve-name@1.3.10"/>
