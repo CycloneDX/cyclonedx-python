@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "no-deps"
+version = "0.1.0"
+description = "packages with all meta, but no deps"
+authors = ["Your Name <you@example.com>", "My Name"]
+homepage = "https://oss.acme.org/my-project/"
+repository = "https://oss.acme.org/my-project.git"
+documentation = "https://oss.acme.org/my-project/docs/"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://oss.acme.org/my-project/bugs/"
+"Funding" = "https://oss.acme.org/my-project/funding/"
+"Change log" = "https://oss.acme.org/my-project/changelog/"
+
+
+[tool.poetry.dependencies]
+python = "*"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

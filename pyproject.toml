@@ -43,6 +43,7 @@ classifiers = [
 ]
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/CycloneDX/cyclonedx-python/issues"
+"Funding" = "https://owasp.org/donate/?reponame=www-project-cyclonedx&title=OWASP+CycloneDX"
 
 [tool.poetry.dependencies]
 python = "^3.8"

@@ -16,6 +16,7 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
+import re
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, List, Optional, Set, Tuple
 
@@ -260,7 +261,7 @@ class PoetryBB(BomBuilder):
 
         _dep_pattern = re_compile(r'^(?P<name>[^\[]+)(?:\[(?P<extras>.*)\])?$')
 
-        lock_version = self._getLockfile_version(locker)
+        lock_version = self._get_lockfile_version(locker)
         should_tidy_lock_names = lock_version >= (2,)
 
         def _add_ld(name: str, extras: Set[str]) -> Optional['Component']:
@@ -331,13 +332,11 @@ class PoetryBB(BomBuilder):
         return bom
 
     def __component4poetryproj(self, po_cfg: 'NameDict', c_type: 'ComponentType') -> 'Component':
-        from cyclonedx.exception.model import InvalidUriException
         from cyclonedx.factory.license import LicenseFactory
-        from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
         from cyclonedx.model.component import Component
 
         # see spec: https://python-poetry.org/docs/pyproject/
-        comp = Component(
+        return Component(
             bom_ref=str(po_cfg.get('name', 'root-component')),
             type=c_type,
             name=str(po_cfg.get('name', 'unnamed')),
@@ -345,37 +344,62 @@ class PoetryBB(BomBuilder):
             description=str(po_cfg.get('description', '')) or None,
             licenses=[LicenseFactory().make_from_string(po_cfg['license'])] if 'license' in po_cfg else None,
             author=' | '.join(po_cfg['authors']) if 'authors' in po_cfg else None,
+            external_references=self.__extrefs4poetryproj(po_cfg)
         )
+
+    def __extrefs4poetryproj(self, po_cfg: 'NameDict') -> Generator['ExternalReference', None, None]:
+        from cyclonedx.exception.model import InvalidUriException
+        from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
+
         for ers, ert in [
+            # see https://python-poetry.org/docs/pyproject/
             ('homepage', ExternalReferenceType.WEBSITE),
             ('repository', ExternalReferenceType.VCS),
             ('documentation', ExternalReferenceType.DOCUMENTATION),
         ]:
             try:
-                ExternalReference(type=ert, url=XsUri(str(po_cfg[ers])))
-            except (KeyError, InvalidUriException):
+                yield ExternalReference(
+                    comment=f'project metadata: {ers}',
+                    type=ert,
+                    url=XsUri(str(po_cfg[ers])))
+            except (KeyError, InvalidUriException):  # pragma: nocover
                 pass
         known_ulr_names = {
-            'bug tracker': ExternalReferenceType.ISSUE_TRACKER,
-            'issue tracker': ExternalReferenceType.ISSUE_TRACKER,
+            # see https://peps.python.org/pep-0345/#project-url-multiple-use
+            # see https://github.com/pypi/warehouse/issues/5947#issuecomment-699660629
+            'bugtracker': ExternalReferenceType.ISSUE_TRACKER,
+            'issuetracker': ExternalReferenceType.ISSUE_TRACKER,
+            'issues': ExternalReferenceType.ISSUE_TRACKER,
+            'tracker': ExternalReferenceType.ISSUE_TRACKER,
+            'homepage': ExternalReferenceType.WEBSITE,
+            'download': ExternalReferenceType.DISTRIBUTION,
+            'documentation': ExternalReferenceType.DOCUMENTATION,
+            'docs': ExternalReferenceType.DOCUMENTATION,
+            # 'changelog': ExternalReferenceType.RELEASE_NOTES, # not available in all versions of CycloneDX
+            'changes': ExternalReferenceType.RELEASE_NOTES,
+            'repository': ExternalReferenceType.VCS,
+            'github': ExternalReferenceType.VCS,
+            'chat': ExternalReferenceType.CHAT,
         }
+        re_nochar = re.compile('[^a-z]')
         for un, ul in po_cfg.get('urls', {}).items():
             try:
-                ExternalReference(type=known_ulr_names.get(un.lower(), ExternalReferenceType.OTHER),
-                                  url=XsUri(str(ul)), comment=un)
-            except InvalidUriException:
+                yield ExternalReference(
+                    comment=f'package urls: {un}',
+                    type=known_ulr_names.get(re_nochar.sub('', str(un).lower()), ExternalReferenceType.OTHER),
+                    url=XsUri(str(ul)))
+            except InvalidUriException:  # pragma: nocover
                 pass
-        return comp
 
     @staticmethod
-    def _getLockfile_version(locker: 'NameDict') -> Tuple[int, ...]:
+    def _get_lockfile_version(locker: 'NameDict') -> Tuple[int, ...]:
         return tuple(int(v) for v in locker['metadata'].get('lock-version', '1.0').split('.'))
 
     def _parse_lock(self, locker: 'NameDict') -> Generator[_LockEntry, None, None]:
         locker.setdefault('metavar', {})
         locker.setdefault('package', [])
 
-        lock_version = self._getLockfile_version(locker)
+        lock_version = self._get_lockfile_version(locker)
         self._logger.debug('lock_version: %r', lock_version)
 
         metavar_files = locker['metadata'].get('files', {}) if lock_version < (2,) else {}
@@ -393,18 +417,6 @@ class PoetryBB(BomBuilder):
                 added2bom=False,
                 added2bom_extras=set()
             )
-
-    def __hashes4file(self, files: List['NameDict']) -> Generator['HashType', None, None]:
-        from cyclonedx.exception.model import UnknownHashTypeException
-        from cyclonedx.model import HashType
-
-        for file in files:
-            if 'hash' in file:
-                try:
-                    yield HashType.from_composite_str(file['hash'])
-                except UnknownHashTypeException as error:
-                    self._logger.debug('skipping hash %s', file['hash'], exc_info=error)
-                    del error
 
     __PACKAGE_SRC_VCS = ['git']  # not supported yet: hg, svn
     __PACKAGE_SRC_LOCAL = ['file', 'directory']
