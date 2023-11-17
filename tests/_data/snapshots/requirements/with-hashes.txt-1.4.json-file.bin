@@ -51,11 +51,21 @@
       "version": "2021.5.30"
     },
     {
-      "bom-ref": "requirements-L15",
-      "description": "requirements line 15: colorama @ https://github.com/tartley/colorama/archive/refs/tags/0.4.6.tar.gz",
+      "bom-ref": "requirements-L16",
+      "description": "requirements line 16: colorama @ https://github.com/tartley/colorama/archive/refs/tags/0.4.6.tar.gz     --hash=md5:9854316552d41419b678d39af443a75f     --hash=sha1:aa1fc7722b9128a3c945048de03f5b4e55157c6a",
       "externalReferences": [
         {
           "comment": "explicit dist url",
+          "hashes": [
+            {
+              "alg": "MD5",
+              "content": "9854316552d41419b678d39af443a75f"
+            },
+            {
+              "alg": "SHA-1",
+              "content": "aa1fc7722b9128a3c945048de03f5b4e55157c6a"
+            }
+          ],
           "type": "distribution",
           "url": "https://github.com/tartley/colorama/archive/refs/tags/0.4.6.tar.gz"
         }
@@ -63,6 +73,21 @@
       "name": "colorama",
       "purl": "pkg:pypi/colorama?download_url=https://github.com/tartley/colorama/archive/refs/tags/0.4.6.tar.gz",
       "type": "library"
+    },
+    {
+      "bom-ref": "requirements-L21",
+      "description": "requirements line 21: something == 1.33.7 --hash=foo:something-invalid",
+      "externalReferences": [
+        {
+          "comment": "implicit dist url",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/something/"
+        }
+      ],
+      "name": "something",
+      "purl": "pkg:pypi/something@1.33.7",
+      "type": "library",
+      "version": "1.33.7"
     },
     {
       "bom-ref": "requirements-L7",
@@ -95,7 +120,10 @@
       "ref": "requirements-L11"
     },
     {
-      "ref": "requirements-L15"
+      "ref": "requirements-L16"
+    },
+    {
+      "ref": "requirements-L21"
     },
     {
       "ref": "requirements-L4"

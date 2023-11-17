@@ -18,8 +18,15 @@
     <component type="library">
       <name>colorama</name>
       <version/>
-      <description>requirements line 15: colorama @ https://github.com/tartley/colorama/archive/refs/tags/0.4.6.tar.gz</description>
+      <description>requirements line 16: colorama @ https://github.com/tartley/colorama/archive/refs/tags/0.4.6.tar.gz     --hash=md5:9854316552d41419b678d39af443a75f     --hash=sha1:aa1fc7722b9128a3c945048de03f5b4e55157c6a</description>
       <purl>pkg:pypi/colorama?download_url=https://github.com/tartley/colorama/archive/refs/tags/0.4.6.tar.gz</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>something</name>
+      <version>1.33.7</version>
+      <description>requirements line 21: something == 1.33.7 --hash=foo:something-invalid</description>
+      <purl>pkg:pypi/something@1.33.7</purl>
       <modified>false</modified>
     </component>
     <component type="library">

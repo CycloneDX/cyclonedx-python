@@ -195,6 +195,7 @@ class RequirementsBB(BomBuilder):
         except InvalidUriException as error:
             self._logger.debug('failed ExternalReference/url URL for: %s', req.line, exc_info=error)
             del error
+
         return Component(
             bom_ref=f'requirements-L{req.line_number}',
             description=f'requirements line {req.line_number}: {req.line}',
