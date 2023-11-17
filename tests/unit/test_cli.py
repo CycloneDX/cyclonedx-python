@@ -19,6 +19,7 @@
 import logging
 from io import StringIO
 from os.path import join
+from random import randbytes
 from typing import Any
 from unittest import TestCase
 from unittest.mock import Mock
@@ -70,14 +71,8 @@ class TestCli(TestCase, SnapshotMixin):
             logs.name = '<logstream>'
             outs.name = '<outstream>'
 
-            logger = logging.getLogger('testing')
-            logger.propagate = False
-            lh = logging.StreamHandler(logs)
-            lh.setLevel(logger.level)
-            logger.addHandler(lh)
-
             command = Command(
-                logger=logger,
+                logger=self.__make_fresh_logger(logs),
                 short_purls=short_purls,
                 schema_version=SchemaVersion.V1_4,
                 output_format=OutputFormat.JSON,
@@ -99,14 +94,8 @@ class TestCli(TestCase, SnapshotMixin):
             logs.name = '<logstream>'
             outs.name = '<outstream>'
 
-            logger = logging.getLogger('testing')
-            logger.propagate = False
-            lh = logging.StreamHandler(logs)
-            lh.setLevel(logger.level)
-            logger.addHandler(lh)
-
             command = Command(
-                logger=logger,
+                logger=self.__make_fresh_logger(logs),
                 short_purls=False,
                 schema_version=SchemaVersion.V1_4,
                 output_format=OutputFormat.JSON,
@@ -127,16 +116,8 @@ class TestCli(TestCase, SnapshotMixin):
             logs.name = '<logstream>'
             outs.name = '<outstream>'
 
-            logger = logging.getLogger('testing')
-            logger.level = logging.WARNING
-            logger.propagate = False
-            lh = logging.StreamHandler(logs)
-            lh.setFormatter(logging.Formatter('%(levelname)s: %(message)s'))
-            lh.setLevel(logger.level)
-            logger.addHandler(lh)
-
             command = Command(
-                logger=logger,
+                logger=self.__make_fresh_logger(logs, logging.WARNING),
                 short_purls=False,
                 schema_version=SchemaVersion.V1_4,
                 output_format=OutputFormat.JSON,
@@ -155,3 +136,15 @@ class TestCli(TestCase, SnapshotMixin):
 
     def assertEqualSnapshot(self, actual: str, snapshot_name: str) -> None:  # noqa: N802
         super().assertEqualSnapshot(actual, join('cli', snapshot_name))
+
+    @classmethod
+    def __make_fresh_logger(cls, logstream: StringIO, level: int = logging.NOTSET) -> logging.Logger:
+        logger = logging.getLogger(f'{cls.__qualname__}.{randbytes(15).hex()}')
+        map(logger.removeHandler, logger.handlers)
+        logger.level = level
+        logger.propagate = False
+        lh = logging.StreamHandler(logstream)
+        lh.setLevel(logger.level)
+        lh.setFormatter(logging.Formatter('%(levelname)s: %(message)s'))
+        logger.addHandler(lh)
+        return logger
