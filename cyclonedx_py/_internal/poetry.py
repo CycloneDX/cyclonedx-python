@@ -451,9 +451,9 @@ class PoetryBB(BomBuilder):
             qs['vcs_url'] = f'{source["type"]}+{source["url"]}@' + \
                 source.get('resolved_reference', source.get('reference', ''))
         elif source_type == 'url':
-            if '://files.pythonhosted.org/' not in package['source']['url']:
+            if '://files.pythonhosted.org/' not in source['url']:
                 # skip PURL bloat, do not add implicit information
-                qs['download_url'] = package['source']['url']
+                qs['download_url'] = source['url']
         elif source_type == 'legacy':
             source_url = package['source'].get('url', 'https://pypi.org/simple')
             if '://pypi.org/' not in source_url:
