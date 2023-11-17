@@ -41,6 +41,13 @@
           "url": "https://oss.acme.org/my-project/"
         }
       ],
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
       "name": "no-deps",
       "type": "application",
       "version": "0.1.0"

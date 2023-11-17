@@ -45,6 +45,11 @@
       <name>no-deps</name>
       <version>0.1.0</version>
       <description>packages with all meta, but no deps</description>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
       <externalReferences>
         <reference type="documentation">
           <url>https://oss.acme.org/my-project/docs/</url>
