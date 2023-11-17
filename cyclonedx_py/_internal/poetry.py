@@ -26,7 +26,7 @@ if TYPE_CHECKING:  # pragma: no cover
     from argparse import ArgumentParser
     from logging import Logger
 
-    from cyclonedx.model import ExternalReference, HashType
+    from cyclonedx.model import ExternalReference
     from cyclonedx.model.bom import Bom
     from cyclonedx.model.component import Component, ComponentType
 
