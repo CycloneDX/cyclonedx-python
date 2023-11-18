@@ -184,7 +184,6 @@ class PoetryBB(BomBuilder):
                     (groups_without_s, 'without'),
                 ] for gn in gns
                 if gn not in po_cfg['group'].keys())
-            self._logger.debug('groups_not_found: %r', groups_not_found)
             if len(groups_not_found) > 0:
                 groups_error = GroupsNotFoundError(f'{gn!r} (via {srcn})' for gn, srcn in groups_not_found)
                 self._logger.error(groups_error)
