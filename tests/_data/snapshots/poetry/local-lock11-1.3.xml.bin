@@ -10,7 +10,7 @@
       <tool>
         <vendor>CycloneDX</vendor>
         <name>cyclonedx-python-lib</name>
-        <version>5.1.1</version>
+        <version>libVersion-testing</version>
       </tool>
     </tools>
     <component type="application" bom-ref="local">

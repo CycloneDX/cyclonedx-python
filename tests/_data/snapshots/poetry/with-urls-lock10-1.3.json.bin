@@ -139,7 +139,7 @@
       {
         "name": "cyclonedx-python-lib",
         "vendor": "CycloneDX",
-        "version": "5.1.1"
+        "version": "libVersion-testing"
       }
     ]
   },
