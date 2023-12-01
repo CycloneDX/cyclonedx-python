@@ -1,0 +1,5 @@
+[project]
+# https://packaging.python.org/en/latest/specifications/declaring-project-metadata/#declaring-project-metadata
+name = "default-and-dev"
+version = "0.1.0"
+description = "default and dev depenndencies"
