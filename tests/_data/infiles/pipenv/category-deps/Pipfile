@@ -1,0 +1,11 @@
+[pipenv]
+sort_pipfile = true
+
+[packages]
+
+[dev-packages]
+
+# custom catrogys/groups
+# see https://pipenv.pypa.io/en/latest/pipfile.html#package-category-groups
+
+

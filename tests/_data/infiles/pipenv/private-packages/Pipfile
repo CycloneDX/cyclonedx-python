@@ -1,0 +1,10 @@
+[pipenv]
+sort_pipfile = true
+
+# see https://pipenv.pypa.io/en/latest/indexes.html#specifying-package-indexes
+# run the `//tests/_data/infiles/_helpers/pypi-proxy.py` to setup a PyPI proxy
+
+
+[packages]
+
+[dev-packages]

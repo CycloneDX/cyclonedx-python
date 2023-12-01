@@ -18,8 +18,8 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 """
-This is a small http proxy to PiPI.
-This might be needed to play this setup.
+This is a small http proxy to PyPI.
+This might be needed to play certain setups.
 """
 
 import sys
