@@ -24,6 +24,7 @@ from chardet import detect as chardetect
 
 def io2str(io: BinaryIO, *, errors: str = 'strict') -> str:
     data = io.read()
+    # see https://docs.python.org/3/library/codecs.html#standard-encodings
     encoding = (chardetect(data)['encoding'] or getdefaultencoding()).replace(
         # replace Windows-encoding with code-page
         'Windows-', 'cp')
