@@ -90,7 +90,7 @@ class TestRequirements(TestCase, SnapshotMixin):
                     f'--of={OutputFormat.XML.name}',
                     '--outfile=-',
                     '--pyproject=something-that-must-not-exist.testing',
-                    random.choice(test_data)
+                    random.choice(test_data)  # nosec B311
                 ])
             err = err.getvalue()
             out = out.getvalue()
