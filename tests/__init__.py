@@ -36,7 +36,6 @@ RECREATE_SNAPSHOTS = '1' == getenv('CDX_TEST_RECREATE_SNAPSHOTS')
 if RECREATE_SNAPSHOTS:
     print('!!! WILL RECREATE ALL SNAPSHOTS !!!')
 
-
 class SnapshotMixin:
 
     @staticmethod

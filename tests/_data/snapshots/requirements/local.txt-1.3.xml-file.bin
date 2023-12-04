@@ -64,6 +64,17 @@
         </reference>
       </externalReferences>
     </component>
+    <component type="library" bom-ref="requirements-L2">
+      <name>unknown</name>
+      <version/>
+      <description>requirements line 2: ./myproject/chardet</description>
+      <externalReferences>
+        <reference type="other">
+          <url>./myproject/chardet</url>
+          <comment>explicit local path</comment>
+        </reference>
+      </externalReferences>
+    </component>
     <component type="library" bom-ref="requirements-L5">
       <name>unknown</name>
       <version/>
@@ -75,17 +86,6 @@
           <hashes>
             <hash alg="SHA-256">27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804</hash>
           </hashes>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="requirements-L2">
-      <name>unknown</name>
-      <version/>
-      <description>requirements line 2: ./myproject/chardet</description>
-      <externalReferences>
-        <reference type="other">
-          <url>./myproject/chardet</url>
-          <comment>explicit local path</comment>
         </reference>
       </externalReferences>
     </component>

@@ -28,13 +28,13 @@
     <component type="library">
       <name>unknown</name>
       <version/>
-      <description>requirements line 5: ./myproject/requests --hash=sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804</description>
+      <description>requirements line 2: ./myproject/chardet</description>
       <modified>false</modified>
     </component>
     <component type="library">
       <name>unknown</name>
       <version/>
-      <description>requirements line 2: ./myproject/chardet</description>
+      <description>requirements line 5: ./myproject/requests --hash=sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804</description>
       <modified>false</modified>
     </component>
   </components>
