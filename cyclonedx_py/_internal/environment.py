@@ -44,12 +44,12 @@ class EnvironmentBB(BomBuilder):
 
     def __init__(self, *,
                  logger: 'Logger',
-                 **kwargs: Any) -> None:
+                 **__: Any) -> None:
         self._logger = logger
 
     def __call__(self, *,  # type:ignore[override]
                  lock: BinaryIO,
-                 **kwargs: Any) -> 'Bom':
+                 **__: Any) -> 'Bom':
         from .utils.bom import make_bom
 
         bom = make_bom()

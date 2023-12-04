@@ -28,13 +28,26 @@
       "version": "1.9.2"
     },
     {
-      "bom-ref": "requirements-L2",
-      "description": "requirements line 2: ./myproject/chardet",
+      "bom-ref": "requirements-L8",
+      "description": "requirements line 8: -e ./myproject/idna.whl",
       "externalReferences": [
         {
           "comment": "explicit local path",
           "type": "other",
-          "url": "./myproject/chardet"
+          "url": "./myproject/idna.whl"
+        }
+      ],
+      "name": "unknown",
+      "type": "library"
+    },
+    {
+      "bom-ref": "requirements-L17",
+      "description": "requirements line 17: ./downloads/numpy-1.26.1.tar.gz",
+      "externalReferences": [
+        {
+          "comment": "explicit local path",
+          "type": "other",
+          "url": "./downloads/numpy-1.26.1.tar.gz"
         }
       ],
       "name": "unknown",
@@ -60,26 +73,13 @@
       "type": "library"
     },
     {
-      "bom-ref": "requirements-L8",
-      "description": "requirements line 8: -e ./myproject/idna.whl",
+      "bom-ref": "requirements-L2",
+      "description": "requirements line 2: ./myproject/chardet",
       "externalReferences": [
         {
           "comment": "explicit local path",
           "type": "other",
-          "url": "./myproject/idna.whl"
-        }
-      ],
-      "name": "unknown",
-      "type": "library"
-    },
-    {
-      "bom-ref": "requirements-L17",
-      "description": "requirements line 17: ./downloads/numpy-1.26.1.tar.gz",
-      "externalReferences": [
-        {
-          "comment": "explicit local path",
-          "type": "other",
-          "url": "./downloads/numpy-1.26.1.tar.gz"
+          "url": "./myproject/chardet"
         }
       ],
       "name": "unknown",
@@ -104,9 +104,19 @@
     },
     {
       "ref": "requirements-L8"
+    },
+    {
+      "ref": "testing-requirements-txt"
     }
   ],
   "metadata": {
+    "component": {
+      "bom-ref": "testing-requirements-txt",
+      "description": "some `reuqirements.txt` a root-component with all metadata",
+      "name": "testing-requirements-txt",
+      "type": "application",
+      "version": "0.1.0"
+    },
     "tools": [
       {
         "externalReferences": [   ],

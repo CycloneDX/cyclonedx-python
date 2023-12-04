@@ -29,34 +29,6 @@
       "version": "1.9.2"
     },
     {
-      "bom-ref": "requirements-L2",
-      "description": "requirements line 2: ./myproject/chardet",
-      "externalReferences": [
-        {
-          "comment": "explicit local path",
-          "type": "other",
-          "url": "./myproject/chardet"
-        }
-      ],
-      "name": "unknown",
-      "type": "library",
-      "version": ""
-    },
-    {
-      "bom-ref": "requirements-L5",
-      "description": "requirements line 5: ./myproject/requests --hash=sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804",
-      "externalReferences": [
-        {
-          "comment": "explicit local path",
-          "type": "other",
-          "url": "./myproject/requests"
-        }
-      ],
-      "name": "unknown",
-      "type": "library",
-      "version": ""
-    },
-    {
       "bom-ref": "requirements-L8",
       "description": "requirements line 8: -e ./myproject/idna.whl",
       "externalReferences": [
@@ -83,6 +55,34 @@
       "name": "unknown",
       "type": "library",
       "version": ""
+    },
+    {
+      "bom-ref": "requirements-L5",
+      "description": "requirements line 5: ./myproject/requests --hash=sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804",
+      "externalReferences": [
+        {
+          "comment": "explicit local path",
+          "type": "other",
+          "url": "./myproject/requests"
+        }
+      ],
+      "name": "unknown",
+      "type": "library",
+      "version": ""
+    },
+    {
+      "bom-ref": "requirements-L2",
+      "description": "requirements line 2: ./myproject/chardet",
+      "externalReferences": [
+        {
+          "comment": "explicit local path",
+          "type": "other",
+          "url": "./myproject/chardet"
+        }
+      ],
+      "name": "unknown",
+      "type": "library",
+      "version": ""
     }
   ],
   "dependencies": [
@@ -103,9 +103,19 @@
     },
     {
       "ref": "requirements-L8"
+    },
+    {
+      "ref": "testing-requirements-txt"
     }
   ],
   "metadata": {
+    "component": {
+      "bom-ref": "testing-requirements-txt",
+      "description": "some `reuqirements.txt` a root-component with all metadata",
+      "name": "testing-requirements-txt",
+      "type": "application",
+      "version": "0.1.0"
+    },
     "tools": [
       {
         "name": "cyclonedx-bom",

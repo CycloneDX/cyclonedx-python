@@ -16,7 +16,7 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
-from typing import TYPE_CHECKING, Any, Generator, List, Set
+from typing import TYPE_CHECKING, Any, Generator, List, Optional, Set
 
 from . import BomBuilder
 
@@ -26,7 +26,7 @@ if TYPE_CHECKING:  # pragma: no cover
 
     from cyclonedx.model import HashType
     from cyclonedx.model.bom import Bom
-    from cyclonedx.model.component import Component
+    from cyclonedx.model.component import Component, ComponentType
     from pip_requirements_parser import InstallRequirement, RequirementsFile  # type:ignore[import-untyped]
 
 
@@ -40,6 +40,10 @@ class RequirementsBB(BomBuilder):
     def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':
         from argparse import OPTIONAL, ArgumentParser
         from textwrap import dedent
+
+        from cyclonedx.model.component import ComponentType
+
+        from .utils.args import argparse_type4enum
 
         p = ArgumentParser(description=dedent(""""\
                            Build an SBOM from Pip requirements.
@@ -75,6 +79,23 @@ class RequirementsBB(BomBuilder):
                        action='append',
                        dest='extra_index_urls',
                        default=[])
+        p.add_argument('--pyproject',
+                       metavar='pyproject.toml',
+                       help="Path to the root component's `pyproject.toml` according to PEP621",
+                       dest='pyproject_file',
+                       default=None)
+        _mc_types = [ComponentType.APPLICATION,
+                     ComponentType.FIRMWARE,
+                     ComponentType.LIBRARY]
+        p.add_argument('--mc-type',
+                       metavar='TYPE',
+                       help='Type of the main component'
+                            f' {{choices: {", ".join(t.value for t in _mc_types)}}}'
+                            ' (default: %(default)s)',
+                       dest='mc_type',
+                       choices=_mc_types,
+                       type=argparse_type4enum(ComponentType),
+                       default=ComponentType.APPLICATION.value)
         p.add_argument('requirements_file',
                        metavar='requirements-file',
                        help='I HELP TODO (default: %(default)r in current working directory)',
@@ -86,17 +107,36 @@ class RequirementsBB(BomBuilder):
                  logger: 'Logger',
                  index_url: str,
                  extra_index_urls: List[str],
-                 **kwargs: Any) -> None:
+                 **__: Any) -> None:
         self._logger = logger
         self._index_url = index_url
         self._extra_index_urls = set(extra_index_urls)
 
     def __call__(self, *,  # type:ignore[override]
                  requirements_file: str,
-                 **kwargs: Any) -> 'Bom':
+                 pyproject_file: Optional[str],
+                 mc_type: 'ComponentType',
+                 **__: Any) -> 'Bom':
         from os import unlink
 
         from pip_requirements_parser import RequirementsFile
+
+        if pyproject_file is None:
+            rc = None
+        else:
+            from .utils.PEP621 import pyproject2component
+            from .utils.toml import toml_loads
+
+            try:
+                pyproject_fh = open(pyproject_file, 'rt', encoding='utf8', errors='replace')
+            except OSError as err:
+                raise ValueError(f'Could not open pyproject file: {pyproject_file}') from err
+            with pyproject_fh:
+                rc = pyproject2component(
+                    toml_loads(pyproject_fh.read()),
+                    type=mc_type
+                )
+            del pyproject_fh
 
         if requirements_file == '-':
             from sys import stdin
@@ -108,17 +148,22 @@ class RequirementsBB(BomBuilder):
                 rf = RequirementsFile.from_file(rt, include_nested=False)
             finally:
                 unlink(rt)
+            del rt
         else:
             rf = RequirementsFile.from_file(requirements_file, include_nested=True)
 
-        return self._make_bom(rf)
+        return self._make_bom(rc, rf)
 
-    def _make_bom(self, rf: 'RequirementsFile') -> 'Bom':
-        from functools import reduce
-
+    def _make_bom(self, rc: Optional['Component'], rf: 'RequirementsFile') -> 'Bom':
         from .utils.bom import make_bom
 
         bom = make_bom()
+        bom.metadata.component = rc
+        bom.components.update(self._make_components(rf))
+        return bom
+
+    def _make_components(self, rf: 'RequirementsFile') -> Generator['Component', None, None]:
+        from functools import reduce
 
         index_url = reduce(lambda c, i: i.options.get('index_url') or c, rf.options, self._index_url)
         extra_index_urls = self._extra_index_urls.union(*(
@@ -131,9 +176,7 @@ class RequirementsBB(BomBuilder):
             self._logger.debug('Add component: %r', component)
             if not component.version:
                 self._logger.warning('Component has no pinned version: %r', component)
-            bom.components.add(component)
-
-        return bom
+            yield component
 
     def __hashes4req(self, req: 'InstallRequirement') -> Generator['HashType', None, None]:
         from cyclonedx.exception.model import UnknownHashTypeException

@@ -17,6 +17,7 @@
 
 
 import os
+import random
 from contextlib import redirect_stderr, redirect_stdout
 from glob import glob
 from io import StringIO, TextIOWrapper
@@ -31,7 +32,9 @@ from ddt import ddt, named_data
 from cyclonedx_py._internal.cli import run as run_cli
 from tests import INFILES_DIRECTORY, SnapshotMixin, make_comparable
 
-infiles = glob(join(INFILES_DIRECTORY, 'requirements', '*'))
+infiles = glob(join(INFILES_DIRECTORY, 'requirements', '*.txt*'))
+
+pyproject_file = join(INFILES_DIRECTORY, 'requirements', 'pyproject.toml')
 
 unsupported_of_sf = [
     (OutputFormat.JSON, SchemaVersion.V1_1),
@@ -73,7 +76,26 @@ class TestRequirements(TestCase, SnapshotMixin):
             err = err.getvalue()
             out = out.getvalue()
         self.assertNotEqual(0, res, err)
-        self.assertIn("No such file or directory: 'something-that-must-not-exist.testing'", err)
+        self.assertIn('Could not open requirements file: something-that-must-not-exist.testing', err)
+
+    def test_cli_with_pyproject_not_found(self) -> None:
+        with StringIO() as err, StringIO() as out:
+            err.name = '<fakeerr>'
+            out.name = '<fakeout>'
+            with redirect_stderr(err), redirect_stdout(out):
+                res = run_cli(argv=[
+                    'requirements',
+                    '-vvv',
+                    f'--sv={SchemaVersion.V1_4.to_version()}',
+                    f'--of={OutputFormat.XML.name}',
+                    '--outfile=-',
+                    '--pyproject=something-that-must-not-exist.testing',
+                    random.choice(test_data)
+                ])
+            err = err.getvalue()
+            out = out.getvalue()
+        self.assertNotEqual(0, res, err)
+        self.assertIn('Could not open pyproject file: something-that-must-not-exist.testing', err)
 
     @named_data(*filter(test_data_os_filter, test_data))
     def test_cli_with_file_as_expected(self, infile: str, sv: SchemaVersion, of: OutputFormat) -> None:
@@ -87,6 +109,7 @@ class TestRequirements(TestCase, SnapshotMixin):
                     f'--sv={sv.to_version()}',
                     f'--of={of.name}',
                     '--outfile=-',
+                    f'--pyproject={pyproject_file}',
                     infile])
             err = err.getvalue()
             out = out.getvalue()
@@ -108,6 +131,7 @@ class TestRequirements(TestCase, SnapshotMixin):
                         f'--sv={sv.to_version()}',
                         f'--of={of.name}',
                         '--outfile=-',
+                        # no pyproject for this case
                         '-'])
             err = err.getvalue()
             out = out.getvalue()

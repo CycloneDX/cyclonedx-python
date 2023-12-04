@@ -91,9 +91,19 @@
     },
     {
       "ref": "requirements-L5"
+    },
+    {
+      "ref": "testing-requirements-txt"
     }
   ],
   "metadata": {
+    "component": {
+      "bom-ref": "testing-requirements-txt",
+      "description": "some `reuqirements.txt` a root-component with all metadata",
+      "name": "testing-requirements-txt",
+      "type": "application",
+      "version": "0.1.0"
+    },
     "tools": [
       {
         "externalReferences": [   ],

@@ -40,6 +40,11 @@
         <externalReferences><!-- stripped --></externalReferences>
       </tool>
     </tools>
+    <component type="application" bom-ref="testing-requirements-txt">
+      <name>testing-requirements-txt</name>
+      <version>0.1.0</version>
+      <description>some `reuqirements.txt` a root-component with all metadata</description>
+    </component>
   </metadata>
   <components>
     <component type="library" bom-ref="requirements-L11">
@@ -63,29 +68,6 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="requirements-L2">
-      <name>unknown</name>
-      <description>requirements line 2: ./myproject/chardet</description>
-      <externalReferences>
-        <reference type="other">
-          <url>./myproject/chardet</url>
-          <comment>explicit local path</comment>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="requirements-L5">
-      <name>unknown</name>
-      <description>requirements line 5: ./myproject/requests --hash=sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804</description>
-      <externalReferences>
-        <reference type="other">
-          <url>./myproject/requests</url>
-          <comment>explicit local path</comment>
-          <hashes>
-            <hash alg="SHA-256">27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804</hash>
-          </hashes>
-        </reference>
-      </externalReferences>
-    </component>
     <component type="library" bom-ref="requirements-L8">
       <name>unknown</name>
       <description>requirements line 8: -e ./myproject/idna.whl</description>
@@ -106,6 +88,29 @@
         </reference>
       </externalReferences>
     </component>
+    <component type="library" bom-ref="requirements-L5">
+      <name>unknown</name>
+      <description>requirements line 5: ./myproject/requests --hash=sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804</description>
+      <externalReferences>
+        <reference type="other">
+          <url>./myproject/requests</url>
+          <comment>explicit local path</comment>
+          <hashes>
+            <hash alg="SHA-256">27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="requirements-L2">
+      <name>unknown</name>
+      <description>requirements line 2: ./myproject/chardet</description>
+      <externalReferences>
+        <reference type="other">
+          <url>./myproject/chardet</url>
+          <comment>explicit local path</comment>
+        </reference>
+      </externalReferences>
+    </component>
   </components>
   <dependencies>
     <dependency ref="requirements-L11"/>
@@ -114,5 +119,6 @@
     <dependency ref="requirements-L2"/>
     <dependency ref="requirements-L5"/>
     <dependency ref="requirements-L8"/>
+    <dependency ref="testing-requirements-txt"/>
   </dependencies>
 </bom>

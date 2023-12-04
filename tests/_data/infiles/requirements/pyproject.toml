@@ -1,8 +1,8 @@
 [project]
 # https://packaging.python.org/en/latest/specifications/declaring-project-metadata/#declaring-project-metadata
-name = "testing-requirements"
+name = "testing-requirements-txt"
 version = "0.1.0"
-description = "a packag with all meta"
+description = "some `reuqirements.txt` a root-component with all metadata"
 license = "Apache-2.0"
 readme = "README.md"
 requires-python = ">=3.7"

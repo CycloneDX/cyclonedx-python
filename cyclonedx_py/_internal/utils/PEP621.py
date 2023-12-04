@@ -26,12 +26,14 @@ from typing import Any, Dict
 from cyclonedx.model.component import Component, ComponentType
 
 
-def pyproject2component(proj: Dict[str, Any], *,
+def pyproject2component(pyproject: Dict[str, Any], *,
                         type: ComponentType) -> Component:
+    project = pyproject['project']
     return Component(
         type=type,
-        name=proj['name'],
-        version=proj.get('version', None),
-        description=proj.get('description', None),
+        bom_ref=project['name'],
+        name=project['name'],
+        version=project.get('version', None),
+        description=project.get('description', None),
         # TODO add more properties according to spec
     )
