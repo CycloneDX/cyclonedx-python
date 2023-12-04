@@ -158,9 +158,10 @@ class RequirementsBB(BomBuilder):
     def _make_bom(self, rc: Optional['Component'], rf: 'RequirementsFile') -> 'Bom':
         from .utils.bom import make_bom
 
-        bom = make_bom()
+        bom = make_bom(
+            components=self._make_components(rf)
+        )
         bom.metadata.component = rc
-        bom.components.update(self._make_components(rf))
         return bom
 
     def _make_components(self, rf: 'RequirementsFile') -> Generator['Component', None, None]:
@@ -174,7 +175,6 @@ class RequirementsBB(BomBuilder):
 
         for requirement in rf.requirements:
             component = self._make_component(requirement, index_url, extra_index_urls)
-            component.bom_ref.value = f'requirement-{requirement.line_number}'
             self._logger.debug('Add component: %r', component)
             if not component.version:
                 self._logger.warning('Component has no pinned version: %r', component)

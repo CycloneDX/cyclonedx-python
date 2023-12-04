@@ -1,7 +1,7 @@
 {
   "components": [
     {
-      "bom-ref": "requirement-1",
+      "bom-ref": "requirements-L1",
       "description": "requirements line 1: certifi>=2021.5.30",
       "externalReferences": [
         {
@@ -16,7 +16,7 @@
       "version": ""
     },
     {
-      "bom-ref": "requirement-2",
+      "bom-ref": "requirements-L2",
       "description": "requirements line 2: chardet >= 4.0.0 , < 5",
       "externalReferences": [
         {
@@ -31,7 +31,7 @@
       "version": ""
     },
     {
-      "bom-ref": "requirement-3",
+      "bom-ref": "requirements-L3",
       "description": "requirements line 3: urllib3",
       "externalReferences": [
         {
@@ -48,13 +48,13 @@
   ],
   "dependencies": [
     {
-      "ref": "requirement-1"
+      "ref": "requirements-L1"
     },
     {
-      "ref": "requirement-2"
+      "ref": "requirements-L2"
     },
     {
-      "ref": "requirement-3"
+      "ref": "requirements-L3"
     },
     {
       "ref": "root-component"

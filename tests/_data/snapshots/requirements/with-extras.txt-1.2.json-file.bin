@@ -1,7 +1,7 @@
 {
   "components": [
     {
-      "bom-ref": "requirement-3",
+      "bom-ref": "requirements-L3",
       "description": "requirements line 3: cyclonedx-python-lib[json-validation,xml-validation] == 5.1.1",
       "externalReferences": [
         {
@@ -18,7 +18,7 @@
   ],
   "dependencies": [
     {
-      "ref": "requirement-3"
+      "ref": "requirements-L3"
     },
     {
       "ref": "root-component"

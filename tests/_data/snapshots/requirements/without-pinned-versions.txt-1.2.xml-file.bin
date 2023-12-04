@@ -20,7 +20,7 @@
     </component>
   </metadata>
   <components>
-    <component type="library" bom-ref="requirement-1">
+    <component type="library" bom-ref="requirements-L1">
       <name>certifi</name>
       <version/>
       <description>requirements line 1: certifi&gt;=2021.5.30</description>
@@ -32,7 +32,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="requirement-2">
+    <component type="library" bom-ref="requirements-L2">
       <name>chardet</name>
       <version/>
       <description>requirements line 2: chardet &gt;= 4.0.0 , &lt; 5</description>
@@ -44,7 +44,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="requirement-3">
+    <component type="library" bom-ref="requirements-L3">
       <name>urllib3</name>
       <version/>
       <description>requirements line 3: urllib3</description>
@@ -58,9 +58,9 @@
     </component>
   </components>
   <dependencies>
-    <dependency ref="requirement-1"/>
-    <dependency ref="requirement-2"/>
-    <dependency ref="requirement-3"/>
+    <dependency ref="requirements-L1"/>
+    <dependency ref="requirements-L2"/>
+    <dependency ref="requirements-L3"/>
     <dependency ref="root-component"/>
   </dependencies>
 </bom>

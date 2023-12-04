@@ -20,7 +20,7 @@
     </component>
   </metadata>
   <components>
-    <component type="library" bom-ref="requirement-7">
+    <component type="library" bom-ref="requirements-L7">
       <name>FooProject</name>
       <version>1.2</version>
       <description>requirements line 7: FooProject == 1.2   --hash=sha256:2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824   --hash=sha256:486ea46224d1bb4fb680f34f7c9ad96a8f24ec88be73ea8e5a6c65260e9cb8a7</description>
@@ -36,7 +36,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="requirement-4">
+    <component type="library" bom-ref="requirements-L4">
       <name>colorama</name>
       <version>0.4.6</version>
       <description>requirements line 4: colorama==0.4.6</description>
@@ -50,8 +50,8 @@
     </component>
   </components>
   <dependencies>
-    <dependency ref="requirement-4"/>
-    <dependency ref="requirement-7"/>
+    <dependency ref="requirements-L4"/>
+    <dependency ref="requirements-L7"/>
     <dependency ref="root-component"/>
   </dependencies>
 </bom>

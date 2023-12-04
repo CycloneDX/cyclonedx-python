@@ -15,7 +15,7 @@
     </tools>
   </metadata>
   <components>
-    <component type="library" bom-ref="requirement-6">
+    <component type="library" bom-ref="requirements-L6">
       <name>packageurl-python</name>
       <version/>
       <description>requirements line 6: packageurl-python&gt;=0.9.4</description>
@@ -27,7 +27,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="requirement-7">
+    <component type="library" bom-ref="requirements-L7">
       <name>requirements_parser</name>
       <version/>
       <description>requirements line 7: requirements_parser&gt;=0.2.0</description>
@@ -39,7 +39,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="requirement-8">
+    <component type="library" bom-ref="requirements-L8">
       <name>setuptools</name>
       <version/>
       <description>requirements line 8: setuptools&gt;=50.3.2</description>
@@ -53,8 +53,8 @@
     </component>
   </components>
   <dependencies>
-    <dependency ref="requirement-6"/>
-    <dependency ref="requirement-7"/>
-    <dependency ref="requirement-8"/>
+    <dependency ref="requirements-L6"/>
+    <dependency ref="requirements-L7"/>
+    <dependency ref="requirements-L8"/>
   </dependencies>
 </bom>

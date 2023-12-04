@@ -16,13 +16,13 @@
     <component type="library">
       <name>unknown</name>
       <version/>
-      <description>requirements line 8: -e ./myproject/idna.whl</description>
+      <description>requirements line 17: ./downloads/numpy-1.26.1.tar.gz</description>
       <modified>false</modified>
     </component>
     <component type="library">
       <name>unknown</name>
       <version/>
-      <description>requirements line 17: ./downloads/numpy-1.26.1.tar.gz</description>
+      <description>requirements line 8: -e ./myproject/idna.whl</description>
       <modified>false</modified>
     </component>
     <component type="library">

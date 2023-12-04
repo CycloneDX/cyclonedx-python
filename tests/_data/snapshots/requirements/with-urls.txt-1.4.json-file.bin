@@ -1,7 +1,7 @@
 {
   "components": [
     {
-      "bom-ref": "requirement-11",
+      "bom-ref": "requirements-L11",
       "description": "requirements line 11: git+https://github.com/path/to/package-four@releases/tag/v3.7.1#egg=package-four",
       "externalReferences": [
         {
@@ -15,7 +15,7 @@
       "type": "library"
     },
     {
-      "bom-ref": "requirement-5",
+      "bom-ref": "requirements-L5",
       "description": "requirements line 5: git+https://github.com/path/to/package-one@41b95ec#egg=package-one",
       "externalReferences": [
         {
@@ -29,7 +29,7 @@
       "type": "library"
     },
     {
-      "bom-ref": "requirement-9",
+      "bom-ref": "requirements-L9",
       "description": "requirements line 9: git+https://github.com/path/to/package-three@0.1#egg=package-three",
       "externalReferences": [
         {
@@ -43,7 +43,7 @@
       "type": "library"
     },
     {
-      "bom-ref": "requirement-7",
+      "bom-ref": "requirements-L7",
       "description": "requirements line 7: git+https://github.com/path/to/package-two@master#egg=package-two",
       "externalReferences": [
         {
@@ -57,7 +57,7 @@
       "type": "library"
     },
     {
-      "bom-ref": "requirement-19",
+      "bom-ref": "requirements-L19",
       "description": "requirements line 19: https://files.pythonhosted.org/packages/78/23/f78fd8311e0f710fe1d065d50b92ce0057fe877b8ed7fd41b28ad6865bfc/numpy-1.26.1.tar.gz",
       "externalReferences": [
         {
@@ -70,7 +70,7 @@
       "type": "library"
     },
     {
-      "bom-ref": "requirement-23",
+      "bom-ref": "requirements-L23",
       "description": "requirements line 23: urllib3 @ https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip",
       "externalReferences": [
         {
@@ -84,7 +84,7 @@
       "type": "library"
     },
     {
-      "bom-ref": "requirement-15",
+      "bom-ref": "requirements-L15",
       "description": "requirements line 15: http://wxpython.org/Phoenix/snapshot-builds/wxPython_Phoenix-3.0.3.dev1820+49a8884-cp34-none-win_amd64.whl",
       "externalReferences": [
         {
@@ -101,25 +101,25 @@
   ],
   "dependencies": [
     {
-      "ref": "requirement-11"
+      "ref": "requirements-L11"
     },
     {
-      "ref": "requirement-15"
+      "ref": "requirements-L15"
     },
     {
-      "ref": "requirement-19"
+      "ref": "requirements-L19"
     },
     {
-      "ref": "requirement-23"
+      "ref": "requirements-L23"
     },
     {
-      "ref": "requirement-5"
+      "ref": "requirements-L5"
     },
     {
-      "ref": "requirement-7"
+      "ref": "requirements-L7"
     },
     {
-      "ref": "requirement-9"
+      "ref": "requirements-L9"
     },
     {
       "ref": "root-component"

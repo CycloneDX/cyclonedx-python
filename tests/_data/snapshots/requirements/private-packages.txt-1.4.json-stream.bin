@@ -1,7 +1,7 @@
 {
   "components": [
     {
-      "bom-ref": "requirement-7",
+      "bom-ref": "requirements-L7",
       "description": "requirements line 7: my-package==1.2.3",
       "externalReferences": [
         {
@@ -28,7 +28,7 @@
   ],
   "dependencies": [
     {
-      "ref": "requirement-7"
+      "ref": "requirements-L7"
     }
   ],
   "metadata": {

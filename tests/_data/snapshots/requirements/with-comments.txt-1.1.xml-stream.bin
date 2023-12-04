@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <bom xmlns="http://cyclonedx.org/schema/bom/1.1" version="1">
   <components>
-    <component type="library" bom-ref="requirement-1">
+    <component type="library" bom-ref="requirements-L1">
       <name>certifi</name>
       <version>2021.5.30</version>
       <description>requirements line 1: certifi==2021.5.30</description>
@@ -13,7 +13,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="requirement-2">
+    <component type="library" bom-ref="requirements-L2">
       <name>chardet</name>
       <version>4.0.0</version>
       <description>requirements line 2: chardet==4.0.0</description>
@@ -25,7 +25,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="requirement-3">
+    <component type="library" bom-ref="requirements-L3">
       <name>idna</name>
       <version>2.10</version>
       <description>requirements line 3: idna==2.10</description>
@@ -37,7 +37,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="requirement-4">
+    <component type="library" bom-ref="requirements-L4">
       <name>requests</name>
       <version>2.25.1</version>
       <description>requirements line 4: requests==2.25.1</description>
@@ -49,7 +49,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="requirement-5">
+    <component type="library" bom-ref="requirements-L5">
       <name>urllib3</name>
       <version>1.26.5</version>
       <description>requirements line 5: urllib3==1.26.5</description>

@@ -1,7 +1,7 @@
 {
   "components": [
     {
-      "bom-ref": "requirement-6",
+      "bom-ref": "requirements-L6",
       "description": "requirements line 6: packageurl-python>=0.9.4",
       "externalReferences": [
         {
@@ -15,7 +15,7 @@
       "type": "library"
     },
     {
-      "bom-ref": "requirement-7",
+      "bom-ref": "requirements-L7",
       "description": "requirements line 7: requirements_parser>=0.2.0",
       "externalReferences": [
         {
@@ -29,7 +29,7 @@
       "type": "library"
     },
     {
-      "bom-ref": "requirement-8",
+      "bom-ref": "requirements-L8",
       "description": "requirements line 8: setuptools>=50.3.2",
       "externalReferences": [
         {
@@ -45,13 +45,13 @@
   ],
   "dependencies": [
     {
-      "ref": "requirement-6"
+      "ref": "requirements-L6"
     },
     {
-      "ref": "requirement-7"
+      "ref": "requirements-L7"
     },
     {
-      "ref": "requirement-8"
+      "ref": "requirements-L8"
     }
   ],
   "metadata": {

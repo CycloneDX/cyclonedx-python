@@ -15,7 +15,7 @@
     </tools>
   </metadata>
   <components>
-    <component type="library" bom-ref="requirement-11">
+    <component type="library" bom-ref="requirements-L11">
       <name>foo</name>
       <version/>
       <description>requirements line 11: foo @ file://../foo</description>
@@ -26,7 +26,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="requirement-14">
+    <component type="library" bom-ref="requirements-L14">
       <name>numpy</name>
       <version>1.9.2</version>
       <description>requirements line 14: ./downloads/numpy-1.9.2-cp34-none-win32.whl</description>
@@ -37,18 +37,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="requirement-8">
-      <name>unknown</name>
-      <version/>
-      <description>requirements line 8: -e ./myproject/idna.whl</description>
-      <externalReferences>
-        <reference type="other">
-          <url>./myproject/idna.whl</url>
-          <comment>explicit local path</comment>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="requirement-17">
+    <component type="library" bom-ref="requirements-L17">
       <name>unknown</name>
       <version/>
       <description>requirements line 17: ./downloads/numpy-1.26.1.tar.gz</description>
@@ -59,7 +48,18 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="requirement-5">
+    <component type="library" bom-ref="requirements-L8">
+      <name>unknown</name>
+      <version/>
+      <description>requirements line 8: -e ./myproject/idna.whl</description>
+      <externalReferences>
+        <reference type="other">
+          <url>./myproject/idna.whl</url>
+          <comment>explicit local path</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="requirements-L5">
       <name>unknown</name>
       <version/>
       <description>requirements line 5: ./myproject/requests --hash=sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804</description>
@@ -70,7 +70,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="requirement-2">
+    <component type="library" bom-ref="requirements-L2">
       <name>unknown</name>
       <version/>
       <description>requirements line 2: ./myproject/chardet</description>
@@ -83,11 +83,11 @@
     </component>
   </components>
   <dependencies>
-    <dependency ref="requirement-11"/>
-    <dependency ref="requirement-14"/>
-    <dependency ref="requirement-17"/>
-    <dependency ref="requirement-2"/>
-    <dependency ref="requirement-5"/>
-    <dependency ref="requirement-8"/>
+    <dependency ref="requirements-L11"/>
+    <dependency ref="requirements-L14"/>
+    <dependency ref="requirements-L17"/>
+    <dependency ref="requirements-L2"/>
+    <dependency ref="requirements-L5"/>
+    <dependency ref="requirements-L8"/>
   </dependencies>
 </bom>
