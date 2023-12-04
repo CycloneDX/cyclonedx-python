@@ -124,7 +124,7 @@ class RequirementsBB(BomBuilder):
         if pyproject_file is None:
             rc = None
         else:
-            from .utils.PEP621 import pyproject2component
+            from .utils.pep621 import pyproject2component
             from .utils.toml import toml_loads
 
             try:
