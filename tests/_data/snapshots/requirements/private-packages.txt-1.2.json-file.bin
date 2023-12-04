@@ -1,7 +1,7 @@
 {
   "components": [
     {
-      "bom-ref": "requirements-L7",
+      "bom-ref": "requirement-7",
       "description": "requirements line 7: my-package==1.2.3",
       "externalReferences": [
         {
@@ -28,15 +28,15 @@
   ],
   "dependencies": [
     {
-      "ref": "requirements-L7"
+      "ref": "requirement-7"
     },
     {
-      "ref": "testing-requirements-txt"
+      "ref": "root-component"
     }
   ],
   "metadata": {
     "component": {
-      "bom-ref": "testing-requirements-txt",
+      "bom-ref": "root-component",
       "description": "some `reuqirements.txt` a root-component with all metadata",
       "name": "testing-requirements-txt",
       "type": "application",

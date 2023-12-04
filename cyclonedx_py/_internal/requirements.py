@@ -136,6 +136,7 @@ class RequirementsBB(BomBuilder):
                     toml_loads(pyproject_fh.read()),
                     type=mc_type
                 )
+                rc.bom_ref.value = 'root-component'
             del pyproject_fh
 
         if requirements_file == '-':
@@ -173,6 +174,7 @@ class RequirementsBB(BomBuilder):
 
         for requirement in rf.requirements:
             component = self._make_component(requirement, index_url, extra_index_urls)
+            component.bom_ref.value = f'requirement-{requirement.line_number}'
             self._logger.debug('Add component: %r', component)
             if not component.version:
                 self._logger.warning('Component has no pinned version: %r', component)

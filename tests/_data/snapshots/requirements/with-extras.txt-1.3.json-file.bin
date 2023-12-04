@@ -1,7 +1,7 @@
 {
   "components": [
     {
-      "bom-ref": "requirements-L3",
+      "bom-ref": "requirement-3",
       "description": "requirements line 3: cyclonedx-python-lib[json-validation,xml-validation] == 5.1.1",
       "externalReferences": [
         {
@@ -28,15 +28,15 @@
   ],
   "dependencies": [
     {
-      "ref": "requirements-L3"
+      "ref": "requirement-3"
     },
     {
-      "ref": "testing-requirements-txt"
+      "ref": "root-component"
     }
   ],
   "metadata": {
     "component": {
-      "bom-ref": "testing-requirements-txt",
+      "bom-ref": "root-component",
       "description": "some `reuqirements.txt` a root-component with all metadata",
       "name": "testing-requirements-txt",
       "type": "application",

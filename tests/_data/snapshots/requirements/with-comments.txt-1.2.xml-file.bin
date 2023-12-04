@@ -13,14 +13,14 @@
         <version>libVersion-testing</version>
       </tool>
     </tools>
-    <component type="application" bom-ref="testing-requirements-txt">
+    <component type="application" bom-ref="root-component">
       <name>testing-requirements-txt</name>
       <version>0.1.0</version>
       <description>some `reuqirements.txt` a root-component with all metadata</description>
     </component>
   </metadata>
   <components>
-    <component type="library" bom-ref="requirements-L1">
+    <component type="library" bom-ref="requirement-1">
       <name>certifi</name>
       <version>2021.5.30</version>
       <description>requirements line 1: certifi==2021.5.30</description>
@@ -32,7 +32,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="requirements-L2">
+    <component type="library" bom-ref="requirement-2">
       <name>chardet</name>
       <version>4.0.0</version>
       <description>requirements line 2: chardet==4.0.0</description>
@@ -44,7 +44,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="requirements-L3">
+    <component type="library" bom-ref="requirement-3">
       <name>idna</name>
       <version>2.10</version>
       <description>requirements line 3: idna==2.10</description>
@@ -56,7 +56,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="requirements-L4">
+    <component type="library" bom-ref="requirement-4">
       <name>requests</name>
       <version>2.25.1</version>
       <description>requirements line 4: requests==2.25.1</description>
@@ -68,7 +68,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="requirements-L5">
+    <component type="library" bom-ref="requirement-5">
       <name>urllib3</name>
       <version>1.26.5</version>
       <description>requirements line 5: urllib3==1.26.5</description>
@@ -82,11 +82,11 @@
     </component>
   </components>
   <dependencies>
-    <dependency ref="requirements-L1"/>
-    <dependency ref="requirements-L2"/>
-    <dependency ref="requirements-L3"/>
-    <dependency ref="requirements-L4"/>
-    <dependency ref="requirements-L5"/>
-    <dependency ref="testing-requirements-txt"/>
+    <dependency ref="requirement-1"/>
+    <dependency ref="requirement-2"/>
+    <dependency ref="requirement-3"/>
+    <dependency ref="requirement-4"/>
+    <dependency ref="requirement-5"/>
+    <dependency ref="root-component"/>
   </dependencies>
 </bom>

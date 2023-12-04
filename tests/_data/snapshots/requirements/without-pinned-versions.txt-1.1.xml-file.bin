@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <bom xmlns="http://cyclonedx.org/schema/bom/1.1" version="1">
   <components>
-    <component type="library" bom-ref="requirements-L1">
+    <component type="library" bom-ref="requirement-1">
       <name>certifi</name>
       <version/>
       <description>requirements line 1: certifi&gt;=2021.5.30</description>
@@ -13,7 +13,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="requirements-L2">
+    <component type="library" bom-ref="requirement-2">
       <name>chardet</name>
       <version/>
       <description>requirements line 2: chardet &gt;= 4.0.0 , &lt; 5</description>
@@ -25,7 +25,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="requirements-L3">
+    <component type="library" bom-ref="requirement-3">
       <name>urllib3</name>
       <version/>
       <description>requirements line 3: urllib3</description>

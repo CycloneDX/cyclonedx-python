@@ -42,7 +42,7 @@
     </tools>
   </metadata>
   <components>
-    <component type="library" bom-ref="requirements-L7">
+    <component type="library" bom-ref="requirement-7">
       <name>my-package</name>
       <version>1.2.3</version>
       <description>requirements line 7: my-package==1.2.3</description>
@@ -64,6 +64,6 @@
     </component>
   </components>
   <dependencies>
-    <dependency ref="requirements-L7"/>
+    <dependency ref="requirement-7"/>
   </dependencies>
 </bom>

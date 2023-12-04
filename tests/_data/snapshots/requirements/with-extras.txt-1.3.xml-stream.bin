@@ -15,7 +15,7 @@
     </tools>
   </metadata>
   <components>
-    <component type="library" bom-ref="requirements-L3">
+    <component type="library" bom-ref="requirement-3">
       <name>cyclonedx-python-lib</name>
       <version>5.1.1</version>
       <description>requirements line 3: cyclonedx-python-lib[json-validation,xml-validation] == 5.1.1</description>
@@ -33,6 +33,6 @@
     </component>
   </components>
   <dependencies>
-    <dependency ref="requirements-L3"/>
+    <dependency ref="requirement-3"/>
   </dependencies>
 </bom>
