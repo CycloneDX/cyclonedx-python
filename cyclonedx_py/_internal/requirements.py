@@ -158,13 +158,12 @@ class RequirementsBB(BomBuilder):
     def _make_bom(self, rc: Optional['Component'], rf: 'RequirementsFile') -> 'Bom':
         from .utils.bom import make_bom
 
-        bom = make_bom(
-            components=self._make_components(rf)
-        )
+        bom = make_bom()
+        self._add_components(bom, rf)
         bom.metadata.component = rc
         return bom
 
-    def _make_components(self, rf: 'RequirementsFile') -> Generator['Component', None, None]:
+    def _add_components(self, bom: 'Bom', rf: 'RequirementsFile') -> None:
         from functools import reduce
 
         index_url = reduce(lambda c, i: i.options.get('index_url') or c, rf.options, self._index_url)
@@ -178,7 +177,7 @@ class RequirementsBB(BomBuilder):
             self._logger.debug('Add component: %r', component)
             if not component.version:
                 self._logger.warning('Component has no pinned version: %r', component)
-            yield component
+            bom.components.add(component)
 
     def __hashes4req(self, req: 'InstallRequirement') -> Generator['HashType', None, None]:
         from cyclonedx.exception.model import UnknownHashTypeException

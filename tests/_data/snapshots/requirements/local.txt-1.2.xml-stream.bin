@@ -37,28 +37,6 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="requirements-L17">
-      <name>unknown</name>
-      <version/>
-      <description>requirements line 17: ./downloads/numpy-1.26.1.tar.gz</description>
-      <externalReferences>
-        <reference type="other">
-          <url>./downloads/numpy-1.26.1.tar.gz</url>
-          <comment>explicit local path</comment>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="requirements-L8">
-      <name>unknown</name>
-      <version/>
-      <description>requirements line 8: -e ./myproject/idna.whl</description>
-      <externalReferences>
-        <reference type="other">
-          <url>./myproject/idna.whl</url>
-          <comment>explicit local path</comment>
-        </reference>
-      </externalReferences>
-    </component>
     <component type="library" bom-ref="requirements-L2">
       <name>unknown</name>
       <version/>
@@ -77,6 +55,28 @@
       <externalReferences>
         <reference type="other">
           <url>./myproject/requests</url>
+          <comment>explicit local path</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="requirements-L8">
+      <name>unknown</name>
+      <version/>
+      <description>requirements line 8: -e ./myproject/idna.whl</description>
+      <externalReferences>
+        <reference type="other">
+          <url>./myproject/idna.whl</url>
+          <comment>explicit local path</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="requirements-L17">
+      <name>unknown</name>
+      <version/>
+      <description>requirements line 17: ./downloads/numpy-1.26.1.tar.gz</description>
+      <externalReferences>
+        <reference type="other">
+          <url>./downloads/numpy-1.26.1.tar.gz</url>
           <comment>explicit local path</comment>
         </reference>
       </externalReferences>

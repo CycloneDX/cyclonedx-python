@@ -68,26 +68,6 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="requirements-L17">
-      <name>unknown</name>
-      <description>requirements line 17: ./downloads/numpy-1.26.1.tar.gz</description>
-      <externalReferences>
-        <reference type="other">
-          <url>./downloads/numpy-1.26.1.tar.gz</url>
-          <comment>explicit local path</comment>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="requirements-L8">
-      <name>unknown</name>
-      <description>requirements line 8: -e ./myproject/idna.whl</description>
-      <externalReferences>
-        <reference type="other">
-          <url>./myproject/idna.whl</url>
-          <comment>explicit local path</comment>
-        </reference>
-      </externalReferences>
-    </component>
     <component type="library" bom-ref="requirements-L2">
       <name>unknown</name>
       <description>requirements line 2: ./myproject/chardet</description>
@@ -108,6 +88,26 @@
           <hashes>
             <hash alg="SHA-256">27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804</hash>
           </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="requirements-L8">
+      <name>unknown</name>
+      <description>requirements line 8: -e ./myproject/idna.whl</description>
+      <externalReferences>
+        <reference type="other">
+          <url>./myproject/idna.whl</url>
+          <comment>explicit local path</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="requirements-L17">
+      <name>unknown</name>
+      <description>requirements line 17: ./downloads/numpy-1.26.1.tar.gz</description>
+      <externalReferences>
+        <reference type="other">
+          <url>./downloads/numpy-1.26.1.tar.gz</url>
+          <comment>explicit local path</comment>
         </reference>
       </externalReferences>
     </component>
