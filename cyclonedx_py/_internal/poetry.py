@@ -137,7 +137,7 @@ class PoetryBB(BomBuilder):
 
     def __init__(self, *,
                  logger: 'Logger',
-                 **kwargs: Any) -> None:
+                 **__: Any) -> None:
         self._logger = logger
 
     def __call__(self, *,  # type:ignore[override]
@@ -146,7 +146,7 @@ class PoetryBB(BomBuilder):
                  no_dev: bool,
                  extras: List[str], all_extras: bool,
                  mc_type: 'ComponentType',
-                 **kwargs: Any) -> 'Bom':
+                 **__: Any) -> 'Bom':
         from os.path import join
 
         from .utils.toml import toml_loads
@@ -156,12 +156,12 @@ class PoetryBB(BomBuilder):
         try:
             pyproject = open(pyproject_file, 'rt', encoding='utf8', errors='replace')
         except OSError as err:
-            raise ValueError(f"can't open {pyproject_file!r}: {err}")
+            raise ValueError(f'Could not open pyproject file: {pyproject_file}') from err
         try:
             lock = open(lock_file, 'rt', encoding='utf8', errors='replace')
         except OSError as err:
             pyproject.close()
-            raise ValueError(f"can't open {lock_file!r}: {err}")
+            raise ValueError(f'Could not open lock file: {lock_file}') from err
 
         with pyproject, lock:
             project = toml_loads(pyproject.read())

@@ -19,7 +19,7 @@
 import logging
 from io import StringIO
 from os.path import join
-from random import randbytes
+from random import random
 from typing import Any
 from unittest import TestCase
 from unittest.mock import Mock
@@ -139,7 +139,7 @@ class TestCli(TestCase, SnapshotMixin):
 
     @classmethod
     def __make_fresh_logger(cls, logstream: StringIO, level: int = logging.NOTSET) -> logging.Logger:
-        logger = logging.getLogger(f'{cls.__qualname__}.{randbytes(15).hex()}')
+        logger = logging.getLogger(f'{cls.__qualname__}.{random()}')  # nosec:B311
         map(logger.removeHandler, logger.handlers)
         logger.level = level
         logger.propagate = False

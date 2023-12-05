@@ -55,9 +55,19 @@
     },
     {
       "ref": "requirements-L3"
+    },
+    {
+      "ref": "root-component"
     }
   ],
   "metadata": {
+    "component": {
+      "bom-ref": "root-component",
+      "description": "some `reuqirements.txt` a root-component with all metadata",
+      "name": "testing-requirements-txt",
+      "type": "application",
+      "version": "0.1.0"
+    },
     "tools": [
       {
         "name": "cyclonedx-bom",
