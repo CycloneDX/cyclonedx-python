@@ -16,15 +16,17 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
+from typing import Any
+
 from cyclonedx.model import ExternalReference, ExternalReferenceType, Tool, XsUri
 from cyclonedx.model.bom import Bom
 
 from cyclonedx_py import __version__
 
 
-def make_bom() -> Bom:
-    bom = Bom()
-    tool = Tool(
+def make_bom(**kwargs: Any) -> Bom:
+    bom = Bom(**kwargs)
+    bom.metadata.tools.add(Tool(
         vendor='CycloneDX',
         name='cyclonedx-bom',
         version=__version__ or 'UNKNOWN',
@@ -61,6 +63,5 @@ def make_bom() -> Bom:
                 type=ExternalReferenceType.WEBSITE,
                 url=XsUri('https://github.com/CycloneDX/cyclonedx-python/#readme')
             )
-        ])
-    bom.metadata.tools.add(tool)
+        ]))
     return bom

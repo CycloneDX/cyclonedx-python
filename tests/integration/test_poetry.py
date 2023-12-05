@@ -69,7 +69,7 @@ class TestPoetry(TestCase, SnapshotMixin):
             err = err.getvalue()
             out = out.getvalue()
         self.assertNotEqual(0, res, err)
-        self.assertIn("No such file or directory: 'something-that-must-not-exist.testing", err)
+        self.assertIn('Could not open pyproject file: something-that-must-not-exist.testing', err)
 
     def test_cli_fails_with_groups_not_found(self) -> None:
         projectdir = random.choice(projectdirs)  # nosec B311

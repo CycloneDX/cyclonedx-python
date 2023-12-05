@@ -40,6 +40,11 @@
         <externalReferences><!-- stripped --></externalReferences>
       </tool>
     </tools>
+    <component type="application" bom-ref="root-component">
+      <name>testing-requirements-txt</name>
+      <version>0.1.0</version>
+      <description>some `reuqirements.txt` a root-component with all metadata</description>
+    </component>
   </metadata>
   <components>
     <component type="library" bom-ref="requirements-L7">
@@ -65,5 +70,6 @@
   </components>
   <dependencies>
     <dependency ref="requirements-L7"/>
+    <dependency ref="root-component"/>
   </dependencies>
 </bom>
