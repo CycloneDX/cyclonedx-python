@@ -2,10 +2,17 @@
 sort_pipfile = true
 
 [packages]
+toml = ">=0.10.2, <0.11"
 
 [dev-packages]
+ddt = ">=1.6.0, <2"
 
 # custom catrogys/groups
 # see https://pipenv.pypa.io/en/latest/pipfile.html#package-category-groups
 
+[categoryB]
+isoduration = ">=20.11.0, <21"
 
+[groupA]
+isoduration = ">=20.11.0, <21"
+colorama = ">=0.4.6"
