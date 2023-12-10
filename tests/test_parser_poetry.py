@@ -84,3 +84,12 @@ class TestPoetryParser(TestCase):
         c_property = next(filter(lambda p: p.name == 'cdx:poetry:package:group', component.properties), None)
         self.assertIsNotNone(c_property)
         self.assertEqual('dev', c_property.value)
+
+    def test_regression_issue611(self) -> None:
+        # see https://github.com/CycloneDX/cyclonedx-python/issues/611
+        lock_file_name = 'poetry-lock-regression-issue611.txt.bin'
+        poetry_lock_filename = os.path.join(os.path.dirname(__file__), 'fixtures', lock_file_name)
+        parser = PoetryFileParser(poetry_lock_filename=poetry_lock_filename, use_purl_bom_ref=True)
+        self.assertEqual(1, parser.component_count())
+        component = next(filter(lambda c: c.name == 'pyhumps', parser.get_components()), None)
+        self.assertEqual('pyhumps', component.name)
