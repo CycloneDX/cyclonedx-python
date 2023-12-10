@@ -36,7 +36,7 @@ jobs:
         run: mkdir "$REPORTS_DIR"
       - name: Setup python ${{ env.PYTHON_VERISON }}
         # see https://github.com/actions/setup-python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERISON }}
       - name: Setup poetry ${{ env.POETRY_VERSION }}
