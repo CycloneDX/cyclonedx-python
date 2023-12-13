@@ -4,6 +4,7 @@ install_search_all_sources = true
 
 # see https://pipenv.pypa.io/en/latest/indexes.html#specifying-package-indexes
 # run the `//tests/_data/infiles/_helpers/pypi-proxy.py` to setup a PyPI proxy
+# call with `pipenv ... --pypi-mirror http://pysrc2.acme.org:8080/simple/ ...`
 
 [[source]]
 url = "https://pypi.org/simple"
@@ -16,8 +17,8 @@ verify_ssl = false
 name = "pysrc1.acme.org"
 
 [packages]
-numpy = {version="*"}
+numpy = {version="*", index="pypi"}
+six = "*"
 toml = {version = "*", index="pysrc1.acme.org"}
-
 
 [dev-packages]

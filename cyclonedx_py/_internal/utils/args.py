@@ -18,7 +18,7 @@
 
 from argparse import ArgumentTypeError
 from enum import Enum
-from typing import Callable, Type, TypeVar
+from typing import Callable, List, Type, TypeVar
 
 _E = TypeVar('_E', bound=Enum)
 
@@ -35,3 +35,10 @@ def argparse_type4enum(enum: Type[_E]) -> Callable[[str], _E]:
 
 def choices4enum(enum: Type[Enum]) -> str:
     return f'{{choices: {", ".join(sorted(c.name for c in enum))}}}'
+
+
+def arpaese_split(sep: str) -> Callable[[str], List[str]]:
+    def str_split(value: str) -> List[str]:
+        return list(filter(None, map(str.strip, value.split(sep))))
+
+    return str_split

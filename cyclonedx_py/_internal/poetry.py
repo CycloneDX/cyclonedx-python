@@ -116,11 +116,6 @@ class PoetryBB(BomBuilder):
                         dest='all_extras',
                         default=False)
         del eg
-        p.add_argument('project_directory',
-                       metavar='project-directory',
-                       help='The project directory for Poetry (default: current working directory)',
-                       nargs=OPTIONAL,
-                       default='.')
         _mc_types = [ComponentType.APPLICATION,
                      ComponentType.FIRMWARE,
                      ComponentType.LIBRARY]
@@ -133,6 +128,11 @@ class PoetryBB(BomBuilder):
                        choices=_mc_types,
                        type=argparse_type4enum(ComponentType),
                        default=ComponentType.APPLICATION.value)
+        p.add_argument('project_directory',
+                       metavar='project-directory',
+                       help='The project directory for Poetry (default: current working directory)',
+                       nargs=OPTIONAL,
+                       default='.')
         return p
 
     def __init__(self, *,
