@@ -44,6 +44,7 @@ class PipenvBB(BomBuilder):
 
         p = ArgumentParser(description='Build an SBOM from Pipenv',
                            **kwargs)
+        # the args shall mimic the ones from Pipenv
         p.add_argument('--categories',
                        metavar='CATEGORIES',
                        dest='categories',
@@ -98,6 +99,8 @@ class PipenvBB(BomBuilder):
         from json import loads as json_loads
         from os.path import join
 
+        # the group-args shall mimic the ones from Pipenv, which uses (comma and/or space)-separated lists
+        # values be like: 'foo bar,bazz' -> ['foo', 'bar', 'bazz']
         lock_groups: Set[str] = set()
         if len(categories) == 0:
             lock_groups.add('default')
