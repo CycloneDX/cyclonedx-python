@@ -7,29 +7,29 @@
       <description>some package A</description>
       <externalReferences>
         <reference type="distribution">
-          <url>../local_pckages/a/dist/package_a-23.42.tar.gz</url>
+          <url>../../../_helpers/local_pckages/a/dist/package-a-23.42.tar.gz</url>
           <comment>from file</comment>
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="package-b@1.33.7">
+    <component type="library" bom-ref="package-b@23.42">
       <name>package-b</name>
-      <version>1.33.7</version>
+      <version>23.42</version>
       <description>some package B</description>
       <externalReferences>
         <reference type="distribution">
-          <url>../local_pckages/b/dist/package_b-1.33.7-py2.py3-none-any.whl</url>
+          <url>../../../_helpers/local_pckages/b/dist/package_b-23.42-py3-none-any.whl</url>
           <comment>from file</comment>
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="package-c@80.0.85">
+    <component type="library" bom-ref="package-c@23.42">
       <name>package-c</name>
-      <version>80.0.85</version>
+      <version>23.42</version>
       <description>some package C</description>
       <externalReferences>
         <reference type="distribution">
-          <url>../local_pckages/c</url>
+          <url>../../../_helpers/local_pckages/c</url>
           <comment>from directory</comment>
         </reference>
       </externalReferences>

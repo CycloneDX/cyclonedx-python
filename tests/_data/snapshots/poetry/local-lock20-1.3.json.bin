@@ -9,11 +9,11 @@
           "hashes": [
             {
               "alg": "SHA-256",
-              "content": "ae88a53d80bf9703baa9c22c8e713f5199dde0445a6a246593bee36fca2be937"
+              "content": "3869fe3f4a6cca5b203b2e2cd8858c834f651e1b0fa76d5c0232e36472199592"
             }
           ],
           "type": "distribution",
-          "url": "../local_pckages/a/dist/package_a-23.42.tar.gz"
+          "url": "../../../_helpers/local_pckages/a/dist/package-a-23.42.tar.gz"
         }
       ],
       "name": "package-a",
@@ -27,7 +27,7 @@
       "version": "23.42"
     },
     {
-      "bom-ref": "package-b@1.33.7",
+      "bom-ref": "package-b@23.42",
       "description": "some package B",
       "externalReferences": [
         {
@@ -35,11 +35,11 @@
           "hashes": [
             {
               "alg": "SHA-256",
-              "content": "9dabd70588b919932d5ca273135d5c8b80ebd111a7e2c1d785c14ddf00d180ce"
+              "content": "4aacda53fa274f5ff7eed71a9916904ffb3a11b05dc5ca529d7ddb78ae2dc602"
             }
           ],
           "type": "distribution",
-          "url": "../local_pckages/b/dist/package_b-1.33.7-py2.py3-none-any.whl"
+          "url": "../../../_helpers/local_pckages/b/dist/package_b-23.42-py3-none-any.whl"
         }
       ],
       "name": "package-b",
@@ -50,16 +50,16 @@
         }
       ],
       "type": "library",
-      "version": "1.33.7"
+      "version": "23.42"
     },
     {
-      "bom-ref": "package-c@80.0.85",
+      "bom-ref": "package-c@23.42",
       "description": "some package C",
       "externalReferences": [
         {
           "comment": "from directory",
           "type": "distribution",
-          "url": "../local_pckages/c"
+          "url": "../../../_helpers/local_pckages/c"
         }
       ],
       "name": "package-c",
@@ -70,15 +70,15 @@
         }
       ],
       "type": "library",
-      "version": "80.0.85"
+      "version": "23.42"
     }
   ],
   "dependencies": [
     {
       "dependsOn": [
         "package-a@23.42",
-        "package-b@1.33.7",
-        "package-c@80.0.85"
+        "package-b@23.42",
+        "package-c@23.42"
       ],
       "ref": "local"
     },
@@ -86,10 +86,10 @@
       "ref": "package-a@23.42"
     },
     {
-      "ref": "package-b@1.33.7"
+      "ref": "package-b@23.42"
     },
     {
-      "ref": "package-c@80.0.85"
+      "ref": "package-c@23.42"
     }
   ],
   "metadata": {

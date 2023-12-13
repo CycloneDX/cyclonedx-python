@@ -1,0 +1,14 @@
+[project]
+name = "package-b"
+version = "23.42"
+description = "some package B"
+license = {text =  "Apache-2.0"}
+authors = []
+requires-python = ">=3.8"
+
+[tool.setuptools]
+py-modules = ["module_b"]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
