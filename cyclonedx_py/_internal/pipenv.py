@@ -16,7 +16,7 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
-from typing import TYPE_CHECKING, Any, Iterable, Optional, Set
+from typing import TYPE_CHECKING, Any, Dict, List, Optional, Set
 
 from . import BomBuilder
 
@@ -25,8 +25,9 @@ if TYPE_CHECKING:  # pragma: no cover
     from logging import Logger
 
     from cyclonedx.model.bom import Bom
-    from cyclonedx.model.component import ComponentType
+    from cyclonedx.model.component import Component, ComponentType
 
+    NameDict = Dict[str, Any]
 
 # !!! be as lazy loading as possible, as greedy as needed
 # TODO: measure with `/bin/time -v` for max resident size and see if this changes when global imports are used
@@ -89,20 +90,54 @@ class PipenvBB(BomBuilder):
 
     def __call__(self, *,  # type:ignore[override]
                  project_directory: str,
-                 categories: Iterable[str],
+                 categories: List[str],
                  dev: bool,
                  pyproject_file: Optional[str],
                  mc_type: 'ComponentType',
                  **__: Any) -> 'Bom':
+        from json import loads as json_loads
+        from os.path import join
+
+        lock_groups: Set[str] = set()
+        if len(categories) == 0:
+            lock_groups.add('default')
+            if dev:
+                lock_groups.add('develop')
+        else:
+            lock_groups.update(categories)
+            if 'packages' in lock_groups:
+                lock_groups.remove('packages')
+                lock_groups.add('default')
+            if 'dev-packages' in lock_groups:
+                lock_groups.remove('dev-packages')
+                lock_groups.add('develop')
+
+        lock_file = join(project_directory, 'Pipfile.lock')
+
+        try:
+            lock = open(lock_file, 'rt', encoding='utf8', errors='replace')
+        except OSError as err:
+            raise ValueError(f'Could not open lock file: {lock_file}') from err
+        with lock:
+            if pyproject_file is None:
+                rc = None
+            else:
+                from .utils.pep621 import pyproject_file2component
+                rc = pyproject_file2component(pyproject_file, type=mc_type)
+                rc.bom_ref.value = 'root-component'
+
+            return self._make_bom(rc,
+                                  json_loads(lock.read()),
+                                  lock_groups)
+
+    def _make_bom(self, rc: Optional['Component'], locker: 'NameDict',
+                  lock_groups: Set[str]
+                  ) -> 'Bom':
         from .utils.bom import make_bom
 
-        groups: Set[str] = {'packages', *categories}
-        if dev:
-            groups.add('dev-packages')
-
         bom = make_bom()
+        bom.metadata.component = rc
         # TODO: gather info from lock
-        # TODO: gather info from pyproject_file
 
         return bom
 

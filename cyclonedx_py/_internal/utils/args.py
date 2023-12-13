@@ -18,7 +18,7 @@
 
 from argparse import ArgumentTypeError
 from enum import Enum
-from typing import Callable, Iterable, List, Set, Type, TypeVar, Union
+from typing import Callable, Iterable, List, Type, TypeVar, Union
 
 _E = TypeVar('_E', bound=Enum)
 
