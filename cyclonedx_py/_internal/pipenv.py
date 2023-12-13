@@ -46,7 +46,7 @@ class PipenvBB(BomBuilder):
         p.add_argument('--categories',
                        metavar='CATEGORIES',
                        dest='categories',
-                       type=arpaese_split(' '),
+                       type=arpaese_split({' ', ','}),
                        default=[])
         p.add_argument('-d', '--dev',
                        help='both develop and default packages [env var: PIPENV_DEV]',
