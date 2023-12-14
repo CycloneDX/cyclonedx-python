@@ -158,17 +158,16 @@ class PipenvBB(BomBuilder):
             # root for self-installs
             all_components[rc.name] = rc
         for group_name in use_groups:
-            for package_name, package_data in locker.get(group_name, {}):
+            for package_name, package_data in locker.get(group_name, {}).items():
                 if package_name in all_components:
                     component = all_components[package_name]
                 else:
                     component = all_components[package_name] = Component(
-                        bom_ref=f'{package_name}{package_data["version"]}',
+                        bom_ref=f'{package_name}{package_data.get("version", "")}',
                         type=ComponentType.LIBRARY,
                         name=package_name,
-                        version=package_data['version'][2:],
+                        version=package_data['version'][2:] if 'version' in package_data else None,
                         external_references=self.__make_extrefs(group_name, package_data, source_urls),
-                        purl=None  # TODO
                     )
                     component.purl = PackageURL(type='pypi',
                                                 name=component.name,

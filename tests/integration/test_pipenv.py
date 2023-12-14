@@ -30,7 +30,7 @@ from ddt import ddt, named_data
 from cyclonedx_py._internal.cli import run as run_cli
 from tests import INFILES_DIRECTORY, SUPPORTED_OF_SV, SnapshotMixin, make_comparable
 
-lockfiles = glob(join(INFILES_DIRECTORY, 'pipenv', '*', '*', 'Pipfile.lock'))
+lockfiles = glob(join(INFILES_DIRECTORY, 'pipenv', '*', 'Pipfile.lock'))
 projectdirs = list(dirname(lockfile) for lockfile in lockfiles)
 
 test_data = tuple(
