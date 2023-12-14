@@ -167,7 +167,7 @@ class PipenvBB(BomBuilder):
                         type=ComponentType.LIBRARY,
                         name=package_name,
                         version=package_data['version'][2:] if 'version' in package_data else None,
-                        external_references=self.__make_extrefs(group_name, package_data, source_urls),
+                        external_references=self.__make_extrefs(package_name, package_data, source_urls),
                     )
                     component.purl = PackageURL(type='pypi',
                                                 name=component.name,
