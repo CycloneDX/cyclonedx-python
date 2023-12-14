@@ -151,16 +151,16 @@ class PipenvBB(BomBuilder):
         meta: NameDict = locker[self.__LOCKFILE_META]
         source_urls: Dict[str, str] = dict((source['name'], source['url']) for source in meta.get('sources', []))
 
-        components: Dict[str, Component] = {}
+        all_components: Dict[str, Component] = {}
         if rc:
             # root for self-installs
-            components[rc.name] = rc
+            all_components[rc.name] = rc
         for group_name in use_groups:
             for package_name, package_data in locker.get(group_name, {}):
-                if package_name in components:
-                    component = components[package_name]
+                if package_name in all_components:
+                    component = all_components[package_name]
                 else:
-                    component = components[package_name] = Component(
+                    component = all_components[package_name] = Component(
                         bom_ref=f'{package_name}{package_data["version"]}',
                         type=ComponentType.LIBRARY,
                         name=package_name,
@@ -183,7 +183,7 @@ class PipenvBB(BomBuilder):
                 ) for package_extra in package_data.get('extras', []))
 
         bom = make_bom(
-            components=(c for c in components.values() if c is not rc)
+            components=(c for c in all_components.values() if c is not rc)
         )
         bom.metadata.component = rc
         return bom
