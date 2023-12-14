@@ -16,7 +16,7 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
-from typing import TYPE_CHECKING, Any, Dict, List, Optional, Set
+from typing import TYPE_CHECKING, Any, Dict, Generator, List, Optional, Set
 
 from . import BomBuilder
 
@@ -24,16 +24,19 @@ if TYPE_CHECKING:  # pragma: no cover
     from argparse import ArgumentParser
     from logging import Logger
 
+    from cyclonedx.model import ExternalReference
     from cyclonedx.model.bom import Bom
     from cyclonedx.model.component import Component, ComponentType
 
     NameDict = Dict[str, Any]
+
 
 # !!! be as lazy loading as possible, as greedy as needed
 # TODO: measure with `/bin/time -v` for max resident size and see if this changes when global imports are used
 
 
 class PipenvBB(BomBuilder):
+    __LOCKFILE_META = '_meta'
 
     @staticmethod
     def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':
@@ -108,6 +111,7 @@ class PipenvBB(BomBuilder):
                 lock_groups.add('develop')
         else:
             lock_groups.update(categories)
+            lock_groups.remove(self.__LOCKFILE_META)
             if 'packages' in lock_groups:
                 lock_groups.remove('packages')
                 lock_groups.add('default')
@@ -135,15 +139,122 @@ class PipenvBB(BomBuilder):
     def _make_bom(self, rc: Optional['Component'], locker: 'NameDict',
                   use_groups: Set[str]
                   ) -> 'Bom':
+        from cyclonedx.model import Property
+        from cyclonedx.model.component import Component, ComponentType
+        from packageurl import PackageURL
+
+        from . import PropertyName
         from .utils.bom import make_bom
 
         self._logger.debug('use_groups: %r', use_groups)
 
-        bom = make_bom()
-        bom.metadata.component = rc
-        # TODO: gather info from lock
+        meta: NameDict = locker[self.__LOCKFILE_META]
+        source_urls: Dict[str, str] = dict((source['name'], source['url']) for source in meta.get('sources', []))
 
+        components: Dict[str, Component] = {}
+        if rc:
+            # root for self-installs
+            components[rc.name] = rc
+        for group_name in use_groups:
+            for package_name, package_data in locker.get(group_name, {}):
+                if package_name in components:
+                    component = components[package_name]
+                else:
+                    component = components[package_name] = Component(
+                        bom_ref=f'{package_name}{package_data["version"]}',
+                        type=ComponentType.LIBRARY,
+                        name=package_name,
+                        version=package_data['version'][2:],
+                        external_references=self.__make_extrefs(group_name, package_data, source_urls),
+                        purl=None  # TODO
+                    )
+                    component.purl = PackageURL(type='pypi',
+                                                name=component.name,
+                                                version=component.version,
+                                                qualifiers=self.__purl_qualifiers4lock(package_data, source_urls)
+                                                ) if not self.__is_local(package_data) else None
+                component.properties.add(Property(
+                    name=PropertyName.PipenvCategory.value,
+                    value=group_name
+                ))
+                component.properties.update(Property(
+                    name=PropertyName.PackageExtra.value,
+                    value=package_extra
+                ) for package_extra in package_data.get('extras', []))
+
+        bom = make_bom(components=components.values())
+        bom.metadata.component = rc
         return bom
+
+    def __is_local(self, data: 'NameDict') -> bool:
+        if 'file' in data:
+            location: str = data['file']
+        elif 'path' in data:
+            location = data['path']
+        else:
+            return False
+        might_have_schema = location.find(':')
+        if might_have_schema <= 0:
+            return True
+        maybe_schema = location[:might_have_schema]
+        return maybe_schema == 'file'
+
+    def __make_extrefs(self, name: str, data: 'NameDict', source_urls: Dict[str, str]
+                       ) -> Generator['ExternalReference', None, None]:
+        from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
+        from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
+
+        hashes = (HashType.from_composite_str(package_hash)
+                  for package_hash
+                  in data.get('hashes', []))
+        try:
+            if 'git' in data:
+                yield ExternalReference(
+                    comment='from git',
+                    type=ExternalReferenceType.VCS,
+                    url=XsUri(f'{data["git"]}#{data.get("ref", "")}'))
+            elif 'file' in data:
+                yield ExternalReference(
+                    comment='from file',
+                    type=ExternalReferenceType.DISTRIBUTION,
+                    url=XsUri(data['file']),
+                    hashes=hashes)
+            elif 'path' in data:
+                yield ExternalReference(
+                    comment='from path',
+                    type=ExternalReferenceType.DISTRIBUTION,
+                    url=XsUri(data['path']),
+                    hashes=hashes)
+            elif 'index' in data:
+                yield ExternalReference(
+                    comment=f'from explicit index: {data["index"]}',
+                    type=ExternalReferenceType.DISTRIBUTION,
+                    url=XsUri(f'{source_urls[data["index"]]}/{name}/'),
+                    hashes=hashes)
+            else:
+                yield ExternalReference(
+                    comment='from implicit index: pypi',
+                    type=ExternalReferenceType.DISTRIBUTION,
+                    url=XsUri(f'{source_urls["pypi"]}/{name}/'),
+                    hashes=hashes)
+        except (InvalidUriException, UnknownHashTypeException, KeyError) as error:
+            self._logger.debug('skipped dist-extRef for: %r', name, exc_info=error)
+
+    def __purl_qualifiers4lock(self, data: 'NameDict', sourcees: Dict[str, str]) -> 'NameDict':
+        # see https://github.com/package-url/purl-spec/blob/master/PURL-SPECIFICATION.rst
+        qs = {}
+        if 'git' in data:
+            qs['vcs_url'] = f'{data["git"]}@{data.get("ref")}'
+        elif 'file' in data:
+            if '://files.pythonhosted.org/' not in data['file']:
+                # skip PURL bloat, do not add implicit information
+                qs['download_url'] = data['file']
+        elif 'index' in data:
+            source_url = sourcees.get(data['index'], 'https://pypi.org/simple')
+            if '://pypi.org/' not in source_url:
+                # skip PURL bloat, do not add implicit information
+                qs['repository_url'] = source_url
+        return qs
 
     def __make_dependency_graph(self) -> None:
         pass  # TODO: gather info from `pipenv graph --json-tree` and work with it

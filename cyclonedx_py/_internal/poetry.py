@@ -253,7 +253,7 @@ class PoetryBB(BomBuilder):
             name=root_c.name,
             component=root_c,
             dependencies=set(),
-            extra_deps=dict(),
+            extra_deps={},
             added2bom=True,
             added2bom_extras=use_extras
         )
@@ -462,7 +462,7 @@ class PoetryBB(BomBuilder):
 
     def __purl_qualifiers4lock(self, package: 'NameDict') -> 'NameDict':
         # see https://github.com/package-url/purl-spec/blob/master/PURL-SPECIFICATION.rst
-        qs = dict()
+        qs = {}
 
         source = package['source']
         source_type = package['source'].get('type')
@@ -527,7 +527,7 @@ class PoetryBB(BomBuilder):
                 hashes=[HashType.from_composite_str(package['files'][0]['hash'])] if len(package['files']) else None
             )
         except (InvalidUriException, UnknownHashTypeException) as error:  # pragma: nocover
-            self._logger.debug('%s skipped dist-extRef for: %r', package['name'], exc_info=error)
+            self._logger.debug('skipped dist-extRef for: %r', package['name'], exc_info=error)
 
     def __extrefs4lock_file(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
         from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
@@ -541,7 +541,7 @@ class PoetryBB(BomBuilder):
                 hashes=[HashType.from_composite_str(package['files'][0]['hash'])] if len(package['files']) else None
             )
         except (InvalidUriException, UnknownHashTypeException) as error:  # pragma: nocover
-            self._logger.debug('%s skipped dist-extRef for: %r', package['name'], exc_info=error)
+            self._logger.debug('skipped dist-extRef for: %r', package['name'], exc_info=error)
 
     def __extrefs4lock_directory(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
         from cyclonedx.exception.model import InvalidUriException
@@ -555,7 +555,7 @@ class PoetryBB(BomBuilder):
                 # no hash for a source-directory
             )
         except InvalidUriException as error:  # pragma: nocover
-            self._logger.debug('%s skipped dist-extRef for: %r', package['name'], exc_info=error)
+            self._logger.debug('skipped dist-extRef for: %r', package['name'], exc_info=error)
 
     def __extrefs4lock_vcs(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
         from cyclonedx.exception.model import InvalidUriException
@@ -571,4 +571,4 @@ class PoetryBB(BomBuilder):
                 # no hashes, has source.resolved_reference instead, which is a property
             )
         except InvalidUriException as error:  # pragma: nocover
-            self._logger.debug('%s skipped dist-extRef for: %r', package['name'], exc_info=error)
+            self._logger.debug('skipped dist-extRef for: %r', package['name'], exc_info=error)

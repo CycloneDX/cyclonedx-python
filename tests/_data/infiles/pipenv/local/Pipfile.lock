@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "1a27524ec309dcac76e2e13745b7a71ddbb988e8478c4004e3d8ce0d408fbf50"
+            "sha256": "b6b344a88a20d99f1cff5db6c549e31c5aa79bf36bb9859c3f818ef795d62850"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -21,13 +21,13 @@
             ]
         },
         "package-b": {
-            "file": "../../_helpers/local_pckages/b/dist/package_b-23.42-py3-none-any.whl",
+            "file": "file:../../_helpers/local_pckages/b/dist/package_b-23.42-py3-none-any.whl",
             "hashes": [
                 "sha256:4aacda53fa274f5ff7eed71a9916904ffb3a11b05dc5ca529d7ddb78ae2dc602"
             ]
         },
         "package-c": {
-            "file": "../../_helpers/local_pckages/c"
+            "path": "../../_helpers/local_pckages/c"
         }
     },
     "develop": {}
