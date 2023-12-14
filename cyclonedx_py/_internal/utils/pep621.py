@@ -34,7 +34,6 @@ def pyproject2component(pyproject: Dict[str, Any], *,
     project = pyproject['project']
     return Component(
         type=type,
-        bom_ref=project['name'],
         name=project['name'],
         version=project.get('version', None),
         description=project.get('description', None),

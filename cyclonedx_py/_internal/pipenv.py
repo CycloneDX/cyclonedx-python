@@ -116,7 +116,6 @@ class PipenvBB(BomBuilder):
                 lock_groups.add('develop')
 
         lock_file = join(project_directory, 'Pipfile.lock')
-
         try:
             lock = open(lock_file, 'rt', encoding='utf8', errors='replace')
         except OSError as err:
@@ -134,9 +133,11 @@ class PipenvBB(BomBuilder):
                                   lock_groups)
 
     def _make_bom(self, rc: Optional['Component'], locker: 'NameDict',
-                  lock_groups: Set[str]
+                  use_groups: Set[str]
                   ) -> 'Bom':
         from .utils.bom import make_bom
+
+        self._logger.debug('use_groups: %r', use_groups)
 
         bom = make_bom()
         bom.metadata.component = rc

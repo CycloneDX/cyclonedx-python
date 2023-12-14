@@ -200,6 +200,7 @@ class PoetryBB(BomBuilder):
                 raise ValueError('some package extras are unknown') from extras_error
             del extras_not_found
 
+            # the group-args shall mimic the ones from poetry
             if no_dev:
                 groups = {'main', }
             elif len(groups_only_s) > 0:
