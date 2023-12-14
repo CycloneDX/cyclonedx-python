@@ -219,7 +219,7 @@ class PipenvBB(BomBuilder):
                 url: str = data[vct]
                 hash_pos = url.find('#')
                 # remove install-annotations, which are behind a `#`
-                return vct, url[hash_pos:] if hash_pos >= 0 else url
+                return vct, url[:hash_pos] if hash_pos >= 0 else url
         return None
 
     def __make_extrefs(self, name: str, data: 'NameDict', source_urls: Dict[str, str]
