@@ -1,0 +1,133 @@
+{
+  "components": [
+    {
+      "bom-ref": "numpy==1.26.2",
+      "externalReferences": [
+        {
+          "comment": "from explicit index: pypi",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "96ca5482c3dbdd051bcd1fce8034603d6ebfc125a7bd59f55b40d8f5d246832b"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "f65738447676ab5777f11e6bbbdb8ce11b785e105f690bc45966574816b6d3ea"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/numpy/"
+        }
+      ],
+      "name": "numpy",
+      "properties": [
+        {
+          "name": "cdx:pipenv:category",
+          "value": "default"
+        }
+      ],
+      "purl": "pkg:pypi/numpy@1.26.2",
+      "type": "library",
+      "version": "1.26.2"
+    },
+    {
+      "bom-ref": "six==1.16.0",
+      "externalReferences": [
+        {
+          "comment": "from implicit index: pypi",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/six/"
+        }
+      ],
+      "name": "six",
+      "properties": [
+        {
+          "name": "cdx:pipenv:category",
+          "value": "default"
+        }
+      ],
+      "purl": "pkg:pypi/six@1.16.0",
+      "type": "library",
+      "version": "1.16.0"
+    },
+    {
+      "bom-ref": "toml==0.10.2",
+      "externalReferences": [
+        {
+          "comment": "from explicit index: pysrc1.acme.org",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f"
+            }
+          ],
+          "type": "distribution",
+          "url": "http://pysrc1.acme.org:8080/simple//toml/"
+        }
+      ],
+      "name": "toml",
+      "properties": [
+        {
+          "name": "cdx:pipenv:category",
+          "value": "default"
+        }
+      ],
+      "purl": "pkg:pypi/toml@0.10.2?repository_url=http://pysrc1.acme.org:8080/simple/",
+      "type": "library",
+      "version": "0.10.2"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "numpy==1.26.2"
+    },
+    {
+      "ref": "root-component"
+    },
+    {
+      "ref": "six==1.16.0"
+    },
+    {
+      "ref": "toml==0.10.2"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "root-component",
+      "description": "packages from aternative package repositories",
+      "name": "private-packges",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "tools": [
+      {
+        "name": "cyclonedx-bom",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.3a.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.3"
+}

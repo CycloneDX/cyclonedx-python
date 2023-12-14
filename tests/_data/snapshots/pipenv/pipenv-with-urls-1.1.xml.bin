@@ -1,0 +1,82 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.1" version="1">
+  <components>
+    <component type="library" bom-ref="certifi==2023.11.17">
+      <name>certifi</name>
+      <version>2023.11.17</version>
+      <purl>pkg:pypi/certifi@2023.11.17</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/certifi/</url>
+          <comment>from implicit index: pypi</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="charset-normalizer==3.3.2">
+      <name>charset-normalizer</name>
+      <version>3.3.2</version>
+      <purl>pkg:pypi/charset-normalizer@3.3.2</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/charset-normalizer/</url>
+          <comment>from implicit index: pypi</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="idna==3.6">
+      <name>idna</name>
+      <version>3.6</version>
+      <purl>pkg:pypi/idna@3.6</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/idna/</url>
+          <comment>from implicit index: pypi</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pillow">
+      <name>pillow</name>
+      <version/>
+      <purl>pkg:pypi/pillow?vcs_url=git%2Bhttps://github.com/python-pillow/Pillow.git%40da59ad000d1405eaecd557175e29083a87d19f7c</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>git+https://github.com/python-pillow/Pillow.git#da59ad000d1405eaecd557175e29083a87d19f7c</url>
+          <comment>from git</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="requests">
+      <name>requests</name>
+      <version/>
+      <purl>pkg:pypi/requests?vcs_url=git%2Bhttps://github.com/requests/requests.git%40a25fde6989f8df5c3d823bc9f2e2fc24aa71f375</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>git+https://github.com/requests/requests.git#a25fde6989f8df5c3d823bc9f2e2fc24aa71f375</url>
+          <comment>from git</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="six">
+      <name>six</name>
+      <version/>
+      <purl>pkg:pypi/six?vcs_url=git%2Bssh://git%40github.com/benjaminp/six.git%4065486e4383f9f411da95937451205d3c7b61b9e1</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>git+ssh://git@github.com/benjaminp/six.git#65486e4383f9f411da95937451205d3c7b61b9e1</url>
+          <comment>from git</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="urllib3">
+      <name>urllib3</name>
+      <version/>
+      <purl>pkg:pypi/urllib3?download_url=https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip</url>
+          <comment>from file</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+</bom>
