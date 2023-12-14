@@ -195,7 +195,7 @@ class PipenvBB(BomBuilder):
             location = data['path']
         else:
             return False
-        # schema length is expected to be atleast 2 chars, to prevent confusion with Windows drive letters `C:\`
+        # schema length is expected to be at least 2 chars, to prevent confusion with Windows drive letters `C:\`
         might_have_schema = location.find(':', 2)
         if might_have_schema <= 0:
             return True
@@ -207,8 +207,10 @@ class PipenvBB(BomBuilder):
         # - http://acme.org/MyProject/files/foo-bar.tar.gz
         return maybe_schema == 'file' or maybe_schema.endswith('+file')
 
-    # https://pip.pypa.io/en/latest/topics/vcs-support/#vcs-support
     __VCS_TYPES = ('git', 'hg', 'svn', 'bzr')
+    """ VCS types supported by pip.
+        see https://pip.pypa.io/en/latest/topics/vcs-support/#vcs-support
+    """
 
     def __package_vcs(self, data: 'NameDict') -> Optional[Tuple[str, Any]]:
         for vct in self.__VCS_TYPES:
