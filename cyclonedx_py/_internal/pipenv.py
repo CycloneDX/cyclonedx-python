@@ -182,7 +182,9 @@ class PipenvBB(BomBuilder):
                     value=package_extra
                 ) for package_extra in package_data.get('extras', []))
 
-        bom = make_bom(components=components.values())
+        bom = make_bom(
+            components=(c for c in components.values() if c is not rc)
+        )
         bom.metadata.component = rc
         return bom
 
