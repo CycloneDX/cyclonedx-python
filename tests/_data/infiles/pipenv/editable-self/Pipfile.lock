@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "fe92251da01c2f6102f470d4b21a03171f7e83bd3037f8be9e9f4d735ac315f8"
+            "sha256": "eeede3274cf3ff5afa3e8133d5dec39de8939885aad846fb1e5d4807898a57de"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -15,7 +15,8 @@
     },
     "default": {
         "editable-self": {
-            "version": "==0.1.0"
+            "editable": true,
+            "path": "."
         }
     },
     "develop": {}

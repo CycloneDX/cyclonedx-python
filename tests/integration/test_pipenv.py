@@ -96,6 +96,7 @@ class TestPipenv(TestCase, SnapshotMixin):
                     '-vvv',
                     f'--sv={sv.to_version()}',
                     f'--of={of.name}',
+                    f'--pyproject={join(projectdir, "pyproject.toml")}',
                     '--outfile=-',
                     projectdir])
             err = err.getvalue()
