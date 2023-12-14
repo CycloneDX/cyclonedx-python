@@ -16,7 +16,7 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
-from typing import TYPE_CHECKING, Any, Dict, Generator, List, Optional, Set
+from typing import TYPE_CHECKING, Any, Dict, Generator, List, Optional, Set, Tuple
 
 from . import BomBuilder
 
@@ -197,7 +197,20 @@ class PipenvBB(BomBuilder):
         if might_have_schema <= 0:
             return True
         maybe_schema = location[:might_have_schema]
-        return maybe_schema == 'file'
+        # example data
+        # - file:../MyProject
+        # - file:///home/user/projects/MyProject
+        # - git+file:///home/user/projects/MyProject
+        return maybe_schema == 'file' or maybe_schema.endswith('+file')
+
+    # https://pip.pypa.io/en/latest/topics/vcs-support/#vcs-support
+    __VCS_TYPES = ('git', 'hg', 'svn', 'bzr')
+
+    def __package_vcs(self, data: 'NameDict') -> Optional[Tuple[str, Any]]:
+        for vct in self.__VCS_TYPES:
+            if vct in data:
+                return vct, data[vct]
+        return None
 
     def __make_extrefs(self, name: str, data: 'NameDict', source_urls: Dict[str, str]
                        ) -> Generator['ExternalReference', None, None]:
@@ -207,12 +220,13 @@ class PipenvBB(BomBuilder):
         hashes = (HashType.from_composite_str(package_hash)
                   for package_hash
                   in data.get('hashes', []))
+        vcs_source = self.__package_vcs(data)
         try:
-            if 'git' in data:
+            if vcs_source is not None:
                 yield ExternalReference(
-                    comment='from git',
+                    comment=f'from {vcs_source[0]}',
                     type=ExternalReferenceType.VCS,
-                    url=XsUri(f'{data["git"]}#{data.get("ref", "")}'))
+                    url=XsUri(f'{vcs_source[1]}#{data.get("ref", "")}'))
             elif 'file' in data:
                 yield ExternalReference(
                     comment='from file',
@@ -243,8 +257,12 @@ class PipenvBB(BomBuilder):
     def __purl_qualifiers4lock(self, data: 'NameDict', sourcees: Dict[str, str]) -> 'NameDict':
         # see https://github.com/package-url/purl-spec/blob/master/PURL-SPECIFICATION.rst
         qs = {}
-        if 'git' in data:
-            qs['vcs_url'] = f'{data["git"]}@{data.get("ref")}'
+        vcs_source = self.__package_vcs(data)
+        if vcs_source is not None:
+            # see section 3.7.4 in https://github.com/spdx/spdx-spec/blob/cfa1b9d08903/chapters/3-package-information.md
+            # > For version-controlled files, the VCS location syntax is similar to a URL and has the:
+            # > `<vcs_tool>+<transport>://<host_name>[/<path_to_repository>][@<revision_tag_or_branch>][#<sub_path>]`
+            qs['vcs_url'] = f'{vcs_source[1]}@{data["ref"]}'
         elif 'file' in data:
             if '://files.pythonhosted.org/' not in data['file']:
                 # skip PURL bloat, do not add implicit information
