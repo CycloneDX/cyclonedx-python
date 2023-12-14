@@ -252,7 +252,6 @@ def run(*, argv: Optional[List[str]] = None, **kwargs: Any) -> int:
     logger.addHandler(lh)
 
     logger.debug('args: %s', args)
-
     try:
         Command(**args, logger=logger)(**args)
     except Exception as error:

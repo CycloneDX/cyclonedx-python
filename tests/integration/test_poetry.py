@@ -33,11 +33,11 @@ from tests import INFILES_DIRECTORY, SUPPORTED_OF_SV, SnapshotMixin, make_compar
 lockfiles = glob(join(INFILES_DIRECTORY, 'poetry', '*', '*', 'poetry.lock'))
 projectdirs = list(dirname(lockfile) for lockfile in lockfiles)
 
-test_data = [
+test_data = tuple(
     (f'{basename(dirname(projectdir))}-{basename(projectdir)}-{sv.name}-{of.name}', projectdir, sv, of)
     for projectdir in projectdirs
     for of, sv in SUPPORTED_OF_SV
-]
+)
 
 
 def test_data_file_filter(s: str) -> Generator[Any, None, None]:
@@ -48,6 +48,7 @@ def test_data_file_filter(s: str) -> Generator[Any, None, None]:
 class TestPoetry(TestCase, SnapshotMixin):
 
     def test_cli_fails_with_dir_not_found(self) -> None:
+        _, projectdir, sv, of = random.choice(test_data)  # nosec B311
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
             out.name = '<fakeout>'
@@ -55,8 +56,8 @@ class TestPoetry(TestCase, SnapshotMixin):
                 res = run_cli(argv=[
                     'poetry',
                     '-vvv',
-                    f'--sv={SchemaVersion.V1_4.to_version()}',
-                    f'--of={OutputFormat.XML.name}',
+                    f'--sv={sv.to_version()}',
+                    f'--of={of.name}',
                     '--outfile=-',
                     'something-that-must-not-exist.testing'])
             err = err.getvalue()

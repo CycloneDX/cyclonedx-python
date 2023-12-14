@@ -16,15 +16,13 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
-import os
 import random
 from contextlib import redirect_stderr, redirect_stdout
 from glob import glob
-from io import StringIO, TextIOWrapper
-from os.path import basename, join
-from typing import Any, Tuple
+from io import StringIO
+from os.path import basename, dirname, join
+from typing import Any, Generator
 from unittest import TestCase
-from unittest.mock import patch
 
 from cyclonedx.schema import OutputFormat, SchemaVersion
 from ddt import ddt, named_data
@@ -32,37 +30,31 @@ from ddt import ddt, named_data
 from cyclonedx_py._internal.cli import run as run_cli
 from tests import INFILES_DIRECTORY, SUPPORTED_OF_SV, SnapshotMixin, make_comparable
 
-infiles = glob(join(INFILES_DIRECTORY, 'requirements', '*.txt*'))
-
-pyproject_file = join(INFILES_DIRECTORY, 'requirements', 'pyproject.toml')
-
+lockfiles = glob(join(INFILES_DIRECTORY, 'pipenv', '*', '*', 'Pipfile.lock'))
+projectdirs = list(dirname(lockfile) for lockfile in lockfiles)
 
 test_data = tuple(
-    (f'{basename(infile)}-{sv.name}-{of.name}', infile, sv, of)
-    for infile in infiles
+    (f'{basename(dirname(projectdir))}-{basename(projectdir)}-{sv.name}-{of.name}', projectdir, sv, of)
+    for projectdir in projectdirs
     for of, sv in SUPPORTED_OF_SV
 )
 
-if os.name == 'nt':
-    def test_data_os_filter(data: Any) -> bool:
-        return True
-else:
-    def test_data_os_filter(data: Tuple[Any, str, Any, Any]) -> bool:
-        # skip windows encoded files on non-windows
-        return '.cp125' not in data[1]
+
+def test_data_file_filter(s: str) -> Generator[Any, None, None]:
+    return ((n, d, sv, of) for n, d, sv, of in test_data if s in n)
 
 
 @ddt
-class TestRequirements(TestCase, SnapshotMixin):
+class TestPipenv(TestCase, SnapshotMixin):
 
-    def test_cli_with_file_not_found(self) -> None:
-        _, infile, sv, of = random.choice(test_data)  # nosec B311
+    def test_cli_fails_with_dir_not_found(self) -> None:
+        _, projectdir, sv, of = random.choice(test_data)  # nosec B311
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
             out.name = '<fakeout>'
             with redirect_stderr(err), redirect_stdout(out):
                 res = run_cli(argv=[
-                    'requirements',
+                    'pipenv',
                     '-vvv',
                     f'--sv={sv.to_version()}',
                     f'--of={of.name}',
@@ -71,70 +63,50 @@ class TestRequirements(TestCase, SnapshotMixin):
             err = err.getvalue()
             out = out.getvalue()
         self.assertNotEqual(0, res, err)
-        self.assertIn('Could not open requirements file: something-that-must-not-exist.testing', err)
+        self.assertIn('Could not open lock file: something-that-must-not-exist.testing', err)
 
     def test_cli_with_pyproject_not_found(self) -> None:
-        _, infile, sv, of = random.choice(test_data)  # nosec B311
+        _, projectdir, sv, of = random.choice(test_data)  # nosec B311
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
             out.name = '<fakeout>'
             with redirect_stderr(err), redirect_stdout(out):
                 res = run_cli(argv=[
-                    'requirements',
+                    'pipenv',
                     '-vvv',
                     f'--sv={sv.to_version()}',
                     f'--of={of.name}',
                     '--outfile=-',
                     '--pyproject=something-that-must-not-exist.testing',
-                    infile
+                    projectdir
                 ])
             err = err.getvalue()
             out = out.getvalue()
         self.assertNotEqual(0, res, err)
         self.assertIn('Could not open pyproject file: something-that-must-not-exist.testing', err)
 
-    @named_data(*filter(test_data_os_filter, test_data))
-    def test_cli_with_file_as_expected(self, infile: str, sv: SchemaVersion, of: OutputFormat) -> None:
+    @named_data(*test_data)
+    def test_cli_with_file_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
             out.name = '<fakeout>'
             with redirect_stderr(err), redirect_stdout(out):
                 res = run_cli(argv=[
-                    'requirements',
+                    'pipenv',
                     '-vvv',
                     f'--sv={sv.to_version()}',
                     f'--of={of.name}',
                     '--outfile=-',
-                    f'--pyproject={pyproject_file}',
-                    infile])
+                    projectdir])
             err = err.getvalue()
             out = out.getvalue()
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(
             make_comparable(out, of),
-            f'{basename(infile)}-{sv.to_version()}.{of.name.lower()}-file')
+            f'{basename(dirname(projectdir))}-{basename(projectdir)}-{sv.to_version()}.{of.name.lower()}')
 
-    @named_data(*test_data)
-    def test_cli_with_stream_as_expected(self, infile: str, sv: SchemaVersion, of: OutputFormat) -> None:
-        with StringIO() as err, StringIO() as out, open(infile, 'rb') as inp:
-            err.name = '<fakeerr>'
-            out.name = '<fakeout>'
-            with redirect_stderr(err), redirect_stdout(out):
-                with patch('sys.stdin', TextIOWrapper(inp)):
-                    res = run_cli(argv=[
-                        'requirements',
-                        '-vvv',
-                        f'--sv={sv.to_version()}',
-                        f'--of={of.name}',
-                        '--outfile=-',
-                        # no pyproject for this case
-                        '-'])
-            err = err.getvalue()
-            out = out.getvalue()
-        self.assertEqual(0, res, err)
-        self.assertEqualSnapshot(
-            make_comparable(out, of),
-            f'{basename(infile)}-{sv.to_version()}.{of.name.lower()}-stream')
+    # TODO: groups filtered
+    # TODO: with `--dev`
 
     def assertEqualSnapshot(self, actual: str, snapshot_name: str) -> None:  # noqa:N802
-        super().assertEqualSnapshot(actual, join('requirements', snapshot_name))
+        super().assertEqualSnapshot(actual, join('pipenv', snapshot_name))

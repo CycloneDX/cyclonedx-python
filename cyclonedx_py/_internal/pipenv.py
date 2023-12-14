@@ -43,6 +43,8 @@ class PipenvBB(BomBuilder):
         from argparse import OPTIONAL, ArgumentParser
         from os import getenv
 
+        from cyclonedx.model.component import ComponentType
+
         from .utils.args import argparse_type4enum, arpaese_split
 
         p = ArgumentParser(description='Build an SBOM from Pipenv',
@@ -55,7 +57,7 @@ class PipenvBB(BomBuilder):
                        default=[])
         p.add_argument('-d', '--dev',
                        help='both develop and default packages [env var: PIPENV_DEV]',
-                       action='store-true',
+                       action='store_true',
                        dest='dev',
                        default=bool(getenv('PIPENV_DEV', '')))
         p.add_argument('--pypi-mirror',
