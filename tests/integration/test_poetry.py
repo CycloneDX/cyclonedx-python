@@ -28,22 +28,15 @@ from cyclonedx.schema import OutputFormat, SchemaVersion
 from ddt import ddt, named_data
 
 from cyclonedx_py._internal.cli import run as run_cli
-from tests import INFILES_DIRECTORY, SnapshotMixin, make_comparable
+from tests import INFILES_DIRECTORY, SUPPORTED_OF_SV, SnapshotMixin, make_comparable
 
 lockfiles = glob(join(INFILES_DIRECTORY, 'poetry', '*', '*', 'poetry.lock'))
 projectdirs = list(dirname(lockfile) for lockfile in lockfiles)
 
-unsupported_of_sf = [
-    (OutputFormat.JSON, SchemaVersion.V1_1),
-    (OutputFormat.JSON, SchemaVersion.V1_0),
-]
-
 test_data = [
     (f'{basename(dirname(projectdir))}-{basename(projectdir)}-{sv.name}-{of.name}', projectdir, sv, of)
     for projectdir in projectdirs
-    for sv in SchemaVersion
-    for of in OutputFormat
-    if (of, sv) not in unsupported_of_sf
+    for of, sv in SUPPORTED_OF_SV
 ]
 
 

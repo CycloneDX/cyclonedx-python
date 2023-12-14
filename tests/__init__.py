@@ -23,18 +23,33 @@ from os.path import dirname, join
 from typing import Union
 from unittest import TestCase
 
-from cyclonedx.schema import OutputFormat
+from cyclonedx.schema import OutputFormat, SchemaVersion
 
 from cyclonedx_py import __version__ as __this_version
+
+
+RECREATE_SNAPSHOTS = '1' == getenv('CDX_TEST_RECREATE_SNAPSHOTS')
+if RECREATE_SNAPSHOTS:
+    print('!!! WILL RECREATE ALL SNAPSHOTS !!!')
+
 
 _TESTDATA_DIRECTORY = join(dirname(__file__), '_data')
 
 INFILES_DIRECTORY = join(_TESTDATA_DIRECTORY, 'infiles')
 SNAPSHOTS_DIRECTORY = join(_TESTDATA_DIRECTORY, 'snapshots')
 
-RECREATE_SNAPSHOTS = '1' == getenv('CDX_TEST_RECREATE_SNAPSHOTS')
-if RECREATE_SNAPSHOTS:
-    print('!!! WILL RECREATE ALL SNAPSHOTS !!!')
+
+UNSUPPORTED_OF_SV = (
+    (OutputFormat.JSON, SchemaVersion.V1_1),
+    (OutputFormat.JSON, SchemaVersion.V1_0),
+)
+
+SUPPORTED_OF_SV = tuple(
+    (of, sv)
+    for of in OutputFormat
+    for sv in SchemaVersion
+    if (of, sv) not in UNSUPPORTED_OF_SV
+)
 
 
 class SnapshotMixin:
