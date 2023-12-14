@@ -193,7 +193,8 @@ class PipenvBB(BomBuilder):
             location = data['path']
         else:
             return False
-        might_have_schema = location.find(':')
+        # schema length is expected to be atleast 2 chars, to prevent confusion with Windows drive letters `C:\`
+        might_have_schema = location.find(':', 2)
         if might_have_schema <= 0:
             return True
         maybe_schema = location[:might_have_schema]
@@ -201,6 +202,7 @@ class PipenvBB(BomBuilder):
         # - file:../MyProject
         # - file:///home/user/projects/MyProject
         # - git+file:///home/user/projects/MyProject
+        # - http://acme.org/MyProject/files/foo-bar.tar.gz
         return maybe_schema == 'file' or maybe_schema.endswith('+file')
 
     # https://pip.pypa.io/en/latest/topics/vcs-support/#vcs-support
