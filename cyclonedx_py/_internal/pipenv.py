@@ -213,10 +213,13 @@ class PipenvBB(BomBuilder):
         see https://pip.pypa.io/en/latest/topics/vcs-support/#vcs-support
     """
 
-    def __package_vcs(self, data: 'NameDict') -> Optional[Tuple[str, Any]]:
+    def __package_vcs(self, data: 'NameDict') -> Optional[Tuple[str, str]]:
         for vct in self.__VCS_TYPES:
             if vct in data:
-                return vct, data[vct]
+                url: str = data[vct]
+                hash_pos = url.find('#')
+                # remove install-annotations, which are behind a `#`
+                return vct, url[hash_pos:] if hash_pos >= 0 else url
         return None
 
     def __make_extrefs(self, name: str, data: 'NameDict', source_urls: Dict[str, str]
@@ -230,10 +233,11 @@ class PipenvBB(BomBuilder):
         vcs_source = self.__package_vcs(data)
         try:
             if vcs_source is not None:
+                vcs_source_url = vcs_source[1]
                 yield ExternalReference(
                     comment=f'from {vcs_source[0]}',
                     type=ExternalReferenceType.VCS,
-                    url=XsUri(f'{vcs_source[1]}#{data.get("ref", "")}'))
+                    url=XsUri(f'{vcs_source_url}#{data.get("ref", "")}'))
             elif 'file' in data:
                 yield ExternalReference(
                     comment='from file',
