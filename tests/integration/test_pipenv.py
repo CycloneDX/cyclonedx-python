@@ -106,7 +106,27 @@ class TestPipenv(TestCase, SnapshotMixin):
             make_comparable(out, of),
             f'{basename(dirname(projectdir))}-{basename(projectdir)}-{sv.to_version()}.{of.name.lower()}')
 
-    # TODO: groups filtered
+    @named_data(*test_data_file_filter('category-deps'))
+    def test_cli_with_categories_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
+        with StringIO() as err, StringIO() as out:
+            err.name = '<fakeerr>'
+            out.name = '<fakeout>'
+            with redirect_stderr(err), redirect_stdout(out):
+                res = run_cli(argv=[
+                    'pipenv',
+                    '-vvv',
+                    '--categories', 'categoryB,groupA packages,dev-packages'
+                    f'--sv={sv.to_version()}',
+                    f'--of={of.name}',
+                    '--outfile=-',
+                    projectdir])
+            err = err.getvalue()
+            out = out.getvalue()
+        self.assertEqual(0, res, err)
+        self.assertEqualSnapshot(
+            make_comparable(out, of),
+            f'some-categories-{basename(projectdir)}-{sv.to_version()}.{of.name.lower()}')
+
     # TODO: with `--dev`
     # TODO: alternative pypi url
 

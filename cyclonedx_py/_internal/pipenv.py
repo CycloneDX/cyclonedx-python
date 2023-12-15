@@ -50,21 +50,22 @@ class PipenvBB(BomBuilder):
         p = ArgumentParser(description='Build an SBOM from Pipenv',
                            **kwargs)
         # the args shall mimic the ones from Pipenv
+        # see also: https://pipenv.pypa.io/en/latest/configuration.html
         p.add_argument('--categories',
                        metavar='CATEGORIES',
                        dest='categories',
-                       type=arpaese_split({' ', ','}),
+                       type=arpaese_split((' ', ',')),
                        default=[])
         p.add_argument('-d', '--dev',
                        help='both develop and default packages [env var: PIPENV_DEV]',
                        action='store_true',
                        dest='dev',
-                       default=bool(getenv('PIPENV_DEV', '')))
+                       default=getenv('PIPENV_DEV', '').lower() in ('1', 'true', 'yes'))
         p.add_argument('--pypi-mirror',
                        metavar='URL',
-                       help='Specify a PyPI mirror',
+                       help='Specify a PyPI mirror [env var: PIPENV_PYPI_MIRROR]',
                        dest='pypi_url',
-                       default=None)
+                       default=getenv('PIPENV_PYPI_MIRROR'))
         p.add_argument('--pyproject',
                        metavar='pyproject.toml',
                        help="Path to the root component's `pyproject.toml` according to PEP621",
@@ -84,7 +85,9 @@ class PipenvBB(BomBuilder):
                        default=ComponentType.APPLICATION.value)
         p.add_argument('project_directory',
                        metavar='project-directory',
-                       help='The project directory for Poetry (default: current working directory)',
+                       help='The project directory for Pipenv (default: current working directory)\n'
+                            'Unlike Pipenv, there is no auto-sensing i this tool.'  # yet
+                            'Please provide the actual directory that contains your `Pipfile` and `Pipfile.lock`',
                        nargs=OPTIONAL,
                        default='.')
         return p
@@ -94,7 +97,7 @@ class PipenvBB(BomBuilder):
                  pypi_url: Optional[str],
                  **__: Any) -> None:
         self._logger = logger
-        self._pypi_url = pypi_url
+        self._pypi_url = pypi_url or None  # ignore empty strings
 
     def __call__(self, *,  # type:ignore[override]
                  project_directory: str,
@@ -115,11 +118,13 @@ class PipenvBB(BomBuilder):
                 lock_groups.add('develop')
         else:
             lock_groups.update(categories)
-            lock_groups.remove(self.__LOCKFILE_META)
+            lock_groups.discard(self.__LOCKFILE_META)
             if 'packages' in lock_groups:
+                # replace UI-category with Lock-group
                 lock_groups.remove('packages')
                 lock_groups.add('default')
             if 'dev-packages' in lock_groups:
+                # replace UI-category with Lock-group
                 lock_groups.remove('dev-packages')
                 lock_groups.add('develop')
 
@@ -169,8 +174,9 @@ class PipenvBB(BomBuilder):
             for package_name, package_data in locker.get(group_name, {}).items():
                 if package_name in all_components:
                     component = all_components[package_name]
+                    self._logger.info('existing component for package %r', package_name)
                 else:
-                    component = Component(
+                    component = all_components[package_name] = Component(
                         bom_ref=f'{package_name}{package_data.get("version", "")}',
                         type=ComponentType.LIBRARY,
                         name=package_name,
