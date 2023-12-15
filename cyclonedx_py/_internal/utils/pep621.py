@@ -21,19 +21,36 @@ See https://peps.python.org/pep-0621/
 See https://packaging.python.org/en/latest/specifications/declaring-project-metadata/#declaring-project-metadata
 """
 
-from typing import Any, Dict
+from typing import TYPE_CHECKING, Any, Dict
 
-from cyclonedx.model.component import Component, ComponentType
+if TYPE_CHECKING:
+    from cyclonedx.model.component import Component, ComponentType
 
 
 def pyproject2component(pyproject: Dict[str, Any], *,
-                        type: ComponentType) -> Component:
+                        type: 'ComponentType') -> 'Component':
+    from cyclonedx.model.component import Component
+
     project = pyproject['project']
     return Component(
         type=type,
-        bom_ref=project['name'],
         name=project['name'],
         version=project.get('version', None),
         description=project.get('description', None),
         # TODO add more properties according to spec
     )
+
+
+def pyproject_file2component(pyproject_file: str, *,
+                             type: 'ComponentType') -> 'Component':
+    from .toml import toml_loads
+
+    try:
+        pyproject_fh = open(pyproject_file, 'rt', encoding='utf8', errors='replace')
+    except OSError as err:
+        raise ValueError(f'Could not open pyproject file: {pyproject_file}') from err
+    with pyproject_fh:
+        return pyproject2component(
+            toml_loads(pyproject_fh.read()),
+            type=type
+        )

@@ -124,20 +124,9 @@ class RequirementsBB(BomBuilder):
         if pyproject_file is None:
             rc = None
         else:
-            from .utils.pep621 import pyproject2component
-            from .utils.toml import toml_loads
-
-            try:
-                pyproject_fh = open(pyproject_file, 'rt', encoding='utf8', errors='replace')
-            except OSError as err:
-                raise ValueError(f'Could not open pyproject file: {pyproject_file}') from err
-            with pyproject_fh:
-                rc = pyproject2component(
-                    toml_loads(pyproject_fh.read()),
-                    type=mc_type
-                )
-                rc.bom_ref.value = 'root-component'
-            del pyproject_fh
+            from .utils.pep621 import pyproject_file2component
+            rc = pyproject_file2component(pyproject_file, type=mc_type)
+            rc.bom_ref.value = 'root-component'
 
         if requirements_file == '-':
             from sys import stdin

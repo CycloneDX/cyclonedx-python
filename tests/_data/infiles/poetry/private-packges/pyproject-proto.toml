@@ -6,7 +6,7 @@ authors = ["Your Name <you@example.com>"]
 
 
 # see https://python-poetry.org/docs/repositories/
-# run the `pypi-proxy.py` to setup a pypi proxy
+# run the `//tests/_data/infiles/_helpers/pypi-proxy.py` to setup a PyPI proxy
 
 
 [[tool.poetry.source]]

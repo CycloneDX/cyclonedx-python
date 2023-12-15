@@ -30,24 +30,18 @@ from cyclonedx.schema import OutputFormat, SchemaVersion
 from ddt import ddt, named_data
 
 from cyclonedx_py._internal.cli import run as run_cli
-from tests import INFILES_DIRECTORY, SnapshotMixin, make_comparable
+from tests import INFILES_DIRECTORY, SUPPORTED_OF_SV, SnapshotMixin, make_comparable
 
 infiles = glob(join(INFILES_DIRECTORY, 'requirements', '*.txt*'))
 
 pyproject_file = join(INFILES_DIRECTORY, 'requirements', 'pyproject.toml')
 
-unsupported_of_sf = [
-    (OutputFormat.JSON, SchemaVersion.V1_1),
-    (OutputFormat.JSON, SchemaVersion.V1_0),
-]
 
-test_data = [
+test_data = tuple(
     (f'{basename(infile)}-{sv.name}-{of.name}', infile, sv, of)
     for infile in infiles
-    for sv in SchemaVersion
-    for of in OutputFormat
-    if (of, sv) not in unsupported_of_sf
-]
+    for of, sv in SUPPORTED_OF_SV
+)
 
 if os.name == 'nt':
     def test_data_os_filter(data: Any) -> bool:
@@ -62,6 +56,7 @@ else:
 class TestRequirements(TestCase, SnapshotMixin):
 
     def test_cli_with_file_not_found(self) -> None:
+        _, infile, sv, of = random.choice(test_data)  # nosec B311
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
             out.name = '<fakeout>'
@@ -69,8 +64,8 @@ class TestRequirements(TestCase, SnapshotMixin):
                 res = run_cli(argv=[
                     'requirements',
                     '-vvv',
-                    f'--sv={SchemaVersion.V1_4.to_version()}',
-                    f'--of={OutputFormat.XML.name}',
+                    f'--sv={sv.to_version()}',
+                    f'--of={of.name}',
                     '--outfile=-',
                     'something-that-must-not-exist.testing'])
             err = err.getvalue()
@@ -79,6 +74,7 @@ class TestRequirements(TestCase, SnapshotMixin):
         self.assertIn('Could not open requirements file: something-that-must-not-exist.testing', err)
 
     def test_cli_with_pyproject_not_found(self) -> None:
+        _, infile, sv, of = random.choice(test_data)  # nosec B311
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
             out.name = '<fakeout>'
@@ -86,11 +82,11 @@ class TestRequirements(TestCase, SnapshotMixin):
                 res = run_cli(argv=[
                     'requirements',
                     '-vvv',
-                    f'--sv={SchemaVersion.V1_4.to_version()}',
-                    f'--of={OutputFormat.XML.name}',
+                    f'--sv={sv.to_version()}',
+                    f'--of={of.name}',
                     '--outfile=-',
                     '--pyproject=something-that-must-not-exist.testing',
-                    random.choice(test_data)  # nosec B311
+                    infile
                 ])
             err = err.getvalue()
             out = out.getvalue()

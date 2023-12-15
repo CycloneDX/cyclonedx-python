@@ -116,11 +116,6 @@ class PoetryBB(BomBuilder):
                         dest='all_extras',
                         default=False)
         del eg
-        p.add_argument('project_directory',
-                       metavar='project-directory',
-                       help='The project directory for Poetry (default: current working directory)',
-                       nargs=OPTIONAL,
-                       default='.')
         _mc_types = [ComponentType.APPLICATION,
                      ComponentType.FIRMWARE,
                      ComponentType.LIBRARY]
@@ -133,6 +128,11 @@ class PoetryBB(BomBuilder):
                        choices=_mc_types,
                        type=argparse_type4enum(ComponentType),
                        default=ComponentType.APPLICATION.value)
+        p.add_argument('project_directory',
+                       metavar='project-directory',
+                       help='The project directory for Poetry (default: current working directory)',
+                       nargs=OPTIONAL,
+                       default='.')
         return p
 
     def __init__(self, *,
@@ -200,6 +200,7 @@ class PoetryBB(BomBuilder):
                 raise ValueError('some package extras are unknown') from extras_error
             del extras_not_found
 
+            # the group-args shall mimic the ones from poetry
             if no_dev:
                 groups = {'main', }
             elif len(groups_only_s) > 0:
@@ -252,7 +253,7 @@ class PoetryBB(BomBuilder):
             name=root_c.name,
             component=root_c,
             dependencies=set(),
-            extra_deps=dict(),
+            extra_deps={},
             added2bom=True,
             added2bom_extras=use_extras
         )
@@ -288,10 +289,10 @@ class PoetryBB(BomBuilder):
                 name=PropertyName.PackageExtra.value,
                 value=extra
             ) for extra in new_extras)
-            depends_on = []
+            depends_on: List[Optional['Component']] = []
             for dep in set(chain(
-                [] if _existed else le.dependencies,
-                chain.from_iterable(le.extra_deps.get(extra, []) for extra in new_extras)
+                () if _existed else le.dependencies,
+                chain.from_iterable(le.extra_deps.get(extra, ()) for extra in new_extras)
             )):
                 self._logger.debug('component %r depends on %r', le.component, dep)
                 depm = _dep_pattern.match(dep)
@@ -305,7 +306,7 @@ class PoetryBB(BomBuilder):
             bom.register_dependency(le.component, filter(None, depends_on))
             return le.component
 
-        depends_on = []
+        depends_on: List[Optional['Component']] = []
         for group_name in use_groups:
             self._logger.debug('processing group %r ...', group_name)
             for dep_name, dep_spec in po_cfg['group'][group_name].get('dependencies', {}).items():
@@ -326,7 +327,7 @@ class PoetryBB(BomBuilder):
                 if dep_spec.get('optional', False) and dep_name not in extra_deps:
                     self._logger.debug('skip optional dependency: %s', dep_name)
                     continue
-                depends_on.append(_add_ld(dep_name, set(dep_spec.get('extras', []))))
+                depends_on.append(_add_ld(dep_name, set(dep_spec.get('extras', ()))))
         bom.register_dependency(root_c, filter(None, depends_on))
 
         return bom
@@ -462,7 +463,7 @@ class PoetryBB(BomBuilder):
 
     def __purl_qualifiers4lock(self, package: 'NameDict') -> 'NameDict':
         # see https://github.com/package-url/purl-spec/blob/master/PURL-SPECIFICATION.rst
-        qs = dict()
+        qs = {}
 
         source = package['source']
         source_type = package['source'].get('type')
@@ -527,7 +528,7 @@ class PoetryBB(BomBuilder):
                 hashes=[HashType.from_composite_str(package['files'][0]['hash'])] if len(package['files']) else None
             )
         except (InvalidUriException, UnknownHashTypeException) as error:  # pragma: nocover
-            self._logger.debug('%s skipped dist-extRef for: %r', package['name'], exc_info=error)
+            self._logger.debug('skipped dist-extRef for: %r', package['name'], exc_info=error)
 
     def __extrefs4lock_file(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
         from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
@@ -541,7 +542,7 @@ class PoetryBB(BomBuilder):
                 hashes=[HashType.from_composite_str(package['files'][0]['hash'])] if len(package['files']) else None
             )
         except (InvalidUriException, UnknownHashTypeException) as error:  # pragma: nocover
-            self._logger.debug('%s skipped dist-extRef for: %r', package['name'], exc_info=error)
+            self._logger.debug('skipped dist-extRef for: %r', package['name'], exc_info=error)
 
     def __extrefs4lock_directory(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
         from cyclonedx.exception.model import InvalidUriException
@@ -555,7 +556,7 @@ class PoetryBB(BomBuilder):
                 # no hash for a source-directory
             )
         except InvalidUriException as error:  # pragma: nocover
-            self._logger.debug('%s skipped dist-extRef for: %r', package['name'], exc_info=error)
+            self._logger.debug('skipped dist-extRef for: %r', package['name'], exc_info=error)
 
     def __extrefs4lock_vcs(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
         from cyclonedx.exception.model import InvalidUriException
@@ -571,4 +572,4 @@ class PoetryBB(BomBuilder):
                 # no hashes, has source.resolved_reference instead, which is a property
             )
         except InvalidUriException as error:  # pragma: nocover
-            self._logger.debug('%s skipped dist-extRef for: %r', package['name'], exc_info=error)
+            self._logger.debug('skipped dist-extRef for: %r', package['name'], exc_info=error)

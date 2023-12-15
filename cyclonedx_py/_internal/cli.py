@@ -177,7 +177,8 @@ class Command:
             self._logger.warning('Validation skipped.')
             return False
 
-        self._logger.info('Validating result to schema: %s/%s', self._schema_version.to_version(), self._output_format.name)
+        self._logger.info('Validating result to schema: %s/%s',
+                          self._schema_version.to_version(), self._output_format.name)
         from cyclonedx.validation import make_schemabased_validator
 
         validation_error = make_schemabased_validator(
@@ -253,7 +254,6 @@ def run(*, argv: Optional[List[str]] = None, **kwargs: Any) -> int:
     logger.addHandler(lh)
 
     logger.debug('args: %s', args)
-
     try:
         Command(**args, logger=logger)(**args)
     except Exception as error:

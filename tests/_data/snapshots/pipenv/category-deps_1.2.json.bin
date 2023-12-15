@@ -1,0 +1,51 @@
+{
+  "components": [
+    {
+      "bom-ref": "toml==0.10.2",
+      "externalReferences": [
+        {
+          "comment": "from explicit index: pypi",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/toml/"
+        }
+      ],
+      "name": "toml",
+      "purl": "pkg:pypi/toml@0.10.2",
+      "type": "library",
+      "version": "0.10.2"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "root-component"
+    },
+    {
+      "ref": "toml==0.10.2"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "root-component",
+      "description": "dependencies organized in groups",
+      "name": "category-deps",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "tools": [
+      {
+        "name": "cyclonedx-bom",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.2b.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.2"
+}

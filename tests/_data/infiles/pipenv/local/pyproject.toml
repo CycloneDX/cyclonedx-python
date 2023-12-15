@@ -1,0 +1,5 @@
+[project]
+# https://packaging.python.org/en/latest/specifications/declaring-project-metadata/#declaring-project-metadata
+name = "local"
+version = "0.1.0"
+description = "packages from local paths"
