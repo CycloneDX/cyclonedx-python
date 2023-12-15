@@ -40,10 +40,10 @@
     <component type="library" bom-ref="toml==0.10.2">
       <name>toml</name>
       <version>0.10.2</version>
-      <purl>pkg:pypi/toml@0.10.2?repository_url=http://pysrc1.acme.org:8080/simple/</purl>
+      <purl>pkg:pypi/toml@0.10.2?repository_url=http://pysrc1.acme.org:8080/simple</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>http://pysrc1.acme.org:8080/simple//toml/</url>
+          <url>http://pysrc1.acme.org:8080/simple/toml/</url>
           <comment>from explicit index: pysrc1.acme.org</comment>
         </reference>
       </externalReferences>

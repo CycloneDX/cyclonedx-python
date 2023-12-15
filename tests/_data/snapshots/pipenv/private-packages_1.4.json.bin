@@ -76,7 +76,7 @@
             }
           ],
           "type": "distribution",
-          "url": "http://pysrc1.acme.org:8080/simple//toml/"
+          "url": "http://pysrc1.acme.org:8080/simple/toml/"
         }
       ],
       "name": "toml",
@@ -86,7 +86,7 @@
           "value": "default"
         }
       ],
-      "purl": "pkg:pypi/toml@0.10.2?repository_url=http://pysrc1.acme.org:8080/simple/",
+      "purl": "pkg:pypi/toml@0.10.2?repository_url=http://pysrc1.acme.org:8080/simple",
       "type": "library",
       "version": "0.10.2"
     }

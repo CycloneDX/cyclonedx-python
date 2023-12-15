@@ -161,9 +161,9 @@ class PipenvBB(BomBuilder):
         self._logger.debug('root-component: %r', root_c)
 
         meta: NameDict = locker[self.__LOCKFILE_META]
-        source_urls: Dict[str, str] = {source['name']: source['url'] for source in meta.get('sources', ())}
+        source_urls: Dict[str, str] = {source['name']: source['url'].rstrip('/') for source in meta.get('sources', ())}
         if self._pypi_url is not None:
-            source_urls['pypi'] = self._pypi_url
+            source_urls['pypi'] = self._pypi_url.rstrip('/')
 
         all_components: Dict[str, Component] = {}
         if root_c:
