@@ -275,7 +275,7 @@ class PipenvBB(BomBuilder):
                     type=ExternalReferenceType.DISTRIBUTION,
                     url=XsUri(f'{source_urls["pypi"]}/{name}/'),
                     hashes=hashes)
-        except (InvalidUriException, UnknownHashTypeException, KeyError) as error:
+        except (InvalidUriException, UnknownHashTypeException, KeyError) as error:  # pragma: nocover
             self._logger.debug('skipped dist-extRef for: %r', name, exc_info=error)
 
     def __purl_qualifiers4lock(self, data: 'NameDict', sourcees: Dict[str, str]) -> 'NameDict':
