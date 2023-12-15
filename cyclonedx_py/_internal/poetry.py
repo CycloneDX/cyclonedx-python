@@ -278,6 +278,7 @@ class PoetryBB(BomBuilder):
             if _existed:
                 self._logger.debug('existing component: %r', le.component)
             else:
+                self._logger.info('add component for package %r', name)
                 self._logger.debug('add component: %r', le.component)
                 le.added2bom = True
                 bom.components.add(le.component)

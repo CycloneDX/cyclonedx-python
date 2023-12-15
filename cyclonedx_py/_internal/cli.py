@@ -177,7 +177,7 @@ class Command:
             self._logger.warning('Validation skipped.')
             return False
 
-        self._logger.info('Validating to schema: %s/%s', self._schema_version.to_version(), self._output_format.name)
+        self._logger.info('Validating result to schema: %s/%s', self._schema_version.to_version(), self._output_format.name)
         from cyclonedx.validation import make_schemabased_validator
 
         validation_error = make_schemabased_validator(
@@ -186,19 +186,20 @@ class Command:
         ).validate_str(output)
         if validation_error:
             self._logger.debug('Validation Errors: %r', validation_error.data)
-            self._logger.error('The output is invalid to schema '
+            self._logger.error('The result is invalid to schema '
                                f'{self._schema_version.to_version()}/{self._output_format.name}')
-            self._logger.error('Please report the issue and provide all input data to: '
-                               'https://github.com/CycloneDX/cyclonedx-python/issues/new?'
-                               'template=ValidationError-report.md&labels=ValidationError&title=%5BValidationError%5D')
+            self._logger.warning('Please report the issue and provide all input data to: '
+                                 'https://github.com/CycloneDX/cyclonedx-python/issues/new?'
+                                 'template=ValidationError-report.md&'
+                                 'labels=ValidationError&title=%5BValidationError%5D')
             raise ValueError('result is schema-invalid')
-        self._logger.info('Valid.')
+        self._logger.debug('result is schema-valid')
         return True
 
     def _write(self, output: str, outfile: TextIO) -> int:
         self._logger.info('Writing to: %s', outfile.name)
         written = outfile.write(output)
-        self._logger.info('Wrote %i bytes to %s', written, outfile.name)
+        self._logger.debug('Wrote %i bytes to %s', written, outfile.name)
         return written
 
     def _make_output(self, bom: 'Bom') -> str:
@@ -242,7 +243,7 @@ def run(*, argv: Optional[List[str]] = None, **kwargs: Any) -> int:
         return 1
     del arg_parser, argv
 
-    ll = (logging.NOTSET, logging.WARNING, logging.INFO, logging.DEBUG)[min(3, args.pop('verbosity'))]
+    ll = (logging.WARNING, logging.INFO, logging.DEBUG)[min(2, args.pop('verbosity'))]
     lh = logging.StreamHandler(sys.stderr)
     lh.setLevel(ll)
     lh.setFormatter(logging.Formatter('%(levelname)-8s | %(name)s > %(message)s'))
