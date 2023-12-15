@@ -86,8 +86,8 @@ class PipenvBB(BomBuilder):
         p.add_argument('project_directory',
                        metavar='project-directory',
                        help='The project directory for Pipenv (default: current working directory)\n'
-                            'Unlike Pipenv, there is no auto-sensing i this tool.'  # yet
-                            'Please provide the actual directory that contains your `Pipfile` and `Pipfile.lock`',
+                            'Unlike Pipenv tool, there is no auto-detection in this very tool. '  # yet
+                            'Please provide the actual directory that contains `Pipfile` and `Pipfile.lock`',
                        nargs=OPTIONAL,
                        default='.')
         return p
