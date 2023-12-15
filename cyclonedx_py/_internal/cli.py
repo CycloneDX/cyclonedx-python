@@ -28,7 +28,6 @@ from .environment import EnvironmentBB
 from .pipenv import PipenvBB
 from .poetry import PoetryBB
 from .requirements import RequirementsBB
-from .conda import CondaBB
 
 if TYPE_CHECKING:  # pragma: no cover
     from argparse import Action
@@ -115,7 +114,6 @@ class Command:
             ('requirements', RequirementsBB),
             ('pipenv', PipenvBB),
             ('poetry', PoetryBB),
-            ('conda', CondaBB),
         ):
             spp = scbbc.make_argument_parser(add_help=False)
             sp.add_parser(sct,
