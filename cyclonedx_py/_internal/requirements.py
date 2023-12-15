@@ -155,12 +155,14 @@ class RequirementsBB(BomBuilder):
 
         return self._make_bom(rc, rf)
 
-    def _make_bom(self, rc: Optional['Component'], rf: 'RequirementsFile') -> 'Bom':
+    def _make_bom(self, root_c: Optional['Component'], rf: 'RequirementsFile') -> 'Bom':
         from .utils.bom import make_bom
 
         bom = make_bom()
+        bom.metadata.component = root_c
+        self._logger.debug('root-component: %r', root_c)
         self._add_components(bom, rf)
-        bom.metadata.component = rc
+
         return bom
 
     def _add_components(self, bom: 'Bom', rf: 'RequirementsFile') -> None:
@@ -174,9 +176,10 @@ class RequirementsBB(BomBuilder):
 
         for requirement in rf.requirements:
             component = self._make_component(requirement, index_url, extra_index_urls)
-            self._logger.debug('Add component: %r', component)
-            if not component.version:
-                self._logger.warning('Component has no pinned version: %r', component)
+            self._logger.info('add component for line %r', requirement.line)
+            self._logger.debug('add component: %r', component)
+            if not component.version and not requirement.is_url:
+                self._logger.warning('component has no pinned version: %r', component)
             bom.components.add(component)
 
     def __hashes4req(self, req: 'InstallRequirement') -> Generator['HashType', None, None]:
