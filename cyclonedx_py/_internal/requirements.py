@@ -45,7 +45,7 @@ class RequirementsBB(BomBuilder):
 
         from .utils.args import argparse_type4enum
 
-        p = ArgumentParser(description=dedent(""""\
+        p = ArgumentParser(description=dedent("""\
                            Build an SBOM from Pip requirements.
 
                            The options mimic the respective ones from Pip.

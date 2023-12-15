@@ -31,13 +31,13 @@ if TYPE_CHECKING:  # pragma: no cover
 # TODO: measure with `/bin/time -v` for max resident size and see if this changes when global imports are used
 
 
-class EnvironmentBB(BomBuilder):
+class CondaBB(BomBuilder):
 
     @staticmethod
     def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':
         from argparse import ArgumentParser
 
-        p = ArgumentParser(description='Build an SBOM from Python (virtual) environment',
+        p = ArgumentParser(description='Build an SBOM from a conda environment',
                            **kwargs)
         # TODO
         return p
@@ -55,6 +55,23 @@ class EnvironmentBB(BomBuilder):
         bom = make_bom()
 
         # TODO
-        # maybe utilize https://github.com/tox-dev/pipdeptree ?
+
+        # maybe shell-out (forward all env cars starting with `CONDA_`)
+        #
+        # see also: https://docs.conda.io/projects/conda/en/latest/user-guide/configuration/use-condarc.html
+        # see also: https://docs.conda.io/projects/conda/en/latest/dev-guide/deep-dives/context.html
+        #
+        # - `conda list -q [-n ENVIRONMENT] [-p PATH] [--no-pip] [-f] [FILTER]`
+        #   - `conda list --json`
+        #   - `conda list --export --explicit --md5`
+        # - `conda info`
+
+        # maybe have an own conda command/plugin?
+        # see https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/conda-plugins.html
+
+        # maybe create a executable `conda-cyclonedx`
+        # if it is in the shell path, conda will pick it up and have it made available via `conda cyclonedx`
+        # and it will add some env vars:
+        # - CONDA_ROOT
 
         return bom

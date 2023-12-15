@@ -28,6 +28,7 @@ from .environment import EnvironmentBB
 from .pipenv import PipenvBB
 from .poetry import PoetryBB
 from .requirements import RequirementsBB
+from .conda import CondaBB
 
 if TYPE_CHECKING:  # pragma: no cover
     from argparse import Action
@@ -111,9 +112,10 @@ class Command:
         scbbc: Type['BomBuilder']
         for sct, scbbc in (  # type:ignore[assignment]
             ('environment', EnvironmentBB),
+            ('requirements', RequirementsBB),
             ('pipenv', PipenvBB),
             ('poetry', PoetryBB),
-            ('requirements', RequirementsBB),
+            ('conda', CondaBB),
         ):
             spp = scbbc.make_argument_parser(add_help=False)
             sp.add_parser(sct,
