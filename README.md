@@ -13,15 +13,17 @@
 
 ----
 
-This project provides a runnable Python-based application for generating CycloneDX bill-of-material documents from either:
+This project provides a runnable Python-based application 
+for generating software bill-of-material (SBOM) documents in [CycloneDX](https://cyclonedx.org/) format
+from either:
 
 * Your current Python Environment
 * Your project's manifest (e.g. `Pipfile.lock`, `poetry.lock` or `requirements.txt`)
-* Conda as a Package Manager
+* Conda as a Package Manager is no longer supported since version 4. Try an older version: `pip install 'cyclonedx-bom<4'`
 
-The BOM will contain an aggregate of all your current project's dependencies, or those defined by the manifest you supply.
+The SBOM will contain an aggregate of all your current project's dependencies, or those defined by the manifest you supply.
 
-[CycloneDX](https://cyclonedx.org/) is a lightweight BOM specification that is easily created, human-readable, and simple to parse.
+CycloneDX is a lightweight BOM specification that is easily created, human-readable, and simple to parse.
 
 Read the full [documentation][link_rtfd] for more details.
 
