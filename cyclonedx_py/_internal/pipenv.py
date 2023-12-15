@@ -64,7 +64,7 @@ class PipenvBB(BomBuilder):
                        metavar='URL',
                        help='Specify a PyPI mirror',
                        dest='pypi_url',
-                       default='https://pypi.org/simple')
+                       default=None)
         p.add_argument('--pyproject',
                        metavar='pyproject.toml',
                        help="Path to the root component's `pyproject.toml` according to PEP621",
@@ -91,8 +91,10 @@ class PipenvBB(BomBuilder):
 
     def __init__(self, *,
                  logger: 'Logger',
+                 pypi_url: Optional[str],
                  **__: Any) -> None:
         self._logger = logger
+        self._pypi_url = pypi_url
 
     def __call__(self, *,  # type:ignore[override]
                  project_directory: str,
@@ -138,9 +140,8 @@ class PipenvBB(BomBuilder):
                                   json_loads(lock.read()),
                                   lock_groups)
 
-    def _make_bom(self, root_c: Optional['Component'], locker: 'NameDict',
-                  use_groups: Set[str]
-                  ) -> 'Bom':
+    def _make_bom(self, root_c: Optional['Component'],
+                  locker: 'NameDict', use_groups: Set[str]) -> 'Bom':
         from cyclonedx.model import Property
         from cyclonedx.model.component import Component, ComponentType
         from packageurl import PackageURL
@@ -155,7 +156,9 @@ class PipenvBB(BomBuilder):
         self._logger.debug('root-component: %r', root_c)
 
         meta: NameDict = locker[self.__LOCKFILE_META]
-        source_urls: Dict[str, str] = dict((source['name'], source['url']) for source in meta.get('sources', []))
+        source_urls: Dict[str, str] = {source['name']: source['url'] for source in meta.get('sources', ())}
+        if self._pypi_url is not None:
+            source_urls['pypi'] = self._pypi_url
 
         all_components: Dict[str, Component] = {}
         if root_c:
@@ -189,7 +192,7 @@ class PipenvBB(BomBuilder):
                 component.properties.update(Property(
                     name=PropertyName.PackageExtra.value,
                     value=package_extra
-                ) for package_extra in package_data.get('extras', []))
+                ) for package_extra in package_data.get('extras', ()))
 
         return bom
 
@@ -233,7 +236,7 @@ class PipenvBB(BomBuilder):
 
         hashes = (HashType.from_composite_str(package_hash)
                   for package_hash
-                  in data.get('hashes', []))
+                  in data.get('hashes', ()))
         vcs_source = self.__package_vcs(data)
         try:
             if vcs_source is not None:

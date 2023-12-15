@@ -108,6 +108,7 @@ class TestPipenv(TestCase, SnapshotMixin):
 
     # TODO: groups filtered
     # TODO: with `--dev`
+    # TODO: alternative pypi url
 
     def assertEqualSnapshot(self, actual: str, snapshot_name: str) -> None:  # noqa:N802
         super().assertEqualSnapshot(actual, join('pipenv', snapshot_name))

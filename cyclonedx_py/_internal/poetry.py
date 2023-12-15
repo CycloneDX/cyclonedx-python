@@ -289,10 +289,10 @@ class PoetryBB(BomBuilder):
                 name=PropertyName.PackageExtra.value,
                 value=extra
             ) for extra in new_extras)
-            depends_on = []
+            depends_on: List[Optional['Component']] = []
             for dep in set(chain(
-                [] if _existed else le.dependencies,
-                chain.from_iterable(le.extra_deps.get(extra, []) for extra in new_extras)
+                () if _existed else le.dependencies,
+                chain.from_iterable(le.extra_deps.get(extra, ()) for extra in new_extras)
             )):
                 self._logger.debug('component %r depends on %r', le.component, dep)
                 depm = _dep_pattern.match(dep)
@@ -306,7 +306,7 @@ class PoetryBB(BomBuilder):
             bom.register_dependency(le.component, filter(None, depends_on))
             return le.component
 
-        depends_on = []
+        depends_on: List[Optional['Component']] = []
         for group_name in use_groups:
             self._logger.debug('processing group %r ...', group_name)
             for dep_name, dep_spec in po_cfg['group'][group_name].get('dependencies', {}).items():
@@ -327,7 +327,7 @@ class PoetryBB(BomBuilder):
                 if dep_spec.get('optional', False) and dep_name not in extra_deps:
                     self._logger.debug('skip optional dependency: %s', dep_name)
                     continue
-                depends_on.append(_add_ld(dep_name, set(dep_spec.get('extras', []))))
+                depends_on.append(_add_ld(dep_name, set(dep_spec.get('extras', ()))))
         bom.register_dependency(root_c, filter(None, depends_on))
 
         return bom
