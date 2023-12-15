@@ -104,7 +104,7 @@ class TestPipenv(TestCase, SnapshotMixin):
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(
             make_comparable(out, of),
-            f'{basename(dirname(projectdir))}-{basename(projectdir)}-{sv.to_version()}.{of.name.lower()}')
+            f'{basename(projectdir)}_{sv.to_version()}.{of.name.lower()}')
 
     @named_data(*test_data_file_filter('category-deps'))
     def test_cli_with_categories_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
@@ -125,7 +125,7 @@ class TestPipenv(TestCase, SnapshotMixin):
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(
             make_comparable(out, of),
-            f'some-categories-{basename(projectdir)}-{sv.to_version()}.{of.name.lower()}')
+            f'some-categories_{basename(projectdir)}_{sv.to_version()}.{of.name.lower()}')
 
     @named_data(*test_data_file_filter('default-and-dev'))
     def test_cli_with_dev_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
@@ -136,19 +136,38 @@ class TestPipenv(TestCase, SnapshotMixin):
                 res = run_cli(argv=[
                     'pipenv',
                     '-vvv',
-                    '--dev',
                     f'--sv={sv.to_version()}',
                     f'--of={of.name}',
                     '--outfile=-',
+                    '--dev',
                     projectdir])
             err = err.getvalue()
             out = out.getvalue()
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(
             make_comparable(out, of),
-            f'with-dev-{basename(projectdir)}-{sv.to_version()}.{of.name.lower()}')
+            f'with-dev_{basename(projectdir)}_{sv.to_version()}.{of.name.lower()}')
 
-    # TODO: alternative pypi url
+    @named_data(*test_data_file_filter('private-packages'))
+    def test_cli_with_pypi_mirror_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
+        with StringIO() as err, StringIO() as out:
+            err.name = '<fakeerr>'
+            out.name = '<fakeout>'
+            with redirect_stderr(err), redirect_stdout(out):
+                res = run_cli(argv=[
+                    'pipenv',
+                    '-vvv',
+                    f'--sv={sv.to_version()}',
+                    f'--of={of.name}',
+                    '--outfile=-',
+                    '--pypi-mirror', 'https://pypy-mirror.testing.acme.org/simple',
+                    projectdir])
+            err = err.getvalue()
+            out = out.getvalue()
+        self.assertEqual(0, res, err)
+        self.assertEqualSnapshot(
+            make_comparable(out, of),
+            f'pypi-mirror_{basename(projectdir)}_{sv.to_version()}.{of.name.lower()}')
 
     def assertEqualSnapshot(self, actual: str, snapshot_name: str) -> None:  # noqa:N802
         super().assertEqualSnapshot(actual, join('pipenv', snapshot_name))
