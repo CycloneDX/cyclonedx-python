@@ -138,7 +138,7 @@ class PipenvBB(BomBuilder):
                                   json_loads(lock.read()),
                                   lock_groups)
 
-    def _make_bom(self, rc: Optional['Component'], locker: 'NameDict',
+    def _make_bom(self, root_c: Optional['Component'], locker: 'NameDict',
                   use_groups: Set[str]
                   ) -> 'Bom':
         from cyclonedx.model import Property
@@ -150,19 +150,24 @@ class PipenvBB(BomBuilder):
 
         self._logger.debug('use_groups: %r', use_groups)
 
+        bom = make_bom()
+        bom.metadata.component = root_c
+        self._logger.debug('root-component: %r', root_c)
+
         meta: NameDict = locker[self.__LOCKFILE_META]
         source_urls: Dict[str, str] = dict((source['name'], source['url']) for source in meta.get('sources', []))
 
         all_components: Dict[str, Component] = {}
-        if rc:
+        if root_c:
             # root for self-installs
-            all_components[rc.name] = rc
+            all_components[root_c.name] = root_c
         for group_name in use_groups:
+            self._logger.debug('processing group %r ...', group_name)
             for package_name, package_data in locker.get(group_name, {}).items():
                 if package_name in all_components:
                     component = all_components[package_name]
                 else:
-                    component = all_components[package_name] = Component(
+                    component = Component(
                         bom_ref=f'{package_name}{package_data.get("version", "")}',
                         type=ComponentType.LIBRARY,
                         name=package_name,
@@ -174,6 +179,9 @@ class PipenvBB(BomBuilder):
                                                 version=component.version,
                                                 qualifiers=self.__purl_qualifiers4lock(package_data, source_urls)
                                                 ) if not self.__is_local(package_data) else None
+                    self._logger.info('add component for package %r', package_name)
+                    self._logger.debug('add component: %r', component)
+                    bom.components.add(component)
                 component.properties.add(Property(
                     name=PropertyName.PipenvCategory.value,
                     value=group_name
@@ -183,10 +191,6 @@ class PipenvBB(BomBuilder):
                     value=package_extra
                 ) for package_extra in package_data.get('extras', []))
 
-        bom = make_bom(
-            components=(c for c in all_components.values() if c is not rc)
-        )
-        bom.metadata.component = rc
         return bom
 
     def __is_local(self, data: 'NameDict') -> bool:
