@@ -65,6 +65,36 @@
       "version": "0.4.6"
     },
     {
+      "bom-ref": "ddt==1.7.0",
+      "externalReferences": [
+        {
+          "comment": "from explicit index: pypi",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "a0719acde99dd32767cff64e653ef99c01ad5b042ff265f2ebecd28796ffd114"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "d178d115abf25a1b8327e94f85a03ef09b1d7b0ca256f6203284b024f2fc70df"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/ddt/"
+        }
+      ],
+      "name": "ddt",
+      "properties": [
+        {
+          "name": "cdx:pipenv:category",
+          "value": "develop"
+        }
+      ],
+      "purl": "pkg:pypi/ddt@1.7.0",
+      "type": "library",
+      "version": "1.7.0"
+    },
+    {
       "bom-ref": "isoduration==20.11.0",
       "externalReferences": [
         {
@@ -223,6 +253,9 @@
       "ref": "colorama==0.4.6"
     },
     {
+      "ref": "ddt==1.7.0"
+    },
+    {
       "ref": "isoduration==20.11.0"
     },
     {
@@ -241,7 +274,11 @@
   "metadata": {
     "tools": [
       {
-        "externalReferences": [   ],
+        "name": "cyclonedx-bom",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
         "name": "cyclonedx-python-lib",
         "vendor": "CycloneDX",
         "version": "libVersion-testing"
@@ -249,7 +286,7 @@
     ]
   },
   "version": 1,
-  "$schema": "http://cyclonedx.org/schema/bom-1.4.schema.json",
+  "$schema": "http://cyclonedx.org/schema/bom-1.3a.schema.json",
   "bomFormat": "CycloneDX",
-  "specVersion": "1.4"
+  "specVersion": "1.3"
 }

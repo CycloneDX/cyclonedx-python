@@ -96,8 +96,8 @@ class TestPipenv(TestCase, SnapshotMixin):
                     '-vvv',
                     f'--sv={sv.to_version()}',
                     f'--of={of.name}',
-                    f'--pyproject={join(projectdir, "pyproject.toml")}',
                     '--outfile=-',
+                    f'--pyproject={join(projectdir, "pyproject.toml")}',
                     projectdir])
             err = err.getvalue()
             out = out.getvalue()
@@ -115,10 +115,10 @@ class TestPipenv(TestCase, SnapshotMixin):
                 res = run_cli(argv=[
                     'pipenv',
                     '-vvv',
-                    '--categories', 'categoryB,groupA packages,dev-packages'
                     f'--sv={sv.to_version()}',
                     f'--of={of.name}',
                     '--outfile=-',
+                    '--categories', 'categoryB,groupA packages,dev-packages',
                     projectdir])
             err = err.getvalue()
             out = out.getvalue()

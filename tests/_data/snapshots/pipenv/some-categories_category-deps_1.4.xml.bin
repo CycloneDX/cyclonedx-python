@@ -79,6 +79,24 @@
         <property name="cdx:pipenv:category">groupA</property>
       </properties>
     </component>
+    <component type="library" bom-ref="ddt==1.7.0">
+      <name>ddt</name>
+      <version>1.7.0</version>
+      <purl>pkg:pypi/ddt@1.7.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/ddt/</url>
+          <comment>from explicit index: pypi</comment>
+          <hashes>
+            <hash alg="SHA-256">a0719acde99dd32767cff64e653ef99c01ad5b042ff265f2ebecd28796ffd114</hash>
+            <hash alg="SHA-256">d178d115abf25a1b8327e94f85a03ef09b1d7b0ca256f6203284b024f2fc70df</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:pipenv:category">develop</property>
+      </properties>
+    </component>
     <component type="library" bom-ref="isoduration==20.11.0">
       <name>isoduration</name>
       <version>20.11.0</version>
@@ -173,6 +191,7 @@
   <dependencies>
     <dependency ref="arrow==1.3.0"/>
     <dependency ref="colorama==0.4.6"/>
+    <dependency ref="ddt==1.7.0"/>
     <dependency ref="isoduration==20.11.0"/>
     <dependency ref="python-dateutil==2.8.2"/>
     <dependency ref="six==1.16.0"/>
