@@ -19,8 +19,8 @@
 """
 Functionality related tot PEP 621
 
-See https://peps.python.org/pep-0621/
 See https://packaging.python.org/en/latest/specifications/declaring-project-metadata/#declaring-project-metadata
+See https://peps.python.org/pep-0621/
 """
 
 
@@ -35,6 +35,8 @@ def pyproject2licenses(pyproject: Dict[str, Any]) -> Generator['License', None, 
     from cyclonedx.factory.license import LicenseFactory
     lfac = LicenseFactory()
     if 'classifiers' in pyproject:
+        # https://packaging.python.org/en/latest/specifications/pyproject-toml/#classifiers
+        # https://peps.python.org/pep-0621/#classifiers
         # https://packaging.python.org/en/latest/specifications/core-metadata/#classifier-multiple-use
         from .license_trove_classifier import license_trove2spdx
         yield from map(lfac.make_with_id,
@@ -42,6 +44,8 @@ def pyproject2licenses(pyproject: Dict[str, Any]) -> Generator['License', None, 
                               map(license_trove2spdx,
                                   pyproject['classifiers'])))
     license = pyproject.get('license')
+    # https://packaging.python.org/en/latest/specifications/pyproject-toml/#license
+    # https://peps.python.org/pep-0621/#license
     # https://packaging.python.org/en/latest/specifications/core-metadata/#license
     if isinstance(license, dict) and 'text' in license:
         yield lfac.make_from_string(license['text'])
