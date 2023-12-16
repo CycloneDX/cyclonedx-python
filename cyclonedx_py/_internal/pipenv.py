@@ -42,12 +42,17 @@ class PipenvBB(BomBuilder):
     def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':
         from argparse import OPTIONAL, ArgumentParser
         from os import getenv
+        from textwrap import dedent
 
         from cyclonedx.model.component import ComponentType
 
         from .utils.args import argparse_type4enum, arpaese_split
 
-        p = ArgumentParser(description='Build an SBOM from Pipenv',
+        p = ArgumentParser(description=dedent("""\
+                           Build an SBOM from Pipenv.
+
+                           The options mimic the respective ones from Pipenv.
+                           """),
                            **kwargs)
         # the args shall mimic the ones from Pipenv
         # see also: https://pipenv.pypa.io/en/latest/configuration.html
