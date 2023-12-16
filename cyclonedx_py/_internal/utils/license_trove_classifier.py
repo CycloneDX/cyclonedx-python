@@ -46,7 +46,7 @@ __TO_SPDX_MAP = {
 
     'License :: Aladdin Free Public License (AFPL)': 'Aladdin',
     'License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication': 'CC0-1.0',
-    'License :: CeCILL-B Free Software License Agreement (CECILL-B)': ' CECILL-B',
+    'License :: CeCILL-B Free Software License Agreement (CECILL-B)': 'CECILL-B',
     'License :: CeCILL-C Free Software License Agreement (CECILL-C)': 'CECILL-C',
     # 'License :: Eiffel Forum License (EFL)': which one?
     #   -  EFL-1.0
@@ -85,10 +85,10 @@ __TO_SPDX_MAP = {
     # 'License :: OSI Approved :: Artistic License': which version?
     'License :: OSI Approved :: Attribution Assurance License': 'AAL',
     # 'License :: OSI Approved :: BSD License': which exactly?
-    'License :: OSI Approved :: Boost Software License 1.0 (BSL-1.0)': ' BSL-1.0',
-    'License :: OSI Approved :: CEA CNRS Inria Logiciel Libre License, version 2.1 (CeCILL-2.1)': ' CECILL-2.1',
+    'License :: OSI Approved :: Boost Software License 1.0 (BSL-1.0)': 'BSL-1.0',
+    'License :: OSI Approved :: CEA CNRS Inria Logiciel Libre License, version 2.1 (CeCILL-2.1)': 'CECILL-2.1',
     'License :: OSI Approved :: Common Development and Distribution License 1.0 (CDDL-1.0)': 'CDDL-1.0',
-    'License :: OSI Approved :: Common Public License': ' CPL-1.0',
+    'License :: OSI Approved :: Common Public License': 'CPL-1.0',
     'License :: OSI Approved :: Eclipse Public License 1.0 (EPL-1.0)': 'EPL-1.0',
     'License :: OSI Approved :: Eclipse Public License 2.0 (EPL-2.0)': 'EPL-1.0',
     # 'License :: OSI Approved :: Eiffel Forum License': which version?
