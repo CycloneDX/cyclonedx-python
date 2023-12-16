@@ -17,7 +17,7 @@
 
 
 """
-Functionality related tot PEP 621
+Functionality related to PEP 621
 
 See https://packaging.python.org/en/latest/specifications/declaring-project-metadata/#declaring-project-metadata
 See https://peps.python.org/pep-0621/
