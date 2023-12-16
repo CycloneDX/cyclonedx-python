@@ -57,7 +57,7 @@ __TO_SPDX_MAP = {
     # 'License :: Free for non-commercial use': unknown to SPDX
     # 'License :: Freely Distributable': unknown to SPDX
     # 'License :: Freeware': unknown to SPDX
-    'License :: GUST Font License 1.0': '',
+    # 'License :: GUST Font License 1.0': unknown to SPDX,
     # 'License :: GUST Font License 2006-09-30': unknown to SPDX
     # 'License :: Netscape Public License (NPL)': which version?
     #   - NPL-1.0
