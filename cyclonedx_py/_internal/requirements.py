@@ -149,7 +149,7 @@ class RequirementsBB(BomBuilder):
         return self._make_bom(rc, rf)
 
     def _make_bom(self, root_c: Optional['Component'], rf: 'RequirementsFile') -> 'Bom':
-        from .utils.bom import make_bom
+        from .utils.cdx import make_bom
 
         bom = make_bom()
         bom.metadata.component = root_c

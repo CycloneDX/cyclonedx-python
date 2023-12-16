@@ -232,7 +232,7 @@ class PoetryBB(BomBuilder):
         from cyclonedx.model import Property
 
         from . import PropertyName
-        from .utils.bom import make_bom
+        from .utils.cdx import make_bom
 
         self._logger.debug('use_groups: %r', use_groups)
         self._logger.debug('use_extras: %r', use_extras)
@@ -338,19 +338,17 @@ class PoetryBB(BomBuilder):
         from cyclonedx.model.component import Component
 
         from .utils.cdx import licenses_fixup
+        from .utils.pep621 import classifiers2licenses
 
-        lfac = LicenseFactory()
         licenses: List['License'] = []
+        lfac = LicenseFactory()
         if 'classifiers' in po_cfg:
             # https://python-poetry.org/docs/pyproject/#classifiers
-            from .utils.license_trove_classifier import license_trove2spdx
-            licenses.extend(map(lfac.make_with_id,
-                                filter(None,
-                                       map(license_trove2spdx,
-                                           po_cfg['classifiers']))))
+            licenses.extend(classifiers2licenses(po_cfg['classifiers'], lfac))
         if 'license' in po_cfg:
             # https://python-poetry.org/docs/pyproject/#license
             licenses.append(lfac.make_from_string(po_cfg['license']))
+        del lfac
 
         # see spec: https://python-poetry.org/docs/pyproject/
         return Component(

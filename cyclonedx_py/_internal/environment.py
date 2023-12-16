@@ -50,7 +50,7 @@ class EnvironmentBB(BomBuilder):
     def __call__(self, *,  # type:ignore[override]
                  lock: BinaryIO,
                  **__: Any) -> 'Bom':
-        from .utils.bom import make_bom
+        from .utils.cdx import make_bom
 
         bom = make_bom()
 

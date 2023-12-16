@@ -157,7 +157,7 @@ class PipenvBB(BomBuilder):
         from packageurl import PackageURL
 
         from . import PropertyName
-        from .utils.bom import make_bom
+        from .utils.cdx import make_bom
 
         self._logger.debug('use_groups: %r', use_groups)
 

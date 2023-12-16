@@ -24,25 +24,28 @@ See https://peps.python.org/pep-0621/
 """
 
 
-from typing import TYPE_CHECKING, Any, Dict, Generator
+from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable
 
 if TYPE_CHECKING:
+    from cyclonedx.factory.license import LicenseFactory
     from cyclonedx.model.component import Component, ComponentType
     from cyclonedx.model.license import License
 
 
-def pyproject2licenses(pyproject: Dict[str, Any]) -> Generator['License', None, None]:
-    from cyclonedx.factory.license import LicenseFactory
-    lfac = LicenseFactory()
+def classifiers2licenses(classifiers: Iterable[str], lfac: 'LicenseFactory') -> Generator['License', None, None]:
+    from .license_trove_classifier import license_trove2spdx
+    yield from map(lfac.make_with_id,
+                   filter(None,
+                          map(license_trove2spdx,
+                              classifiers)))
+
+
+def pyproject2licenses(pyproject: Dict[str, Any], lfac: 'LicenseFactory') -> Generator['License', None, None]:
     if 'classifiers' in pyproject:
         # https://packaging.python.org/en/latest/specifications/pyproject-toml/#classifiers
         # https://peps.python.org/pep-0621/#classifiers
         # https://packaging.python.org/en/latest/specifications/core-metadata/#classifier-multiple-use
-        from .license_trove_classifier import license_trove2spdx
-        yield from map(lfac.make_with_id,
-                       filter(None,
-                              map(license_trove2spdx,
-                                  pyproject['classifiers'])))
+        yield from classifiers2licenses(pyproject['classifiers'], lfac)
     license = pyproject.get('license')
     # https://packaging.python.org/en/latest/specifications/pyproject-toml/#license
     # https://peps.python.org/pep-0621/#license
@@ -53,6 +56,7 @@ def pyproject2licenses(pyproject: Dict[str, Any]) -> Generator['License', None, 
 
 def pyproject2component(pyproject: Dict[str, Any], *,
                         type: 'ComponentType') -> 'Component':
+    from cyclonedx.factory.license import LicenseFactory
     from cyclonedx.model.component import Component
 
     from .cdx import licenses_fixup
@@ -63,7 +67,7 @@ def pyproject2component(pyproject: Dict[str, Any], *,
         name=project['name'],
         version=project.get('version', None),
         description=project.get('description', None),
-        licenses=licenses_fixup(pyproject2licenses(project)),
+        licenses=licenses_fixup(pyproject2licenses(project, LicenseFactory())),
         # TODO add more properties according to spec
     )
 

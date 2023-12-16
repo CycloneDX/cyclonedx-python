@@ -16,9 +16,60 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
-from typing import Iterable
+"""
+CycloneDX related helpers and utils.
+"""
 
+from typing import Any, Iterable
+
+from cyclonedx.model import ExternalReference, ExternalReferenceType, Tool, XsUri
+from cyclonedx.model.bom import Bom
 from cyclonedx.model.license import License, LicenseExpression
+
+from cyclonedx_py import __version__
+
+
+def make_bom(**kwargs: Any) -> Bom:
+    bom = Bom(**kwargs)
+    bom.metadata.tools.add(Tool(
+        vendor='CycloneDX',
+        name='cyclonedx-bom',
+        version=__version__ or 'UNKNOWN',
+        external_references=[
+            ExternalReference(
+                type=ExternalReferenceType.BUILD_SYSTEM,
+                url=XsUri('https://github.com/CycloneDX/cyclonedx-python/actions')
+            ),
+            ExternalReference(
+                type=ExternalReferenceType.DISTRIBUTION,
+                url=XsUri('https://pypi.org/project/cyclonedx-bom/')
+            ),
+            ExternalReference(
+                type=ExternalReferenceType.DOCUMENTATION,
+                url=XsUri('https://cyclonedx-bom-tool.readthedocs.io/')
+            ),
+            ExternalReference(
+                type=ExternalReferenceType.ISSUE_TRACKER,
+                url=XsUri('https://github.com/CycloneDX/cyclonedx-python/issues')
+            ),
+            ExternalReference(
+                type=ExternalReferenceType.LICENSE,
+                url=XsUri('https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE')
+            ),
+            ExternalReference(
+                type=ExternalReferenceType.RELEASE_NOTES,
+                url=XsUri('https://github.com/CycloneDX/cyclonedx-python/blob/main/CHANGELOG.md')
+            ),
+            ExternalReference(
+                type=ExternalReferenceType.VCS,
+                url=XsUri('https://github.com/CycloneDX/cyclonedx-python')
+            ),
+            ExternalReference(
+                type=ExternalReferenceType.WEBSITE,
+                url=XsUri('https://github.com/CycloneDX/cyclonedx-python/#readme')
+            )
+        ]))
+    return bom
 
 
 def licenses_fixup(licenses: Iterable['License']) -> Iterable['License']:
