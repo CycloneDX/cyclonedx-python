@@ -19,15 +19,14 @@
 from unittest import TestCase
 
 from cyclonedx.spdx import is_supported_id
+from ddt import ddt, named_data
 
 from cyclonedx_py._internal.utils.license_trove_classifier import __TO_SPDX_MAP as TO_SPDX_MAP
-
-from ddt import ddt, named_data
 
 
 @ddt
 class TestLicenseTroveClassifier(TestCase):
 
     @named_data(*TO_SPDX_MAP.items())
-    def test_map_is_known_id(self, mapped) -> None:
+    def test_map_is_known_id(self, mapped: str) -> None:
         self.assertTrue(is_supported_id(mapped))
