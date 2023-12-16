@@ -342,12 +342,14 @@ class PoetryBB(BomBuilder):
         lfac = LicenseFactory()
         licenses: List['License'] = []
         if 'classifiers' in po_cfg:
+            # https://python-poetry.org/docs/pyproject/#classifiers
             from .utils.license_trove_classifier import license_trove2spdx
             licenses.extend(map(lfac.make_with_id,
                                 filter(None,
                                        map(license_trove2spdx,
                                            po_cfg['classifiers']))))
         if 'license' in po_cfg:
+            # https://python-poetry.org/docs/pyproject/#license
             licenses.append(lfac.make_from_string(po_cfg['license']))
 
         # see spec: https://python-poetry.org/docs/pyproject/
