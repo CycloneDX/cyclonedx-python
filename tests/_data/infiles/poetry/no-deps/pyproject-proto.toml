@@ -1,7 +1,7 @@
 [tool.poetry]
 ## https://python-poetry.org/docs/pyproject/
 name = "no-deps"
-license = "Apache-2.0"
+license = "Apache-2.0 OR MIT"
 version = "0.1.0"
 description = "packages with all meta, but no deps"
 authors = ["Your Name <you@example.com>", "My Name"]
@@ -14,8 +14,10 @@ repository = "https://oss.acme.org/my-project.git"
 documentation = "https://oss.acme.org/my-project/docs/"
 keywords = ["packaging", "poetry", "test"]
 classifiers = [
-  "Topic :: Software Development :: Build Tools",
-  "Topic :: Software Development :: Libraries :: Python Modules"
+  "License :: OSI Approved :: Apache Software License",
+  "License :: OSI Approved :: MIT License",
+  "Classifier: Development Status :: 4 - Beta",
+  "Intended Audience :: Developers"
 ]
 [tool.poetry.urls]
 "Bug Tracker" = "https://oss.acme.org/my-project/bugs/"

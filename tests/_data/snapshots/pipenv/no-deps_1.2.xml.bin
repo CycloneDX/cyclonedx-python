@@ -17,6 +17,9 @@
       <name>no-deps</name>
       <version>0.1.0</version>
       <description>packages with all meta, but no deps</description>
+      <licenses>
+        <expression>Apache-2.0 OR MIT</expression>
+      </licenses>
     </component>
   </metadata>
   <dependencies>

@@ -16,20 +16,53 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
-"""functionality related tot PEP 621
-See https://peps.python.org/pep-0621/
+"""
+Functionality related to PEP 621
+
 See https://packaging.python.org/en/latest/specifications/declaring-project-metadata/#declaring-project-metadata
+See https://peps.python.org/pep-0621/
 """
 
-from typing import TYPE_CHECKING, Any, Dict
+
+from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable
 
 if TYPE_CHECKING:
+    from cyclonedx.factory.license import LicenseFactory
     from cyclonedx.model.component import Component, ComponentType
+    from cyclonedx.model.license import License
+
+
+def classifiers2licenses(classifiers: Iterable[str], lfac: 'LicenseFactory') -> Generator['License', None, None]:
+    from .license_trove_classifier import license_trove2spdx
+    yield from map(lfac.make_from_string,
+                   # `lfac.make_with_id` could be a shortcut,
+                   # but some SPDX ID might not (yet) be known to CDX.
+                   # So better go with `lfac.make_from_string` and be safe.
+                   filter(None,
+                          map(license_trove2spdx,
+                              classifiers)))
+
+
+def pyproject2licenses(pyproject: Dict[str, Any], lfac: 'LicenseFactory') -> Generator['License', None, None]:
+    if 'classifiers' in pyproject:
+        # https://packaging.python.org/en/latest/specifications/pyproject-toml/#classifiers
+        # https://peps.python.org/pep-0621/#classifiers
+        # https://packaging.python.org/en/latest/specifications/core-metadata/#classifier-multiple-use
+        yield from classifiers2licenses(pyproject['classifiers'], lfac)
+    license = pyproject.get('license')
+    # https://packaging.python.org/en/latest/specifications/pyproject-toml/#license
+    # https://peps.python.org/pep-0621/#license
+    # https://packaging.python.org/en/latest/specifications/core-metadata/#license
+    if isinstance(license, dict) and 'text' in license:
+        yield lfac.make_from_string(license['text'])
 
 
 def pyproject2component(pyproject: Dict[str, Any], *,
                         type: 'ComponentType') -> 'Component':
+    from cyclonedx.factory.license import LicenseFactory
     from cyclonedx.model.component import Component
+
+    from .cdx import licenses_fixup
 
     project = pyproject['project']
     return Component(
@@ -37,6 +70,7 @@ def pyproject2component(pyproject: Dict[str, Any], *,
         name=project['name'],
         version=project.get('version', None),
         description=project.get('description', None),
+        licenses=licenses_fixup(pyproject2licenses(project, LicenseFactory())),
         # TODO add more properties according to spec
     )
 

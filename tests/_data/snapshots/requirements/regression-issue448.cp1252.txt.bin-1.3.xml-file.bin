@@ -17,6 +17,9 @@
       <name>testing-requirements-txt</name>
       <version>0.1.0</version>
       <description>some `reuqirements.txt` a root-component with all metadata</description>
+      <licenses>
+        <expression>Apache-2.0 OR MIT</expression>
+      </licenses>
     </component>
   </metadata>
   <components>

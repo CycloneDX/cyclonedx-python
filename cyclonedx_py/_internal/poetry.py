@@ -29,6 +29,7 @@ if TYPE_CHECKING:  # pragma: no cover
     from cyclonedx.model import ExternalReference
     from cyclonedx.model.bom import Bom
     from cyclonedx.model.component import Component, ComponentType
+    from cyclonedx.model.license import License
 
     NameDict = Dict[str, Any]
 
@@ -231,7 +232,7 @@ class PoetryBB(BomBuilder):
         from cyclonedx.model import Property
 
         from . import PropertyName
-        from .utils.bom import make_bom
+        from .utils.cdx import make_bom
 
         self._logger.debug('use_groups: %r', use_groups)
         self._logger.debug('use_extras: %r', use_extras)
@@ -336,6 +337,19 @@ class PoetryBB(BomBuilder):
         from cyclonedx.factory.license import LicenseFactory
         from cyclonedx.model.component import Component
 
+        from .utils.cdx import licenses_fixup
+        from .utils.pep621 import classifiers2licenses
+
+        licenses: List['License'] = []
+        lfac = LicenseFactory()
+        if 'classifiers' in po_cfg:
+            # https://python-poetry.org/docs/pyproject/#classifiers
+            licenses.extend(classifiers2licenses(po_cfg['classifiers'], lfac))
+        if 'license' in po_cfg:
+            # https://python-poetry.org/docs/pyproject/#license
+            licenses.append(lfac.make_from_string(po_cfg['license']))
+        del lfac
+
         # see spec: https://python-poetry.org/docs/pyproject/
         return Component(
             bom_ref=str(po_cfg.get('name', 'root-component')),
@@ -343,7 +357,7 @@ class PoetryBB(BomBuilder):
             name=str(po_cfg.get('name', 'unnamed')),
             version=str(po_cfg.get('version', '')) or None,
             description=str(po_cfg.get('description', '')) or None,
-            licenses=[LicenseFactory().make_from_string(po_cfg['license'])] if 'license' in po_cfg else None,
+            licenses=licenses_fixup(licenses),
             author=' | '.join(po_cfg['authors']) if 'authors' in po_cfg else None,
             external_references=self.__extrefs4poetryproj(po_cfg)
         )

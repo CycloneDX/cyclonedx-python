@@ -16,10 +16,15 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
-from typing import Any
+"""
+CycloneDX related helpers and utils.
+"""
+
+from typing import Any, Iterable
 
 from cyclonedx.model import ExternalReference, ExternalReferenceType, Tool, XsUri
 from cyclonedx.model.bom import Bom
+from cyclonedx.model.license import License, LicenseExpression
 
 from cyclonedx_py import __version__
 
@@ -65,3 +70,11 @@ def make_bom(**kwargs: Any) -> Bom:
             )
         ]))
     return bom
+
+
+def licenses_fixup(licenses: Iterable['License']) -> Iterable['License']:
+    licenses = set(licenses)
+    for license in licenses:
+        if isinstance(license, LicenseExpression):
+            return (license,)
+    return licenses
