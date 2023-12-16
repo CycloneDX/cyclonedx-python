@@ -46,9 +46,7 @@
       <version>0.1.0</version>
       <description>packages with all meta, but no deps</description>
       <licenses>
-        <license>
-          <id>Apache-2.0</id>
-        </license>
+        <expression>Apache-2.0 OR MIT</expression>
       </licenses>
       <externalReferences>
         <reference type="documentation">

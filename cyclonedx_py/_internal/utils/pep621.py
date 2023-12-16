@@ -16,20 +16,42 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
-"""functionality related tot PEP 621
+"""
+Functionality related tot PEP 621
+
 See https://peps.python.org/pep-0621/
 See https://packaging.python.org/en/latest/specifications/declaring-project-metadata/#declaring-project-metadata
 """
 
-from typing import TYPE_CHECKING, Any, Dict
+
+from typing import TYPE_CHECKING, Any, Dict, Generator
 
 if TYPE_CHECKING:
     from cyclonedx.model.component import Component, ComponentType
+    from cyclonedx.model.license import License
+
+
+def pyproject2licenses(pyproject: Dict[str, Any]) -> Generator['License', None, None]:
+    from cyclonedx.factory.license import LicenseFactory
+    lfac = LicenseFactory()
+    if 'classifiers' in pyproject:
+        # https://packaging.python.org/en/latest/specifications/core-metadata/#classifier-multiple-use
+        from .license_trove_classifier import license_trove2spdx
+        yield from map(lfac.make_with_id,
+                       filter(None,
+                              map(license_trove2spdx,
+                                  pyproject['classifiers'])))
+    license = pyproject.get('license')
+    # https://packaging.python.org/en/latest/specifications/core-metadata/#license
+    if isinstance(license, dict) and 'text' in license:
+        yield lfac.make_from_string(license['text'])
 
 
 def pyproject2component(pyproject: Dict[str, Any], *,
                         type: 'ComponentType') -> 'Component':
     from cyclonedx.model.component import Component
+
+    from .cdx import licenses_fixup
 
     project = pyproject['project']
     return Component(
@@ -37,6 +59,7 @@ def pyproject2component(pyproject: Dict[str, Any], *,
         name=project['name'],
         version=project.get('version', None),
         description=project.get('description', None),
+        licenses=licenses_fixup(pyproject2licenses(project)),
         # TODO add more properties according to spec
     )
 
