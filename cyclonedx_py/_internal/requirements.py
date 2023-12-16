@@ -58,6 +58,10 @@ class RequirementsBB(BomBuilder):
                                    $ cat requirements/*.txt | %(prog)s -
                              • Build an inventory for all installed packages:
                                    $ python3 -m pip freeze --all | %(prog)s -
+                             • Build an inventory for all installed packages in a conda environment:
+                                   $ conda run python3 -m pip freeze --all | %(prog)s -
+                             • Build an inventory for installed packages in a virtual environment:
+                                   $ .../venv/bin/python3 -m pip freeze --all --local --require-virtualenv | %(prog)s -
                              • Build an inventory from an unfrozen manifest:
                                    $ python3 -m pip install -r dependencies.txt &&\\
                                      python3 -m pip freeze | %(prog)s -
