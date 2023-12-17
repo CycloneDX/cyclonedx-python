@@ -88,7 +88,8 @@ class EnvironmentBB(BomBuilder):
         self.__add_components(bom, rc)
         return bom
 
-    def __add_components(self, bom: 'Bom', rc: Optional[Tuple['Component', Set[str]]], **kwargs: Any) -> None:
+    def __add_components(self, bom: 'Bom', rc: Optional[Tuple['Component', Set[str]]],
+                         **kwargs: Any) -> None:
         from importlib.metadata import distributions
 
         from cyclonedx.model.component import Component, ComponentType
