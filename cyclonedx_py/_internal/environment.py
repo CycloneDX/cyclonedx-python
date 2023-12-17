@@ -122,10 +122,12 @@ class EnvironmentBB(BomBuilder):
             root_c_existed = all_components.get(root_c_lcname)
             if root_c_existed is not None:
                 bom.components.remove(root_c_existed[0])
+                del root_c_existed
             all_components[root_c_lcname] = rc
             bom.metadata.component = root_c
 
         for component, requires in all_components.values():
+            # we know a lot of dependencies, but here we are only interested in those that are actually installed
             requires_d: Iterable[Component] = filter(None,
                                                      map(lambda r: all_components.get(r, (None,))[0],
                                                          requires))
