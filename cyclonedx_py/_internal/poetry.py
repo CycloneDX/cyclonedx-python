@@ -128,7 +128,7 @@ class PoetryBB(BomBuilder):
                        dest='mc_type',
                        choices=_mc_types,
                        type=argparse_type4enum(ComponentType),
-                       default=ComponentType.APPLICATION.value)
+                       default=ComponentType.APPLICATION)
         p.add_argument('project_directory',
                        metavar='project-directory',
                        help='The project directory for Poetry (default: current working directory)',

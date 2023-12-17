@@ -23,7 +23,6 @@ See https://packaging.python.org/en/latest/specifications/declaring-project-meta
 See https://peps.python.org/pep-0621/
 """
 
-
 from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable
 
 if TYPE_CHECKING:
@@ -75,16 +74,25 @@ def pyproject2component(pyproject: Dict[str, Any], *,
     )
 
 
-def pyproject_file2component(pyproject_file: str, *,
-                             type: 'ComponentType') -> 'Component':
+def pyproject_load(pyproject_file: str) -> Dict[str, Any]:
     from .toml import toml_loads
-
     try:
         pyproject_fh = open(pyproject_file, 'rt', encoding='utf8', errors='replace')
     except OSError as err:
         raise ValueError(f'Could not open pyproject file: {pyproject_file}') from err
     with pyproject_fh:
-        return pyproject2component(
-            toml_loads(pyproject_fh.read()),
-            type=type
-        )
+        return toml_loads(pyproject_fh.read())
+
+
+def pyproject_file2component(pyproject_file: str, *,
+                             type: 'ComponentType') -> 'Component':
+    return pyproject2component(
+        pyproject_load(pyproject_file),
+        type=type
+    )
+
+
+def pyproject_dependencies(pyproject: Dict[str, Any]) -> Generator[str, None, None]:
+    yield from pyproject.get('dependencies', ())
+    for opts in pyproject.get('optional-dependencies', {}).values():
+        yield from opts

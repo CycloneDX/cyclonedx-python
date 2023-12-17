@@ -15,8 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-
-from typing import TYPE_CHECKING, Any, BinaryIO
+from typing import TYPE_CHECKING, Any, Dict, Iterable, Optional, Set, Tuple
 
 from . import BomBuilder
 
@@ -25,6 +24,7 @@ if TYPE_CHECKING:  # pragma: no cover
     from logging import Logger
 
     from cyclonedx.model.bom import Bom
+    from cyclonedx.model.component import Component, ComponentType
 
 
 # !!! be as lazy loading as possible, as greedy as needed
@@ -37,9 +37,29 @@ class EnvironmentBB(BomBuilder):
     def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':
         from argparse import ArgumentParser
 
+        from cyclonedx.model.component import ComponentType
+
+        from .utils.args import argparse_type4enum
+
         p = ArgumentParser(description='Build an SBOM from Python (virtual) environment',
                            **kwargs)
-        # TODO
+        p.add_argument('--pyproject',
+                       metavar='pyproject.toml',
+                       help="Path to the root component's `pyproject.toml` according to PEP621",
+                       dest='pyproject_file',
+                       default=None)
+        _mc_types = [ComponentType.APPLICATION,
+                     ComponentType.FIRMWARE,
+                     ComponentType.LIBRARY]
+        p.add_argument('--mc-type',
+                       metavar='TYPE',
+                       help='Type of the main component'
+                            f' {{choices: {", ".join(t.value for t in _mc_types)}}}'
+                            ' (default: %(default)s)',
+                       dest='mc_type',
+                       choices=_mc_types,
+                       type=argparse_type4enum(ComponentType),
+                       default=ComponentType.APPLICATION)
         return p
 
     def __init__(self, *,
@@ -48,13 +68,65 @@ class EnvironmentBB(BomBuilder):
         self._logger = logger
 
     def __call__(self, *,  # type:ignore[override]
-                 lock: BinaryIO,
+                 pyproject_file: Optional[str],
+                 mc_type: 'ComponentType',
                  **__: Any) -> 'Bom':
         from .utils.cdx import make_bom
 
+        if pyproject_file is None:
+            rc = None
+        else:
+            from .utils.pep621 import pyproject2component, pyproject_dependencies, pyproject_load
+            from .utils.pep631 import requirement2package_name
+            pyproject = pyproject_load(pyproject_file)
+            root_c = pyproject2component(pyproject, type=mc_type)
+            root_c.bom_ref.value = 'root-component'
+            root_d = set(filter(None, map(requirement2package_name, pyproject_dependencies(pyproject))))
+            rc = (root_c, root_d)
+
         bom = make_bom()
-
-        # TODO
-        # maybe utilize https://github.com/tox-dev/pipdeptree ?
-
+        self.__add_components(bom, rc)
         return bom
+
+    def __add_components(self, bom: 'Bom', rc: Optional[Tuple['Component', Set[str]]], **kwargs: Any) -> None:
+        from importlib.metadata import distributions
+
+        from cyclonedx.model.component import Component, ComponentType
+
+        from .utils.pep631 import requirement2package_name
+
+        all_components: Dict[str, Tuple['Component', Set[str]]] = {}
+        # TODO self install
+        for dist in distributions(**kwargs):
+            component = Component(
+                type=ComponentType.LIBRARY,
+                bom_ref=dist.name,
+                name=dist.name,
+                version=dist.version,
+                # TODO extrefs
+                # TODO purl
+                # TODO License
+            )
+            # dist_meta = dist.metadata()
+            all_components[component.name.lower()] = (
+                component,
+                set(filter(None, map(requirement2package_name, dist.requires or ())))
+            )
+            self._logger.info('add component for package %r', component.name)
+            self._logger.debug('add component: %r', component)
+            bom.components.add(component)
+
+        if rc is not None:
+            root_c = rc[0]
+            root_c_lcname = root_c.name.lower()
+            root_c_existed = all_components.get(root_c_lcname)
+            if root_c_existed is not None:
+                bom.components.remove(root_c_existed[0])
+            all_components[root_c_lcname] = rc
+            bom.metadata.component = root_c
+
+        for component, requires in all_components.values():
+            requires_d: Iterable[Component] = filter(None,
+                                                     map(lambda r: all_components.get(r, (None,))[0],
+                                                         requires))
+            bom.register_dependency(component, requires_d)

@@ -99,7 +99,7 @@ class RequirementsBB(BomBuilder):
                        dest='mc_type',
                        choices=_mc_types,
                        type=argparse_type4enum(ComponentType),
-                       default=ComponentType.APPLICATION.value)
+                       default=ComponentType.APPLICATION)
         p.add_argument('requirements_file',
                        metavar='requirements-file',
                        help='I HELP TODO (default: %(default)r in current working directory)',
