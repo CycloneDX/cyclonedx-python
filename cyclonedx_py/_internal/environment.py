@@ -45,7 +45,7 @@ class EnvironmentBB(BomBuilder):
 
         p = ArgumentParser(description='Build an SBOM from Python (virtual) environment',
                            **kwargs)
-        if os_name == 'nt' or True:
+        if os_name == 'nt':
             p.epilog = dedent("""\
                Example Usage:
                  • Build an SBOM from current python environment:
