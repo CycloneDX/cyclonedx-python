@@ -120,25 +120,33 @@ class EnvironmentBB(BomBuilder):
         from importlib.metadata import distributions
 
         from cyclonedx.model.component import Component, ComponentType
+        from packageurl import PackageURL
 
+        from .utils.cdx import licenses_fixup
+        from .utils.packaging import metadata2extrefs, metadata2licenses
         from .utils.pep631 import requirement2package_name
 
         all_components: Dict[str, Tuple['Component', Set[str]]] = {}
         self._logger.debug('distribution context args: %r', kwargs)
         self._logger.info('discovering distributions...')
         for dist in distributions(**kwargs):
+            dist_meta = dist.metadata  # see https://packaging.python.org/en/latest/specifications/core-metadata/
+            dist_name = dist_meta['Name']
+            dist_version = dist_meta['Version']
+            # print(repr(dist_meta.items()))
             component = Component(
                 type=ComponentType.LIBRARY,
-                bom_ref=dist.name,
-                name=dist.name,
-                version=dist.version,
-                # TODO path of package?
+                bom_ref=f'{dist_name}=={dist_version}',
+                name=dist_name,
+                version=dist_version,
+                description=dist_meta['Summary'] if 'Summary' in dist_meta else None,
+                licenses=licenses_fixup(metadata2licenses(dist_meta)),
+                external_references=metadata2extrefs(dist_meta),
+                purl=PackageURL('pypi', name=dist_name, version=dist_version),
                 # TODO install info
-                # TODO extrefs
-                # TODO purl
-                # TODO License
+                # TODO path of package?
             )
-            # dist_meta = dist.metadata()
+            del dist_meta, dist_name, dist_version
             all_components[component.name.lower()] = (
                 component,
                 set(filter(None, map(requirement2package_name, dist.requires or ())))

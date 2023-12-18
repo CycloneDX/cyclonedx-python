@@ -71,6 +71,7 @@ def pyproject2component(pyproject: Dict[str, Any], *,
         description=project.get('description', None),
         licenses=licenses_fixup(pyproject2licenses(project, LicenseFactory())),
         # TODO add more properties according to spec
+        # extRefs with .cdx.url_label_to_ert()
     )
 
 

@@ -16,7 +16,6 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
-import re
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, List, Optional, Set, Tuple
 
@@ -366,6 +365,8 @@ class PoetryBB(BomBuilder):
         from cyclonedx.exception.model import InvalidUriException
         from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
 
+        from .utils.cdx import url_label_to_ert
+
         for ers, ert in [
             # see https://python-poetry.org/docs/pyproject/
             ('homepage', ExternalReferenceType.WEBSITE),
@@ -379,30 +380,12 @@ class PoetryBB(BomBuilder):
                     url=XsUri(str(po_cfg[ers])))
             except (KeyError, InvalidUriException):  # pragma: nocover
                 pass
-        known_ulr_names = {
-            # see https://peps.python.org/pep-0345/#project-url-multiple-use
-            # see https://github.com/pypi/warehouse/issues/5947#issuecomment-699660629
-            'bugtracker': ExternalReferenceType.ISSUE_TRACKER,
-            'issuetracker': ExternalReferenceType.ISSUE_TRACKER,
-            'issues': ExternalReferenceType.ISSUE_TRACKER,
-            'tracker': ExternalReferenceType.ISSUE_TRACKER,
-            'homepage': ExternalReferenceType.WEBSITE,
-            'download': ExternalReferenceType.DISTRIBUTION,
-            'documentation': ExternalReferenceType.DOCUMENTATION,
-            'docs': ExternalReferenceType.DOCUMENTATION,
-            # 'changelog': ExternalReferenceType.RELEASE_NOTES, # not available in all versions of CycloneDX
-            'changes': ExternalReferenceType.RELEASE_NOTES,
-            'repository': ExternalReferenceType.VCS,
-            'github': ExternalReferenceType.VCS,
-            'chat': ExternalReferenceType.CHAT,
-        }
-        re_nochar = re.compile('[^a-z]')
-        for un, ul in po_cfg.get('urls', {}).items():
+        for ul, ut in po_cfg.get('urls', {}).items():
             try:
                 yield ExternalReference(
-                    comment=f'package urls: {un}',
-                    type=known_ulr_names.get(re_nochar.sub('', str(un).lower()), ExternalReferenceType.OTHER),
-                    url=XsUri(str(ul)))
+                    comment=f'package url: {ul}',
+                    type=url_label_to_ert(ul),
+                    url=XsUri(str(ut)))
             except InvalidUriException:  # pragma: nocover
                 pass
 
