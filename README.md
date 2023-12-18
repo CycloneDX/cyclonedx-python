@@ -15,11 +15,15 @@
 
 This project provides a runnable Python-based application 
 for generating software bill-of-material (SBOM) documents in [CycloneDX](https://cyclonedx.org/) format
-from either:
+from:
 
-* Your current Python Environment
-* Your project's manifest (e.g. `Pipfile.lock`, `poetry.lock` or `requirements.txt`)
-* Conda as a Package Manager is no longer supported since version 4. Try an older version: `pip install 'cyclonedx-bom<4'`
+* Python (virtual) environment
+* `Poetry`
+* `Pipenv`
+* `requirements`
+* `Conda` as a Package Manager is no longer supported since version 4.
+  Try an older version(`pip install 'cyclonedx-bom<4'`).  
+  However, `conda` Python environments are fully supported.
 
 The SBOM will contain an aggregate of all your current project's dependencies, or those defined by the manifest you supply.
 
