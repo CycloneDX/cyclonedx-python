@@ -56,7 +56,7 @@ class EnvironmentBB(BomBuilder):
                        > where.exe python3.9.exe
                        > %(prog)s "%%path to specific python%%"
                  • Build an SBOM from conda python environment:
-                       > conda.exe run which python
+                       > conda run where python
                        > %(prog)s "%%path to conda python%%"
                  • Build an SBOM from Pipenv virtual python environment:
                        > pipenv.exe --py
