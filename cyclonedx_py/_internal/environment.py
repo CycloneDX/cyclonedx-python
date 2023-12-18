@@ -37,26 +37,50 @@ class EnvironmentBB(BomBuilder):
     def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':
         from argparse import OPTIONAL, ArgumentParser
         from textwrap import dedent
+        from os import name as os_name
 
         from cyclonedx.model.component import ComponentType
 
         from .utils.args import argparse_type4enum
 
         p = ArgumentParser(description='Build an SBOM from Python (virtual) environment',
-                           epilog=dedent("""\
-                           Example Usage:
-                             • Build an SBOM from current python environment:
-                                   $ %(prog)s
-                             • Build an SBOM from a (virtual) python environment:
-                                   $ %(prog)s .../bin/python
-                             • Build an SBOM from conda python environment:
-                                   $ %(prog)s "$(conda run which python)"
-                             • Build an SBOM from Pipenv virtual python environment:
-                                   $ %(prog)s "$(pipenv --py)"
-                             • Build an SBOM from Poetry virtual python environment:
-                                   $ %(prog)s "$(poetry env info -e)"
-                           """),
                            **kwargs)
+        if os_name == 'nt' or True:
+            p.epilog = dedent("""\
+               Example Usage:
+                 • Build an SBOM from current python environment:
+                       > %(prog)s
+                 • Build an SBOM from a (virtual) python environment:
+                       > %(prog)s "...\\bin\\python.exe"
+                 • Build an SBOM from a specific python environment:
+                       > where.exe python3.9.exe
+                       > %(prog)s "%%path to specific python%%"
+                 • Build an SBOM from conda python environment:
+                       > conda.exe run which python
+                       > %(prog)s "%%path to conda python%%"
+                 • Build an SBOM from Pipenv virtual python environment:
+                       > pipenv.exe --py
+                       > %(prog)s "%%path to pipenv python%%"
+                 • Build an SBOM from Poetry virtual python environment:
+                       > poetry.exe env info -e
+                       > %(prog)s "%%path to poetry python%%"
+               """)
+        elif os_name == 'posix':
+            p.epilog = dedent("""\
+               Example Usage:
+                 • Build an SBOM from current python environment:
+                       $ %(prog)s
+                 • Build an SBOM from a (virtual) python environment:
+                       $ %(prog)s '.../bin/python'
+                 • Build an SBOM from a specific python environment:
+                       $ %(prog)s "$(which python3.9)"
+                 • Build an SBOM from conda python environment:
+                       $ %(prog)s "$(conda run which python)"
+                 • Build an SBOM from Pipenv virtual python environment:
+                       $ %(prog)s "$(pipenv --py)"
+                 • Build an SBOM from Poetry virtual python environment:
+                       $ %(prog)s "$(poetry env info -e)"
+               """)
         p.add_argument('--pyproject',
                        metavar='pyproject.toml',
                        help="Path to the root component's `pyproject.toml` according to PEP621",
