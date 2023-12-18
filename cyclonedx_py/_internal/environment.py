@@ -15,7 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-from typing import TYPE_CHECKING, Any, Dict, Iterable, Optional, Set, Tuple, List
+from typing import TYPE_CHECKING, Any, Dict, Iterable, List, Optional, Set, Tuple
 
 from . import BomBuilder
 
@@ -35,7 +35,7 @@ class EnvironmentBB(BomBuilder):
 
     @staticmethod
     def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':
-        from argparse import ArgumentParser, OPTIONAL
+        from argparse import OPTIONAL, ArgumentParser
         from textwrap import dedent
 
         from cyclonedx.model.component import ComponentType
@@ -165,12 +165,12 @@ class EnvironmentBB(BomBuilder):
             bom.register_dependency(component, requires_d)
 
     def __path4python(self, python: str) -> List[str]:
-        from subprocess import run
         from json import loads
+        from subprocess import run
         args = python, '-c', 'import json,sys;json.dump(sys.path,sys.stdout)'
         self._logger.debug('fetch path from python interpreter: %r', args)
-        res = run(args, capture_output=True, shell=False)
+        res = run(args, capture_output=True, shell=False, encoding='utf8')
         if res.returncode != 0:
             raise ValueError(f'Fail fetching `path` from python: {res.stderr}')
         self._logger.debug('got path from python interpreter: %r', res.stdout)
-        return loads(res.stdout)
+        return loads(res.stdout)  # type:ignore[no-any-return]
