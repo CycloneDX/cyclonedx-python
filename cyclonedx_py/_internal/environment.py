@@ -15,7 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-from typing import TYPE_CHECKING, Any, Dict, Iterable, Optional, Set, Tuple
+from typing import TYPE_CHECKING, Any, Dict, Iterable, Optional, Set, Tuple, List
 
 from . import BomBuilder
 
@@ -35,13 +35,27 @@ class EnvironmentBB(BomBuilder):
 
     @staticmethod
     def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':
-        from argparse import ArgumentParser
+        from argparse import ArgumentParser, OPTIONAL
+        from textwrap import dedent
 
         from cyclonedx.model.component import ComponentType
 
         from .utils.args import argparse_type4enum
 
         p = ArgumentParser(description='Build an SBOM from Python (virtual) environment',
+                           epilog=dedent("""\
+                           Example Usage:
+                             • Build an SBOM from current python environment:
+                                   $ %(prog)s
+                             • Build an SBOM from a (virtual) python environment:
+                                   $ %(prog)s .../bin/python
+                             • Build an SBOM from conda python environment:
+                                   $ %(prog)s "$(conda run which python)"
+                             • Build an SBOM from Pipenv virtual python environment:
+                                   $ %(prog)s "$(pipenv --py)"
+                             • Build an SBOM from Poetry virtual python environment:
+                                   $ %(prog)s "$(poetry env info -e)"
+                           """),
                            **kwargs)
         p.add_argument('--pyproject',
                        metavar='pyproject.toml',
@@ -60,6 +74,11 @@ class EnvironmentBB(BomBuilder):
                        choices=_mc_types,
                        type=argparse_type4enum(ComponentType),
                        default=ComponentType.APPLICATION)
+        p.add_argument('python',
+                       metavar='python',
+                       help='I HELP TODO',
+                       nargs=OPTIONAL,
+                       default=None)
         return p
 
     def __init__(self, *,
@@ -68,6 +87,7 @@ class EnvironmentBB(BomBuilder):
         self._logger = logger
 
     def __call__(self, *,  # type:ignore[override]
+                 python: Optional[str],
                  pyproject_file: Optional[str],
                  mc_type: 'ComponentType',
                  **__: Any) -> 'Bom':
@@ -84,8 +104,15 @@ class EnvironmentBB(BomBuilder):
             root_d = set(filter(None, map(requirement2package_name, pyproject_dependencies(pyproject))))
             rc = (root_c, root_d)
 
+        path: List[str]
+        if python:
+            path = self.__path4python(python)
+        else:
+            from sys import path as sys_path
+            path = sys_path
+
         bom = make_bom()
-        self.__add_components(bom, rc)
+        self.__add_components(bom, rc, path=path)
         return bom
 
     def __add_components(self, bom: 'Bom', rc: Optional[Tuple['Component', Set[str]]],
@@ -97,13 +124,16 @@ class EnvironmentBB(BomBuilder):
         from .utils.pep631 import requirement2package_name
 
         all_components: Dict[str, Tuple['Component', Set[str]]] = {}
-        # TODO self install
+        self._logger.debug('distribution context args: %r', kwargs)
+        self._logger.info('discovering distributions...')
         for dist in distributions(**kwargs):
             component = Component(
                 type=ComponentType.LIBRARY,
                 bom_ref=dist.name,
                 name=dist.name,
                 version=dist.version,
+                # TODO path of package?
+                # TODO install info
                 # TODO extrefs
                 # TODO purl
                 # TODO License
@@ -128,8 +158,19 @@ class EnvironmentBB(BomBuilder):
             bom.metadata.component = root_c
 
         for component, requires in all_components.values():
-            # we know a lot of dependencies, but here we are only interested in those that are actually installed
+            # we know a lot of dependencies, but here we are only interested in those that are actually installed/found
             requires_d: Iterable[Component] = filter(None,
                                                      map(lambda r: all_components.get(r, (None,))[0],
                                                          requires))
             bom.register_dependency(component, requires_d)
+
+    def __path4python(self, python: str) -> List[str]:
+        from subprocess import run
+        from json import loads
+        args = python, '-c', 'import json,sys;json.dump(sys.path,sys.stdout)'
+        self._logger.debug('fetch path from python interpreter: %r', args)
+        res = run(args, capture_output=True, shell=False)
+        if res.returncode != 0:
+            raise ValueError(f'Fail fetching `path` from python: {res.stderr}')
+        self._logger.debug('got path from python interpreter: %r', res.stdout)
+        return loads(res.stdout)
