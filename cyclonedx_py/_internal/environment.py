@@ -65,7 +65,7 @@ class EnvironmentBB(BomBuilder):
                        > poetry.exe env info -e
                        > %(prog)s "%%path to poetry python%%"
                """)
-        elif os_name == 'posix':
+        else:  # if os_name == 'posix':
             p.epilog = dedent("""\
                Example Usage:
                  • Build an SBOM from current python environment:
