@@ -65,7 +65,7 @@ class PipenvBB(BomBuilder):
                        help='both develop and default packages [env var: PIPENV_DEV]',
                        action='store_true',
                        dest='dev',
-                       default=getenv('PIPENV_DEV', '').lower() in ('1', 'true', 'yes'))
+                       default=getenv('PIPENV_DEV', '').lower() in ('1', 'true', 'yes', 'on'))
         p.add_argument('--pypi-mirror',
                        metavar='URL',
                        help='Specify a PyPI mirror [env var: PIPENV_PYPI_MIRROR]',

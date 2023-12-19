@@ -36,6 +36,7 @@ env:
   POETRY_VERSION: "1.4.1"
   REPORTS_DIR: CI_reports
   TESTS_REPORTS_ARTIFACT: tests-reports
+  PIPENV_VENV_IN_PROJECT: 1
 
 jobs:
   coding-standards:
