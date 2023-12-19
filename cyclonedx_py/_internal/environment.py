@@ -36,8 +36,8 @@ class EnvironmentBB(BomBuilder):
     @staticmethod
     def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':
         from argparse import OPTIONAL, ArgumentParser
-        from textwrap import dedent
         from os import name as os_name
+        from textwrap import dedent
 
         from cyclonedx.model.component import ComponentType
 
