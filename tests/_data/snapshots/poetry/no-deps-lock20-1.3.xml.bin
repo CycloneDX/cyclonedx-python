@@ -28,15 +28,15 @@
         </reference>
         <reference type="issue-tracker">
           <url>https://oss.acme.org/my-project/bugs/</url>
-          <comment>package urls: Bug Tracker</comment>
+          <comment>package url: Bug Tracker</comment>
         </reference>
         <reference type="other">
           <url>https://oss.acme.org/my-project/changelog/</url>
-          <comment>package urls: Change log</comment>
+          <comment>package url: Change log</comment>
         </reference>
         <reference type="other">
           <url>https://oss.acme.org/my-project/funding/</url>
-          <comment>package urls: Funding</comment>
+          <comment>package url: Funding</comment>
         </reference>
         <reference type="vcs">
           <url>https://oss.acme.org/my-project.git</url>

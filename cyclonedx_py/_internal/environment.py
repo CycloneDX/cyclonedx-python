@@ -198,10 +198,10 @@ class EnvironmentBB(BomBuilder):
 
     def __path4python(self, python: str) -> List[str]:
         from json import loads
-        from subprocess import run
+        from subprocess import run  # nosec
         cmd = python, '-c', 'import json,sys;json.dump(sys.path,sys.stdout)'
         self._logger.debug('fetch `path` from python interpreter cmd: %r', cmd)
-        res = run(cmd, capture_output=True, encoding='utf8', shell=False)
+        res = run(cmd, capture_output=True, encoding='utf8', shell=False)  # nosec
         if res.returncode != 0:
             raise ValueError(f'Fail fetching `path` from python: {res.stderr}')
         self._logger.debug('got `path` from python interpreter: %r', res.stdout)

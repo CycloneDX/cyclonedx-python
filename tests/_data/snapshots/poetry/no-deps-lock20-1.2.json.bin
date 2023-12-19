@@ -16,17 +16,17 @@
           "url": "https://oss.acme.org/my-project/docs/"
         },
         {
-          "comment": "package urls: Bug Tracker",
+          "comment": "package url: Bug Tracker",
           "type": "issue-tracker",
           "url": "https://oss.acme.org/my-project/bugs/"
         },
         {
-          "comment": "package urls: Change log",
+          "comment": "package url: Change log",
           "type": "other",
           "url": "https://oss.acme.org/my-project/changelog/"
         },
         {
-          "comment": "package urls: Funding",
+          "comment": "package url: Funding",
           "type": "other",
           "url": "https://oss.acme.org/my-project/funding/"
         },
