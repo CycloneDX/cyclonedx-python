@@ -14,7 +14,7 @@
 ----
 
 This project provides a runnable Python-based application 
-for generating software bill-of-material (SBOM) documents in [CycloneDX](https://cyclonedx.org/) format
+for generating Software Bill of material (BOM) documents in [CycloneDX](https://cyclonedx.org/) format
 from:
 
 * Python (virtual) environment
@@ -27,7 +27,7 @@ from:
 
 The SBOM will contain an aggregate of all your current project's dependencies, or those defined by the manifest you supply.
 
-CycloneDX is a lightweight BOM specification that is easily created, human-readable, and simple to parse.
+CycloneDX is a full-stack BOM specification that is easily created, human-readable, and simple to parse.
 
 Read the full [documentation][link_rtfd] for more details.
 
