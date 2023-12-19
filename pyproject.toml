@@ -9,7 +9,6 @@ authors = [
 ]
 maintainers = [
   "Jan Kowalleck <jan.kowalleck@gmail.com>",
-  "Paul Horton <phorton@sonatype.com>",
 ]
 license = "Apache-2.0"
 readme = "README.md"
