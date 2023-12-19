@@ -3,8 +3,6 @@ name = "cyclonedx-bom"
 version = "4.0.0-alpha.0"
 description = "CycloneDX Software Bill of Materials (SBOM) generation utility"
 authors = [
-  "Steven Springett <steve.springett@owasp.org>",
-  "Paul Horton <phorton@sonatype.com>",
   "Jan Kowalleck <jan.kowalleck@gmail.com>",
 ]
 maintainers = [
