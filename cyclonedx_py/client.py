@@ -33,6 +33,7 @@ from cyclonedx.parser import BaseParser
 
 from .parser.conda import CondaListExplicitParser, CondaListJsonParser
 from .parser.environment import EnvironmentParser
+from .parser.pdm import PdmParser
 from .parser.pipenv import PipEnvParser
 from .parser.poetry import PoetryParser
 from .parser.requirements import RequirementsParser
@@ -185,6 +186,12 @@ class CycloneDxCmd:
             dest='input_from_poetry'
         )
         input_group.add_argument(
+            '--pdm', action='store_true',
+            help='Build a SBOM based on a PDM pdm.lock\'s contents. Use with -i to specify absolute path '
+                 'to a `pdm.lock` you wish to use, else we\'ll look for one in the current working directory.',
+            dest='input_from_pdm'
+        )
+        input_group.add_argument(
             '-pip', '--pip', action='store_true',
             help='Build a SBOM based on a PipEnv Pipfile.lock\'s contents. Use with -i to specify absolute path '
                  'to a `Pipfile.lock` you wish to use, else we\'ll look for one in the current working directory.',
@@ -277,6 +284,9 @@ class CycloneDxCmd:
                 elif self._arguments.input_from_poetry:
                     self._arguments.input_source = open(os.path.join(current_directory, 'poetry.lock'),
                                                         'rt', encoding="UTF-8", errors='replace')
+                elif self._arguments.input_from_pdm:
+                    self._arguments.input_source = open(os.path.join(current_directory, 'pdm.lock'),
+                                                        'rt', encoding="UTF-8", errors='replace')
                 elif self._arguments.input_from_requirements:
                     self._arguments.input_source = open(os.path.join(current_directory, 'requirements.txt'), 'rb')
                 else:
@@ -323,6 +333,12 @@ class CycloneDxCmd:
                 poetry_lock_contents=input_data,
                 use_purl_bom_ref=self._arguments.use_purl_bom_ref,
                 debug_message=lambda m, *a, **k: self._debug_message(f'PoetryParser {m}', *a, **k)
+            )
+        elif self._arguments.input_from_pdm:
+            return PdmParser(
+                pdm_lock_contents=input_data,
+                use_purl_bom_ref=self._arguments.use_purl_bom_ref,
+                debug_message=lambda m, *a, **k: self._debug_message(f'PdmParser {m}', *a, **k)
             )
         elif self._arguments.input_from_requirements:
             return RequirementsParser(
