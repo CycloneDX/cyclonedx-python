@@ -15,6 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
+
 from typing import TYPE_CHECKING, Any, Dict, Iterable, List, Optional, Set, Tuple
 
 from . import BomBuilder
@@ -98,9 +99,14 @@ class EnvironmentBB(BomBuilder):
                        choices=_mc_types,
                        type=argparse_type4enum(ComponentType),
                        default=ComponentType.APPLICATION)
+        # TODO possible additional switch:
+        #  `--exclude <package>` Exclude specified package from the output
+        #  `--local`        If in a virtualenv that has global access, do not list globally-installed packages.
+        #  `--user`         Only output packages installed in user-site.
+        #  `--path <path>`  Restrict to the specified installation path for listing packages
         p.add_argument('python',
                        metavar='python',
-                       help='I HELP TODO',
+                       help='Python interpreter',
                        nargs=OPTIONAL,
                        default=None)
         return p
@@ -196,10 +202,31 @@ class EnvironmentBB(BomBuilder):
                                                          requires))
             bom.register_dependency(component, requires_d)
 
+    def __python4dir(self) -> str:
+
+        from sys import executable
+        return executable
+
+    @staticmethod
+    def __py_interpreter(value: str) -> str:
+        from os.path import exists, isdir, join
+        if not exists(value):
+            raise ValueError(f'No such file or directory: {value}')
+        if isdir(value):
+            for venv_loc in (
+                ('bin', 'python'),  # unix
+                ('Scripts', 'python.exe'),  # win
+            ):
+                maybe = join(value, *venv_loc)
+                if exists(maybe):
+                    return maybe
+            raise ValueError(f'Failed to find python in directory: {value}')
+        return value
+
     def __path4python(self, python: str) -> List[str]:
         from json import loads
         from subprocess import run  # nosec
-        cmd = python, '-c', 'import json,sys;json.dump(sys.path,sys.stdout)'
+        cmd = self.__py_interpreter(python), '-c', 'import json,sys;json.dump(sys.path,sys.stdout)'
         self._logger.debug('fetch `path` from python interpreter cmd: %r', cmd)
         res = run(cmd, capture_output=True, encoding='utf8', shell=False)  # nosec
         if res.returncode != 0:
