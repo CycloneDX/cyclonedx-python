@@ -34,7 +34,7 @@ lockfiles = glob(join(INFILES_DIRECTORY, 'pipenv', '*', 'Pipfile.lock'))
 projectdirs = list(dirname(lockfile) for lockfile in lockfiles)
 
 test_data = tuple(
-    (f'{basename(dirname(projectdir))}-{basename(projectdir)}-{sv.name}-{of.name}', projectdir, sv, of)
+    (f'{basename(projectdir)}-{sv.name}-{of.name}', projectdir, sv, of)
     for projectdir in projectdirs
     for of, sv in SUPPORTED_OF_SV
 )
@@ -102,9 +102,7 @@ class TestPipenv(TestCase, SnapshotMixin):
             err = err.getvalue()
             out = out.getvalue()
         self.assertEqual(0, res, err)
-        self.assertEqualSnapshot(
-            make_comparable(out, of),
-            f'{basename(projectdir)}_{sv.to_version()}.{of.name.lower()}')
+        self.assertEqualSnapshot(out, 'file', projectdir, sv, of)
 
     @named_data(*test_data_file_filter('category-deps'))
     def test_cli_with_categories_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
@@ -123,9 +121,7 @@ class TestPipenv(TestCase, SnapshotMixin):
             err = err.getvalue()
             out = out.getvalue()
         self.assertEqual(0, res, err)
-        self.assertEqualSnapshot(
-            make_comparable(out, of),
-            f'some-categories_{basename(projectdir)}_{sv.to_version()}.{of.name.lower()}')
+        self.assertEqualSnapshot(out,'some-categories', projectdir, sv, of)
 
     @named_data(*test_data_file_filter('default-and-dev'))
     def test_cli_with_dev_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
@@ -144,9 +140,7 @@ class TestPipenv(TestCase, SnapshotMixin):
             err = err.getvalue()
             out = out.getvalue()
         self.assertEqual(0, res, err)
-        self.assertEqualSnapshot(
-            make_comparable(out, of),
-            f'with-dev_{basename(projectdir)}_{sv.to_version()}.{of.name.lower()}')
+        self.assertEqualSnapshot(out, 'with-dev', projectdir, sv, of)
 
     @named_data(*test_data_file_filter('private-packages'))
     def test_cli_with_pypi_mirror_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
@@ -165,9 +159,15 @@ class TestPipenv(TestCase, SnapshotMixin):
             err = err.getvalue()
             out = out.getvalue()
         self.assertEqual(0, res, err)
-        self.assertEqualSnapshot(
-            make_comparable(out, of),
-            f'pypi-mirror_{basename(projectdir)}_{sv.to_version()}.{of.name.lower()}')
+        self.assertEqualSnapshot(out, 'pypi-mirror', projectdir, sv, of)
 
-    def assertEqualSnapshot(self, actual: str, snapshot_name: str) -> None:  # noqa:N802
-        super().assertEqualSnapshot(actual, join('pipenv', snapshot_name))
+    def assertEqualSnapshot(self, actual: str,
+                            purpose: str,
+                            projectdir: str,
+                            sv: SchemaVersion,
+                            of: OutputFormat
+                            ) -> None:  # noqa:N802
+        super().assertEqualSnapshot(
+            make_comparable(actual, of),
+            join('pipenv', f'{purpose}_{basename(projectdir)}_{sv.to_version()}.{of.name.lower()}')
+        )
