@@ -121,6 +121,8 @@ class EnvironmentBB(BomBuilder):
                  pyproject_file: Optional[str],
                  mc_type: 'ComponentType',
                  **__: Any) -> 'Bom':
+        from os import getcwd
+
         from .utils.cdx import make_bom
 
         if pyproject_file is None:
@@ -140,6 +142,8 @@ class EnvironmentBB(BomBuilder):
         else:
             from sys import path as sys_path
             path = sys_path
+        if path[0] in ('', getcwd()):
+            path.pop(0)
 
         bom = make_bom()
         self.__add_components(bom, rc, path=path)
