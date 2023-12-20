@@ -30,7 +30,6 @@ from ddt import ddt, named_data
 from cyclonedx_py._internal.cli import run as run_cli
 from tests import INFILES_DIRECTORY, SUPPORTED_OF_SV, SnapshotMixin, make_comparable
 
-
 initfiles = glob(join(INFILES_DIRECTORY, 'environment', '*', 'init.py'))
 projectdirs = list(dirname(initfile) for initfile in initfiles)
 
@@ -46,4 +45,16 @@ def test_data_file_filter(s: str) -> Generator[Any, None, None]:
 
 
 class TestPipenv(TestCase, SnapshotMixin):
-    pass  # TODO
+
+    # TODO
+
+    def assertEqualSnapshot(self, actual: str,  # noqa:N802
+                            purpose: str,
+                            projectdir: str,
+                            sv: SchemaVersion,
+                            of: OutputFormat
+                            ) -> None:
+        super().assertEqualSnapshot(
+            make_comparable(actual, of),
+            join('environment', f'{purpose}_{basename(projectdir)}_{sv.to_version()}.{of.name.lower()}')
+        )
