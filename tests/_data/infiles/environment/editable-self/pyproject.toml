@@ -1,0 +1,5 @@
+[project]
+# https://packaging.python.org/en/latest/specifications/declaring-project-metadata/#declaring-project-metadata
+name = "editable-self"
+version = "0.1.0"
+description = "install the current project as an editable"

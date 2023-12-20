@@ -72,6 +72,8 @@ tox = "4.11.3"
 types-toml = "^0.10.0"
 # `types-setuptools` need to stay in sync with version of `setuptools` - but 47 was not typed...
 types-setuptools = ">= 57.0.0"
+# `pip --python install` needed fot setup/ini of test-beds
+pip = ">=22.3"
 
 [tool.poetry.scripts]
 cyclonedx-py = 'cyclonedx_py._internal.cli:run'

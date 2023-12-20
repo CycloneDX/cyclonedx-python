@@ -236,7 +236,7 @@ def run(*, argv: Optional[List[str]] = None, **kwargs: Any) -> int:
                         action='count',
                         default=0)
     arg_parser = Command.make_argument_parser(**kwargs, sco=arg_co)
-    del arg_co
+    del arg_co, kwargs
     args = vars(arg_parser.parse_args(argv))
     if args['command'] is None:
         # print the help page on error, instead of usage
@@ -263,4 +263,6 @@ def run(*, argv: Optional[List[str]] = None, **kwargs: Any) -> int:
     else:
         return 0
     finally:
+        # if called programmatically (in tests), the handlers would stack up,
+        # since the logger is registered globally static
         logger.removeHandler(lh)
