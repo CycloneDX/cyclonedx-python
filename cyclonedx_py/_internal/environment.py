@@ -141,7 +141,7 @@ class EnvironmentBB(BomBuilder):
             path = self.__path4python(python)
         else:
             from sys import path as sys_path
-            path = sys_path
+            path = sys_path.copy()
         if path[0] in ('', getcwd()):
             path.pop(0)
 
