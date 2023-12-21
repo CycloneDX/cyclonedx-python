@@ -20,26 +20,38 @@ initialize this test bed.
 """
 
 from os import name as os_name
-from os.path import dirname, join
-from subprocess import check_call  # nosec:B404
-from sys import executable
+from os.path import dirname, join, realpath
+from subprocess import run, CompletedProcess, PIPE  # nosec:B404
+from sys import executable, argv
 from venv import EnvBuilder
 
 __all__ = ['main']
 
-env_dir = join(dirname(__file__), '.venv')
+this_dir = dirname(__file__)
+env_dir = join(this_dir, '.venv')
+constraint_file = join(this_dir, 'pinning.txt')
 
 
-def pip_install(*args: str) -> None:
+def pip_run(*args: str, **kwargs) -> CompletedProcess:
     # pip is not API, but a CLI -- call it like that!
     call = (
         executable, '-m', 'pip',
         '--python', env_dir,
-        'install', '--require-virtualenv', '--no-input', '--progress-bar=off', '--no-color',
         *args
     )
     print('+ ', *call)
-    check_call(call, shell=False)  # nosec:B603
+    res = run(call, **kwargs, shell=False)  # nosec:B603
+    if res.returncode != 0:
+        raise RuntimeError('process failed')
+    return res
+
+
+def pip_install(*args: str) -> None:
+    pip_run(
+        'install', '--require-virtualenv', '--no-input', '--progress-bar=off', '--no-color',
+        '-c', constraint_file,
+        *args
+    )
 
 
 def main() -> None:
@@ -48,8 +60,15 @@ def main() -> None:
         symlinks=os_name != 'nt',
         with_pip=False,
     ).create(env_dir)
-    pip_install('-e', dirname(__file__))
+
+    pip_install(
+        'cyclonedx-python-lib[xml-validation,json-validation]',
+    )
 
 
 if __name__ == '__main__':
     main()
+    if '--pin' in argv:
+        res = pip_run('freeze', '--all', '--local', stdout=PIPE)
+        with open(constraint_file, 'wb') as cf:
+            cf.write(res.stdout)

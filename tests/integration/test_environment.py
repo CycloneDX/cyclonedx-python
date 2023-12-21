@@ -52,7 +52,7 @@ class TestPipenv(TestCase, SnapshotMixin):
     def setUpClass(cls) -> None:
         for initfile in initfiles:
             res = run([executable, initfile],
-                      capture_output=True, encoding='utf8', shell=False)   # nosec:B603
+                      capture_output=True, encoding='utf8', shell=False)  # nosec:B603
             if res.returncode != 0:
                 raise RuntimeError(f'failed init :\n'
                                    f'stdout: {res.stdout}\n'
