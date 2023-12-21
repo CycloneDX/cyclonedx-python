@@ -234,6 +234,9 @@ class EnvironmentBB(BomBuilder):
         self._logger.debug('fetch `path` from python interpreter cmd: %r', cmd)
         res = run(cmd, capture_output=True, encoding='utf8', shell=False)  # nosec
         if res.returncode != 0:
-            raise ValueError(f'Fail fetching `path` from python: {res.stderr}')
-        self._logger.debug('got `path` from python interpreter: %r', res.stdout)
+            raise RuntimeError('Fail fetching `path` from Python interpreter.\n'
+                               f'returncode: {res.returncode}\n'
+                               f'stdout: {res.stdout}\n'
+                               f'stderr: {res.stderr}\n')
+        self._logger.debug('got `path` from Python interpreter: %r', res.stdout)
         return loads(res.stdout)  # type:ignore[no-any-return]

@@ -45,9 +45,9 @@ def test_data_file_filter(s: str) -> Generator[Any, None, None]:
 
 
 @ddt
-class TestPoetry(TestCase, SnapshotMixin):
+class TestCliPoetry(TestCase, SnapshotMixin):
 
-    def test_cli_fails_with_dir_not_found(self) -> None:
+    def test_fails_with_dir_not_found(self) -> None:
         _, projectdir, sv, of = random.choice(test_data)  # nosec B311
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
@@ -65,7 +65,7 @@ class TestPoetry(TestCase, SnapshotMixin):
         self.assertNotEqual(0, res, err)
         self.assertIn('Could not open pyproject file: something-that-must-not-exist.testing', err)
 
-    def test_cli_fails_with_groups_not_found(self) -> None:
+    def test_fails_with_groups_not_found(self) -> None:
         projectdir = random.choice(projectdirs)  # nosec B311
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
@@ -95,7 +95,7 @@ class TestPoetry(TestCase, SnapshotMixin):
                       " 'MNE-without-B' (via without),"
                       " 'MNE-without-C' (via without)", err)
 
-    def test_cli_fails_with_extras_not_found(self) -> None:
+    def test_fails_with_extras_not_found(self) -> None:
         projectdir = random.choice(projectdirs)  # nosec B311
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
@@ -117,7 +117,7 @@ class TestPoetry(TestCase, SnapshotMixin):
                       '] not specified', err)
 
     @named_data(*test_data)
-    def test_cli_with_file_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
+    def test_with_file_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
             out.name = '<fakeout>'
@@ -135,7 +135,7 @@ class TestPoetry(TestCase, SnapshotMixin):
         self.assertEqualSnapshot(out, basename(dirname(projectdir)), projectdir, sv, of)
 
     @named_data(*test_data_file_filter('group-deps'))
-    def test_cli_with_groups_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
+    def test_with_groups_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
             out.name = '<fakeout>'
@@ -155,7 +155,7 @@ class TestPoetry(TestCase, SnapshotMixin):
         self.assertEqualSnapshot(out, 'some-groups', projectdir, sv, of)
 
     @named_data(*test_data_file_filter('group-deps'))
-    def test_cli_only_groups_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
+    def test_only_groups_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
             out.name = '<fakeout>'
@@ -174,7 +174,7 @@ class TestPoetry(TestCase, SnapshotMixin):
         self.assertEqualSnapshot(out, 'only-groups', projectdir, sv, of)
 
     @named_data(*test_data_file_filter('group-deps'))
-    def test_cli_nodev_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
+    def test_nodev_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
             out.name = '<fakeout>'
@@ -193,7 +193,7 @@ class TestPoetry(TestCase, SnapshotMixin):
         self.assertEqualSnapshot(out, 'no-dev', projectdir, sv, of)
 
     @named_data(*test_data_file_filter('with-extras'))
-    def test_cli_with_extras_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
+    def test_with_extras_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
             out.name = '<fakeout>'

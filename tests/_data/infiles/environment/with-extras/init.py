@@ -20,9 +20,10 @@ initialize this test bed.
 """
 
 from os import name as os_name
-from os.path import dirname, join, realpath
-from subprocess import run, CompletedProcess, PIPE  # nosec:B404
-from sys import executable, argv
+from os.path import dirname, join
+from subprocess import PIPE, CompletedProcess, run  # nosec:B404
+from sys import argv, executable
+from typing import Any
 from venv import EnvBuilder
 
 __all__ = ['main']
@@ -32,7 +33,7 @@ env_dir = join(this_dir, '.venv')
 constraint_file = join(this_dir, 'pinning.txt')
 
 
-def pip_run(*args: str, **kwargs) -> CompletedProcess:
+def pip_run(*args: str, **kwargs: Any) -> CompletedProcess:
     # pip is not API, but a CLI -- call it like that!
     call = (
         executable, '-m', 'pip',

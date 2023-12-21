@@ -53,9 +53,9 @@ else:
 
 
 @ddt
-class TestRequirements(TestCase, SnapshotMixin):
+class TestCliRequirements(TestCase, SnapshotMixin):
 
-    def test_cli_with_file_not_found(self) -> None:
+    def test_with_file_not_found(self) -> None:
         _, infile, sv, of = random.choice(test_data)  # nosec B311
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
@@ -73,7 +73,7 @@ class TestRequirements(TestCase, SnapshotMixin):
         self.assertNotEqual(0, res, err)
         self.assertIn('Could not open requirements file: something-that-must-not-exist.testing', err)
 
-    def test_cli_with_pyproject_not_found(self) -> None:
+    def test_with_pyproject_not_found(self) -> None:
         _, infile, sv, of = random.choice(test_data)  # nosec B311
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
@@ -94,7 +94,7 @@ class TestRequirements(TestCase, SnapshotMixin):
         self.assertIn('Could not open pyproject file: something-that-must-not-exist.testing', err)
 
     @named_data(*filter(test_data_os_filter, test_data))
-    def test_cli_with_file_as_expected(self, infile: str, sv: SchemaVersion, of: OutputFormat) -> None:
+    def test_with_file_as_expected(self, infile: str, sv: SchemaVersion, of: OutputFormat) -> None:
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
             out.name = '<fakeout>'
@@ -113,7 +113,7 @@ class TestRequirements(TestCase, SnapshotMixin):
         self.assertEqualSnapshot(out, 'file', infile, sv, of)
 
     @named_data(*test_data)
-    def test_cli_with_stream_as_expected(self, infile: str, sv: SchemaVersion, of: OutputFormat) -> None:
+    def test_with_stream_as_expected(self, infile: str, sv: SchemaVersion, of: OutputFormat) -> None:
         with StringIO() as err, StringIO() as out, open(infile, 'rb') as inp:
             err.name = '<fakeerr>'
             out.name = '<fakeout>'
