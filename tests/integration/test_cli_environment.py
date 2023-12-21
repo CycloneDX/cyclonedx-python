@@ -15,11 +15,11 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-from os import name as os_name
 import random
 from contextlib import redirect_stderr, redirect_stdout
 from glob import glob
 from io import StringIO
+from os import name as os_name
 from os.path import basename, dirname, join
 from subprocess import run  # nosec:B404
 from sys import executable
@@ -30,7 +30,7 @@ from cyclonedx.schema import OutputFormat, SchemaVersion
 from ddt import ddt, named_data
 
 from cyclonedx_py._internal.cli import run as run_cli
-from tests import INFILES_DIRECTORY, SUPPORTED_OF_SV, SnapshotMixin, make_comparable, INIT_TESTBEDS
+from tests import INFILES_DIRECTORY, INIT_TESTBEDS, SUPPORTED_OF_SV, SnapshotMixin, make_comparable
 
 initfiles = glob(join(INFILES_DIRECTORY, 'environment', '*', 'init.py'))
 projectdirs = list(dirname(initfile) for initfile in initfiles)

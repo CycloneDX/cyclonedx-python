@@ -164,6 +164,21 @@
         </reference>
       </externalReferences>
     </component>
+    <component type="library" bom-ref="importlib-resources==6.1.1">
+      <name>importlib-resources</name>
+      <version>6.1.1</version>
+      <description>Read resources from Python packages</description>
+      <purl>pkg:pypi/importlib-resources@6.1.1</purl>
+      <externalReferences>
+        <reference type="documentation">
+          <url>https://importlib-resources.readthedocs.io/</url>
+          <comment>Project-URL: Documentation</comment>
+        </reference>
+        <reference type="website">
+          <url>https://github.com/python/importlib_resources</url>
+        </reference>
+      </externalReferences>
+    </component>
     <component type="library" bom-ref="isoduration==20.11.0">
       <name>isoduration</name>
       <version>20.11.0</version>

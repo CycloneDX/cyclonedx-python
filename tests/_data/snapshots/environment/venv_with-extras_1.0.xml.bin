@@ -51,6 +51,13 @@
       <modified>false</modified>
     </component>
     <component type="library">
+      <name>importlib-resources</name>
+      <version>6.1.1</version>
+      <description>Read resources from Python packages</description>
+      <purl>pkg:pypi/importlib-resources@6.1.1</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
       <name>isoduration</name>
       <version>20.11.0</version>
       <description>Operations with ISO 8601 durations</description>

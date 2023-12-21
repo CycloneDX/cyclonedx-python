@@ -186,6 +186,21 @@
         </reference>
       </externalReferences>
     </component>
+    <component type="library" bom-ref="importlib-resources==6.1.1">
+      <name>importlib-resources</name>
+      <version>6.1.1</version>
+      <description>Read resources from Python packages</description>
+      <purl>pkg:pypi/importlib-resources@6.1.1</purl>
+      <externalReferences>
+        <reference type="documentation">
+          <url>https://importlib-resources.readthedocs.io/</url>
+          <comment>Project-URL: Documentation</comment>
+        </reference>
+        <reference type="website">
+          <url>https://github.com/python/importlib_resources</url>
+        </reference>
+      </externalReferences>
+    </component>
     <component type="library" bom-ref="isoduration==20.11.0">
       <name>isoduration</name>
       <version>20.11.0</version>
@@ -652,17 +667,20 @@
     <dependency ref="defusedxml==0.7.1"/>
     <dependency ref="fqdn==1.5.1"/>
     <dependency ref="idna==3.6"/>
+    <dependency ref="importlib-resources==6.1.1"/>
     <dependency ref="isoduration==20.11.0">
       <dependency ref="arrow==1.3.0"/>
     </dependency>
     <dependency ref="jsonpointer==2.4"/>
     <dependency ref="jsonschema-specifications==2023.11.2">
+      <dependency ref="importlib-resources==6.1.1"/>
       <dependency ref="referencing==0.32.0"/>
     </dependency>
     <dependency ref="jsonschema==4.20.0">
       <dependency ref="attrs==23.1.0"/>
       <dependency ref="fqdn==1.5.1"/>
       <dependency ref="idna==3.6"/>
+      <dependency ref="importlib-resources==6.1.1"/>
       <dependency ref="isoduration==20.11.0"/>
       <dependency ref="jsonpointer==2.4"/>
       <dependency ref="jsonschema-specifications==2023.11.2"/>
