@@ -183,5 +183,12 @@
       <purl>pkg:pypi/webcolors@1.13</purl>
       <modified>false</modified>
     </component>
+    <component type="library">
+      <name>zipp</name>
+      <version>3.17.0</version>
+      <description>Backport of pathlib-compatible object wrapper for zip files</description>
+      <purl>pkg:pypi/zipp@3.17.0</purl>
+      <modified>false</modified>
+    </component>
   </components>
 </bom>

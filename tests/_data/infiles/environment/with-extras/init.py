@@ -49,8 +49,9 @@ def main() -> None:
 
     pip_install(
         'cyclonedx-python-lib[xml-validation,json-validation]',
-        # additional for reproducibility foo
+        # additionals for reproducibility foo
         'importlib-resources>=1.4.0',
+        'zipp>=3.1.0',
     )
 
 

@@ -806,6 +806,27 @@
       "purl": "pkg:pypi/webcolors@1.13",
       "type": "library",
       "version": "1.13"
+    },
+    {
+      "bom-ref": "zipp==3.17.0",
+      "description": "Backport of pathlib-compatible object wrapper for zip files",
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/jaraco/zipp"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "zipp",
+      "purl": "pkg:pypi/zipp@3.17.0",
+      "type": "library",
+      "version": "3.17.0"
     }
   ],
   "dependencies": [
@@ -846,6 +867,9 @@
       "ref": "idna==3.6"
     },
     {
+      "dependsOn": [
+        "zipp==3.17.0"
+      ],
       "ref": "importlib-resources==6.1.1"
     },
     {
@@ -942,6 +966,9 @@
     },
     {
       "ref": "webcolors==1.13"
+    },
+    {
+      "ref": "zipp==3.17.0"
     }
   ],
   "metadata": {

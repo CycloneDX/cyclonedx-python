@@ -624,5 +624,21 @@
         </reference>
       </externalReferences>
     </component>
+    <component type="library" bom-ref="zipp==3.17.0">
+      <name>zipp</name>
+      <version>3.17.0</version>
+      <description>Backport of pathlib-compatible object wrapper for zip files</description>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+      <purl>pkg:pypi/zipp@3.17.0</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/jaraco/zipp</url>
+        </reference>
+      </externalReferences>
+    </component>
   </components>
 </bom>
