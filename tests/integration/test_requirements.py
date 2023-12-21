@@ -21,7 +21,7 @@ import random
 from contextlib import redirect_stderr, redirect_stdout
 from glob import glob
 from io import StringIO, TextIOWrapper
-from os.path import basename, join
+from os.path import basename, join, splitext
 from typing import Any, Tuple
 from unittest import TestCase
 from unittest.mock import patch
@@ -38,7 +38,7 @@ pyproject_file = join(INFILES_DIRECTORY, 'requirements', 'pyproject.toml')
 
 
 test_data = tuple(
-    (f'{basename(infile)}-{sv.name}-{of.name}', infile, sv, of)
+    (f'{splitext(basename(infile))[0]}-{sv.name}-{of.name}', infile, sv, of)
     for infile in infiles
     for of, sv in SUPPORTED_OF_SV
 )
@@ -110,9 +110,7 @@ class TestRequirements(TestCase, SnapshotMixin):
             err = err.getvalue()
             out = out.getvalue()
         self.assertEqual(0, res, err)
-        self.assertEqualSnapshot(
-            make_comparable(out, of),
-            f'{basename(infile)}-{sv.to_version()}.{of.name.lower()}-file')
+        self.assertEqualSnapshot(out, 'file', infile, sv, of)
 
     @named_data(*test_data)
     def test_cli_with_stream_as_expected(self, infile: str, sv: SchemaVersion, of: OutputFormat) -> None:
@@ -132,9 +130,15 @@ class TestRequirements(TestCase, SnapshotMixin):
             err = err.getvalue()
             out = out.getvalue()
         self.assertEqual(0, res, err)
-        self.assertEqualSnapshot(
-            make_comparable(out, of),
-            f'{basename(infile)}-{sv.to_version()}.{of.name.lower()}-stream')
+        self.assertEqualSnapshot(out, 'stream', infile, sv, of)
 
-    def assertEqualSnapshot(self, actual: str, snapshot_name: str) -> None:  # noqa:N802
-        super().assertEqualSnapshot(actual, join('requirements', snapshot_name))
+    def assertEqualSnapshot(self, actual: str,  # noqa:N802
+                            purpose: str,
+                            reqfile: str,
+                            sv: SchemaVersion,
+                            of: OutputFormat
+                            ) -> None:
+        super().assertEqualSnapshot(
+            make_comparable(actual, of),
+            join('requirements', f'{purpose}_{splitext(basename(reqfile))[0]}_{sv.to_version()}.{of.name.lower()}')
+        )
