@@ -121,7 +121,7 @@ class TestPipenv(TestCase, SnapshotMixin):
             err = err.getvalue()
             out = out.getvalue()
         self.assertEqual(0, res, err)
-        self.assertEqualSnapshot(out,'some-categories', projectdir, sv, of)
+        self.assertEqualSnapshot(out, 'some-categories', projectdir, sv, of)
 
     @named_data(*test_data_file_filter('default-and-dev'))
     def test_cli_with_dev_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
@@ -161,12 +161,12 @@ class TestPipenv(TestCase, SnapshotMixin):
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'pypi-mirror', projectdir, sv, of)
 
-    def assertEqualSnapshot(self, actual: str,
+    def assertEqualSnapshot(self, actual: str,  # noqa:N802
                             purpose: str,
                             projectdir: str,
                             sv: SchemaVersion,
                             of: OutputFormat
-                            ) -> None:  # noqa:N802
+                            ) -> None:
         super().assertEqualSnapshot(
             make_comparable(actual, of),
             join('pipenv', f'{purpose}_{basename(projectdir)}_{sv.to_version()}.{of.name.lower()}')

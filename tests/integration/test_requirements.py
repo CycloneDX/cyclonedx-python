@@ -132,12 +132,12 @@ class TestRequirements(TestCase, SnapshotMixin):
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'stream', infile, sv, of)
 
-    def assertEqualSnapshot(self, actual: str,
+    def assertEqualSnapshot(self, actual: str,  # noqa:N802
                             purpose: str,
                             reqfile: str,
                             sv: SchemaVersion,
                             of: OutputFormat
-                            ) -> None:  # noqa:N802
+                            ) -> None:
         super().assertEqualSnapshot(
             make_comparable(actual, of),
             join('requirements', f'{purpose}_{splitext(basename(reqfile))[0]}_{sv.to_version()}.{of.name.lower()}')
