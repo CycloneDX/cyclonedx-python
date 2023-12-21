@@ -122,8 +122,8 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
         self.assertIn('Could not open pyproject file: something-that-must-not-exist.testing', err)
 
     def test_with_current_python(self) -> None:
-        from sys import executable
-        _, projectdir, sv, of = random.choice(test_data)  # nosec B311
+        sv = SchemaVersion.V1_5
+        of = random.choice((OutputFormat.XML, OutputFormat.JSON))  # nosec B311
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
             out.name = '<fakeout>'
