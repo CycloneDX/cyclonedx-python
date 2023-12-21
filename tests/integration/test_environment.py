@@ -16,11 +16,12 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
-import random
 from contextlib import redirect_stderr, redirect_stdout
 from glob import glob
 from io import StringIO
 from os.path import basename, dirname, join
+from subprocess import run  # nosec:B404
+from sys import executable
 from typing import Any, Generator
 from unittest import TestCase
 
@@ -44,9 +45,43 @@ def test_data_file_filter(s: str) -> Generator[Any, None, None]:
     return ((n, d, sv, of) for n, d, sv, of in test_data if s in n)
 
 
+@ddt
 class TestPipenv(TestCase, SnapshotMixin):
 
-    # TODO
+    @classmethod
+    def setUpClass(cls) -> None:
+        for initfile in initfiles:
+            res = run([executable, initfile],
+                      capture_output=True, encoding='utf8', shell=False)   # nosec:B603
+            if res.returncode != 0:
+                raise RuntimeError(f'failed init :\n'
+                                   f'stdout: {res.stdout}\n'
+                                   f'stderr: {res.stderr}\n')
+
+    def test_cli_fails_with_python_not_found(self) -> None:
+        pass  # TODO fails
+
+    def test_cli_with_current_python(self) -> None:
+        pass  # TODO does not fail
+
+    @named_data(*test_data)
+    def test_cli_with_file_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
+        with StringIO() as err, StringIO() as out:
+            err.name = '<fakeerr>'
+            out.name = '<fakeout>'
+            with redirect_stderr(err), redirect_stdout(out):
+                res = run_cli(argv=[
+                    'environment',
+                    '-vvv',
+                    f'--sv={sv.to_version()}',
+                    f'--of={of.name}',
+                    '--outfile=-',
+                    f'--pyproject={join(projectdir, "pyproject.toml")}',
+                    join(projectdir, '.venv')])
+            err = err.getvalue()
+            out = out.getvalue()
+        self.assertEqual(0, res, err)
+        self.assertEqualSnapshot(out, 'venv', projectdir, sv, of)
 
     def assertEqualSnapshot(self, actual: str,  # noqa:N802
                             purpose: str,
