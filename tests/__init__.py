@@ -31,6 +31,10 @@ RECREATE_SNAPSHOTS = '1' == getenv('CDX_TEST_RECREATE_SNAPSHOTS')
 if RECREATE_SNAPSHOTS:
     print('!!! WILL RECREATE ALL SNAPSHOTS !!!')
 
+INIT_TESTBEDS = '1' != getenv('CDX_TEST_SKIP_INIT_TESTBEDS')
+if INIT_TESTBEDS:
+    print('!!! WILL INIT TESTBEDS !!!')
+
 
 _TESTDATA_DIRECTORY = join(dirname(__file__), '_data')
 

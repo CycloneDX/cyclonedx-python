@@ -14,6 +14,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
+
+from os import name as os_name
 import random
 from contextlib import redirect_stderr, redirect_stdout
 from glob import glob
@@ -22,13 +24,13 @@ from os.path import basename, dirname, join
 from subprocess import run  # nosec:B404
 from sys import executable
 from typing import Any, Generator
-from unittest import TestCase
+from unittest import TestCase, skipIf
 
 from cyclonedx.schema import OutputFormat, SchemaVersion
 from ddt import ddt, named_data
 
 from cyclonedx_py._internal.cli import run as run_cli
-from tests import INFILES_DIRECTORY, SUPPORTED_OF_SV, SnapshotMixin, make_comparable
+from tests import INFILES_DIRECTORY, SUPPORTED_OF_SV, SnapshotMixin, make_comparable, INIT_TESTBEDS
 
 initfiles = glob(join(INFILES_DIRECTORY, 'environment', '*', 'init.py'))
 projectdirs = list(dirname(initfile) for initfile in initfiles)
@@ -49,13 +51,14 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
 
     @classmethod
     def setUpClass(cls) -> None:
-        for initfile in initfiles:
-            res = run([executable, initfile],
-                      capture_output=True, encoding='utf8', shell=False)  # nosec:B603
-            if res.returncode != 0:
-                raise RuntimeError(f'failed init :\n'
-                                   f'stdout: {res.stdout}\n'
-                                   f'stderr: {res.stderr}\n')
+        if INIT_TESTBEDS:
+            for initfile in initfiles:
+                res = run([executable, initfile],
+                          capture_output=True, encoding='utf8', shell=False)  # nosec:B603
+                if res.returncode != 0:
+                    raise RuntimeError(f'failed init :\n'
+                                       f'stdout: {res.stdout}\n'
+                                       f'stderr: {res.stderr}\n')
 
     @named_data(
         ('does-not-exist', 'something-that-must-not-exist.testing', 'No such file or directory'),
@@ -83,6 +86,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
         ('exit-non-zero', join(INFILES_DIRECTORY, 'environment', 'broken-env', 'non-zero.py'), 'Fail fetching `path`'),
         ('no-json', join(INFILES_DIRECTORY, 'environment', 'broken-env', 'broken-json.py'), 'JSONDecodeError'),
     )
+    @skipIf(os_name == 'nt', 'cannot run on win')
     def test_fails_with_python_unexpected(self, wrong_python: str, expected_error: str) -> None:
         _, _, sv, of = random.choice(test_data)  # nosec B311
         with StringIO() as err, StringIO() as out:

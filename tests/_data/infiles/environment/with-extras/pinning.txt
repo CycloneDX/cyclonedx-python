@@ -5,6 +5,7 @@ cyclonedx-python-lib==6.0.0
 defusedxml==0.7.1
 fqdn==1.5.1
 idna==3.6
+importlib-resources==6.1.1
 isoduration==20.11.0
 jsonpointer==2.4
 jsonschema==4.20.0
