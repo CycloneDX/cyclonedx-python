@@ -107,6 +107,13 @@
       <modified>false</modified>
     </component>
     <component type="library">
+      <name>pkgutil_resolve_name</name>
+      <version>1.3.10</version>
+      <description>Resolve a name to an object.</description>
+      <purl>pkg:pypi/pkgutil-resolve-name@1.3.10</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
       <name>py-serializable</name>
       <version>0.16.0</version>
       <description>Library for serializing and deserializing Python Objects to and from JSON and XML.</description>

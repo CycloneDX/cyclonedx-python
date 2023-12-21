@@ -405,6 +405,22 @@
         </reference>
       </externalReferences>
     </component>
+    <component type="library" bom-ref="pkgutil_resolve_name==1.3.10">
+      <name>pkgutil_resolve_name</name>
+      <version>1.3.10</version>
+      <description>Resolve a name to an object.</description>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+      <purl>pkg:pypi/pkgutil-resolve-name@1.3.10</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/graingert/pkgutil-resolve-name</url>
+        </reference>
+      </externalReferences>
+    </component>
     <component type="library" bom-ref="py-serializable==0.16.0">
       <name>py-serializable</name>
       <version>0.16.0</version>
@@ -741,6 +757,7 @@
     </dependency>
     <dependency ref="lxml==4.9.4"/>
     <dependency ref="packageurl-python==0.13.1"/>
+    <dependency ref="pkgutil_resolve_name==1.3.10"/>
     <dependency ref="py-serializable==0.16.0">
       <dependency ref="defusedxml==0.7.1"/>
     </dependency>
