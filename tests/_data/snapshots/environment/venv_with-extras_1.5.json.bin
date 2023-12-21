@@ -77,6 +77,7 @@
       "description": "Define boolean algebras, create and parse boolean expressions and create custom boolean DSL.",
       "externalReferences": [
         {
+          "comment": "Home-page",
           "type": "website",
           "url": "https://github.com/bastikr/boolean.py"
         }
@@ -118,6 +119,7 @@
           "url": "https://github.com/CycloneDX/cyclonedx-python-lib"
         },
         {
+          "comment": "Home-page",
           "type": "website",
           "url": "https://github.com/CycloneDX/cyclonedx-python-lib/#readme"
         }
@@ -139,10 +141,12 @@
       "description": "XML bomb protection for Python stdlib modules",
       "externalReferences": [
         {
+          "comment": "Download-URL",
           "type": "distribution",
           "url": "https://pypi.python.org/pypi/defusedxml"
         },
         {
+          "comment": "Home-page",
           "type": "website",
           "url": "https://github.com/tiran/defusedxml"
         }
@@ -169,6 +173,7 @@
       "description": "Validates fully-qualified domain names against RFC 1123, so that they are acceptable to modern bowsers",
       "externalReferences": [
         {
+          "comment": "Home-page",
           "type": "website",
           "url": "https://github.com/ypcrts/fqdn"
         }
@@ -220,6 +225,7 @@
           "url": "https://importlib-resources.readthedocs.io/"
         },
         {
+          "comment": "Home-page",
           "type": "website",
           "url": "https://github.com/python/importlib_resources"
         }
@@ -249,6 +255,7 @@
           "url": "https://github.com/bolsote/isoduration"
         },
         {
+          "comment": "Home-page",
           "type": "website",
           "url": "https://github.com/bolsote/isoduration"
         }
@@ -275,6 +282,7 @@
       "description": "Identify specific nodes in a JSON document (RFC 6901) ",
       "externalReferences": [
         {
+          "comment": "Home-page",
           "type": "website",
           "url": "https://github.com/stefankoegl/python-json-pointer"
         }
@@ -395,6 +403,7 @@
       "description": "license-expression is a comprehensive utility library to parse, compare, simplify and normalize license expressions (such as SPDX license expressions) using boolean logic.",
       "externalReferences": [
         {
+          "comment": "Home-page",
           "type": "website",
           "url": "https://github.com/nexB/license-expression"
         }
@@ -421,6 +430,7 @@
           "url": "https://github.com/lxml/lxml"
         },
         {
+          "comment": "Home-page",
           "type": "website",
           "url": "https://lxml.de/"
         }
@@ -442,6 +452,7 @@
       "description": "A purl aka. Package URL parser and builder",
       "externalReferences": [
         {
+          "comment": "Home-page",
           "type": "website",
           "url": "https://github.com/package-url/packageurl-python"
         }
@@ -463,6 +474,7 @@
       "description": "Resolve a name to an object.",
       "externalReferences": [
         {
+          "comment": "Home-page",
           "type": "website",
           "url": "https://github.com/graingert/pkgutil-resolve-name"
         }
@@ -494,6 +506,7 @@
           "url": "https://github.com/madpah/serializable"
         },
         {
+          "comment": "Home-page",
           "type": "website",
           "url": "https://github.com/madpah/serializable"
         }
@@ -525,6 +538,7 @@
           "url": "https://github.com/dateutil/dateutil"
         },
         {
+          "comment": "Home-page",
           "type": "website",
           "url": "https://github.com/dateutil/dateutil"
         }
@@ -593,6 +607,7 @@
       "description": "A pure python RFC3339 validator",
       "externalReferences": [
         {
+          "comment": "Home-page",
           "type": "website",
           "url": "https://github.com/naimetti/rfc3339-validator"
         }
@@ -619,10 +634,12 @@
       "description": "Parsing and validation of URIs (RFC 3986) and IRIs (RFC 3987)",
       "externalReferences": [
         {
+          "comment": "Download-URL",
           "type": "distribution",
           "url": "https://github.com/dgerber/rfc3987"
         },
         {
+          "comment": "Home-page",
           "type": "website",
           "url": "http://pypi.python.org/pypi/rfc3987"
         }
@@ -696,6 +713,7 @@
       "description": "Python 2 and 3 compatibility utilities",
       "externalReferences": [
         {
+          "comment": "Home-page",
           "type": "website",
           "url": "https://github.com/benjaminp/six"
         }
@@ -717,6 +735,7 @@
       "description": "Sorted Containers -- Sorted List, Sorted Dict, Sorted Set",
       "externalReferences": [
         {
+          "comment": "Home-page",
           "type": "website",
           "url": "http://www.grantjenks.com/docs/sortedcontainers/"
         }
@@ -758,6 +777,7 @@
           "url": "https://github.com/python/typeshed"
         },
         {
+          "comment": "Home-page",
           "type": "website",
           "url": "https://github.com/python/typeshed"
         }
@@ -833,6 +853,7 @@
       "description": "Backport of pathlib-compatible object wrapper for zip files",
       "externalReferences": [
         {
+          "comment": "Home-page",
           "type": "website",
           "url": "https://github.com/jaraco/zipp"
         }

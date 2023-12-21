@@ -152,6 +152,7 @@ class EnvironmentBB(BomBuilder):
     def __add_components(self, bom: 'Bom', rc: Optional[Tuple['Component', Set[str]]],
                          **kwargs: Any) -> None:
         from importlib.metadata import distributions
+        from itertools import chain
 
         from cyclonedx.model.component import Component, ComponentType
         from packageurl import PackageURL
@@ -159,6 +160,7 @@ class EnvironmentBB(BomBuilder):
         from .utils.cdx import licenses_fixup
         from .utils.packaging import metadata2extrefs, metadata2licenses
         from .utils.pep631 import requirement2package_name
+        from .utils.pep610 import packagesource4dist, packagesource2extrefs
 
         all_components: Dict[str, Tuple['Component', Set[str]]] = {}
         self._logger.debug('distribution context args: %r', kwargs)
@@ -167,7 +169,7 @@ class EnvironmentBB(BomBuilder):
             dist_meta = dist.metadata  # see https://packaging.python.org/en/latest/specifications/core-metadata/
             dist_name = dist_meta['Name']
             dist_version = dist_meta['Version']
-            # print(repr(dist_meta.items()))
+            packagesource = packagesource4dist(dist)
             component = Component(
                 type=ComponentType.LIBRARY,
                 bom_ref=f'{dist_name}=={dist_version}',
@@ -175,12 +177,14 @@ class EnvironmentBB(BomBuilder):
                 version=dist_version,
                 description=dist_meta['Summary'] if 'Summary' in dist_meta else None,
                 licenses=licenses_fixup(metadata2licenses(dist_meta)),
-                external_references=metadata2extrefs(dist_meta),
+                external_references=chain(
+                    metadata2extrefs(dist_meta),
+                    packagesource2extrefs(packagesource) if packagesource else ()),
                 purl=PackageURL('pypi', name=dist_name, version=dist_version),
                 # TODO install info
                 # TODO path of package?
             )
-            del dist_meta, dist_name, dist_version
+            del dist_meta, dist_name, dist_version, packagesource
             all_components[component.name.lower()] = (
                 component,
                 set(filter(None, map(requirement2package_name, dist.requires or ())))

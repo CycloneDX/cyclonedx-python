@@ -56,8 +56,8 @@ def metadata2extrefs(metadata: 'PackageMetadata') -> Generator['ExternalReferenc
         try:
             yield ExternalReference(
                 type=ExternalReferenceType.WEBSITE,
-                url=XsUri(metadata['Home-page'])
-            )
+                url=XsUri(metadata['Home-page']),
+                comment='Home-page')
         except InvalidUriException:
             pass
     if 'Download-URL' in metadata:
@@ -65,8 +65,8 @@ def metadata2extrefs(metadata: 'PackageMetadata') -> Generator['ExternalReferenc
         try:
             yield ExternalReference(
                 type=ExternalReferenceType.DISTRIBUTION,
-                url=XsUri(metadata['Download-URL'])
-            )
+                url=XsUri(metadata['Download-URL']),
+                comment='Download-URL')
         except InvalidUriException:
             pass
     for label_url in metadata.get_all('Project-URL', ()):
@@ -76,7 +76,6 @@ def metadata2extrefs(metadata: 'PackageMetadata') -> Generator['ExternalReferenc
             yield ExternalReference(
                 type=url_label_to_ert(label),
                 url=XsUri(url.strip()),
-                comment=f'Project-URL: {label}',
-            )
+                comment=f'Project-URL: {label}')
         except InvalidUriException:
             pass

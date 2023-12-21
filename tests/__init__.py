@@ -114,6 +114,7 @@ def make_xml_comparable(bom: str) -> str:
         r'        <version>\1</version>''\n'
         '        <externalReferences><!-- stripped --></externalReferences>',
         bom)
+    # TODO replace absolute paths
     return bom
 
 
@@ -142,10 +143,12 @@ def make_json_comparable(bom: str) -> str:
         '        "name": "cyclonedx-python-lib",\n'
         '        "vendor": "CycloneDX"',
         bom)
+    # TODO replace absolute paths in JSON format
     return bom
 
 
 def make_comparable(bom: str, of: OutputFormat) -> str:
+    # TODO replace absolute paths
     if of is OutputFormat.XML:
         return make_xml_comparable(bom)
     if of is OutputFormat.JSON:

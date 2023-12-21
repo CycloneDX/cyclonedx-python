@@ -93,6 +93,7 @@
       <externalReferences>
         <reference type="website">
           <url>https://github.com/bastikr/boolean.py</url>
+          <comment>Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -125,6 +126,7 @@
         </reference>
         <reference type="website">
           <url>https://github.com/CycloneDX/cyclonedx-python-lib/#readme</url>
+          <comment>Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -144,9 +146,11 @@
       <externalReferences>
         <reference type="distribution">
           <url>https://pypi.python.org/pypi/defusedxml</url>
+          <comment>Download-URL</comment>
         </reference>
         <reference type="website">
           <url>https://github.com/tiran/defusedxml</url>
+          <comment>Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -163,6 +167,7 @@
       <externalReferences>
         <reference type="website">
           <url>https://github.com/ypcrts/fqdn</url>
+          <comment>Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -198,6 +203,7 @@
         </reference>
         <reference type="website">
           <url>https://github.com/python/importlib_resources</url>
+          <comment>Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -229,6 +235,7 @@
         </reference>
         <reference type="website">
           <url>https://github.com/bolsote/isoduration</url>
+          <comment>Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -245,6 +252,7 @@
       <externalReferences>
         <reference type="website">
           <url>https://github.com/stefankoegl/python-json-pointer</url>
+          <comment>Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -339,6 +347,7 @@
       <externalReferences>
         <reference type="website">
           <url>https://github.com/nexB/license-expression</url>
+          <comment>Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -359,6 +368,7 @@
         </reference>
         <reference type="website">
           <url>https://lxml.de/</url>
+          <comment>Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -375,6 +385,7 @@
       <externalReferences>
         <reference type="website">
           <url>https://github.com/package-url/packageurl-python</url>
+          <comment>Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -391,6 +402,7 @@
       <externalReferences>
         <reference type="website">
           <url>https://github.com/graingert/pkgutil-resolve-name</url>
+          <comment>Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -415,6 +427,7 @@
         </reference>
         <reference type="website">
           <url>https://github.com/madpah/serializable</url>
+          <comment>Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -439,6 +452,7 @@
         </reference>
         <reference type="website">
           <url>https://github.com/dateutil/dateutil</url>
+          <comment>Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -495,6 +509,7 @@
       <externalReferences>
         <reference type="website">
           <url>https://github.com/naimetti/rfc3339-validator</url>
+          <comment>Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -514,9 +529,11 @@
       <externalReferences>
         <reference type="distribution">
           <url>https://github.com/dgerber/rfc3987</url>
+          <comment>Download-URL</comment>
         </reference>
         <reference type="website">
           <url>http://pypi.python.org/pypi/rfc3987</url>
+          <comment>Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -570,6 +587,7 @@
       <externalReferences>
         <reference type="website">
           <url>https://github.com/benjaminp/six</url>
+          <comment>Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -586,6 +604,7 @@
       <externalReferences>
         <reference type="website">
           <url>http://www.grantjenks.com/docs/sortedcontainers/</url>
+          <comment>Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -618,6 +637,7 @@
         </reference>
         <reference type="website">
           <url>https://github.com/python/typeshed</url>
+          <comment>Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -675,6 +695,7 @@
       <externalReferences>
         <reference type="website">
           <url>https://github.com/jaraco/zipp</url>
+          <comment>Home-page</comment>
         </reference>
       </externalReferences>
     </component>

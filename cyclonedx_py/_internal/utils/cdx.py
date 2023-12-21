@@ -21,9 +21,9 @@ CycloneDX related helpers and utils.
 """
 
 from re import compile as re_compile
-from typing import Any, Dict, Iterable
+from typing import Any, Dict, Iterable, Optional
 
-from cyclonedx.model import ExternalReference, ExternalReferenceType, Tool, XsUri
+from cyclonedx.model import ExternalReference, ExternalReferenceType, Tool, XsUri, HashAlgorithm
 from cyclonedx.model.bom import Bom
 from cyclonedx.model.license import License, LicenseExpression
 
@@ -108,3 +108,21 @@ def url_label_to_ert(value: str) -> ExternalReferenceType:
     return __known_ulr_labels.get(
         __re_nochar.sub('', str(value).lower()),
         ExternalReferenceType.OTHER)
+
+
+__map_hashlib: Dict[str, HashAlgorithm] = {
+    # from hashlib.algorithms_guaranteed
+    # TODO move to py-lib
+    'md5': HashAlgorithm.MD5,
+    'sha1': HashAlgorithm.SHA_1,
+    'sha256': HashAlgorithm.SHA_256,
+    'sha384': HashAlgorithm.SHA_384,
+    'sha512': HashAlgorithm.SHA_512,
+    'sha3_384': HashAlgorithm.SHA3_384,
+    'sha3_256': HashAlgorithm.SHA3_256,
+    'sha3_512': HashAlgorithm.SHA3_512,
+}
+
+
+def hashlib_alg_to_ha(alg: str) -> Optional[HashAlgorithm]:
+    return __map_hashlib.get(alg)
