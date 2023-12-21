@@ -206,11 +206,6 @@ class EnvironmentBB(BomBuilder):
                                                          requires))
             bom.register_dependency(component, requires_d)
 
-    def __python4dir(self) -> str:
-
-        from sys import executable
-        return executable
-
     @staticmethod
     def __py_interpreter(value: str) -> str:
         from os.path import exists, isdir, join
