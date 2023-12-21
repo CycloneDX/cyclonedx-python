@@ -1,0 +1,66 @@
+{
+  "dependencies": [
+    {
+      "ref": "no-deps"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "author": "Your Name <you@example.com> | My Name",
+      "bom-ref": "no-deps",
+      "description": "packages with all meta, but no deps",
+      "externalReferences": [
+        {
+          "comment": "project metadata: documentation",
+          "type": "documentation",
+          "url": "https://oss.acme.org/my-project/docs/"
+        },
+        {
+          "comment": "package urls: Bug Tracker",
+          "type": "issue-tracker",
+          "url": "https://oss.acme.org/my-project/bugs/"
+        },
+        {
+          "comment": "package urls: Change log",
+          "type": "other",
+          "url": "https://oss.acme.org/my-project/changelog/"
+        },
+        {
+          "comment": "package urls: Funding",
+          "type": "other",
+          "url": "https://oss.acme.org/my-project/funding/"
+        },
+        {
+          "comment": "project metadata: repository",
+          "type": "vcs",
+          "url": "https://oss.acme.org/my-project.git"
+        },
+        {
+          "comment": "project metadata: homepage",
+          "type": "website",
+          "url": "https://oss.acme.org/my-project/"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR MIT"
+        }
+      ],
+      "name": "no-deps",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "tools": [
+      {
+        "externalReferences": [   ],
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5"
+}
