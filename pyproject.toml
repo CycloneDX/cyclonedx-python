@@ -72,8 +72,9 @@ bandit = "1.7.5"
 tox = "4.11.3"
 # `types-toml` need to stay in sync with version of `toml`
 types-toml = "^0.10.0"
-# `types-setuptools` need to stay in sync with version of `setuptools` - but 47 was not typed...
-types-setuptools = ">= 57.0.0"
+# min version required to be able to install some dependencies
+# see https://github.com/MichaelKim0407/flake8-use-fstring/issues/33
+setuptools = ">= 47.0.0"
 
 [tool.poetry.scripts]
 cyclonedx-py = 'cyclonedx_py._internal.cli:run'
