@@ -21,14 +21,14 @@
           "url": "https://oss.acme.org/my-project/bugs/"
         },
         {
-          "comment": "package url: Change log",
-          "type": "other",
-          "url": "https://oss.acme.org/my-project/changelog/"
-        },
-        {
           "comment": "package url: Funding",
           "type": "other",
           "url": "https://oss.acme.org/my-project/funding/"
+        },
+        {
+          "comment": "package url: Change log",
+          "type": "release-notes",
+          "url": "https://oss.acme.org/my-project/changelog/"
         },
         {
           "comment": "project metadata: repository",
