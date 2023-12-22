@@ -36,7 +36,7 @@
       <externalReferences>
         <reference type="website">
           <url>https://github.com/benjaminp/six</url>
-          <comment>Home-page</comment>
+          <comment>from packaging metadata: Home-page</comment>
         </reference>
       </externalReferences>
     </component>

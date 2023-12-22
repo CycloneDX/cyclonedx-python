@@ -27,6 +27,7 @@ from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable
 
 if TYPE_CHECKING:
     from cyclonedx.factory.license import LicenseFactory
+    from cyclonedx.model import ExternalReference
     from cyclonedx.model.component import Component, ComponentType
     from cyclonedx.model.license import License
 
@@ -64,15 +65,33 @@ def pyproject2component(pyproject: Dict[str, Any], *,
     from .cdx import licenses_fixup
 
     project = pyproject['project']
+    dynamic = project.get('dynamic', ())
     return Component(
         type=type,
         name=project['name'],
-        version=project.get('version', None),
-        description=project.get('description', None),
+        version=project.get('version', None) if 'version' not in dynamic else None,
+        description=project.get('description', None) if 'description' not in dynamic else None,
         licenses=licenses_fixup(pyproject2licenses(project, LicenseFactory())),
+        external_references=_project2extrefs(project),
         # TODO add more properties according to spec
-        # extRefs with .cdx.url_label_to_ert()
     )
+
+
+def _project2extrefs(project: Dict[str, Any]) -> Generator['ExternalReference', None, None]:
+    from cyclonedx.exception.model import InvalidUriException
+    from cyclonedx.model import ExternalReference, XsUri
+
+    from .cdx import url_label_to_ert
+
+    # see https://packaging.python.org/en/latest/specifications/pyproject-toml/#urls
+    for label, url in project.get('urls', {}).items():
+        try:
+            yield ExternalReference(
+                comment=f'from pyproject urls: {label}',
+                type=url_label_to_ert(label),
+                url=XsUri(str(url)))
+        except InvalidUriException:
+            pass
 
 
 def pyproject_load(pyproject_file: str) -> Dict[str, Any]:

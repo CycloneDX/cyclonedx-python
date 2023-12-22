@@ -11,32 +11,32 @@
       "description": "packages with all meta, but no deps",
       "externalReferences": [
         {
-          "comment": "project metadata: documentation",
+          "comment": "from poetry: documentation",
           "type": "documentation",
           "url": "https://oss.acme.org/my-project/docs/"
         },
         {
-          "comment": "package url: Bug Tracker",
+          "comment": "from poetry url: Bug Tracker",
           "type": "issue-tracker",
           "url": "https://oss.acme.org/my-project/bugs/"
         },
         {
-          "comment": "package url: Funding",
+          "comment": "from poetry url: Funding",
           "type": "other",
           "url": "https://oss.acme.org/my-project/funding/"
         },
         {
-          "comment": "package url: Change log",
+          "comment": "from poetry url: Change log",
           "type": "other",
           "url": "https://oss.acme.org/my-project/changelog/"
         },
         {
-          "comment": "project metadata: repository",
+          "comment": "from poetry: repository",
           "type": "vcs",
           "url": "https://oss.acme.org/my-project.git"
         },
         {
-          "comment": "project metadata: homepage",
+          "comment": "from poetry: homepage",
           "type": "website",
           "url": "https://oss.acme.org/my-project/"
         }

@@ -14,12 +14,9 @@
       </tool>
     </tools>
     <component type="application" bom-ref="root-component">
-      <name>no-deps</name>
+      <name>with-extras</name>
       <version>0.1.0</version>
-      <description>packages with all meta, but no deps</description>
-      <licenses>
-        <expression>Apache-2.0 OR MIT</expression>
-      </licenses>
+      <description>depenndencies with extras</description>
     </component>
     <properties>
       <property name="cdx:reproducible">true</property>
@@ -34,15 +31,15 @@
       <externalReferences>
         <reference type="documentation">
           <url>https://arrow.readthedocs.io</url>
-          <comment>Project-URL: Documentation</comment>
+          <comment>from packaging metadata Project-URL: Documentation</comment>
         </reference>
         <reference type="issue-tracker">
           <url>https://github.com/arrow-py/arrow/issues</url>
-          <comment>Project-URL: Issues</comment>
+          <comment>from packaging metadata Project-URL: Issues</comment>
         </reference>
         <reference type="other">
           <url>https://github.com/arrow-py/arrow</url>
-          <comment>Project-URL: Source</comment>
+          <comment>from packaging metadata Project-URL: Source</comment>
         </reference>
       </externalReferences>
     </component>
@@ -59,27 +56,27 @@
       <externalReferences>
         <reference type="documentation">
           <url>https://www.attrs.org/</url>
-          <comment>Project-URL: Documentation</comment>
+          <comment>from packaging metadata Project-URL: Documentation</comment>
         </reference>
         <reference type="issue-tracker">
           <url>https://github.com/python-attrs/attrs/issues</url>
-          <comment>Project-URL: Bug Tracker</comment>
+          <comment>from packaging metadata Project-URL: Bug Tracker</comment>
         </reference>
         <reference type="other">
           <url>https://github.com/python-attrs/attrs</url>
-          <comment>Project-URL: Source Code</comment>
+          <comment>from packaging metadata Project-URL: Source Code</comment>
         </reference>
         <reference type="other">
           <url>https://github.com/sponsors/hynek</url>
-          <comment>Project-URL: Funding</comment>
+          <comment>from packaging metadata Project-URL: Funding</comment>
         </reference>
         <reference type="other">
           <url>https://tidelift.com/subscription/pkg/pypi-attrs?utm_source=pypi-attrs&amp;utm_medium=pypi</url>
-          <comment>Project-URL: Tidelift</comment>
+          <comment>from packaging metadata Project-URL: Tidelift</comment>
         </reference>
         <reference type="other">
           <url>https://www.attrs.org/en/stable/changelog.html</url>
-          <comment>Project-URL: Changelog</comment>
+          <comment>from packaging metadata Project-URL: Changelog</comment>
         </reference>
       </externalReferences>
     </component>
@@ -96,7 +93,7 @@
       <externalReferences>
         <reference type="website">
           <url>https://github.com/bastikr/boolean.py</url>
-          <comment>Home-page</comment>
+          <comment>from packaging metadata: Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -113,23 +110,23 @@
       <externalReferences>
         <reference type="documentation">
           <url>https://cyclonedx-python-library.readthedocs.io/</url>
-          <comment>Project-URL: Documentation</comment>
+          <comment>from packaging metadata Project-URL: Documentation</comment>
         </reference>
         <reference type="issue-tracker">
           <url>https://github.com/CycloneDX/cyclonedx-python-lib/issues</url>
-          <comment>Project-URL: Bug Tracker</comment>
+          <comment>from packaging metadata Project-URL: Bug Tracker</comment>
         </reference>
         <reference type="other">
           <url>https://owasp.org/donate/?reponame=www-project-cyclonedx&amp;title=OWASP+CycloneDX</url>
-          <comment>Project-URL: Funding</comment>
+          <comment>from packaging metadata Project-URL: Funding</comment>
         </reference>
         <reference type="vcs">
           <url>https://github.com/CycloneDX/cyclonedx-python-lib</url>
-          <comment>Project-URL: Repository</comment>
+          <comment>from packaging metadata Project-URL: Repository</comment>
         </reference>
         <reference type="website">
           <url>https://github.com/CycloneDX/cyclonedx-python-lib/#readme</url>
-          <comment>Home-page</comment>
+          <comment>from packaging metadata: Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -149,11 +146,11 @@
       <externalReferences>
         <reference type="distribution">
           <url>https://pypi.python.org/pypi/defusedxml</url>
-          <comment>Download-URL</comment>
+          <comment>from packaging metadata: Download-URL</comment>
         </reference>
         <reference type="website">
           <url>https://github.com/tiran/defusedxml</url>
-          <comment>Home-page</comment>
+          <comment>from packaging metadata: Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -170,7 +167,7 @@
       <externalReferences>
         <reference type="website">
           <url>https://github.com/ypcrts/fqdn</url>
-          <comment>Home-page</comment>
+          <comment>from packaging metadata: Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -182,15 +179,15 @@
       <externalReferences>
         <reference type="issue-tracker">
           <url>https://github.com/kjd/idna/issues</url>
-          <comment>Project-URL: Issue tracker</comment>
+          <comment>from packaging metadata Project-URL: Issue tracker</comment>
         </reference>
         <reference type="other">
           <url>https://github.com/kjd/idna</url>
-          <comment>Project-URL: Source</comment>
+          <comment>from packaging metadata Project-URL: Source</comment>
         </reference>
         <reference type="other">
           <url>https://github.com/kjd/idna/blob/master/HISTORY.rst</url>
-          <comment>Project-URL: Changelog</comment>
+          <comment>from packaging metadata Project-URL: Changelog</comment>
         </reference>
       </externalReferences>
     </component>
@@ -202,11 +199,11 @@
       <externalReferences>
         <reference type="documentation">
           <url>https://importlib-resources.readthedocs.io/</url>
-          <comment>Project-URL: Documentation</comment>
+          <comment>from packaging metadata Project-URL: Documentation</comment>
         </reference>
         <reference type="website">
           <url>https://github.com/python/importlib_resources</url>
-          <comment>Home-page</comment>
+          <comment>from packaging metadata: Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -226,19 +223,19 @@
       <externalReferences>
         <reference type="issue-tracker">
           <url>https://github.com/bolsote/isoduration/issues</url>
-          <comment>Project-URL: Bug Reports</comment>
+          <comment>from packaging metadata Project-URL: Bug Reports</comment>
         </reference>
         <reference type="other">
           <url>https://github.com/bolsote/isoduration/blob/master/CHANGELOG</url>
-          <comment>Project-URL: Changelog</comment>
+          <comment>from packaging metadata Project-URL: Changelog</comment>
         </reference>
         <reference type="vcs">
           <url>https://github.com/bolsote/isoduration</url>
-          <comment>Project-URL: Repository</comment>
+          <comment>from packaging metadata Project-URL: Repository</comment>
         </reference>
         <reference type="website">
           <url>https://github.com/bolsote/isoduration</url>
-          <comment>Home-page</comment>
+          <comment>from packaging metadata: Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -255,7 +252,7 @@
       <externalReferences>
         <reference type="website">
           <url>https://github.com/stefankoegl/python-json-pointer</url>
-          <comment>Home-page</comment>
+          <comment>from packaging metadata: Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -272,31 +269,31 @@
       <externalReferences>
         <reference type="documentation">
           <url>https://python-jsonschema.readthedocs.io/</url>
-          <comment>Project-URL: Documentation</comment>
+          <comment>from packaging metadata Project-URL: Documentation</comment>
         </reference>
         <reference type="issue-tracker">
           <url>https://github.com/python-jsonschema/jsonschema/issues/</url>
-          <comment>Project-URL: Issues</comment>
+          <comment>from packaging metadata Project-URL: Issues</comment>
         </reference>
         <reference type="other">
           <url>https://github.com/python-jsonschema/jsonschema</url>
-          <comment>Project-URL: Source</comment>
+          <comment>from packaging metadata Project-URL: Source</comment>
         </reference>
         <reference type="other">
           <url>https://github.com/sponsors/Julian</url>
-          <comment>Project-URL: Funding</comment>
+          <comment>from packaging metadata Project-URL: Funding</comment>
         </reference>
         <reference type="other">
           <url>https://tidelift.com/subscription/pkg/pypi-jsonschema?utm_source=pypi-jsonschema&amp;utm_medium=referral&amp;utm_campaign=pypi-link</url>
-          <comment>Project-URL: Tidelift</comment>
+          <comment>from packaging metadata Project-URL: Tidelift</comment>
         </reference>
         <reference type="other">
           <url>https://github.com/python-jsonschema/jsonschema/blob/main/CHANGELOG.rst</url>
-          <comment>Project-URL: Changelog</comment>
+          <comment>from packaging metadata Project-URL: Changelog</comment>
         </reference>
         <reference type="website">
           <url>https://github.com/python-jsonschema/jsonschema</url>
-          <comment>Project-URL: Homepage</comment>
+          <comment>from packaging metadata Project-URL: Homepage</comment>
         </reference>
       </externalReferences>
     </component>
@@ -313,27 +310,27 @@
       <externalReferences>
         <reference type="documentation">
           <url>https://jsonschema-specifications.readthedocs.io/</url>
-          <comment>Project-URL: Documentation</comment>
+          <comment>from packaging metadata Project-URL: Documentation</comment>
         </reference>
         <reference type="issue-tracker">
           <url>https://github.com/python-jsonschema/jsonschema-specifications/issues/</url>
-          <comment>Project-URL: Issues</comment>
+          <comment>from packaging metadata Project-URL: Issues</comment>
         </reference>
         <reference type="other">
           <url>https://github.com/python-jsonschema/jsonschema-specifications</url>
-          <comment>Project-URL: Source</comment>
+          <comment>from packaging metadata Project-URL: Source</comment>
         </reference>
         <reference type="other">
           <url>https://github.com/sponsors/Julian</url>
-          <comment>Project-URL: Funding</comment>
+          <comment>from packaging metadata Project-URL: Funding</comment>
         </reference>
         <reference type="other">
           <url>https://tidelift.com/subscription/pkg/pypi-jsonschema-specifications?utm_source=pypi-jsonschema-specifications&amp;utm_medium=referral&amp;utm_campaign=pypi-link</url>
-          <comment>Project-URL: Tidelift</comment>
+          <comment>from packaging metadata Project-URL: Tidelift</comment>
         </reference>
         <reference type="website">
           <url>https://github.com/python-jsonschema/jsonschema-specifications</url>
-          <comment>Project-URL: Homepage</comment>
+          <comment>from packaging metadata Project-URL: Homepage</comment>
         </reference>
       </externalReferences>
     </component>
@@ -350,7 +347,7 @@
       <externalReferences>
         <reference type="website">
           <url>https://github.com/nexB/license-expression</url>
-          <comment>Home-page</comment>
+          <comment>from packaging metadata: Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -367,11 +364,11 @@
       <externalReferences>
         <reference type="other">
           <url>https://github.com/lxml/lxml</url>
-          <comment>Project-URL: Source</comment>
+          <comment>from packaging metadata Project-URL: Source</comment>
         </reference>
         <reference type="website">
           <url>https://lxml.de/</url>
-          <comment>Home-page</comment>
+          <comment>from packaging metadata: Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -388,7 +385,7 @@
       <externalReferences>
         <reference type="website">
           <url>https://github.com/package-url/packageurl-python</url>
-          <comment>Home-page</comment>
+          <comment>from packaging metadata: Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -405,7 +402,7 @@
       <externalReferences>
         <reference type="website">
           <url>https://github.com/graingert/pkgutil-resolve-name</url>
-          <comment>Home-page</comment>
+          <comment>from packaging metadata: Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -422,15 +419,15 @@
       <externalReferences>
         <reference type="issue-tracker">
           <url>https://github.com/madpah/serializable/issues</url>
-          <comment>Project-URL: Bug Tracker</comment>
+          <comment>from packaging metadata Project-URL: Bug Tracker</comment>
         </reference>
         <reference type="vcs">
           <url>https://github.com/madpah/serializable</url>
-          <comment>Project-URL: Repository</comment>
+          <comment>from packaging metadata Project-URL: Repository</comment>
         </reference>
         <reference type="website">
           <url>https://github.com/madpah/serializable</url>
-          <comment>Home-page</comment>
+          <comment>from packaging metadata: Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -447,15 +444,15 @@
       <externalReferences>
         <reference type="documentation">
           <url>https://dateutil.readthedocs.io/en/stable/</url>
-          <comment>Project-URL: Documentation</comment>
+          <comment>from packaging metadata Project-URL: Documentation</comment>
         </reference>
         <reference type="other">
           <url>https://github.com/dateutil/dateutil</url>
-          <comment>Project-URL: Source</comment>
+          <comment>from packaging metadata Project-URL: Source</comment>
         </reference>
         <reference type="website">
           <url>https://github.com/dateutil/dateutil</url>
-          <comment>Home-page</comment>
+          <comment>from packaging metadata: Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -472,27 +469,27 @@
       <externalReferences>
         <reference type="documentation">
           <url>https://referencing.readthedocs.io/</url>
-          <comment>Project-URL: Documentation</comment>
+          <comment>from packaging metadata Project-URL: Documentation</comment>
         </reference>
         <reference type="issue-tracker">
           <url>https://github.com/python-jsonschema/referencing/issues/</url>
-          <comment>Project-URL: Issues</comment>
+          <comment>from packaging metadata Project-URL: Issues</comment>
         </reference>
         <reference type="other">
           <url>https://github.com/python-jsonschema/referencing</url>
-          <comment>Project-URL: Source</comment>
+          <comment>from packaging metadata Project-URL: Source</comment>
         </reference>
         <reference type="other">
           <url>https://github.com/sponsors/Julian</url>
-          <comment>Project-URL: Funding</comment>
+          <comment>from packaging metadata Project-URL: Funding</comment>
         </reference>
         <reference type="other">
           <url>https://tidelift.com/subscription/pkg/pypi-referencing?utm_source=pypi-referencing&amp;utm_medium=referral&amp;utm_campaign=pypi-link</url>
-          <comment>Project-URL: Tidelift</comment>
+          <comment>from packaging metadata Project-URL: Tidelift</comment>
         </reference>
         <reference type="website">
           <url>https://github.com/python-jsonschema/referencing</url>
-          <comment>Project-URL: Homepage</comment>
+          <comment>from packaging metadata Project-URL: Homepage</comment>
         </reference>
       </externalReferences>
     </component>
@@ -512,7 +509,7 @@
       <externalReferences>
         <reference type="website">
           <url>https://github.com/naimetti/rfc3339-validator</url>
-          <comment>Home-page</comment>
+          <comment>from packaging metadata: Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -532,11 +529,11 @@
       <externalReferences>
         <reference type="distribution">
           <url>https://github.com/dgerber/rfc3987</url>
-          <comment>Download-URL</comment>
+          <comment>from packaging metadata: Download-URL</comment>
         </reference>
         <reference type="website">
           <url>http://pypi.python.org/pypi/rfc3987</url>
-          <comment>Home-page</comment>
+          <comment>from packaging metadata: Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -553,27 +550,27 @@
       <externalReferences>
         <reference type="documentation">
           <url>https://rpds.readthedocs.io/</url>
-          <comment>Project-URL: Documentation</comment>
+          <comment>from packaging metadata Project-URL: Documentation</comment>
         </reference>
         <reference type="issue-tracker">
           <url>https://github.com/crate-py/rpds/issues/</url>
-          <comment>Project-URL: Issues</comment>
+          <comment>from packaging metadata Project-URL: Issues</comment>
         </reference>
         <reference type="other">
           <url>https://github.com/crate-py/rpds</url>
-          <comment>Project-URL: Source</comment>
+          <comment>from packaging metadata Project-URL: Source</comment>
         </reference>
         <reference type="other">
           <url>https://github.com/sponsors/Julian</url>
-          <comment>Project-URL: Funding</comment>
+          <comment>from packaging metadata Project-URL: Funding</comment>
         </reference>
         <reference type="other">
           <url>https://tidelift.com/subscription/pkg/pypi-rpds-py?utm_source=pypi-rpds-py&amp;utm_medium=referral&amp;utm_campaign=pypi-link</url>
-          <comment>Project-URL: Tidelift</comment>
+          <comment>from packaging metadata Project-URL: Tidelift</comment>
         </reference>
         <reference type="website">
           <url>https://github.com/crate-py/rpds</url>
-          <comment>Project-URL: Homepage</comment>
+          <comment>from packaging metadata Project-URL: Homepage</comment>
         </reference>
       </externalReferences>
     </component>
@@ -590,7 +587,7 @@
       <externalReferences>
         <reference type="website">
           <url>https://github.com/benjaminp/six</url>
-          <comment>Home-page</comment>
+          <comment>from packaging metadata: Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -607,7 +604,7 @@
       <externalReferences>
         <reference type="website">
           <url>http://www.grantjenks.com/docs/sortedcontainers/</url>
-          <comment>Home-page</comment>
+          <comment>from packaging metadata: Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -624,23 +621,23 @@
       <externalReferences>
         <reference type="chat">
           <url>https://gitter.im/python/typing</url>
-          <comment>Project-URL: Chat</comment>
+          <comment>from packaging metadata Project-URL: Chat</comment>
         </reference>
         <reference type="issue-tracker">
           <url>https://github.com/python/typeshed/issues</url>
-          <comment>Project-URL: Issue tracker</comment>
+          <comment>from packaging metadata Project-URL: Issue tracker</comment>
         </reference>
         <reference type="other">
           <url>https://github.com/typeshed-internal/stub_uploader/blob/main/data/changelogs/python-dateutil.md</url>
-          <comment>Project-URL: Changes</comment>
+          <comment>from packaging metadata Project-URL: Changes</comment>
         </reference>
         <reference type="vcs">
           <url>https://github.com/python/typeshed</url>
-          <comment>Project-URL: GitHub</comment>
+          <comment>from packaging metadata Project-URL: GitHub</comment>
         </reference>
         <reference type="website">
           <url>https://github.com/python/typeshed</url>
-          <comment>Home-page</comment>
+          <comment>from packaging metadata: Home-page</comment>
         </reference>
       </externalReferences>
     </component>
@@ -660,7 +657,7 @@
       <externalReferences>
         <reference type="website">
           <url>https://gitlab.linss.com/open-source/python/uri-template</url>
-          <comment>Project-URL: homepage</comment>
+          <comment>from packaging metadata Project-URL: homepage</comment>
         </reference>
       </externalReferences>
     </component>
@@ -677,11 +674,11 @@
       <externalReferences>
         <reference type="documentation">
           <url>https://webcolors.readthedocs.io</url>
-          <comment>Project-URL: documentation</comment>
+          <comment>from packaging metadata Project-URL: documentation</comment>
         </reference>
         <reference type="website">
           <url>https://github.com/ubernostrum/webcolors</url>
-          <comment>Project-URL: homepage</comment>
+          <comment>from packaging metadata Project-URL: homepage</comment>
         </reference>
       </externalReferences>
     </component>
@@ -698,7 +695,7 @@
       <externalReferences>
         <reference type="website">
           <url>https://github.com/jaraco/zipp</url>
-          <comment>Home-page</comment>
+          <comment>from packaging metadata: Home-page</comment>
         </reference>
       </externalReferences>
     </component>
