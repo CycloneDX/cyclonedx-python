@@ -116,11 +116,11 @@
           "value": "default"
         },
         {
-          "name": "cdx:python:package:extra",
+          "name": "cdx:python:package:required-extra",
           "value": "json-validation"
         },
         {
-          "name": "cdx:python:package:extra",
+          "name": "cdx:python:package:required-extra",
           "value": "xml-validation"
         }
       ],
@@ -304,7 +304,7 @@
           "value": "default"
         },
         {
-          "name": "cdx:python:package:extra",
+          "name": "cdx:python:package:required-extra",
           "value": "format"
         }
       ],

@@ -57,14 +57,14 @@ class RequirementsBB(BomBuilder):
                              • Merge multiple files and build an SBOM from it:
                                    $ cat requirements/*.txt | %(prog)s -
                              • Build an inventory for all installed packages:
-                                   $ python3 -m pip freeze --all | %(prog)s -
+                                   $ python -m pip freeze --all | %(prog)s -
                              • Build an inventory for all installed packages in a conda environment:
-                                   $ conda run python3 -m pip freeze --all | %(prog)s -
-                             • Build an inventory for installed packages in a virtual environment:
-                                   $ .../venv/bin/python3 -m pip freeze --all --local --require-virtualenv | %(prog)s -
+                                   $ conda run python -m pip freeze --all | %(prog)s -
+                             • Build an inventory for installed packages in a Python (virtual) environment:
+                                   $ .../.venv/bin/python -m pip freeze --all --local --require-virtualenv | %(prog)s -
                              • Build an inventory from an unfrozen manifest:
-                                   $ python3 -m pip install -r dependencies.txt &&\\
-                                     python3 -m pip freeze | %(prog)s -
+                                   $ python -m pip install -r dependencies.txt &&\\
+                                     python -m pip freeze | %(prog)s -
                            """),
                            **kwargs)
         # the args shall mimic the ones from Pip
@@ -84,7 +84,7 @@ class RequirementsBB(BomBuilder):
                        dest='extra_index_urls',
                        default=[])
         p.add_argument('--pyproject',
-                       metavar='pyproject.toml',
+                       metavar='FILE',
                        help="Path to the root component's `pyproject.toml` according to PEP621",
                        dest='pyproject_file',
                        default=None)

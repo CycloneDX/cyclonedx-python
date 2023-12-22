@@ -27,8 +27,8 @@
         </reference>
       </externalReferences>
       <properties>
-        <property name="cdx:python:package:extra">json-validation</property>
-        <property name="cdx:python:package:extra">xml-validation</property>
+        <property name="cdx:python:package:required-extra">json-validation</property>
+        <property name="cdx:python:package:required-extra">xml-validation</property>
       </properties>
     </component>
   </components>

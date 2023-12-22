@@ -46,9 +46,18 @@ class BomBuilder(ABC):
 
 
 class PropertyName(Enum):
+    # region general
+    # see https://github.com/CycloneDX/cyclonedx-property-taxonomy/blob/main/cdx.md
+    Reproducible = 'cdx:reproducible'
+    # region general
+
     # region python
-    # TODO: register -- name might not be final, find better one
-    PackageExtra = 'cdx:python:package:extra'
+    # see https://github.com/CycloneDX/cyclonedx-property-taxonomy/blob/main/cdx/python.md
+    PackageExtra = 'cdx:python:package:required-extra'
+    PackageSourceSubdirectory = 'cdx:python:package:source:subdirectory'
+    PackageSourceVcsRequestedRevision = 'cdx:poetry:package:source:vcs:requested_revision'
+    PackageSourceVcsCommitId = 'cdx:poetry:package:source:vcs:commit_id'
+    PackageSourceLocalEditable = 'cdx:python:package:source:local:editable'
     # endregion python
 
     # region poetry
