@@ -1,7 +1,37 @@
 {
+  "components": [
+    {
+      "bom-ref": "six==1.16.0",
+      "description": "Python 2 and 3 compatibility utilities",
+      "externalReferences": [
+        {
+          "comment": "Home-page",
+          "type": "website",
+          "url": "https://github.com/benjaminp/six"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "six",
+      "purl": "pkg:pypi/six@1.16.0",
+      "type": "library",
+      "version": "1.16.0"
+    }
+  ],
   "dependencies": [
     {
+      "dependsOn": [
+        "six==1.16.0"
+      ],
       "ref": "root-component"
+    },
+    {
+      "ref": "six==1.16.0"
     }
   ],
   "metadata": {

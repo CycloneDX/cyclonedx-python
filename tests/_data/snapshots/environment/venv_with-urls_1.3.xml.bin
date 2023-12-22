@@ -97,7 +97,9 @@
   </components>
   <dependencies>
     <dependency ref="packaging==23.2"/>
-    <dependency ref="root-component"/>
+    <dependency ref="root-component">
+      <dependency ref="six==1.16.0"/>
+    </dependency>
     <dependency ref="six==1.16.0"/>
     <dependency ref="urllib3==1.26.8"/>
   </dependencies>

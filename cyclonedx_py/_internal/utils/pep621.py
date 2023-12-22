@@ -94,6 +94,7 @@ def pyproject_file2component(pyproject_file: str, *,
 
 
 def pyproject_dependencies(pyproject: Dict[str, Any]) -> Generator[str, None, None]:
-    yield from pyproject.get('dependencies', ())
-    for opts in pyproject.get('optional-dependencies', {}).values():
+    project = pyproject.get('project', {})
+    yield from project.get('dependencies', ())
+    for opts in project.get('optional-dependencies', {}).values():
         yield from opts
