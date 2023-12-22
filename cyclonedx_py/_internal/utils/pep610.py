@@ -24,17 +24,18 @@ See https://peps.python.org/pep-0610/
 """
 
 from abc import ABC, abstractmethod
-from typing import TYPE_CHECKING, Optional, Dict, Any, Generator
-from json import loads as json_loads, JSONDecodeError
+from json import JSONDecodeError, loads as json_loads
+from typing import TYPE_CHECKING, Any, Dict, Optional
 
 if TYPE_CHECKING:
     from importlib.metadata import Distribution
+
     from cyclonedx.model import ExternalReference
 
 
 class PackageSource(ABC):
     @abstractmethod
-    def __init__(self, url: str):
+    def __init__(self, url: str) -> None:
         self.url = url
 
 
@@ -101,27 +102,31 @@ def packagesource4dist(dist: 'Distribution') -> Optional[PackageSource]:
     if 'dir_info' in data:
         return PackageSourceLocal.from_data(data['url'], data['dir_info'])
 
-def packagesource2extrefs(src: PackageSource) -> Generator['ExternalReference', None, None]:
-    from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri, HashType
-    from .cdx import hashlib_alg_to_ha
 
-    if isinstance(src, PackageSourceVcs):
-        yield ExternalReference(
-            type=ExternalReferenceType.DISTRIBUTION,
-            url=XsUri(f'{src.url}#{src.commit_id}'),
-            comment=f'PackageSource: VCS {src.vcs!r}')
-    elif isinstance(src, PackageSourceArchive):
-        yield ExternalReference(
-            type=ExternalReferenceType.DISTRIBUTION,
-            url=XsUri(src.url),
-            hashes=(
-                HashType(alg=hashlib_alg_to_ha(hashlib_alg), content=content)
-                for hashlib_alg, content
-                in src.hashes.items()
-            ),  # TODO
-            comment='PackageSource: Archive')
-    elif isinstance(src, PackageSourceLocal):
-        yield ExternalReference(
-            type=ExternalReferenceType.DISTRIBUTION,
-            url=XsUri(src.url),
-            comment='PackageSource: Local')
+def packagesource2extref(src: PackageSource) -> Optional['ExternalReference']:
+    from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
+    from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
+    try:
+        if isinstance(src, PackageSourceVcs):
+            return ExternalReference(
+                type=ExternalReferenceType.DISTRIBUTION,
+                url=XsUri(f'{src.url}#{src.commit_id}'),
+                comment=f'PackageSource: VCS {src.vcs!r}')
+        if isinstance(src, PackageSourceArchive):
+            hashes = []
+            for hashlib_alg, content in src.hashes.items():
+                try:
+                    hashes.append(HashType.from_hashlib_alg(hashlib_alg, content))
+                except UnknownHashTypeException:
+                    pass
+            return ExternalReference(
+                type=ExternalReferenceType.DISTRIBUTION,
+                url=XsUri(src.url), hashes=hashes,
+                comment='PackageSource: Archive')
+        if isinstance(src, PackageSourceLocal):
+            return ExternalReference(
+                type=ExternalReferenceType.DISTRIBUTION,
+                url=XsUri(src.url),
+                comment='PackageSource: Local')
+    except InvalidUriException:
+        pass

@@ -152,15 +152,14 @@ class EnvironmentBB(BomBuilder):
     def __add_components(self, bom: 'Bom', rc: Optional[Tuple['Component', Set[str]]],
                          **kwargs: Any) -> None:
         from importlib.metadata import distributions
-        from itertools import chain
 
         from cyclonedx.model.component import Component, ComponentType
         from packageurl import PackageURL
 
         from .utils.cdx import licenses_fixup
         from .utils.packaging import metadata2extrefs, metadata2licenses
+        from .utils.pep610 import packagesource2extref, packagesource4dist
         from .utils.pep631 import requirement2package_name
-        from .utils.pep610 import packagesource4dist, packagesource2extrefs
 
         all_components: Dict[str, Tuple['Component', Set[str]]] = {}
         self._logger.debug('distribution context args: %r', kwargs)
@@ -169,7 +168,6 @@ class EnvironmentBB(BomBuilder):
             dist_meta = dist.metadata  # see https://packaging.python.org/en/latest/specifications/core-metadata/
             dist_name = dist_meta['Name']
             dist_version = dist_meta['Version']
-            packagesource = packagesource4dist(dist)
             component = Component(
                 type=ComponentType.LIBRARY,
                 bom_ref=f'{dist_name}=={dist_version}',
@@ -177,13 +175,19 @@ class EnvironmentBB(BomBuilder):
                 version=dist_version,
                 description=dist_meta['Summary'] if 'Summary' in dist_meta else None,
                 licenses=licenses_fixup(metadata2licenses(dist_meta)),
-                external_references=chain(
-                    metadata2extrefs(dist_meta),
-                    packagesource2extrefs(packagesource) if packagesource else ()),
+                external_references=metadata2extrefs(dist_meta),
                 purl=PackageURL('pypi', name=dist_name, version=dist_version),
-                # TODO install info
-                # TODO path of package?
+                # path of dist-package on disc? naaa... a package may have multiple files/folders on disc
             )
+            packagesource = packagesource4dist(dist)
+            if packagesource is not None:
+                if packagesource.url.startswith('file://'):
+                    # no purl for locals and unpublished packages
+                    component.purl = None
+                packagesource_extref = packagesource2extref(packagesource)
+                if packagesource_extref is not None:
+                    component.external_references.add(packagesource_extref)
+                del packagesource_extref
             del dist_meta, dist_name, dist_version, packagesource
             all_components[component.name.lower()] = (
                 component,

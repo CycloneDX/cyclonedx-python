@@ -20,8 +20,10 @@ import re
 from json import dumps as json_dumps
 from os import getenv
 from os.path import dirname, join
+from pathlib import Path
 from typing import Union
 from unittest import TestCase
+from xml.sax.saxutils import escape as xml_escape, quoteattr as xml_quoteattr
 
 from cyclonedx.schema import OutputFormat, SchemaVersion
 
@@ -35,12 +37,10 @@ INIT_TESTBEDS = '1' != getenv('CDX_TEST_SKIP_INIT_TESTBEDS')
 if INIT_TESTBEDS:
     print('!!! WILL INIT TESTBEDS !!!')
 
-
 _TESTDATA_DIRECTORY = join(dirname(__file__), '_data')
 
 INFILES_DIRECTORY = join(_TESTDATA_DIRECTORY, 'infiles')
 SNAPSHOTS_DIRECTORY = join(_TESTDATA_DIRECTORY, 'snapshots')
-
 
 UNSUPPORTED_OF_SV = (
     (OutputFormat.JSON, SchemaVersion.V1_1),
@@ -86,7 +86,15 @@ class SnapshotMixin:
 
 # region reproducible test results
 
+_root_file_uri = Path(__file__).parent.parent.absolute().as_uri() + '/'
+_root_file_uri_xml = xml_escape(_root_file_uri)
+_root_file_uri_xml_attr = xml_quoteattr(_root_file_uri)[1:-1]
+_root_file_uri_json = json_dumps(_root_file_uri)[1:-1]
+
+
 def make_xml_comparable(bom: str) -> str:
+    bom = bom.replace(_root_file_uri_xml, 'file://.../')
+    bom = bom.replace(_root_file_uri_xml_attr, 'file://.../')
     bom = re.sub(' serialNumber=".+?"', '', bom)
     bom = re.sub(r'\s*<timestamp>.*?</timestamp>', '', bom)
     bom = bom.replace(  # replace metadata.tools.version
@@ -114,11 +122,11 @@ def make_xml_comparable(bom: str) -> str:
         r'        <version>\1</version>''\n'
         '        <externalReferences><!-- stripped --></externalReferences>',
         bom)
-    # TODO replace absolute paths
     return bom
 
 
 def make_json_comparable(bom: str) -> str:
+    bom = bom.replace(_root_file_uri_json, 'file://.../')
     bom = re.sub(r'\s*"(?:timestamp|serialNumber)": ".+?",?', '', bom)
     bom = bom.replace(  # replace metadata.tools.version
         '        "name": "cyclonedx-bom",\n'
@@ -143,12 +151,10 @@ def make_json_comparable(bom: str) -> str:
         '        "name": "cyclonedx-python-lib",\n'
         '        "vendor": "CycloneDX"',
         bom)
-    # TODO replace absolute paths in JSON format
     return bom
 
 
 def make_comparable(bom: str, of: OutputFormat) -> str:
-    # TODO replace absolute paths
     if of is OutputFormat.XML:
         return make_xml_comparable(bom)
     if of is OutputFormat.JSON:
