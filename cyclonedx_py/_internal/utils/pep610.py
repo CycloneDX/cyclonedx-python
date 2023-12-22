@@ -62,7 +62,7 @@ class PackageSourceArchive(PackageSource):
 
     def __init__(self, url: str, subdirectory: Optional[str],
                  hashes: Optional[Dict[str, str]]) -> None:
-        super().__init__(url)
+        super().__init__(url, subdirectory)
         self.hashes = hashes or {}
 
     @classmethod
