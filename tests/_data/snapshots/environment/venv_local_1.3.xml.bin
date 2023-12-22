@@ -33,6 +33,9 @@
         <reference type="distribution">
           <url>file://.../tests/_data/infiles/_helpers/local_pckages/a/dist/package_a-23.42-py3-none-any.whl</url>
           <comment>PackageSource: Archive</comment>
+          <hashes>
+            <hash alg="SHA-256">4f37ac4a44c1dcce7f3d6203d45e9d1945a28f69fbfb44f418c44ea73c77de86</hash>
+          </hashes>
         </reference>
       </externalReferences>
     </component>
@@ -49,6 +52,9 @@
         <reference type="distribution">
           <url>file://.../tests/_data/infiles/_helpers/local_pckages/b/dist/package-b-23.42.tar.gz</url>
           <comment>PackageSource: Archive</comment>
+          <hashes>
+            <hash alg="SHA-256">33d37cf528bc0b20ec8ffd9fa21170e7caadb1b9f15eb559d1937fa4c82d3d40</hash>
+          </hashes>
         </reference>
       </externalReferences>
     </component>
