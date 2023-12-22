@@ -185,7 +185,8 @@ class EnvironmentBB(BomBuilder):
                     # no purl for locals and unpublished packages
                     component.purl = None
                 elif isinstance(packagesource, PackageSourceVcs):
-                    component.purl.qualifiers['vcs_url'] = f'{packagesource.vcs}+{packagesource.url}@{packagesource.commit_id}'
+                    component.purl.qualifiers['vcs_url'] = (f'{packagesource.vcs}+{packagesource.url}'
+                                                            f'@{packagesource.commit_id}')
                 elif isinstance(packagesource, PackageSourceArchive):
                     if '://files.pythonhosted.org/' not in packagesource.url:
                         # skip PURL bloat, do not add implicit information

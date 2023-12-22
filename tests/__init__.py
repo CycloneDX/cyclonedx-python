@@ -23,7 +23,7 @@ from os.path import dirname, join
 from pathlib import Path
 from typing import Union
 from unittest import TestCase
-from xml.sax.saxutils import escape as xml_escape, quoteattr as xml_quoteattr
+from xml.sax.saxutils import escape as xml_escape, quoteattr as xml_quoteattr  # nosec:B406
 
 from cyclonedx.schema import OutputFormat, SchemaVersion
 
