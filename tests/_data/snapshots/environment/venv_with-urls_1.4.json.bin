@@ -5,12 +5,12 @@
       "description": "Core utilities for Python packages",
       "externalReferences": [
         {
-          "comment": "from package metadata Project-URL: Documentation",
+          "comment": "from packaging metadata Project-URL: Documentation",
           "type": "documentation",
           "url": "https://packaging.pypa.io/"
         },
         {
-          "comment": "from package metadata Project-URL: Source",
+          "comment": "from packaging metadata Project-URL: Source",
           "type": "other",
           "url": "https://github.com/pypa/packaging"
         },
@@ -51,7 +51,7 @@
           "url": "https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl"
         },
         {
-          "comment": "from package metadata: Home-page",
+          "comment": "from packaging metadata: Home-page",
           "type": "website",
           "url": "https://github.com/benjaminp/six"
         }
@@ -84,22 +84,22 @@
           "url": "https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip"
         },
         {
-          "comment": "from package metadata Project-URL: Documentation",
+          "comment": "from packaging metadata Project-URL: Documentation",
           "type": "documentation",
           "url": "https://urllib3.readthedocs.io/"
         },
         {
-          "comment": "from package metadata Project-URL: Issue tracker",
+          "comment": "from packaging metadata Project-URL: Issue tracker",
           "type": "issue-tracker",
           "url": "https://github.com/urllib3/urllib3/issues"
         },
         {
-          "comment": "from package metadata Project-URL: Code",
+          "comment": "from packaging metadata Project-URL: Code",
           "type": "other",
           "url": "https://github.com/urllib3/urllib3"
         },
         {
-          "comment": "from package metadata: Home-page",
+          "comment": "from packaging metadata: Home-page",
           "type": "website",
           "url": "https://urllib3.readthedocs.io/"
         }

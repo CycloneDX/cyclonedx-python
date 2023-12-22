@@ -5,7 +5,7 @@
       "description": "Python 2 and 3 compatibility utilities",
       "externalReferences": [
         {
-          "comment": "from package metadata: Home-page",
+          "comment": "from packaging metadata: Home-page",
           "type": "website",
           "url": "https://github.com/benjaminp/six"
         }
