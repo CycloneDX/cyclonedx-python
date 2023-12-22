@@ -95,12 +95,15 @@ def packagesource4dist(dist: 'Distribution') -> Optional[PackageSource]:
         data = json_loads(raw)
     except JSONDecodeError:  # pragma: no cover
         return None
+    url = data['url']
+    if url == '':
+        return None
     if 'vcs_info' in data:
-        return PackageSourceVcs.from_data(data['url'], data['vcs_info'])
+        return PackageSourceVcs.from_data(url, data['vcs_info'])
     if 'archive_info' in data:
-        return PackageSourceArchive.from_data(data['url'], data['archive_info'])
+        return PackageSourceArchive.from_data(url, data['archive_info'])
     if 'dir_info' in data:
-        return PackageSourceLocal.from_data(data['url'], data['dir_info'])
+        return PackageSourceLocal.from_data(url, data['dir_info'])
 
 
 def packagesource2extref(src: PackageSource) -> Optional['ExternalReference']:

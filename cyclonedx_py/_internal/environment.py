@@ -158,7 +158,7 @@ class EnvironmentBB(BomBuilder):
 
         from .utils.cdx import licenses_fixup
         from .utils.packaging import metadata2extrefs, metadata2licenses
-        from .utils.pep610 import packagesource2extref, packagesource4dist
+        from .utils.pep610 import PackageSourceArchive, PackageSourceVcs, packagesource2extref, packagesource4dist
         from .utils.pep631 import requirement2package_name
 
         all_components: Dict[str, Tuple['Component', Set[str]]] = {}
@@ -176,7 +176,7 @@ class EnvironmentBB(BomBuilder):
                 description=dist_meta['Summary'] if 'Summary' in dist_meta else None,
                 licenses=licenses_fixup(metadata2licenses(dist_meta)),
                 external_references=metadata2extrefs(dist_meta),
-                purl=PackageURL('pypi', name=dist_name, version=dist_version),
+                purl=PackageURL('pypi', name=dist_name, version=dist_version, qualifiers={}),
                 # path of dist-package on disc? naaa... a package may have multiple files/folders on disc
             )
             packagesource = packagesource4dist(dist)
@@ -184,6 +184,12 @@ class EnvironmentBB(BomBuilder):
                 if packagesource.url.startswith('file://'):
                     # no purl for locals and unpublished packages
                     component.purl = None
+                elif isinstance(packagesource, PackageSourceVcs):
+                    component.purl.qualifiers['vcs_url'] = f'{packagesource.vcs}+{packagesource.url}@{packagesource.commit_id}'
+                elif isinstance(packagesource, PackageSourceArchive):
+                    if '://files.pythonhosted.org/' not in packagesource.url:
+                        # skip PURL bloat, do not add implicit information
+                        component.purl.qualifiers['download_url'] = packagesource.url
                 packagesource_extref = packagesource2extref(packagesource)
                 if packagesource_extref is not None:
                     component.external_references.add(packagesource_extref)
