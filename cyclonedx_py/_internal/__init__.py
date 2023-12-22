@@ -48,6 +48,9 @@ class BomBuilder(ABC):
 class PropertyName(Enum):
     # region general
     # see https://github.com/CycloneDX/cyclonedx-property-taxonomy/blob/main/cdx.md
+    BooleanTrue = 'true'
+    BooleanFalse = 'false'
+
     Reproducible = 'cdx:reproducible'
     # region general
 

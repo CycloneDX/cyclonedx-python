@@ -96,6 +96,7 @@ class TestCliPipenv(TestCase, SnapshotMixin):
                     '-vvv',
                     f'--sv={sv.to_version()}',
                     f'--of={of.name}',
+                    '--output-reproducible',
                     '--outfile=-',
                     f'--pyproject={join(projectdir, "pyproject.toml")}',
                     projectdir])
@@ -115,6 +116,7 @@ class TestCliPipenv(TestCase, SnapshotMixin):
                     '-vvv',
                     f'--sv={sv.to_version()}',
                     f'--of={of.name}',
+                    '--output-reproducible',
                     '--outfile=-',
                     '--categories', 'categoryB,groupA packages,dev-packages',
                     projectdir])
@@ -134,6 +136,7 @@ class TestCliPipenv(TestCase, SnapshotMixin):
                     '-vvv',
                     f'--sv={sv.to_version()}',
                     f'--of={of.name}',
+                    '--output-reproducible',
                     '--outfile=-',
                     '--dev',
                     projectdir])
@@ -153,6 +156,7 @@ class TestCliPipenv(TestCase, SnapshotMixin):
                     '-vvv',
                     f'--sv={sv.to_version()}',
                     f'--of={of.name}',
+                    '--output-reproducible',
                     '--outfile=-',
                     '--pypi-mirror', 'https://pypy-mirror.testing.acme.org/simple',
                     projectdir])

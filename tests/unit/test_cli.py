@@ -77,6 +77,7 @@ class TestCli(TestCase, SnapshotMixin):
                 schema_version=SchemaVersion.V1_4,
                 output_format=OutputFormat.JSON,
                 should_validate=True,
+                output_reproducible=True,
                 _bbc=MyBBC
             )
             command(outfile=outs)
@@ -99,10 +100,11 @@ class TestCli(TestCase, SnapshotMixin):
                 short_purls=False,
                 schema_version=SchemaVersion.V1_4,
                 output_format=OutputFormat.JSON,
+                output_reproducible=False,
                 should_validate=True,
                 _bbc=MyBBC
             )
-            command._make_output = Mock(return_value='["invalid to CDX schema"]')
+            command._make_output = Mock(return_value=r'["invalid to CDX schema"]')
 
             with self.assertRaisesRegex(ValueError, 'is schema-invalid'):
                 command(outfile=outs)
@@ -122,16 +124,17 @@ class TestCli(TestCase, SnapshotMixin):
                 schema_version=SchemaVersion.V1_4,
                 output_format=OutputFormat.JSON,
                 should_validate=False,
+                output_reproducible=False,
                 _bbc=MyBBC
             )
-            command._make_output = Mock(return_value='["invalid to CDX schema"]')
+            command._make_output = Mock(return_value=r'["invalid to CDX schema"]')
 
             command(outfile=outs)
 
             log = logs.getvalue()
             out = outs.getvalue()
 
-        self.assertEqual('["invalid to CDX schema"]', out)
+        self.assertEqual(r'["invalid to CDX schema"]', out)
         self.assertIn('WARNING: Validation skipped', log)
 
     def assertEqualSnapshot(self, actual: str, snapshot_name: str) -> None:  # noqa: N802

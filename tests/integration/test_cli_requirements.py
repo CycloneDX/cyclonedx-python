@@ -104,6 +104,7 @@ class TestCliRequirements(TestCase, SnapshotMixin):
                     '-vvv',
                     f'--sv={sv.to_version()}',
                     f'--of={of.name}',
+                    '--output-reproducible',
                     '--outfile=-',
                     f'--pyproject={pyproject_file}',
                     infile])
@@ -124,6 +125,7 @@ class TestCliRequirements(TestCase, SnapshotMixin):
                         '-vvv',
                         f'--sv={sv.to_version()}',
                         f'--of={of.name}',
+                        '--output-reproducible',
                         '--outfile=-',
                         # no pyproject for this case
                         '-'])

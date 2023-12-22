@@ -127,6 +127,7 @@ class TestCliPoetry(TestCase, SnapshotMixin):
                     '-vvv',
                     f'--sv={sv.to_version()}',
                     f'--of={of.name}',
+                    '--output-reproducible',
                     '--outfile=-',
                     projectdir])
             err = err.getvalue()
@@ -147,6 +148,7 @@ class TestCliPoetry(TestCase, SnapshotMixin):
                     '--without', 'groupB,dev',
                     f'--sv={sv.to_version()}',
                     f'--of={of.name}',
+                    '--output-reproducible',
                     '--outfile=-',
                     projectdir])
             err = err.getvalue()
@@ -166,6 +168,7 @@ class TestCliPoetry(TestCase, SnapshotMixin):
                     '--only', 'groupB',
                     f'--sv={sv.to_version()}',
                     f'--of={of.name}',
+                    '--output-reproducible',
                     '--outfile=-',
                     projectdir])
             err = err.getvalue()
@@ -185,6 +188,7 @@ class TestCliPoetry(TestCase, SnapshotMixin):
                     '--no-dev',
                     f'--sv={sv.to_version()}',
                     f'--of={of.name}',
+                    '--output-reproducible',
                     '--outfile=-',
                     projectdir])
             err = err.getvalue()
@@ -204,6 +208,7 @@ class TestCliPoetry(TestCase, SnapshotMixin):
                     '-E', 'my-extra',
                     f'--sv={sv.to_version()}',
                     f'--of={of.name}',
+                    '--output-reproducible',
                     '--outfile=-',
                     projectdir])
             err = err.getvalue()

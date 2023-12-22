@@ -45,6 +45,9 @@
       <version>0.1.0</version>
       <description>dependencies organized in groups</description>
     </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
   </metadata>
   <components>
     <component type="library" bom-ref="toml==0.10.2">

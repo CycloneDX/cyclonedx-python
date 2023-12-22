@@ -18,6 +18,9 @@
       <version>0.1.0</version>
       <description>install the current project as an editable</description>
     </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
   </metadata>
   <components>
     <component type="library" bom-ref="six==1.16.0">

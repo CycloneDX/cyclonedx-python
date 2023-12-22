@@ -46,6 +46,9 @@
       <version>0.1.0</version>
       <description>regression for issue #611</description>
     </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
   </metadata>
   <components>
     <component type="library" bom-ref="pyhumps@3.7.1">

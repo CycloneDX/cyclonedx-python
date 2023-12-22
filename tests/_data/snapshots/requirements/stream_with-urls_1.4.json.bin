@@ -123,6 +123,12 @@
     }
   ],
   "metadata": {
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
     "tools": [
       {
         "externalReferences": [   ],

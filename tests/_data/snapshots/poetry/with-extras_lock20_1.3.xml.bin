@@ -19,6 +19,9 @@
       <version>0.1.0</version>
       <description>depenndencies with extras</description>
     </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
   </metadata>
   <dependencies>
     <dependency ref="with-extras"/>

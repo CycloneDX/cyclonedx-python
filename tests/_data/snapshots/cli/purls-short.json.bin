@@ -29,7 +29,13 @@
       "name": "my-app",
       "purl": "pkg:generic/testing/my-app@1",
       "type": "application"
-    }
+    },
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ]
   },
   "version": 1,
   "$schema": "http://cyclonedx.org/schema/bom-1.4.schema.json",

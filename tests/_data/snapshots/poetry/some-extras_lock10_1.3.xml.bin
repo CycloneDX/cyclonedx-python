@@ -22,6 +22,9 @@
         <property name="cdx:python:package:required-extra">my-extra</property>
       </properties>
     </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
   </metadata>
   <components>
     <component type="library" bom-ref="boolean.py@4.0">
