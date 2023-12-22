@@ -105,7 +105,7 @@ class EnvironmentBB(BomBuilder):
                        type=argparse_type4enum(ComponentType),
                        default=ComponentType.APPLICATION)
         # TODO possible additional switch:
-        #  `--exclude <package>` Exclude specified package from the output
+        #  `--exclude <package>` Exclude specified package from the output (multi use)
         #  `--local`        If in a virtualenv that has global access, do not list globally-installed packages.
         #  `--user`         Only output packages installed in user-site.
         #  `--path <path>`  Restrict to the specified installation path for listing packages

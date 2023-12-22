@@ -304,4 +304,5 @@ class PipenvBB(BomBuilder):
         return qs
 
     def __make_dependency_graph(self) -> None:
-        pass  # TODO: gather info from `pipenv graph --json-tree` and work with it
+        # possible solution:: gather info from `pipenv graph --json-tree` and work with it
+        pass

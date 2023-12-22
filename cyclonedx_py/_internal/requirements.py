@@ -101,8 +101,9 @@ class RequirementsBB(BomBuilder):
                        type=argparse_type4enum(ComponentType),
                        default=ComponentType.APPLICATION)
         p.add_argument('requirements_file',
-                       metavar='requirements-file',
-                       help='I HELP TODO (default: %(default)r in current working directory)',
+                       metavar='REQUIREMENTS-FILE',
+                       help='Requirements file (default: %(default)r in current working directory).\n'
+                            'May be set to "-" to read from <stdin>.',
                        nargs=OPTIONAL,
                        default='requirements.txt')
         return p
