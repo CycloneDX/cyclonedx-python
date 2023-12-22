@@ -46,7 +46,7 @@
       <version>0.1.0</version>
       <description>depenndencies with extras</description>
       <properties>
-        <property name="cdx:python:package:extra">my-extra</property>
+        <property name="cdx:python:package:required-extra">my-extra</property>
       </properties>
     </component>
   </metadata>
@@ -121,8 +121,8 @@
       <purl>pkg:pypi/cyclonedx-python-lib@5.1.1</purl>
       <properties>
         <property name="cdx:poetry:group">main</property>
-        <property name="cdx:python:package:extra">json-validation</property>
-        <property name="cdx:python:package:extra">xml-validation</property>
+        <property name="cdx:python:package:required-extra">json-validation</property>
+        <property name="cdx:python:package:required-extra">xml-validation</property>
       </properties>
     </component>
     <component type="library" bom-ref="defusedxml@0.7.1">
@@ -273,7 +273,7 @@
       <purl>pkg:pypi/jsonschema@4.19.2</purl>
       <properties>
         <property name="cdx:poetry:group">main</property>
-        <property name="cdx:python:package:extra">format</property>
+        <property name="cdx:python:package:required-extra">format</property>
       </properties>
     </component>
     <component type="library" bom-ref="jsonschema-specifications@2023.7.1">

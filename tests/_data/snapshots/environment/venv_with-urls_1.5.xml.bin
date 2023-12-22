@@ -53,10 +53,6 @@
       <description>Core utilities for Python packages</description>
       <purl>pkg:pypi/packaging@23.2?vcs_url=git%2Bhttps://github.com/pypa/packaging.git%40b3a5d7d68991c040615d5345bb55f61de53ba176</purl>
       <externalReferences>
-        <reference type="distribution">
-          <url>https://github.com/pypa/packaging.git#b3a5d7d68991c040615d5345bb55f61de53ba176</url>
-          <comment>PackageSource: VCS 'git'</comment>
-        </reference>
         <reference type="documentation">
           <url>https://packaging.pypa.io/</url>
           <comment>Project-URL: Documentation</comment>
@@ -64,6 +60,10 @@
         <reference type="other">
           <url>https://github.com/pypa/packaging</url>
           <comment>Project-URL: Source</comment>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/pypa/packaging.git#b3a5d7d68991c040615d5345bb55f61de53ba176</url>
+          <comment>PackageSource: VCS 'git'</comment>
         </reference>
       </externalReferences>
     </component>

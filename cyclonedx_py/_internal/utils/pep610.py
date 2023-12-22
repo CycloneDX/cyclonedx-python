@@ -35,56 +35,61 @@ if TYPE_CHECKING:
 
 class PackageSource(ABC):
     @abstractmethod
-    def __init__(self, url: str) -> None:
+    def __init__(self, url: str, subdirectory: Optional[str]) -> None:
         self.url = url
+        self.subdirectory = subdirectory
 
 
 class PackageSourceVcs(PackageSource):
     # see https://packaging.python.org/en/latest/specifications/direct-url-data-structure/#vcs-urls
 
-    def __init__(self, url: str,
+    def __init__(self, url: str, subdirectory: Optional[str],
                  vcs: str, requested_revision: Optional[str], commit_id: str) -> None:
-        super().__init__(url)
+        super().__init__(url, subdirectory)
         self.vcs = vcs
         self.requested_revision = requested_revision
         self.commit_id = commit_id
 
     @classmethod
-    def from_data(cls, url: str, data: Dict[str, Any]) -> 'PackageSourceVcs':
-        return cls(url, data['vcs'], data.get('requested_revision'), data['commit_id'])
+    def from_data(cls, url: str, subdirectory: Optional[str],
+                  info: Dict[str, Any]) -> 'PackageSourceVcs':
+        return cls(url, subdirectory,
+                   info['vcs'], info.get('requested_revision'), info['commit_id'])
 
 
 class PackageSourceArchive(PackageSource):
     # see https://packaging.python.org/en/latest/specifications/direct-url-data-structure/#archive-urls
 
-    def __init__(self, url: str,
+    def __init__(self, url: str, subdirectory: Optional[str],
                  hashes: Optional[Dict[str, str]]) -> None:
         super().__init__(url)
         self.hashes = hashes or {}
 
     @classmethod
-    def from_data(cls, url: str, data: Dict[str, Any]) -> 'PackageSourceArchive':
-        if 'hashes' in data:
-            hashes = data['hashes']
-        elif 'hash' in data:
-            hash_parts = str(data['hash']).split('=', maxsplit=1)
+    def from_data(cls, url: str, subdirectory: Optional[str],
+                  info: Dict[str, Any]) -> 'PackageSourceArchive':
+        if 'hashes' in info:
+            hashes = info['hashes']
+        elif 'hash' in info:
+            hash_parts = str(info['hash']).split('=', maxsplit=1)
             hashes = {hash_parts[0]: hash_parts[1]}
         else:
             hashes = None
-        return cls(url, hashes)
+        return cls(url, subdirectory, hashes)
 
 
 class PackageSourceLocal(PackageSource):
     # see https://packaging.python.org/en/latest/specifications/direct-url-data-structure/#local-directories
 
-    def __init__(self, url: str,
+    def __init__(self, url: str, subdirectory: Optional[str],
                  editable: bool) -> None:
-        super().__init__(url)
+        super().__init__(url, subdirectory)
         self.editable = editable
 
     @classmethod
-    def from_data(cls, url: str, data: Dict[str, Any]) -> 'PackageSourceLocal':
-        return cls(url, data.get('editable', False))
+    def from_data(cls, url: str, subdirectory: Optional[str],
+                  info: Dict[str, Any]) -> 'PackageSourceLocal':
+        return cls(url, subdirectory, info.get('editable', False))
 
 
 def packagesource4dist(dist: 'Distribution') -> Optional[PackageSource]:
@@ -96,26 +101,28 @@ def packagesource4dist(dist: 'Distribution') -> Optional[PackageSource]:
     except JSONDecodeError:  # pragma: no cover
         return None
     url = data['url']
+    subdirectory = data.get('subdirectory')
     if url == '':
         return None
     if 'vcs_info' in data:
-        return PackageSourceVcs.from_data(url, data['vcs_info'])
+        return PackageSourceVcs.from_data(url, subdirectory, data['vcs_info'])
     if 'archive_info' in data:
-        return PackageSourceArchive.from_data(url, data['archive_info'])
+        return PackageSourceArchive.from_data(url, subdirectory, data['archive_info'])
     if 'dir_info' in data:
-        return PackageSourceLocal.from_data(url, data['dir_info'])
+        return PackageSourceLocal.from_data(url, subdirectory, data['dir_info'])
     return None
 
 
 def packagesource2extref(src: PackageSource) -> Optional['ExternalReference']:
     from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
     from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
+    sdir = f' (subdirectory {src.subdirectory!r})' if src.subdirectory else ''
     try:
         if isinstance(src, PackageSourceVcs):
             return ExternalReference(
-                type=ExternalReferenceType.DISTRIBUTION,
+                type=ExternalReferenceType.VCS,
                 url=XsUri(f'{src.url}#{src.commit_id}'),
-                comment=f'PackageSource: VCS {src.vcs!r}')
+                comment=f'PackageSource: VCS {src.vcs!r}{sdir}')
         if isinstance(src, PackageSourceArchive):
             hashes = []
             for hashlib_alg, content in src.hashes.items():
@@ -126,12 +133,12 @@ def packagesource2extref(src: PackageSource) -> Optional['ExternalReference']:
             return ExternalReference(
                 type=ExternalReferenceType.DISTRIBUTION,
                 url=XsUri(src.url), hashes=hashes,
-                comment='PackageSource: Archive')
+                comment=f'PackageSource: Archive{sdir}')
         if isinstance(src, PackageSourceLocal):
             return ExternalReference(
                 type=ExternalReferenceType.DISTRIBUTION,
                 url=XsUri(src.url),
-                comment='PackageSource: Local')
+                comment=f'PackageSource: Local{sdir}')
     except InvalidUriException:
         pass
     return None

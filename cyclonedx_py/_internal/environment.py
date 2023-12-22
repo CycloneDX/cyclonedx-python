@@ -158,9 +158,11 @@ class EnvironmentBB(BomBuilder):
                          **kwargs: Any) -> None:
         from importlib.metadata import distributions
 
+        from cyclonedx.model import Property
         from cyclonedx.model.component import Component, ComponentType
         from packageurl import PackageURL
 
+        from . import PropertyName
         from .utils.cdx import licenses_fixup
         from .utils.packaging import metadata2extrefs, metadata2licenses
         from .utils.pep610 import PackageSourceArchive, PackageSourceVcs, packagesource2extref, packagesource4dist
@@ -184,10 +186,20 @@ class EnvironmentBB(BomBuilder):
                 # path of dist-package on disc? naaa... a package may have multiple files/folders on disc
             )
             packagesource = packagesource4dist(dist)
-            purl_qs = {}
+            purl_qs = {}  # https://github.com/package-url/purl-spec/blob/master/PURL-SPECIFICATION.rst
+            purl_subpath = None
             if packagesource is not None:
+                if packagesource.subdirectory:
+                    component.properties.add(Property(name=PropertyName.PackageSourceSubdirectory.value,
+                                                      value=packagesource.subdirectory))
+                    purl_subpath = packagesource.subdirectory
                 if isinstance(packagesource, PackageSourceVcs):
                     purl_qs['vcs_url'] = f'{packagesource.vcs}+{packagesource.url}@{packagesource.commit_id}'
+                    component.properties.add(Property(name=PropertyName.PackageSourceVcsCommitId.value,
+                                                      value=packagesource.commit_id))
+                    if packagesource.requested_revision:
+                        component.properties.add(Property(name=PropertyName.PackageSourceVcsRequestedRevision.value,
+                                                          value=packagesource.requested_revision))
                 elif isinstance(packagesource, PackageSourceArchive):
                     if '://files.pythonhosted.org/' not in packagesource.url:
                         # skip PURL bloat, do not add implicit information
@@ -198,7 +210,8 @@ class EnvironmentBB(BomBuilder):
                 del packagesource_extref
             if packagesource is None or not packagesource.url.startswith('file://'):
                 # no purl for locals and unpublished packages
-                component.purl = PackageURL('pypi', name=dist_name, version=dist_version, qualifiers=purl_qs)
+                component.purl = PackageURL('pypi', name=dist_name, version=dist_version,
+                                            qualifiers=purl_qs, subpath=purl_subpath)
             del dist_meta, dist_name, dist_version, packagesource, purl_qs
 
             all_components[component.name.lower()] = (
