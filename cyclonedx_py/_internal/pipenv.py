@@ -72,7 +72,7 @@ class PipenvBB(BomBuilder):
                        dest='pypi_url',
                        default=getenv('PIPENV_PYPI_MIRROR'))
         p.add_argument('--pyproject',
-                       metavar='pyproject.toml',
+                       metavar='FILE',
                        help="Path to the root component's `pyproject.toml` according to PEP621",
                        dest='pyproject_file',
                        default=None)

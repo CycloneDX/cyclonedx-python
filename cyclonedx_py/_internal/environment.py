@@ -83,7 +83,7 @@ class EnvironmentBB(BomBuilder):
                        $ %(prog)s "$(poetry env info --executable)"
                """)
         p.add_argument('--pyproject',
-                       metavar='pyproject.toml',
+                       metavar='FILE',
                        help="Path to the root component's `pyproject.toml` according to PEP621",
                        dest='pyproject_file',
                        default=None)
