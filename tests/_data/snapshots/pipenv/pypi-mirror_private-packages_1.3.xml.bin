@@ -13,6 +13,9 @@
         <version>libVersion-testing</version>
       </tool>
     </tools>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
   </metadata>
   <components>
     <component type="library" bom-ref="numpy==1.26.2">

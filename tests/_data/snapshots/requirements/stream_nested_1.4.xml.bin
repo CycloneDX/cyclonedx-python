@@ -40,5 +40,8 @@
         <externalReferences><!-- stripped --></externalReferences>
       </tool>
     </tools>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
   </metadata>
 </bom>

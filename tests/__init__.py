@@ -95,8 +95,6 @@ _root_file_uri_json = json_dumps(_root_file_uri)[1:-1]
 def make_xml_comparable(bom: str) -> str:
     bom = bom.replace(_root_file_uri_xml, 'file://.../')
     bom = bom.replace(_root_file_uri_xml_attr, 'file://.../')
-    bom = re.sub(' serialNumber=".+?"', '', bom)
-    bom = re.sub(r'\s*<timestamp>.*?</timestamp>', '', bom)
     bom = bom.replace(  # replace metadata.tools.version
         '        <vendor>CycloneDX</vendor>\n'
         '        <name>cyclonedx-bom</name>\n'
@@ -127,7 +125,6 @@ def make_xml_comparable(bom: str) -> str:
 
 def make_json_comparable(bom: str) -> str:
     bom = bom.replace(_root_file_uri_json, 'file://.../')
-    bom = re.sub(r'\s*"(?:timestamp|serialNumber)": ".+?",?', '', bom)
     bom = bom.replace(  # replace metadata.tools.version
         '        "name": "cyclonedx-bom",\n'
         '        "vendor": "CycloneDX",\n'

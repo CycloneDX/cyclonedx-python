@@ -137,6 +137,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
                     '-vvv',
                     f'--sv={sv.to_version()}',
                     f'--of={of.name}',
+                    '--output-reproducible',
                     '--outfile=-',
                     # no project dir -> search in current python
                 ])
@@ -152,6 +153,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
                     '-vvv',
                     f'--sv={sv.to_version()}',
                     f'--of={of.name}',
+                    '--output-reproducible',
                     '--outfile=-',
                     executable  # explicitly current python
                 ])
@@ -174,6 +176,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
                     '-vvv',
                     f'--sv={sv.to_version()}',
                     f'--of={of.name}',
+                    '--output-reproducible',
                     '--outfile=-',
                     f'--pyproject={join(projectdir, "pyproject.toml")}',
                     join(projectdir, '.venv')])

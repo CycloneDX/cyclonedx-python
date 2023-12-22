@@ -18,6 +18,9 @@
       <version>0.1.0</version>
       <description>packages from local paths</description>
     </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
   </metadata>
   <components>
     <component type="library" bom-ref="package-a==23.42">

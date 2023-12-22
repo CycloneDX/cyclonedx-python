@@ -90,6 +90,12 @@ class Command:
                         choices=OutputFormat,
                         type=argparse_type4enum(OutputFormat),
                         default=OutputFormat.JSON.name)
+        op.add_argument('--output-reproducible',
+                        help='Whether to go the extra mile and make the output reproducible.\n'
+                             'This might result in loss of time- and random-based-values.',
+                        action='store_true',
+                        dest='output_reproducible',
+                        default=False)
         if BooleanOptionalAction:
             op.add_argument('--validate',
                             help='Whether validate the result before outputting (default: %(default)s)',
@@ -127,7 +133,7 @@ class Command:
 
         return p
 
-    __OWN_ARGS = {'outfile', 'schema_version', 'output_format', 'validate'}
+    __OWN_ARGS = {'outfile', 'schema_version', 'output_format', 'reproducible', 'validate'}
 
     @classmethod
     def _clean_kwargs(cls, kwargs: Dict[str, Any]) -> Dict[str, Any]:
@@ -138,6 +144,7 @@ class Command:
                  short_purls: bool,
                  output_format: OutputFormat,
                  schema_version: SchemaVersion,
+                 output_reproducible: bool,
                  should_validate: bool,
                  _bbc: Type['BomBuilder'],
                  **kwargs: Any) -> None:
@@ -145,6 +152,7 @@ class Command:
         self._short_purls = short_purls
         self._output_format = output_format
         self._schema_version = schema_version
+        self._output_reproducible = output_reproducible
         self._should_validate = should_validate
         self._bbc = _bbc(**self._clean_kwargs(kwargs),
                          logger=self._logger.getChild(_bbc.__name__))
@@ -205,7 +213,17 @@ class Command:
 
     def _make_output(self, bom: 'Bom') -> str:
         self._logger.info('Serializing SBOM: %s/%s', self._schema_version.to_version(), self._output_format.name)
+        from cyclonedx.model import Property
         from cyclonedx.output import make_outputter
+
+        from . import PropertyName
+
+        if self._output_reproducible:
+            bom.metadata.properties.add(Property(name=PropertyName.Reproducible.value,
+                                                 value=PropertyName.BooleanTrue.value))
+            # dirty hacks to remove these mandatory properties
+            bom.serial_number = None  # type:ignore[assignment]
+            bom.metadata.timestamp = None  # type:ignore[assignment]
 
         return make_outputter(
             bom,

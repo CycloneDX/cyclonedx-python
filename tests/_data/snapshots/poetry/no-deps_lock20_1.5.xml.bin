@@ -75,6 +75,9 @@
         </reference>
       </externalReferences>
     </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
   </metadata>
   <dependencies>
     <dependency ref="no-deps"/>

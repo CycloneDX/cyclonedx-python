@@ -18,6 +18,9 @@
       <version>0.1.0</version>
       <description>packages from aternative package repositories</description>
     </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
   </metadata>
   <components>
     <component type="library" bom-ref="numpy==1.26.2">

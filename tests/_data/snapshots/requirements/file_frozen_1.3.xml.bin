@@ -21,6 +21,9 @@
         <expression>Apache-2.0 OR MIT</expression>
       </licenses>
     </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
   </metadata>
   <components>
     <component type="library" bom-ref="requirements-L7">

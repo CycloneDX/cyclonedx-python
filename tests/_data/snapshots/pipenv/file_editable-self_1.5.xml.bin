@@ -48,6 +48,9 @@
         <property name="cdx:pipenv:category">default</property>
       </properties>
     </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
   </metadata>
   <dependencies>
     <dependency ref="root-component"/>

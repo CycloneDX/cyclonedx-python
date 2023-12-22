@@ -40,6 +40,9 @@
         <externalReferences><!-- stripped --></externalReferences>
       </tool>
     </tools>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
   </metadata>
   <components>
     <component type="library" bom-ref="requirements-L6">

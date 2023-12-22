@@ -1599,6 +1599,12 @@
       "type": "application",
       "version": "0.1.0"
     },
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
     "tools": [
       {
         "name": "cyclonedx-bom",

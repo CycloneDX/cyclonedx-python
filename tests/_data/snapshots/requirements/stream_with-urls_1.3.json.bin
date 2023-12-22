@@ -129,6 +129,12 @@
     }
   ],
   "metadata": {
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
     "tools": [
       {
         "name": "cyclonedx-bom",
