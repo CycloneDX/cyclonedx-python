@@ -16,7 +16,7 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
-from typing import TYPE_CHECKING, Any, BinaryIO
+from typing import TYPE_CHECKING, Any, Dict, Iterable, List, Optional, Set, Tuple
 
 from . import BomBuilder
 
@@ -25,6 +25,7 @@ if TYPE_CHECKING:  # pragma: no cover
     from logging import Logger
 
     from cyclonedx.model.bom import Bom
+    from cyclonedx.model.component import Component, ComponentType
 
 
 # !!! be as lazy loading as possible, as greedy as needed
@@ -35,11 +36,79 @@ class EnvironmentBB(BomBuilder):
 
     @staticmethod
     def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':
-        from argparse import ArgumentParser
+        from argparse import OPTIONAL, ArgumentParser
+        from os import name as os_name
+        from textwrap import dedent
+
+        from cyclonedx.model.component import ComponentType
+
+        from .utils.args import argparse_type4enum
 
         p = ArgumentParser(description='Build an SBOM from Python (virtual) environment',
                            **kwargs)
-        # TODO
+        if os_name == 'nt':
+            p.epilog = dedent("""\
+               Example Usage:
+                 • Build an SBOM from current python environment:
+                       > %(prog)s
+                 • Build an SBOM from a Python (virtual) environment:
+                       > %(prog)s "...some\\path\\bin\\python.exe"
+                 • Build an SBOM from specific Python environment:
+                       > where.exe python3.9.exe
+                       > %(prog)s "%%path to specific python%%"
+                 • Build an SBOM from conda Python environment:
+                       > conda run where python
+                       > %(prog)s "%%path to conda python%%"
+                 • Build an SBOM from Pipenv environment:
+                       > pipenv.exe --py
+                       > %(prog)s "%%path to pipenv python%%"
+                 • Build an SBOM from Poetry environment:
+                       > poetry.exe env info  --executable
+                       > %(prog)s "%%path to poetry python%%"
+               """)
+        else:  # if os_name == 'posix':
+            p.epilog = dedent("""\
+               Example Usage:
+                 • Build an SBOM from current python environment:
+                       $ %(prog)s
+                 • Build an SBOM from a Python (virtual) environment:
+                       $ %(prog)s '...some/path/bin/python'
+                 • Build an SBOM from specific Python environment:
+                       $ %(prog)s "$(which python3.9)"
+                 • Build an SBOM from conda Python environment:
+                       $ %(prog)s "$(conda run which python)"
+                 • Build an SBOM from Pipenv environment:
+                       $ %(prog)s "$(pipenv --py)"
+                 • Build an SBOM from Poetry environment:
+                       $ %(prog)s "$(poetry env info --executable)"
+               """)
+        p.add_argument('--pyproject',
+                       metavar='pyproject.toml',
+                       help="Path to the root component's `pyproject.toml` according to PEP621",
+                       dest='pyproject_file',
+                       default=None)
+        _mc_types = [ComponentType.APPLICATION,
+                     ComponentType.FIRMWARE,
+                     ComponentType.LIBRARY]
+        p.add_argument('--mc-type',
+                       metavar='TYPE',
+                       help='Type of the main component'
+                            f' {{choices: {", ".join(t.value for t in _mc_types)}}}'
+                            ' (default: %(default)s)',
+                       dest='mc_type',
+                       choices=_mc_types,
+                       type=argparse_type4enum(ComponentType),
+                       default=ComponentType.APPLICATION)
+        # TODO possible additional switch:
+        #  `--exclude <package>` Exclude specified package from the output
+        #  `--local`        If in a virtualenv that has global access, do not list globally-installed packages.
+        #  `--user`         Only output packages installed in user-site.
+        #  `--path <path>`  Restrict to the specified installation path for listing packages
+        p.add_argument('python',
+                       metavar='python',
+                       help='Python interpreter',
+                       nargs=OPTIONAL,
+                       default=None)
         return p
 
     def __init__(self, *,
@@ -48,13 +117,136 @@ class EnvironmentBB(BomBuilder):
         self._logger = logger
 
     def __call__(self, *,  # type:ignore[override]
-                 lock: BinaryIO,
+                 python: Optional[str],
+                 pyproject_file: Optional[str],
+                 mc_type: 'ComponentType',
                  **__: Any) -> 'Bom':
+        from os import getcwd
+
         from .utils.cdx import make_bom
 
+        if pyproject_file is None:
+            rc = None
+        else:
+            from .utils.pep621 import pyproject2component, pyproject_dependencies, pyproject_load
+            from .utils.pep631 import requirement2package_name
+            pyproject = pyproject_load(pyproject_file)
+            root_c = pyproject2component(pyproject, type=mc_type)
+            root_c.bom_ref.value = 'root-component'
+            root_d = set(filter(None, map(requirement2package_name, pyproject_dependencies(pyproject))))
+            rc = (root_c, root_d)
+
+        path: List[str]
+        if python:
+            path = self.__path4python(python)
+        else:
+            from sys import path as sys_path
+            path = sys_path.copy()
+        if path[0] in ('', getcwd()):
+            path.pop(0)
+
         bom = make_bom()
-
-        # TODO
-        # maybe utilize https://github.com/tox-dev/pipdeptree ?
-
+        self.__add_components(bom, rc, path=path)
         return bom
+
+    def __add_components(self, bom: 'Bom', rc: Optional[Tuple['Component', Set[str]]],
+                         **kwargs: Any) -> None:
+        from importlib.metadata import distributions
+
+        from cyclonedx.model.component import Component, ComponentType
+        from packageurl import PackageURL
+
+        from .utils.cdx import licenses_fixup
+        from .utils.packaging import metadata2extrefs, metadata2licenses
+        from .utils.pep610 import PackageSourceArchive, PackageSourceVcs, packagesource2extref, packagesource4dist
+        from .utils.pep631 import requirement2package_name
+
+        all_components: Dict[str, Tuple['Component', Set[str]]] = {}
+        self._logger.debug('distribution context args: %r', kwargs)
+        self._logger.info('discovering distributions...')
+        for dist in distributions(**kwargs):
+            dist_meta = dist.metadata  # see https://packaging.python.org/en/latest/specifications/core-metadata/
+            dist_name = dist_meta['Name']
+            dist_version = dist_meta['Version']
+            component = Component(
+                type=ComponentType.LIBRARY,
+                bom_ref=f'{dist_name}=={dist_version}',
+                name=dist_name,
+                version=dist_version,
+                description=dist_meta['Summary'] if 'Summary' in dist_meta else None,
+                licenses=licenses_fixup(metadata2licenses(dist_meta)),
+                external_references=metadata2extrefs(dist_meta),
+                # path of dist-package on disc? naaa... a package may have multiple files/folders on disc
+            )
+            packagesource = packagesource4dist(dist)
+            purl_qs = {}
+            if packagesource is not None:
+                if isinstance(packagesource, PackageSourceVcs):
+                    purl_qs['vcs_url'] = f'{packagesource.vcs}+{packagesource.url}@{packagesource.commit_id}'
+                elif isinstance(packagesource, PackageSourceArchive):
+                    if '://files.pythonhosted.org/' not in packagesource.url:
+                        # skip PURL bloat, do not add implicit information
+                        purl_qs['download_url'] = packagesource.url
+                packagesource_extref = packagesource2extref(packagesource)
+                if packagesource_extref is not None:
+                    component.external_references.add(packagesource_extref)
+                del packagesource_extref
+            if packagesource is None or not packagesource.url.startswith('file://'):
+                # no purl for locals and unpublished packages
+                component.purl = PackageURL('pypi', name=dist_name, version=dist_version, qualifiers=purl_qs)
+            del dist_meta, dist_name, dist_version, packagesource, purl_qs
+
+            all_components[component.name.lower()] = (
+                component,
+                set(filter(None, map(requirement2package_name, dist.requires or ())))
+            )
+            self._logger.info('add component for package %r', component.name)
+            self._logger.debug('add component: %r', component)
+            bom.components.add(component)
+
+        if rc is not None:
+            root_c = rc[0]
+            root_c_lcname = root_c.name.lower()
+            root_c_existed = all_components.get(root_c_lcname)
+            if root_c_existed is not None:
+                bom.components.remove(root_c_existed[0])
+                del root_c_existed
+            all_components[root_c_lcname] = rc
+            bom.metadata.component = root_c
+
+        for component, requires in all_components.values():
+            # we know a lot of dependencies, but here we are only interested in those that are actually installed/found
+            requires_d: Iterable[Component] = filter(None,
+                                                     map(lambda r: all_components.get(r, (None,))[0],
+                                                         requires))
+            bom.register_dependency(component, requires_d)
+
+    @staticmethod
+    def __py_interpreter(value: str) -> str:
+        from os.path import exists, isdir, join
+        if not exists(value):
+            raise ValueError(f'No such file or directory: {value}')
+        if isdir(value):
+            for venv_loc in (
+                ('bin', 'python'),  # unix
+                ('Scripts', 'python.exe'),  # win
+            ):
+                maybe = join(value, *venv_loc)
+                if exists(maybe):
+                    return maybe
+            raise ValueError(f'Failed to find python in directory: {value}')
+        return value
+
+    def __path4python(self, python: str) -> List[str]:
+        from json import loads
+        from subprocess import run  # nosec
+        cmd = self.__py_interpreter(python), '-c', 'import json,sys;json.dump(sys.path,sys.stdout)'
+        self._logger.debug('fetch `path` from python interpreter cmd: %r', cmd)
+        res = run(cmd, capture_output=True, encoding='utf8', shell=False)  # nosec
+        if res.returncode != 0:
+            raise RuntimeError('Fail fetching `path` from Python interpreter.\n'
+                               f'returncode: {res.returncode}\n'
+                               f'stdout: {res.stdout}\n'
+                               f'stderr: {res.stderr}\n')
+        self._logger.debug('got `path` from Python interpreter: %r', res.stdout)
+        return loads(res.stdout)  # type:ignore[no-any-return]

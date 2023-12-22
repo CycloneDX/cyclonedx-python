@@ -150,16 +150,16 @@ jobs:
       - name: Build own SBoM (XML)
         run: >
           docker run --rm "$DOCKER_REPO:$VERSION"
-          --environment
-          --format=xml
-          --output=-
+          environment
+          -vvv
+          --output-format XML
           > "$REPORTS_DIR/$ARTIFACT_DOCKER_SBOM.bom.xml"
       - name: Build own SBoM (JSON)
         run: >
           docker run --rm "$DOCKER_REPO:$VERSION"
-          --environment
-          --format=json
-          --output=-
+          environment
+          -vvv
+          --output-format JSON
           > "$REPORTS_DIR/$ARTIFACT_DOCKER_SBOM.bom.json"
       - name: Artifact reports
         if: ${{ ! cancelled() }}

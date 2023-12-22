@@ -20,7 +20,8 @@
 CycloneDX related helpers and utils.
 """
 
-from typing import Any, Iterable
+from re import compile as re_compile
+from typing import Any, Dict, Iterable
 
 from cyclonedx.model import ExternalReference, ExternalReferenceType, Tool, XsUri
 from cyclonedx.model.bom import Bom
@@ -78,3 +79,32 @@ def licenses_fixup(licenses: Iterable['License']) -> Iterable['License']:
         if isinstance(license, LicenseExpression):
             return (license,)
     return licenses
+
+
+__known_ulr_labels: Dict[str, ExternalReferenceType] = {
+    # see https://peps.python.org/pep-0345/#project-url-multiple-use
+    # see https://github.com/pypi/warehouse/issues/5947#issuecomment-699660629
+    'bugtracker': ExternalReferenceType.ISSUE_TRACKER,
+    'issuetracker': ExternalReferenceType.ISSUE_TRACKER,
+    'issues': ExternalReferenceType.ISSUE_TRACKER,
+    'bugreports': ExternalReferenceType.ISSUE_TRACKER,
+    'tracker': ExternalReferenceType.ISSUE_TRACKER,
+    'homepage': ExternalReferenceType.WEBSITE,
+    'download': ExternalReferenceType.DISTRIBUTION,
+    'documentation': ExternalReferenceType.DOCUMENTATION,
+    'docs': ExternalReferenceType.DOCUMENTATION,
+    'changelog': ExternalReferenceType.RELEASE_NOTES,
+    'changes': ExternalReferenceType.RELEASE_NOTES,
+    # 'source': ExternalReferenceType.SOURCE-DISTRIBUTION,
+    'repository': ExternalReferenceType.VCS,
+    'github': ExternalReferenceType.VCS,
+    'chat': ExternalReferenceType.CHAT,
+}
+
+__re_nochar = re_compile('[^a-z]')
+
+
+def url_label_to_ert(value: str) -> ExternalReferenceType:
+    return __known_ulr_labels.get(
+        __re_nochar.sub('', str(value).lower()),
+        ExternalReferenceType.OTHER)

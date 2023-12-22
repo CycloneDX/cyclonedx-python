@@ -17,12 +17,11 @@
 
 
 """
-Functionality related to PEP 621
+Functionality related to PEP 621.
 
-See https://packaging.python.org/en/latest/specifications/declaring-project-metadata/#declaring-project-metadata
+See https://packaging.python.org/en/latest/specifications/declaring-project-metadata/
 See https://peps.python.org/pep-0621/
 """
-
 
 from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable
 
@@ -72,19 +71,30 @@ def pyproject2component(pyproject: Dict[str, Any], *,
         description=project.get('description', None),
         licenses=licenses_fixup(pyproject2licenses(project, LicenseFactory())),
         # TODO add more properties according to spec
+        # extRefs with .cdx.url_label_to_ert()
     )
 
 
-def pyproject_file2component(pyproject_file: str, *,
-                             type: 'ComponentType') -> 'Component':
+def pyproject_load(pyproject_file: str) -> Dict[str, Any]:
     from .toml import toml_loads
-
     try:
         pyproject_fh = open(pyproject_file, 'rt', encoding='utf8', errors='replace')
     except OSError as err:
         raise ValueError(f'Could not open pyproject file: {pyproject_file}') from err
     with pyproject_fh:
-        return pyproject2component(
-            toml_loads(pyproject_fh.read()),
-            type=type
-        )
+        return toml_loads(pyproject_fh.read())
+
+
+def pyproject_file2component(pyproject_file: str, *,
+                             type: 'ComponentType') -> 'Component':
+    return pyproject2component(
+        pyproject_load(pyproject_file),
+        type=type
+    )
+
+
+def pyproject_dependencies(pyproject: Dict[str, Any]) -> Generator[str, None, None]:
+    project = pyproject.get('project', {})
+    yield from project.get('dependencies', ())
+    for opts in project.get('optional-dependencies', {}).values():
+        yield from opts

@@ -15,23 +15,25 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-
 import random
 from contextlib import redirect_stderr, redirect_stdout
 from glob import glob
 from io import StringIO
+from os import name as os_name
 from os.path import basename, dirname, join
+from subprocess import run  # nosec:B404
+from sys import executable
 from typing import Any, Generator
-from unittest import TestCase
+from unittest import TestCase, skipIf
 
 from cyclonedx.schema import OutputFormat, SchemaVersion
 from ddt import ddt, named_data
 
 from cyclonedx_py._internal.cli import run as run_cli
-from tests import INFILES_DIRECTORY, SUPPORTED_OF_SV, SnapshotMixin, make_comparable
+from tests import INFILES_DIRECTORY, INIT_TESTBEDS, SUPPORTED_OF_SV, SnapshotMixin, make_comparable
 
-lockfiles = glob(join(INFILES_DIRECTORY, 'pipenv', '*', 'Pipfile.lock'))
-projectdirs = list(dirname(lockfile) for lockfile in lockfiles)
+initfiles = glob(join(INFILES_DIRECTORY, 'environment', '*', 'init.py'))
+projectdirs = list(dirname(initfile) for initfile in initfiles)
 
 test_data = tuple(
     (f'{basename(projectdir)}-{sv.name}-{of.name}', projectdir, sv, of)
@@ -45,34 +47,72 @@ def test_data_file_filter(s: str) -> Generator[Any, None, None]:
 
 
 @ddt
-class TestPipenv(TestCase, SnapshotMixin):
+class TestCliEnvironment(TestCase, SnapshotMixin):
 
-    def test_cli_fails_with_dir_not_found(self) -> None:
-        _, projectdir, sv, of = random.choice(test_data)  # nosec B311
+    @classmethod
+    def setUpClass(cls) -> None:
+        if INIT_TESTBEDS:
+            for initfile in initfiles:
+                res = run([executable, initfile],
+                          capture_output=True, encoding='utf8', shell=False)  # nosec:B603
+                if res.returncode != 0:
+                    raise RuntimeError(f'failed init :\n'
+                                       f'stdout: {res.stdout}\n'
+                                       f'stderr: {res.stderr}\n')
+
+    @named_data(
+        ('does-not-exist', 'something-that-must-not-exist.testing', 'No such file or directory'),
+        ('no-env', join(INFILES_DIRECTORY, 'environment', 'broken-env'), 'Failed to find python in directory'),
+    )
+    def test_fails_with_python_not_found(self, wrong_python: str, expected_error: str) -> None:
+        _, _, sv, of = random.choice(test_data)  # nosec B311
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
             out.name = '<fakeout>'
             with redirect_stderr(err), redirect_stdout(out):
                 res = run_cli(argv=[
-                    'pipenv',
+                    'environment',
                     '-vvv',
                     f'--sv={sv.to_version()}',
                     f'--of={of.name}',
                     '--outfile=-',
-                    'something-that-must-not-exist.testing'])
+                    wrong_python])
             err = err.getvalue()
             out = out.getvalue()
         self.assertNotEqual(0, res, err)
-        self.assertIn('Could not open lock file: something-that-must-not-exist.testing', err)
+        self.assertIn(expected_error, err)
 
-    def test_cli_with_pyproject_not_found(self) -> None:
+    @named_data(
+        ('exit-non-zero', join(INFILES_DIRECTORY, 'environment', 'broken-env', 'non-zero.py'), 'Fail fetching `path`'),
+        ('no-json', join(INFILES_DIRECTORY, 'environment', 'broken-env', 'broken-json.py'), 'JSONDecodeError'),
+    )
+    @skipIf(os_name == 'nt', 'cannot run on win')
+    def test_fails_with_python_unexpected(self, wrong_python: str, expected_error: str) -> None:
+        _, _, sv, of = random.choice(test_data)  # nosec B311
+        with StringIO() as err, StringIO() as out:
+            err.name = '<fakeerr>'
+            out.name = '<fakeout>'
+            with redirect_stderr(err), redirect_stdout(out):
+                res = run_cli(argv=[
+                    'environment',
+                    '-vvv',
+                    f'--sv={sv.to_version()}',
+                    f'--of={of.name}',
+                    '--outfile=-',
+                    wrong_python])
+            err = err.getvalue()
+            out = out.getvalue()
+        self.assertNotEqual(0, res, err)
+        self.assertIn(expected_error, err)
+
+    def test_with_pyproject_not_found(self) -> None:
         _, projectdir, sv, of = random.choice(test_data)  # nosec B311
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
             out.name = '<fakeout>'
             with redirect_stderr(err), redirect_stdout(out):
                 res = run_cli(argv=[
-                    'pipenv',
+                    'environment',
                     '-vvv',
                     f'--sv={sv.to_version()}',
                     f'--of={of.name}',
@@ -85,81 +125,62 @@ class TestPipenv(TestCase, SnapshotMixin):
         self.assertNotEqual(0, res, err)
         self.assertIn('Could not open pyproject file: something-that-must-not-exist.testing', err)
 
-    @named_data(*test_data)
-    def test_cli_with_file_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
+    def test_with_current_python(self) -> None:
+        sv = SchemaVersion.V1_5
+        of = random.choice((OutputFormat.XML, OutputFormat.JSON))  # nosec B311
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
             out.name = '<fakeout>'
             with redirect_stderr(err), redirect_stdout(out):
                 res = run_cli(argv=[
-                    'pipenv',
+                    'environment',
+                    '-vvv',
+                    f'--sv={sv.to_version()}',
+                    f'--of={of.name}',
+                    '--outfile=-',
+                    # no project dir -> search in current python
+                ])
+                err = err.getvalue()
+                sbom1 = out.getvalue()
+        self.assertEqual(0, res, err)
+        with StringIO() as err, StringIO() as out:
+            err.name = '<fakeerr>'
+            out.name = '<fakeout>'
+            with redirect_stderr(err), redirect_stdout(out):
+                res = run_cli(argv=[
+                    'environment',
+                    '-vvv',
+                    f'--sv={sv.to_version()}',
+                    f'--of={of.name}',
+                    '--outfile=-',
+                    executable  # explicitly current python
+                ])
+            err = err.getvalue()
+            sbom2 = out.getvalue()
+        self.assertEqual(0, res, err)
+        self.assertEqual(
+            make_comparable(sbom1, of),
+            make_comparable(sbom2, of)
+        )
+
+    @named_data(*test_data)
+    def test_with_file_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
+        with StringIO() as err, StringIO() as out:
+            err.name = '<fakeerr>'
+            out.name = '<fakeout>'
+            with redirect_stderr(err), redirect_stdout(out):
+                res = run_cli(argv=[
+                    'environment',
                     '-vvv',
                     f'--sv={sv.to_version()}',
                     f'--of={of.name}',
                     '--outfile=-',
                     f'--pyproject={join(projectdir, "pyproject.toml")}',
-                    projectdir])
+                    join(projectdir, '.venv')])
             err = err.getvalue()
             out = out.getvalue()
         self.assertEqual(0, res, err)
-        self.assertEqualSnapshot(out, 'file', projectdir, sv, of)
-
-    @named_data(*test_data_file_filter('category-deps'))
-    def test_cli_with_categories_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
-        with StringIO() as err, StringIO() as out:
-            err.name = '<fakeerr>'
-            out.name = '<fakeout>'
-            with redirect_stderr(err), redirect_stdout(out):
-                res = run_cli(argv=[
-                    'pipenv',
-                    '-vvv',
-                    f'--sv={sv.to_version()}',
-                    f'--of={of.name}',
-                    '--outfile=-',
-                    '--categories', 'categoryB,groupA packages,dev-packages',
-                    projectdir])
-            err = err.getvalue()
-            out = out.getvalue()
-        self.assertEqual(0, res, err)
-        self.assertEqualSnapshot(out, 'some-categories', projectdir, sv, of)
-
-    @named_data(*test_data_file_filter('default-and-dev'))
-    def test_cli_with_dev_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
-        with StringIO() as err, StringIO() as out:
-            err.name = '<fakeerr>'
-            out.name = '<fakeout>'
-            with redirect_stderr(err), redirect_stdout(out):
-                res = run_cli(argv=[
-                    'pipenv',
-                    '-vvv',
-                    f'--sv={sv.to_version()}',
-                    f'--of={of.name}',
-                    '--outfile=-',
-                    '--dev',
-                    projectdir])
-            err = err.getvalue()
-            out = out.getvalue()
-        self.assertEqual(0, res, err)
-        self.assertEqualSnapshot(out, 'with-dev', projectdir, sv, of)
-
-    @named_data(*test_data_file_filter('private-packages'))
-    def test_cli_with_pypi_mirror_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
-        with StringIO() as err, StringIO() as out:
-            err.name = '<fakeerr>'
-            out.name = '<fakeout>'
-            with redirect_stderr(err), redirect_stdout(out):
-                res = run_cli(argv=[
-                    'pipenv',
-                    '-vvv',
-                    f'--sv={sv.to_version()}',
-                    f'--of={of.name}',
-                    '--outfile=-',
-                    '--pypi-mirror', 'https://pypy-mirror.testing.acme.org/simple',
-                    projectdir])
-            err = err.getvalue()
-            out = out.getvalue()
-        self.assertEqual(0, res, err)
-        self.assertEqualSnapshot(out, 'pypi-mirror', projectdir, sv, of)
+        self.assertEqualSnapshot(out, 'venv', projectdir, sv, of)
 
     def assertEqualSnapshot(self, actual: str,  # noqa:N802
                             purpose: str,
@@ -169,5 +190,5 @@ class TestPipenv(TestCase, SnapshotMixin):
                             ) -> None:
         super().assertEqualSnapshot(
             make_comparable(actual, of),
-            join('pipenv', f'{purpose}_{basename(projectdir)}_{sv.to_version()}.{of.name.lower()}')
+            join('environment', f'{purpose}_{basename(projectdir)}_{sv.to_version()}.{of.name.lower()}')
         )
