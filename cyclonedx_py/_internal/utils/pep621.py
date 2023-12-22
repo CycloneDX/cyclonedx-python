@@ -23,7 +23,7 @@ See https://packaging.python.org/en/latest/specifications/declaring-project-meta
 See https://peps.python.org/pep-0621/
 """
 
-from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable
+from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, Optional
 
 if TYPE_CHECKING:
     from cyclonedx.factory.license import LicenseFactory
@@ -57,7 +57,7 @@ def pyproject2licenses(pyproject: Dict[str, Any], lfac: 'LicenseFactory') -> Gen
 
 
 def pyproject2component(pyproject: Dict[str, Any], *,
-                        type: 'ComponentType') -> 'Component':
+                        type: 'ComponentType') -> Optional['Component']:
     from cyclonedx.factory.license import LicenseFactory
     from cyclonedx.model.component import Component
 
