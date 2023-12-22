@@ -145,15 +145,10 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION_DEFAULT }}
           architecture: 'x64'
-      - name: Install poetry
-        # see https://github.com/marketplace/actions/setup-poetry
-        uses: Gr1N/setup-poetry@v8
-        with:
-          poetry-version: ${{ env.POETRY_VERSION }}
-      - name: Install dependencies
-        run: poetry install --no-dev
+      - name: Install self
+        run: pip install .
       - name: run command
-        run: poetry run ${{matrix.command}}
+        run: ${{matrix.command}}
 
   build-and-test:
     name: Test (${{ matrix.os }} py${{ matrix.python-version }})
