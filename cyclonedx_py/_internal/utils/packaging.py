@@ -51,31 +51,27 @@ def metadata2extrefs(metadata: 'PackageMetadata') -> Generator['ExternalReferenc
 
     from .cdx import url_label_to_ert
 
-    if 'Home-page' in metadata:
+    for meta_key, extref_typet in (
         # see https://packaging.python.org/en/latest/specifications/core-metadata/#home-page
-        try:
-            yield ExternalReference(
-                type=ExternalReferenceType.WEBSITE,
-                url=XsUri(metadata['Home-page']),
-                comment='Home-page')
-        except InvalidUriException:
-            pass
-    if 'Download-URL' in metadata:
+        ('Home-page', ExternalReferenceType.WEBSITE),
         # see https://packaging.python.org/en/latest/specifications/core-metadata/#download-url
-        try:
-            yield ExternalReference(
-                type=ExternalReferenceType.DISTRIBUTION,
-                url=XsUri(metadata['Download-URL']),
-                comment='Download-URL')
-        except InvalidUriException:
-            pass
+        ('Download-URL', ExternalReferenceType.DISTRIBUTION),
+    ):
+        if meta_key in metadata:
+            try:
+                yield ExternalReference(
+                    comment=f'from packaging metadata: {meta_key}',
+                    type=extref_typet,
+                    url=XsUri(metadata[meta_key]))
+            except InvalidUriException:
+                pass
     for label_url in metadata.get_all('Project-URL', ()):
         # see https://packaging.python.org/en/latest/specifications/core-metadata/#project-url-multiple-use
         label, url = label_url.split(',', maxsplit=1)
         try:
             yield ExternalReference(
+                comment=f'from packaging metadata Project-URL: {label}',
                 type=url_label_to_ert(label),
-                url=XsUri(url.strip()),
-                comment=f'Project-URL: {label}')
+                url=XsUri(url.strip()))
         except InvalidUriException:
             pass

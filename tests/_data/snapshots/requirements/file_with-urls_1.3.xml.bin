@@ -23,27 +23,27 @@
       <externalReferences>
         <reference type="documentation">
           <url>https://oss.acme.org/my-project/docs/</url>
-          <comment>from pyproject: documentation</comment>
+          <comment>from pyproject urls: documentation</comment>
         </reference>
         <reference type="issue-tracker">
           <url>https://oss.acme.org/my-project/bugs/</url>
-          <comment>from pyproject: Bug Tracker</comment>
+          <comment>from pyproject urls: Bug Tracker</comment>
         </reference>
         <reference type="other">
           <url>https://oss.acme.org/my-project/funding/</url>
-          <comment>from pyproject: Funding</comment>
+          <comment>from pyproject urls: Funding</comment>
         </reference>
         <reference type="other">
           <url>https://oss.acme.org/my-project/changelog/</url>
-          <comment>from pyproject: Change log</comment>
+          <comment>from pyproject urls: Change log</comment>
         </reference>
         <reference type="vcs">
           <url>https://oss.acme.org/my-project.git</url>
-          <comment>from pyproject: repository</comment>
+          <comment>from pyproject urls: repository</comment>
         </reference>
         <reference type="website">
           <url>https://oss.acme.org/my-project/</url>
-          <comment>from pyproject: homepage</comment>
+          <comment>from pyproject urls: homepage</comment>
         </reference>
       </externalReferences>
     </component>

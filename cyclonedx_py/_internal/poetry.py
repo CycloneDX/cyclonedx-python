@@ -375,7 +375,7 @@ class PoetryBB(BomBuilder):
         ]:
             try:
                 yield ExternalReference(
-                    comment=f'project metadata: {ers}',
+                    comment=f'from poetry: {ers}',
                     type=ert,
                     url=XsUri(str(po_cfg[ers])))
             except (KeyError, InvalidUriException):  # pragma: nocover
@@ -383,7 +383,7 @@ class PoetryBB(BomBuilder):
         for ul, ut in po_cfg.get('urls', {}).items():
             try:
                 yield ExternalReference(
-                    comment=f'package url: {ul}',
+                    comment=f'from poetry url: {ul}',
                     type=url_label_to_ert(ul),
                     url=XsUri(str(ut)))
             except InvalidUriException:  # pragma: nocover

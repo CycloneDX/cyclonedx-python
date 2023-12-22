@@ -14,7 +14,7 @@
       <externalReferences>
         <reference type="website">
           <url>https://github.com/benjaminp/six</url>
-          <comment>Home-page</comment>
+          <comment>from package metadata: Home-page</comment>
         </reference>
       </externalReferences>
     </component>

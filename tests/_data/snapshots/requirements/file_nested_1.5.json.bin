@@ -58,32 +58,32 @@
       "description": "some `reuqirements.txt` a root-component with all metadata",
       "externalReferences": [
         {
-          "comment": "from pyproject: documentation",
+          "comment": "from pyproject urls: documentation",
           "type": "documentation",
           "url": "https://oss.acme.org/my-project/docs/"
         },
         {
-          "comment": "from pyproject: Bug Tracker",
+          "comment": "from pyproject urls: Bug Tracker",
           "type": "issue-tracker",
           "url": "https://oss.acme.org/my-project/bugs/"
         },
         {
-          "comment": "from pyproject: Funding",
+          "comment": "from pyproject urls: Funding",
           "type": "other",
           "url": "https://oss.acme.org/my-project/funding/"
         },
         {
-          "comment": "from pyproject: Change log",
+          "comment": "from pyproject urls: Change log",
           "type": "release-notes",
           "url": "https://oss.acme.org/my-project/changelog/"
         },
         {
-          "comment": "from pyproject: repository",
+          "comment": "from pyproject urls: repository",
           "type": "vcs",
           "url": "https://oss.acme.org/my-project.git"
         },
         {
-          "comment": "from pyproject: homepage",
+          "comment": "from pyproject urls: homepage",
           "type": "website",
           "url": "https://oss.acme.org/my-project/"
         }

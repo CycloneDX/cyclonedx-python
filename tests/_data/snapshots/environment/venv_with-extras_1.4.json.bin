@@ -5,17 +5,17 @@
       "description": "Better dates & times for Python",
       "externalReferences": [
         {
-          "comment": "Project-URL: Documentation",
+          "comment": "from package metadata Project-URL: Documentation",
           "type": "documentation",
           "url": "https://arrow.readthedocs.io"
         },
         {
-          "comment": "Project-URL: Issues",
+          "comment": "from package metadata Project-URL: Issues",
           "type": "issue-tracker",
           "url": "https://github.com/arrow-py/arrow/issues"
         },
         {
-          "comment": "Project-URL: Source",
+          "comment": "from package metadata Project-URL: Source",
           "type": "other",
           "url": "https://github.com/arrow-py/arrow"
         }
@@ -30,32 +30,32 @@
       "description": "Classes Without Boilerplate",
       "externalReferences": [
         {
-          "comment": "Project-URL: Documentation",
+          "comment": "from package metadata Project-URL: Documentation",
           "type": "documentation",
           "url": "https://www.attrs.org/"
         },
         {
-          "comment": "Project-URL: Bug Tracker",
+          "comment": "from package metadata Project-URL: Bug Tracker",
           "type": "issue-tracker",
           "url": "https://github.com/python-attrs/attrs/issues"
         },
         {
-          "comment": "Project-URL: Source Code",
+          "comment": "from package metadata Project-URL: Source Code",
           "type": "other",
           "url": "https://github.com/python-attrs/attrs"
         },
         {
-          "comment": "Project-URL: Funding",
+          "comment": "from package metadata Project-URL: Funding",
           "type": "other",
           "url": "https://github.com/sponsors/hynek"
         },
         {
-          "comment": "Project-URL: Tidelift",
+          "comment": "from package metadata Project-URL: Tidelift",
           "type": "other",
           "url": "https://tidelift.com/subscription/pkg/pypi-attrs?utm_source=pypi-attrs&utm_medium=pypi"
         },
         {
-          "comment": "Project-URL: Changelog",
+          "comment": "from package metadata Project-URL: Changelog",
           "type": "release-notes",
           "url": "https://www.attrs.org/en/stable/changelog.html"
         }
@@ -77,7 +77,7 @@
       "description": "Define boolean algebras, create and parse boolean expressions and create custom boolean DSL.",
       "externalReferences": [
         {
-          "comment": "Home-page",
+          "comment": "from package metadata: Home-page",
           "type": "website",
           "url": "https://github.com/bastikr/boolean.py"
         }
@@ -99,27 +99,27 @@
       "description": "Python library for CycloneDX",
       "externalReferences": [
         {
-          "comment": "Project-URL: Documentation",
+          "comment": "from package metadata Project-URL: Documentation",
           "type": "documentation",
           "url": "https://cyclonedx-python-library.readthedocs.io/"
         },
         {
-          "comment": "Project-URL: Bug Tracker",
+          "comment": "from package metadata Project-URL: Bug Tracker",
           "type": "issue-tracker",
           "url": "https://github.com/CycloneDX/cyclonedx-python-lib/issues"
         },
         {
-          "comment": "Project-URL: Funding",
+          "comment": "from package metadata Project-URL: Funding",
           "type": "other",
           "url": "https://owasp.org/donate/?reponame=www-project-cyclonedx&title=OWASP+CycloneDX"
         },
         {
-          "comment": "Project-URL: Repository",
+          "comment": "from package metadata Project-URL: Repository",
           "type": "vcs",
           "url": "https://github.com/CycloneDX/cyclonedx-python-lib"
         },
         {
-          "comment": "Home-page",
+          "comment": "from package metadata: Home-page",
           "type": "website",
           "url": "https://github.com/CycloneDX/cyclonedx-python-lib/#readme"
         }
@@ -141,12 +141,12 @@
       "description": "XML bomb protection for Python stdlib modules",
       "externalReferences": [
         {
-          "comment": "Download-URL",
+          "comment": "from package metadata: Download-URL",
           "type": "distribution",
           "url": "https://pypi.python.org/pypi/defusedxml"
         },
         {
-          "comment": "Home-page",
+          "comment": "from package metadata: Home-page",
           "type": "website",
           "url": "https://github.com/tiran/defusedxml"
         }
@@ -173,7 +173,7 @@
       "description": "Validates fully-qualified domain names against RFC 1123, so that they are acceptable to modern bowsers",
       "externalReferences": [
         {
-          "comment": "Home-page",
+          "comment": "from package metadata: Home-page",
           "type": "website",
           "url": "https://github.com/ypcrts/fqdn"
         }
@@ -195,17 +195,17 @@
       "description": "Internationalized Domain Names in Applications (IDNA)",
       "externalReferences": [
         {
-          "comment": "Project-URL: Issue tracker",
+          "comment": "from package metadata Project-URL: Issue tracker",
           "type": "issue-tracker",
           "url": "https://github.com/kjd/idna/issues"
         },
         {
-          "comment": "Project-URL: Source",
+          "comment": "from package metadata Project-URL: Source",
           "type": "other",
           "url": "https://github.com/kjd/idna"
         },
         {
-          "comment": "Project-URL: Changelog",
+          "comment": "from package metadata Project-URL: Changelog",
           "type": "release-notes",
           "url": "https://github.com/kjd/idna/blob/master/HISTORY.rst"
         }
@@ -220,12 +220,12 @@
       "description": "Read resources from Python packages",
       "externalReferences": [
         {
-          "comment": "Project-URL: Documentation",
+          "comment": "from package metadata Project-URL: Documentation",
           "type": "documentation",
           "url": "https://importlib-resources.readthedocs.io/"
         },
         {
-          "comment": "Home-page",
+          "comment": "from package metadata: Home-page",
           "type": "website",
           "url": "https://github.com/python/importlib_resources"
         }
@@ -240,22 +240,22 @@
       "description": "Operations with ISO 8601 durations",
       "externalReferences": [
         {
-          "comment": "Project-URL: Bug Reports",
+          "comment": "from package metadata Project-URL: Bug Reports",
           "type": "issue-tracker",
           "url": "https://github.com/bolsote/isoduration/issues"
         },
         {
-          "comment": "Project-URL: Changelog",
+          "comment": "from package metadata Project-URL: Changelog",
           "type": "release-notes",
           "url": "https://github.com/bolsote/isoduration/blob/master/CHANGELOG"
         },
         {
-          "comment": "Project-URL: Repository",
+          "comment": "from package metadata Project-URL: Repository",
           "type": "vcs",
           "url": "https://github.com/bolsote/isoduration"
         },
         {
-          "comment": "Home-page",
+          "comment": "from package metadata: Home-page",
           "type": "website",
           "url": "https://github.com/bolsote/isoduration"
         }
@@ -282,7 +282,7 @@
       "description": "Identify specific nodes in a JSON document (RFC 6901) ",
       "externalReferences": [
         {
-          "comment": "Home-page",
+          "comment": "from package metadata: Home-page",
           "type": "website",
           "url": "https://github.com/stefankoegl/python-json-pointer"
         }
@@ -304,37 +304,37 @@
       "description": "An implementation of JSON Schema validation for Python",
       "externalReferences": [
         {
-          "comment": "Project-URL: Documentation",
+          "comment": "from package metadata Project-URL: Documentation",
           "type": "documentation",
           "url": "https://python-jsonschema.readthedocs.io/"
         },
         {
-          "comment": "Project-URL: Issues",
+          "comment": "from package metadata Project-URL: Issues",
           "type": "issue-tracker",
           "url": "https://github.com/python-jsonschema/jsonschema/issues/"
         },
         {
-          "comment": "Project-URL: Source",
+          "comment": "from package metadata Project-URL: Source",
           "type": "other",
           "url": "https://github.com/python-jsonschema/jsonschema"
         },
         {
-          "comment": "Project-URL: Funding",
+          "comment": "from package metadata Project-URL: Funding",
           "type": "other",
           "url": "https://github.com/sponsors/Julian"
         },
         {
-          "comment": "Project-URL: Tidelift",
+          "comment": "from package metadata Project-URL: Tidelift",
           "type": "other",
           "url": "https://tidelift.com/subscription/pkg/pypi-jsonschema?utm_source=pypi-jsonschema&utm_medium=referral&utm_campaign=pypi-link"
         },
         {
-          "comment": "Project-URL: Changelog",
+          "comment": "from package metadata Project-URL: Changelog",
           "type": "release-notes",
           "url": "https://github.com/python-jsonschema/jsonschema/blob/main/CHANGELOG.rst"
         },
         {
-          "comment": "Project-URL: Homepage",
+          "comment": "from package metadata Project-URL: Homepage",
           "type": "website",
           "url": "https://github.com/python-jsonschema/jsonschema"
         }
@@ -356,32 +356,32 @@
       "description": "The JSON Schema meta-schemas and vocabularies, exposed as a Registry",
       "externalReferences": [
         {
-          "comment": "Project-URL: Documentation",
+          "comment": "from package metadata Project-URL: Documentation",
           "type": "documentation",
           "url": "https://jsonschema-specifications.readthedocs.io/"
         },
         {
-          "comment": "Project-URL: Issues",
+          "comment": "from package metadata Project-URL: Issues",
           "type": "issue-tracker",
           "url": "https://github.com/python-jsonschema/jsonschema-specifications/issues/"
         },
         {
-          "comment": "Project-URL: Source",
+          "comment": "from package metadata Project-URL: Source",
           "type": "other",
           "url": "https://github.com/python-jsonschema/jsonschema-specifications"
         },
         {
-          "comment": "Project-URL: Funding",
+          "comment": "from package metadata Project-URL: Funding",
           "type": "other",
           "url": "https://github.com/sponsors/Julian"
         },
         {
-          "comment": "Project-URL: Tidelift",
+          "comment": "from package metadata Project-URL: Tidelift",
           "type": "other",
           "url": "https://tidelift.com/subscription/pkg/pypi-jsonschema-specifications?utm_source=pypi-jsonschema-specifications&utm_medium=referral&utm_campaign=pypi-link"
         },
         {
-          "comment": "Project-URL: Homepage",
+          "comment": "from package metadata Project-URL: Homepage",
           "type": "website",
           "url": "https://github.com/python-jsonschema/jsonschema-specifications"
         }
@@ -403,7 +403,7 @@
       "description": "license-expression is a comprehensive utility library to parse, compare, simplify and normalize license expressions (such as SPDX license expressions) using boolean logic.",
       "externalReferences": [
         {
-          "comment": "Home-page",
+          "comment": "from package metadata: Home-page",
           "type": "website",
           "url": "https://github.com/nexB/license-expression"
         }
@@ -425,12 +425,12 @@
       "description": "Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API.",
       "externalReferences": [
         {
-          "comment": "Project-URL: Source",
+          "comment": "from package metadata Project-URL: Source",
           "type": "other",
           "url": "https://github.com/lxml/lxml"
         },
         {
-          "comment": "Home-page",
+          "comment": "from package metadata: Home-page",
           "type": "website",
           "url": "https://lxml.de/"
         }
@@ -452,7 +452,7 @@
       "description": "A purl aka. Package URL parser and builder",
       "externalReferences": [
         {
-          "comment": "Home-page",
+          "comment": "from package metadata: Home-page",
           "type": "website",
           "url": "https://github.com/package-url/packageurl-python"
         }
@@ -474,7 +474,7 @@
       "description": "Resolve a name to an object.",
       "externalReferences": [
         {
-          "comment": "Home-page",
+          "comment": "from package metadata: Home-page",
           "type": "website",
           "url": "https://github.com/graingert/pkgutil-resolve-name"
         }
@@ -496,17 +496,17 @@
       "description": "Library for serializing and deserializing Python Objects to and from JSON and XML.",
       "externalReferences": [
         {
-          "comment": "Project-URL: Bug Tracker",
+          "comment": "from package metadata Project-URL: Bug Tracker",
           "type": "issue-tracker",
           "url": "https://github.com/madpah/serializable/issues"
         },
         {
-          "comment": "Project-URL: Repository",
+          "comment": "from package metadata Project-URL: Repository",
           "type": "vcs",
           "url": "https://github.com/madpah/serializable"
         },
         {
-          "comment": "Home-page",
+          "comment": "from package metadata: Home-page",
           "type": "website",
           "url": "https://github.com/madpah/serializable"
         }
@@ -528,17 +528,17 @@
       "description": "Extensions to the standard Python datetime module",
       "externalReferences": [
         {
-          "comment": "Project-URL: Documentation",
+          "comment": "from package metadata Project-URL: Documentation",
           "type": "documentation",
           "url": "https://dateutil.readthedocs.io/en/stable/"
         },
         {
-          "comment": "Project-URL: Source",
+          "comment": "from package metadata Project-URL: Source",
           "type": "other",
           "url": "https://github.com/dateutil/dateutil"
         },
         {
-          "comment": "Home-page",
+          "comment": "from package metadata: Home-page",
           "type": "website",
           "url": "https://github.com/dateutil/dateutil"
         }
@@ -560,32 +560,32 @@
       "description": "JSON Referencing + Python",
       "externalReferences": [
         {
-          "comment": "Project-URL: Documentation",
+          "comment": "from package metadata Project-URL: Documentation",
           "type": "documentation",
           "url": "https://referencing.readthedocs.io/"
         },
         {
-          "comment": "Project-URL: Issues",
+          "comment": "from package metadata Project-URL: Issues",
           "type": "issue-tracker",
           "url": "https://github.com/python-jsonschema/referencing/issues/"
         },
         {
-          "comment": "Project-URL: Source",
+          "comment": "from package metadata Project-URL: Source",
           "type": "other",
           "url": "https://github.com/python-jsonschema/referencing"
         },
         {
-          "comment": "Project-URL: Funding",
+          "comment": "from package metadata Project-URL: Funding",
           "type": "other",
           "url": "https://github.com/sponsors/Julian"
         },
         {
-          "comment": "Project-URL: Tidelift",
+          "comment": "from package metadata Project-URL: Tidelift",
           "type": "other",
           "url": "https://tidelift.com/subscription/pkg/pypi-referencing?utm_source=pypi-referencing&utm_medium=referral&utm_campaign=pypi-link"
         },
         {
-          "comment": "Project-URL: Homepage",
+          "comment": "from package metadata Project-URL: Homepage",
           "type": "website",
           "url": "https://github.com/python-jsonschema/referencing"
         }
@@ -607,7 +607,7 @@
       "description": "A pure python RFC3339 validator",
       "externalReferences": [
         {
-          "comment": "Home-page",
+          "comment": "from package metadata: Home-page",
           "type": "website",
           "url": "https://github.com/naimetti/rfc3339-validator"
         }
@@ -634,12 +634,12 @@
       "description": "Parsing and validation of URIs (RFC 3986) and IRIs (RFC 3987)",
       "externalReferences": [
         {
-          "comment": "Download-URL",
+          "comment": "from package metadata: Download-URL",
           "type": "distribution",
           "url": "https://github.com/dgerber/rfc3987"
         },
         {
-          "comment": "Home-page",
+          "comment": "from package metadata: Home-page",
           "type": "website",
           "url": "http://pypi.python.org/pypi/rfc3987"
         }
@@ -666,32 +666,32 @@
       "description": "Python bindings to Rust's persistent data structures (rpds)",
       "externalReferences": [
         {
-          "comment": "Project-URL: Documentation",
+          "comment": "from package metadata Project-URL: Documentation",
           "type": "documentation",
           "url": "https://rpds.readthedocs.io/"
         },
         {
-          "comment": "Project-URL: Issues",
+          "comment": "from package metadata Project-URL: Issues",
           "type": "issue-tracker",
           "url": "https://github.com/crate-py/rpds/issues/"
         },
         {
-          "comment": "Project-URL: Source",
+          "comment": "from package metadata Project-URL: Source",
           "type": "other",
           "url": "https://github.com/crate-py/rpds"
         },
         {
-          "comment": "Project-URL: Funding",
+          "comment": "from package metadata Project-URL: Funding",
           "type": "other",
           "url": "https://github.com/sponsors/Julian"
         },
         {
-          "comment": "Project-URL: Tidelift",
+          "comment": "from package metadata Project-URL: Tidelift",
           "type": "other",
           "url": "https://tidelift.com/subscription/pkg/pypi-rpds-py?utm_source=pypi-rpds-py&utm_medium=referral&utm_campaign=pypi-link"
         },
         {
-          "comment": "Project-URL: Homepage",
+          "comment": "from package metadata Project-URL: Homepage",
           "type": "website",
           "url": "https://github.com/crate-py/rpds"
         }
@@ -713,7 +713,7 @@
       "description": "Python 2 and 3 compatibility utilities",
       "externalReferences": [
         {
-          "comment": "Home-page",
+          "comment": "from package metadata: Home-page",
           "type": "website",
           "url": "https://github.com/benjaminp/six"
         }
@@ -735,7 +735,7 @@
       "description": "Sorted Containers -- Sorted List, Sorted Dict, Sorted Set",
       "externalReferences": [
         {
-          "comment": "Home-page",
+          "comment": "from package metadata: Home-page",
           "type": "website",
           "url": "http://www.grantjenks.com/docs/sortedcontainers/"
         }
@@ -757,27 +757,27 @@
       "description": "Typing stubs for python-dateutil",
       "externalReferences": [
         {
-          "comment": "Project-URL: Chat",
+          "comment": "from package metadata Project-URL: Chat",
           "type": "chat",
           "url": "https://gitter.im/python/typing"
         },
         {
-          "comment": "Project-URL: Issue tracker",
+          "comment": "from package metadata Project-URL: Issue tracker",
           "type": "issue-tracker",
           "url": "https://github.com/python/typeshed/issues"
         },
         {
-          "comment": "Project-URL: Changes",
+          "comment": "from package metadata Project-URL: Changes",
           "type": "release-notes",
           "url": "https://github.com/typeshed-internal/stub_uploader/blob/main/data/changelogs/python-dateutil.md"
         },
         {
-          "comment": "Project-URL: GitHub",
+          "comment": "from package metadata Project-URL: GitHub",
           "type": "vcs",
           "url": "https://github.com/python/typeshed"
         },
         {
-          "comment": "Home-page",
+          "comment": "from package metadata: Home-page",
           "type": "website",
           "url": "https://github.com/python/typeshed"
         }
@@ -799,7 +799,7 @@
       "description": "RFC 6570 URI Template Processor",
       "externalReferences": [
         {
-          "comment": "Project-URL: homepage",
+          "comment": "from package metadata Project-URL: homepage",
           "type": "website",
           "url": "https://gitlab.linss.com/open-source/python/uri-template"
         }
@@ -826,12 +826,12 @@
       "description": "A library for working with the color formats defined by HTML and CSS.",
       "externalReferences": [
         {
-          "comment": "Project-URL: documentation",
+          "comment": "from package metadata Project-URL: documentation",
           "type": "documentation",
           "url": "https://webcolors.readthedocs.io"
         },
         {
-          "comment": "Project-URL: homepage",
+          "comment": "from package metadata Project-URL: homepage",
           "type": "website",
           "url": "https://github.com/ubernostrum/webcolors"
         }
@@ -853,7 +853,7 @@
       "description": "Backport of pathlib-compatible object wrapper for zip files",
       "externalReferences": [
         {
-          "comment": "Home-page",
+          "comment": "from package metadata: Home-page",
           "type": "website",
           "url": "https://github.com/jaraco/zipp"
         }

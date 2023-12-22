@@ -51,27 +51,27 @@
       <externalReferences>
         <reference type="documentation">
           <url>https://oss.acme.org/my-project/docs/</url>
-          <comment>project metadata: documentation</comment>
+          <comment>from poetry: documentation</comment>
         </reference>
         <reference type="issue-tracker">
           <url>https://oss.acme.org/my-project/bugs/</url>
-          <comment>package url: Bug Tracker</comment>
+          <comment>from poetry url: Bug Tracker</comment>
         </reference>
         <reference type="other">
           <url>https://oss.acme.org/my-project/funding/</url>
-          <comment>package url: Funding</comment>
+          <comment>from poetry url: Funding</comment>
         </reference>
         <reference type="release-notes">
           <url>https://oss.acme.org/my-project/changelog/</url>
-          <comment>package url: Change log</comment>
+          <comment>from poetry url: Change log</comment>
         </reference>
         <reference type="vcs">
           <url>https://oss.acme.org/my-project.git</url>
-          <comment>project metadata: repository</comment>
+          <comment>from poetry: repository</comment>
         </reference>
         <reference type="website">
           <url>https://oss.acme.org/my-project/</url>
-          <comment>project metadata: homepage</comment>
+          <comment>from poetry: homepage</comment>
         </reference>
       </externalReferences>
     </component>

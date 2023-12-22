@@ -87,9 +87,9 @@ def _project2extrefs(project: Dict[str, Any]) -> Generator['ExternalReference', 
     for label, url in project.get('urls', {}).items():
         try:
             yield ExternalReference(
+                comment=f'from pyproject urls: {label}',
                 type=url_label_to_ert(label),
-                url=XsUri(url),
-                comment=f'from pyproject: {label}')
+                url=XsUri(str(url)))
         except InvalidUriException:
             pass
 
