@@ -47,12 +47,14 @@ class EnvironmentBB(BomBuilder):
         p = ArgumentParser(description='Build an SBOM from Python (virtual) environment',
                            **kwargs)
         if os_name == 'nt':
+            # TODO the Windows help-page might need improvement.
             p.epilog = dedent("""\
                Example Usage:
                  • Build an SBOM from current python environment:
                        > %(prog)s
                  • Build an SBOM from a Python (virtual) environment:
                        > %(prog)s "...some\\path\\bin\\python.exe"
+                       > %(prog)s '...some\\path\\.venv\\'
                  • Build an SBOM from specific Python environment:
                        > where.exe python3.9.exe
                        > %(prog)s "%%path to specific python%%"
@@ -61,6 +63,7 @@ class EnvironmentBB(BomBuilder):
                        > %(prog)s "%%path to conda python%%"
                  • Build an SBOM from Pipenv environment:
                        > pipenv.exe --py
+                       > pipenv.exe --venv
                        > %(prog)s "%%path to pipenv python%%"
                  • Build an SBOM from Poetry environment:
                        > poetry.exe env info  --executable
@@ -73,12 +76,14 @@ class EnvironmentBB(BomBuilder):
                        $ %(prog)s
                  • Build an SBOM from a Python (virtual) environment:
                        $ %(prog)s '...some/path/bin/python'
+                       $ %(prog)s '.../.venv/'
                  • Build an SBOM from specific Python environment:
                        $ %(prog)s "$(which python3.9)"
                  • Build an SBOM from conda Python environment:
                        $ %(prog)s "$(conda run which python)"
                  • Build an SBOM from Pipenv environment:
                        $ %(prog)s "$(pipenv --py)"
+                       $ %(prog)s "$(pipenv --venv)"
                  • Build an SBOM from Poetry environment:
                        $ %(prog)s "$(poetry env info --executable)"
                """)
