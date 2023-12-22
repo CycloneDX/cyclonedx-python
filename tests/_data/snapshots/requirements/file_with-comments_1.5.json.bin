@@ -100,6 +100,38 @@
     "component": {
       "bom-ref": "root-component",
       "description": "some `reuqirements.txt` a root-component with all metadata",
+      "externalReferences": [
+        {
+          "comment": "from pyproject: documentation",
+          "type": "documentation",
+          "url": "https://oss.acme.org/my-project/docs/"
+        },
+        {
+          "comment": "from pyproject: Bug Tracker",
+          "type": "issue-tracker",
+          "url": "https://oss.acme.org/my-project/bugs/"
+        },
+        {
+          "comment": "from pyproject: Funding",
+          "type": "other",
+          "url": "https://oss.acme.org/my-project/funding/"
+        },
+        {
+          "comment": "from pyproject: Change log",
+          "type": "release-notes",
+          "url": "https://oss.acme.org/my-project/changelog/"
+        },
+        {
+          "comment": "from pyproject: repository",
+          "type": "vcs",
+          "url": "https://oss.acme.org/my-project.git"
+        },
+        {
+          "comment": "from pyproject: homepage",
+          "type": "website",
+          "url": "https://oss.acme.org/my-project/"
+        }
+      ],
       "licenses": [
         {
           "expression": "Apache-2.0 OR MIT"

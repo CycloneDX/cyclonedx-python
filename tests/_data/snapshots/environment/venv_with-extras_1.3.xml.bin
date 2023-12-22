@@ -14,12 +14,9 @@
       </tool>
     </tools>
     <component type="application" bom-ref="root-component">
-      <name>no-deps</name>
+      <name>with-extras</name>
       <version>0.1.0</version>
-      <description>packages with all meta, but no deps</description>
-      <licenses>
-        <expression>Apache-2.0 OR MIT</expression>
-      </licenses>
+      <description>depenndencies with extras</description>
     </component>
     <properties>
       <property name="cdx:reproducible">true</property>

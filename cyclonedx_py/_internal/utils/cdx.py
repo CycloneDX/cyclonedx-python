@@ -89,6 +89,7 @@ __known_ulr_labels: Dict[str, ExternalReferenceType] = {
     'issues': ExternalReferenceType.ISSUE_TRACKER,
     'bugreports': ExternalReferenceType.ISSUE_TRACKER,
     'tracker': ExternalReferenceType.ISSUE_TRACKER,
+    'home': ExternalReferenceType.WEBSITE,
     'homepage': ExternalReferenceType.WEBSITE,
     'download': ExternalReferenceType.DISTRIBUTION,
     'documentation': ExternalReferenceType.DOCUMENTATION,
