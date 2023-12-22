@@ -104,6 +104,7 @@ def packagesource4dist(dist: 'Distribution') -> Optional[PackageSource]:
         return PackageSourceArchive.from_data(url, data['archive_info'])
     if 'dir_info' in data:
         return PackageSourceLocal.from_data(url, data['dir_info'])
+    return None
 
 
 def packagesource2extref(src: PackageSource) -> Optional['ExternalReference']:
@@ -133,3 +134,4 @@ def packagesource2extref(src: PackageSource) -> Optional['ExternalReference']:
                 comment='PackageSource: Local')
     except InvalidUriException:
         pass
+    return None

@@ -176,26 +176,26 @@ class EnvironmentBB(BomBuilder):
                 description=dist_meta['Summary'] if 'Summary' in dist_meta else None,
                 licenses=licenses_fixup(metadata2licenses(dist_meta)),
                 external_references=metadata2extrefs(dist_meta),
-                purl=PackageURL('pypi', name=dist_name, version=dist_version, qualifiers={}),
                 # path of dist-package on disc? naaa... a package may have multiple files/folders on disc
             )
             packagesource = packagesource4dist(dist)
+            purl_qs = {}
             if packagesource is not None:
-                if packagesource.url.startswith('file://'):
-                    # no purl for locals and unpublished packages
-                    component.purl = None
-                elif isinstance(packagesource, PackageSourceVcs):
-                    component.purl.qualifiers['vcs_url'] = (f'{packagesource.vcs}+{packagesource.url}'
-                                                            f'@{packagesource.commit_id}')
+                if isinstance(packagesource, PackageSourceVcs):
+                    purl_qs['vcs_url'] = f'{packagesource.vcs}+{packagesource.url}@{packagesource.commit_id}'
                 elif isinstance(packagesource, PackageSourceArchive):
                     if '://files.pythonhosted.org/' not in packagesource.url:
                         # skip PURL bloat, do not add implicit information
-                        component.purl.qualifiers['download_url'] = packagesource.url
+                        purl_qs['download_url'] = packagesource.url
                 packagesource_extref = packagesource2extref(packagesource)
                 if packagesource_extref is not None:
                     component.external_references.add(packagesource_extref)
                 del packagesource_extref
-            del dist_meta, dist_name, dist_version, packagesource
+            if packagesource is None or not packagesource.url.startswith('file://'):
+                # no purl for locals and unpublished packages
+                component.purl = PackageURL('pypi', name=dist_name, version=dist_version, qualifiers=purl_qs)
+            del dist_meta, dist_name, dist_version, packagesource, purl_qs
+
             all_components[component.name.lower()] = (
                 component,
                 set(filter(None, map(requirement2package_name, dist.requires or ())))
