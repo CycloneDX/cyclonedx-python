@@ -35,7 +35,7 @@ from tests import INFILES_DIRECTORY, INIT_TESTBEDS, SUPPORTED_OF_SV, SnapshotMix
 initfiles = glob(join(INFILES_DIRECTORY, 'environment', '*', 'init.py'))
 test_data = tuple(
     (f'{basename(projectdir)}-{sv.name}-{of.name}', projectdir, sv, of)
-    for projectdir in (dirname(initfile) for initfile in initfiles)
+    for projectdir in map(dirname, initfiles)
     for of, sv in SUPPORTED_OF_SV
 )
 
