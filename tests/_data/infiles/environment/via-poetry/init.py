@@ -19,7 +19,7 @@ def poetry_run(*args: str) -> CompletedProcess:
         *args
     )
     print('+ ', *call)
-    res = run(call, cwd=this_dir, env=environ | {
+    res = run(call, cwd=this_dir, env=dict(environ) | {
         'VIRTUAL_ENV': '',
     }, shell=False)  # nosec:B603
     if res.returncode != 0:

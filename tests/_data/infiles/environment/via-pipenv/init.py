@@ -14,6 +14,12 @@ __all__ = ['main']
 this_dir = dirname(__file__)
 env_dir = join(this_dir, '.venv')
 
+pipenv_env = environ.copy()
+pipenv_env['PIPENV_VENV_IN_PROJECT'] = '1'
+pipenv_env['PIPENV_IGNORE_VIRTUALENVS'] = '1'
+pipenv_env['PIPENV_NO_INHERIT'] = '1'
+pipenv_env['PIPENV_NOSPIN'] = '1'
+
 
 def pipenv_run(*args: str) -> CompletedProcess:
     # pipenv is not API, but a CLI -- call it like that!
@@ -22,12 +28,7 @@ def pipenv_run(*args: str) -> CompletedProcess:
         *args
     )
     print('+ ', *call)
-    res = run(call, cwd=this_dir, env=environ | {
-        'PIPENV_VENV_IN_PROJECT': '1',
-        'PIPENV_IGNORE_VIRTUALENVS': '1',
-        'PIPENV_NO_INHERIT': '1',
-        'PIPENV_NOSPIN': '1',
-    }, shell=False)  # nosec:B603
+    res = run(call, cwd=this_dir, env=pipenv_env, shell=False)  # nosec:B603
     if res.returncode != 0:
         raise RuntimeError('process failed')
     return res
