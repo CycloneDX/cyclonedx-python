@@ -16,7 +16,7 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
-from typing import TYPE_CHECKING, Any, Dict, Iterable, List, Optional, Set, Tuple
+from typing import TYPE_CHECKING, Any, Dict, Iterable, List, Optional, Tuple
 
 from . import BomBuilder
 
@@ -26,6 +26,7 @@ if TYPE_CHECKING:  # pragma: no cover
 
     from cyclonedx.model.bom import Bom
     from cyclonedx.model.component import Component, ComponentType
+    from packaging.requirements import Requirement
 
 
 # !!! be as lazy loading as possible, as greedy as needed
@@ -112,16 +113,16 @@ class EnvironmentBB(BomBuilder):
         from os import getcwd
 
         from .utils.cdx import make_bom
+        from .utils.pyproject import pyproject2dependencies
 
         if pyproject_file is None:
             rc = None
         else:
-            from .utils.pep621 import pyproject2component, pyproject_dependencies, pyproject_load
-            from .utils.pep631 import requirement2package_name
+            from .utils.pyproject import pyproject2component, pyproject_load
             pyproject = pyproject_load(pyproject_file)
             root_c = pyproject2component(pyproject, type=mc_type)
             root_c.bom_ref.value = 'root-component'
-            root_d = set(filter(None, map(requirement2package_name, pyproject_dependencies(pyproject))))
+            root_d = pyproject2dependencies(pyproject)
             rc = (root_c, root_d)
 
         path: List[str]
@@ -137,21 +138,22 @@ class EnvironmentBB(BomBuilder):
         self.__add_components(bom, rc, path=path)
         return bom
 
-    def __add_components(self, bom: 'Bom', rc: Optional[Tuple['Component', Set[str]]],
+    def __add_components(self, bom: 'Bom',
+                         rc: Optional[Tuple['Component', Iterable['Requirement']]],
                          **kwargs: Any) -> None:
         from importlib.metadata import distributions
 
         from cyclonedx.model import Property
         from cyclonedx.model.component import Component, ComponentType
         from packageurl import PackageURL
+        from packaging.requirements import Requirement
 
         from . import PropertyName
         from .utils.cdx import licenses_fixup
         from .utils.packaging import metadata2extrefs, metadata2licenses
         from .utils.pep610 import PackageSourceArchive, PackageSourceVcs, packagesource2extref, packagesource4dist
-        from .utils.pep631 import requirement2package_name
 
-        all_components: Dict[str, Tuple['Component', Set[str]]] = {}
+        all_components: Dict[str, Tuple['Component', Iterable[Requirement]]] = {}
         self._logger.debug('distribution context args: %r', kwargs)
         self._logger.info('discovering distributions...')
         for dist in distributions(**kwargs):
@@ -197,10 +199,8 @@ class EnvironmentBB(BomBuilder):
                                             qualifiers=purl_qs, subpath=purl_subpath)
             del dist_meta, dist_name, dist_version, packagesource, purl_qs
 
-            all_components[component.name.lower()] = (
-                component,
-                set(filter(None, map(requirement2package_name, dist.requires or ())))
-            )
+            all_components[component.name.lower()] = component, map(Requirement, dist.requires or ())
+
             self._logger.info('add component for package %r', component.name)
             self._logger.debug('add component: %r', component)
             bom.components.add(component)
@@ -218,7 +218,7 @@ class EnvironmentBB(BomBuilder):
         for component, requires in all_components.values():
             # we know a lot of dependencies, but here we are only interested in those that are actually installed/found
             requires_d: Iterable[Component] = filter(None,
-                                                     map(lambda r: all_components.get(r, (None,))[0],
+                                                     map(lambda r: all_components.get(r.name.lower(), (None,))[0],
                                                          requires))
             bom.register_dependency(component, requires_d)
 

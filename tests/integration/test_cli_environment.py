@@ -53,6 +53,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
     def setUpClass(cls) -> None:
         if INIT_TESTBEDS:
             for initfile in initfiles:
+                print('setup environment testbed:', initfile)
                 res = run([executable, initfile],
                           capture_output=True, encoding='utf8', shell=False)  # nosec:B603
                 if res.returncode != 0:

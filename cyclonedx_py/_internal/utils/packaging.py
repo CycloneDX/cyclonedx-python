@@ -57,14 +57,13 @@ def metadata2extrefs(metadata: 'PackageMetadata') -> Generator['ExternalReferenc
         # see https://packaging.python.org/en/latest/specifications/core-metadata/#download-url
         ('Download-URL', ExternalReferenceType.DISTRIBUTION),
     ):
-        if meta_key in metadata:
-            try:
-                yield ExternalReference(
-                    comment=f'from packaging metadata: {meta_key}',
-                    type=extref_typet,
-                    url=XsUri(metadata[meta_key]))
-            except InvalidUriException:
-                pass
+        try:
+            yield ExternalReference(
+                comment=f'from packaging metadata: {meta_key}',
+                type=extref_typet,
+                url=XsUri(metadata[meta_key]))
+        except (KeyError, InvalidUriException):    # pragma: nocover
+            pass
     for label_url in metadata.get_all('Project-URL', ()):
         # see https://packaging.python.org/en/latest/specifications/core-metadata/#project-url-multiple-use
         label, url = label_url.split(',', maxsplit=1)
@@ -73,5 +72,5 @@ def metadata2extrefs(metadata: 'PackageMetadata') -> Generator['ExternalReferenc
                 comment=f'from packaging metadata Project-URL: {label}',
                 type=url_label_to_ert(label),
                 url=XsUri(url.strip()))
-        except InvalidUriException:
+        except InvalidUriException:   # pragma: nocover
             pass

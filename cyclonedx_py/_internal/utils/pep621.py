@@ -23,13 +23,14 @@ See https://packaging.python.org/en/latest/specifications/declaring-project-meta
 See https://peps.python.org/pep-0621/
 """
 
-from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable
+from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, Iterator, Tuple
 
 if TYPE_CHECKING:
     from cyclonedx.factory.license import LicenseFactory
     from cyclonedx.model import ExternalReference
     from cyclonedx.model.component import Component, ComponentType
     from cyclonedx.model.license import License
+    from packaging.requirements import Requirement
 
 
 def classifiers2licenses(classifiers: Iterable[str], lfac: 'LicenseFactory') -> Generator['License', None, None]:
@@ -43,13 +44,13 @@ def classifiers2licenses(classifiers: Iterable[str], lfac: 'LicenseFactory') -> 
                               classifiers)))
 
 
-def pyproject2licenses(pyproject: Dict[str, Any], lfac: 'LicenseFactory') -> Generator['License', None, None]:
-    if 'classifiers' in pyproject:
+def project2licenses(project: Dict[str, Any], lfac: 'LicenseFactory') -> Generator['License', None, None]:
+    if 'classifiers' in project:
         # https://packaging.python.org/en/latest/specifications/pyproject-toml/#classifiers
         # https://peps.python.org/pep-0621/#classifiers
         # https://packaging.python.org/en/latest/specifications/core-metadata/#classifier-multiple-use
-        yield from classifiers2licenses(pyproject['classifiers'], lfac)
-    license = pyproject.get('license')
+        yield from classifiers2licenses(project['classifiers'], lfac)
+    license = project.get('license')
     # https://packaging.python.org/en/latest/specifications/pyproject-toml/#license
     # https://peps.python.org/pep-0621/#license
     # https://packaging.python.org/en/latest/specifications/core-metadata/#license
@@ -57,27 +58,7 @@ def pyproject2licenses(pyproject: Dict[str, Any], lfac: 'LicenseFactory') -> Gen
         yield lfac.make_from_string(license['text'])
 
 
-def pyproject2component(pyproject: Dict[str, Any], *,
-                        type: 'ComponentType') -> 'Component':
-    from cyclonedx.factory.license import LicenseFactory
-    from cyclonedx.model.component import Component
-
-    from .cdx import licenses_fixup
-
-    project = pyproject['project']
-    dynamic = project.get('dynamic', ())
-    return Component(
-        type=type,
-        name=project['name'],
-        version=project.get('version', None) if 'version' not in dynamic else None,
-        description=project.get('description', None) if 'description' not in dynamic else None,
-        licenses=licenses_fixup(pyproject2licenses(project, LicenseFactory())),
-        external_references=_project2extrefs(project),
-        # TODO add more properties according to spec
-    )
-
-
-def _project2extrefs(project: Dict[str, Any]) -> Generator['ExternalReference', None, None]:
+def project2extrefs(project: Dict[str, Any]) -> Generator['ExternalReference', None, None]:
     from cyclonedx.exception.model import InvalidUriException
     from cyclonedx.model import ExternalReference, XsUri
 
@@ -90,30 +71,38 @@ def _project2extrefs(project: Dict[str, Any]) -> Generator['ExternalReference', 
                 comment=f'from pyproject urls: {label}',
                 type=url_label_to_ert(label),
                 url=XsUri(str(url)))
-        except InvalidUriException:
+        except InvalidUriException:  # pragma: nocover
             pass
 
 
-def pyproject_load(pyproject_file: str) -> Dict[str, Any]:
-    from .toml import toml_loads
-    try:
-        pyproject_fh = open(pyproject_file, 'rt', encoding='utf8', errors='replace')
-    except OSError as err:
-        raise ValueError(f'Could not open pyproject file: {pyproject_file}') from err
-    with pyproject_fh:
-        return toml_loads(pyproject_fh.read())
+def project2component(project: Dict[str, Any], *,
+                      type: 'ComponentType') -> 'Component':
+    from cyclonedx.factory.license import LicenseFactory
+    from cyclonedx.model.component import Component
 
+    from .cdx import licenses_fixup
 
-def pyproject_file2component(pyproject_file: str, *,
-                             type: 'ComponentType') -> 'Component':
-    return pyproject2component(
-        pyproject_load(pyproject_file),
-        type=type
+    dynamic = project.get('dynamic', ())
+    return Component(
+        type=type,
+        name=project['name'],
+        version=project.get('version', None) if 'version' not in dynamic else None,
+        description=project.get('description', None) if 'description' not in dynamic else None,
+        licenses=licenses_fixup(project2licenses(project, LicenseFactory())),
+        external_references=project2extrefs(project),
+        # TODO add more properties according to spec
     )
 
 
-def pyproject_dependencies(pyproject: Dict[str, Any]) -> Generator[str, None, None]:
-    project = pyproject.get('project', {})
-    yield from project.get('dependencies', ())
-    for opts in project.get('optional-dependencies', {}).values():
-        yield from opts
+def project2dependencies(project: Dict[str, Any]) -> Iterator['Requirement']:
+    from itertools import chain
+
+    from packaging.requirements import Requirement
+
+    return (
+        Requirement(dep)
+        for dep in chain(
+            project.get('dependencies', ()),
+            chain.from_iterable(project.get('optional-dependencies', {}).values())
+        )
+    )
