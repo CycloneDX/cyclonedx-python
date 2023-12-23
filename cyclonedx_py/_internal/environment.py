@@ -28,6 +28,10 @@ if TYPE_CHECKING:  # pragma: no cover
     from cyclonedx.model.component import Component, ComponentType
     from packaging.requirements import Requirement
 
+    from .utils.pep610 import PackageSource
+
+    T_AllComponents = Dict[str, Tuple['Component', Iterable[Requirement]]]
+
 
 # !!! be as lazy loading as possible, as greedy as needed
 # TODO: measure with `/bin/time -v` for max resident size and see if this changes when global imports are used
@@ -143,17 +147,14 @@ class EnvironmentBB(BomBuilder):
                          **kwargs: Any) -> None:
         from importlib.metadata import distributions
 
-        from cyclonedx.model import Property
         from cyclonedx.model.component import Component, ComponentType
-        from packageurl import PackageURL
         from packaging.requirements import Requirement
 
-        from . import PropertyName
         from .utils.cdx import licenses_fixup
         from .utils.packaging import metadata2extrefs, metadata2licenses
-        from .utils.pep610 import PackageSourceArchive, PackageSourceVcs, packagesource2extref, packagesource4dist
+        from .utils.pep610 import packagesource4dist
 
-        all_components: Dict[str, Tuple['Component', Iterable[Requirement]]] = {}
+        all_components: 'T_AllComponents' = {}
         self._logger.debug('distribution context args: %r', kwargs)
         self._logger.info('discovering distributions...')
         for dist in distributions(**kwargs):
@@ -170,35 +171,8 @@ class EnvironmentBB(BomBuilder):
                 external_references=metadata2extrefs(dist_meta),
                 # path of dist-package on disc? naaa... a package may have multiple files/folders on disc
             )
-            packagesource = packagesource4dist(dist)
-            purl_qs = {}  # https://github.com/package-url/purl-spec/blob/master/PURL-SPECIFICATION.rst
-            purl_subpath = None
-            if packagesource is not None:
-                if packagesource.subdirectory:
-                    component.properties.add(Property(name=PropertyName.PackageSourceSubdirectory.value,
-                                                      value=packagesource.subdirectory))
-                    purl_subpath = packagesource.subdirectory
-                if isinstance(packagesource, PackageSourceVcs):
-                    purl_qs['vcs_url'] = f'{packagesource.vcs}+{packagesource.url}@{packagesource.commit_id}'
-                    component.properties.add(Property(name=PropertyName.PackageSourceVcsCommitId.value,
-                                                      value=packagesource.commit_id))
-                    if packagesource.requested_revision:
-                        component.properties.add(Property(name=PropertyName.PackageSourceVcsRequestedRevision.value,
-                                                          value=packagesource.requested_revision))
-                elif isinstance(packagesource, PackageSourceArchive):
-                    if '://files.pythonhosted.org/' not in packagesource.url:
-                        # skip PURL bloat, do not add implicit information
-                        purl_qs['download_url'] = packagesource.url
-                packagesource_extref = packagesource2extref(packagesource)
-                if packagesource_extref is not None:
-                    component.external_references.add(packagesource_extref)
-                del packagesource_extref
-            if packagesource is None or not packagesource.url.startswith('file://'):
-                # no purl for locals and unpublished packages
-                component.purl = PackageURL('pypi', name=dist_name, version=dist_version,
-                                            qualifiers=purl_qs, subpath=purl_subpath)
-            del dist_meta, dist_name, dist_version, packagesource, purl_qs
-
+            del dist_meta, dist_name, dist_version
+            self.__component_add_extred_and_purl(component, packagesource4dist(dist))
             all_components[component.name.lower()] = component, map(Requirement, dist.requires or ())
 
             self._logger.info('add component for package %r', component.name)
@@ -214,6 +188,14 @@ class EnvironmentBB(BomBuilder):
                 del root_c_existed
             all_components[root_c_lcname] = rc
             bom.metadata.component = root_c
+            self._logger.debug('root-component: %r', root_c)
+
+        self.__finalize_dependencies(bom, all_components)
+
+    def __finalize_dependencies(self, bom: 'Bom', all_components: 'T_AllComponents') -> None:
+        from cyclonedx.model import Property
+
+        from . import PropertyName
 
         for component, requires in all_components.values():
             component_deps: List[Component] = []
@@ -229,8 +211,44 @@ class EnvironmentBB(BomBuilder):
                     Property(
                         name=PropertyName.PackageExtra.value,
                         value=extra
-                    ) for extra in req.extras)
+                    ) for extra in req.extras
+                )
             bom.register_dependency(component, component_deps)
+
+    def __component_add_extred_and_purl(self, component: 'Component',
+                                        packagesource: Optional['PackageSource']) -> None:
+        from cyclonedx.model import Property
+        from packageurl import PackageURL
+
+        from . import PropertyName
+        from .utils.pep610 import PackageSourceArchive, PackageSourceVcs, packagesource2extref
+
+        purl_qs = {}  # https://github.com/package-url/purl-spec/blob/master/PURL-SPECIFICATION.rst
+        purl_subpath = None
+        if packagesource is not None:
+            if packagesource.subdirectory:
+                component.properties.add(Property(name=PropertyName.PackageSourceSubdirectory.value,
+                                                  value=packagesource.subdirectory))
+                purl_subpath = packagesource.subdirectory
+            if isinstance(packagesource, PackageSourceVcs):
+                purl_qs['vcs_url'] = f'{packagesource.vcs}+{packagesource.url}@{packagesource.commit_id}'
+                component.properties.add(Property(name=PropertyName.PackageSourceVcsCommitId.value,
+                                                  value=packagesource.commit_id))
+                if packagesource.requested_revision:
+                    component.properties.add(Property(name=PropertyName.PackageSourceVcsRequestedRevision.value,
+                                                      value=packagesource.requested_revision))
+            elif isinstance(packagesource, PackageSourceArchive):
+                if '://files.pythonhosted.org/' not in packagesource.url:
+                    # skip PURL bloat, do not add implicit information
+                    purl_qs['download_url'] = packagesource.url
+            packagesource_extref = packagesource2extref(packagesource)
+            if packagesource_extref is not None:
+                component.external_references.add(packagesource_extref)
+            del packagesource_extref
+        if packagesource is None or not packagesource.url.startswith('file://'):
+            # no purl for locals and unpublished packages
+            component.purl = PackageURL('pypi', name=component.name, version=component.version,
+                                        qualifiers=purl_qs, subpath=purl_subpath)
 
     @staticmethod
     def __py_interpreter(value: str) -> str:

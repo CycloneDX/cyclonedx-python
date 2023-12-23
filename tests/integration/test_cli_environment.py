@@ -33,11 +33,9 @@ from cyclonedx_py._internal.cli import run as run_cli
 from tests import INFILES_DIRECTORY, INIT_TESTBEDS, SUPPORTED_OF_SV, SnapshotMixin, make_comparable
 
 initfiles = glob(join(INFILES_DIRECTORY, 'environment', '*', 'init.py'))
-projectdirs = list(dirname(initfile) for initfile in initfiles)
-
 test_data = tuple(
     (f'{basename(projectdir)}-{sv.name}-{of.name}', projectdir, sv, of)
-    for projectdir in projectdirs
+    for projectdir in (dirname(initfile) for initfile in initfiles)
     for of, sv in SUPPORTED_OF_SV
 )
 
@@ -50,16 +48,19 @@ def test_data_file_filter(s: str) -> Generator[Any, None, None]:
 class TestCliEnvironment(TestCase, SnapshotMixin):
 
     @classmethod
+    def __setup_testbeds_init(cls) -> None:
+        for initfile in initfiles:
+            print('setup init testbed:', initfile)
+            res = run((executable, initfile),
+                      capture_output=True, encoding='utf8', shell=False)  # nosec:B603
+            if res.returncode != 0:
+                raise RuntimeError(
+                    f'failed init: {initfile}\nstdout: {res.stdout}\nstderr: {res.stderr}\n')
+
+    @classmethod
     def setUpClass(cls) -> None:
         if INIT_TESTBEDS:
-            for initfile in initfiles:
-                print('setup environment testbed:', initfile)
-                res = run([executable, initfile],
-                          capture_output=True, encoding='utf8', shell=False)  # nosec:B603
-                if res.returncode != 0:
-                    raise RuntimeError(f'failed init :\n'
-                                       f'stdout: {res.stdout}\n'
-                                       f'stderr: {res.stderr}\n')
+            cls.__setup_testbeds_init()
 
     @named_data(
         ('does-not-exist', 'something-that-must-not-exist.testing', 'No such file or directory'),

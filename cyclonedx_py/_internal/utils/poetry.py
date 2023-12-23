@@ -94,7 +94,7 @@ def poetry2dependencies(poetry: Dict[str, Any]) -> Generator['Requirement', None
         poetry.get('dev-dependencies', {}).items(),
         chain.from_iterable(
             group.get('dependencies', {}).items()
-            for group in poetry.get('group', {}).items()
+            for group in poetry.get('group', {}).values()
         )
     ):
         req = Requirement(name)

@@ -75,6 +75,9 @@ types-toml = "^0.10.0"
 setuptools = ">= 47.0.0"
 # `pip --python <...> install` needed fot setup/ini of test-beds
 pip = ">=22.3"
+# tools that may create venvs...
+pipenv = ">=2023.11.5"
+poetry = "*"  # the one from the host system is enough
 
 [tool.poetry.scripts]
 cyclonedx-py = 'cyclonedx_py._internal.cli:run'

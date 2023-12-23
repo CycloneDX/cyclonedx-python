@@ -61,7 +61,7 @@ class PipenvBB(BomBuilder):
                        type=arpaese_split((' ', ',')),
                        default=[])
         p.add_argument('-d', '--dev',
-                       help='both develop and default packages [env var: PIPENV_DEV]',
+                       help='Analyse both develop and default packages [env var: PIPENV_DEV]',
                        action='store_true',
                        dest='dev',
                        default=getenv('PIPENV_DEV', '').lower() in ('1', 'true', 'yes', 'on'))
