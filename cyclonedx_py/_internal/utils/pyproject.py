@@ -15,7 +15,6 @@ if TYPE_CHECKING:  # pragma: no cover
 def pyproject2component(data: Dict[str, Any], *,
                         type: 'ComponentType') -> 'Component':
     tool = data.get('tool', {})
-    # TODO decide based on install engine
     if 'poetry' in tool:
         return poetry2component(tool['poetry'], type=type)
     if 'project' in data:
@@ -43,7 +42,6 @@ def pyproject_file2component(pyproject_file: str, *,
 
 def pyproject2dependencies(data: Dict[str, Any]) -> Iterator['Requirement']:
     tool = data.get('tool', {})
-    # TODO decide based on install engine
     if 'poetry' in tool:
         return poetry2dependencies(tool['poetry'])
     if 'project' in data:

@@ -157,7 +157,6 @@
   ],
   "metadata": {
     "component": {
-      "author": "Your Name <you@example.com>",
       "bom-ref": "with-extras",
       "description": "depenndencies with extras",
       "name": "with-extras",

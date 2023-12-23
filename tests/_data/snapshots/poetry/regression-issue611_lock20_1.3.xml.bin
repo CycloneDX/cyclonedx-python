@@ -14,7 +14,6 @@
       </tool>
     </tools>
     <component type="application" bom-ref="regression-issue611">
-      <author>Your Name &lt;you@example.com&gt;</author>
       <name>regression-issue611</name>
       <version>0.1.0</version>
       <description>regression for issue #611</description>

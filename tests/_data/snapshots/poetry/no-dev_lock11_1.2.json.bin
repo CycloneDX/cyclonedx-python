@@ -34,7 +34,6 @@
   ],
   "metadata": {
     "component": {
-      "author": "Your Name <you@example.com>",
       "bom-ref": "group-deps",
       "description": "dependencies organized in groups",
       "name": "group-deps",

@@ -41,7 +41,6 @@
       </tool>
     </tools>
     <component type="application" bom-ref="with-urls">
-      <author>Your Name &lt;you@example.com&gt;</author>
       <name>with-urls</name>
       <version>0.1.0</version>
       <description>packages from direct urls</description>

@@ -23,7 +23,7 @@ See https://packaging.python.org/en/latest/specifications/declaring-project-meta
 See https://peps.python.org/pep-0621/
 """
 
-from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, Iterator, Tuple
+from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, Iterator
 
 if TYPE_CHECKING:
     from cyclonedx.factory.license import LicenseFactory

@@ -216,11 +216,21 @@ class EnvironmentBB(BomBuilder):
             bom.metadata.component = root_c
 
         for component, requires in all_components.values():
-            # we know a lot of dependencies, but here we are only interested in those that are actually installed/found
-            requires_d: Iterable[Component] = filter(None,
-                                                     map(lambda r: all_components.get(r.name.lower(), (None,))[0],
-                                                         requires))
-            bom.register_dependency(component, requires_d)
+            component_deps: List[Component] = []
+            for req in requires:
+                req_component: Optional[Component] = all_components.get(req.name.lower(), (None,))[0]
+                if req_component is None:
+                    continue
+                if req_component is component:
+                    # circulars are a typical thing when extras require other extras
+                    continue
+                component_deps.append(req_component)
+                req_component.properties.update(
+                    Property(
+                        name=PropertyName.PackageExtra.value,
+                        value=extra
+                    ) for extra in req.extras)
+            bom.register_dependency(component, component_deps)
 
     @staticmethod
     def __py_interpreter(value: str) -> str:

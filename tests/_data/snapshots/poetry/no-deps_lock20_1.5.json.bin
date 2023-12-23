@@ -6,7 +6,6 @@
   ],
   "metadata": {
     "component": {
-      "author": "Your Name <you@example.com> | My Name",
       "bom-ref": "no-deps",
       "description": "packages with all meta, but no deps",
       "externalReferences": [
