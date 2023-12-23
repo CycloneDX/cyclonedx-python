@@ -23,7 +23,7 @@ def pip_install(*args: str) -> None:
         *args
     )
     print('+ ', *call)
-    check_call(call, cwd=this_dir, env={}, shell=False)  # nosec:B603
+    check_call(call, cwd=this_dir, shell=False)  # nosec:B603
 
 
 def main() -> None:

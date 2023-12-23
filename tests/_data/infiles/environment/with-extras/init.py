@@ -24,7 +24,7 @@ def pip_run(*args: str, **kwargs: Any) -> CompletedProcess:
         *args
     )
     print('+ ', *call)
-    res = run(call, **kwargs, cwd=this_dir, env={}, shell=False)  # nosec:B603
+    res = run(call, **kwargs, cwd=this_dir, shell=False)  # nosec:B603
     if res.returncode != 0:
         raise RuntimeError('process failed')
     return res
