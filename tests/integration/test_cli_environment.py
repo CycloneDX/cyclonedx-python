@@ -52,7 +52,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
         for initfile in initfiles:
             print('setup init testbed:', initfile)
             res = run((executable, initfile),
-                      capture_output=True, encoding='utf8', shell=False)  # nosec:B603
+                      capture_output=True, encoding='utf8', errors='replace', shell=False)  # nosec:B603
             if res.returncode != 0:
                 raise RuntimeError(
                     f'failed init: {initfile}\nstdout: {res.stdout}\nstderr: {res.stderr}\n')

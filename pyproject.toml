@@ -74,8 +74,7 @@ types-toml = "^0.10.0"
 # see https://github.com/MichaelKim0407/flake8-use-fstring/issues/33
 setuptools = ">= 47.0.0"
 # `pip --python <...> install` needed fot setup/ini of test-beds
-pip = ">=22.3"
-# tools that may create venvs...
+pip = ">=22.0"
 pipenv = ">=2023.11.5"
 poetry = "*"  # the one from the host system is enough
 
