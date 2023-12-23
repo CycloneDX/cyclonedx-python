@@ -1,0 +1,6 @@
+[virtualenvs]
+in-project = true
+[virtualenvs.options]
+# these are already dev-dependencies, and therefore will come as needed
+no-pip = true
+no-setuptools = true
