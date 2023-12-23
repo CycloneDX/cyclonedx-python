@@ -12,6 +12,9 @@ __all__ = ['main']
 this_dir = dirname(__file__)
 
 
+poetry_env = environ.copy()
+poetry_env['VIRTUAL_ENV'] = ''
+
 def poetry_run(*args: str) -> CompletedProcess:
     # Poetry is not API, but a CLI -- call it like that!
     call = (
@@ -19,9 +22,7 @@ def poetry_run(*args: str) -> CompletedProcess:
         *args
     )
     print('+ ', *call)
-    res = run(call, cwd=this_dir, env=dict(environ) | {
-        'VIRTUAL_ENV': '',
-    }, shell=False)  # nosec:B603
+    res = run(call, cwd=this_dir, env=poetry_env, shell=False)  # nosec:B603
     if res.returncode != 0:
         raise RuntimeError('process failed')
     return res
