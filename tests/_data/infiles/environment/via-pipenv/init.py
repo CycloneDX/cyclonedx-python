@@ -27,7 +27,7 @@ def pipenv_run(*args: str) -> CompletedProcess:
         'PIPENV_IGNORE_VIRTUALENVS': '1',
         'PIPENV_NO_INHERIT': '1',
         'PIPENV_NOSPIN': '1',
-    }, shell=True)  # nosec:B603
+    }, shell=False)  # nosec:B603
     if res.returncode != 0:
         raise RuntimeError('process failed')
     return res
