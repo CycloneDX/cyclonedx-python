@@ -70,9 +70,7 @@ class PoetryBB(BomBuilder):
         from argparse import OPTIONAL, ArgumentParser
         from textwrap import dedent
 
-        from cyclonedx.model.component import ComponentType
-
-        from .utils.args import argparse_type4enum
+        from .cli_common import add_argument_mc_type
 
         p = ArgumentParser(description=dedent("""\
                            Build an SBOM from Poetry project.
@@ -116,18 +114,7 @@ class PoetryBB(BomBuilder):
                         dest='all_extras',
                         default=False)
         del eg
-        _mc_types = [ComponentType.APPLICATION,
-                     ComponentType.FIRMWARE,
-                     ComponentType.LIBRARY]
-        p.add_argument('--mc-type',
-                       metavar='TYPE',
-                       help='Type of the main component'
-                            f' {{choices: {", ".join(t.value for t in _mc_types)}}}'
-                            ' (default: %(default)s)',
-                       dest='mc_type',
-                       choices=_mc_types,
-                       type=argparse_type4enum(ComponentType),
-                       default=ComponentType.APPLICATION)
+        add_argument_mc_type(p)
         p.add_argument('project_directory',
                        metavar='project-directory',
                        help='The project directory for Poetry (default: current working directory)',

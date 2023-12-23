@@ -40,9 +40,7 @@ class EnvironmentBB(BomBuilder):
         from os import name as os_name
         from textwrap import dedent
 
-        from cyclonedx.model.component import ComponentType
-
-        from .utils.args import argparse_type4enum
+        from .cli_common import add_argument_mc_type, add_argument_pyproject
 
         p = ArgumentParser(description='Build an SBOM from Python (virtual) environment',
                            **kwargs)
@@ -87,23 +85,8 @@ class EnvironmentBB(BomBuilder):
                  • Build an SBOM from Poetry environment:
                        $ %(prog)s "$(poetry env info --executable)"
                """)
-        p.add_argument('--pyproject',
-                       metavar='FILE',
-                       help="Path to the root component's `pyproject.toml` according to PEP621",
-                       dest='pyproject_file',
-                       default=None)
-        _mc_types = [ComponentType.APPLICATION,
-                     ComponentType.FIRMWARE,
-                     ComponentType.LIBRARY]
-        p.add_argument('--mc-type',
-                       metavar='TYPE',
-                       help='Type of the main component'
-                            f' {{choices: {", ".join(t.value for t in _mc_types)}}}'
-                            ' (default: %(default)s)',
-                       dest='mc_type',
-                       choices=_mc_types,
-                       type=argparse_type4enum(ComponentType),
-                       default=ComponentType.APPLICATION)
+        add_argument_pyproject(p)
+        add_argument_mc_type(p)
         # TODO possible additional switch:
         #  `--exclude <package>` Exclude specified package from the output (multi use)
         #  `--local`        If in a virtualenv that has global access, do not list globally-installed packages.

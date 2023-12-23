@@ -41,9 +41,7 @@ class RequirementsBB(BomBuilder):
         from argparse import OPTIONAL, ArgumentParser
         from textwrap import dedent
 
-        from cyclonedx.model.component import ComponentType
-
-        from .utils.args import argparse_type4enum
+        from .cli_common import add_argument_mc_type, add_argument_pyproject
 
         p = ArgumentParser(description=dedent("""\
                            Build an SBOM from Pip requirements.
@@ -83,27 +81,12 @@ class RequirementsBB(BomBuilder):
                        action='append',
                        dest='extra_index_urls',
                        default=[])
-        p.add_argument('--pyproject',
-                       metavar='FILE',
-                       help="Path to the root component's `pyproject.toml` according to PEP621",
-                       dest='pyproject_file',
-                       default=None)
-        _mc_types = [ComponentType.APPLICATION,
-                     ComponentType.FIRMWARE,
-                     ComponentType.LIBRARY]
-        p.add_argument('--mc-type',
-                       metavar='TYPE',
-                       help='Type of the main component'
-                            f' {{choices: {", ".join(t.value for t in _mc_types)}}}'
-                            ' (default: %(default)s)',
-                       dest='mc_type',
-                       choices=_mc_types,
-                       type=argparse_type4enum(ComponentType),
-                       default=ComponentType.APPLICATION)
+        add_argument_pyproject(p)
+        add_argument_mc_type(p)
         p.add_argument('requirements_file',
                        metavar='REQUIREMENTS-FILE',
-                       help='Requirements file (default: %(default)r in current working directory).\n'
-                            'May be set to "-" to read from <stdin>.',
+                       help='Path to requirements file. May be set to "-" to read from <stdin>. '
+                            '(default: %(default)r in current working directory)',
                        nargs=OPTIONAL,
                        default='requirements.txt')
         return p
