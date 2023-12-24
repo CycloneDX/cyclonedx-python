@@ -48,10 +48,6 @@ if TYPE_CHECKING:  # pragma: no cover
     T_AllComponents = Dict[str, Tuple['Component', Iterable[Requirement]]]
 
 
-# !!! be as lazy loading as possible, as greedy as needed
-# TODO: measure with `/bin/time -v` for max resident size and see if this changes when global imports are used
-
-
 class EnvironmentBB(BomBuilder):
 
     @staticmethod

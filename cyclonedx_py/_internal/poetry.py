@@ -44,10 +44,6 @@ if TYPE_CHECKING:  # pragma: no cover
     NameDict = Dict[str, Any]
 
 
-# !!! be as lazy loading as possible, as greedy as needed
-# TODO: measure with `/bin/time -v` for max resident size and see if this changes when global imports are used
-
-
 @dataclass
 class _LockEntry:
     name: str

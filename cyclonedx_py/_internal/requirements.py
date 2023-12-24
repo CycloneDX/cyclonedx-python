@@ -41,10 +41,6 @@ if TYPE_CHECKING:  # pragma: no cover
     from pip_requirements_parser import InstallRequirement
 
 
-# !!! be as lazy loading as possible, as greedy as needed
-# TODO: measure with `/bin/time -v` for max resident size and see if this changes when global imports are used
-
-
 class RequirementsBB(BomBuilder):
 
     @staticmethod
