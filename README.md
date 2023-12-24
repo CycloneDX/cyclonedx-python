@@ -87,7 +87,7 @@ However, there are older versions of this tool, that support `python>=2.7`.
 This tool utilizes the [CycloneDX Python library][cyclonedx-library] to generate the actual data structures, and serialize and validate them.  
 
 This tool does **not** expose any additional _public_ API or classes - all code is intended to be internal and might change without any notice during version upgrades.
-However, the CLI is stable - you may call it programmatically via:
+However, the CLI is stable - you may call it programmatically like:
 ```python
 from sys import executable
 from subprocess import run

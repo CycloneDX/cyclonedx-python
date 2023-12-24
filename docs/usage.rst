@@ -33,6 +33,7 @@ The full documentation can be issued by running with ``--help``:
 For Python (virtual) environment
 --------------------------------
 
+.. TODO: describe what an environment is...
 
 This will produce the most accurate and complete CycloneDX BOM as it analyses the actually installed packages.
 It will include all transitive dependencies required by the packages, as well as their properties.
@@ -155,17 +156,18 @@ Examples for Windows
 For Pipenv
 ----------
 
+.. TODO
 
 
 For Poetry
 ----------
 
-
+.. TODO
 
 For Requirements
 ----------------
 
-
+.. TODO
 
 
 For Conda
@@ -177,7 +179,7 @@ However, since it might manage a python environment under the hood,
 it is possible to utilize the functionality for Python environments as described above.
 
 
-
+*****
 
 
 Programmatic Usage
@@ -189,7 +191,7 @@ This tool does **not** expose any additional *public* API or classes - all code 
 
 .. _CycloneDX Python library: https://pypi.org/project/cyclonedx-python-lib
 
-However, The CLI is stable - you may call it programmatically via:
+However, the CLI is stable - you may call it programmatically like:
 
 .. code-block:: python
 
