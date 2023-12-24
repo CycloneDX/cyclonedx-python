@@ -19,7 +19,6 @@
 from argparse import OPTIONAL, ArgumentParser
 from functools import reduce
 from os import unlink
-from sys import stdin
 from textwrap import dedent
 from typing import TYPE_CHECKING, Any, Generator, List, Optional, Set
 
@@ -119,12 +118,13 @@ class RequirementsBB(BomBuilder):
             rc.bom_ref.value = 'root-component'
 
         if requirements_file == '-':
+            from sys import stdin  # late bind, to allow patching
             rt = io2file(stdin.buffer)
             try:
                 rf = RequirementsFile.from_file(rt, include_nested=False)
             finally:
                 unlink(rt)
-            del rt
+            del rt, stdin
         else:
             rf = RequirementsFile.from_file(requirements_file, include_nested=True)
 
