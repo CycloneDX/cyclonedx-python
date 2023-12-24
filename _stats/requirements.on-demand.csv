@@ -1,0 +1,142 @@
+#  %C   command line and arguments
+#  %c   involuntary context switches
+#  %E   elapsed real time (wall clock) in [hour:]min:sec
+#  %e   elapsed real time (wall clock) in seconds
+#  %F   major page faults
+#  %M   maximum resident set size in KB
+#  %P   percent of CPU this job got
+#  %R   minor page faults
+#  %S   system (kernel) time in seconds
+#  %U   user time in seconds
+#  %w   voluntary context switches
+#  %x   exit status of command
+# %C ; %c ; %E ; %e ; %F ; %M ; %P ; %R ; %R ; %S ; %U ; %w ; %x
+cyclonedx-py environment -o /dev/null --pyproject tests/_data/infiles/environment/editable-self/pyproject.toml tests/_data/infiles/environment/editable-self/.venv ; 53 ; 0:01.56 ; 1.56 ; 0 ; 35340 ; 99% ; 8274 ; 8274 ; 0.14 ; 1.41 ; 5 ; 0
+cyclonedx-py environment -o /dev/null --pyproject tests/_data/infiles/environment/local/pyproject.toml tests/_data/infiles/environment/local/.venv ; 39 ; 0:01.62 ; 1.62 ; 0 ; 35384 ; 99% ; 8072 ; 8072 ; 0.11 ; 1.50 ; 5 ; 0
+cyclonedx-py environment -o /dev/null --pyproject tests/_data/infiles/environment/no-deps/pyproject.toml tests/_data/infiles/environment/no-deps/.venv ; 30 ; 0:01.58 ; 1.58 ; 0 ; 36268 ; 99% ; 8273 ; 8273 ; 0.19 ; 1.38 ; 5 ; 0
+cyclonedx-py environment -o /dev/null --pyproject tests/_data/infiles/environment/via-pipenv/pyproject.toml tests/_data/infiles/environment/via-pipenv/.venv ; 39 ; 0:01.49 ; 1.49 ; 0 ; 36152 ; 99% ; 8298 ; 8298 ; 0.14 ; 1.35 ; 4 ; 0
+cyclonedx-py environment -o /dev/null --pyproject tests/_data/infiles/environment/via-poetry/pyproject.toml tests/_data/infiles/environment/via-poetry/.venv ; 68 ; 0:01.59 ; 1.59 ; 0 ; 36208 ; 99% ; 8292 ; 8292 ; 0.10 ; 1.48 ; 5 ; 0
+cyclonedx-py environment -o /dev/null --pyproject tests/_data/infiles/environment/with-extras/pyproject.toml tests/_data/infiles/environment/with-extras/.venv ; 58 ; 0:01.75 ; 1.75 ; 0 ; 36464 ; 99% ; 8315 ; 8315 ; 0.13 ; 1.61 ; 5 ; 0
+cyclonedx-py environment -o /dev/null --pyproject tests/_data/infiles/environment/with-urls/pyproject.toml tests/_data/infiles/environment/with-urls/.venv ; 39 ; 0:01.53 ; 1.53 ; 0 ; 35284 ; 99% ; 8064 ; 8064 ; 0.17 ; 1.35 ; 5 ; 0
+cyclonedx-py pipenv -o /dev/null --pyproject tests/_data/infiles/pipenv/category-deps/pyproject.toml tests/_data/infiles/pipenv/category-deps ; 6 ; 0:01.22 ; 1.22 ; 0 ; 34324 ; 99% ; 6676 ; 6676 ; 0.07 ; 1.14 ; 1 ; 0
+cyclonedx-py pipenv -o /dev/null --pyproject tests/_data/infiles/pipenv/default-and-dev/pyproject.toml tests/_data/infiles/pipenv/default-and-dev ; 35 ; 0:01.25 ; 1.25 ; 0 ; 34156 ; 99% ; 6673 ; 6673 ; 0.12 ; 1.12 ; 1 ; 0
+cyclonedx-py pipenv -o /dev/null --pyproject tests/_data/infiles/pipenv/editable-self/pyproject.toml tests/_data/infiles/pipenv/editable-self ; 10 ; 0:01.28 ; 1.28 ; 0 ; 34164 ; 99% ; 6675 ; 6675 ; 0.09 ; 1.18 ; 1 ; 0
+cyclonedx-py pipenv -o /dev/null --pyproject tests/_data/infiles/pipenv/local/pyproject.toml tests/_data/infiles/pipenv/local ; 42 ; 0:01.25 ; 1.25 ; 0 ; 34244 ; 99% ; 6677 ; 6677 ; 0.10 ; 1.15 ; 1 ; 0
+cyclonedx-py pipenv -o /dev/null --pyproject tests/_data/infiles/pipenv/no-deps/pyproject.toml tests/_data/infiles/pipenv/no-deps ; 65 ; 0:01.23 ; 1.23 ; 0 ; 35180 ; 99% ; 6879 ; 6879 ; 0.08 ; 1.14 ; 1 ; 0
+cyclonedx-py pipenv -o /dev/null --pyproject tests/_data/infiles/pipenv/private-packages/pyproject.toml tests/_data/infiles/pipenv/private-packages ; 22 ; 0:01.31 ; 1.31 ; 0 ; 34372 ; 99% ; 6679 ; 6679 ; 0.11 ; 1.20 ; 1 ; 0
+cyclonedx-py pipenv -o /dev/null --pyproject tests/_data/infiles/pipenv/with-extras/pyproject.toml tests/_data/infiles/pipenv/with-extras ; 25 ; 0:01.56 ; 1.56 ; 0 ; 34496 ; 99% ; 6723 ; 6723 ; 0.09 ; 1.45 ; 1 ; 0
+cyclonedx-py pipenv -o /dev/null --pyproject tests/_data/infiles/pipenv/with-urls/pyproject.toml tests/_data/infiles/pipenv/with-urls ; 11 ; 0:01.43 ; 1.43 ; 0 ; 34288 ; 99% ; 6692 ; 6692 ; 0.11 ; 1.31 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/group-deps/lock11 ; 288 ; 0:01.86 ; 1.86 ; 0 ; 34480 ; 79% ; 6718 ; 6718 ; 0.12 ; 1.36 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/group-deps/lock20 ; 507 ; 0:02.03 ; 2.03 ; 0 ; 34256 ; 73% ; 6712 ; 6712 ; 0.10 ; 1.39 ; 0 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/local/lock10 ; 57 ; 0:01.34 ; 1.34 ; 0 ; 34216 ; 99% ; 6677 ; 6677 ; 0.11 ; 1.22 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/local/lock11 ; 332 ; 0:01.42 ; 1.42 ; 0 ; 34296 ; 93% ; 6678 ; 6678 ; 0.08 ; 1.25 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/local/lock20 ; 43 ; 0:01.00 ; 1.00 ; 0 ; 34328 ; 99% ; 6682 ; 6682 ; 0.09 ; 0.90 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/main-and-dev/lock10 ; 9 ; 0:00.96 ; 0.96 ; 0 ; 34468 ; 99% ; 6706 ; 6706 ; 0.08 ; 0.88 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/main-and-dev/lock11 ; 17 ; 0:01.02 ; 1.02 ; 0 ; 34568 ; 99% ; 6712 ; 6712 ; 0.05 ; 0.97 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/main-and-dev/lock20 ; 7 ; 0:00.98 ; 0.98 ; 0 ; 34472 ; 99% ; 6706 ; 6706 ; 0.05 ; 0.93 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/no-deps/lock20 ; 16 ; 0:01.07 ; 1.07 ; 0 ; 35232 ; 99% ; 6889 ; 6889 ; 0.10 ; 0.97 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/private-packges/lock10 ; 10 ; 0:00.95 ; 0.95 ; 0 ; 34464 ; 99% ; 6684 ; 6684 ; 0.08 ; 0.86 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/private-packges/lock11 ; 26 ; 0:01.05 ; 1.05 ; 0 ; 34764 ; 99% ; 6791 ; 6791 ; 0.06 ; 0.99 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/private-packges/lock20 ; 9 ; 0:01.06 ; 1.06 ; 0 ; 34768 ; 99% ; 6788 ; 6788 ; 0.09 ; 0.97 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/regression-issue611/lock20 ; 7 ; 0:00.92 ; 0.92 ; 0 ; 34336 ; 99% ; 6673 ; 6673 ; 0.08 ; 0.83 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/with-extras/lock10 ; 9 ; 0:00.95 ; 0.95 ; 0 ; 34556 ; 99% ; 6701 ; 6701 ; 0.10 ; 0.84 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/with-extras/lock11 ; 13 ; 0:01.00 ; 1.00 ; 0 ; 34980 ; 99% ; 6832 ; 6832 ; 0.07 ; 0.92 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/with-extras/lock20 ; 6 ; 0:01.00 ; 1.00 ; 0 ; 35288 ; 99% ; 6888 ; 6888 ; 0.03 ; 0.96 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/with-urls/lock10 ; 6 ; 0:00.94 ; 0.94 ; 0 ; 34380 ; 99% ; 6693 ; 6693 ; 0.09 ; 0.85 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/with-urls/lock11 ; 3 ; 0:00.93 ; 0.93 ; 0 ; 34468 ; 99% ; 6691 ; 6691 ; 0.06 ; 0.87 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/with-urls/lock20 ; 12 ; 0:01.06 ; 1.06 ; 0 ; 34424 ; 99% ; 6690 ; 6690 ; 0.11 ; 0.94 ; 1 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/frozen.txt ; 5 ; 0:01.06 ; 1.06 ; 0 ; 36356 ; 99% ; 7212 ; 7212 ; 0.07 ; 0.98 ; 1 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/local.txt ; 15 ; 0:01.07 ; 1.07 ; 0 ; 36388 ; 99% ; 7219 ; 7219 ; 0.06 ; 1.00 ; 1 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/nested.txt ; 22 ; 0:01.06 ; 1.06 ; 0 ; 36540 ; 99% ; 7214 ; 7214 ; 0.07 ; 0.98 ; 1 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/private-packages.txt ; 9 ; 0:01.05 ; 1.05 ; 0 ; 36464 ; 100% ; 7213 ; 7213 ; 0.08 ; 0.96 ; 1 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/with-comments.txt ; 5 ; 0:01.06 ; 1.06 ; 0 ; 36360 ; 99% ; 7215 ; 7215 ; 0.09 ; 0.97 ; 1 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/with-extras.txt ; 5 ; 0:01.07 ; 1.07 ; 0 ; 36464 ; 99% ; 7216 ; 7216 ; 0.07 ; 0.99 ; 1 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/with-hashes.txt ; 12 ; 0:01.08 ; 1.08 ; 0 ; 36296 ; 99% ; 7219 ; 7219 ; 0.09 ; 0.98 ; 1 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/without-pinned-versions.txt ; 20 ; 0:01.09 ; 1.09 ; 0 ; 36380 ; 99% ; 7214 ; 7214 ; 0.06 ; 1.03 ; 1 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/with-urls.txt ; 21 ; 0:01.19 ; 1.19 ; 0 ; 36452 ; 99% ; 7220 ; 7220 ; 0.10 ; 1.08 ; 1 ; 0
+cyclonedx-py environment -o /dev/null --pyproject tests/_data/infiles/environment/editable-self/pyproject.toml tests/_data/infiles/environment/editable-self/.venv ; 36 ; 0:01.59 ; 1.59 ; 0 ; 35432 ; 99% ; 8280 ; 8280 ; 0.12 ; 1.46 ; 5 ; 0
+cyclonedx-py environment -o /dev/null --pyproject tests/_data/infiles/environment/local/pyproject.toml tests/_data/infiles/environment/local/.venv ; 36 ; 0:01.49 ; 1.49 ; 0 ; 35456 ; 99% ; 8074 ; 8074 ; 0.14 ; 1.35 ; 4 ; 0
+cyclonedx-py environment -o /dev/null --pyproject tests/_data/infiles/environment/no-deps/pyproject.toml tests/_data/infiles/environment/no-deps/.venv ; 14 ; 0:01.60 ; 1.60 ; 0 ; 36180 ; 99% ; 8277 ; 8277 ; 0.13 ; 1.46 ; 7 ; 0
+cyclonedx-py environment -o /dev/null --pyproject tests/_data/infiles/environment/via-pipenv/pyproject.toml tests/_data/infiles/environment/via-pipenv/.venv ; 37 ; 0:01.53 ; 1.53 ; 0 ; 36092 ; 99% ; 8297 ; 8297 ; 0.13 ; 1.40 ; 5 ; 0
+cyclonedx-py environment -o /dev/null --pyproject tests/_data/infiles/environment/via-poetry/pyproject.toml tests/_data/infiles/environment/via-poetry/.venv ; 45 ; 0:01.58 ; 1.58 ; 0 ; 36152 ; 99% ; 8295 ; 8295 ; 0.12 ; 1.45 ; 7 ; 0
+cyclonedx-py environment -o /dev/null --pyproject tests/_data/infiles/environment/with-extras/pyproject.toml tests/_data/infiles/environment/with-extras/.venv ; 29 ; 0:01.71 ; 1.71 ; 0 ; 36296 ; 99% ; 8316 ; 8316 ; 0.15 ; 1.56 ; 5 ; 0
+cyclonedx-py environment -o /dev/null --pyproject tests/_data/infiles/environment/with-urls/pyproject.toml tests/_data/infiles/environment/with-urls/.venv ; 28 ; 0:01.61 ; 1.61 ; 0 ; 35352 ; 99% ; 8064 ; 8064 ; 0.11 ; 1.49 ; 5 ; 0
+cyclonedx-py pipenv -o /dev/null --pyproject tests/_data/infiles/pipenv/category-deps/pyproject.toml tests/_data/infiles/pipenv/category-deps ; 16 ; 0:01.26 ; 1.26 ; 0 ; 34192 ; 99% ; 6674 ; 6674 ; 0.08 ; 1.17 ; 1 ; 0
+cyclonedx-py pipenv -o /dev/null --pyproject tests/_data/infiles/pipenv/default-and-dev/pyproject.toml tests/_data/infiles/pipenv/default-and-dev ; 12 ; 0:01.18 ; 1.18 ; 0 ; 34360 ; 99% ; 6672 ; 6672 ; 0.10 ; 1.08 ; 1 ; 0
+cyclonedx-py pipenv -o /dev/null --pyproject tests/_data/infiles/pipenv/editable-self/pyproject.toml tests/_data/infiles/pipenv/editable-self ; 62 ; 0:01.24 ; 1.24 ; 0 ; 34156 ; 99% ; 6673 ; 6673 ; 0.11 ; 1.12 ; 1 ; 0
+cyclonedx-py pipenv -o /dev/null --pyproject tests/_data/infiles/pipenv/local/pyproject.toml tests/_data/infiles/pipenv/local ; 15 ; 0:01.26 ; 1.26 ; 0 ; 34360 ; 99% ; 6676 ; 6676 ; 0.10 ; 1.15 ; 1 ; 0
+cyclonedx-py pipenv -o /dev/null --pyproject tests/_data/infiles/pipenv/no-deps/pyproject.toml tests/_data/infiles/pipenv/no-deps ; 46 ; 0:01.23 ; 1.23 ; 0 ; 35208 ; 99% ; 6881 ; 6881 ; 0.11 ; 1.12 ; 1 ; 0
+cyclonedx-py pipenv -o /dev/null --pyproject tests/_data/infiles/pipenv/private-packages/pyproject.toml tests/_data/infiles/pipenv/private-packages ; 10 ; 0:01.23 ; 1.23 ; 0 ; 34360 ; 99% ; 6678 ; 6678 ; 0.11 ; 1.11 ; 1 ; 0
+cyclonedx-py pipenv -o /dev/null --pyproject tests/_data/infiles/pipenv/with-extras/pyproject.toml tests/_data/infiles/pipenv/with-extras ; 35 ; 0:01.40 ; 1.40 ; 0 ; 34440 ; 99% ; 6722 ; 6722 ; 0.12 ; 1.27 ; 1 ; 0
+cyclonedx-py pipenv -o /dev/null --pyproject tests/_data/infiles/pipenv/with-urls/pyproject.toml tests/_data/infiles/pipenv/with-urls ; 8 ; 0:01.36 ; 1.36 ; 0 ; 34488 ; 99% ; 6692 ; 6692 ; 0.07 ; 1.28 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/group-deps/lock11 ; 27 ; 0:01.41 ; 1.41 ; 0 ; 34608 ; 99% ; 6714 ; 6714 ; 0.10 ; 1.30 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/group-deps/lock20 ; 21 ; 0:01.44 ; 1.44 ; 0 ; 34500 ; 99% ; 6715 ; 6715 ; 0.10 ; 1.33 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/local/lock10 ; 46 ; 0:01.28 ; 1.28 ; 0 ; 34064 ; 99% ; 6677 ; 6677 ; 0.10 ; 1.17 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/local/lock11 ; 12 ; 0:01.30 ; 1.30 ; 0 ; 34468 ; 99% ; 6681 ; 6681 ; 0.09 ; 1.20 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/local/lock20 ; 20 ; 0:01.29 ; 1.29 ; 0 ; 34332 ; 99% ; 6678 ; 6678 ; 0.11 ; 1.17 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/main-and-dev/lock10 ; 26 ; 0:01.27 ; 1.27 ; 0 ; 34196 ; 99% ; 6706 ; 6706 ; 0.09 ; 1.18 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/main-and-dev/lock11 ; 8 ; 0:01.29 ; 1.29 ; 0 ; 34616 ; 99% ; 6715 ; 6715 ; 0.13 ; 1.15 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/main-and-dev/lock20 ; 14 ; 0:01.30 ; 1.30 ; 0 ; 34336 ; 99% ; 6709 ; 6709 ; 0.10 ; 1.19 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/no-deps/lock20 ; 18 ; 0:01.30 ; 1.30 ; 0 ; 35172 ; 99% ; 6896 ; 6896 ; 0.13 ; 1.16 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/private-packges/lock10 ; 11 ; 0:01.24 ; 1.24 ; 0 ; 34464 ; 99% ; 6682 ; 6682 ; 0.10 ; 1.13 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/private-packges/lock11 ; 9 ; 0:01.41 ; 1.41 ; 0 ; 34852 ; 99% ; 6793 ; 6793 ; 0.11 ; 1.29 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/private-packges/lock20 ; 6 ; 0:01.35 ; 1.35 ; 0 ; 34932 ; 99% ; 6788 ; 6788 ; 0.07 ; 1.28 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/regression-issue611/lock20 ; 7 ; 0:01.19 ; 1.19 ; 0 ; 34456 ; 99% ; 6675 ; 6675 ; 0.12 ; 1.06 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/with-extras/lock10 ; 26 ; 0:01.19 ; 1.19 ; 0 ; 34124 ; 99% ; 6704 ; 6704 ; 0.10 ; 1.08 ; 0 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/with-extras/lock11 ; 29 ; 0:01.29 ; 1.29 ; 0 ; 34924 ; 99% ; 6834 ; 6834 ; 0.08 ; 1.20 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/with-extras/lock20 ; 18 ; 0:01.36 ; 1.36 ; 0 ; 35168 ; 99% ; 6891 ; 6891 ; 0.08 ; 1.27 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/with-urls/lock10 ; 12 ; 0:01.42 ; 1.42 ; 0 ; 34464 ; 99% ; 6695 ; 6695 ; 0.12 ; 1.30 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/with-urls/lock11 ; 20 ; 0:01.28 ; 1.28 ; 0 ; 34440 ; 99% ; 6694 ; 6694 ; 0.10 ; 1.18 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/with-urls/lock20 ; 13 ; 0:01.27 ; 1.27 ; 0 ; 34464 ; 99% ; 6694 ; 6694 ; 0.14 ; 1.13 ; 1 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/frozen.txt ; 7 ; 0:01.52 ; 1.52 ; 0 ; 36492 ; 100% ; 7217 ; 7217 ; 0.11 ; 1.41 ; 1 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/local.txt ; 22 ; 0:01.48 ; 1.48 ; 0 ; 36220 ; 99% ; 7215 ; 7215 ; 0.14 ; 1.33 ; 1 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/nested.txt ; 65 ; 0:01.51 ; 1.51 ; 0 ; 36304 ; 99% ; 7213 ; 7213 ; 0.11 ; 1.38 ; 0 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/private-packages.txt ; 53 ; 0:01.38 ; 1.38 ; 0 ; 36324 ; 99% ; 7214 ; 7214 ; 0.12 ; 1.25 ; 1 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/with-comments.txt ; 11 ; 0:01.49 ; 1.49 ; 0 ; 36476 ; 99% ; 7217 ; 7217 ; 0.09 ; 1.40 ; 1 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/with-extras.txt ; 10 ; 0:01.34 ; 1.34 ; 0 ; 36420 ; 99% ; 7217 ; 7217 ; 0.11 ; 1.22 ; 1 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/with-hashes.txt ; 54 ; 0:01.43 ; 1.43 ; 0 ; 36620 ; 99% ; 7220 ; 7220 ; 0.10 ; 1.32 ; 1 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/without-pinned-versions.txt ; 14 ; 0:01.55 ; 1.55 ; 0 ; 36356 ; 99% ; 7213 ; 7213 ; 0.11 ; 1.43 ; 1 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/with-urls.txt ; 36 ; 0:01.44 ; 1.44 ; 0 ; 36464 ; 99% ; 7217 ; 7217 ; 0.08 ; 1.35 ; 1 ; 0
+cyclonedx-py environment -o /dev/null --pyproject tests/_data/infiles/environment/editable-self/pyproject.toml tests/_data/infiles/environment/editable-self/.venv ; 70 ; 0:01.44 ; 1.44 ; 0 ; 35372 ; 99% ; 8280 ; 8280 ; 0.09 ; 1.34 ; 4 ; 0
+cyclonedx-py environment -o /dev/null --pyproject tests/_data/infiles/environment/local/pyproject.toml tests/_data/infiles/environment/local/.venv ; 45 ; 0:01.55 ; 1.55 ; 0 ; 35452 ; 99% ; 8069 ; 8069 ; 0.13 ; 1.41 ; 5 ; 0
+cyclonedx-py environment -o /dev/null --pyproject tests/_data/infiles/environment/no-deps/pyproject.toml tests/_data/infiles/environment/no-deps/.venv ; 40 ; 0:01.50 ; 1.50 ; 0 ; 35968 ; 99% ; 8276 ; 8276 ; 0.12 ; 1.38 ; 5 ; 0
+cyclonedx-py environment -o /dev/null --pyproject tests/_data/infiles/environment/via-pipenv/pyproject.toml tests/_data/infiles/environment/via-pipenv/.venv ; 41 ; 0:01.43 ; 1.43 ; 0 ; 36012 ; 99% ; 8298 ; 8298 ; 0.13 ; 1.30 ; 5 ; 0
+cyclonedx-py environment -o /dev/null --pyproject tests/_data/infiles/environment/via-poetry/pyproject.toml tests/_data/infiles/environment/via-poetry/.venv ; 24 ; 0:01.57 ; 1.57 ; 0 ; 36100 ; 99% ; 8299 ; 8299 ; 0.12 ; 1.45 ; 5 ; 0
+cyclonedx-py environment -o /dev/null --pyproject tests/_data/infiles/environment/with-extras/pyproject.toml tests/_data/infiles/environment/with-extras/.venv ; 24 ; 0:01.89 ; 1.89 ; 0 ; 36396 ; 99% ; 8312 ; 8312 ; 0.12 ; 1.76 ; 6 ; 0
+cyclonedx-py environment -o /dev/null --pyproject tests/_data/infiles/environment/with-urls/pyproject.toml tests/_data/infiles/environment/with-urls/.venv ; 12 ; 0:01.43 ; 1.43 ; 0 ; 35580 ; 99% ; 8065 ; 8065 ; 0.12 ; 1.30 ; 5 ; 0
+cyclonedx-py pipenv -o /dev/null --pyproject tests/_data/infiles/pipenv/category-deps/pyproject.toml tests/_data/infiles/pipenv/category-deps ; 58 ; 0:01.26 ; 1.26 ; 0 ; 34312 ; 99% ; 6674 ; 6674 ; 0.12 ; 1.13 ; 1 ; 0
+cyclonedx-py pipenv -o /dev/null --pyproject tests/_data/infiles/pipenv/default-and-dev/pyproject.toml tests/_data/infiles/pipenv/default-and-dev ; 64 ; 0:01.19 ; 1.19 ; 0 ; 34136 ; 99% ; 6672 ; 6672 ; 0.09 ; 1.09 ; 0 ; 0
+cyclonedx-py pipenv -o /dev/null --pyproject tests/_data/infiles/pipenv/editable-self/pyproject.toml tests/_data/infiles/pipenv/editable-self ; 56 ; 0:01.50 ; 1.50 ; 0 ; 34320 ; 99% ; 6676 ; 6676 ; 0.13 ; 1.36 ; 1 ; 0
+cyclonedx-py pipenv -o /dev/null --pyproject tests/_data/infiles/pipenv/local/pyproject.toml tests/_data/infiles/pipenv/local ; 73 ; 0:01.44 ; 1.44 ; 0 ; 34364 ; 99% ; 6677 ; 6677 ; 0.11 ; 1.32 ; 1 ; 0
+cyclonedx-py pipenv -o /dev/null --pyproject tests/_data/infiles/pipenv/no-deps/pyproject.toml tests/_data/infiles/pipenv/no-deps ; 38 ; 0:01.49 ; 1.49 ; 0 ; 35128 ; 98% ; 6881 ; 6881 ; 0.11 ; 1.36 ; 0 ; 0
+cyclonedx-py pipenv -o /dev/null --pyproject tests/_data/infiles/pipenv/private-packages/pyproject.toml tests/_data/infiles/pipenv/private-packages ; 182 ; 0:01.47 ; 1.47 ; 0 ; 34364 ; 99% ; 6679 ; 6679 ; 0.15 ; 1.30 ; 1 ; 0
+cyclonedx-py pipenv -o /dev/null --pyproject tests/_data/infiles/pipenv/with-extras/pyproject.toml tests/_data/infiles/pipenv/with-extras ; 44 ; 0:01.50 ; 1.50 ; 0 ; 34620 ; 99% ; 6720 ; 6720 ; 0.13 ; 1.36 ; 1 ; 0
+cyclonedx-py pipenv -o /dev/null --pyproject tests/_data/infiles/pipenv/with-urls/pyproject.toml tests/_data/infiles/pipenv/with-urls ; 44 ; 0:01.31 ; 1.31 ; 0 ; 34408 ; 99% ; 6695 ; 6695 ; 0.12 ; 1.18 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/group-deps/lock11 ; 16 ; 0:01.37 ; 1.37 ; 0 ; 34604 ; 99% ; 6712 ; 6712 ; 0.10 ; 1.26 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/group-deps/lock20 ; 22 ; 0:01.36 ; 1.36 ; 0 ; 34396 ; 99% ; 6713 ; 6713 ; 0.10 ; 1.25 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/local/lock10 ; 10 ; 0:01.17 ; 1.17 ; 0 ; 34204 ; 99% ; 6677 ; 6677 ; 0.09 ; 1.08 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/local/lock11 ; 10 ; 0:01.24 ; 1.24 ; 0 ; 34452 ; 99% ; 6681 ; 6681 ; 0.09 ; 1.14 ; 0 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/local/lock20 ; 6 ; 0:01.22 ; 1.22 ; 0 ; 34464 ; 100% ; 6683 ; 6683 ; 0.08 ; 1.13 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/main-and-dev/lock10 ; 12 ; 0:01.22 ; 1.22 ; 0 ; 34380 ; 99% ; 6710 ; 6710 ; 0.12 ; 1.09 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/main-and-dev/lock11 ; 21 ; 0:01.30 ; 1.30 ; 0 ; 34444 ; 99% ; 6712 ; 6712 ; 0.11 ; 1.18 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/main-and-dev/lock20 ; 11 ; 0:01.31 ; 1.31 ; 0 ; 34600 ; 99% ; 6708 ; 6708 ; 0.10 ; 1.20 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/no-deps/lock20 ; 46 ; 0:01.26 ; 1.26 ; 0 ; 35304 ; 99% ; 6895 ; 6895 ; 0.10 ; 1.15 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/private-packges/lock10 ; 40 ; 0:01.32 ; 1.32 ; 0 ; 34248 ; 99% ; 6683 ; 6683 ; 0.12 ; 1.19 ; 0 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/private-packges/lock11 ; 48 ; 0:01.58 ; 1.58 ; 0 ; 34772 ; 99% ; 6790 ; 6790 ; 0.11 ; 1.46 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/private-packges/lock20 ; 27 ; 0:01.47 ; 1.47 ; 0 ; 34628 ; 99% ; 6787 ; 6787 ; 0.10 ; 1.35 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/regression-issue611/lock20 ; 13 ; 0:01.24 ; 1.24 ; 0 ; 34460 ; 99% ; 6675 ; 6675 ; 0.11 ; 1.13 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/with-extras/lock10 ; 24 ; 0:01.36 ; 1.36 ; 0 ; 34216 ; 99% ; 6704 ; 6704 ; 0.10 ; 1.25 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/with-extras/lock11 ; 18 ; 0:01.31 ; 1.31 ; 0 ; 34864 ; 99% ; 6832 ; 6832 ; 0.11 ; 1.19 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/with-extras/lock20 ; 73 ; 0:01.41 ; 1.41 ; 0 ; 35300 ; 99% ; 6888 ; 6888 ; 0.12 ; 1.28 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/with-urls/lock10 ; 18 ; 0:01.37 ; 1.37 ; 0 ; 34492 ; 99% ; 6695 ; 6695 ; 0.10 ; 1.26 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/with-urls/lock11 ; 59 ; 0:01.30 ; 1.30 ; 0 ; 34476 ; 99% ; 6693 ; 6693 ; 0.09 ; 1.20 ; 1 ; 0
+cyclonedx-py poetry -o /dev/null tests/_data/infiles/poetry/with-urls/lock20 ; 26 ; 0:01.33 ; 1.33 ; 0 ; 34328 ; 99% ; 6694 ; 6694 ; 0.11 ; 1.20 ; 1 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/frozen.txt ; 23 ; 0:01.48 ; 1.48 ; 0 ; 36416 ; 98% ; 7214 ; 7214 ; 0.10 ; 1.37 ; 1 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/local.txt ; 24 ; 0:01.39 ; 1.39 ; 0 ; 36212 ; 99% ; 7214 ; 7214 ; 0.11 ; 1.27 ; 1 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/nested.txt ; 23 ; 0:01.30 ; 1.30 ; 0 ; 36368 ; 99% ; 7215 ; 7215 ; 0.12 ; 1.18 ; 0 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/private-packages.txt ; 32 ; 0:01.44 ; 1.44 ; 0 ; 36260 ; 99% ; 7214 ; 7214 ; 0.10 ; 1.33 ; 1 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/with-comments.txt ; 14 ; 0:01.47 ; 1.47 ; 0 ; 36348 ; 99% ; 7216 ; 7216 ; 0.15 ; 1.32 ; 1 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/with-extras.txt ; 19 ; 0:01.31 ; 1.31 ; 0 ; 36360 ; 99% ; 7213 ; 7213 ; 0.10 ; 1.20 ; 1 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/with-hashes.txt ; 43 ; 0:01.38 ; 1.38 ; 0 ; 36436 ; 99% ; 7222 ; 7222 ; 0.10 ; 1.28 ; 1 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/without-pinned-versions.txt ; 28 ; 0:01.46 ; 1.46 ; 0 ; 36380 ; 99% ; 7220 ; 7220 ; 0.11 ; 1.35 ; 1 ; 0
+cyclonedx-py requirements --pyproject tests/_data/infiles/requirements/pyproject.toml -o /dev/null tests/_data/infiles/requirements/with-urls.txt ; 38 ; 0:01.57 ; 1.57 ; 0 ; 36176 ; 99% ; 7219 ; 7219 ; 0.11 ; 1.45 ; 1 ; 0
