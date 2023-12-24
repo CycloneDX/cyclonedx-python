@@ -16,37 +16,42 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
+from argparse import OPTIONAL, ArgumentParser
+from importlib.metadata import distributions
+from json import loads
+from os import getcwd, name as os_name
+from os.path import exists, isdir, join
+from subprocess import run  # nosec
+from sys import path as sys_path
+from textwrap import dedent
 from typing import TYPE_CHECKING, Any, Dict, Iterable, List, Optional, Tuple
 
-from . import BomBuilder
+from cyclonedx.model import Property
+from cyclonedx.model.component import Component, ComponentType
+from packageurl import PackageURL
+from packaging.requirements import Requirement
+
+from . import BomBuilder, PropertyName
+from .cli_common import add_argument_mc_type, add_argument_pyproject
+from .utils.cdx import licenses_fixup, make_bom
+from .utils.packaging import metadata2extrefs, metadata2licenses
+from .utils.pep610 import PackageSourceArchive, PackageSourceVcs, packagesource2extref, packagesource4dist
+from .utils.pyproject import pyproject2component, pyproject2dependencies, pyproject_load
 
 if TYPE_CHECKING:  # pragma: no cover
-    from argparse import ArgumentParser
     from logging import Logger
 
     from cyclonedx.model.bom import Bom
-    from cyclonedx.model.component import Component, ComponentType
-    from packaging.requirements import Requirement
 
     from .utils.pep610 import PackageSource
 
     T_AllComponents = Dict[str, Tuple['Component', Iterable[Requirement]]]
 
 
-# !!! be as lazy loading as possible, as greedy as needed
-# TODO: measure with `/bin/time -v` for max resident size and see if this changes when global imports are used
-
-
 class EnvironmentBB(BomBuilder):
 
     @staticmethod
     def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':
-        from argparse import OPTIONAL, ArgumentParser
-        from os import name as os_name
-        from textwrap import dedent
-
-        from .cli_common import add_argument_mc_type, add_argument_pyproject
-
         p = ArgumentParser(description='Build an SBOM from Python (virtual) environment',
                            **kwargs)
         if os_name == 'nt':
@@ -114,15 +119,9 @@ class EnvironmentBB(BomBuilder):
                  pyproject_file: Optional[str],
                  mc_type: 'ComponentType',
                  **__: Any) -> 'Bom':
-        from os import getcwd
-
-        from .utils.cdx import make_bom
-        from .utils.pyproject import pyproject2dependencies
-
         if pyproject_file is None:
             rc = None
         else:
-            from .utils.pyproject import pyproject2component, pyproject_load
             pyproject = pyproject_load(pyproject_file)
             root_c = pyproject2component(pyproject, type=mc_type)
             root_c.bom_ref.value = 'root-component'
@@ -133,7 +132,6 @@ class EnvironmentBB(BomBuilder):
         if python:
             path = self.__path4python(python)
         else:
-            from sys import path as sys_path
             path = sys_path.copy()
         if path[0] in ('', getcwd()):
             path.pop(0)
@@ -145,15 +143,6 @@ class EnvironmentBB(BomBuilder):
     def __add_components(self, bom: 'Bom',
                          rc: Optional[Tuple['Component', Iterable['Requirement']]],
                          **kwargs: Any) -> None:
-        from importlib.metadata import distributions
-
-        from cyclonedx.model.component import Component, ComponentType
-        from packaging.requirements import Requirement
-
-        from .utils.cdx import licenses_fixup
-        from .utils.packaging import metadata2extrefs, metadata2licenses
-        from .utils.pep610 import packagesource4dist
-
         all_components: 'T_AllComponents' = {}
         self._logger.debug('distribution context args: %r', kwargs)
         self._logger.info('discovering distributions...')
@@ -193,10 +182,6 @@ class EnvironmentBB(BomBuilder):
         self.__finalize_dependencies(bom, all_components)
 
     def __finalize_dependencies(self, bom: 'Bom', all_components: 'T_AllComponents') -> None:
-        from cyclonedx.model import Property
-
-        from . import PropertyName
-
         for component, requires in all_components.values():
             component_deps: List[Component] = []
             for req in requires:
@@ -217,12 +202,6 @@ class EnvironmentBB(BomBuilder):
 
     def __component_add_extred_and_purl(self, component: 'Component',
                                         packagesource: Optional['PackageSource']) -> None:
-        from cyclonedx.model import Property
-        from packageurl import PackageURL
-
-        from . import PropertyName
-        from .utils.pep610 import PackageSourceArchive, PackageSourceVcs, packagesource2extref
-
         purl_qs = {}  # https://github.com/package-url/purl-spec/blob/master/PURL-SPECIFICATION.rst
         purl_subpath = None
         if packagesource is not None:
@@ -252,7 +231,6 @@ class EnvironmentBB(BomBuilder):
 
     @staticmethod
     def __py_interpreter(value: str) -> str:
-        from os.path import exists, isdir, join
         if not exists(value):
             raise ValueError(f'No such file or directory: {value}')
         if isdir(value):
@@ -267,8 +245,6 @@ class EnvironmentBB(BomBuilder):
         return value
 
     def __path4python(self, python: str) -> List[str]:
-        from json import loads
-        from subprocess import run  # nosec
         cmd = self.__py_interpreter(python), '-c', 'import json,sys;json.dump(sys.path,sys.stdout)'
         self._logger.debug('fetch `path` from python interpreter cmd: %r', cmd)
         res = run(cmd, capture_output=True, encoding='utf8', shell=False)  # nosec

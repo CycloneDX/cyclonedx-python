@@ -6,6 +6,7 @@ from typing import TYPE_CHECKING, Any, Dict, Iterator
 
 from .pep621 import project2component, project2dependencies
 from .poetry import poetry2component, poetry2dependencies
+from .toml import toml_loads
 
 if TYPE_CHECKING:  # pragma: no cover
     from cyclonedx.model.component import Component, ComponentType
@@ -23,7 +24,6 @@ def pyproject2component(data: Dict[str, Any], *,
 
 
 def pyproject_load(pyproject_file: str) -> Dict[str, Any]:
-    from .toml import toml_loads
     try:
         pyproject_fh = open(pyproject_file, 'rt', encoding='utf8', errors='replace')
     except OSError as err:

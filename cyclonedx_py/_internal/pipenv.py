@@ -16,23 +16,30 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
+from argparse import OPTIONAL, ArgumentParser
+from json import loads as json_loads
+from os import getenv
+from os.path import join
+from textwrap import dedent
 from typing import TYPE_CHECKING, Any, Dict, Generator, List, Optional, Set, Tuple
 
-from . import BomBuilder
+from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
+from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
+from cyclonedx.model.component import Component, ComponentType
+from packageurl import PackageURL
+
+from . import BomBuilder, PropertyName
+from .cli_common import add_argument_mc_type, add_argument_pyproject
+from .utils.args import arpaese_split
+from .utils.cdx import make_bom
+from .utils.pyproject import pyproject_file2component
 
 if TYPE_CHECKING:  # pragma: no cover
-    from argparse import ArgumentParser
     from logging import Logger
 
-    from cyclonedx.model import ExternalReference
     from cyclonedx.model.bom import Bom
-    from cyclonedx.model.component import Component, ComponentType
 
     NameDict = Dict[str, Any]
-
-
-# !!! be as lazy loading as possible, as greedy as needed
-# TODO: measure with `/bin/time -v` for max resident size and see if this changes when global imports are used
 
 
 class PipenvBB(BomBuilder):
@@ -40,13 +47,6 @@ class PipenvBB(BomBuilder):
 
     @staticmethod
     def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':
-        from argparse import OPTIONAL, ArgumentParser
-        from os import getenv
-        from textwrap import dedent
-
-        from .cli_common import add_argument_mc_type, add_argument_pyproject
-        from .utils.args import arpaese_split
-
         p = ArgumentParser(description=dedent("""\
                            Build an SBOM from Pipenv.
 
@@ -95,8 +95,6 @@ class PipenvBB(BomBuilder):
                  pyproject_file: Optional[str],
                  mc_type: 'ComponentType',
                  **__: Any) -> 'Bom':
-        from json import loads as json_loads
-        from os.path import join
 
         # the group-args shall mimic the ones from Pipenv, which uses (comma and/or space)-separated lists
         # values be like: 'foo bar,bazz' -> ['foo', 'bar', 'bazz']
@@ -126,7 +124,6 @@ class PipenvBB(BomBuilder):
             if pyproject_file is None:
                 rc = None
             else:
-                from .utils.pyproject import pyproject_file2component
                 rc = pyproject_file2component(pyproject_file, type=mc_type)
                 rc.bom_ref.value = 'root-component'
 
@@ -136,13 +133,6 @@ class PipenvBB(BomBuilder):
 
     def _make_bom(self, root_c: Optional['Component'],
                   locker: 'NameDict', use_groups: Set[str]) -> 'Bom':
-        from cyclonedx.model import Property
-        from cyclonedx.model.component import Component, ComponentType
-        from packageurl import PackageURL
-
-        from . import PropertyName
-        from .utils.cdx import make_bom
-
         self._logger.debug('use_groups: %r', use_groups)
 
         bom = make_bom()
@@ -226,9 +216,6 @@ class PipenvBB(BomBuilder):
 
     def __make_extrefs(self, name: str, data: 'NameDict', source_urls: Dict[str, str]
                        ) -> Generator['ExternalReference', None, None]:
-        from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
-        from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
-
         hashes = (HashType.from_composite_str(package_hash)
                   for package_hash
                   in data.get('hashes', ()))

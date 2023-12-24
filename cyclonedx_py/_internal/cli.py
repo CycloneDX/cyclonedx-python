@@ -15,23 +15,27 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-
 import logging
 import sys
 from argparse import ArgumentParser, FileType, RawDescriptionHelpFormatter
+from itertools import chain
 from typing import TYPE_CHECKING, Any, Dict, List, Optional, TextIO, Type
 
+from cyclonedx.model import Property
+from cyclonedx.output import make_outputter
 from cyclonedx.schema import OutputFormat, SchemaVersion
+from cyclonedx.validation import make_schemabased_validator
 
 from .. import __version__
+from . import PropertyName
 from .environment import EnvironmentBB
 from .pipenv import PipenvBB
 from .poetry import PoetryBB
 from .requirements import RequirementsBB
+from .utils.args import argparse_type4enum, choices4enum
 
 if TYPE_CHECKING:  # pragma: no cover
     from argparse import Action
-    from logging import Logger
 
     from cyclonedx.model.bom import Bom
     from cyclonedx.model.component import Component
@@ -49,7 +53,6 @@ else:
 class Command:
     @classmethod
     def make_argument_parser(cls, sco: ArgumentParser, **kwargs: Any) -> ArgumentParser:
-        from .utils.args import argparse_type4enum, choices4enum
         p = ArgumentParser(
             description='Creates CycloneDX Software Bill of Materials (SBOM) from Python projects and environments.',
             formatter_class=RawDescriptionHelpFormatter,
@@ -140,7 +143,7 @@ class Command:
         return {k: kwargs[k] for k in kwargs if k not in cls.__OWN_ARGS}
 
     def __init__(self, *,
-                 logger: 'Logger',
+                 logger: logging.Logger,
                  short_purls: bool,
                  output_format: OutputFormat,
                  schema_version: SchemaVersion,
@@ -160,8 +163,6 @@ class Command:
     def _shorten_purls(self, bom: 'Bom') -> bool:
         if not self._short_purls:
             return False
-
-        from itertools import chain
 
         self._logger.info('Shorting purls...')
         component: 'Component'
@@ -187,7 +188,6 @@ class Command:
 
         self._logger.info('Validating result to schema: %s/%s',
                           self._schema_version.to_version(), self._output_format.name)
-        from cyclonedx.validation import make_schemabased_validator
 
         validation_error = make_schemabased_validator(
             self._output_format,
@@ -213,10 +213,6 @@ class Command:
 
     def _make_output(self, bom: 'Bom') -> str:
         self._logger.info('Serializing SBOM: %s/%s', self._schema_version.to_version(), self._output_format.name)
-        from cyclonedx.model import Property
-        from cyclonedx.output import make_outputter
-
-        from . import PropertyName
 
         if self._output_reproducible:
             bom.metadata.properties.add(Property(name=PropertyName.Reproducible.value,

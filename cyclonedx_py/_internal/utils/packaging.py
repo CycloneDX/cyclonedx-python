@@ -17,24 +17,25 @@
 
 from typing import TYPE_CHECKING, Generator, List
 
-from cyclonedx.model import ExternalReferenceType
+from cyclonedx.exception.model import InvalidUriException
+from cyclonedx.factory.license import LicenseFactory
+from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
+
+from .cdx import url_label_to_ert
+from .pep621 import classifiers2licenses
 
 if TYPE_CHECKING:  # pragma: no cover
     import sys
+
+    from cyclonedx.model.license import License
 
     if sys.version_info >= (3, 10):
         from importlib.metadata import PackageMetadata
     else:
         from email.message import Message as PackageMetadata
 
-    from cyclonedx.model import ExternalReference
-    from cyclonedx.model.license import License
-
 
 def metadata2licenses(metadata: 'PackageMetadata') -> Generator['License', None, None]:
-    from cyclonedx.factory.license import LicenseFactory
-
-    from .pep621 import classifiers2licenses
     lfac = LicenseFactory()
     if 'Classifier' in metadata:
         # see https://packaging.python.org/en/latest/specifications/core-metadata/#classifier-multiple-use
@@ -46,11 +47,6 @@ def metadata2licenses(metadata: 'PackageMetadata') -> Generator['License', None,
 
 
 def metadata2extrefs(metadata: 'PackageMetadata') -> Generator['ExternalReference', None, None]:
-    from cyclonedx.exception.model import InvalidUriException
-    from cyclonedx.model import ExternalReference, XsUri
-
-    from .cdx import url_label_to_ert
-
     for meta_key, extref_typet in (
         # see https://packaging.python.org/en/latest/specifications/core-metadata/#home-page
         ('Home-page', ExternalReferenceType.WEBSITE),

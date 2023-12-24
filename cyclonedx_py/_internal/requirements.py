@@ -16,33 +16,35 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
+from argparse import OPTIONAL, ArgumentParser
+from functools import reduce
+from os import unlink
+from textwrap import dedent
 from typing import TYPE_CHECKING, Any, Generator, List, Optional, Set
 
-from . import BomBuilder
+from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
+from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
+from cyclonedx.model.component import Component, ComponentType
+from packageurl import PackageURL
+from pip_requirements_parser import RequirementsFile  # type:ignore[import-untyped]
+
+from . import BomBuilder, PropertyName
+from .cli_common import add_argument_mc_type, add_argument_pyproject
+from .utils.cdx import make_bom
+from .utils.io import io2file
+from .utils.pyproject import pyproject_file2component
 
 if TYPE_CHECKING:  # pragma: no cover
-    from argparse import ArgumentParser
     from logging import Logger
 
-    from cyclonedx.model import HashType
     from cyclonedx.model.bom import Bom
-    from cyclonedx.model.component import Component, ComponentType
-    from pip_requirements_parser import InstallRequirement, RequirementsFile  # type:ignore[import-untyped]
-
-
-# !!! be as lazy loading as possible, as greedy as needed
-# TODO: measure with `/bin/time -v` for max resident size and see if this changes when global imports are used
+    from pip_requirements_parser import InstallRequirement
 
 
 class RequirementsBB(BomBuilder):
 
     @staticmethod
     def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':
-        from argparse import OPTIONAL, ArgumentParser
-        from textwrap import dedent
-
-        from .cli_common import add_argument_mc_type, add_argument_pyproject
-
         p = ArgumentParser(description=dedent("""\
                            Build an SBOM from Pip requirements.
 
@@ -105,36 +107,26 @@ class RequirementsBB(BomBuilder):
                  pyproject_file: Optional[str],
                  mc_type: 'ComponentType',
                  **__: Any) -> 'Bom':
-        from os import unlink
-
-        from pip_requirements_parser import RequirementsFile
-
         if pyproject_file is None:
             rc = None
         else:
-            from .utils.pyproject import pyproject_file2component
             rc = pyproject_file2component(pyproject_file, type=mc_type)
             rc.bom_ref.value = 'root-component'
 
         if requirements_file == '-':
-            from sys import stdin
-
-            from .utils.io import io2file
-
+            from sys import stdin  # late bind, to allow patching
             rt = io2file(stdin.buffer)
             try:
                 rf = RequirementsFile.from_file(rt, include_nested=False)
             finally:
                 unlink(rt)
-            del rt
+            del rt, stdin
         else:
             rf = RequirementsFile.from_file(requirements_file, include_nested=True)
 
         return self._make_bom(rc, rf)
 
     def _make_bom(self, root_c: Optional['Component'], rf: 'RequirementsFile') -> 'Bom':
-        from .utils.cdx import make_bom
-
         bom = make_bom()
         bom.metadata.component = root_c
         self._logger.debug('root-component: %r', root_c)
@@ -143,8 +135,6 @@ class RequirementsBB(BomBuilder):
         return bom
 
     def _add_components(self, bom: 'Bom', rf: 'RequirementsFile') -> None:
-        from functools import reduce
-
         index_url = reduce(lambda c, i: i.options.get('index_url') or c, rf.options, self._index_url)
         extra_index_urls = self._extra_index_urls.union(*(
             i.options['extra_index_urls'] for i in rf.options if 'extra_index_urls' in i.options))
@@ -160,9 +150,6 @@ class RequirementsBB(BomBuilder):
             bom.components.add(component)
 
     def __hashes4req(self, req: 'InstallRequirement') -> Generator['HashType', None, None]:
-        from cyclonedx.exception.model import UnknownHashTypeException
-        from cyclonedx.model import HashType
-
         for hash in req.hash_options:
             try:
                 yield HashType.from_composite_str(hash)
@@ -172,13 +159,6 @@ class RequirementsBB(BomBuilder):
 
     def _make_component(self, req: 'InstallRequirement',
                         index_url: str, extra_index_urls: Set[str]) -> 'Component':
-        from cyclonedx.exception.model import InvalidUriException
-        from cyclonedx.model import ExternalReference, ExternalReferenceType, Property, XsUri
-        from cyclonedx.model.component import Component, ComponentType
-        from packageurl import PackageURL
-
-        from . import PropertyName
-
         name = req.name
         version = req.get_pinned_version or None
         hashes = list(self.__hashes4req(req))

@@ -21,21 +21,24 @@ Functionality related to poetry manifest.
 See https://python-poetry.org/docs/pyproject/
 """
 
+from itertools import chain
 from typing import TYPE_CHECKING, Any, Dict, Generator, List
 
+from cyclonedx.exception.model import InvalidUriException
+from cyclonedx.factory.license import LicenseFactory
+from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
+from cyclonedx.model.component import Component
+from packaging.requirements import Requirement
+
+from .cdx import licenses_fixup, url_label_to_ert
+from .pep621 import classifiers2licenses
+
 if TYPE_CHECKING:
-    from cyclonedx.model import ExternalReference
-    from cyclonedx.model.component import Component, ComponentType
+    from cyclonedx.model.component import ComponentType
     from cyclonedx.model.license import License
-    from packaging.requirements import Requirement
 
 
 def poetry2extrefs(poetry: Dict[str, Any]) -> Generator['ExternalReference', None, None]:
-    from cyclonedx.exception.model import InvalidUriException
-    from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
-
-    from .cdx import url_label_to_ert
-
     for ers, ert in (
         ('homepage', ExternalReferenceType.WEBSITE),
         ('repository', ExternalReferenceType.VCS),
@@ -59,12 +62,6 @@ def poetry2extrefs(poetry: Dict[str, Any]) -> Generator['ExternalReference', Non
 
 
 def poetry2component(poetry: Dict[str, Any], *, type: 'ComponentType') -> 'Component':
-    from cyclonedx.factory.license import LicenseFactory
-    from cyclonedx.model.component import Component
-
-    from .cdx import licenses_fixup
-    from .pep621 import classifiers2licenses
-
     licenses: List['License'] = []
     lfac = LicenseFactory()
     if 'classifiers' in poetry:
@@ -85,9 +82,6 @@ def poetry2component(poetry: Dict[str, Any], *, type: 'ComponentType') -> 'Compo
 
 
 def poetry2dependencies(poetry: Dict[str, Any]) -> Generator['Requirement', None, None]:
-    from itertools import chain
-
-    from packaging.requirements import Requirement
 
     for name, spec in chain(
         poetry.get('dependencies', {}).items(),

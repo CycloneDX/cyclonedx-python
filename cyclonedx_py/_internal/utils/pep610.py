@@ -27,10 +27,11 @@ from abc import ABC, abstractmethod
 from json import JSONDecodeError, loads as json_loads
 from typing import TYPE_CHECKING, Any, Dict, Optional
 
+from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
+from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
+
 if TYPE_CHECKING:
     from importlib.metadata import Distribution
-
-    from cyclonedx.model import ExternalReference
 
 
 class PackageSource(ABC):
@@ -114,8 +115,6 @@ def packagesource4dist(dist: 'Distribution') -> Optional[PackageSource]:
 
 
 def packagesource2extref(src: PackageSource) -> Optional['ExternalReference']:
-    from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
-    from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
     sdir = f' (subdirectory {src.subdirectory!r})' if src.subdirectory else ''
     try:
         if isinstance(src, PackageSourceVcs):
