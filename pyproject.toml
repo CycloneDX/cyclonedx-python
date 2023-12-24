@@ -76,7 +76,7 @@ setuptools = ">= 47.0.0"
 # install` needed fot setup/ini of test-beds
 pip = ">=23.0"
 pipenv = ">=2023.11.5"
-poetry = "^1.7"  # the one from the host system is enough
+poetry = "*"  # the one from the host system is enough
 
 [tool.poetry.scripts]
 cyclonedx-py = 'cyclonedx_py._internal.cli:run'
