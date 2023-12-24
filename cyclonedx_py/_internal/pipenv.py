@@ -50,10 +50,10 @@ class PipenvBB(BomBuilder):
         p = ArgumentParser(description=dedent("""\
                            Build an SBOM from Pipenv manifest.
 
-                           The options mimic the respective ones from Pipenv CLI.
+                           The options and switches mimic the respective ones from Pipenv CLI.
                            """),
                            **kwargs)
-        # the args shall mimic the ones from Pipenv
+        # the options and switches SHALL mimic the ones from Pipenv
         # see also: https://pipenv.pypa.io/en/latest/configuration.html
         p.add_argument('--categories',
                        metavar='CATEGORIES',

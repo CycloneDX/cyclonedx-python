@@ -77,10 +77,10 @@ class PoetryBB(BomBuilder):
         p = ArgumentParser(description=dedent("""\
                            Build an SBOM from Poetry project.
 
-                           The options mimic the respective ones from Poetry CLI.
+                           The options and switches mimic the respective ones from Poetry CLI.
                            """),
                            **kwargs)
-        # the args shall mimic the ones from Poetry, which uses comma-separated lists and multi-use
+        # the options and switches SHALL mimic the ones from Poetry, which uses comma-separated lists and multi-use
         p.add_argument('--without',
                        metavar='GROUPS',
                        help='The dependency groups to ignore (multiple values allowed)',

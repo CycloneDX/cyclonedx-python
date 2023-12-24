@@ -48,7 +48,7 @@ class RequirementsBB(BomBuilder):
         p = ArgumentParser(description=dedent("""\
                            Build an SBOM from Pip requirements.
 
-                           The options mimic the respective ones from Pip CLI.
+                           The options and switches mimic the respective ones from Pip CLI.
                            """),
                            epilog=dedent("""\
                            Example Usage:
@@ -67,7 +67,7 @@ class RequirementsBB(BomBuilder):
                                      python -m pip freeze | %(prog)s -
                            """),
                            **kwargs)
-        # the args shall mimic the ones from Pip
+        # the options and switches SHALL mimic the ones from Pip
         p.add_argument('-i', '--index-url',
                        metavar='URL',
                        help='Base URL of the Python Package Index'
