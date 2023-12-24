@@ -73,10 +73,10 @@ types-toml = "^0.10.0"
 # min version required to be able to install some dependencies
 # see https://github.com/MichaelKim0407/flake8-use-fstring/issues/33
 setuptools = ">= 47.0.0"
-# install` needed fot setup/ini of test-beds
+# install` needed for setup/init of testbeds
 pip = ">=23.0"
 pipenv = ">=2023.11.5"
-poetry = "*"  # the one from the host system is enough
+poetry = "^1.7"
 
 [tool.poetry.scripts]
 cyclonedx-py = 'cyclonedx_py._internal.cli:run'
