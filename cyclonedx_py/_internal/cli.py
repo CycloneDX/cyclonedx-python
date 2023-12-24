@@ -34,11 +34,6 @@ from .poetry import PoetryBB
 from .requirements import RequirementsBB
 from .utils.args import argparse_type4enum, choices4enum
 
-if sys.version_info >= (3, 9):
-    from argparse import BooleanOptionalAction
-else:
-    BooleanOptionalAction = None
-
 if TYPE_CHECKING:  # pragma: no cover
     from argparse import Action
 
@@ -48,6 +43,11 @@ if TYPE_CHECKING:  # pragma: no cover
     from . import BomBuilder
 
     BooleanOptionalAction: Optional[Type[Action]]
+
+if sys.version_info >= (3, 9):
+    from argparse import BooleanOptionalAction
+else:
+    BooleanOptionalAction = None
 
 
 class Command:

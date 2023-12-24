@@ -39,7 +39,7 @@ if TYPE_CHECKING:  # pragma: no cover
     from logging import Logger
 
     from cyclonedx.model.bom import Bom
-    from pip_requirements_parser import InstallRequirement  # type:ignore[import-untyped]
+    from pip_requirements_parser import InstallRequirement
 
 
 # !!! be as lazy loading as possible, as greedy as needed
