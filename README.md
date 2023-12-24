@@ -48,8 +48,8 @@ poetry add cyclonedx-bom    # install with poetry
 Call via one of commands:
 
 ```shell
-$ cyclonedx-py             # call script
-$ python3 -m cyclonedx_py  # call python module CLI
+cyclonedx-py             # call script
+python3 -m cyclonedx_py  # call python module CLI
 ```
 
 ## Basic usage
@@ -62,7 +62,7 @@ Creates CycloneDX Software Bill of Materials (SBOM) from Python projects and env
 
 positional arguments:
   command
-    environment   cuild an SBOM from Python (virtual) environment
+    environment   Build an SBOM from Python (virtual) environment
     requirements  Build an SBOM from Pip requirements
     pipenv        Build an SBOM from Pipenv manifest
     poetry        Build an SBOM from Poetry project
@@ -84,11 +84,10 @@ However, there are older versions of this tool, that support `python>=2.7`.
 
 ## Internals
 
-This tool utilizes the [CycloneDX library][cyclonedx-library] to generate the actual data structures, and serialize and validate them.  
-Validation requires [transitive optional dependencies](https://github.com/CycloneDX/cyclonedx-python-lib/blob/main/docs/install.rst#extras).
+This tool utilizes the [CycloneDX Python library][cyclonedx-library] to generate the actual data structures, and serialize and validate them.  
 
 This tool does **not** expose any additional _public_ API or classes - all code is intended to be internal and might change without any notice during version upgrades.
-The CLI is stable. You may call it programmatically via:
+However, the CLI is stable - you may call it programmatically via:
 ```python
 from sys import executable
 from subprocess import run

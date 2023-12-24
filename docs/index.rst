@@ -12,20 +12,23 @@
    #
    # SPDX-License-Identifier: Apache-2.0
 
-CycloneDX SBOM Generation Tool
-====================================================
+CycloneDX SBOM Generation Tool for Python
+=========================================
 
-This project provides a runnable Python-based application for generating `CycloneDX`_ bill-of-material documents from
-either:
+This project provides a runnable Python-based application
+for generating Software Bill of material (BOM) documents in `CycloneDX`_ format
+from:
 
-* Your current Python Environment
-* Your project's manifest (e.g. ``Pipfile.lock``, ``poetry.lock`` or ``requirements.txt``)
-* Conda as a Package Manager
+* Python (virtual) environment
+* `Poetry` manifest
+* `Pipenv` manifest
+* Pip's `requirements.txt` format
+* `Conda` as a Package Manager is no longer supported since version 4.
+  However, `conda`'s Python environments are fully supported.
+The SBOM will contain an aggregate of all your current project's dependencies, or those defined by the manifest you supply.
 
-The SBOM will contain an aggregate of all your current project's dependencies, or those defined by the manifest you
-supply.
 
-`CycloneDX`_ is a lightweight BOM specification that is easily created, human-readable, and simple to parse.
+`CycloneDX`_ is a full-stack BOM specification that is easily created, human-readable, and simple to parse.
 
 .. toctree::
    :maxdepth: 2

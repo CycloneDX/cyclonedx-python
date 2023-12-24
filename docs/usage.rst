@@ -1,332 +1,199 @@
 Usage
-=======
+=====
 
-Command Line Usage
-------------------
+Once installed, you can call the tool's command line interface via the following methods:
 
-Once installed, you can call the tool via the following methods:
+.. code-block:: shell
 
-.. code-block:: shell-session
+    cyclonedx-py             # call script
+    python3 -m cyclonedx_py  # call python module CLI
 
-    $ python3 -m cyclonedx_py
-    $ cyclonedx-py
 
 The full documentation can be issued by running with ``--help``:
 
 .. code-block:: shell-session
 
     $ cyclonedx-py --help
-    usage: cyclonedx-py [-h] (-c | -cj | -e | -p | -pip | -r) [-i FILE_PATH]
-                     [--format {json,xml}] [--schema-version {1.4,1.3,1.2,1.1,1.0}]
-                     [-o FILE_PATH] [-F] [-X]
+    usage: cyclonedx-py [-h] [--version] command ...
 
-    CycloneDX SBOM Generator
+    Creates CycloneDX Software Bill of Materials (SBOM) from Python projects and environments.
 
-    optional arguments:
-      -h, --help            show this help message and exit
-      -c, --conda           Build a SBOM based on the output from `conda list
-                            --explicit` or `conda list --explicit --md5`
-      -cj, --conda-json     Build a SBOM based on the output from `conda list
-                            --json`
-      -e, --e, --environment
-                            Build a SBOM based on the packages installed in your
-                            current Python environment (default)
-      -p, --p, --poetry     Build a SBOM based on a Poetry poetry.lock's contents.
-                            Use with -i to specify absolute path to a `poetry.lock`
-                            you wish to use, else we'll look for one in the
-                            current working directory.
-      -pip, --pip           Build a SBOM based on a PipEnv Pipfile.lock's
-                            contents. Use with -i to specify absolute path to a
-                            `Pipfile.lock` you wish to use, else we'll look for
-                            one in the current working directory.
-      -r, --r, --requirements
-                            Build a SBOM based on a requirements.txt's contents.
-                            Use with -i to specify absolute path to a
-                            `requirements.txt` you wish to use, else we'll look
-                            for one in the current working directory.
-      --omit OMIT
-                            Omit specified items when using Poetry or PipEnv
-                            (currently supported is dev)
-      -X                    Enable debug output
+    positional arguments:
+      command
+        environment   Build an SBOM from Python (virtual) environment
+        requirements  Build an SBOM from Pip requirements
+        pipenv        Build an SBOM from Pipenv manifest
+        poetry        Build an SBOM from Poetry project
 
-    Input Method:
-      Flags to determine how this tool obtains its input
-
-      -i FILE_PATH, --in-file FILE_PATH
-                            File to read input from, or STDIN if not specified
-
-    SBOM Output Configuration:
-      Choose the output format and schema version
-
-      --format {json,xml}   The output format for your SBOM (default: xml)
-      --schema-version {1.4,1.3,1.2,1.1,1.0}
-                            The CycloneDX schema version for your SBOM (default:
-                            1.3)
-      -o FILE_PATH, --o FILE_PATH, --output FILE_PATH
-                            Output file path for your SBOM (set to '-' to output
-                            to STDOUT)
-      -F, --force           If outputting to a file and the stated file already
-                            exists, it will be overwritten.
-      --validate, --no-validate
-                            Whether validate the result before outputting
+    options:
+      -h, --help      show this help message and exit
+      --version       show program's version number and exit
 
 
-From your current Python Environment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+For Python (virtual) environment
+--------------------------------
 
-This will produce the most accurate and complete CycloneDX BOM as it will include all transitive dependencies required
-by the packages defined in your project's manifest (think ``requirements.txt``).
+
+This will produce the most accurate and complete CycloneDX BOM as it analyses the actually installed packages.
+It will include all transitive dependencies required by the packages, as well as their properties.
 
 When using *Environment* as the source, any license information available from the installed packages will also be
 included in the generated CycloneDX BOM.
 
-Simply run:
+The full documentation can be issued by running with ``--help``:
 
-.. code-block:: sh
+.. code-block:: shell-session
 
-    cyclonedx-py -e -o -
+    $ cyclonedx-py environment --help
+    usage: cyclonedx-py environment [-h] [-v]
+                                    [--short-PURLs] [--output-reproducible] [--validate | --no-validate]
+                                    [-o FILE] [--sv VERSION] [--of FORMAT]
+                                    [--pyproject FILE] [--mc-type TYPE]
+                                    [python]
 
+    Build an SBOM from Python (virtual) environment
 
-This will generate a CycloneDX including all packages installed in your current Python environment and output to STDOUT
-in XML using the default schema version ``1.4`` by default.
+    positional arguments:
+      python                Python interpreter
 
-From your Python application manifest
-
-.. note::
-
-    Manifest scanning limits the amount of information available. Each manifest type contains different information
-    but all are significantly less complete than scanning your actual Python Environment.
-
-
-**Conda**
-
-We support parsing output from Conda in various formats:
-
-* Explict output (run ``conda list --explicit`` or ``conda list --explicit --md5``)
-* JSON output (run ``conda list --json``)
-
-As example:
-
-.. code-block:: sh
-
-    conda list --explicit --md5 | cyclonedx-py -c -o cyclonedx.xml
-
-**Poetry**
-
-We support parsing your ``poetry.lock`` file which should be committed along with your ``pyproject.toml`` and details
-exact pinned versions.
-
-You can then run ``cyclonedx-py`` as follows:
-
-.. code-block:: sh
-
-    cyclonedx-py -p -i PATH/TO/poetry.lock -o sbom.xml
+    options:
+      -h, --help            show this help message and exit
+      --pyproject FILE      Path to the root component's `pyproject.toml` file. This should point to a file compliant with PEP 621 (storing project metadata).
+      --mc-type TYPE        Type of the main component {choices: application, firmware, library} (default: ComponentType.APPLICATION)
+      --short-PURLs         Omit all qualifiers from PackageURLs. This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
+      -o FILE, --outfile FILE
+                            Output file path for your SBOM (set to "-" to output to STDOUT) (default: -)
+      --sv VERSION, --schema-version VERSION
+                            The CycloneDX schema version for your SBOM {choices: 1.5, 1.4, 1.3, 1.2, 1.1, 1.0} (default: 1.5)
+      --of FORMAT, --output-format FORMAT
+                            The output format for your SBOM {choices: JSON, XML} (default: JSON)
+      --output-reproducible
+                            Whether to go the extra mile and make the output reproducible. This might result in loss of time- and random-based-values.
+      --validate, --no-validate
+                            Whether validate the result before outputting (default: True)
+      -v, --verbose         Increase the verbosity of messages (multiple for more effect) (default: silent)
 
 
-If your ``poetry.lock`` is in the current working directory, you can also shorten this to:
+Examples for macOS/Linux and alike
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: sh
+.. code-block:: shell-session
+   :caption: Build an SBOM from current python environment
 
-    cyclonedx-py -p -o sbom.xml
+    $ cyclonedx-py environment
 
-**Pip**
+.. code-block:: shell-session
+   :caption: Build an SBOM from a Python (virtual) environment
 
-We currently support ``Pipfile.lock`` manifest files.
+   $ cyclonedx-py environment '...some/path/bin/python'
+   $ cyclonedx-py environment '.../.venv/'
 
-You can then run ``cyclonedx-bom`` as follows:
+.. code-block:: shell-session
+   :caption: Build an SBOM from specific Python environment
 
-.. code-block:: sh
+   $ cyclonedx-py environment "$(which python3.9)"
 
-    cyclonedx-py -pip -i PATH/TO/Pipfile.lock -o sbom.xml
+.. code-block:: shell-session
+   :caption: Build an SBOM from conda Python environment
 
-
-If your ``Pipfile.lock`` is in the current working directory, you can also shorten this to:
-
-.. code-block:: sh
-
-    cyclonedx-pu -pip -o sbom.xml
-
-
-**Requirements**
-
-We support ``requirements.txt`` manifest files. Note that a SBOM such as CycloneDX expects exact version numbers,
-therefore if you wish to generate a BOM from a ``requirements.txt``, these must be frozen. This can be accomplished via:
-
-.. code-block:: sh
-
-    pip freeze > requirements.txt
+   $ cyclonedx-py environment "$(conda run which python)"
 
 
-You can then run ``cyclonedx-bom`` as follows:
+.. code-block:: shell-session
+   :caption: Build an SBOM from Pipenv environment
 
-.. code-block:: sh
+   $ cyclonedx-py environment "$(pipenv --py)"
+   $ cyclonedx-py environment "$(pipenv --venv)"
 
-    cyclonedx-py -r -i PATH/TO/requirements.txt -o sbom.xml
+.. code-block:: shell-session
+   :caption: Build an SBOM from Poetry environment
 
-If your ``requirements.txt`` is in the current working directory, you can also shorten this to:
-
-.. code-block:: sh
-
-    cyclonedx-py -r -o sbom.xml
+   $ cyclonedx-py environment "$(poetry env info --executable)"
 
 
-This will generate a CycloneDX and output to STDOUT in XML using the default schema version `1.3`.
+Examples for Windows
+~~~~~~~~~~~~~~~~~~~~
 
-.. note::
+.. code-block:: doscon
+   :caption: Build an SBOM from current python environment
 
-    If you failed to freeze your dependencies before passing the ``requirements.txt`` data to ``cyclonedx-bom``,
-    you'll be warned about this and the dependencies that do not have pinned versions WILL NOT be included in the
-    resulting CycloneDX output.
+   > cyclonedx-py
+
+.. code-block:: doscon
+   :caption: Build an SBOM from a Python (virtual) environment
+
+   > cyclonedx-py "...some\\path\\bin\\python.exe"
+   > cyclonedx-py "...some\\path\\.venv\\"
+
+.. code-block:: doscon
+   :caption: Build an SBOM from specific Python environment
+
+   > where.exe python3.9.exe
+   > cyclonedx-py "%%path to specific python%%"
+
+.. code-block:: doscon
+   :caption: Build an SBOM from conda Python environment
+
+   > conda.exe run where.exe python
+   > cyclonedx-py "%%path to conda python%%"
+
+.. code-block:: doscon
+   :caption: Build an SBOM from Pipenv environment
+
+   > pipenv.exe --py
+   > pipenv.exe --venv
+   > cyclonedx-py "%%path to pipenv python%%"
+
+.. code-block:: doscon
+   :caption: Build an SBOM from Poetry environment
+
+   > poetry.exe env info  --executable
+   > cyclonedx-py "%%path to poetry python%%"
+
+
+
+For Pipenv
+----------
+
+
+
+For Poetry
+----------
+
+
+
+For Requirements
+----------------
+
+
+
+
+For Conda
+---------
+
+Conda is a package manager for all kinds on environments.
+
+However, since it might manage a python environment under the hood,
+it is possible to utilize the functionality for Python environments as described above.
+
+
+
 
 
 Programmatic Usage
 ------------------
 
-This library provides a number of concrete implementations of :py:mod:`cyclondex.parser.BaserParser`.
-Parsers are provided as a quick way to generate a BOM for Python applications or from Python environments.
+This tool utilizes the `CycloneDX Python library`_ to generate the actual data structures, and serialize and validate them.
 
-    **WARNING**: Limited information will be available when generating a BOM using some Parsers due to limited
-    information kept/supplied by those package managers. See below for details of what fields can be completed by
-    different Parsers.
+This tool does **not** expose any additional *public* API or classes - all code is intended to be internal and might change without any notice during version upgrades.
 
-Easily create your parser instance as follows:
+.. _CycloneDX Python library: https://pypi.org/project/cyclonedx-python-lib
+
+However, The CLI is stable - you may call it programmatically via:
 
 .. code-block:: python
 
-   from cyclonedx_py.parser.environment import EnvironmentParser
+   from sys import executable
+   from subprocess import run
+   run((executable, '-m', 'cyclonedx_py', '--help'))
 
-   parser = EnvironmentParser()
-
-Conda
-~~~~~
-
-* :py:mod:`cyclonedx_py.parser.conda.CondaListJsonParser`: Parses input provided as a ``str`` that is output from
-  ``conda list --json``
-* :py:mod:`cyclonedx_py.parser.conda.CondaListExplicitParser`: Parses input provided as a ``str`` that is output from:
-  ``conda list --explicit`` or ``conda list --explicit --md5``
-
-Environment
-~~~~~~~~~~~
-
-* :py:mod:`cyclonedx_py.parser.environment.EnvironmentParser`: Looks at the packages installed in your current Python
-  environment
-
-Pip
-~~~~~~~
-
-* :py:mod:`cyclonedx_py.parser.pipenv.PipEnvParser`: Parses ``Pipfile.lock`` content passed in as a string
-* :py:mod:`cyclonedx_py.parser.pipenv.PipEnvFileParser`: Parses the ``Pipfile.lock`` file at the supplied path
-
-Poetry
-~~~~~~
-
-* :py:mod:`cyclonedx.parser.poetry.PoetryParser`: Parses ``poetry.lock`` content passed in as a string
-* :py:mod:`cyclonedx.parser.poetry.PoetryFileParser`: Parses the ``poetry.lock`` file at the supplied path
-
-Requirements
-~~~~~~~~~~~~
-
-* :py:mod:`cyclonedx_py.parser.requirements.RequirementsParser`: Parses a multiline string that you provide that conforms
-  to the ``requirements.txt`` :pep:`508` standard.
-* :py:mod:`cyclonedx_py.parser.requirements.RequirementsFileParser`: Parses a file that you provide the path to that conforms to the ``requirements.txt`` :pep:`508` standard.
-  It supports nested files, so if there is a line in your ``requirements.txt`` file with the ``-r requirements-nested.txt`` syntax, it'll parse the nested file as part of the same file.
-
-CycloneDX software bill-of-materials require pinned versions of requirements. If your `requirements.txt` does not have
-pinned versions, warnings will be recorded and the dependencies without pinned versions will be excluded from the
-generated CycloneDX. CycloneDX schemas (from version 1.0+) require a component to have a version when included in a
-CycloneDX bill of materials (according to schema).
-
-If you need to use a ``requirements.txt`` in your project that does not have pinned versions an acceptable workaround
-might be to:
-
-.. code-block:: sh
-
-   pip install -r requirements.txt
-   pip freeze > requirements-frozen.txt
-
-You can then feed in the frozen requirements from ``requirements-frozen.txt`` `or` use the ``Environment`` parser once
-you have installed your dependencies.
-
-Parser Schema Support
----------------------
-
-Different parsers support population of different information about your dependencies due to how information is
-obtained and limitations of what information is available to each Parser. The sections below explain coverage as to what
-information is obtained by each set of Parsers. It does NOT guarantee the information is output in the resulting
-CycloneDX BOM document.
-
-The below tables do not state whether specific schema versions support the attributes/items, just whether this library
-does.
-
-xPath is used to refer to data attributes according to the `Cyclone DX Specification`_.
-
-``bom.components.component``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-+-------------------------+-------------------------------------------------------------------+
-|                         | Parser Support                                                    |
-| Data Path               +------------+-------------+------------+------------+--------------+
-|                         | Conda      | Environment | Pip        | Poetry     | Requirements |
-+=========================+============+=============+============+============+==============+
-| ``.supplier``           | N          | N - Note 1  | N/A        | N/A        | N/A          |
-+-------------------------+------------+-------------+------------+------------+--------------+
-| ``.author``             | N          | Y - Note 1  | N/A        | N/A        | N/A          |
-+-------------------------+------------+-------------+------------+------------+--------------+
-| ``.publisher``          | N          | N - Note 1  | N/A        | N/A        | N/A          |
-+-------------------------+------------+-------------+------------+------------+--------------+
-| ``.group``              | N          | N           | N          | N          | N            |
-+-------------------------+------------+-------------+------------+------------+--------------+
-| ``.name``               | Y          | Y           | Y          | Y          | Y            |
-+-------------------------+------------+-------------+------------+------------+--------------+
-| ``.version``            | Y          | Y           | Y          | Y          | Y            |
-+-------------------------+------------+-------------+------------+------------+--------------+
-| ``.description``        | N          | N           | N/A        | N          | N/A          |
-+-------------------------+------------+-------------+------------+------------+--------------+
-| ``.scope``              | N          | N           | N/A        | N          | N/A          |
-+-------------------------+------------+-------------+------------+------------+--------------+
-| ``.hashes``             | Y - Note 2 | N/A         | Y - Note 3 | Y - Note 3 | N/A          |
-+-------------------------+------------+-------------+------------+------------+--------------+
-| ``.licenses``           | N          | Y - Note 1  | N/A        | N/A        | N/A          |
-+-------------------------+------------+-------------+------------+------------+--------------+
-| ``.copyright``          | N          | N - Note 1  | N/A        | N/A        | N/A          |
-+-------------------------+------------+-------------+------------+------------+--------------+
-| ``.cpe``                | N/A        | N/A         | N/A        | N/A        | N/A          |
-+-------------------------+------------+-------------+------------+------------+--------------+
-| ``.purl``               | Y          | Y           | Y          | Y          | Y            |
-+-------------------------+------------+-------------+------------+------------+--------------+
-| ``.swid``               | N/A        | N/A         | N/A        | N/A        | N/A          |
-+-------------------------+------------+-------------+------------+------------+--------------+
-| ``.modified``           | *Deprecated - not used*                                           |
-+-------------------------+------------+-------------+------------+------------+--------------+
-| ``.pedigree``           | N/A        | N/A         | N/A        | N/A        | N/A          |
-+-------------------------+------------+-------------+------------+------------+--------------+
-| ``.externalReferences`` | Y - Note 3 | N/A         | Y - Note 1 | Y - Note 1 | N/A          |
-+-------------------------+------------+-------------+------------+------------+--------------+
-| ``.properties``         | N/A        | N/A         | N/A        | N/A        | N/A          |
-+-------------------------+------------+-------------+------------+------------+--------------+
-| ``.components``         | N/A        | N/A         | N/A        | N/A        | N/A          |
-+-------------------------+------------+-------------+------------+------------+--------------+
-| ``.evidence``           | N/A        | N/A         | N/A        | N/A        | N/A          |
-+-------------------------+------------+-------------+------------+------------+--------------+
-| ``.releaseNotes``       | N/A        | N/A         | N/A        | N/A        | N/A          |
-+-------------------------+------------+-------------+------------+------------+--------------+
-
-    **Legend:**
-
-    * **Y**: YES with any caveat states.
-    * **N**: Not currently supported, but support believed to be possible.
-    * **N/A**: Not supported and not deemed possible (i.e. the Parser would never be able to reliably determine this
-      info).
-
-**Notes**
-
-1. If contained in the packages ``METADATA``
-2. MD5 hashes are available when using the ``CondaListExplicitParser`` with output from the
-   conda command ``conda list --explicit --md5`` only
-3. Python packages are regularly available as both ``.whl`` and ``.tar.gz`` packages. This means for that for a given
-   package and version multiple artefacts are possible - which would mean multiple hashes are possible. CycloneDX
-   supports only a single set of hashes identifying a single artefact at ``component.hashes``. To cater for this
-   situation in Python, we add the hashes to `component.externalReferences`, as we cannot determine which package was
-   actually obtained and installed to meet a given dependency.
-
-.. _Cyclone DX Specification: https://cyclonedx.org/docs/latest
