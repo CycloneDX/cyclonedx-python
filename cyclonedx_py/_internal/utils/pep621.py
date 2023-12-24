@@ -23,18 +23,24 @@ See https://packaging.python.org/en/latest/specifications/declaring-project-meta
 See https://peps.python.org/pep-0621/
 """
 
+from itertools import chain
 from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, Iterator
 
+from cyclonedx.exception.model import InvalidUriException
+from cyclonedx.factory.license import LicenseFactory
+from cyclonedx.model import ExternalReference, XsUri
+from cyclonedx.model.component import Component
+from packaging.requirements import Requirement
+
+from .cdx import licenses_fixup, url_label_to_ert
+from .license_trove_classifier import license_trove2spdx
+
 if TYPE_CHECKING:
-    from cyclonedx.factory.license import LicenseFactory
-    from cyclonedx.model import ExternalReference
-    from cyclonedx.model.component import Component, ComponentType
+    from cyclonedx.model.component import ComponentType
     from cyclonedx.model.license import License
-    from packaging.requirements import Requirement
 
 
 def classifiers2licenses(classifiers: Iterable[str], lfac: 'LicenseFactory') -> Generator['License', None, None]:
-    from .license_trove_classifier import license_trove2spdx
     yield from map(lfac.make_from_string,
                    # `lfac.make_with_id` could be a shortcut,
                    # but some SPDX ID might not (yet) be known to CDX.
@@ -59,11 +65,6 @@ def project2licenses(project: Dict[str, Any], lfac: 'LicenseFactory') -> Generat
 
 
 def project2extrefs(project: Dict[str, Any]) -> Generator['ExternalReference', None, None]:
-    from cyclonedx.exception.model import InvalidUriException
-    from cyclonedx.model import ExternalReference, XsUri
-
-    from .cdx import url_label_to_ert
-
     # see https://packaging.python.org/en/latest/specifications/pyproject-toml/#urls
     for label, url in project.get('urls', {}).items():
         try:
@@ -77,11 +78,6 @@ def project2extrefs(project: Dict[str, Any]) -> Generator['ExternalReference', N
 
 def project2component(project: Dict[str, Any], *,
                       type: 'ComponentType') -> 'Component':
-    from cyclonedx.factory.license import LicenseFactory
-    from cyclonedx.model.component import Component
-
-    from .cdx import licenses_fixup
-
     dynamic = project.get('dynamic', ())
     return Component(
         type=type,
@@ -95,10 +91,6 @@ def project2component(project: Dict[str, Any], *,
 
 
 def project2dependencies(project: Dict[str, Any]) -> Iterator['Requirement']:
-    from itertools import chain
-
-    from packaging.requirements import Requirement
-
     return (
         Requirement(dep)
         for dep in chain(

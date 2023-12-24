@@ -16,18 +16,30 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
+from argparse import OPTIONAL, ArgumentParser
 from dataclasses import dataclass
+from itertools import chain
+from os.path import join
+from re import compile as re_compile
+from textwrap import dedent
 from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, List, Optional, Set, Tuple
 
-from . import BomBuilder
+from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
+from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
+from cyclonedx.model.component import Component, ComponentScope
+from packageurl import PackageURL
+
+from . import BomBuilder, PropertyName
+from .cli_common import add_argument_mc_type
+from .utils.cdx import make_bom
+from .utils.poetry import poetry2component
+from .utils.toml import toml_loads
 
 if TYPE_CHECKING:  # pragma: no cover
-    from argparse import ArgumentParser
     from logging import Logger
 
-    from cyclonedx.model import ExternalReference
     from cyclonedx.model.bom import Bom
-    from cyclonedx.model.component import Component, ComponentType
+    from cyclonedx.model.component import ComponentType
 
     NameDict = Dict[str, Any]
 
@@ -66,11 +78,6 @@ class PoetryBB(BomBuilder):
 
     @staticmethod
     def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':
-        from argparse import OPTIONAL, ArgumentParser
-        from textwrap import dedent
-
-        from .cli_common import add_argument_mc_type
-
         p = ArgumentParser(description=dedent("""\
                            Build an SBOM from Poetry project.
 
@@ -133,10 +140,6 @@ class PoetryBB(BomBuilder):
                  extras: List[str], all_extras: bool,
                  mc_type: 'ComponentType',
                  **__: Any) -> 'Bom':
-        from os.path import join
-
-        from .utils.toml import toml_loads
-
         pyproject_file = join(project_directory, 'pyproject.toml')
         lock_file = join(project_directory, 'poetry.lock')
         try:
@@ -211,15 +214,6 @@ class PoetryBB(BomBuilder):
     def _make_bom(self, project: 'NameDict', locker: 'NameDict',
                   use_groups: Set[str], use_extras: Set[str],
                   mc_type: 'ComponentType') -> 'Bom':
-        from itertools import chain
-        from re import compile as re_compile
-
-        from cyclonedx.model import Property
-
-        from . import PropertyName
-        from .utils.cdx import make_bom
-        from .utils.poetry import poetry2component
-
         self._logger.debug('use_groups: %r', use_groups)
         self._logger.debug('use_extras: %r', use_extras)
 
@@ -351,12 +345,6 @@ class PoetryBB(BomBuilder):
     __PACKAGE_SRC_LOCAL = ['file', 'directory']
 
     def __make_component4lock(self, package: 'NameDict') -> 'Component':
-        from cyclonedx.model import Property
-        from cyclonedx.model.component import Component, ComponentScope
-        from packageurl import PackageURL
-
-        from . import PropertyName
-
         source = package['source']
         is_vcs = source.get('type') in self.__PACKAGE_SRC_VCS
         is_local = source.get('type') in self.__PACKAGE_SRC_LOCAL
@@ -428,9 +416,6 @@ class PoetryBB(BomBuilder):
             yield from self.__extrefs4lock_vcs(package)
 
     def __extrefs4lock_legacy(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
-        from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
-        from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
-
         source_url = package['source'].get('url', 'https://pypi.org/simple')
         for file in package['files']:
             try:
@@ -445,9 +430,6 @@ class PoetryBB(BomBuilder):
                 del error
 
     def __extrefs4lock_url(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
-        from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
-        from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
-
         try:
             yield ExternalReference(
                 comment='from url',
@@ -459,9 +441,6 @@ class PoetryBB(BomBuilder):
             self._logger.debug('skipped dist-extRef for: %r', package['name'], exc_info=error)
 
     def __extrefs4lock_file(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
-        from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
-        from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
-
         try:
             yield ExternalReference(
                 comment='from file',
@@ -473,9 +452,6 @@ class PoetryBB(BomBuilder):
             self._logger.debug('skipped dist-extRef for: %r', package['name'], exc_info=error)
 
     def __extrefs4lock_directory(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
-        from cyclonedx.exception.model import InvalidUriException
-        from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
-
         try:
             yield ExternalReference(
                 comment='from directory',
@@ -487,9 +463,6 @@ class PoetryBB(BomBuilder):
             self._logger.debug('skipped dist-extRef for: %r', package['name'], exc_info=error)
 
     def __extrefs4lock_vcs(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
-        from cyclonedx.exception.model import InvalidUriException
-        from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
-
         source = package['source']
         vcs_ref = source.get('resolved_reference', source.get('reference', ''))
         try:
