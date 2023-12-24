@@ -64,7 +64,6 @@
   ],
   "metadata": {
     "component": {
-      "author": "Your Name <you@example.com>",
       "bom-ref": "local",
       "description": "packages from local paths",
       "name": "local",

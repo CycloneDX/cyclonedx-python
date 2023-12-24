@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """
 initialize this testbed.
 """
@@ -8,7 +6,6 @@ from os import name as os_name
 from os.path import dirname, join
 from subprocess import CompletedProcess, run  # nosec:B404
 from sys import executable
-from typing import Any
 from venv import EnvBuilder
 
 __all__ = ['main']
@@ -17,7 +14,7 @@ this_dir = dirname(__file__)
 env_dir = join(this_dir, '.venv')
 
 
-def pip_run(*args: str, **kwargs: Any) -> CompletedProcess:
+def pip_run(*args: str) -> CompletedProcess:
     # pip is not API, but a CLI -- call it like that!
     call = (
         executable, '-m', 'pip',
@@ -25,7 +22,7 @@ def pip_run(*args: str, **kwargs: Any) -> CompletedProcess:
         *args
     )
     print('+ ', *call)
-    res = run(call, **kwargs, shell=False)  # nosec:B603
+    res = run(call, cwd=this_dir, shell=False)  # nosec:B603
     if res.returncode != 0:
         raise RuntimeError('process failed')
     return res

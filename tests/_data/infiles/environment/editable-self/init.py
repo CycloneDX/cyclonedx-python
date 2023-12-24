@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """
 initialize this testbed.
 """
@@ -12,7 +10,8 @@ from venv import EnvBuilder
 
 __all__ = ['main']
 
-env_dir = join(dirname(__file__), '.venv')
+this_dir = dirname(__file__)
+env_dir = join(this_dir, '.venv')
 
 
 def pip_install(*args: str) -> None:
@@ -24,7 +23,7 @@ def pip_install(*args: str) -> None:
         *args
     )
     print('+ ', *call)
-    check_call(call, shell=False)  # nosec:B603
+    check_call(call, cwd=this_dir, shell=False)  # nosec:B603
 
 
 def main() -> None:

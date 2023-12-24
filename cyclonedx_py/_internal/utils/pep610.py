@@ -139,6 +139,6 @@ def packagesource2extref(src: PackageSource) -> Optional['ExternalReference']:
                 type=ExternalReferenceType.DISTRIBUTION,
                 url=XsUri(src.url),
                 comment=f'PackageSource: Local{sdir}')
-    except InvalidUriException:
+    except InvalidUriException:  # pragma: nocover
         pass
     return None

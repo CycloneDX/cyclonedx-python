@@ -41,7 +41,6 @@
       </tool>
     </tools>
     <component type="application" bom-ref="group-deps">
-      <author>Your Name &lt;you@example.com&gt;</author>
       <name>group-deps</name>
       <version>0.1.0</version>
       <description>dependencies organized in groups</description>

@@ -28,7 +28,6 @@ if TYPE_CHECKING:  # pragma: no cover
     from cyclonedx.model import ExternalReference
     from cyclonedx.model.bom import Bom
     from cyclonedx.model.component import Component, ComponentType
-    from cyclonedx.model.license import License
 
     NameDict = Dict[str, Any]
 
@@ -70,9 +69,7 @@ class PoetryBB(BomBuilder):
         from argparse import OPTIONAL, ArgumentParser
         from textwrap import dedent
 
-        from cyclonedx.model.component import ComponentType
-
-        from .utils.args import argparse_type4enum
+        from .cli_common import add_argument_mc_type
 
         p = ArgumentParser(description=dedent("""\
                            Build an SBOM from Poetry project.
@@ -116,18 +113,7 @@ class PoetryBB(BomBuilder):
                         dest='all_extras',
                         default=False)
         del eg
-        _mc_types = [ComponentType.APPLICATION,
-                     ComponentType.FIRMWARE,
-                     ComponentType.LIBRARY]
-        p.add_argument('--mc-type',
-                       metavar='TYPE',
-                       help='Type of the main component'
-                            f' {{choices: {", ".join(t.value for t in _mc_types)}}}'
-                            ' (default: %(default)s)',
-                       dest='mc_type',
-                       choices=_mc_types,
-                       type=argparse_type4enum(ComponentType),
-                       default=ComponentType.APPLICATION)
+        add_argument_mc_type(p)
         p.add_argument('project_directory',
                        metavar='project-directory',
                        help='The project directory for Poetry (default: current working directory)',
@@ -232,6 +218,7 @@ class PoetryBB(BomBuilder):
 
         from . import PropertyName
         from .utils.cdx import make_bom
+        from .utils.poetry import poetry2component
 
         self._logger.debug('use_groups: %r', use_groups)
         self._logger.debug('use_extras: %r', use_extras)
@@ -240,7 +227,8 @@ class PoetryBB(BomBuilder):
 
         po_cfg = project['tool']['poetry']
 
-        bom.metadata.component = root_c = self.__component4poetryproj(po_cfg, mc_type)
+        bom.metadata.component = root_c = poetry2component(po_cfg, type=mc_type)
+        root_c.bom_ref.value = root_c.name  # 'root-component'
         root_c.properties.update(Property(
             name=PropertyName.PackageExtra.value,
             value=extra
@@ -331,63 +319,6 @@ class PoetryBB(BomBuilder):
         bom.register_dependency(root_c, filter(None, depends_on))
 
         return bom
-
-    def __component4poetryproj(self, po_cfg: 'NameDict', c_type: 'ComponentType') -> 'Component':
-        from cyclonedx.factory.license import LicenseFactory
-        from cyclonedx.model.component import Component
-
-        from .utils.cdx import licenses_fixup
-        from .utils.pep621 import classifiers2licenses
-
-        licenses: List['License'] = []
-        lfac = LicenseFactory()
-        if 'classifiers' in po_cfg:
-            # https://python-poetry.org/docs/pyproject/#classifiers
-            licenses.extend(classifiers2licenses(po_cfg['classifiers'], lfac))
-        if 'license' in po_cfg:
-            # https://python-poetry.org/docs/pyproject/#license
-            licenses.append(lfac.make_from_string(po_cfg['license']))
-        del lfac
-
-        # see spec: https://python-poetry.org/docs/pyproject/
-        return Component(
-            bom_ref=str(po_cfg.get('name', 'root-component')),
-            type=c_type,
-            name=str(po_cfg.get('name', 'unnamed')),
-            version=str(po_cfg.get('version', '')) or None,
-            description=str(po_cfg.get('description', '')) or None,
-            licenses=licenses_fixup(licenses),
-            author=' | '.join(po_cfg['authors']) if 'authors' in po_cfg else None,
-            external_references=self.__extrefs4poetryproj(po_cfg)
-        )
-
-    def __extrefs4poetryproj(self, po_cfg: 'NameDict') -> Generator['ExternalReference', None, None]:
-        from cyclonedx.exception.model import InvalidUriException
-        from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
-
-        from .utils.cdx import url_label_to_ert
-
-        for ers, ert in [
-            # see https://python-poetry.org/docs/pyproject/
-            ('homepage', ExternalReferenceType.WEBSITE),
-            ('repository', ExternalReferenceType.VCS),
-            ('documentation', ExternalReferenceType.DOCUMENTATION),
-        ]:
-            try:
-                yield ExternalReference(
-                    comment=f'from poetry: {ers}',
-                    type=ert,
-                    url=XsUri(str(po_cfg[ers])))
-            except (KeyError, InvalidUriException):  # pragma: nocover
-                pass
-        for ul, ut in po_cfg.get('urls', {}).items():
-            try:
-                yield ExternalReference(
-                    comment=f'from poetry url: {ul}',
-                    type=url_label_to_ert(ul),
-                    url=XsUri(str(ut)))
-            except InvalidUriException:  # pragma: nocover
-                pass
 
     @staticmethod
     def _get_lockfile_version(locker: 'NameDict') -> Tuple[int, ...]:

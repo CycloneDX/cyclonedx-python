@@ -44,9 +44,8 @@ class PipenvBB(BomBuilder):
         from os import getenv
         from textwrap import dedent
 
-        from cyclonedx.model.component import ComponentType
-
-        from .utils.args import argparse_type4enum, arpaese_split
+        from .cli_common import add_argument_mc_type, add_argument_pyproject
+        from .utils.args import arpaese_split
 
         p = ArgumentParser(description=dedent("""\
                            Build an SBOM from Pipenv.
@@ -62,7 +61,7 @@ class PipenvBB(BomBuilder):
                        type=arpaese_split((' ', ',')),
                        default=[])
         p.add_argument('-d', '--dev',
-                       help='both develop and default packages [env var: PIPENV_DEV]',
+                       help='Analyse both develop and default packages [env var: PIPENV_DEV]',
                        action='store_true',
                        dest='dev',
                        default=getenv('PIPENV_DEV', '').lower() in ('1', 'true', 'yes', 'on'))
@@ -71,23 +70,8 @@ class PipenvBB(BomBuilder):
                        help='Specify a PyPI mirror [env var: PIPENV_PYPI_MIRROR]',
                        dest='pypi_url',
                        default=getenv('PIPENV_PYPI_MIRROR'))
-        p.add_argument('--pyproject',
-                       metavar='FILE',
-                       help="Path to the root component's `pyproject.toml` according to PEP621",
-                       dest='pyproject_file',
-                       default=None)
-        _mc_types = [ComponentType.APPLICATION,
-                     ComponentType.FIRMWARE,
-                     ComponentType.LIBRARY]
-        p.add_argument('--mc-type',
-                       metavar='TYPE',
-                       help='Type of the main component'
-                            f' {{choices: {", ".join(t.value for t in _mc_types)}}}'
-                            ' (default: %(default)s)',
-                       dest='mc_type',
-                       choices=_mc_types,
-                       type=argparse_type4enum(ComponentType),
-                       default=ComponentType.APPLICATION)
+        add_argument_pyproject(p)
+        add_argument_mc_type(p)
         p.add_argument('project_directory',
                        metavar='project-directory',
                        help='The project directory for Pipenv (default: current working directory)\n'
@@ -142,7 +126,7 @@ class PipenvBB(BomBuilder):
             if pyproject_file is None:
                 rc = None
             else:
-                from .utils.pep621 import pyproject_file2component
+                from .utils.pyproject import pyproject_file2component
                 rc = pyproject_file2component(pyproject_file, type=mc_type)
                 rc.bom_ref.value = 'root-component'
 

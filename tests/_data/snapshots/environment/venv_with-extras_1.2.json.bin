@@ -880,9 +880,6 @@
       "ref": "arrow==1.3.0"
     },
     {
-      "dependsOn": [
-        "attrs==23.1.0"
-      ],
       "ref": "attrs==23.1.0"
     },
     {

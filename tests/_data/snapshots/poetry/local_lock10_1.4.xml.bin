@@ -41,7 +41,6 @@
       </tool>
     </tools>
     <component type="application" bom-ref="local">
-      <author>Your Name &lt;you@example.com&gt;</author>
       <name>local</name>
       <version>0.1.0</version>
       <description>packages from local paths</description>
