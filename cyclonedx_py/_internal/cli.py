@@ -136,7 +136,12 @@ class Command:
 
         return p
 
-    __OWN_ARGS = {'outfile', 'schema_version', 'output_format', 'reproducible', 'validate'}
+    __OWN_ARGS = {
+        # the ars keywords from __init__
+        'logger', 'short_purls', 'output_format', 'schema_version', 'output_reproducible', 'should_validate',
+        # the ars keywords from __call__
+        'outfile'
+    }
 
     @classmethod
     def _clean_kwargs(cls, kwargs: Dict[str, Any]) -> Dict[str, Any]:
@@ -167,7 +172,7 @@ class Command:
         self._logger.info('Shorting purls...')
         component: 'Component'
         for component in chain(
-            bom.metadata.component.get_all_nested_components(True) if bom.metadata.component else [],
+            bom.metadata.component.get_all_nested_components(True) if bom.metadata.component else (),
             chain.from_iterable(
                 component.get_all_nested_components(True) for component in bom.components
             )
@@ -178,6 +183,8 @@ class Command:
                     namespace=component.purl.namespace,  # type:ignore[arg-type]
                     name=component.purl.name,  # type:ignore[arg-type]
                     version=component.purl.version  # type:ignore[arg-type]
+                    # omit qualifiers
+                    # omit subdirectory
                 )
         return True
 

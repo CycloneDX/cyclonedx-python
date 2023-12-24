@@ -77,7 +77,7 @@ class PoetryBB(BomBuilder):
         p = ArgumentParser(description=dedent("""\
                            Build an SBOM from Poetry project.
 
-                           The options mimic the respective ones from Poetry.
+                           The options mimic the respective ones from Poetry CLI.
                            """),
                            **kwargs)
         # the args shall mimic the ones from Poetry, which uses comma-separated lists and multi-use

@@ -48,7 +48,7 @@ class RequirementsBB(BomBuilder):
         p = ArgumentParser(description=dedent("""\
                            Build an SBOM from Pip requirements.
 
-                           The options mimic the respective ones from Pip.
+                           The options mimic the respective ones from Pip CLI.
                            """),
                            epilog=dedent("""\
                            Example Usage:

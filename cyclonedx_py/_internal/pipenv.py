@@ -48,9 +48,9 @@ class PipenvBB(BomBuilder):
     @staticmethod
     def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':
         p = ArgumentParser(description=dedent("""\
-                           Build an SBOM from Pipenv.
+                           Build an SBOM from Pipenv manifest.
 
-                           The options mimic the respective ones from Pipenv.
+                           The options mimic the respective ones from Pipenv CLI.
                            """),
                            **kwargs)
         # the args shall mimic the ones from Pipenv
