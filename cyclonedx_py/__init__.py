@@ -16,7 +16,7 @@
 # !! version is managed by semantic_release
 # do not use typing here, or else `semantic_release` might have issues finding the variable
 # flake8: noqa
-__version__ = "4.0.0-alpha.0"
+__version__ = "4.0.0-rc.1"
 
 # There is no stable/public API.
 # You may use this instead:
