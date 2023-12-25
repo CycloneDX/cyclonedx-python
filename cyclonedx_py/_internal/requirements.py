@@ -61,7 +61,8 @@ class RequirementsBB(BomBuilder):
                              • Build an inventory for all installed packages in a conda environment:
                                    $ conda run python -m pip freeze --all | %(prog)s -
                              • Build an inventory for installed packages in a Python (virtual) environment:
-                                   $ .../.venv/bin/python -m pip freeze --all --local --require-virtualenv | %(prog)s -
+                                   $ .../.venv/bin/python -m pip freeze --all --local --require-virtualenv |\\
+                                     %(prog)s -
                              • Build an inventory from an unfrozen manifest:
                                    $ python -m pip install -r dependencies.txt &&\\
                                      python -m pip freeze | %(prog)s -
@@ -69,15 +70,15 @@ class RequirementsBB(BomBuilder):
                            **kwargs)
         # the options and switches SHALL mimic the ones from Pip
         p.add_argument('-i', '--index-url',
-                       metavar='URL',
-                       help='Base URL of the Python Package Index'
-                            ' (default: %(default)s) '
-                            ' This should point to a repository compliant with PEP 503 (the simple repository API)'
-                            ' or a local directory laid out in the same format.',
+                       metavar='<url>',
+                       help='Base URL of the Python Package Index. '
+                            'This should point to a repository compliant with PEP 503 (the simple repository API) '
+                            'or a local directory laid out in the same format. '
+                            '(default: %(default)s)',
                        dest='index_url',
                        default='https://pypi.org/simple')
         p.add_argument('--extra-index-url',
-                       metavar='URL',
+                       metavar='<url>',
                        help='Extra URLs of package indexes to use in addition to --index-url.'
                             ' Should follow the same rules as --index-url',
                        action='append',
@@ -86,7 +87,7 @@ class RequirementsBB(BomBuilder):
         add_argument_pyproject(p)
         add_argument_mc_type(p)
         p.add_argument('requirements_file',
-                       metavar='REQUIREMENTS-FILE',
+                       metavar='<requirements-file>',
                        help='Path to requirements file. May be set to "-" to read from <stdin>. '
                             '(default: %(default)r in current working directory)',
                        nargs=OPTIONAL,

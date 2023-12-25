@@ -72,13 +72,13 @@ class Command:
                         dest='short_purls',
                         default=False)
         op.add_argument('-o', '--outfile',
-                        metavar='FILE',
-                        help='Output file path for your SBOM (set to "-" to output to STDOUT) (default: %(default)s)',
+                        metavar='<file>',
+                        help='Output file path for your SBOM (set to "-" to output to <stdout>) (default: %(default)s)',
                         type=FileType('wt', encoding='utf8'),
                         dest='outfile',
                         default='-')
         op.add_argument('--sv', '--schema-version',
-                        metavar='VERSION',
+                        metavar='<version>',
                         help='The CycloneDX schema version for your SBOM'
                              f' {{choices: {", ".join(sorted((v.to_version() for v in SchemaVersion), reverse=True))}}}'
                              ' (default: %(default)s)',
@@ -87,7 +87,7 @@ class Command:
                         type=SchemaVersion.from_version,
                         default=SchemaVersion.V1_5.to_version())
         op.add_argument('--of', '--output-format',
-                        metavar='FORMAT',
+                        metavar='<format>',
                         help=f'The output format for your SBOM {choices4enum(OutputFormat)} (default: %(default)s)',
                         dest='output_format',
                         choices=OutputFormat,

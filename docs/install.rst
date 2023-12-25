@@ -5,4 +5,8 @@ Install from pypi.org as you would any other Python module using your preferred 
 
 .. code-block:: sh
 
-    pip install cyclonedx-bom
+   python -m pip install cyclonedx-bom   # install via pip
+   pipx install cyclonedx-bom            # install via pipx
+   poetry add cyclonedx-bom              # install via poetry
+
+   # ... you get the hang

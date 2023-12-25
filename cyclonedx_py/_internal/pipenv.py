@@ -56,7 +56,7 @@ class PipenvBB(BomBuilder):
         # the options and switches SHALL mimic the ones from Pipenv
         # see also: https://pipenv.pypa.io/en/latest/configuration.html
         p.add_argument('--categories',
-                       metavar='CATEGORIES',
+                       metavar='<categories>',
                        dest='categories',
                        type=arpaese_split((' ', ',')),
                        default=[])
@@ -66,7 +66,7 @@ class PipenvBB(BomBuilder):
                        dest='dev',
                        default=getenv('PIPENV_DEV', '').lower() in ('1', 'true', 'yes', 'on'))
         p.add_argument('--pypi-mirror',
-                       metavar='URL',
+                       metavar='<url>',
                        help='Specify a PyPI mirror [env var: PIPENV_PYPI_MIRROR]',
                        dest='pypi_url',
                        default=getenv('PIPENV_PYPI_MIRROR'))

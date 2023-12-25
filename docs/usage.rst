@@ -47,9 +47,10 @@ The full documentation can be issued by running with ``--help``:
 
     $ cyclonedx-py environment --help
     usage: cyclonedx-py environment [-h] [-v]
-                                    [--short-PURLs] [--output-reproducible] [--validate | --no-validate]
-                                    [-o FILE] [--sv VERSION] [--of FORMAT]
-                                    [--pyproject FILE] [--mc-type TYPE]
+                                    [--short-PURLs] [--output-reproducible]
+                                    [--validate | --no-validate]
+                                    [-o <file>] [--sv <version>] [--of <format>]
+                                    [--pyproject <file>] [--mc-type <type>]
                                     [python]
 
     Build an SBOM from Python (virtual) environment
@@ -59,20 +60,34 @@ The full documentation can be issued by running with ``--help``:
 
     options:
       -h, --help            show this help message and exit
-      --pyproject FILE      Path to the root component's `pyproject.toml` file. This should point to a file compliant with PEP 621 (storing project metadata).
-      --mc-type TYPE        Type of the main component {choices: application, firmware, library} (default: ComponentType.APPLICATION)
-      --short-PURLs         Omit all qualifiers from PackageURLs. This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
-      -o FILE, --outfile FILE
-                            Output file path for your SBOM (set to "-" to output to STDOUT) (default: -)
-      --sv VERSION, --schema-version VERSION
-                            The CycloneDX schema version for your SBOM {choices: 1.5, 1.4, 1.3, 1.2, 1.1, 1.0} (default: 1.5)
-      --of FORMAT, --output-format FORMAT
-                            The output format for your SBOM {choices: JSON, XML} (default: JSON)
+      --pyproject <file>    Path to the root component's `pyproject.toml` file.
+                            This should point to a file compliant with PEP 621 (storing project metadata).
+      --mc-type <type>      Type of the main component
+                            {choices: application, firmware, library}
+                            (default: ComponentType.APPLICATION)
+      --short-PURLs         Omit all qualifiers from PackageURLs.
+                            This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
+      -o <file>, --outfile <file>
+                            Output file path for your SBOM
+                            (set to "-" to output to STDOUT)
+                            (default: -)
+      --sv <version>, --schema-version <version>
+                            The CycloneDX schema version for your SBOM
+                            {choices: 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
+                            (default: 1.5)
+      --of <format>, --output-format <format>
+                            The output format for your SBOM
+                            {choices: JSON, XML}
+                            (default: JSON)
       --output-reproducible
-                            Whether to go the extra mile and make the output reproducible. This might result in loss of time- and random-based-values.
+                            Whether to go the extra mile and make the output reproducible.
+                            This might result in loss of time- and random-based-values.
       --validate, --no-validate
-                            Whether validate the result before outputting (default: True)
-      -v, --verbose         Increase the verbosity of messages (multiple for more effect) (default: silent)
+                            Whether validate the result before outputting
+                            (default: True)
+      -v, --verbose         Increase the verbosity of messages
+                            (multiple for more effect)
+                            (default: silent)
 
 
 Examples for macOS/Linux and alike
@@ -156,30 +171,264 @@ Examples for Windows
 For Pipenv
 ----------
 
-.. TODO
+Support for `Pipenv`_ dependency management.
+This requires parsing your ``Pipfile`` and ``Pipfile.lock`` file which details exact pinned versions of dependencies.
+
+.. _Pipenv: https://pipenv.pypa.io
+
+The full documentation can be issued by running with ``--help``:
+
+.. code-block:: shell-session
+
+    $ cyclonedx-py pipenv --help
+    usage: cyclonedx-py pipenv [-h] [-v]
+                               [--short-PURLs]  [--output-reproducible]
+                               [--validate | --no-validate]
+                               [-o <file>] [--sv <version>] [--of <format>]
+                               [--categories <categories>] [-d]
+                               [--pypi-mirror <url>]
+                               [--pyproject <file>] [--mc-type <type>]
+                               [project-directory]
+
+    Build an SBOM from Pipenv manifest.
+
+    The options and switches mimic the respective ones from Pipenv CLI.
+
+    positional arguments:
+      project-directory     The project directory for Pipenv (default: current working directory)
+                            Unlike Pipenv tool, there is no auto-detection in this very tool. Please
+                            provide the actual directory that contains `Pipfile` and `Pipfile.lock`
+
+    options:
+      -h, --help            show this help message and exit
+      --categories <categories>
+      -d, --dev             Analyse both develop and default packages
+                            [env var: PIPENV_DEV]
+      --pypi-mirror <url>   Specify a PyPI mirror
+                            [env var: PIPENV_PYPI_MIRROR]
+      --pyproject <file>    Path to the root component's `pyproject.toml` file.
+                            This should point to a file compliant with PEP 621 (storing project metadata).
+      --mc-type <type>      Type of the main component
+                            {choices: application, firmware, library}
+                            (default: ComponentType.APPLICATION)
+      --short-PURLs         Omit all qualifiers from PackageURLs.
+                            This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
+      -o <file>, --outfile <file>
+                            Output file path for your SBOM
+                            (set to "-" to output to <stdout>)
+                            (default: -)
+      --sv <version>, --schema-version <version>
+                            The CycloneDX schema version for your SBOM
+                            {choices: 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
+                            (default: 1.5)
+      --of <format>, --output-format <format>
+                            The output format for your SBOM
+                            {choices: JSON, XML}
+                            (default: JSON)
+      --output-reproducible
+                            Whether to go the extra mile and make the output reproducible.
+                            This might result in loss of time- and random-based-values.
+      --validate, --no-validate
+                            Whether validate the result before outputting
+                            (default: True)
+      -v, --verbose         Increase the verbosity of messages
+                            (multiple for more effect)
+                            (default: silent)
+
 
 
 For Poetry
 ----------
 
-.. TODO
+Support for `Poetry`_ dependency management and package manifest.
+This requires parsing your ``pyproject.toml`` and ``poetry.lock`` file which details exact pinned versions of dependencies.
 
-For Requirements
-----------------
+.. _Poetry: https://python-poetry.org/
 
-.. TODO
+The full documentation can be issued by running with ``--help``:
+
+.. code-block:: shell-session
+
+    $ cyclonedx-py poetry --help
+    usage: cyclonedx-py poetry [-h] [-v]
+                               [--short-PURLs] [--output-reproducible]
+                               [--validate | --no-validate]
+                               [-o <file>] [--sv <version>] [--of <format>]
+                               [--without GROUPS] [--with GROUPS] [--only GROUPS] [--no-dev]
+                               [-E EXTRAS | --all-extras]
+                               [--mc-type <type>]
+                               [project-directory]
+
+    Build an SBOM from Poetry project.
+
+    The options and switches mimic the respective ones from Poetry CLI.
+
+    positional arguments:
+      project-directory     The project directory for Poetry
+                            (default: current working directory)
+
+    options:
+      -h, --help            show this help message and exit
+      --without GROUPS      The dependency groups to ignore
+                            (multiple values allowed)
+      --with GROUPS         The optional dependency groups to include
+                            (multiple values allowed)
+      --only GROUPS         The only dependency groups to include
+                            (multiple values allowed)
+      --no-dev              Explicitly force: --only main
+      -E EXTRAS, --extras EXTRAS
+                            Extra sets of dependencies to include
+                            (multiple values allowed)
+      --all-extras          Include all extra dependencies
+                            (default: False)
+      --mc-type <type>        Type of the main component
+                            {choices: application, firmware, library}
+                            (default: ComponentType.APPLICATION)
+      --short-PURLs         Omit all qualifiers from PackageURLs.
+                            This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
+      -o <file>, --outfile <file>
+                            Output file path for your SBOM
+                            (set to "-" to output to <stdout>)
+                            (default: -)
+      --sv <version>, --schema-version <version>
+                            The CycloneDX schema version for your SBOM
+                            {choices: 1.5, 1.4, 1.3, 1.2, 1.1, 1.0} (default: 1.5)
+      --of <format>, --output-format <format>
+                            The output format for your SBOM
+                            {choices: JSON, XML}
+                            (default: JSON)
+      --output-reproducible
+                            Whether to go the extra mile and make the output reproducible.
+                            This might result in loss of time- and random-based-values.
+      --validate, --no-validate
+                            Whether validate the result before outputting
+                            (default: True)
+      -v, --verbose         Increase the verbosity of messages
+                            (multiple for more effect)
+                            (default: silent)
+
+
+For Pip requirements File
+-------------------------
+
+Support for `requirements file format`_ dependency lists.
+
+.. _`requirements file format`: https://pip.pypa.io/en/stable/reference/requirements-file-format/
+
+The full documentation can be issued by running with ``--help``:
+
+.. code-block:: shell-session
+
+    $ cyclonedx-py requirements --help
+    usage: cyclonedx-py requirements [-h] [-v]
+                                     [--short-PURLs]  [--output-reproducible]
+                                     [--validate | --no-validate]
+                                     [-o <file>] [--sv <version>] [--of <format>]
+                                     [-i <url>] [--extra-index-url <url>]
+                                     [--pyproject <file>] [--mc-type <type>]
+                                     [<requirements-file>]
+
+    Build an SBOM from Pip requirements.
+
+    The options and switches mimic the respective ones from Pip CLI.
+
+    positional arguments:
+      <requirements-file>   Path to requirements file.
+                            May be set to "-" to read from <stdin>.
+                            (default: 'requirements.txt' in current working directory)
+
+    options:
+      -h, --help            show this help message and exit
+      -i <url>, --index-url <url>
+                            Base URL of the Python Package Index.
+                            This should point to a repository compliant with PEP 503 (the simple repository API)
+                            or a local directory laid out in the same format.
+                            (default: https://pypi.org/simple)
+      --extra-index-url <url>
+                            Extra URLs of package indexes to use in addition to --index-url.
+                            Should follow the same rules as --index-url
+      --pyproject <file>    Path to the root component's `pyproject.toml` file.
+                            This should point to a file compliant with PEP 621 (storing project metadata).
+      --mc-type <type>      Type of the main component
+                            {choices: application, firmware, library}
+                            (default: ComponentType.APPLICATION)
+      --short-PURLs         Omit all qualifiers from PackageURLs.
+                            This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
+      -o <file>, --outfile <file>
+                            Output file path for your SBOM
+                            (set to "-" to output to <stdout>)
+                            (default: -)
+      --sv <version>, --schema-version <version>
+                            The CycloneDX schema version for your SBOM
+                            {choices: 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
+                            (default: 1.5)
+      --of <format>, --output-format <format>
+                            The output format for your SBOM
+                            {choices: JSON, XML}
+                            (default: JSON)
+      --output-reproducible
+                            Whether to go the extra mile and make the output reproducible.
+                            This might result in loss of time- and random-based-values.
+      --validate, --no-validate
+                            Whether validate the result before outputting
+                            (default: True)
+      -v, --verbose         Increase the verbosity of messages
+                            (multiple for more effect)
+                            (default: silent)
+
+
+Example Usage
+~~~~~~~~~~~~~
+
+.. code-block:: shell-session
+   :caption: Build an SBOM from a requirements file
+
+    $ cyclonedx-py requirements requirements-prod.txt
+
+.. code-block:: shell-session
+   :caption: Merge multiple files and build an SBOM from it
+
+    $ cat requirements/*.txt | cyclonedx-py requirements -
+
+
+.. code-block:: shell-session
+   :caption: Build an inventory for all installed packages
+
+    $ python -m pip freeze --all | cyclonedx-py requirements -
+
+.. code-block:: shell-session
+   :caption: Build an inventory for all installed packages in a conda environment
+
+    $ conda run python -m pip freeze --all | cyclonedx-py requirements -
+
+.. code-block:: shell-session
+   :caption: Build an inventory for installed packages in a Python (virtual) environment
+
+    $ .../.venv/bin/python -m pip freeze --all --local --require-virtualenv |\
+      cyclonedx-py requirements -
+
+.. code-block:: shell-session
+   :caption: Build an inventory from an unfrozen manifest
+
+    $ python -m pip install -r dependencies.txt &&\
+      python -m pip freeze | cyclonedx-py requirements -
+
 
 
 For Conda
 ---------
 
-Conda is a package manager for all kinds on environments.
+`Conda`_ is a package manager for all kinds on environments.
 
-However, since it might manage a python environment under the hood,
+However, since conda it might manage a python environment under the hood,
 it is possible to utilize the functionality for Python environments as described above.
+
+.. _conda: https://conda.io/
+
 
 
 *****
+
 
 
 Programmatic Usage

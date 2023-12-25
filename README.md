@@ -37,9 +37,9 @@ Install this from [Python Package Index (PyPI)][link_pypi] using your preferred 
 install via one of commands:
 
 ```shell
-pip install cyclonedx-bom   # install with pip
-pipx install cyclonedx-bom  # install with pipx
-poetry add cyclonedx-bom    # install with poetry
+python -m pip install cyclonedx-bom   # install via pip
+pipx install cyclonedx-bom            # install via pipx
+poetry add cyclonedx-bom              # install via poetry
 # ... you get the hang
 ```
 

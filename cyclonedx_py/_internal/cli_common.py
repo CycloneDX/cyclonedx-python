@@ -28,7 +28,7 @@ if TYPE_CHECKING:  # pragma: no cover
 
 def add_argument_pyproject(p: 'ArgumentParser') -> 'Action':
     return p.add_argument('--pyproject',
-                          metavar='FILE',
+                          metavar='<file>',
                           help="Path to the root component's `pyproject.toml` file. "
                                'This should point to a file compliant with PEP 621 '
                                '(storing project metadata).',
@@ -41,7 +41,7 @@ def add_argument_mc_type(p: 'ArgumentParser') -> 'Action':
                ComponentType.FIRMWARE,
                ComponentType.LIBRARY]
     return p.add_argument('--mc-type',
-                          metavar='TYPE',
+                          metavar='<type>',
                           help='Type of the main component'
                                f' {{choices: {", ".join(t.value for t in choices)}}}'
                                ' (default: %(default)s)',
