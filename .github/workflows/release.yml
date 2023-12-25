@@ -202,7 +202,7 @@ jobs:
       - name: Publish Docker Image for version "${{ env.VERSION }}"
         run: docker push "$DOCKER_REPO:$VERSION"
       - name: Publish Docker Image as "latest"
-        if: ${{ github.event.inputs.prerelease == 'true' }}
+        if: ${{ github.event.inputs.prerelease == 'false' }}
         run: docker push "$DOCKER_REPO:latest"
       # TODO: publish all files in $REPORTS_DIR as release assets - see https://github.com/actions/upload-release-asset
       - name: Docker logout
