@@ -15,10 +15,9 @@
 CycloneDX SBOM Generation Tool for Python
 =========================================
 
-This project provides a runnable Python-based application
-for generating Software Bill of material (SBOM) documents in `CycloneDX`_ format
-from:
+This tool generates Software Bill of material (SBOM) documents in `CycloneDX`_ format.
 
+Supported data sources are:
 * Python (virtual) environment
 * `Poetry`_ manifest
 * `Pipenv`_ manifest
@@ -26,9 +25,14 @@ from:
 * `Conda`_ as a Package Manager is no longer supported since version 4.
   However, ``conda``'s Python environments are fully supported via the methods listed above.
 
-The SBOM will contain an aggregate of all your project's dependencies, or those defined by the manifest you supply.
+Based on `OWASP Software Component Verification Standard for Software Bill of Materials <https://scvs.owasp.org/scvs/v2-software-bill-of-materials/>`_'s
+criteria, this tool is capable of producing SBOM documents almost passing Level-2 (only signing needs to be done externally).
 
-`CycloneDX`_ is a full-stack SBOM specification that is easily created, human-readable, and simple to parse.
+The resulting SBOM documents follow `official specifications and standards <https://github.com/CycloneDX/specification>`_,
+and might have properties following the Namespace Taxonomies
+`cdx:python <https://github.com/CycloneDX/cyclonedx-property-taxonomy/blob/main/cdx/python.md>`_,
+`cdx:pipenv <https://github.com/CycloneDX/cyclonedx-property-taxonomy/blob/main/cdx/pipenv.md>`_,
+`cdx:poetry <https://github.com/CycloneDX/cyclonedx-property-taxonomy/blob/main/cdx/poetry.md>`_.
 
 .. _CycloneDX: https://cyclonedx.org/
 .. _Poetry: https://python-poetry.org/
