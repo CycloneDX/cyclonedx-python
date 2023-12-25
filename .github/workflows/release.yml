@@ -68,6 +68,10 @@ jobs:
         run: poetry run tox run -e py -s false
 
   release-PyPI:
+    outputs:
+      released: ${{ steps.release.outputs.released }}   # "true" if a release was made, "false" otherwise
+      version:  ${{ steps.release.outputs.version  }}   # The newly released version if one was made, otherwise the current version
+      tag:      ${{ steps.release.outputs.tag      }}   # The Git tag corresponding to the version output
     needs:
       - quicktest
     # https://github.community/t/how-do-i-specify-job-dependency-running-in-another-workflow/16482
