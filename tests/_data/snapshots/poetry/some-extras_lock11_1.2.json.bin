@@ -1,0 +1,1140 @@
+{
+  "components": [
+    {
+      "bom-ref": "arrow@1.3.0",
+      "description": "Better dates & times for Python",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/arrow/#arrow-1.3.0-py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/arrow/#arrow-1.3.0.tar.gz"
+        }
+      ],
+      "name": "arrow",
+      "purl": "pkg:pypi/arrow@1.3.0",
+      "scope": "optional",
+      "type": "library",
+      "version": "1.3.0"
+    },
+    {
+      "bom-ref": "attrs@23.1.0",
+      "description": "Classes Without Boilerplate",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/attrs/#attrs-23.1.0-py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/attrs/#attrs-23.1.0.tar.gz"
+        }
+      ],
+      "name": "attrs",
+      "purl": "pkg:pypi/attrs@23.1.0",
+      "scope": "optional",
+      "type": "library",
+      "version": "23.1.0"
+    },
+    {
+      "bom-ref": "boolean.py@4.0",
+      "description": "Define boolean algebras, create and parse boolean expressions and create custom boolean DSL.",
+      "name": "boolean.py",
+      "purl": "pkg:pypi/boolean.py@4.0",
+      "scope": "optional",
+      "type": "library",
+      "version": "4.0"
+    },
+    {
+      "bom-ref": "cyclonedx-python-lib@5.1.1",
+      "description": "Python library for CycloneDX",
+      "name": "cyclonedx-python-lib",
+      "purl": "pkg:pypi/cyclonedx-python-lib@5.1.1",
+      "scope": "optional",
+      "type": "library",
+      "version": "5.1.1"
+    },
+    {
+      "bom-ref": "defusedxml@0.7.1",
+      "description": "XML bomb protection for Python stdlib modules",
+      "name": "defusedxml",
+      "purl": "pkg:pypi/defusedxml@0.7.1",
+      "scope": "optional",
+      "type": "library",
+      "version": "0.7.1"
+    },
+    {
+      "bom-ref": "fqdn@1.5.1",
+      "description": "Validates fully-qualified domain names against RFC 1123, so that they are acceptable to modern bowsers",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/fqdn/#fqdn-1.5.1-py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/fqdn/#fqdn-1.5.1.tar.gz"
+        }
+      ],
+      "name": "fqdn",
+      "purl": "pkg:pypi/fqdn@1.5.1",
+      "scope": "optional",
+      "type": "library",
+      "version": "1.5.1"
+    },
+    {
+      "bom-ref": "idna@3.4",
+      "description": "Internationalized Domain Names in Applications (IDNA)",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/idna/#idna-3.4-py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/idna/#idna-3.4.tar.gz"
+        }
+      ],
+      "name": "idna",
+      "purl": "pkg:pypi/idna@3.4",
+      "scope": "optional",
+      "type": "library",
+      "version": "3.4"
+    },
+    {
+      "bom-ref": "importlib-resources@6.1.1",
+      "description": "Read resources from Python packages",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/importlib-resources/#importlib_resources-6.1.1-py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/importlib-resources/#importlib_resources-6.1.1.tar.gz"
+        }
+      ],
+      "name": "importlib-resources",
+      "purl": "pkg:pypi/importlib-resources@6.1.1",
+      "scope": "optional",
+      "type": "library",
+      "version": "6.1.1"
+    },
+    {
+      "bom-ref": "isoduration@20.11.0",
+      "description": "Operations with ISO 8601 durations",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/isoduration/#isoduration-20.11.0-py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/isoduration/#isoduration-20.11.0.tar.gz"
+        }
+      ],
+      "name": "isoduration",
+      "purl": "pkg:pypi/isoduration@20.11.0",
+      "scope": "optional",
+      "type": "library",
+      "version": "20.11.0"
+    },
+    {
+      "bom-ref": "jsonpointer@2.4",
+      "description": "Identify specific nodes in a JSON document (RFC 6901)",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/jsonpointer/#jsonpointer-2.4-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/jsonpointer/#jsonpointer-2.4.tar.gz"
+        }
+      ],
+      "name": "jsonpointer",
+      "purl": "pkg:pypi/jsonpointer@2.4",
+      "scope": "optional",
+      "type": "library",
+      "version": "2.4"
+    },
+    {
+      "bom-ref": "jsonschema@4.19.2",
+      "description": "An implementation of JSON Schema validation for Python",
+      "name": "jsonschema",
+      "purl": "pkg:pypi/jsonschema@4.19.2",
+      "scope": "optional",
+      "type": "library",
+      "version": "4.19.2"
+    },
+    {
+      "bom-ref": "jsonschema-specifications@2023.7.1",
+      "description": "The JSON Schema meta-schemas and vocabularies, exposed as a Registry",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/jsonschema-specifications/#jsonschema_specifications-2023.7.1-py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/jsonschema-specifications/#jsonschema_specifications-2023.7.1.tar.gz"
+        }
+      ],
+      "name": "jsonschema-specifications",
+      "purl": "pkg:pypi/jsonschema-specifications@2023.7.1",
+      "scope": "optional",
+      "type": "library",
+      "version": "2023.7.1"
+    },
+    {
+      "bom-ref": "license-expression@30.1.1",
+      "description": "license-expression is a comprehensive utility library to parse, compare, simplify and normalize license expressions (such as SPDX license expressions) using boolean logic.",
+      "name": "license-expression",
+      "purl": "pkg:pypi/license-expression@30.1.1",
+      "scope": "optional",
+      "type": "library",
+      "version": "30.1.1"
+    },
+    {
+      "bom-ref": "lxml@4.9.3",
+      "description": "Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API.",
+      "name": "lxml",
+      "purl": "pkg:pypi/lxml@4.9.3",
+      "scope": "optional",
+      "type": "library",
+      "version": "4.9.3"
+    },
+    {
+      "bom-ref": "packageurl-python@0.11.2",
+      "description": "A purl aka. Package URL parser and builder",
+      "name": "packageurl-python",
+      "purl": "pkg:pypi/packageurl-python@0.11.2",
+      "scope": "optional",
+      "type": "library",
+      "version": "0.11.2"
+    },
+    {
+      "bom-ref": "pkgutil-resolve-name@1.3.10",
+      "description": "Resolve a name to an object.",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/pkgutil-resolve-name/#pkgutil_resolve_name-1.3.10-py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/pkgutil-resolve-name/#pkgutil_resolve_name-1.3.10.tar.gz"
+        }
+      ],
+      "name": "pkgutil-resolve-name",
+      "purl": "pkg:pypi/pkgutil-resolve-name@1.3.10",
+      "scope": "optional",
+      "type": "library",
+      "version": "1.3.10"
+    },
+    {
+      "bom-ref": "py-serializable@0.15.0",
+      "description": "Library for serializing and deserializing Python Objects to and from JSON and XML.",
+      "name": "py-serializable",
+      "purl": "pkg:pypi/py-serializable@0.15.0",
+      "scope": "optional",
+      "type": "library",
+      "version": "0.15.0"
+    },
+    {
+      "bom-ref": "python-dateutil@2.8.2",
+      "description": "Extensions to the standard Python datetime module",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/python-dateutil/#python-dateutil-2.8.2.tar.gz"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/python-dateutil/#python_dateutil-2.8.2-py2.py3-none-any.whl"
+        }
+      ],
+      "name": "python-dateutil",
+      "purl": "pkg:pypi/python-dateutil@2.8.2",
+      "scope": "optional",
+      "type": "library",
+      "version": "2.8.2"
+    },
+    {
+      "bom-ref": "referencing@0.30.2",
+      "description": "JSON Referencing + Python",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/referencing/#referencing-0.30.2-py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/referencing/#referencing-0.30.2.tar.gz"
+        }
+      ],
+      "name": "referencing",
+      "purl": "pkg:pypi/referencing@0.30.2",
+      "scope": "optional",
+      "type": "library",
+      "version": "0.30.2"
+    },
+    {
+      "bom-ref": "rfc3339-validator@0.1.4",
+      "description": "A pure python RFC3339 validator",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rfc3339-validator/#rfc3339_validator-0.1.4-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rfc3339-validator/#rfc3339_validator-0.1.4.tar.gz"
+        }
+      ],
+      "name": "rfc3339-validator",
+      "purl": "pkg:pypi/rfc3339-validator@0.1.4",
+      "scope": "optional",
+      "type": "library",
+      "version": "0.1.4"
+    },
+    {
+      "bom-ref": "rfc3987@1.3.8",
+      "description": "Parsing and validation of URIs (RFC 3986) and IRIs (RFC 3987)",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rfc3987/#rfc3987-1.3.8-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rfc3987/#rfc3987-1.3.8.tar.gz"
+        }
+      ],
+      "name": "rfc3987",
+      "purl": "pkg:pypi/rfc3987@1.3.8",
+      "scope": "optional",
+      "type": "library",
+      "version": "1.3.8"
+    },
+    {
+      "bom-ref": "rpds-py@0.12.0",
+      "description": "Python bindings to Rust's persistent data structures (rpds)",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp310-cp310-macosx_10_7_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp310-cp310-macosx_11_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp310-cp310-manylinux_2_17_armv7l.manylinux2014_armv7l.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp310-cp310-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp310-cp310-manylinux_2_17_s390x.manylinux2014_s390x.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp310-cp310-manylinux_2_5_i686.manylinux1_i686.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp310-cp310-musllinux_1_2_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp310-cp310-musllinux_1_2_i686.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp310-cp310-musllinux_1_2_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp310-none-win32.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp310-none-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp311-cp311-macosx_10_7_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp311-cp311-macosx_11_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp311-cp311-manylinux_2_17_armv7l.manylinux2014_armv7l.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp311-cp311-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp311-cp311-manylinux_2_17_s390x.manylinux2014_s390x.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp311-cp311-manylinux_2_5_i686.manylinux1_i686.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp311-cp311-musllinux_1_2_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp311-cp311-musllinux_1_2_i686.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp311-cp311-musllinux_1_2_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp311-none-win32.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp311-none-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp312-cp312-macosx_10_7_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp312-cp312-macosx_11_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp312-cp312-manylinux_2_17_armv7l.manylinux2014_armv7l.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp312-cp312-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp312-cp312-manylinux_2_17_s390x.manylinux2014_s390x.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp312-cp312-manylinux_2_5_i686.manylinux1_i686.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp312-cp312-musllinux_1_2_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp312-cp312-musllinux_1_2_i686.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp312-cp312-musllinux_1_2_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp312-none-win32.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp312-none-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp38-cp38-macosx_10_7_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp38-cp38-macosx_11_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp38-cp38-manylinux_2_17_armv7l.manylinux2014_armv7l.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp38-cp38-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp38-cp38-manylinux_2_17_s390x.manylinux2014_s390x.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp38-cp38-manylinux_2_5_i686.manylinux1_i686.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp38-cp38-musllinux_1_2_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp38-cp38-musllinux_1_2_i686.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp38-cp38-musllinux_1_2_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp38-none-win32.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp38-none-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp39-cp39-macosx_10_7_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp39-cp39-macosx_11_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp39-cp39-manylinux_2_17_armv7l.manylinux2014_armv7l.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp39-cp39-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp39-cp39-manylinux_2_17_s390x.manylinux2014_s390x.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp39-cp39-manylinux_2_5_i686.manylinux1_i686.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp39-cp39-musllinux_1_2_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp39-cp39-musllinux_1_2_i686.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp39-cp39-musllinux_1_2_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp39-none-win32.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-cp39-none-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp310-pypy310_pp73-macosx_10_7_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp310-pypy310_pp73-macosx_11_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp310-pypy310_pp73-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp310-pypy310_pp73-manylinux_2_17_armv7l.manylinux2014_armv7l.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp310-pypy310_pp73-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp310-pypy310_pp73-manylinux_2_17_s390x.manylinux2014_s390x.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp310-pypy310_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp310-pypy310_pp73-manylinux_2_5_i686.manylinux1_i686.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp310-pypy310_pp73-musllinux_1_2_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp310-pypy310_pp73-musllinux_1_2_i686.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp310-pypy310_pp73-musllinux_1_2_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp38-pypy38_pp73-macosx_10_7_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp38-pypy38_pp73-macosx_11_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp38-pypy38_pp73-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp38-pypy38_pp73-manylinux_2_17_armv7l.manylinux2014_armv7l.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp38-pypy38_pp73-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp38-pypy38_pp73-manylinux_2_17_s390x.manylinux2014_s390x.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp38-pypy38_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp38-pypy38_pp73-manylinux_2_5_i686.manylinux1_i686.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp38-pypy38_pp73-musllinux_1_2_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp38-pypy38_pp73-musllinux_1_2_i686.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp38-pypy38_pp73-musllinux_1_2_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp39-pypy39_pp73-macosx_10_7_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp39-pypy39_pp73-macosx_11_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp39-pypy39_pp73-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp39-pypy39_pp73-manylinux_2_17_armv7l.manylinux2014_armv7l.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp39-pypy39_pp73-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp39-pypy39_pp73-manylinux_2_17_s390x.manylinux2014_s390x.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp39-pypy39_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp39-pypy39_pp73-manylinux_2_5_i686.manylinux1_i686.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp39-pypy39_pp73-musllinux_1_2_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp39-pypy39_pp73-musllinux_1_2_i686.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0-pp39-pypy39_pp73-musllinux_1_2_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/rpds-py/#rpds_py-0.12.0.tar.gz"
+        }
+      ],
+      "name": "rpds-py",
+      "purl": "pkg:pypi/rpds-py@0.12.0",
+      "scope": "optional",
+      "type": "library",
+      "version": "0.12.0"
+    },
+    {
+      "bom-ref": "six@1.16.0",
+      "description": "Python 2 and 3 compatibility utilities",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/six/#six-1.16.0-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/six/#six-1.16.0.tar.gz"
+        }
+      ],
+      "name": "six",
+      "purl": "pkg:pypi/six@1.16.0",
+      "scope": "optional",
+      "type": "library",
+      "version": "1.16.0"
+    },
+    {
+      "bom-ref": "sortedcontainers@2.4.0",
+      "description": "Sorted Containers -- Sorted List, Sorted Dict, Sorted Set",
+      "name": "sortedcontainers",
+      "purl": "pkg:pypi/sortedcontainers@2.4.0",
+      "scope": "optional",
+      "type": "library",
+      "version": "2.4.0"
+    },
+    {
+      "bom-ref": "types-python-dateutil@2.8.19.14",
+      "description": "Typing stubs for python-dateutil",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/types-python-dateutil/#types-python-dateutil-2.8.19.14.tar.gz"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/types-python-dateutil/#types_python_dateutil-2.8.19.14-py3-none-any.whl"
+        }
+      ],
+      "name": "types-python-dateutil",
+      "purl": "pkg:pypi/types-python-dateutil@2.8.19.14",
+      "scope": "optional",
+      "type": "library",
+      "version": "2.8.19.14"
+    },
+    {
+      "bom-ref": "uri-template@1.3.0",
+      "description": "RFC 6570 URI Template Processor",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/uri-template/#uri-template-1.3.0.tar.gz"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/uri-template/#uri_template-1.3.0-py3-none-any.whl"
+        }
+      ],
+      "name": "uri-template",
+      "purl": "pkg:pypi/uri-template@1.3.0",
+      "scope": "optional",
+      "type": "library",
+      "version": "1.3.0"
+    },
+    {
+      "bom-ref": "webcolors@1.13",
+      "description": "A library for working with the color formats defined by HTML and CSS.",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/webcolors/#webcolors-1.13-py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/webcolors/#webcolors-1.13.tar.gz"
+        }
+      ],
+      "name": "webcolors",
+      "purl": "pkg:pypi/webcolors@1.13",
+      "scope": "optional",
+      "type": "library",
+      "version": "1.13"
+    },
+    {
+      "bom-ref": "zipp@3.17.0",
+      "description": "Backport of pathlib-compatible object wrapper for zip files",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/zipp/#zipp-3.17.0-py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/zipp/#zipp-3.17.0.tar.gz"
+        }
+      ],
+      "name": "zipp",
+      "purl": "pkg:pypi/zipp@3.17.0",
+      "scope": "optional",
+      "type": "library",
+      "version": "3.17.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "python-dateutil@2.8.2",
+        "types-python-dateutil@2.8.19.14"
+      ],
+      "ref": "arrow@1.3.0"
+    },
+    {
+      "ref": "attrs@23.1.0"
+    },
+    {
+      "ref": "boolean.py@4.0"
+    },
+    {
+      "dependsOn": [
+        "jsonschema@4.19.2",
+        "license-expression@30.1.1",
+        "lxml@4.9.3",
+        "packageurl-python@0.11.2",
+        "py-serializable@0.15.0",
+        "sortedcontainers@2.4.0"
+      ],
+      "ref": "cyclonedx-python-lib@5.1.1"
+    },
+    {
+      "ref": "defusedxml@0.7.1"
+    },
+    {
+      "ref": "fqdn@1.5.1"
+    },
+    {
+      "ref": "idna@3.4"
+    },
+    {
+      "dependsOn": [
+        "zipp@3.17.0"
+      ],
+      "ref": "importlib-resources@6.1.1"
+    },
+    {
+      "dependsOn": [
+        "arrow@1.3.0"
+      ],
+      "ref": "isoduration@20.11.0"
+    },
+    {
+      "ref": "jsonpointer@2.4"
+    },
+    {
+      "dependsOn": [
+        "importlib-resources@6.1.1",
+        "referencing@0.30.2"
+      ],
+      "ref": "jsonschema-specifications@2023.7.1"
+    },
+    {
+      "dependsOn": [
+        "attrs@23.1.0",
+        "fqdn@1.5.1",
+        "idna@3.4",
+        "importlib-resources@6.1.1",
+        "isoduration@20.11.0",
+        "jsonpointer@2.4",
+        "jsonschema-specifications@2023.7.1",
+        "pkgutil-resolve-name@1.3.10",
+        "referencing@0.30.2",
+        "rfc3339-validator@0.1.4",
+        "rfc3987@1.3.8",
+        "rpds-py@0.12.0",
+        "uri-template@1.3.0",
+        "webcolors@1.13"
+      ],
+      "ref": "jsonschema@4.19.2"
+    },
+    {
+      "dependsOn": [
+        "boolean.py@4.0"
+      ],
+      "ref": "license-expression@30.1.1"
+    },
+    {
+      "ref": "lxml@4.9.3"
+    },
+    {
+      "ref": "packageurl-python@0.11.2"
+    },
+    {
+      "ref": "pkgutil-resolve-name@1.3.10"
+    },
+    {
+      "dependsOn": [
+        "defusedxml@0.7.1"
+      ],
+      "ref": "py-serializable@0.15.0"
+    },
+    {
+      "dependsOn": [
+        "six@1.16.0"
+      ],
+      "ref": "python-dateutil@2.8.2"
+    },
+    {
+      "dependsOn": [
+        "attrs@23.1.0",
+        "rpds-py@0.12.0"
+      ],
+      "ref": "referencing@0.30.2"
+    },
+    {
+      "dependsOn": [
+        "six@1.16.0"
+      ],
+      "ref": "rfc3339-validator@0.1.4"
+    },
+    {
+      "ref": "rfc3987@1.3.8"
+    },
+    {
+      "ref": "rpds-py@0.12.0"
+    },
+    {
+      "ref": "six@1.16.0"
+    },
+    {
+      "ref": "sortedcontainers@2.4.0"
+    },
+    {
+      "ref": "types-python-dateutil@2.8.19.14"
+    },
+    {
+      "ref": "uri-template@1.3.0"
+    },
+    {
+      "ref": "webcolors@1.13"
+    },
+    {
+      "dependsOn": [
+        "cyclonedx-python-lib@5.1.1"
+      ],
+      "ref": "with-extras"
+    },
+    {
+      "ref": "zipp@3.17.0"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "with-extras",
+      "description": "depenndencies with extras",
+      "name": "with-extras",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "tools": [
+      {
+        "name": "cyclonedx-bom",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.2b.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.2"
+}

@@ -1,0 +1,70 @@
+[[package]]
+category = "main"
+description = "Fundamental package for array computing in Python"
+name = "numpy"
+optional = false
+python-versions = ">=3.8"
+version = "1.24.4"
+
+[package.source]
+reference = ""
+type = "url"
+url = "https://files.pythonhosted.org/packages/a4/9b/027bec52c633f6556dba6b722d9a0befb40498b9ceddd29cbe67a45a127c/numpy-1.24.4.tar.gz"
+[[package]]
+category = "main"
+description = "Python Imaging Library (Fork)"
+name = "Pillow"
+optional = false
+python-versions = ">=3.8"
+version = "10.1.0"
+
+[package.extras]
+docs = ["furo", "olefile", "sphinx-copybutton", "sphinx-inline-tabs", "sphinx-removed-in", "sphinx (>=2.4)", "sphinxext-opengraph"]
+tests = ["check-manifest", "coverage", "defusedxml", "markdown2", "olefile", "packaging", "pyroma", "pytest", "pytest-cov", "pytest-timeout"]
+
+[package.source]
+reference = "da59ad000d1405eaecd557175e29083a87d19f7c"
+type = "git"
+url = "https://github.com/python-pillow/Pillow.git"
+[[package]]
+category = "main"
+description = "Python 2 and 3 compatibility utilities"
+name = "six"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
+version = "1.16.0"
+
+[package.source]
+reference = "65486e4383f9f411da95937451205d3c7b61b9e1"
+type = "git"
+url = "ssh://git@github.com/benjaminp/six.git"
+[[package]]
+category = "main"
+description = "Cross platform GUI toolkit for Python, \"Phoenix\" version"
+name = "wxPython"
+optional = false
+python-versions = "*"
+version = "4.2.2a1.dev5618+1f82021f"
+
+[package.dependencies]
+pillow = "*"
+six = "*"
+
+[package.dependencies.numpy]
+python = ">=3.0,<3.12"
+version = "*"
+
+[package.source]
+reference = ""
+type = "url"
+url = "https://wxpython.org/Phoenix/snapshot-builds/wxPython-4.2.2a1.dev5618+1f82021f-cp38-cp38-win32.whl"
+[metadata]
+content-hash = "b4436d6f975d6f207483913778773f9eee6432c4283394bb277b4100c6a3c1df"
+lock-version = "1.0"
+python-versions = "^3.8"
+
+[metadata.files]
+numpy = []
+Pillow = []
+six = []
+wxPython = []

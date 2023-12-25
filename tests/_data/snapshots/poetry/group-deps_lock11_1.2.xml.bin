@@ -1,0 +1,157 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.2" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-bom</name>
+        <version>thisVersion-testing</version>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="group-deps">
+      <name>group-deps</name>
+      <version>0.1.0</version>
+      <description>dependencies organized in groups</description>
+    </component>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="arrow@1.3.0">
+      <name>arrow</name>
+      <version>1.3.0</version>
+      <description>Better dates &amp; times for Python</description>
+      <purl>pkg:pypi/arrow@1.3.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/arrow/#arrow-1.3.0-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/arrow/#arrow-1.3.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="ddt@1.7.0">
+      <name>ddt</name>
+      <version>1.7.0</version>
+      <description>Data-Driven/Decorated Tests</description>
+      <purl>pkg:pypi/ddt@1.7.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/ddt/#ddt-1.7.0-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/ddt/#ddt-1.7.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="isoduration@20.11.0">
+      <name>isoduration</name>
+      <version>20.11.0</version>
+      <description>Operations with ISO 8601 durations</description>
+      <purl>pkg:pypi/isoduration@20.11.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/isoduration/#isoduration-20.11.0-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/isoduration/#isoduration-20.11.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="python-dateutil@2.8.2">
+      <name>python-dateutil</name>
+      <version>2.8.2</version>
+      <description>Extensions to the standard Python datetime module</description>
+      <purl>pkg:pypi/python-dateutil@2.8.2</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/python-dateutil/#python-dateutil-2.8.2.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/python-dateutil/#python_dateutil-2.8.2-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="six@1.16.0">
+      <name>six</name>
+      <version>1.16.0</version>
+      <description>Python 2 and 3 compatibility utilities</description>
+      <purl>pkg:pypi/six@1.16.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/#six-1.16.0-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/#six-1.16.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="toml@0.10.2">
+      <name>toml</name>
+      <version>0.10.2</version>
+      <description>Python Library for Tom's Obvious, Minimal Language</description>
+      <purl>pkg:pypi/toml@0.10.2</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/toml/#toml-0.10.2-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/toml/#toml-0.10.2.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="types-python-dateutil@2.8.19.14">
+      <name>types-python-dateutil</name>
+      <version>2.8.19.14</version>
+      <description>Typing stubs for python-dateutil</description>
+      <purl>pkg:pypi/types-python-dateutil@2.8.19.14</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/types-python-dateutil/#types-python-dateutil-2.8.19.14.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/types-python-dateutil/#types_python_dateutil-2.8.19.14-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="arrow@1.3.0">
+      <dependency ref="python-dateutil@2.8.2"/>
+      <dependency ref="types-python-dateutil@2.8.19.14"/>
+    </dependency>
+    <dependency ref="ddt@1.7.0"/>
+    <dependency ref="group-deps">
+      <dependency ref="ddt@1.7.0"/>
+      <dependency ref="isoduration@20.11.0"/>
+      <dependency ref="toml@0.10.2"/>
+    </dependency>
+    <dependency ref="isoduration@20.11.0">
+      <dependency ref="arrow@1.3.0"/>
+    </dependency>
+    <dependency ref="python-dateutil@2.8.2">
+      <dependency ref="six@1.16.0"/>
+    </dependency>
+    <dependency ref="six@1.16.0"/>
+    <dependency ref="toml@0.10.2"/>
+    <dependency ref="types-python-dateutil@2.8.19.14"/>
+  </dependencies>
+</bom>

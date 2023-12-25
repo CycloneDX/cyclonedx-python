@@ -1,0 +1,111 @@
+{
+  "components": [
+    {
+      "bom-ref": "package-a",
+      "externalReferences": [
+        {
+          "comment": "from file",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "3869fe3f4a6cca5b203b2e2cd8858c834f651e1b0fa76d5c0232e36472199592"
+            }
+          ],
+          "type": "distribution",
+          "url": "../../_helpers/local_pckages/a/dist/package-a-23.42.tar.gz"
+        }
+      ],
+      "name": "package-a",
+      "properties": [
+        {
+          "name": "cdx:pipenv:category",
+          "value": "default"
+        }
+      ],
+      "type": "library"
+    },
+    {
+      "bom-ref": "package-b",
+      "externalReferences": [
+        {
+          "comment": "from file",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "4aacda53fa274f5ff7eed71a9916904ffb3a11b05dc5ca529d7ddb78ae2dc602"
+            }
+          ],
+          "type": "distribution",
+          "url": "file:../../_helpers/local_pckages/b/dist/package_b-23.42-py3-none-any.whl"
+        }
+      ],
+      "name": "package-b",
+      "properties": [
+        {
+          "name": "cdx:pipenv:category",
+          "value": "default"
+        }
+      ],
+      "type": "library"
+    },
+    {
+      "bom-ref": "package-c",
+      "externalReferences": [
+        {
+          "comment": "from path",
+          "type": "distribution",
+          "url": "../../_helpers/local_pckages/c"
+        }
+      ],
+      "name": "package-c",
+      "properties": [
+        {
+          "name": "cdx:pipenv:category",
+          "value": "default"
+        }
+      ],
+      "type": "library"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "package-a"
+    },
+    {
+      "ref": "package-b"
+    },
+    {
+      "ref": "package-c"
+    },
+    {
+      "ref": "root-component"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "root-component",
+      "description": "packages from local paths",
+      "name": "local",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": [
+      {
+        "externalReferences": [   ],
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5"
+}

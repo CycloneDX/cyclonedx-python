@@ -26,6 +26,10 @@ poetry run isort .
 poetry run autopep8 -ir cyclonedx_py/ tests/
 ```
 
+This project prefers `f'strings'` over `'string'.format()`.  
+This project prefers `'single quotes'` over `"double quotes"`.  
+This project prefers `lower_snake_case` variable names.
+
 ## Documentation
 
 This project uses [Sphinx] to generate documentation which is automatically published to [RTFD][link_rtfd].

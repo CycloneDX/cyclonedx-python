@@ -1,0 +1,18 @@
+[pipenv]
+sort_pipfile = true
+
+[packages]
+toml = ">=0.10.2, <0.11"
+
+[dev-packages]
+ddt = ">=1.6.0, <2"
+
+# custom catrogys/groups
+# see https://pipenv.pypa.io/en/latest/pipfile.html#package-category-groups
+
+[categoryB]
+colorama = ">=0.4.3"
+
+[groupA]
+isoduration = "==20.11.0"
+colorama = ">=0.4, <0.5"

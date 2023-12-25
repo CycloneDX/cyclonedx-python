@@ -1,0 +1,140 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.3" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-bom</name>
+        <version>thisVersion-testing</version>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="root-component">
+      <name>testing-requirements-txt</name>
+      <version>0.1.0</version>
+      <description>some `reuqirements.txt` a root-component with all metadata</description>
+      <licenses>
+        <expression>Apache-2.0 OR MIT</expression>
+      </licenses>
+      <externalReferences>
+        <reference type="documentation">
+          <url>https://oss.acme.org/my-project/docs/</url>
+          <comment>from pyproject urls: documentation</comment>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://oss.acme.org/my-project/bugs/</url>
+          <comment>from pyproject urls: Bug Tracker</comment>
+        </reference>
+        <reference type="other">
+          <url>https://oss.acme.org/my-project/funding/</url>
+          <comment>from pyproject urls: Funding</comment>
+        </reference>
+        <reference type="other">
+          <url>https://oss.acme.org/my-project/changelog/</url>
+          <comment>from pyproject urls: Change log</comment>
+        </reference>
+        <reference type="vcs">
+          <url>https://oss.acme.org/my-project.git</url>
+          <comment>from pyproject urls: repository</comment>
+        </reference>
+        <reference type="website">
+          <url>https://oss.acme.org/my-project/</url>
+          <comment>from pyproject urls: homepage</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="requirements-L11">
+      <name>FooProject</name>
+      <version>1.2</version>
+      <description>requirements line 11: FooProject == 1.2   --hash=sha256:2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824   --hash=sha256:486ea46224d1bb4fb680f34f7c9ad96a8f24ec88be73ea8e5a6c65260e9cb8a7</description>
+      <purl>pkg:pypi/fooproject@1.2</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/FooProject/</url>
+          <comment>implicit dist url</comment>
+          <hashes>
+            <hash alg="SHA-256">2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824</hash>
+            <hash alg="SHA-256">486ea46224d1bb4fb680f34f7c9ad96a8f24ec88be73ea8e5a6c65260e9cb8a7</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="requirements-L4">
+      <name>certifi</name>
+      <version>2021.5.30</version>
+      <description>requirements line 4: certifi==2021.5.30 --hash=sha256:2bbf76fd432960138b3ef6dda3dde0544f27cbf8546c458e60baf371917ba9ee --hash=sha256:50b1e4f8446b06f41be7dd6338db18e0990601dce795c2b1686458aa7e8fa7d8</description>
+      <purl>pkg:pypi/certifi@2021.5.30</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/certifi/</url>
+          <comment>implicit dist url</comment>
+          <hashes>
+            <hash alg="SHA-256">2bbf76fd432960138b3ef6dda3dde0544f27cbf8546c458e60baf371917ba9ee</hash>
+            <hash alg="SHA-256">50b1e4f8446b06f41be7dd6338db18e0990601dce795c2b1686458aa7e8fa7d8</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="requirements-L16">
+      <name>colorama</name>
+      <version/>
+      <description>requirements line 16: colorama @ https://github.com/tartley/colorama/archive/refs/tags/0.4.6.tar.gz     --hash=md5:9854316552d41419b678d39af443a75f     --hash=sha1:aa1fc7722b9128a3c945048de03f5b4e55157c6a</description>
+      <purl>pkg:pypi/colorama?download_url=https://github.com/tartley/colorama/archive/refs/tags/0.4.6.tar.gz</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://github.com/tartley/colorama/archive/refs/tags/0.4.6.tar.gz</url>
+          <comment>explicit dist url</comment>
+          <hashes>
+            <hash alg="MD5">9854316552d41419b678d39af443a75f</hash>
+            <hash alg="SHA-1">aa1fc7722b9128a3c945048de03f5b4e55157c6a</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="requirements-L21">
+      <name>something</name>
+      <version>1.33.7</version>
+      <description>requirements line 21: something == 1.33.7 --hash=foo:something-invalid</description>
+      <purl>pkg:pypi/something@1.33.7</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/something/</url>
+          <comment>implicit dist url</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="requirements-L7">
+      <name>urllib3</name>
+      <version>1.26.5</version>
+      <description>requirements line 7: urllib3==1.26.5 --hash=sha256:753a0374df26658f99d826cfe40394a686d05985786d946fbe4165b5148f5a7c  --hash=sha256:a7acd0977125325f516bda9735fa7142b909a8d01e8b2e4c8108d0984e6e0098</description>
+      <purl>pkg:pypi/urllib3@1.26.5</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/urllib3/</url>
+          <comment>implicit dist url</comment>
+          <hashes>
+            <hash alg="SHA-256">753a0374df26658f99d826cfe40394a686d05985786d946fbe4165b5148f5a7c</hash>
+            <hash alg="SHA-256">a7acd0977125325f516bda9735fa7142b909a8d01e8b2e4c8108d0984e6e0098</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="requirements-L11"/>
+    <dependency ref="requirements-L16"/>
+    <dependency ref="requirements-L21"/>
+    <dependency ref="requirements-L4"/>
+    <dependency ref="requirements-L7"/>
+    <dependency ref="root-component"/>
+  </dependencies>
+</bom>

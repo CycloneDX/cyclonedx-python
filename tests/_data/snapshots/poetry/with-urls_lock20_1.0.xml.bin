@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.0" version="1">
+  <components>
+    <component type="library">
+      <name>Pillow</name>
+      <version>10.1.0</version>
+      <description>Python Imaging Library (Fork)</description>
+      <purl>pkg:pypi/pillow@10.1.0?vcs_url=git%2Bhttps://github.com/python-pillow/Pillow.git%40da59ad000d1405eaecd557175e29083a87d19f7c</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>numpy</name>
+      <version>1.24.4</version>
+      <description>Fundamental package for array computing in Python</description>
+      <purl>pkg:pypi/numpy@1.24.4</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>six</name>
+      <version>1.16.0</version>
+      <description>Python 2 and 3 compatibility utilities</description>
+      <purl>pkg:pypi/six@1.16.0?vcs_url=git%2Bssh://git%40github.com/benjaminp/six.git%4065486e4383f9f411da95937451205d3c7b61b9e1</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>wxPython</name>
+      <version>4.2.2a1.dev5618+1f82021f</version>
+      <description>Cross platform GUI toolkit for Python, &quot;Phoenix&quot; version</description>
+      <purl>pkg:pypi/wxpython@4.2.2a1.dev5618%2B1f82021f?download_url=https://wxpython.org/Phoenix/snapshot-builds/wxPython-4.2.2a1.dev5618%2B1f82021f-cp38-cp38-win32.whl</purl>
+      <modified>false</modified>
+    </component>
+  </components>
+</bom>

@@ -3,11 +3,9 @@ name = "cyclonedx-bom"
 version = "4.0.0-alpha.0"
 description = "CycloneDX Software Bill of Materials (SBOM) generation utility"
 authors = [
-  "Steven Springett <steve.springett@owasp.org>",
-  "Paul Horton <phorton@sonatype.com>",
+  "Jan Kowalleck <jan.kowalleck@gmail.com>",
 ]
 maintainers = [
-  "Paul Horton <phorton@sonatype.com>",
   "Jan Kowalleck <jan.kowalleck@gmail.com>",
 ]
 license = "Apache-2.0"
@@ -16,60 +14,72 @@ homepage = "https://github.com/CycloneDX/cyclonedx-python/#readme"
 repository = "https://github.com/CycloneDX/cyclonedx-python"
 documentation = "https://cyclonedx-bom-tool.readthedocs.io/"
 packages = [
-    { include = "cyclonedx_py" }
+  { include = "cyclonedx_py" }
 ]
 include = [
-    "LICENSE", "NOTICE"
+  "LICENSE", "NOTICE"
 ]
 classifiers = [
-    # Trove classifiers - https://packaging.python.org/specifications/core-metadata/#metadata-classifier
-    # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
-    'Development Status :: 5 - Production/Stable',
-    'Intended Audience :: Developers',
-    'Intended Audience :: Information Technology',
-    'Intended Audience :: Legal Industry',
-    'Intended Audience :: System Administrators',
-    'Topic :: Security',
-    'Topic :: Software Development',
-    'Topic :: System :: Software Distribution',
-    'License :: OSI Approved :: Apache Software License',
-    'Programming Language :: Python :: 3.8',
-    'Programming Language :: Python :: 3.9',
-    'Programming Language :: Python :: 3.10',
-    'Programming Language :: Python :: 3.11',
-    'Typing :: Typed'
+  # Trove classifiers - https://packaging.python.org/specifications/core-metadata/#metadata-classifier
+  # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
+  'Development Status :: 5 - Production/Stable',
+  'Intended Audience :: Developers',
+  'Intended Audience :: Information Technology',
+  'Intended Audience :: Legal Industry',
+  'Intended Audience :: System Administrators',
+  'Topic :: Security',
+  'Topic :: Software Development',
+  'Topic :: System :: Software Distribution',
+  'License :: OSI Approved :: Apache Software License',
+  'Programming Language :: Python :: 3.8',
+  'Programming Language :: Python :: 3.9',
+  'Programming Language :: Python :: 3.10',
+  'Programming Language :: Python :: 3.11',
+  'Programming Language :: Python :: 3.12',
+  'Typing :: Typed'
 ]
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/CycloneDX/cyclonedx-python/issues"
+"Funding" = "https://owasp.org/donate/?reponame=www-project-cyclonedx&title=OWASP+CycloneDX"
 
 [tool.poetry.dependencies]
 python = "^3.8"
 # ATTENTION: keep `deps.lowest.r` file in sync
-cyclonedx-python-lib = { version="^5.0.0", extras=['validation'] }
+cyclonedx-python-lib = { version = "^6.1.0", extras = ['validation'] }
 packageurl-python = ">= 0.11"
 pip-requirements-parser = "^32.0.0"
-setuptools = ">= 47.0.0"
-toml = "^0.10.0"
+tomli = { version = "^2.0.1", python = "<3.11" }
 chardet = "^5.1"
+packaging = "^22||^23"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 # pin to exact versions, if the tool/lib/plugin is process-relevant
 coverage = "7.3.1"
 ddt = "1.6.0"
 flake8 = { version = "6.1.0", python = ">=3.8.1" }
 flake8-annotations = { version = "3.0.1", python = ">=3.8.1" }
-flake8-bugbear = { version = "23.7.10", python = ">=3.8.1" }
-flake8-isort = "6.0.0"
+flake8-bugbear = { version = "23.9.16", python = ">=3.8.1" }
+flake8-isort = "6.1.1"
+flake8-quotes = "3.3.2"
+flake8-use-fstring = "1.4"
+pep8-naming = "0.13.3"
 isort = "5.12.0"
 autopep8 = "2.0.4"
-mypy = "1.5.1"
+mypy = "1.7.0"
 bandit = "1.7.5"
 tox = "4.11.3"
 # `types-toml` need to stay in sync with version of `toml`
 types-toml = "^0.10.0"
-# `types-setuptools` need to stay in sync with version of `setuptools` - but 47 was not typed...
-types-setuptools = ">= 57.0.0"
+# min version required to be able to install some dependencies
+# see https://github.com/MichaelKim0407/flake8-use-fstring/issues/33
+setuptools = ">= 47.0.0"
+# install` needed for setup/init of testbeds
+pip = ">=23.0"
+pipenv = ">=2023.11.5"
+poetry = "^1.7"
 
 [tool.poetry.scripts]
-cyclonedx-py  = 'cyclonedx_py._internal.cli:main'
+cyclonedx-py = 'cyclonedx_py._internal.cli:run'
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

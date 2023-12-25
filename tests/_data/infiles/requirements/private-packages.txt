@@ -1,0 +1,7 @@
+## pip option to use an alternative package registry
+
+--index-url https://pypackages.acme.org/simple/
+--extra-index-url https://legacy1.pypackages.acme.org/simple/
+--extra-index-url https://legacy2.pypackages.acme.org/simple/
+
+my-package==1.2.3

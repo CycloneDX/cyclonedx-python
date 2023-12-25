@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "group-deps"
+version = "0.1.0"
+description = "dependencies organized in groups"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+# see https://python-poetry.org/docs/master/managing-dependencies/#dependency-groups
+# This group notation is preferred since Poetry 1.2.0 and not usable in earlier versions.
+
+[tool.poetry.dependencies]
+python = "^3.11"
+toml = "^0.10.2"
+
+[tool.poetry.group.dev.dependencies]
+ddt = "^1.6.0"
+
+[tool.poetry.group.groupB.dependencies]
+isoduration = "^20.11.0"
+
+[tool.poetry.group.groupA]
+optional = true
+
+[tool.poetry.group.groupA.dependencies]
+isoduration = "^20.11.0"
+colorama = "^0.4.6"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

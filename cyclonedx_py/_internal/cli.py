@@ -1,7 +1,4 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-# This file is part of CycloneDX Python
+# This file is part of CycloneDX Python Lib
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,390 +15,275 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-import argparse
-import enum
-import os
+import logging
 import sys
-from datetime import datetime
-from typing import Any, Optional, Type
+from argparse import ArgumentParser, FileType, RawDescriptionHelpFormatter
+from itertools import chain
+from typing import TYPE_CHECKING, Any, Dict, List, Optional, TextIO, Type
 
-from chardet import detect as chardetect
-from cyclonedx.model import Tool
-from cyclonedx.model.bom import Bom
-from cyclonedx.model.component import Component
-from cyclonedx.output import BaseOutput, get_instance as get_output_instance
-from cyclonedx.parser import BaseParser
+from cyclonedx.model import Property
+from cyclonedx.output import make_outputter
 from cyclonedx.schema import OutputFormat, SchemaVersion
 from cyclonedx.validation import make_schemabased_validator
 
-from .. import __version__ as _this_tool_version
-from .parser._cdx_properties import Pipenv as PipenvProps, Poetry as PoetryProp
-from .parser.conda import CondaListExplicitParser, CondaListJsonParser
-from .parser.environment import EnvironmentParser
-from .parser.pipenv import PipenvPackageCategoryGroupWellknown, PipEnvParser
-from .parser.poetry import PoetryGroupWellknown, PoetryParser
-from .parser.requirements import RequirementsParser
+from .. import __version__
+from . import PropertyName
+from .environment import EnvironmentBB
+from .pipenv import PipenvBB
+from .poetry import PoetryBB
+from .requirements import RequirementsBB
+from .utils.args import argparse_type4enum, choices4enum
+
+if TYPE_CHECKING:  # pragma: no cover
+    from argparse import Action
+
+    from cyclonedx.model.bom import Bom
+    from cyclonedx.model.component import Component
+
+    from . import BomBuilder
+
+    BooleanOptionalAction: Optional[Type[Action]]
+
+if sys.version_info >= (3, 9):
+    from argparse import BooleanOptionalAction
+else:
+    BooleanOptionalAction = None
 
 
-class CycloneDxCmdException(Exception):
-    pass
+class Command:
+    @classmethod
+    def make_argument_parser(cls, sco: ArgumentParser, **kwargs: Any) -> ArgumentParser:
+        p = ArgumentParser(
+            description='Creates CycloneDX Software Bill of Materials (SBOM) from Python projects and environments.',
+            formatter_class=RawDescriptionHelpFormatter,
+            allow_abbrev=False,
+            **kwargs)
+        p.add_argument('--version', action='version', version=__version__)
+        sp = p.add_subparsers(metavar='command', dest='command',
+                              # not required. if omitted: show help and exit
+                              required=False)
 
-
-class CycloneDxCmdNoInputFileSupplied(CycloneDxCmdException):
-    pass
-
-
-@enum.unique
-class _CLI_OUTPUT_FORMAT(enum.Enum):
-    XML = 'xml'
-    JSON = 'json'
-
-
-@enum.unique
-class _CLI_OMITTABLE(enum.Enum):
-    DevDependencies = 'dev'
-
-
-_output_formats = {
-    _CLI_OUTPUT_FORMAT.XML: OutputFormat.XML,
-    _CLI_OUTPUT_FORMAT.JSON: OutputFormat.JSON,
-}
-_output_default_filenames = {
-    _CLI_OUTPUT_FORMAT.XML: 'cyclonedx.xml',
-    _CLI_OUTPUT_FORMAT.JSON: 'cyclonedx.json',
-}
-
-
-class CycloneDxCmd:
-    # Whether debug output is enabled
-    _DEBUG_ENABLED: bool = False
-
-    # Parsed Arguments
-    _arguments: argparse.Namespace
-
-    def __init__(self, args: argparse.Namespace) -> None:
-        self._arguments = args
-
-        if self._arguments.debug_enabled:
-            self._DEBUG_ENABLED = True
-            self._debug_message('!!! DEBUG MODE ENABLED !!!')
-            self._debug_message('Parsed Arguments: {}', self._arguments)
-
-    def _get_output_format(self) -> _CLI_OUTPUT_FORMAT:
-        return _CLI_OUTPUT_FORMAT(str(self._arguments.output_format).lower())
-
-    def get_output(self) -> BaseOutput:
-        try:
-            parser = self._get_input_parser()
-        except CycloneDxCmdNoInputFileSupplied as error:
-            print(f'ERROR: {str(error)}', file=sys.stderr)
-            exit(1)
-        except CycloneDxCmdException as error:
-            print(f'ERROR: {str(error)}', file=sys.stderr)
-            exit(1)
-
-        if parser and parser.has_warnings():
-            print('',
-                  '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
-                  '!! Some of your dependencies do not have pinned version !!',
-                  '!! numbers in your requirements.txt                     !!',
-                  '!!                                                      !!',
-                  *('!! -> {} !!'.format(warning.get_item().ljust(49)) for warning in parser.get_warnings()),
-                  '!!                                                      !!',
-                  '!! The above will NOT be included in the generated      !!',
-                  '!! CycloneDX as version is a mandatory field.           !!',
-                  '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
-                  '',
-                  sep='\n', file=sys.stderr)
-
-        bom = Bom(components=filter(self._component_filter, parser.get_components()))
-
-        bom.metadata.tools.add(Tool(
-            vendor='CycloneDX',
-            name='cyclonedx-bom',
-            version=_this_tool_version
-        ))
-
-        return get_output_instance(
-            bom=bom,
-            output_format=self.cdx_output_formats,
-            schema_version=self.cdx_schema_version
-        )
-
-    @property
-    def cdx_output_formats(self) -> OutputFormat:
-        return _output_formats[self._get_output_format()]
-
-    @property
-    def cdx_schema_version(self) -> SchemaVersion:
-        return SchemaVersion['V{}'.format(
-            str(self._arguments.output_schema_version).replace('.', '_')
-        )]
-
-    def execute(self) -> None:
-        output_format = self._get_output_format()
-        self._debug_message('output_format: {}', output_format)
-
-        # Quick check for JSON && SchemaVersion <= 1.1
-        if output_format is _CLI_OUTPUT_FORMAT.JSON and str(self._arguments.output_schema_version) in ['1.0', '1.1']:
-            self._error_and_exit(
-                'CycloneDX schema does not support JSON output in Schema Versions < 1.2',
-                exit_code=2
-            )
-
-        output = self.get_output().output_as_string()
-
-        if self._arguments.output_validate:
-            self._debug_message('Validating SBOM result ...')
-            validation_errors = make_schemabased_validator(
-                self.cdx_output_formats,
-                self.cdx_schema_version
-            ).validate_str(output)
-            if validation_errors is None:
-                self._debug_message('Valid SBOM result.')
-            else:
-                self._debug_message('Validation Error: {!r}', validation_errors.data)
-                self._error_and_exit(
-                    'Failed to generate valid BOM.\n\n'
-                    'Please report the issue and provide all input data to:\n'
-                    'https://github.com/CycloneDX/cyclonedx-python/issues/new?'
-                    'template=ValidationError-report.md&labels=ValidationError&title=%5BValidationError%5D',
-                    exit_code=3)
+        op = ArgumentParser(add_help=False)
+        op.add_argument('--short-PURLs',
+                        help='Omit all qualifiers from PackageURLs.\n'
+                             'This causes information loss in trade-off shorter PURLs, '
+                             'which might improve ingesting these strings.',
+                        action='store_true',
+                        dest='short_purls',
+                        default=False)
+        op.add_argument('-o', '--outfile',
+                        metavar='<file>',
+                        help='Output file path for your SBOM (set to "-" to output to <stdout>) (default: %(default)s)',
+                        type=FileType('wt', encoding='utf8'),
+                        dest='outfile',
+                        default='-')
+        op.add_argument('--sv', '--schema-version',
+                        metavar='<version>',
+                        help='The CycloneDX schema version for your SBOM'
+                             f' {{choices: {", ".join(sorted((v.to_version() for v in SchemaVersion), reverse=True))}}}'
+                             ' (default: %(default)s)',
+                        dest='schema_version',
+                        choices=SchemaVersion,
+                        type=SchemaVersion.from_version,
+                        default=SchemaVersion.V1_5.to_version())
+        op.add_argument('--of', '--output-format',
+                        metavar='<format>',
+                        help=f'The output format for your SBOM {choices4enum(OutputFormat)} (default: %(default)s)',
+                        dest='output_format',
+                        choices=OutputFormat,
+                        type=argparse_type4enum(OutputFormat),
+                        default=OutputFormat.JSON.name)
+        op.add_argument('--output-reproducible',
+                        help='Whether to go the extra mile and make the output reproducible.\n'
+                             'This might result in loss of time- and random-based-values.',
+                        action='store_true',
+                        dest='output_reproducible',
+                        default=False)
+        if BooleanOptionalAction:
+            op.add_argument('--validate',
+                            help='Whether validate the result before outputting (default: %(default)s)',
+                            action=BooleanOptionalAction,
+                            dest='should_validate',
+                            default=True)
         else:
-            self._debug_message('Validating SBOM result skipped.')
+            vg = op.add_mutually_exclusive_group()
+            vg.add_argument('--validate',
+                            help='Validate the result before outputting (default: %(default)s)',
+                            action='store_true',
+                            dest='should_validate',
+                            default=True)
+            vg.add_argument('--no-validate',
+                            help='Do not validate the result before outputting',
+                            dest='should_validate',
+                            action='store_false')
 
-        if self._arguments.output_file == '-' or not self._arguments.output_file:
-            self._debug_message('Returning SBOM to STDOUT')
-            print(output, file=sys.stdout)
-        else:
-            output_file = self._arguments.output_file
-            output_filename = os.path.realpath(
-                output_file if isinstance(output_file, str) else _output_default_filenames[output_format])
-            self._debug_message('Will be outputting SBOM to file: {}', output_filename)
-            with open(output_filename,
-                      mode='w' if self._arguments.output_file_overwrite else 'x'
-                      ) as f_out:
-                wrote = f_out.write(output)
-                self._debug_message('Wrote {} bytes to file: {}', wrote, output_filename)
+        scbbc: Type['BomBuilder']
+        for sct, scbbc in (  # type:ignore[assignment]
+            ('environment', EnvironmentBB),
+            ('requirements', RequirementsBB),
+            ('pipenv', PipenvBB),
+            ('poetry', PoetryBB),
+        ):
+            spp = scbbc.make_argument_parser(add_help=False)
+            sp.add_parser(sct,
+                          help=(spp.description or '').split('\n')[0].strip('. '),
+                          description=spp.description,
+                          epilog=spp.epilog,
+                          parents=[spp, op, sco],
+                          formatter_class=p.formatter_class,
+                          allow_abbrev=p.allow_abbrev,
+                          ).set_defaults(_bbc=scbbc)
 
-    @staticmethod
-    def get_arg_parser(*, prog: Optional[str] = None) -> argparse.ArgumentParser:
-        arg_parser = argparse.ArgumentParser(prog=prog, description='CycloneDX SBOM Generator')
-        arg_parser.add_argument('--version', action='version', version=_this_tool_version)
+        return p
 
-        input_group = arg_parser.add_mutually_exclusive_group(required=True)
-        input_group.add_argument(
-            '-c', '--conda', action='store_true',
-            help='Build a SBOM based on the output from `conda list --explicit` or `conda list --explicit --md5`',
-            dest='input_from_conda_explicit'
-        )
-        input_group.add_argument(
-            '-cj', '--conda-json', action='store_true',
-            help='Build a SBOM based on the output from `conda list --json`',
-            dest='input_from_conda_json'
-        )
-        input_group.add_argument(
-            '-e', '--e', '--environment', action='store_true',
-            help='Build a SBOM based on the packages installed in your current Python environment (default)',
-            dest='input_from_environment'
-        )
-        input_group.add_argument(
-            '-p', '--p', '--poetry', action='store_true',
-            help='Build a SBOM based on a Poetry poetry.lock\'s contents. Use with -i to specify absolute path '
-                 'to a `poetry.lock` you wish to use, else we\'ll look for one in the current working directory.',
-            dest='input_from_poetry'
-        )
-        input_group.add_argument(
-            '-pip', '--pip', action='store_true',
-            help='Build a SBOM based on a PipEnv Pipfile.lock\'s contents. Use with -i to specify absolute path '
-                 'to a `Pipfile.lock` you wish to use, else we\'ll look for one in the current working directory.',
-            dest='input_from_pip'
-        )
-        input_group.add_argument(
-            '-r', '--r', '--requirements', action='store_true',
-            help='Build a SBOM based on a requirements.txt\'s contents. Use with -i to specify absolute path '
-                 'to a `requirements.txt` you wish to use, else we\'ll look for one in the current working directory.',
-            dest='input_from_requirements'
-        )
+    __OWN_ARGS = {
+        # the ars keywords from __init__
+        'logger', 'short_purls', 'output_format', 'schema_version', 'output_reproducible', 'should_validate',
+        # the ars keywords from __call__
+        'outfile'
+    }
 
-        input_method_group = arg_parser.add_argument_group(
-            title='Input Method',
-            description='Flags to determine how this tool obtains its input'
-        )
-        input_method_group.add_argument(
-            '-i', '--in-file', action='store', metavar='FILE_PATH',
-            # custom input shall be treated as binary, the actual encoding is detected later
-            type=argparse.FileType('rb'),  # FileType does handle '-'
-            default=None,
-            help='File to read input from. Use "-" to read from STDIN.', dest='input_source', required=False
-        )
+    @classmethod
+    def _clean_kwargs(cls, kwargs: Dict[str, Any]) -> Dict[str, Any]:
+        return {k: kwargs[k] for k in kwargs if k not in cls.__OWN_ARGS}
 
-        output_group = arg_parser.add_argument_group(
-            title='SBOM Output Configuration',
-            description='Choose the output format and schema version'
-        )
-        output_group.add_argument(
-            '--format', action='store',
-            choices=[f.value for f in _CLI_OUTPUT_FORMAT], default=_CLI_OUTPUT_FORMAT.XML.value,
-            help='The output format for your SBOM (default: %(default)s)',
-            dest='output_format'
-        )
-        output_group.add_argument(
-            '--schema-version', action='store', choices=['1.4', '1.3', '1.2', '1.1', '1.0'], default='1.4',
-            help='The CycloneDX schema version for your SBOM (default: %(default)s)',
-            dest='output_schema_version'
-        )
-        output_group.add_argument(
-            # string, None or True. True=autodetect(based-on-format)
-            '-o', '--o', '--output', action='store', metavar='FILE_PATH', default=True, required=False,
-            help='Output file path for your SBOM (set to \'-\' to output to STDOUT)', dest='output_file'
-        )
-        output_group.add_argument(
-            '-F', '--force', action='store_true', dest='output_file_overwrite',
-            help='If outputting to a file and the stated file already exists, it will be overwritten.'
-        )
-        output_group.add_argument(
-            '-pb', '--purl-bom-ref', action='store_true', dest='use_purl_bom_ref',
-            help="Use a component's PURL for the bom-ref value, instead of a random UUID"
-        )
-        _BooleanOptionalAction: Optional[Type[argparse.Action]] = getattr(argparse, 'BooleanOptionalAction', None)
-        # BooleanOptionalAction is not available before py39
-        if _BooleanOptionalAction:
-            output_group.add_argument(
-                '--validate', dest='output_validate',
-                help="Whether validate the result before outputting",
-                # BooleanOptionalAction is not available before py39
-                action=_BooleanOptionalAction,
-                default=True
+    def __init__(self, *,
+                 logger: logging.Logger,
+                 short_purls: bool,
+                 output_format: OutputFormat,
+                 schema_version: SchemaVersion,
+                 output_reproducible: bool,
+                 should_validate: bool,
+                 _bbc: Type['BomBuilder'],
+                 **kwargs: Any) -> None:
+        self._logger = logger
+        self._short_purls = short_purls
+        self._output_format = output_format
+        self._schema_version = schema_version
+        self._output_reproducible = output_reproducible
+        self._should_validate = should_validate
+        self._bbc = _bbc(**self._clean_kwargs(kwargs),
+                         logger=self._logger.getChild(_bbc.__name__))
+
+    def _shorten_purls(self, bom: 'Bom') -> bool:
+        if not self._short_purls:
+            return False
+
+        self._logger.info('Shorting purls...')
+        component: 'Component'
+        for component in chain(
+            bom.metadata.component.get_all_nested_components(True) if bom.metadata.component else (),
+            chain.from_iterable(
+                component.get_all_nested_components(True) for component in bom.components
             )
-        else:
-            output_group.add_argument(
-                '--validate', dest='output_validate',
-                help="Validate the result before outputting",
-                action='store_true',
-                default=True
-            )
-            output_group.add_argument(
-                '--no-validate', dest='output_validate',
-                help="Do not validate the result before outputting",
-                action='store_false'
-            )
-
-        arg_parser.add_argument(
-            "--omit", dest="omit", action="append",
-            default=[],
-            help=f'Omit specified items when using Poetry or PipEnv (choice: {_CLI_OMITTABLE.DevDependencies.value})',
-        )
-
-        arg_parser.add_argument('-X', action='store_true', help='Enable debug output', dest='debug_enabled')
-
-        return arg_parser
-
-    def _debug_message(self, message: str, *args: Any, **kwargs: Any) -> None:
-        if self._DEBUG_ENABLED:
-            print(f'[DEBUG] - {{__t}} - {message}'.format(*args, **kwargs, __t=datetime.now()),
-                  file=sys.stderr)
-
-    @staticmethod
-    def _error_and_exit(message: str, *args: Any, exit_code: int = 1, **kwargs: Any) -> None:
-        print(f'[ERROR] - {{__t}} - {message}'.format(*args, **kwargs, __t=datetime.now()),
-              file=sys.stderr)
-        exit(exit_code)
-
-    def _get_input_parser(self) -> BaseParser:
-        if self._arguments.input_from_environment:
-            return EnvironmentParser(
-                use_purl_bom_ref=self._arguments.use_purl_bom_ref,
-                debug_message=lambda m, *a, **k: self._debug_message(f'EnvironmentParser {m}', *a, **k)
-            )
-
-        # All other Parsers will require some input - grab it now!
-        if not self._arguments.input_source:
-            # Nothing passed via STDIN, and no FILENAME supplied, let's assume a default by input type for ease
-            current_directory = os.getcwd()
-            try:
-                if self._arguments.input_from_conda_explicit:
-                    raise CycloneDxCmdNoInputFileSupplied(
-                        'When using input from Conda Explicit, you need to pipe input via STDIN')
-                elif self._arguments.input_from_conda_json:
-                    raise CycloneDxCmdNoInputFileSupplied(
-                        'When using input from Conda JSON, you need to pipe input via STDIN')
-                elif self._arguments.input_from_pip:
-                    self._arguments.input_source = open(os.path.join(current_directory, 'Pipfile.lock'),
-                                                        'rt', encoding="UTF-8", errors='replace')
-                elif self._arguments.input_from_poetry:
-                    self._arguments.input_source = open(os.path.join(current_directory, 'poetry.lock'),
-                                                        'rt', encoding="UTF-8", errors='replace')
-                elif self._arguments.input_from_requirements:
-                    self._arguments.input_source = open(os.path.join(current_directory, 'requirements.txt'), 'rb')
-                else:
-                    raise CycloneDxCmdException('Parser type could not be determined.')
-            except FileNotFoundError as error:
-                raise CycloneDxCmdNoInputFileSupplied(
-                    f'No input file was supplied and no input was provided on STDIN:\n{str(error)}'
-                ) from error
-
-        input_data_fh = self._arguments.input_source
-        with input_data_fh:
-            input_data = input_data_fh.read()
-            if isinstance(input_data, bytes):
-                try:
-                    input_encoding = (chardetect(input_data)['encoding'] or sys.getdefaultencoding()).replace(
-                        # replace Windows-encoding with code-page
-                        'Windows-', 'cp')
-                    input_data = input_data.decode(input_encoding)
-                except ValueError:
-                    # last resort: try utf8 and hope for the best
-                    input_data = input_data.decode('utf-8', 'replace')
-            input_data_fh.close()
-
-        if self._arguments.input_from_conda_explicit:
-            return CondaListExplicitParser(
-                conda_data=input_data,
-                use_purl_bom_ref=self._arguments.use_purl_bom_ref,
-                debug_message=lambda m, *a, **k: self._debug_message(f'CondaListExplicitParser {m}', *a, **k)
-            )
-        elif self._arguments.input_from_conda_json:
-            return CondaListJsonParser(
-                conda_data=input_data,
-                use_purl_bom_ref=self._arguments.use_purl_bom_ref,
-                debug_message=lambda m, *a, **k: self._debug_message(f'CondaListJsonParser {m}', *a, **k)
-            )
-        elif self._arguments.input_from_pip:
-            return PipEnvParser(
-                pipenv_contents=input_data,
-                use_purl_bom_ref=self._arguments.use_purl_bom_ref,
-                debug_message=lambda m, *a, **k: self._debug_message(f'PipEnvParser {m}', *a, **k)
-            )
-        elif self._arguments.input_from_poetry:
-            return PoetryParser(
-                poetry_lock_contents=input_data,
-                use_purl_bom_ref=self._arguments.use_purl_bom_ref,
-                debug_message=lambda m, *a, **k: self._debug_message(f'PoetryParser {m}', *a, **k)
-            )
-        elif self._arguments.input_from_requirements:
-            return RequirementsParser(
-                requirements_content=input_data,
-                use_purl_bom_ref=self._arguments.use_purl_bom_ref,
-                debug_message=lambda m, *a, **k: self._debug_message(f'RequirementsParser {m}', *a, **k)
-            )
-        else:
-            raise CycloneDxCmdException('Parser type could not be determined.')
-
-    def _component_filter(self, component: Component) -> bool:
-        if _CLI_OMITTABLE.DevDependencies.value in self._arguments.omit:
-            for prop in component.properties:
-                if prop.name == PipenvProps.PackageCategory.value:
-                    if prop.value == PipenvPackageCategoryGroupWellknown.Develop.value:
-                        return False
-                elif prop.name == PoetryProp.PackageGroup.value:
-                    if prop.value == PoetryGroupWellknown.Dev.value:
-                        return False
-
+        ):
+            if component.purl is not None:
+                component.purl = type(component.purl)(
+                    type=component.purl.type,  # type:ignore[arg-type]
+                    namespace=component.purl.namespace,  # type:ignore[arg-type]
+                    name=component.purl.name,  # type:ignore[arg-type]
+                    version=component.purl.version  # type:ignore[arg-type]
+                    # omit qualifiers
+                    # omit subdirectory
+                )
         return True
 
+    def _validate(self, output: str) -> bool:
+        if not self._should_validate:
+            self._logger.warning('Validation skipped.')
+            return False
 
-def main(*, prog_name: Optional[str] = None) -> None:
-    parser = CycloneDxCmd.get_arg_parser(prog=prog_name)
-    args = parser.parse_args()
-    CycloneDxCmd(args).execute()
+        self._logger.info('Validating result to schema: %s/%s',
+                          self._schema_version.to_version(), self._output_format.name)
+
+        validation_error = make_schemabased_validator(
+            self._output_format,
+            self._schema_version
+        ).validate_str(output)
+        if validation_error:
+            self._logger.debug('Validation Errors: %r', validation_error.data)
+            self._logger.error('The result is invalid to schema '
+                               f'{self._schema_version.to_version()}/{self._output_format.name}')
+            self._logger.warning('Please report the issue and provide all input data to: '
+                                 'https://github.com/CycloneDX/cyclonedx-python/issues/new?'
+                                 'template=ValidationError-report.md&'
+                                 'labels=ValidationError&title=%5BValidationError%5D')
+            raise ValueError('result is schema-invalid')
+        self._logger.debug('result is schema-valid')
+        return True
+
+    def _write(self, output: str, outfile: TextIO) -> int:
+        self._logger.info('Writing to: %s', outfile.name)
+        written = outfile.write(output)
+        self._logger.debug('Wrote %i bytes to %s', written, outfile.name)
+        return written
+
+    def _make_output(self, bom: 'Bom') -> str:
+        self._logger.info('Serializing SBOM: %s/%s', self._schema_version.to_version(), self._output_format.name)
+
+        if self._output_reproducible:
+            bom.metadata.properties.add(Property(name=PropertyName.Reproducible.value,
+                                                 value=PropertyName.BooleanTrue.value))
+            # dirty hacks to remove these mandatory properties
+            bom.serial_number = None  # type:ignore[assignment]
+            bom.metadata.timestamp = None  # type:ignore[assignment]
+
+        return make_outputter(
+            bom,
+            self._output_format,
+            self._schema_version
+        ).output_as_string(indent=2)
+
+    def _make_bom(self, **kwargs: Any) -> 'Bom':
+        self._logger.info('Generating SBOM ...')
+        return self._bbc(**self._clean_kwargs(kwargs))
+
+    def __call__(self,
+                 outfile: TextIO,
+                 **kwargs: Any) -> None:
+        bom = self._make_bom(**kwargs)
+        self._shorten_purls(bom)
+        output = self._make_output(bom)
+        del bom
+        self._validate(output)
+        self._write(output, outfile)
+
+
+def run(*, argv: Optional[List[str]] = None, **kwargs: Any) -> int:
+    arg_co = ArgumentParser(add_help=False)
+    arg_co.add_argument('-v', '--verbose',
+                        help='Increase the verbosity of messages (multiple for more effect) (default: silent)',
+                        dest='verbosity',
+                        action='count',
+                        default=0)
+    arg_parser = Command.make_argument_parser(**kwargs, sco=arg_co)
+    del arg_co, kwargs
+    args = vars(arg_parser.parse_args(argv))
+    if args['command'] is None:
+        # print the help page on error, instead of usage
+        arg_parser.print_help()
+        return 1
+    del arg_parser, argv
+
+    ll = (logging.WARNING, logging.INFO, logging.DEBUG)[min(2, args.pop('verbosity'))]
+    lh = logging.StreamHandler(sys.stderr)
+    lh.setLevel(ll)
+    lh.setFormatter(logging.Formatter('%(levelname)-8s | %(name)s > %(message)s'))
+    logger = logging.getLogger('CDX')
+    logger.propagate = False
+    logger.setLevel(lh.level)
+    logger.addHandler(lh)
+
+    logger.debug('args: %s', args)
+    try:
+        Command(**args, logger=logger)(**args)
+    except Exception as error:
+        logger.debug('Error: %s', error, exc_info=error)
+        logger.critical(f'{error}')
+        return 1
+    else:
+        return 0
+    finally:
+        # if called programmatically (in tests), the handlers would stack up,
+        # since the logger is registered globally static
+        logger.removeHandler(lh)

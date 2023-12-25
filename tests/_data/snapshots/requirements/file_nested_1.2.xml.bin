@@ -1,0 +1,82 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.2" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-bom</name>
+        <version>thisVersion-testing</version>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="root-component">
+      <name>testing-requirements-txt</name>
+      <version>0.1.0</version>
+      <description>some `reuqirements.txt` a root-component with all metadata</description>
+      <licenses>
+        <expression>Apache-2.0 OR MIT</expression>
+      </licenses>
+      <externalReferences>
+        <reference type="documentation">
+          <url>https://oss.acme.org/my-project/docs/</url>
+          <comment>from pyproject urls: documentation</comment>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://oss.acme.org/my-project/bugs/</url>
+          <comment>from pyproject urls: Bug Tracker</comment>
+        </reference>
+        <reference type="other">
+          <url>https://oss.acme.org/my-project/funding/</url>
+          <comment>from pyproject urls: Funding</comment>
+        </reference>
+        <reference type="other">
+          <url>https://oss.acme.org/my-project/changelog/</url>
+          <comment>from pyproject urls: Change log</comment>
+        </reference>
+        <reference type="vcs">
+          <url>https://oss.acme.org/my-project.git</url>
+          <comment>from pyproject urls: repository</comment>
+        </reference>
+        <reference type="website">
+          <url>https://oss.acme.org/my-project/</url>
+          <comment>from pyproject urls: homepage</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="requirements-L7">
+      <name>FooProject</name>
+      <version>1.2</version>
+      <description>requirements line 7: FooProject == 1.2   --hash=sha256:2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824   --hash=sha256:486ea46224d1bb4fb680f34f7c9ad96a8f24ec88be73ea8e5a6c65260e9cb8a7</description>
+      <purl>pkg:pypi/fooproject@1.2</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/FooProject/</url>
+          <comment>implicit dist url</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="requirements-L4">
+      <name>colorama</name>
+      <version>0.4.6</version>
+      <description>requirements line 4: colorama==0.4.6</description>
+      <purl>pkg:pypi/colorama@0.4.6</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/colorama/</url>
+          <comment>implicit dist url</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="requirements-L4"/>
+    <dependency ref="requirements-L7"/>
+    <dependency ref="root-component"/>
+  </dependencies>
+</bom>

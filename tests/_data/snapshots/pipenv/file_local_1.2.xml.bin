@@ -1,0 +1,60 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.2" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-bom</name>
+        <version>thisVersion-testing</version>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="root-component">
+      <name>local</name>
+      <version>0.1.0</version>
+      <description>packages from local paths</description>
+    </component>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="package-a">
+      <name>package-a</name>
+      <version/>
+      <externalReferences>
+        <reference type="distribution">
+          <url>../../_helpers/local_pckages/a/dist/package-a-23.42.tar.gz</url>
+          <comment>from file</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="package-b">
+      <name>package-b</name>
+      <version/>
+      <externalReferences>
+        <reference type="distribution">
+          <url>file:../../_helpers/local_pckages/b/dist/package_b-23.42-py3-none-any.whl</url>
+          <comment>from file</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="package-c">
+      <name>package-c</name>
+      <version/>
+      <externalReferences>
+        <reference type="distribution">
+          <url>../../_helpers/local_pckages/c</url>
+          <comment>from path</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="package-a"/>
+    <dependency ref="package-b"/>
+    <dependency ref="package-c"/>
+    <dependency ref="root-component"/>
+  </dependencies>
+</bom>

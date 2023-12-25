@@ -1,0 +1,67 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.2" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-bom</name>
+        <version>thisVersion-testing</version>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="local">
+      <name>local</name>
+      <version>0.1.0</version>
+      <description>packages from local paths</description>
+    </component>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="package-a@23.42">
+      <name>package-a</name>
+      <version>23.42</version>
+      <description>some package A</description>
+      <externalReferences>
+        <reference type="distribution">
+          <url>../../../_helpers/local_pckages/a/dist/package-a-23.42.tar.gz</url>
+          <comment>from file</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="package-b@23.42">
+      <name>package-b</name>
+      <version>23.42</version>
+      <description>some package B</description>
+      <externalReferences>
+        <reference type="distribution">
+          <url>../../../_helpers/local_pckages/b/dist/package_b-23.42-py3-none-any.whl</url>
+          <comment>from file</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="package-c@23.42">
+      <name>package-c</name>
+      <version>23.42</version>
+      <description>some package C</description>
+      <externalReferences>
+        <reference type="distribution">
+          <url>../../../_helpers/local_pckages/c</url>
+          <comment>from directory</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="local">
+      <dependency ref="package-a@23.42"/>
+      <dependency ref="package-b@23.42"/>
+      <dependency ref="package-c@23.42"/>
+    </dependency>
+    <dependency ref="package-a@23.42"/>
+    <dependency ref="package-b@23.42"/>
+    <dependency ref="package-c@23.42"/>
+  </dependencies>
+</bom>

@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.1" version="1">
+  <components>
+    <component type="library" bom-ref="package-a@23.42">
+      <name>package-a</name>
+      <version>23.42</version>
+      <description>some package A</description>
+      <externalReferences>
+        <reference type="distribution">
+          <url>../../../_helpers/local_pckages/a/dist/package-a-23.42.tar.gz</url>
+          <comment>from file</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="package-b@23.42">
+      <name>package-b</name>
+      <version>23.42</version>
+      <description>some package B</description>
+      <externalReferences>
+        <reference type="distribution">
+          <url>../../../_helpers/local_pckages/b/dist/package_b-23.42-py3-none-any.whl</url>
+          <comment>from file</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+</bom>

@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.0" version="1">
+  <components>
+    <component type="library">
+      <name>certifi</name>
+      <version>2021.5.30</version>
+      <description>requirements line 1: certifi==2021.5.30</description>
+      <purl>pkg:pypi/certifi@2021.5.30</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>chardet</name>
+      <version>4.0.0</version>
+      <description>requirements line 2: chardet==4.0.0</description>
+      <purl>pkg:pypi/chardet@4.0.0</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>idna</name>
+      <version>2.10</version>
+      <description>requirements line 3: idna==2.10</description>
+      <purl>pkg:pypi/idna@2.10</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>requests</name>
+      <version>2.25.1</version>
+      <description>requirements line 4: requests==2.25.1</description>
+      <purl>pkg:pypi/requests@2.25.1</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>urllib3</name>
+      <version>1.26.5</version>
+      <description>requirements line 5: urllib3==1.26.5</description>
+      <purl>pkg:pypi/urllib3@1.26.5</purl>
+      <modified>false</modified>
+    </component>
+  </components>
+</bom>

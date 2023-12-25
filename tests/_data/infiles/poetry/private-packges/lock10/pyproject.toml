@@ -1,0 +1,47 @@
+[tool.poetry]
+name = "private-packges"
+version = "0.1.0"
+description = "packages from aternative package repositories"
+authors = ["Your Name <you@example.com>"]
+
+
+# see https://github.com/python-poetry/poetry/blob/1.1/docs/repositories.md
+# run the `pypi-proxy.py` to setup a pypi proxy
+
+[[tool.poetry.source]]
+name = "PyPI"
+url = "https://pypi.org/simple/"
+default = false
+secondary = false
+
+[[tool.poetry.source]]
+name = "default-src"
+url = "http://pysrc1.acme.org:8080/simple/"
+default = true
+secondary = false
+
+
+[[tool.poetry.source]]
+name = "secondary-src"
+url = "http://pysrc4.acme.org:8080/simple/"
+default = false
+secondary = true
+
+
+[[tool.poetry.source]]
+name = "explicit-src"
+url = "http://pysrc2.acme.org:8080/simple/"
+default = false
+secondary = true
+
+
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.13"
+toml = {version = "^0.10.2", source = "explicit-src"}
+colorama = "^0.4.6"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

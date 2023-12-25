@@ -1,0 +1,108 @@
+[[package]]
+category = "main"
+description = "Define boolean algebras, create and parse boolean expressions and create custom boolean DSL."
+name = "boolean.py"
+optional = true
+python-versions = "*"
+version = "4.0"
+
+[[package]]
+category = "main"
+description = "Python library for CycloneDX"
+name = "cyclonedx-python-lib"
+optional = true
+python-versions = ">=3.8,<4.0"
+version = "5.1.1"
+
+[package.dependencies]
+license-expression = ">=30,<31"
+packageurl-python = ">=0.11"
+py-serializable = ">=0.15,<0.16"
+sortedcontainers = ">=2.4.0,<3.0.0"
+
+[package.dependencies.jsonschema]
+extras = ["format"]
+optional = true
+version = ">=4.18,<5.0"
+
+[package.dependencies.lxml]
+optional = true
+version = ">=4,<5"
+
+[package.extras]
+json-validation = ["jsonschema (>=4.18,<5.0)"]
+validation = ["jsonschema (>=4.18,<5.0)", "lxml (>=4,<5)"]
+xml-validation = ["lxml (>=4,<5)"]
+
+[[package]]
+category = "main"
+description = "XML bomb protection for Python stdlib modules"
+name = "defusedxml"
+optional = true
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+version = "0.7.1"
+
+[[package]]
+category = "main"
+description = "license-expression is a comprehensive utility library to parse, compare, simplify and normalize license expressions (such as SPDX license expressions) using boolean logic."
+name = "license-expression"
+optional = true
+python-versions = ">=3.7"
+version = "30.1.1"
+
+[package.dependencies]
+"boolean.py" = ">=4.0"
+
+[package.extras]
+docs = ["Sphinx (5.1.0)", "sphinx-rtd-theme (>=0.5.0)", "sphinxcontrib-apidoc (>=0.3.0)", "doc8 (>=0.8.1)"]
+testing = ["pytest (>=6,<7.0.0 || >7.0.0)", "pytest-xdist (>=2)", "twine", "black", "isort"]
+
+[[package]]
+category = "main"
+description = "A purl aka. Package URL parser and builder"
+name = "packageurl-python"
+optional = true
+python-versions = ">=3.7"
+version = "0.11.2"
+
+[package.extras]
+build = ["wheel"]
+lint = ["isort", "black", "mypy"]
+sqlalchemy = ["sqlalchemy (>=2.0.0)"]
+test = ["pytest"]
+
+[[package]]
+category = "main"
+description = "Library for serializing and deserializing Python Objects to and from JSON and XML."
+name = "py-serializable"
+optional = true
+python-versions = ">=3.7,<4.0"
+version = "0.15.0"
+
+[package.dependencies]
+defusedxml = ">=0.7.1,<0.8.0"
+
+[[package]]
+category = "main"
+description = "Sorted Containers -- Sorted List, Sorted Dict, Sorted Set"
+name = "sortedcontainers"
+optional = true
+python-versions = "*"
+version = "2.4.0"
+
+[extras]
+my-extra = ["cyclonedx-python-lib"]
+
+[metadata]
+content-hash = "36326c9123bc7b66b886bf3d024816b5c2eb03533401ecc9399ef8ac539c3d40"
+lock-version = "1.0"
+python-versions = "^3.8"
+
+[metadata.files]
+"boolean.py" = []
+cyclonedx-python-lib = []
+defusedxml = []
+license-expression = []
+packageurl-python = []
+py-serializable = []
+sortedcontainers = []

@@ -1,0 +1,117 @@
+{
+  "components": [
+    {
+      "bom-ref": "Pillow@10.1.0",
+      "description": "Python Imaging Library (Fork)",
+      "externalReferences": [
+        {
+          "comment": "from VCS",
+          "type": "vcs",
+          "url": "git+https://github.com/python-pillow/Pillow.git#da59ad000d1405eaecd557175e29083a87d19f7c"
+        }
+      ],
+      "name": "Pillow",
+      "purl": "pkg:pypi/pillow@10.1.0?vcs_url=git%2Bhttps://github.com/python-pillow/Pillow.git%40da59ad000d1405eaecd557175e29083a87d19f7c",
+      "type": "library",
+      "version": "10.1.0"
+    },
+    {
+      "bom-ref": "numpy@1.24.4",
+      "description": "Fundamental package for array computing in Python",
+      "externalReferences": [
+        {
+          "comment": "from url",
+          "type": "distribution",
+          "url": "https://files.pythonhosted.org/packages/a4/9b/027bec52c633f6556dba6b722d9a0befb40498b9ceddd29cbe67a45a127c/numpy-1.24.4.tar.gz"
+        }
+      ],
+      "name": "numpy",
+      "purl": "pkg:pypi/numpy@1.24.4",
+      "type": "library",
+      "version": "1.24.4"
+    },
+    {
+      "bom-ref": "six@1.16.0",
+      "description": "Python 2 and 3 compatibility utilities",
+      "externalReferences": [
+        {
+          "comment": "from VCS",
+          "type": "vcs",
+          "url": "git+ssh://git@github.com/benjaminp/six.git#65486e4383f9f411da95937451205d3c7b61b9e1"
+        }
+      ],
+      "name": "six",
+      "purl": "pkg:pypi/six@1.16.0?vcs_url=git%2Bssh://git%40github.com/benjaminp/six.git%4065486e4383f9f411da95937451205d3c7b61b9e1",
+      "type": "library",
+      "version": "1.16.0"
+    },
+    {
+      "bom-ref": "wxPython@4.2.2a1.dev5618+1f82021f",
+      "description": "Cross platform GUI toolkit for Python, \"Phoenix\" version",
+      "externalReferences": [
+        {
+          "comment": "from url",
+          "type": "distribution",
+          "url": "https://wxpython.org/Phoenix/snapshot-builds/wxPython-4.2.2a1.dev5618+1f82021f-cp38-cp38-win32.whl"
+        }
+      ],
+      "name": "wxPython",
+      "purl": "pkg:pypi/wxpython@4.2.2a1.dev5618%2B1f82021f?download_url=https://wxpython.org/Phoenix/snapshot-builds/wxPython-4.2.2a1.dev5618%2B1f82021f-cp38-cp38-win32.whl",
+      "type": "library",
+      "version": "4.2.2a1.dev5618+1f82021f"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "Pillow@10.1.0"
+    },
+    {
+      "ref": "numpy@1.24.4"
+    },
+    {
+      "ref": "six@1.16.0"
+    },
+    {
+      "dependsOn": [
+        "Pillow@10.1.0",
+        "numpy@1.24.4",
+        "six@1.16.0",
+        "wxPython@4.2.2a1.dev5618+1f82021f"
+      ],
+      "ref": "with-urls"
+    },
+    {
+      "dependsOn": [
+        "Pillow@10.1.0",
+        "numpy@1.24.4",
+        "six@1.16.0"
+      ],
+      "ref": "wxPython@4.2.2a1.dev5618+1f82021f"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "with-urls",
+      "description": "packages from direct urls",
+      "name": "with-urls",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "tools": [
+      {
+        "name": "cyclonedx-bom",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.2b.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.2"
+}

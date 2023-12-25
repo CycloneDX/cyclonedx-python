@@ -1,0 +1,50 @@
+[[package]]
+name = "package-a"
+version = "23.42"
+description = "some package A"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.source]
+type = "file"
+url = "../../../_helpers/local_pckages/a/dist/package-a-23.42.tar.gz"
+
+[[package]]
+name = "package-b"
+version = "23.42"
+description = "some package B"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.source]
+type = "file"
+url = "../../../_helpers/local_pckages/b/dist/package_b-23.42-py3-none-any.whl"
+
+[[package]]
+name = "package-c"
+version = "23.42"
+description = "some package C"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+develop = false
+
+[package.source]
+type = "directory"
+url = "../../../_helpers/local_pckages/c"
+
+[metadata]
+lock-version = "1.1"
+python-versions = "^3.8"
+content-hash = "eb023411cfd4933d02aaa1b3512ce9cfe90072a81c3f580982b6da501da2cec2"
+
+[metadata.files]
+package-a = [
+    {file = "package-a-23.42.tar.gz", hash = "sha256:3869fe3f4a6cca5b203b2e2cd8858c834f651e1b0fa76d5c0232e36472199592"},
+]
+package-b = [
+    {file = "package_b-23.42-py3-none-any.whl", hash = "sha256:4aacda53fa274f5ff7eed71a9916904ffb3a11b05dc5ca529d7ddb78ae2dc602"},
+]
+package-c = []

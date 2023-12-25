@@ -1,0 +1,34 @@
+{
+    "_meta": {
+        "hash": {
+            "sha256": "b6b344a88a20d99f1cff5db6c549e31c5aa79bf36bb9859c3f818ef795d62850"
+        },
+        "pipfile-spec": 6,
+        "requires": {},
+        "sources": [
+            {
+                "name": "pypi",
+                "url": "https://pypi.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "package-a": {
+            "file": "../../_helpers/local_pckages/a/dist/package-a-23.42.tar.gz",
+            "hashes": [
+                "sha256:3869fe3f4a6cca5b203b2e2cd8858c834f651e1b0fa76d5c0232e36472199592"
+            ]
+        },
+        "package-b": {
+            "file": "file:../../_helpers/local_pckages/b/dist/package_b-23.42-py3-none-any.whl",
+            "hashes": [
+                "sha256:4aacda53fa274f5ff7eed71a9916904ffb3a11b05dc5ca529d7ddb78ae2dc602"
+            ]
+        },
+        "package-c": {
+            "path": "../../_helpers/local_pckages/c"
+        }
+    },
+    "develop": {}
+}

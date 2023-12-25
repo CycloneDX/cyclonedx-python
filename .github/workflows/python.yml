@@ -36,6 +36,7 @@ env:
   POETRY_VERSION: "1.4.1"
   REPORTS_DIR: CI_reports
   TESTS_REPORTS_ARTIFACT: tests-reports
+  PIPENV_VENV_IN_PROJECT: 1
 
 jobs:
   coding-standards:
@@ -63,21 +64,19 @@ jobs:
         run: poetry run tox r -e flake8 -s false
 
   static-code-analysis:
-    name: Static Coding Analysis (py${{ matrix.python-version}} ${{ matrix.toxenv-factor }})
+    name: StaticCodingAnalysis (py${{ matrix.python-version}} ${{ matrix.toxenv-factors }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
     strategy:
       fail-fast: false
       matrix:
         include:
-          - # test with the locked dependencies
-            python-version: '3.11'
-            toxenv-factor: 'locked'
+          - python-version: '3.12'
             os: ubuntu-latest
-          - # test with the lowest dependencies
-            python-version: '3.8'
-            toxenv-factor: 'lowest'
+            toxenv-factors: '-current'
+          - python-version: '3.8'
             os: ubuntu-latest
+            toxenv-factors: '-lowest'
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
@@ -96,7 +95,7 @@ jobs:
       - name: Install dependencies
         run: poetry install --no-root
       - name: Run tox
-        run: poetry run tox r -e mypy-${{ matrix.toxenv-factor }} -s false
+        run: poetry run tox r -e mypy${{ matrix.toxenv-factors }} -s false
 
   security-issues:
     name: find Security Issues
@@ -122,8 +121,37 @@ jobs:
       - name: Run tox
         run: poetry run tox run -e bandit -s false
 
+  install-and-run:
+    name: install & run "${{matrix.command}}" (${{matrix.os}})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        command:
+          - cyclonedx-py --help
+          - python -m cyclonedx_py --help
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+    steps:
+      - name: Checkout
+        # see https://github.com/actions/checkout
+        uses: actions/checkout@v4
+      - name: Setup Python Environment
+        # see https://github.com/actions/setup-python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION_DEFAULT }}
+          architecture: 'x64'
+      - name: Install self
+        run: pip install .
+      - name: run command
+        run: ${{matrix.command}}
+
   build-and-test:
-    name: Test (${{ matrix.os }} py${{ matrix.python-version }} ${{ matrix.toxenv-factor }})
+    name: Test (${{ matrix.os }} py${{ matrix.python-version }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
     strategy:
@@ -134,22 +162,11 @@ jobs:
           - macos-latest
           - windows-latest
         python-version:
-          - "3.11" # highest supported
+          - "3.12" # highest supported
+          - "3.11"
           - "3.10"
           - "3.9"
           - "3.8"  # lowest supported -- handled in include
-        toxenv-factor: ['locked']
-        include:
-          # test with the lowest dependencies
-          - os: ubuntu-latest
-            python-version: '3.8'
-            toxenv-factor: 'lowest'
-          - os: macos-latest
-            python-version: '3.8'
-            toxenv-factor: 'lowest'
-          - os: windows-latest
-            python-version: '3.8'
-            toxenv-factor: 'lowest'
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
@@ -172,14 +189,14 @@ jobs:
       - name: Ensure build successful
         run: poetry build
       - name: Run tox
-        run: poetry run tox r -e py-${{ matrix.toxenv-factor }} -s false
+        run: poetry run tox r -e py -s false
       - name: Generate coverage reports
         if: ${{ failure() || success() }}
         shell: bash
         run: |
           set -eux
           poetry run coverage report -m
-          poetry run coverage xml -o '${{ env.REPORTS_DIR }}/coverage/${{ matrix.os }}_${{ matrix.python-version }}_${{ matrix.toxenv-factor }}.cobertura.xml'
+          poetry run coverage xml -o '${{ env.REPORTS_DIR }}/coverage/${{ matrix.os }}_${{ matrix.python-version }}.cobertura.xml'
       - name: Artifact reports
         if: ${{ ! cancelled() }}
         # see https://github.com/actions/upload-artifact

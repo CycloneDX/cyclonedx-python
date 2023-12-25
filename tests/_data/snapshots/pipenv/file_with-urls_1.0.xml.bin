@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.0" version="1">
+  <components>
+    <component type="library">
+      <name>certifi</name>
+      <version>2023.11.17</version>
+      <purl>pkg:pypi/certifi@2023.11.17</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>charset-normalizer</name>
+      <version>3.3.2</version>
+      <purl>pkg:pypi/charset-normalizer@3.3.2</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>idna</name>
+      <version>3.6</version>
+      <purl>pkg:pypi/idna@3.6</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>pillow</name>
+      <version/>
+      <purl>pkg:pypi/pillow?vcs_url=git%2Bhttps://github.com/python-pillow/Pillow.git%40da59ad000d1405eaecd557175e29083a87d19f7c</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>requests</name>
+      <version/>
+      <purl>pkg:pypi/requests?vcs_url=git%2Bhttps://github.com/requests/requests.git%40a25fde6989f8df5c3d823bc9f2e2fc24aa71f375</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>six</name>
+      <version/>
+      <purl>pkg:pypi/six?vcs_url=git%2Bssh://git%40github.com/benjaminp/six.git%4065486e4383f9f411da95937451205d3c7b61b9e1</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>urllib3</name>
+      <version/>
+      <purl>pkg:pypi/urllib3?download_url=https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip</purl>
+      <modified>false</modified>
+    </component>
+  </components>
+</bom>
