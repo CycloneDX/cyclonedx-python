@@ -42,10 +42,34 @@ env:
   DIST_DIR: dist
   DIST_ARTIFACT: python-dist
   PYTHON_VERSION_DEFAULT: "3.11"
-  POETRY_VERSION: "1.4.1"
+  POETRY_VERSION: "1.7.1"
 
 jobs:
+  quicktest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        # see https://github.com/actions/checkout
+        uses: actions/checkout@v4
+      - name: Setup Python Environment
+        # see https://github.com/actions/setup-python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION_DEFAULT }}
+          architecture: 'x64'
+      - name: Install poetry
+        # see https://github.com/marketplace/actions/setup-poetry
+        uses: Gr1N/setup-poetry@v8
+        with:
+          poetry-version: ${{ env.POETRY_VERSION }}
+      - name: Install dependencies
+        run: poetry install --no-root
+      - name: Run tox
+        run: poetry run tox run -e py -s false
+
   release-PyPI:
+    needs:
+      - quicktest
     name: "Release: PyPI & GitHub"
     # https://github.community/t/how-do-i-specify-job-dependency-running-in-another-workflow/16482
     # limit this to being run on regular commits, not the commits that semantic-release will create
@@ -109,6 +133,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ steps.release.outputs.tag }}
+
   release-DockerHub:
     name: "Release: DockerHub"
     needs:
