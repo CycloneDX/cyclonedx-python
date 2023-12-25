@@ -122,7 +122,7 @@ jobs:
       - name: Publish package distributions to PyPI
         if: |
           !failure() && !cancelled() &&
-          steps.after-release.outputs.released == 'true'
+          steps.release.outputs.released == 'true'
         # see https://github.com/pypa/gh-action-pypi-publish
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
@@ -130,7 +130,7 @@ jobs:
       - name: Publish package distributions to GitHub Releases
         if: |
           !failure() && !cancelled() &&
-          steps.after-release.outputs.released == 'true'
+          steps.release.outputs.released == 'true'
         # see https://github.com/python-semantic-release/upload-to-gh-release
         uses: python-semantic-release/upload-to-gh-release@main
         with:
@@ -139,7 +139,7 @@ jobs:
       - name: Artifact python dist
         if: |
           !failure() && !cancelled() &&
-          steps.after-release.outputs.released == 'true'
+          steps.release.outputs.released == 'true'
         # see https://github.com/actions/upload-artifact
         uses: actions/upload-artifact@v3
         with:
