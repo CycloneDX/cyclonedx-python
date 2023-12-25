@@ -120,18 +120,36 @@ jobs:
           prerelease: ${{ github.event.inputs.prerelease }}
           prerelease_token: ${{ github.event.inputs.prerelease_token }}
       - name: Publish package distributions to PyPI
-        if: steps.release.outputs.released == 'true'
+        if: |
+          !failure() && !cancelled() &&
+          steps.after-release.outputs.released == 'true'
         # see https://github.com/pypa/gh-action-pypi-publish
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           password: ${{ secrets.PYPI_TOKEN }}
       - name: Publish package distributions to GitHub Releases
-        if: steps.release.outputs.released == 'true'
+        if: |
+          !failure() && !cancelled() &&
+          steps.after-release.outputs.released == 'true'
         # see https://github.com/python-semantic-release/upload-to-gh-release
         uses: python-semantic-release/upload-to-gh-release@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ steps.release.outputs.tag }}
+      - name: Artifact python dist
+        if: |
+          !failure() && !cancelled() &&
+          steps.after-release.outputs.released == 'true'
+        # see https://github.com/actions/upload-artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.DIST_ARTIFACT }}
+          path: ${{ env.DIST_DIR }}/
+          if-no-files-found: error
+          # Dist results are required for further processing.
+          # Therefore, make sure that python-semantic-release is configuret to keep dist.
+          # see https://python-semantic-release.readthedocs.io/en/latest/configuration.html?highlight=remove_dist#remove-dist
+
 
   release-DockerHub:
     name: "Release: DockerHub"
