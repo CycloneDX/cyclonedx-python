@@ -199,7 +199,7 @@ jobs:
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Publish Docker Image for version "${{ env.$VERSION }}"
+      - name: Publish Docker Image for version "${{ env.VERSION }}"
         run: docker push "$DOCKER_REPO:$VERSION"
       - name: Publish Docker Image as "latest"
         if: ${{ github.event.inputs.prerelease == 'true' }}
