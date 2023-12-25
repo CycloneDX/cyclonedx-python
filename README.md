@@ -39,7 +39,7 @@ Read the full [documentation][link_rtfd] for more details.
 
 * Python `^3.8`
 
-However, there are older versions of this plugin available, which
+However, there are older versions of this tool available, which
 support Python `>=2.7`.
 
 ## Installation
