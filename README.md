@@ -18,12 +18,11 @@ for generating Software Bill of material (BOM) documents in [CycloneDX](https://
 from:
 
 * Python (virtual) environment
-* `Poetry`
-* `Pipenv`
-* `requirements`
+* `Poetry` manifest
+* `Pipenv` manifest
+* Pip's `requirements.txt` format
 * `Conda` as a Package Manager is no longer supported since version 4.
-  Try an older version(`pip install 'cyclonedx-bom<4'`).  
-  However, `conda` Python environments are fully supported.
+  However, `conda`'s Python environments are fully supported via the methods listed above.
 
 The SBOM will contain an aggregate of all your current project's dependencies, or those defined by the manifest you supply.
 
@@ -33,18 +32,15 @@ Read the full [documentation][link_rtfd] for more details.
 
 ## Installation
 
-Install this from [PyPi.org][link_pypi] using your preferred Python package manager.
+Install this from [Python Package Index (PyPI)][link_pypi] using your preferred Python package manager.
 
-Example using `pip`:
-
-```shell
-pip install cyclonedx-bom
-```
-
-Example using `poetry`:
+install via one of commands:
 
 ```shell
-poetry add cyclonedx-bom
+python -m pip install cyclonedx-bom   # install via pip
+pipx install cyclonedx-bom            # install via pipx
+poetry add cyclonedx-bom              # install via poetry
+# ... you get the hang
 ```
 
 ## Usage
@@ -52,72 +48,28 @@ poetry add cyclonedx-bom
 Call via one of commands:
 
 ```shell
-cyclonedx-py
-python3 -m cyclonedx_py
+cyclonedx-py             # call script
+python3 -m cyclonedx_py  # call python module CLI
 ```
 
 ## Basic usage
 
 ```shellSession
 $ cyclonedx-py --help
-usage: cyclonedx-py [-h] [--version] 
-                 (-c | -cj | -e | -p | -pip | -r) [-i FILE_PATH]
-                 [--format {json,xml}] [--schema-version {1.4,1.3,1.2,1.1,1.0}]
-                 [-o FILE_PATH] 
-                 [-F] [-X]
+usage: cyclonedx-py [-h] [--version] command ...
 
-CycloneDX SBOM Generator
+Creates CycloneDX Software Bill of Materials (SBOM) from Python projects and environments.
 
-optional arguments:
-  -h, --help            show this help message and exit
-  --version             show program's version number and exit
-  -c, --conda           Build a SBOM based on the output from `conda list
-                        --explicit` or `conda list --explicit --md5`
-  -cj, --conda-json     Build a SBOM based on the output from `conda list
-                        --json`
-  -e, --e, --environment
-                        Build a SBOM based on the packages installed in your
-                        current Python environment (default)
-  -p, --p, --poetry     Build a SBOM based on a Poetry poetry.lock's contents.
-                        Use with -i to specify absolute path to a `poetry.lock`
-                        you wish to use, else we'll look for one in the
-                        current working directory.
-  -pip, --pip           Build a SBOM based on a PipEnv Pipfile.lock's
-                        contents. Use with -i to specify absolute path to a
-                        `Pipfile.lock` you wish to use, else we'll look for
-                        one in the current working directory.
-  -r, --r, --requirements
-                        Build a SBOM based on a requirements.txt's contents.
-                        Use with -i to specify absolute path to a
-                        `requirements.txt` you wish to use, else we'll look
-                        for one in the current working directory.
-  -omit OMIT, --omit OMIT
-                        Omit specified items when using Poetry or PipEnv
-                        (currently supported is dev)
-  -X                    Enable debug output
+positional arguments:
+  command
+    environment   Build an SBOM from Python (virtual) environment
+    requirements  Build an SBOM from Pip requirements
+    pipenv        Build an SBOM from Pipenv manifest
+    poetry        Build an SBOM from Poetry project
 
-Input Method:
-  Flags to determine how this tool obtains its input
-
-  -i FILE_PATH, --in-file FILE_PATH
-                        File to read input from. Use "-" to read from STDIN.
-
-SBOM Output Configuration:
-  Choose the output format and schema version
-
-  --format {json,xml}   The output format for your SBOM (default: xml)
-  --schema-version {1.4,1.3,1.2,1.1,1.0}
-                        The CycloneDX schema version for your SBOM (default:
-                        1.4)
-  -o FILE_PATH, --o FILE_PATH, --output FILE_PATH
-                        Output file path for your SBOM (set to '-' to output
-                        to STDOUT)
-  -F, --force           If outputting to a file and the stated file already
-                        exists, it will be overwritten.
-  -pb, --purl-bom-ref   Use a component's PURL for the bom-ref value, instead
-                        of a random UUID
-  --validate, --no-validate
-                        Whether validate the result before outputting
+options:
+  -h, --help      show this help message and exit
+  --version       show program's version number and exit
 ```
 
 ### Advanced usage and details
@@ -128,13 +80,19 @@ See the full [documentation][link_rtfd] for advanced usage and details on input 
 
 We endeavour to support all functionality for all [current actively supported Python versions](https://www.python.org/downloads/).
 However, some features may not be possible/present in older Python versions due to their lack of support.
+However, there are older versions of this tool, that support `python>=2.7`.
 
 ## Internals
 
-This tool utilizes the [CycloneDX library][cyclonedx-library] to generate the actual data structures, and serialize and validate them.  
-Validation requires [transitive optional dependencies](https://github.com/CycloneDX/cyclonedx-python-lib/blob/main/docs/install.rst#extras).
+This tool utilizes the [CycloneDX Python library][cyclonedx-library] to generate the actual data structures, and serialize and validate them.  
 
 This tool does **not** expose any additional _public_ API or classes - all code is intended to be internal and might change without any notice during version upgrades.
+However, the CLI is stable - you may call it programmatically like:
+```python
+from sys import executable
+from subprocess import run
+run((executable, '-m', 'cyclonedx_py', '--help'))
+```
 
 ## Contributing
 

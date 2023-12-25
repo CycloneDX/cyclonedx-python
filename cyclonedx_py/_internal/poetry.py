@@ -77,24 +77,24 @@ class PoetryBB(BomBuilder):
         p = ArgumentParser(description=dedent("""\
                            Build an SBOM from Poetry project.
 
-                           The options mimic the respective ones from Poetry.
+                           The options and switches mimic the respective ones from Poetry CLI.
                            """),
                            **kwargs)
-        # the args shall mimic the ones from Poetry, which uses comma-separated lists and multi-use
+        # the options and switches SHALL mimic the ones from Poetry, which uses comma-separated lists and multi-use
         p.add_argument('--without',
-                       metavar='GROUPS',
+                       metavar='<groups>>',
                        help='The dependency groups to ignore (multiple values allowed)',
                        action='append',
                        dest='groups_without',
                        default=[])
         p.add_argument('--with',
-                       metavar='GROUPS',
+                       metavar='<groups>>',
                        help='The optional dependency groups to include (multiple values allowed)',
                        action='append',
                        dest='groups_with',
                        default=[])
         p.add_argument('--only',
-                       metavar='GROUPS',
+                       metavar='<groups>>',
                        help='The only dependency groups to include (multiple values allowed)',
                        action='append',
                        dest='groups_only',
@@ -105,7 +105,7 @@ class PoetryBB(BomBuilder):
                        action='store_true')
         eg = p.add_mutually_exclusive_group()
         eg.add_argument('-E', '--extras',
-                        metavar='EXTRAS',
+                        metavar='<extras>>',
                         help='Extra sets of dependencies to include (multiple values allowed)',
                         action='append',
                         dest='extras',

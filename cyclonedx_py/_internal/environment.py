@@ -55,19 +55,18 @@ class EnvironmentBB(BomBuilder):
         p = ArgumentParser(description='Build an SBOM from Python (virtual) environment',
                            **kwargs)
         if os_name == 'nt':
-            # TODO the Windows help-page might need improvement.
             p.epilog = dedent("""\
                Example Usage:
                  • Build an SBOM from current python environment:
                        > %(prog)s
                  • Build an SBOM from a Python (virtual) environment:
                        > %(prog)s "...some\\path\\bin\\python.exe"
-                       > %(prog)s '...some\\path\\.venv\\'
+                       > %(prog)s "...some\\path\\.venv\\"
                  • Build an SBOM from specific Python environment:
                        > where.exe python3.9.exe
                        > %(prog)s "%%path to specific python%%"
                  • Build an SBOM from conda Python environment:
-                       > conda run where python
+                       > conda.exe run where.exe python
                        > %(prog)s "%%path to conda python%%"
                  • Build an SBOM from Pipenv environment:
                        > pipenv.exe --py
