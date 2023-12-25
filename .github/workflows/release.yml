@@ -140,7 +140,7 @@ jobs:
     if: |
       !failure() && !cancelled() &&
       needs.release-PyPI.result == 'success' &&
-      needs.release-PyPI.outputs.released == 'true' &&
+      needs.release-PyPI.outputs.released &&
       needs.release-PyPI.outputs.version &&
       needs.release-PyPI.outputs.tag
     runs-on: ubuntu-latest
@@ -202,7 +202,7 @@ jobs:
       - name: Publish Docker Image for version
         run: docker push "$DOCKER_REPO:$VERSION"
       - name: Publish Docker Image as "latest"
-        if: ${{ github.event.inputs.prerelease != 'false' }}
+        if: ${{ github.event.inputs.prerelease }}
         run: docker push "$DOCKER_REPO:latest"
       # TODO: publish all files in $REPORTS_DIR as release assets - see https://github.com/actions/upload-release-asset
       - name: Docker logout
