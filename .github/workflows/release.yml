@@ -140,7 +140,7 @@ jobs:
     if: |
       !failure() && !cancelled() &&
       needs.release-PyPI.result == 'success' &&
-      needs.release-PyPI.outputs.released &&
+      needs.release-PyPI.outputs.released == 'true' &&
       needs.release-PyPI.outputs.version &&
       needs.release-PyPI.outputs.tag
     runs-on: ubuntu-latest
@@ -194,15 +194,20 @@ jobs:
           path: ${{ env.REPORTS_DIR }}/*.bom.*
           if-no-files-found: error
       # publish AFTER the boms were build, as the bom-generation is kind of a test if the image works
-      - name: Publish Docker Image(s)
-        run: |
-          docker login --username "$DOCKERHUB_USERNAME" --password "$DOCKERHUB_TOKEN"
-          docker push "$DOCKER_REPO:$VERSION"
-          docker push "$DOCKER_REPO:latest"
+      - name: Docker login
+        run: docker login --username "$DOCKERHUB_USERNAME" --password "$DOCKERHUB_TOKEN"
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Publish Docker Image for version
+        run: docker push "$DOCKER_REPO:$VERSION"
+      - name: Publish Docker Image as "latest"
+        if: ${{ github.event.inputs.prerelease != 'false' }}
+        run: docker push "$DOCKER_REPO:latest"
       # TODO: publish all files in $REPORTS_DIR as release assets - see https://github.com/actions/upload-release-asset
+      - name: Docker logout
+        if: ${{ always() }}
+        run: docker logout
       - name: Destroy Docker image
         # run regardless of outcome
         if: ${{ always() }}
