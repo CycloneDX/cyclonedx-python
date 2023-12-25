@@ -42,5 +42,6 @@ The SBOM will contain an aggregate of all your project's dependencies, or those 
 
    install
    usage
+   contributing
    support
    changelog
