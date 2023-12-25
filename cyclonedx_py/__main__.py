@@ -13,7 +13,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-__all__ = [
+__all__ = [  # type:ignore[var-annotated]
     # There is no stable/public API.
     # You may use this instead:
     #   from sys import executable
