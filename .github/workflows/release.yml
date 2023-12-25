@@ -140,7 +140,7 @@ jobs:
     if: |
       !failure() && !cancelled() &&
       needs.release-PyPI.result == 'success' &&
-      needs.release-PyPI.outputs.released &&
+      needs.release-PyPI.outputs.released == 'true' &&
       needs.release-PyPI.outputs.version &&
       needs.release-PyPI.outputs.tag
     runs-on: ubuntu-latest
