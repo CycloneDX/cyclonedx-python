@@ -22,7 +22,7 @@ from:
 * `Pipenv` manifest
 * Pip's `requirements.txt` format
 * `Conda` as a Package Manager is no longer supported since version 4.
-  However, `conda`'s Python environments are fully supported.
+  However, `conda`'s Python environments are fully supported via the methods listed above.
 
 The SBOM will contain an aggregate of all your current project's dependencies, or those defined by the manifest you supply.
 

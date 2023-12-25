@@ -174,7 +174,7 @@ For Pipenv
 Support for `Pipenv`_ dependency management.
 This requires parsing your ``Pipfile`` and ``Pipfile.lock`` file which details exact pinned versions of dependencies.
 
-.. _Pipenv: https://pipenv.pypa.io
+.. _Pipenv: https://pipenv.pypa.io/
 
 The full documentation can be issued by running with ``--help``:
 
@@ -308,12 +308,12 @@ The full documentation can be issued by running with ``--help``:
                             (default: silent)
 
 
-For Pip requirements File
--------------------------
+For Pip requirements
+--------------------
 
-Support for `requirements file format`_ dependency lists.
+Support for Pip's `requirements file format`_ dependency lists.
 
-.. _`requirements file format`: https://pip.pypa.io/en/stable/reference/requirements-file-format/
+.. _requirements file format: https://pip.pypa.io/en/stable/reference/requirements-file-format/
 
 The full documentation can be issued by running with ``--help``:
 
