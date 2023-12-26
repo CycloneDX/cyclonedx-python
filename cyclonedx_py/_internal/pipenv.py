@@ -56,6 +56,7 @@ class PipenvBB(BomBuilder):
         # the options and switches SHALL mimic the ones from Pipenv
         # see also: https://pipenv.pypa.io/en/latest/configuration.html
         p.add_argument('--categories',
+                       # help='', # Pipenv had no help for this, so I guess its okay...
                        metavar='<categories>',
                        dest='categories',
                        type=arpaese_split((' ', ',')),
