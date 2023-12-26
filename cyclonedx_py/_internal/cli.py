@@ -178,11 +178,12 @@ class Command:
             )
         ):
             if component.purl is not None:
-                component.purl = type(component.purl)(
-                    type=component.purl.type,  # type:ignore[arg-type]
-                    namespace=component.purl.namespace,  # type:ignore[arg-type]
-                    name=component.purl.name,  # type:ignore[arg-type]
-                    version=component.purl.version  # type:ignore[arg-type]
+                purl = component.purl
+                component.purl = type(purl)(
+                    type=purl.type,  # type:ignore[arg-type]
+                    namespace=purl.namespace,  # type:ignore[arg-type]
+                    name=purl.name,  # type:ignore[arg-type]
+                    version=purl.version  # type:ignore[arg-type]
                     # omit qualifiers
                     # omit subdirectory
                 )
@@ -260,7 +261,8 @@ def run(*, argv: Optional[List[str]] = None, **kwargs: Any) -> int:
     del arg_co, kwargs
     args = vars(arg_parser.parse_args(argv))
     if args['command'] is None:
-        # print the help page on error, instead of usage
+        # print the "help" page on error, instead of printing "usage" page
+        # this is done to have a better user experience.
         arg_parser.print_help()
         return 1
     del arg_parser, argv
