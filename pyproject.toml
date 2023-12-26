@@ -19,24 +19,30 @@ packages = [
 include = [
   "LICENSE", "NOTICE"
 ]
+keywords = [
+  "OWASP", "CycloneDX",
+  "bill-of-materials", "BOM", "software-bill-of-materials","SBOM",
+  "environment", "venv", "poetry", "pipenv", "requirements",
+  "SPDX", "licenses", "PURL", "package-url", "dependency-graph",
+]
 classifiers = [
   # Trove classifiers - https://packaging.python.org/specifications/core-metadata/#metadata-classifier
   # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
-  'Development Status :: 5 - Production/Stable',
-  'Intended Audience :: Developers',
-  'Intended Audience :: Information Technology',
-  'Intended Audience :: Legal Industry',
-  'Intended Audience :: System Administrators',
-  'Topic :: Security',
-  'Topic :: Software Development',
-  'Topic :: System :: Software Distribution',
-  'License :: OSI Approved :: Apache Software License',
-  'Programming Language :: Python :: 3.8',
-  'Programming Language :: Python :: 3.9',
-  'Programming Language :: Python :: 3.10',
-  'Programming Language :: Python :: 3.11',
-  'Programming Language :: Python :: 3.12',
-  'Typing :: Typed'
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Information Technology",
+  "Intended Audience :: Legal Industry",
+  "Intended Audience :: System Administrators",
+  "Topic :: Security",
+  "Topic :: Software Development",
+  "Topic :: System :: Software Distribution",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Typing :: Typed"
 ]
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/CycloneDX/cyclonedx-python/issues"
@@ -44,7 +50,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.8"
-cyclonedx-python-lib = { version = "^6.1.0", extras = ['validation'] }
+cyclonedx-python-lib = { version = "^6.1.0", extras = ["validation"] }
 packageurl-python = ">= 0.11"
 pip-requirements-parser = "^32.0.0"
 tomli = { version = "^2.0.1", python = "<3.11" }
@@ -76,7 +82,7 @@ pipenv = ">=2023.11.5"
 poetry = "^1.7"
 
 [tool.poetry.scripts]
-cyclonedx-py = 'cyclonedx_py._internal.cli:run'
+cyclonedx-py = "cyclonedx_py._internal.cli:run"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

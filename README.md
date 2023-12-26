@@ -13,7 +13,7 @@
 
 ----
 
-This tool generates Software Bill of material (SBOM) documents in [CycloneDX](https://cyclonedx.org/) format.  
+This tool generates Software Bill of material (SBOM) documents in OWASP [CycloneDX](https://cyclonedx.org/) format.  
 Supported data sources are:
 
 * Python (virtual) environment

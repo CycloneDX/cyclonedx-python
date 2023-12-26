@@ -15,7 +15,7 @@
 CycloneDX SBOM Generation Tool for Python
 =========================================
 
-This tool generates Software Bill of material (SBOM) documents in `CycloneDX`_ format.
+This tool generates Software Bill of material (SBOM) documents in OWASP `CycloneDX`_ format.
 
 Supported data sources are:
 * Python (virtual) environment
