@@ -52,7 +52,7 @@ class PropertyName(Enum):
     BooleanFalse = 'false'
 
     Reproducible = 'cdx:reproducible'
-    # region general
+    # endregion general
 
     # region python
     # see https://github.com/CycloneDX/cyclonedx-property-taxonomy/blob/main/cdx/python.md
