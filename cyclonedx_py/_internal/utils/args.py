@@ -37,7 +37,7 @@ def choices4enum(enum: Type[Enum]) -> str:
     return f'{{choices: {", ".join(sorted(c.name for c in enum))}}}'
 
 
-def arpaese_split(*seps: str) -> Callable[[str], List[str]]:
+def arparse_split(*seps: str) -> Callable[[str], List[str]]:
     def str_split(value: str) -> List[str]:
         sep = seps[0]
         for s in seps[1:]:

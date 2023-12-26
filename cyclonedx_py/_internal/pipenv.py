@@ -30,7 +30,7 @@ from packageurl import PackageURL
 
 from . import BomBuilder, PropertyName
 from .cli_common import add_argument_mc_type, add_argument_pyproject
-from .utils.args import arpaese_split
+from .utils.args import arparse_split
 from .utils.cdx import make_bom
 from .utils.pyproject import pyproject_file2component
 
@@ -59,7 +59,7 @@ class PipenvBB(BomBuilder):
                        # help='', # Pipenv had no help for this, so I guess its okay...
                        metavar='<categories>',
                        dest='categories',
-                       type=arpaese_split(' ', ','),
+                       type=arparse_split(' ', ','),
                        default=[])
         p.add_argument('-d', '--dev',
                        help='Analyse both develop and default packages [env var: PIPENV_DEV]',
