@@ -137,9 +137,9 @@ class Command:
         return p
 
     __OWN_ARGS = {
-        # the ars keywords from __init__
+        # the arg keywords from __init__()
         'logger', 'short_purls', 'output_format', 'schema_version', 'output_reproducible', 'should_validate',
-        # the ars keywords from __call__
+        # the arg keywords from __call__()
         'outfile'
     }
 
