@@ -120,7 +120,7 @@ class PoetryBB(BomBuilder):
         del eg
         add_argument_mc_type(p)
         p.add_argument('project_directory',
-                       metavar='project-directory',
+                       metavar='<project-directory>',
                        help='The project directory for Poetry (default: current working directory)',
                        nargs=OPTIONAL,
                        default='.')

@@ -59,7 +59,7 @@ class Command:
             allow_abbrev=False,
             **kwargs)
         p.add_argument('--version', action='version', version=__version__)
-        sp = p.add_subparsers(metavar='command', dest='command',
+        sp = p.add_subparsers(metavar='<command>', dest='command',
                               # not required. if omitted: show help and exit
                               required=False)
 

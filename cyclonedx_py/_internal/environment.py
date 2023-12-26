@@ -102,7 +102,7 @@ class EnvironmentBB(BomBuilder):
         #  `--user`         Only output packages installed in user-site.
         #  `--path <path>`  Restrict to the specified installation path for listing packages
         p.add_argument('python',
-                       metavar='python',
+                       metavar='<python>',
                        help='Python interpreter',
                        nargs=OPTIONAL,
                        default=None)

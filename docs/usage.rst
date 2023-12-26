@@ -14,12 +14,12 @@ The full documentation can be issued by running with ``--help``:
 .. code-block:: shell-session
 
     $ cyclonedx-py --help
-    usage: cyclonedx-py [-h] [--version] command ...
+    usage: cyclonedx-py [-h] [--version] <command> ...
 
     Creates CycloneDX Software Bill of Materials (SBOM) from Python projects and environments.
 
     positional arguments:
-      command
+      <command>
         environment   Build an SBOM from Python (virtual) environment
         requirements  Build an SBOM from Pip requirements
         pipenv        Build an SBOM from Pipenv manifest
@@ -51,12 +51,12 @@ The full documentation can be issued by running with ``--help``:
                                     [--validate | --no-validate]
                                     [-o <file>] [--sv <version>] [--of <format>]
                                     [--pyproject <file>] [--mc-type <type>]
-                                    [python]
+                                    [<python>]
 
     Build an SBOM from Python (virtual) environment
 
     positional arguments:
-      python                Python interpreter
+      <python>              Python interpreter
 
     options:
       -h, --help            show this help message and exit
@@ -188,16 +188,17 @@ The full documentation can be issued by running with ``--help``:
                                [--categories <categories>] [-d]
                                [--pypi-mirror <url>]
                                [--pyproject <file>] [--mc-type <type>]
-                               [project-directory]
+                               [<project-directory>]
 
     Build an SBOM from Pipenv manifest.
 
     The options and switches mimic the respective ones from Pipenv CLI.
 
     positional arguments:
-      project-directory     The project directory for Pipenv (default: current working directory)
-                            Unlike Pipenv tool, there is no auto-detection in this very tool. Please
-                            provide the actual directory that contains `Pipfile` and `Pipfile.lock`
+      <project-directory>   The project directory for Pipenv
+                            (default: current working directory)
+                            Unlike Pipenv tool, there is no search-up in this very tool. Please
+                            provide the actual directory that contains `Pipfile` and `Pipfile.lock` file.
 
     options:
       -h, --help            show this help message and exit
@@ -257,14 +258,14 @@ The full documentation can be issued by running with ``--help``:
                                [--without GROUPS] [--with GROUPS] [--only <groups> | --no-dev]
                                [-E EXTRAS | --all-extras]
                                [--mc-type <type>]
-                               [project-directory]
+                               [<project-directory>]
 
     Build an SBOM from Poetry project.
 
     The options and switches mimic the respective ones from Poetry CLI.
 
     positional arguments:
-      project-directory     The project directory for Poetry
+      <project-directory>   The project directory for Poetry
                             (default: current working directory)
 
     options:
