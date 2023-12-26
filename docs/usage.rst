@@ -254,7 +254,7 @@ The full documentation can be issued by running with ``--help``:
                                [--short-PURLs] [--output-reproducible]
                                [--validate | --no-validate]
                                [-o <file>] [--sv <version>] [--of <format>]
-                               [--without GROUPS] [--with GROUPS] [--only GROUPS] [--no-dev]
+                               [--without GROUPS] [--with GROUPS] [--only <groups> | --no-dev]
                                [-E EXTRAS | --all-extras]
                                [--mc-type <type>]
                                [project-directory]
@@ -275,7 +275,7 @@ The full documentation can be issued by running with ``--help``:
                             (multiple values allowed)
       --only GROUPS         The only dependency groups to include
                             (multiple values allowed)
-      --no-dev              Explicitly force: --only main
+      --no-dev              Alias for: --only main
       -E EXTRAS, --extras EXTRAS
                             Extra sets of dependencies to include
                             (multiple values allowed)

@@ -93,16 +93,18 @@ class PoetryBB(BomBuilder):
                        action='append',
                        dest='groups_with',
                        default=[])
-        p.add_argument('--only',
-                       metavar='<groups>',
-                       help='The only dependency groups to include (multiple values allowed)',
-                       action='append',
-                       dest='groups_only',
-                       default=[])
-        p.add_argument('--no-dev',
-                       help='Explicitly force: --only main',
-                       dest='no_dev',
-                       action='store_true')
+        og = p.add_mutually_exclusive_group()
+        og.add_argument('--only',
+                        metavar='<groups>',
+                        help='The only dependency groups to include (multiple values allowed)',
+                        action='append',
+                        dest='groups_only',
+                        default=[])
+        og.add_argument('--no-dev',
+                        help='Alias for: --only main',
+                        dest='no_dev',
+                        action='store_true')
+        del og
         eg = p.add_mutually_exclusive_group()
         eg.add_argument('-E', '--extras',
                         metavar='<extras>',
@@ -185,7 +187,8 @@ class PoetryBB(BomBuilder):
                 raise ValueError('some package extras are unknown') from extras_error
             del extras_not_found
 
-            # the group-args shall mimic the ones from poetry
+            # the group-args shall mimic the ones from Poetry.
+            # Poetry handles this pseudo-exclusive-group of args programmatically
             if no_dev:
                 groups = {'main', }
             elif len(groups_only_s) > 0:
