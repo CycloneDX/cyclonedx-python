@@ -37,20 +37,11 @@ def choices4enum(enum: Type[Enum]) -> str:
     return f'{{choices: {", ".join(sorted(c.name for c in enum))}}}'
 
 
-def arpaese_split(sep: Union[str, Iterable[str]]) -> Callable[[str], List[str]]:
-    if isinstance(sep, str):
-        def repl(value: str) -> str:
-            return value
-    else:
-        _seps = set(sep)
-        sep = _seps.pop()
-
-        def repl(value: str) -> str:
-            for s in _seps:
-                value = value.replace(s, sep)
-            return value
-
+def arpaese_split(*seps: str) -> Callable[[str], List[str]]:
     def str_split(value: str) -> List[str]:
-        return list(filter(None, map(str.strip, repl(value).split(sep))))
+        sep = seps[0]
+        for s in seps[1:]:
+            value = value.replace(s, sep)
+        return list(filter(None, map(str.strip, value.split(sep))))
 
     return str_split

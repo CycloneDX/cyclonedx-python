@@ -59,7 +59,7 @@ class PipenvBB(BomBuilder):
                        # help='', # Pipenv had no help for this, so I guess its okay...
                        metavar='<categories>',
                        dest='categories',
-                       type=arpaese_split((' ', ',')),
+                       type=arpaese_split(' ', ','),
                        default=[])
         p.add_argument('-d', '--dev',
                        help='Analyse both develop and default packages [env var: PIPENV_DEV]',
