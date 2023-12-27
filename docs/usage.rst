@@ -29,19 +29,24 @@ The full documentation can be issued by running with ``--help``:
       -h, --help      show this help message and exit
       --version       show program's version number and exit
 
+Example usage: save SBOM in CycloneDX 1.5 XML format, generated from current python environment
+
+.. code-block:: shell
+
+   cyclonedx-py environment --outfile my-sbom.xml --schema-version 1.5 --output-format XML
+
 
 For Python (virtual) environment
 --------------------------------
 
+**subcommand:** ``environment``
+
 .. TODO: describe what an environment is...
 
 This will produce the most accurate and complete CycloneDX BOM as it analyses the actually installed packages.
-It will include all transitive dependencies required by the packages, as well as their properties.
+It will include metadata, licenses, dependency graph, and more in the generated CycloneDX SBOM.
 
-When using *Environment* as the source, any license information available from the installed packages will also be
-included in the generated CycloneDX BOM.
-
-The full documentation can be issued by running with ``--help``:
+The full documentation can be issued by running with ``environment --help``:
 
 .. code-block:: shell-session
 
@@ -171,12 +176,14 @@ Examples for Windows
 For Pipenv
 ----------
 
+**subcommand:** ``pipenv``
+
 Support for `Pipenv`_ dependency management.
 This requires parsing your ``Pipfile`` and ``Pipfile.lock`` file which details exact pinned versions of dependencies.
 
 .. _Pipenv: https://pipenv.pypa.io/
 
-The full documentation can be issued by running with ``--help``:
+The full documentation can be issued by running with ``pipenv --help``:
 
 .. code-block:: shell-session
 
@@ -241,12 +248,14 @@ The full documentation can be issued by running with ``--help``:
 For Poetry
 ----------
 
+**subcommand:** ``poetry``
+
 Support for `Poetry`_ dependency management and package manifest.
 This requires parsing your ``pyproject.toml`` and ``poetry.lock`` file which details exact pinned versions of dependencies.
 
 .. _Poetry: https://python-poetry.org/
 
-The full documentation can be issued by running with ``--help``:
+The full documentation can be issued by running with ``poetry --help``:
 
 .. code-block:: shell-session
 
@@ -312,11 +321,13 @@ The full documentation can be issued by running with ``--help``:
 For Pip requirements
 --------------------
 
+**subcommand:** ``requirements``
+
 Support for Pip's `requirements file format`_ dependency lists.
 
 .. _requirements file format: https://pip.pypa.io/en/stable/reference/requirements-file-format/
 
-The full documentation can be issued by running with ``--help``:
+The full documentation can be issued by running with ``requirements --help``:
 
 .. code-block:: shell-session
 
