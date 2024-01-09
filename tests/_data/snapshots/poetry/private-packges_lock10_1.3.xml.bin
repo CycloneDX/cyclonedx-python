@@ -27,17 +27,17 @@
       <name>colorama</name>
       <version>0.4.6</version>
       <description>Cross-platform colored terminal text.</description>
-      <purl>pkg:pypi/colorama@0.4.6?repository_url=http://user:password%40pysrc1.acme.org:8080/simple</purl>
+      <purl>pkg:pypi/colorama@0.4.6?repository_url=http://pysrc1.acme.org:8080/simple</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>http://user:password@pysrc1.acme.org:8080/simple/colorama/#colorama-0.4.6-py2.py3-none-any.whl</url>
+          <url>http://pysrc1.acme.org:8080/simple/colorama/#colorama-0.4.6-py2.py3-none-any.whl</url>
           <comment>from legacy-api</comment>
           <hashes>
             <hash alg="SHA-256">4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6</hash>
           </hashes>
         </reference>
         <reference type="distribution">
-          <url>http://user:password@pysrc1.acme.org:8080/simple/colorama/#colorama-0.4.6.tar.gz</url>
+          <url>http://pysrc1.acme.org:8080/simple/colorama/#colorama-0.4.6.tar.gz</url>
           <comment>from legacy-api</comment>
           <hashes>
             <hash alg="SHA-256">08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44</hash>
@@ -52,10 +52,10 @@
       <name>six</name>
       <version>1.16.0</version>
       <description>Python 2 and 3 compatibility utilities</description>
-      <purl>pkg:pypi/six@1.16.0?download_url=https://user:password%40files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl</purl>
+      <purl>pkg:pypi/six@1.16.0?download_url=https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>https://user:password@files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl</url>
+          <url>https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl</url>
           <comment>from url</comment>
         </reference>
       </externalReferences>
@@ -67,17 +67,17 @@
       <name>toml</name>
       <version>0.10.2</version>
       <description>Python Library for Tom's Obvious, Minimal Language</description>
-      <purl>pkg:pypi/toml@0.10.2?repository_url=http://user:password%40pysrc2.acme.org:8080/simple</purl>
+      <purl>pkg:pypi/toml@0.10.2?repository_url=http://pysrc2.acme.org:8080/simple</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>http://user:password@pysrc2.acme.org:8080/simple/toml/#toml-0.10.2-py2.py3-none-any.whl</url>
+          <url>http://pysrc2.acme.org:8080/simple/toml/#toml-0.10.2-py2.py3-none-any.whl</url>
           <comment>from legacy-api</comment>
           <hashes>
             <hash alg="SHA-256">806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b</hash>
           </hashes>
         </reference>
         <reference type="distribution">
-          <url>http://user:password@pysrc2.acme.org:8080/simple/toml/#toml-0.10.2.tar.gz</url>
+          <url>http://pysrc2.acme.org:8080/simple/toml/#toml-0.10.2.tar.gz</url>
           <comment>from legacy-api</comment>
           <hashes>
             <hash alg="SHA-256">b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f</hash>

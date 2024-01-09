@@ -7,16 +7,16 @@
         {
           "comment": "from legacy-api",
           "type": "distribution",
-          "url": "http://user:password@pysrc1.acme.org:8080/simple/colorama/#colorama-0.4.6-py2.py3-none-any.whl"
+          "url": "http://pysrc1.acme.org:8080/simple/colorama/#colorama-0.4.6-py2.py3-none-any.whl"
         },
         {
           "comment": "from legacy-api",
           "type": "distribution",
-          "url": "http://user:password@pysrc1.acme.org:8080/simple/colorama/#colorama-0.4.6.tar.gz"
+          "url": "http://pysrc1.acme.org:8080/simple/colorama/#colorama-0.4.6.tar.gz"
         }
       ],
       "name": "colorama",
-      "purl": "pkg:pypi/colorama@0.4.6?repository_url=http://user:password%40pysrc1.acme.org:8080/simple",
+      "purl": "pkg:pypi/colorama@0.4.6?repository_url=http://pysrc1.acme.org:8080/simple",
       "type": "library",
       "version": "0.4.6"
     },
@@ -27,11 +27,11 @@
         {
           "comment": "from url",
           "type": "distribution",
-          "url": "https://user:password@files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl"
+          "url": "https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl"
         }
       ],
       "name": "six",
-      "purl": "pkg:pypi/six@1.16.0?download_url=https://user:password%40files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl",
+      "purl": "pkg:pypi/six@1.16.0?download_url=https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl",
       "type": "library",
       "version": "1.16.0"
     },
@@ -42,16 +42,16 @@
         {
           "comment": "from legacy-api",
           "type": "distribution",
-          "url": "http://user:password@pysrc2.acme.org:8080/simple/toml/#toml-0.10.2-py2.py3-none-any.whl"
+          "url": "http://pysrc2.acme.org:8080/simple/toml/#toml-0.10.2-py2.py3-none-any.whl"
         },
         {
           "comment": "from legacy-api",
           "type": "distribution",
-          "url": "http://user:password@pysrc2.acme.org:8080/simple/toml/#toml-0.10.2.tar.gz"
+          "url": "http://pysrc2.acme.org:8080/simple/toml/#toml-0.10.2.tar.gz"
         }
       ],
       "name": "toml",
-      "purl": "pkg:pypi/toml@0.10.2?repository_url=http://user:password%40pysrc2.acme.org:8080/simple",
+      "purl": "pkg:pypi/toml@0.10.2?repository_url=http://pysrc2.acme.org:8080/simple",
       "type": "library",
       "version": "0.10.2"
     }
