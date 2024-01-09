@@ -17,7 +17,7 @@
 
 from re import compile as re_compile
 
-_URL_AUTH_MATCHER = re_compile(r'(?<=://)[^:@/]+:[^@/]+@')
+_URL_AUTH_MATCHER = re_compile(r'(?<=://)[^/@:]+:[^/@]+@')
 _URL_AUTH_REPLACE = ''
 
 

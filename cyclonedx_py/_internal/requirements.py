@@ -18,9 +18,10 @@
 
 from argparse import OPTIONAL, ArgumentParser
 from functools import reduce
+from itertools import chain
 from os import unlink
 from textwrap import dedent
-from typing import TYPE_CHECKING, Any, Generator, List, Optional, Set
+from typing import TYPE_CHECKING, Any, Generator, Iterable, Optional, Set
 
 from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
@@ -98,11 +99,11 @@ class RequirementsBB(BomBuilder):
     def __init__(self, *,
                  logger: 'Logger',
                  index_url: str,
-                 extra_index_urls: List[str],
+                 extra_index_urls: Iterable[str],
                  **__: Any) -> None:
         self._logger = logger
         self._index_url = index_url
-        self._extra_index_urls = set(extra_index_urls)
+        self._extra_index_urls = tuple(extra_index_urls)
 
     def __call__(self, *,  # type:ignore[override]
                  requirements_file: str,
@@ -142,7 +143,7 @@ class RequirementsBB(BomBuilder):
         ).rstrip('/'))
         extra_index_urls = set(map(
             lambda u: redact_auth_from_url(u.rstrip('/')),
-            self._extra_index_urls.union(*(
+            chain(self._extra_index_urls, chain.from_iterable(
                 i.options['extra_index_urls'] for i in rf.options if 'extra_index_urls' in i.options
             ))
         ))
