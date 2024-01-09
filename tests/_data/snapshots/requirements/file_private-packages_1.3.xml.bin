@@ -55,11 +55,11 @@
     <component type="library" bom-ref="requirements-L9">
       <name>my-other-package</name>
       <version/>
-      <description>requirements line 9: my-other-package @ https://user:password@pypackages.acme.org/my-other-package-1.2.3.tar.gz</description>
-      <purl>pkg:pypi/my-other-package?download_url=https://user:password%40pypackages.acme.org/my-other-package-1.2.3.tar.gz</purl>
+      <description>requirements line 9: my-other-package @ https://pypackages.acme.org/my-other-package-1.2.3.tar.gz</description>
+      <purl>pkg:pypi/my-other-package?download_url=https://pypackages.acme.org/my-other-package-1.2.3.tar.gz</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>https://user:password@pypackages.acme.org/my-other-package-1.2.3.tar.gz</url>
+          <url>https://pypackages.acme.org/my-other-package-1.2.3.tar.gz</url>
           <comment>explicit dist url</comment>
         </reference>
       </externalReferences>
@@ -71,15 +71,15 @@
       <purl>pkg:pypi/my-package@1.2.3</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>https://user:password@legacy1.pypackages.acme.org/simple//my-package/</url>
+          <url>https://legacy1.pypackages.acme.org/simple/my-package/</url>
           <comment>implicit dist extra-url</comment>
         </reference>
         <reference type="distribution">
-          <url>https://user:password@legacy2.pypackages.acme.org/simple//my-package/</url>
+          <url>https://legacy2.pypackages.acme.org/simple/my-package/</url>
           <comment>implicit dist extra-url</comment>
         </reference>
         <reference type="distribution">
-          <url>https://user:password@pypackages.acme.org/simple//my-package/</url>
+          <url>https://pypackages.acme.org/simple/my-package/</url>
           <comment>implicit dist url</comment>
         </reference>
       </externalReferences>

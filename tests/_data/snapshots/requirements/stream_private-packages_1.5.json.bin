@@ -2,16 +2,16 @@
   "components": [
     {
       "bom-ref": "requirements-L9",
-      "description": "requirements line 9: my-other-package @ https://user:password@pypackages.acme.org/my-other-package-1.2.3.tar.gz",
+      "description": "requirements line 9: my-other-package @ https://pypackages.acme.org/my-other-package-1.2.3.tar.gz",
       "externalReferences": [
         {
           "comment": "explicit dist url",
           "type": "distribution",
-          "url": "https://user:password@pypackages.acme.org/my-other-package-1.2.3.tar.gz"
+          "url": "https://pypackages.acme.org/my-other-package-1.2.3.tar.gz"
         }
       ],
       "name": "my-other-package",
-      "purl": "pkg:pypi/my-other-package?download_url=https://user:password%40pypackages.acme.org/my-other-package-1.2.3.tar.gz",
+      "purl": "pkg:pypi/my-other-package?download_url=https://pypackages.acme.org/my-other-package-1.2.3.tar.gz",
       "type": "library"
     },
     {
@@ -21,17 +21,17 @@
         {
           "comment": "implicit dist extra-url",
           "type": "distribution",
-          "url": "https://user:password@legacy1.pypackages.acme.org/simple//my-package/"
+          "url": "https://legacy1.pypackages.acme.org/simple/my-package/"
         },
         {
           "comment": "implicit dist extra-url",
           "type": "distribution",
-          "url": "https://user:password@legacy2.pypackages.acme.org/simple//my-package/"
+          "url": "https://legacy2.pypackages.acme.org/simple/my-package/"
         },
         {
           "comment": "implicit dist url",
           "type": "distribution",
-          "url": "https://user:password@pypackages.acme.org/simple//my-package/"
+          "url": "https://pypackages.acme.org/simple/my-package/"
         }
       ],
       "name": "my-package",

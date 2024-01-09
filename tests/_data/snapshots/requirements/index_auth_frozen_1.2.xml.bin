@@ -56,15 +56,15 @@
       <purl>pkg:pypi/fooproject@1.2</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>https://user:password@legacy1.pypackages.acme.org/simple//FooProject/</url>
+          <url>https://legacy1.pypackages.acme.org/simple/FooProject/</url>
           <comment>implicit dist extra-url</comment>
         </reference>
         <reference type="distribution">
-          <url>https://user:password@legacy2.pypackages.acme.org/simple//FooProject/</url>
+          <url>https://legacy2.pypackages.acme.org/simple/FooProject/</url>
           <comment>implicit dist extra-url</comment>
         </reference>
         <reference type="distribution">
-          <url>https://user:password@pypackages.acme.org/simple//FooProject/</url>
+          <url>https://pypackages.acme.org/simple/FooProject/</url>
           <comment>implicit dist url</comment>
         </reference>
       </externalReferences>
@@ -76,15 +76,15 @@
       <purl>pkg:pypi/colorama@0.4.6</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>https://user:password@legacy1.pypackages.acme.org/simple//colorama/</url>
+          <url>https://legacy1.pypackages.acme.org/simple/colorama/</url>
           <comment>implicit dist extra-url</comment>
         </reference>
         <reference type="distribution">
-          <url>https://user:password@legacy2.pypackages.acme.org/simple//colorama/</url>
+          <url>https://legacy2.pypackages.acme.org/simple/colorama/</url>
           <comment>implicit dist extra-url</comment>
         </reference>
         <reference type="distribution">
-          <url>https://user:password@pypackages.acme.org/simple//colorama/</url>
+          <url>https://pypackages.acme.org/simple/colorama/</url>
           <comment>implicit dist url</comment>
         </reference>
       </externalReferences>
