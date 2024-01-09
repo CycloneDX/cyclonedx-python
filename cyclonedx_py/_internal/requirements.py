@@ -140,7 +140,7 @@ class RequirementsBB(BomBuilder):
         index_url = redact_auth_from_url(reduce(
             lambda c, i: i.options.get('index_url') or c, rf.options, self._index_url
         ).rstrip('/'))
-        extra_index_urls = tuple(map(
+        extra_index_urls = set(map(
             lambda u: redact_auth_from_url(u.rstrip('/')),
             self._extra_index_urls.union(*(
                 i.options['extra_index_urls'] for i in rf.options if 'extra_index_urls' in i.options
