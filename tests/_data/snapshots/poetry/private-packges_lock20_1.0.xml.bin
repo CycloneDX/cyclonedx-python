@@ -5,14 +5,14 @@
       <name>colorama</name>
       <version>0.4.6</version>
       <description>Cross-platform colored terminal text.</description>
-      <purl>pkg:pypi/colorama@0.4.6?repository_url=http://pysrc1.acme.org:8080/simple</purl>
+      <purl>pkg:pypi/colorama@0.4.6?repository_url=http://user:password%40pysrc1.acme.org:8080/simple</purl>
       <modified>false</modified>
     </component>
     <component type="library">
       <name>importlib-metadata</name>
-      <version>6.8.0</version>
+      <version>7.0.1</version>
       <description>Read metadata from Python packages</description>
-      <purl>pkg:pypi/importlib-metadata@6.8.0?repository_url=http://pysrc1.acme.org:8080/simple</purl>
+      <purl>pkg:pypi/importlib-metadata@7.0.1?repository_url=http://user:password%40pysrc1.acme.org:8080/simple</purl>
       <modified>false</modified>
     </component>
     <component type="library">
@@ -24,44 +24,51 @@
     </component>
     <component type="library">
       <name>ml-dtypes</name>
-      <version>0.3.1</version>
+      <version>0.3.2</version>
       <description/>
-      <purl>pkg:pypi/ml-dtypes@0.3.1?repository_url=http://pysrc1.acme.org:8080/simple</purl>
+      <purl>pkg:pypi/ml-dtypes@0.3.2?repository_url=http://user:password%40pysrc1.acme.org:8080/simple</purl>
       <modified>false</modified>
     </component>
     <component type="library">
       <name>numpy</name>
-      <version>1.26.1</version>
+      <version>1.26.3</version>
       <description>Fundamental package for array computing in Python</description>
-      <purl>pkg:pypi/numpy@1.26.1?repository_url=http://pysrc1.acme.org:8080/simple</purl>
+      <purl>pkg:pypi/numpy@1.26.3?repository_url=http://user:password%40pysrc1.acme.org:8080/simple</purl>
       <modified>false</modified>
     </component>
     <component type="library">
       <name>opt-einsum</name>
       <version>3.3.0</version>
       <description>Optimizing numpys einsum function</description>
-      <purl>pkg:pypi/opt-einsum@3.3.0?repository_url=http://pysrc1.acme.org:8080/simple</purl>
+      <purl>pkg:pypi/opt-einsum@3.3.0?repository_url=http://user:password%40pysrc1.acme.org:8080/simple</purl>
       <modified>false</modified>
     </component>
     <component type="library">
       <name>scipy</name>
-      <version>1.11.3</version>
+      <version>1.11.4</version>
       <description>Fundamental algorithms for scientific computing in Python</description>
-      <purl>pkg:pypi/scipy@1.11.3?repository_url=http://pysrc1.acme.org:8080/simple</purl>
+      <purl>pkg:pypi/scipy@1.11.4?repository_url=http://user:password%40pysrc1.acme.org:8080/simple</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>six</name>
+      <version>1.16.0</version>
+      <description>Python 2 and 3 compatibility utilities</description>
+      <purl>pkg:pypi/six@1.16.0?download_url=https://user:password%40files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl</purl>
       <modified>false</modified>
     </component>
     <component type="library">
       <name>toml</name>
       <version>0.10.2</version>
       <description>Python Library for Tom's Obvious, Minimal Language</description>
-      <purl>pkg:pypi/toml@0.10.2?repository_url=http://pysrc2.acme.org:8080/simple</purl>
+      <purl>pkg:pypi/toml@0.10.2?repository_url=http://user:password%40pysrc2.acme.org:8080/simple</purl>
       <modified>false</modified>
     </component>
     <component type="library">
       <name>zipp</name>
       <version>3.17.0</version>
       <description>Backport of pathlib-compatible object wrapper for zip files</description>
-      <purl>pkg:pypi/zipp@3.17.0?repository_url=http://pysrc1.acme.org:8080/simple</purl>
+      <purl>pkg:pypi/zipp@3.17.0?repository_url=http://user:password%40pysrc1.acme.org:8080/simple</purl>
       <modified>false</modified>
     </component>
   </components>

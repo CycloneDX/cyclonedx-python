@@ -30,7 +30,7 @@ from cyclonedx.schema import OutputFormat, SchemaVersion
 
 from cyclonedx_py import __version__ as __this_version
 
-RECREATE_SNAPSHOTS = True or '1' == getenv('CDX_TEST_RECREATE_SNAPSHOTS')
+RECREATE_SNAPSHOTS = '1' == getenv('CDX_TEST_RECREATE_SNAPSHOTS')
 if RECREATE_SNAPSHOTS:
     print('!!! WILL RECREATE ALL SNAPSHOTS !!!', file=stderr)
 

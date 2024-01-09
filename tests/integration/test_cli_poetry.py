@@ -216,6 +216,7 @@ class TestCliPoetry(TestCase, SnapshotMixin):
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'some-extras', projectdir, sv, of)
 
+
     def assertEqualSnapshot(self, actual: str,  # noqa:N802
                             purpose: str,
                             projectdir: str,

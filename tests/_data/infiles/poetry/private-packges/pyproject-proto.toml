@@ -16,31 +16,31 @@ priority = "primary"
 
 [[tool.poetry.source]]
 name = "default-src"
-url = "http://pysrc1.acme.org:8080/simple/"
+url = "http://user:password@pysrc1.acme.org:8080/simple/"
 priority = "default"
 
 
 [[tool.poetry.source]]
 name = "explicit-src"
-url = "http://pysrc2.acme.org:8080/simple/"
+url = "http://user:password@pysrc2.acme.org:8080/simple/"
 priority = "explicit"
 
 
 [[tool.poetry.source]]
 name = "supplemental-src"
-url = "http://pysrc3.acme.org:8080/simple/"
+url = "http://user:password@pysrc3.acme.org:8080/simple/"
 priority = "supplemental"
 
 
 [[tool.poetry.source]]
 name = "secondary-src"
-url = "http://pysrc4.acme.org:8080/simple/"
+url = "http://user:password@pysrc4.acme.org:8080/simple/"
 priority = "secondary"
 
 
 [[tool.poetry.source]]
 name = "testpypi"
-url = "https://test.pypi.org/simple/"
+url = "https://user:password@test.pypi.org/simple/"
 priority = "explicit"
 
 
@@ -55,12 +55,10 @@ priority = "primary"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.13"
-# toml = "^0.10.2"
-# colorama = "*"
-# isoduration = "^20.11.0"
-jax = {version = "0.4.20", source = "jax-src"}
-toml = {version = "*", source = "explicit-src"}
+jax = { version = "0.4.20", source = "jax-src" }
+toml = { version = "*", source = "explicit-src" }
 colorama = "*"
+six = { url = 'https://user:password@files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl' }
 
 
 [build-system]
