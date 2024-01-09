@@ -16,11 +16,12 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
-import re
 from json import dumps as json_dumps
 from os import getenv
 from os.path import dirname, join
 from pathlib import Path
+from re import sub as re_sub
+from sys import stderr
 from typing import Union
 from unittest import TestCase
 from xml.sax.saxutils import escape as xml_escape, quoteattr as xml_quoteattr  # nosec:B406
@@ -31,11 +32,11 @@ from cyclonedx_py import __version__ as __this_version
 
 RECREATE_SNAPSHOTS = '1' == getenv('CDX_TEST_RECREATE_SNAPSHOTS')
 if RECREATE_SNAPSHOTS:
-    print('!!! WILL RECREATE ALL SNAPSHOTS !!!')
+    print('!!! WILL RECREATE ALL SNAPSHOTS !!!', file=stderr)
 
 INIT_TESTBEDS = '1' != getenv('CDX_TEST_SKIP_INIT_TESTBEDS')
 if INIT_TESTBEDS:
-    print('!!! WILL INIT TESTBEDS !!!')
+    print('!!! WILL INIT TESTBEDS !!!', file=stderr)
 
 _TESTDATA_DIRECTORY = join(dirname(__file__), '_data')
 
@@ -102,7 +103,7 @@ def make_xml_comparable(bom: str) -> str:
         '        <vendor>CycloneDX</vendor>\n'
         '        <name>cyclonedx-bom</name>\n'
         '        <version>thisVersion-testing</version>')
-    bom = re.sub(  # replace metadata.tools.version
+    bom = re_sub(  # replace metadata.tools.version
         '        <vendor>CycloneDX</vendor>\n'
         '        <name>cyclonedx-python-lib</name>\n'
         '        <version>.*?</version>',
@@ -110,7 +111,7 @@ def make_xml_comparable(bom: str) -> str:
         '        <name>cyclonedx-python-lib</name>\n'
         '        <version>libVersion-testing</version>',
         bom)
-    bom = re.sub(  # replace metadata.tools.externalReferences
+    bom = re_sub(  # replace metadata.tools.externalReferences
         '        <vendor>CycloneDX</vendor>\n'
         '        <name>cyclonedx-python-lib</name>\n'
         r'        <version>(.*?)</version>\n'
@@ -132,7 +133,7 @@ def make_json_comparable(bom: str) -> str:
         '        "name": "cyclonedx-bom",\n'
         '        "vendor": "CycloneDX",\n'
         '        "version": "thisVersion-testing"')
-    bom = re.sub(  # replace metadata.tools.version
+    bom = re_sub(  # replace metadata.tools.version
         '        "name": "cyclonedx-python-lib",\n'
         '        "vendor": "CycloneDX",\n'
         '        "version": ".*?"',
@@ -140,7 +141,7 @@ def make_json_comparable(bom: str) -> str:
         '        "vendor": "CycloneDX",\n'
         '        "version": "libVersion-testing"',
         bom)
-    bom = re.sub(  # replace metadata.tools.externalReferences
+    bom = re_sub(  # replace metadata.tools.externalReferences
         r'        "externalReferences": \[[\s\S]*?\],\n'
         '        "name": "cyclonedx-python-lib",\n'
         '        "vendor": "CycloneDX"',
