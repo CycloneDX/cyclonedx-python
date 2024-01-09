@@ -2,6 +2,13 @@
 <bom xmlns="http://cyclonedx.org/schema/bom/1.0" version="1">
   <components>
     <component type="library">
+      <name>my-other-package</name>
+      <version/>
+      <description>requirements line 9: my-other-package @ https://user:password@pypackages.acme.org/my-other-package-1.2.3.tar.gz</description>
+      <purl>pkg:pypi/my-other-package?download_url=https://user:password%40pypackages.acme.org/my-other-package-1.2.3.tar.gz</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
       <name>my-package</name>
       <version>1.2.3</version>
       <description>requirements line 7: my-package==1.2.3</description>
