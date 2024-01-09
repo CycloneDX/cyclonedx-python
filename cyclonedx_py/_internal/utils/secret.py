@@ -21,6 +21,7 @@ _URL_AUTH_MATCHER = re_compile(r'(?<=://)[^:@/]+:[^@/]+@')
 _URL_AUTH_REPLACE = ''
 
 
-def redact_auth_from_url(url: str) -> str:
-    return _URL_AUTH_MATCHER.sub(_URL_AUTH_REPLACE, url) \
-        if '@' in url else url
+def redact_auth_from_url(s: str) -> str:
+    # is intended to work on any string that contains an url.
+    return _URL_AUTH_MATCHER.sub(_URL_AUTH_REPLACE, s) \
+        if '@' in s else s
