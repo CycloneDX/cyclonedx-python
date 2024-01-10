@@ -33,7 +33,6 @@ from .cli_common import add_argument_mc_type, add_argument_pyproject
 from .utils.args import arparse_split
 from .utils.cdx import make_bom
 from .utils.pyproject import pyproject_file2component
-
 from .utils.secret import redact_auth_from_url
 
 if TYPE_CHECKING:  # pragma: no cover
