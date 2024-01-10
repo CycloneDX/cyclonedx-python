@@ -22,17 +22,17 @@ This is a small http proxy to PyPI.
 This might be needed to play certain setups.
 """
 
-import sys
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from os import unlink
+from sys import argv, stderr
 from urllib.request import urlretrieve
 
 
 class PypiProxyReqHandler(BaseHTTPRequestHandler):
     def do_GET(self) -> None:  # noqa:N802
-        print('> ', self.path, file=sys.stderr)
+        print('PyPI-PROXY > ', self.path, file=stderr)
         p, m = urlretrieve(f'https://pypi.org{self.path}')  # nosec B310
-        print('< ', p, file=sys.stderr)
+        print('PyPI-PROXY < ', p, file=stderr)
         self.send_response(200)
         for k, v in m.items():
             self.send_header(k, v)
@@ -42,11 +42,15 @@ class PypiProxyReqHandler(BaseHTTPRequestHandler):
         unlink(p)
 
 
+def make_proxy(port: int) -> ThreadingHTTPServer:
+    server_address = ('', port)
+    return ThreadingHTTPServer(server_address, PypiProxyReqHandler)
+
+
 if __name__ == '__main__':
-    server_address = ('', int(sys.argv[1]) if len(sys.argv) >= 2 else 8080)
-    httpd = ThreadingHTTPServer(server_address, PypiProxyReqHandler)
-    print(f'running PyPI proxy at: {server_address!r}', file=sys.stderr)
+    proxy = make_proxy(int(argv[1]) if len(argv) >= 2 else 8080)
+    print(f'running PyPI proxy at: {proxy.server_address!r}', file=stderr)
     try:
-        httpd.serve_forever()
+        proxy.serve_forever()
     except KeyboardInterrupt:
-        httpd.server_close()
+        proxy.server_close()

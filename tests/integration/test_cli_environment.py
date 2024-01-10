@@ -180,7 +180,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
                     f'--of={of.name}',
                     '--output-reproducible',
                     '--outfile=-',
-                    f'--pyproject={join(projectdir, "pyproject.toml")}',
+                    '--pyproject', join(projectdir, 'pyproject.toml'),
                     join(projectdir, '.venv')])
             err = err.getvalue()
             out = out.getvalue()
