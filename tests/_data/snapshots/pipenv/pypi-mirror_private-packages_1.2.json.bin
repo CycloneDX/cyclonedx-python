@@ -1,18 +1,18 @@
 {
   "components": [
     {
-      "bom-ref": "numpy==1.26.2",
+      "bom-ref": "numpy==1.26.3",
       "externalReferences": [
         {
           "comment": "from explicit index: pypi",
           "type": "distribution",
-          "url": "https://pypy-mirror.testing.acme.org/simple/numpy/"
+          "url": "https://user:password@pypy-mirror.testing.acme.org/simple/numpy/"
         }
       ],
       "name": "numpy",
-      "purl": "pkg:pypi/numpy@1.26.2?repository_url=https://pypy-mirror.testing.acme.org/simple",
+      "purl": "pkg:pypi/numpy@1.26.3?repository_url=https://user:password%40pypy-mirror.testing.acme.org/simple",
       "type": "library",
-      "version": "1.26.2"
+      "version": "1.26.3"
     },
     {
       "bom-ref": "six==1.16.0",
@@ -20,7 +20,7 @@
         {
           "comment": "from implicit index: pypi",
           "type": "distribution",
-          "url": "https://pypy-mirror.testing.acme.org/simple/six/"
+          "url": "https://user:password@pypy-mirror.testing.acme.org/simple/six/"
         }
       ],
       "name": "six",
@@ -34,18 +34,18 @@
         {
           "comment": "from explicit index: pysrc1.acme.org",
           "type": "distribution",
-          "url": "http://pysrc1.acme.org:8080/simple/toml/"
+          "url": "http://user:password@pysrc1.acme.org:8080/simple/toml/"
         }
       ],
       "name": "toml",
-      "purl": "pkg:pypi/toml@0.10.2?repository_url=http://pysrc1.acme.org:8080/simple",
+      "purl": "pkg:pypi/toml@0.10.2?repository_url=http://user:password%40pysrc1.acme.org:8080/simple",
       "type": "library",
       "version": "0.10.2"
     }
   ],
   "dependencies": [
     {
-      "ref": "numpy==1.26.2"
+      "ref": "numpy==1.26.3"
     },
     {
       "ref": "six==1.16.0"

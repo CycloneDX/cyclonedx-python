@@ -98,7 +98,7 @@ class TestCliPipenv(TestCase, SnapshotMixin):
                     f'--of={of.name}',
                     '--output-reproducible',
                     '--outfile=-',
-                    f'--pyproject={join(projectdir, "pyproject.toml")}',
+                    '--pyproject', join(projectdir, 'pyproject.toml'),
                     projectdir])
             err = err.getvalue()
             out = out.getvalue()
@@ -158,7 +158,7 @@ class TestCliPipenv(TestCase, SnapshotMixin):
                     f'--of={of.name}',
                     '--output-reproducible',
                     '--outfile=-',
-                    '--pypi-mirror', 'https://pypy-mirror.testing.acme.org/simple',
+                    '--pypi-mirror', 'https://user:password@pypy-mirror.testing.acme.org/simple/',
                     projectdir])
             err = err.getvalue()
             out = out.getvalue()

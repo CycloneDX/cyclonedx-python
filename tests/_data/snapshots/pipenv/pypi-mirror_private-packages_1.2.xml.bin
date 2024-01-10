@@ -15,13 +15,13 @@
     </tools>
   </metadata>
   <components>
-    <component type="library" bom-ref="numpy==1.26.2">
+    <component type="library" bom-ref="numpy==1.26.3">
       <name>numpy</name>
-      <version>1.26.2</version>
-      <purl>pkg:pypi/numpy@1.26.2?repository_url=https://pypy-mirror.testing.acme.org/simple</purl>
+      <version>1.26.3</version>
+      <purl>pkg:pypi/numpy@1.26.3?repository_url=https://user:password%40pypy-mirror.testing.acme.org/simple</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>https://pypy-mirror.testing.acme.org/simple/numpy/</url>
+          <url>https://user:password@pypy-mirror.testing.acme.org/simple/numpy/</url>
           <comment>from explicit index: pypi</comment>
         </reference>
       </externalReferences>
@@ -32,7 +32,7 @@
       <purl>pkg:pypi/six@1.16.0</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>https://pypy-mirror.testing.acme.org/simple/six/</url>
+          <url>https://user:password@pypy-mirror.testing.acme.org/simple/six/</url>
           <comment>from implicit index: pypi</comment>
         </reference>
       </externalReferences>
@@ -40,17 +40,17 @@
     <component type="library" bom-ref="toml==0.10.2">
       <name>toml</name>
       <version>0.10.2</version>
-      <purl>pkg:pypi/toml@0.10.2?repository_url=http://pysrc1.acme.org:8080/simple</purl>
+      <purl>pkg:pypi/toml@0.10.2?repository_url=http://user:password%40pysrc1.acme.org:8080/simple</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>http://pysrc1.acme.org:8080/simple/toml/</url>
+          <url>http://user:password@pysrc1.acme.org:8080/simple/toml/</url>
           <comment>from explicit index: pysrc1.acme.org</comment>
         </reference>
       </externalReferences>
     </component>
   </components>
   <dependencies>
-    <dependency ref="numpy==1.26.2"/>
+    <dependency ref="numpy==1.26.3"/>
     <dependency ref="six==1.16.0"/>
     <dependency ref="toml==0.10.2"/>
   </dependencies>

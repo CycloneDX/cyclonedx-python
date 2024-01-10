@@ -3,8 +3,8 @@
   <components>
     <component type="library">
       <name>numpy</name>
-      <version>1.26.2</version>
-      <purl>pkg:pypi/numpy@1.26.2</purl>
+      <version>1.26.3</version>
+      <purl>pkg:pypi/numpy@1.26.3</purl>
       <modified>false</modified>
     </component>
     <component type="library">
@@ -16,7 +16,7 @@
     <component type="library">
       <name>toml</name>
       <version>0.10.2</version>
-      <purl>pkg:pypi/toml@0.10.2?repository_url=http://pysrc1.acme.org:8080/simple</purl>
+      <purl>pkg:pypi/toml@0.10.2?repository_url=http://user:password%40pysrc1.acme.org:8080/simple</purl>
       <modified>false</modified>
     </component>
   </components>

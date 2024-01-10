@@ -1,10 +1,10 @@
 <?xml version="1.0" ?>
 <bom xmlns="http://cyclonedx.org/schema/bom/1.1" version="1">
   <components>
-    <component type="library" bom-ref="numpy==1.26.2">
+    <component type="library" bom-ref="numpy==1.26.3">
       <name>numpy</name>
-      <version>1.26.2</version>
-      <purl>pkg:pypi/numpy@1.26.2</purl>
+      <version>1.26.3</version>
+      <purl>pkg:pypi/numpy@1.26.3</purl>
       <externalReferences>
         <reference type="distribution">
           <url>https://pypi.org/simple/numpy/</url>
@@ -26,10 +26,10 @@
     <component type="library" bom-ref="toml==0.10.2">
       <name>toml</name>
       <version>0.10.2</version>
-      <purl>pkg:pypi/toml@0.10.2?repository_url=http://pysrc1.acme.org:8080/simple</purl>
+      <purl>pkg:pypi/toml@0.10.2?repository_url=http://user:password%40pysrc1.acme.org:8080/simple</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>http://pysrc1.acme.org:8080/simple/toml/</url>
+          <url>http://user:password@pysrc1.acme.org:8080/simple/toml/</url>
           <comment>from explicit index: pysrc1.acme.org</comment>
         </reference>
       </externalReferences>

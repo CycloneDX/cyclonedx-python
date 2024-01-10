@@ -12,7 +12,7 @@ verify_ssl = true
 name = "pypi"
 
 [[source]]
-url = "http://pysrc1.acme.org:8080/simple/"
+url = "http://user:password@pysrc1.acme.org:8080/simple/"
 verify_ssl = false
 name = "pysrc1.acme.org"
 
