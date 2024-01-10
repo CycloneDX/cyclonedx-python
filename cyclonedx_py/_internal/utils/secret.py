@@ -18,7 +18,7 @@
 from re import compile as re_compile
 
 _URL_AUTH_MATCHER = re_compile(r'(?<=://)[^/@:]+:[^/@]+@')
-_URL_AUTH_REPLACE = ''
+_URL_AUTH_REPLACE = ''  # drop all auth - in accordance with PEP 610
 
 
 def redact_auth_from_url(s: str) -> str:
