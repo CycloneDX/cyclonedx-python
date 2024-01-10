@@ -1,0 +1,163 @@
+{
+  "components": [
+    {
+      "bom-ref": "requirements-L7",
+      "description": "requirements line 7: FooProject == 1.2   --hash=sha256:2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824   --hash=sha256:486ea46224d1bb4fb680f34f7c9ad96a8f24ec88be73ea8e5a6c65260e9cb8a7",
+      "externalReferences": [
+        {
+          "comment": "implicit dist extra-url",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "486ea46224d1bb4fb680f34f7c9ad96a8f24ec88be73ea8e5a6c65260e9cb8a7"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://legacy1.pypackages.acme.org/simple/FooProject/"
+        },
+        {
+          "comment": "implicit dist extra-url",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "486ea46224d1bb4fb680f34f7c9ad96a8f24ec88be73ea8e5a6c65260e9cb8a7"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://legacy2.pypackages.acme.org/simple/FooProject/"
+        },
+        {
+          "comment": "implicit dist url",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "486ea46224d1bb4fb680f34f7c9ad96a8f24ec88be73ea8e5a6c65260e9cb8a7"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypackages.acme.org/simple/FooProject/"
+        }
+      ],
+      "name": "FooProject",
+      "purl": "pkg:pypi/fooproject@1.2",
+      "type": "library",
+      "version": "1.2"
+    },
+    {
+      "bom-ref": "requirements-L4",
+      "description": "requirements line 4: colorama==0.4.6",
+      "externalReferences": [
+        {
+          "comment": "implicit dist extra-url",
+          "type": "distribution",
+          "url": "https://legacy1.pypackages.acme.org/simple/colorama/"
+        },
+        {
+          "comment": "implicit dist extra-url",
+          "type": "distribution",
+          "url": "https://legacy2.pypackages.acme.org/simple/colorama/"
+        },
+        {
+          "comment": "implicit dist url",
+          "type": "distribution",
+          "url": "https://pypackages.acme.org/simple/colorama/"
+        }
+      ],
+      "name": "colorama",
+      "purl": "pkg:pypi/colorama@0.4.6",
+      "type": "library",
+      "version": "0.4.6"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "requirements-L4"
+    },
+    {
+      "ref": "requirements-L7"
+    },
+    {
+      "ref": "root-component"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "root-component",
+      "description": "some `reuqirements.txt` a root-component with all metadata",
+      "externalReferences": [
+        {
+          "comment": "from pyproject urls: documentation",
+          "type": "documentation",
+          "url": "https://oss.acme.org/my-project/docs/"
+        },
+        {
+          "comment": "from pyproject urls: Bug Tracker",
+          "type": "issue-tracker",
+          "url": "https://oss.acme.org/my-project/bugs/"
+        },
+        {
+          "comment": "from pyproject urls: Funding",
+          "type": "other",
+          "url": "https://oss.acme.org/my-project/funding/"
+        },
+        {
+          "comment": "from pyproject urls: Change log",
+          "type": "other",
+          "url": "https://oss.acme.org/my-project/changelog/"
+        },
+        {
+          "comment": "from pyproject urls: repository",
+          "type": "vcs",
+          "url": "https://oss.acme.org/my-project.git"
+        },
+        {
+          "comment": "from pyproject urls: homepage",
+          "type": "website",
+          "url": "https://oss.acme.org/my-project/"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR MIT"
+        }
+      ],
+      "name": "testing-requirements-txt",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": [
+      {
+        "name": "cyclonedx-bom",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.3a.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.3"
+}

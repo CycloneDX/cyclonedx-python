@@ -21,6 +21,21 @@
       "version": "0.4.6"
     },
     {
+      "bom-ref": "six@1.16.0",
+      "description": "Python 2 and 3 compatibility utilities",
+      "externalReferences": [
+        {
+          "comment": "from url",
+          "type": "distribution",
+          "url": "https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl"
+        }
+      ],
+      "name": "six",
+      "purl": "pkg:pypi/six@1.16.0?download_url=https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl",
+      "type": "library",
+      "version": "1.16.0"
+    },
+    {
       "bom-ref": "toml@0.10.2",
       "description": "Python Library for Tom's Obvious, Minimal Language",
       "externalReferences": [
@@ -48,9 +63,13 @@
     {
       "dependsOn": [
         "colorama@0.4.6",
+        "six@1.16.0",
         "toml@0.10.2"
       ],
       "ref": "private-packges"
+    },
+    {
+      "ref": "six@1.16.0"
     },
     {
       "ref": "toml@0.10.2"

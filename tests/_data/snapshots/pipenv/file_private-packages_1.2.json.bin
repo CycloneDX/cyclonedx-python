@@ -15,18 +15,18 @@
       "version": "1.26.2"
     },
     {
-      "bom-ref": "six==1.16.0",
+      "bom-ref": "six",
       "externalReferences": [
         {
-          "comment": "from implicit index: pypi",
+          "comment": "from file",
           "type": "distribution",
-          "url": "https://pypi.org/simple/six/"
+          "url": "https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl"
         }
       ],
       "name": "six",
-      "purl": "pkg:pypi/six@1.16.0",
+      "purl": "pkg:pypi/six?download_url=https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl",
       "type": "library",
-      "version": "1.16.0"
+      "version": ""
     },
     {
       "bom-ref": "toml==0.10.2",
@@ -51,7 +51,7 @@
       "ref": "root-component"
     },
     {
-      "ref": "six==1.16.0"
+      "ref": "six"
     },
     {
       "ref": "toml==0.10.2"

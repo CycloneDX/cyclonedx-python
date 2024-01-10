@@ -22,7 +22,7 @@ from contextlib import redirect_stderr, redirect_stdout
 from glob import glob
 from io import StringIO, TextIOWrapper
 from os.path import basename, join, splitext
-from typing import Any, Tuple
+from typing import Any, Generator, Tuple
 from unittest import TestCase
 from unittest.mock import patch
 
@@ -36,12 +36,16 @@ infiles = glob(join(INFILES_DIRECTORY, 'requirements', '*.txt*'))
 
 pyproject_file = join(INFILES_DIRECTORY, 'requirements', 'pyproject.toml')
 
-
 test_data = tuple(
     (f'{splitext(basename(infile))[0]}-{sv.name}-{of.name}', infile, sv, of)
     for infile in infiles
     for of, sv in SUPPORTED_OF_SV
 )
+
+
+def test_data_file_filter(s: str) -> Generator[Any, None, None]:
+    return ((n, d, sv, of) for n, d, sv, of in test_data if s in n)
+
 
 if os.name == 'nt':
     def test_data_os_filter(data: Any) -> bool:
@@ -106,7 +110,7 @@ class TestCliRequirements(TestCase, SnapshotMixin):
                     f'--of={of.name}',
                     '--output-reproducible',
                     '--outfile=-',
-                    f'--pyproject={pyproject_file}',
+                    '--pyproject', pyproject_file,
                     infile])
             err = err.getvalue()
             out = out.getvalue()
@@ -133,6 +137,29 @@ class TestCliRequirements(TestCase, SnapshotMixin):
             out = out.getvalue()
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'stream', infile, sv, of)
+
+    @named_data(*test_data_file_filter('frozen'))
+    def test_with_index_auth(self, infile: str, sv: SchemaVersion, of: OutputFormat) -> None:
+        with StringIO() as err, StringIO() as out:
+            err.name = '<fakeerr>'
+            out.name = '<fakeout>'
+            with redirect_stderr(err), redirect_stdout(out):
+                res = run_cli(argv=[
+                    'requirements',
+                    '-vvv',
+                    '--index-url', 'https://user:password@pypackages.acme.org/simple/',
+                    '--extra-index-url', 'https://user:password@legacy1.pypackages.acme.org/simple/',
+                    '--extra-index-url', 'https://user:password@legacy2.pypackages.acme.org/simple/',
+                    f'--sv={sv.to_version()}',
+                    f'--of={of.name}',
+                    '--output-reproducible',
+                    '--outfile=-',
+                    '--pyproject', pyproject_file,
+                    infile])
+            err = err.getvalue()
+            out = out.getvalue()
+        self.assertEqual(0, res, err)
+        self.assertEqualSnapshot(out, 'index_auth', infile, sv, of)
 
     def assertEqualSnapshot(self, actual: str,  # noqa:N802
                             purpose: str,

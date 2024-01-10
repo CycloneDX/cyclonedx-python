@@ -26,14 +26,14 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="six==1.16.0">
+    <component type="library" bom-ref="six">
       <name>six</name>
-      <version>1.16.0</version>
-      <purl>pkg:pypi/six@1.16.0</purl>
+      <version/>
+      <purl>pkg:pypi/six?download_url=https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>https://pypy-mirror.testing.acme.org/simple/six/</url>
-          <comment>from implicit index: pypi</comment>
+          <url>https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl</url>
+          <comment>from file</comment>
         </reference>
       </externalReferences>
     </component>
@@ -51,7 +51,7 @@
   </components>
   <dependencies>
     <dependency ref="numpy==1.26.2"/>
-    <dependency ref="six==1.16.0"/>
+    <dependency ref="six"/>
     <dependency ref="toml==0.10.2"/>
   </dependencies>
 </bom>

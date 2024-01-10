@@ -48,6 +48,21 @@
         <property name="cdx:poetry:group">main</property>
       </properties>
     </component>
+    <component type="library" bom-ref="six@1.16.0">
+      <name>six</name>
+      <version>1.16.0</version>
+      <description>Python 2 and 3 compatibility utilities</description>
+      <purl>pkg:pypi/six@1.16.0?download_url=https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl</url>
+          <comment>from url</comment>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:poetry:group">main</property>
+      </properties>
+    </component>
     <component type="library" bom-ref="toml@0.10.2">
       <name>toml</name>
       <version>0.10.2</version>
@@ -78,8 +93,10 @@
     <dependency ref="colorama@0.4.6"/>
     <dependency ref="private-packges">
       <dependency ref="colorama@0.4.6"/>
+      <dependency ref="six@1.16.0"/>
       <dependency ref="toml@0.10.2"/>
     </dependency>
+    <dependency ref="six@1.16.0"/>
     <dependency ref="toml@0.10.2"/>
   </dependencies>
 </bom>

@@ -18,9 +18,10 @@
 
 from argparse import OPTIONAL, ArgumentParser
 from functools import reduce
+from itertools import chain
 from os import unlink
 from textwrap import dedent
-from typing import TYPE_CHECKING, Any, Generator, List, Optional, Set
+from typing import TYPE_CHECKING, Any, Generator, Iterable, Optional, Set
 
 from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
@@ -33,6 +34,7 @@ from .cli_common import add_argument_mc_type, add_argument_pyproject
 from .utils.cdx import make_bom
 from .utils.io import io2file
 from .utils.pyproject import pyproject_file2component
+from .utils.secret import redact_auth_from_url
 
 if TYPE_CHECKING:  # pragma: no cover
     from logging import Logger
@@ -97,11 +99,11 @@ class RequirementsBB(BomBuilder):
     def __init__(self, *,
                  logger: 'Logger',
                  index_url: str,
-                 extra_index_urls: List[str],
+                 extra_index_urls: Iterable[str],
                  **__: Any) -> None:
         self._logger = logger
         self._index_url = index_url
-        self._extra_index_urls = set(extra_index_urls)
+        self._extra_index_urls = tuple(extra_index_urls)
 
     def __call__(self, *,  # type:ignore[override]
                  requirements_file: str,
@@ -136,9 +138,15 @@ class RequirementsBB(BomBuilder):
         return bom
 
     def _add_components(self, bom: 'Bom', rf: 'RequirementsFile') -> None:
-        index_url = reduce(lambda c, i: i.options.get('index_url') or c, rf.options, self._index_url)
-        extra_index_urls = self._extra_index_urls.union(*(
-            i.options['extra_index_urls'] for i in rf.options if 'extra_index_urls' in i.options))
+        index_url = redact_auth_from_url(reduce(
+            lambda c, i: i.options.get('index_url') or c, rf.options, self._index_url
+        ).rstrip('/'))
+        extra_index_urls = set(map(
+            lambda u: redact_auth_from_url(u.rstrip('/')),
+            chain(self._extra_index_urls, chain.from_iterable(
+                i.options['extra_index_urls'] for i in rf.options if 'extra_index_urls' in i.options
+            ))
+        ))
         self._logger.debug('index_url = %r', index_url)
         self._logger.debug('extra_index_urls = %r', extra_index_urls)
 
@@ -178,11 +186,12 @@ class RequirementsBB(BomBuilder):
             elif req.is_url:
                 if '://files.pythonhosted.org/' not in req.link.url:
                     # skip PURL bloat, do not add implicit information
-                    purl_qualifiers['vcs_url' if req.is_vcs_url else 'download_url'] = req.link.url
+                    purl_qualifiers['vcs_url' if req.is_vcs_url else 'download_url'] = redact_auth_from_url(
+                        req.link.url)
                 external_references.append(ExternalReference(
                     comment='explicit dist url',
                     type=ExternalReferenceType.VCS if req.is_vcs_url else ExternalReferenceType.DISTRIBUTION,
-                    url=XsUri(req.link.url),
+                    url=XsUri(redact_auth_from_url(req.link.url)),
                     hashes=hashes))
             else:
                 # url based on https://warehouse.pypa.io/api-reference/legacy.html
@@ -203,7 +212,7 @@ class RequirementsBB(BomBuilder):
 
         return Component(
             bom_ref=f'requirements-L{req.line_number}',
-            description=f'requirements line {req.line_number}: {req.line}',
+            description=f'requirements line {req.line_number}: {redact_auth_from_url(req.line)}',
             type=ComponentType.LIBRARY,
             name=name or 'unknown',
             version=version,

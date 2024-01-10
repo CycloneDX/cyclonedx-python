@@ -33,6 +33,7 @@ from . import BomBuilder, PropertyName
 from .cli_common import add_argument_mc_type
 from .utils.cdx import make_bom
 from .utils.poetry import poetry2component
+from .utils.secret import redact_auth_from_url
 from .utils.toml import toml_loads
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -387,17 +388,17 @@ class PoetryBB(BomBuilder):
             # see section 3.7.4 in https://github.com/spdx/spdx-spec/blob/cfa1b9d08903/chapters/3-package-information.md
             # > For version-controlled files, the VCS location syntax is similar to a URL and has the:
             # > `<vcs_tool>+<transport>://<host_name>[/<path_to_repository>][@<revision_tag_or_branch>][#<sub_path>]`
-            qs['vcs_url'] = f'{source["type"]}+{source["url"]}@' + \
+            qs['vcs_url'] = f'{source["type"]}+{redact_auth_from_url(source["url"])}@' + \
                 source.get('resolved_reference', source.get('reference', ''))
         elif source_type == 'url':
             if '://files.pythonhosted.org/' not in source['url']:
                 # skip PURL bloat, do not add implicit information
-                qs['download_url'] = source['url']
+                qs['download_url'] = redact_auth_from_url(source['url'])
         elif source_type == 'legacy':
             source_url = package['source'].get('url', 'https://pypi.org/simple')
             if '://pypi.org/' not in source_url:
                 # skip PURL bloat, do not add implicit information
-                qs['repository_url'] = source_url
+                qs['repository_url'] = redact_auth_from_url(source_url)
 
         return qs
 
@@ -415,7 +416,7 @@ class PoetryBB(BomBuilder):
             yield from self.__extrefs4lock_vcs(package)
 
     def __extrefs4lock_legacy(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
-        source_url = package['source'].get('url', 'https://pypi.org/simple')
+        source_url = redact_auth_from_url(package['source'].get('url', 'https://pypi.org/simple'))
         for file in package['files']:
             try:
                 yield ExternalReference(
@@ -433,7 +434,7 @@ class PoetryBB(BomBuilder):
             yield ExternalReference(
                 comment='from url',
                 type=ExternalReferenceType.DISTRIBUTION,
-                url=XsUri(package['source']['url']),
+                url=XsUri(redact_auth_from_url(package['source']['url'])),
                 hashes=[HashType.from_composite_str(package['files'][0]['hash'])] if len(package['files']) else None
             )
         except (InvalidUriException, UnknownHashTypeException) as error:  # pragma: nocover
@@ -444,7 +445,7 @@ class PoetryBB(BomBuilder):
             yield ExternalReference(
                 comment='from file',
                 type=ExternalReferenceType.DISTRIBUTION,
-                url=XsUri(package['source']['url']),
+                url=XsUri(redact_auth_from_url(package['source']['url'])),
                 hashes=[HashType.from_composite_str(package['files'][0]['hash'])] if len(package['files']) else None
             )
         except (InvalidUriException, UnknownHashTypeException) as error:  # pragma: nocover
@@ -455,7 +456,7 @@ class PoetryBB(BomBuilder):
             yield ExternalReference(
                 comment='from directory',
                 type=ExternalReferenceType.DISTRIBUTION,
-                url=XsUri(package['source']['url'])
+                url=XsUri(redact_auth_from_url(package['source']['url']))
                 # no hash for a source-directory
             )
         except InvalidUriException as error:  # pragma: nocover
@@ -468,7 +469,7 @@ class PoetryBB(BomBuilder):
             yield ExternalReference(
                 comment='from VCS',
                 type=ExternalReferenceType.VCS,
-                url=XsUri(f'{source["type"]}+{source["url"]}#{vcs_ref}')
+                url=XsUri(f'{source["type"]}+{redact_auth_from_url(source["url"])}#{vcs_ref}')
                 # no hashes, has source.resolved_reference instead, which is a property
             )
         except InvalidUriException as error:  # pragma: nocover

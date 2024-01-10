@@ -12,13 +12,13 @@ verify_ssl = true
 name = "pypi"
 
 [[source]]
-url = "http://pysrc1.acme.org:8080/simple/"
+url = "http://user:password@pysrc1.acme.org:8080/simple/"
 verify_ssl = false
 name = "pysrc1.acme.org"
 
 [packages]
-numpy = {version="*", index="pypi"}
-six = "*"
-toml = {version = "*", index="pysrc1.acme.org"}
+numpy = { version = "1.26.2", index = "pypi" }
+six = { file = "https://user:password@files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl" }
+toml = { version = "0.10.2", index = "pysrc1.acme.org" }
 
 [dev-packages]
