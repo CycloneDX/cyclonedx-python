@@ -9,7 +9,7 @@ from random import randrange
 from subprocess import CompletedProcess, run  # nosec:B404
 from sys import executable, stderr
 from threading import Thread
-from typing import TYPE_CHECKING, Callable, Optional
+from typing import TYPE_CHECKING, Callable
 from venv import EnvBuilder
 
 if TYPE_CHECKING:
@@ -50,7 +50,7 @@ def pip_install(*args: str) -> None:
 
 def main() -> None:
     # no port retry for now, just hope for a good pick
-    proxy = make_proxy(randrange(49152, 65535))
+    proxy = make_proxy(randrange(49152, 65535))  # nosec B311
     proxy_threat = Thread(target=proxy.serve_forever)
     proxy_threat.start()
     print(f'running PyPI proxy at: {proxy.server_address!r}', file=stderr)
