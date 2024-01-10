@@ -22,7 +22,7 @@ from io import StringIO
 from os import name as os_name
 from os.path import basename, dirname, join
 from subprocess import run  # nosec:B404
-from sys import executable
+from sys import executable, stderr
 from typing import Any, Generator
 from unittest import TestCase, skipIf
 
@@ -50,7 +50,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
     @classmethod
     def __setup_testbeds_init(cls) -> None:
         for initfile in initfiles:
-            print('setup init testbed:', initfile)
+            print('setup init testbed:', initfile, file=stderr)
             res = run((executable, initfile),
                       capture_output=True, encoding='utf8', errors='replace', shell=False)  # nosec:B603
             if res.returncode != 0:

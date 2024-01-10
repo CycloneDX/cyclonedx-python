@@ -49,8 +49,8 @@ def pip_install(*args: str) -> None:
 
 
 def main() -> None:
-    # no port retry for now, just hope for a good pick
-    proxy = make_proxy(randrange(49152, 65535))  # nosec B311
+    # no port retry for now, just hope for a good pick in the range of "dynamic unregistered for temp usage"
+    proxy = make_proxy(randrange(49152, 65535))  # nosec:B311
     proxy_threat = Thread(target=proxy.serve_forever)
     proxy_threat.start()
     print(f'running PyPI proxy at: {proxy.server_address!r}', file=stderr)
