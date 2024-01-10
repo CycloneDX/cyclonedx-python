@@ -34,6 +34,8 @@ from .utils.args import arparse_split
 from .utils.cdx import make_bom
 from .utils.pyproject import pyproject_file2component
 
+from .utils.secret import redact_auth_from_url
+
 if TYPE_CHECKING:  # pragma: no cover
     from logging import Logger
 
@@ -141,9 +143,12 @@ class PipenvBB(BomBuilder):
         self._logger.debug('root-component: %r', root_c)
 
         meta: NameDict = locker[self.__LOCKFILE_META]
-        source_urls: Dict[str, str] = {source['name']: source['url'].rstrip('/') for source in meta.get('sources', ())}
+        source_urls: Dict[str, str] = {
+            source['name']: redact_auth_from_url(source['url']).rstrip('/')
+            for source in meta.get('sources', ())
+        }
         if self._pypi_url is not None:
-            source_urls['pypi'] = self._pypi_url.rstrip('/')
+            source_urls['pypi'] = redact_auth_from_url(self._pypi_url).rstrip('/')
 
         all_components: Dict[str, Component] = {}
         if root_c:
@@ -223,7 +228,7 @@ class PipenvBB(BomBuilder):
         vcs_source = self.__package_vcs(data)
         try:
             if vcs_source is not None:
-                vcs_source_url = vcs_source[1]
+                vcs_source_url = redact_auth_from_url(vcs_source[1])
                 yield ExternalReference(
                     comment=f'from {vcs_source[0]}',
                     type=ExternalReferenceType.VCS,
@@ -232,7 +237,7 @@ class PipenvBB(BomBuilder):
                 yield ExternalReference(
                     comment='from file',
                     type=ExternalReferenceType.DISTRIBUTION,
-                    url=XsUri(data['file']),
+                    url=XsUri(redact_auth_from_url(data['file'])),
                     hashes=hashes)
             elif 'path' in data:
                 yield ExternalReference(
@@ -263,16 +268,16 @@ class PipenvBB(BomBuilder):
             # see section 3.7.4 in https://github.com/spdx/spdx-spec/blob/cfa1b9d08903/chapters/3-package-information.md
             # > For version-controlled files, the VCS location syntax is similar to a URL and has the:
             # > `<vcs_tool>+<transport>://<host_name>[/<path_to_repository>][@<revision_tag_or_branch>][#<sub_path>]`
-            qs['vcs_url'] = f'{vcs_source[1]}@{data["ref"]}'
+            qs['vcs_url'] = f'{redact_auth_from_url(vcs_source[1])}@{data["ref"]}'
         elif 'file' in data:
             if '://files.pythonhosted.org/' not in data['file']:
                 # skip PURL bloat, do not add implicit information
-                qs['download_url'] = data['file']
+                qs['download_url'] = redact_auth_from_url(data['file'])
         elif 'index' in data:
             source_url = sourcees.get(data['index'], 'https://pypi.org/simple')
             if '://pypi.org/' not in source_url:
                 # skip PURL bloat, do not add implicit information
-                qs['repository_url'] = source_url
+                qs['repository_url'] = redact_auth_from_url(source_url.rstrip('/'))
         return qs
 
     def __make_dependency_graph(self) -> None:

@@ -3,20 +3,20 @@
   <components>
     <component type="library">
       <name>numpy</name>
-      <version>1.26.3</version>
-      <purl>pkg:pypi/numpy@1.26.3</purl>
+      <version>1.26.2</version>
+      <purl>pkg:pypi/numpy@1.26.2</purl>
       <modified>false</modified>
     </component>
     <component type="library">
       <name>six</name>
-      <version>1.16.0</version>
-      <purl>pkg:pypi/six@1.16.0</purl>
+      <version/>
+      <purl>pkg:pypi/six?download_url=https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl</purl>
       <modified>false</modified>
     </component>
     <component type="library">
       <name>toml</name>
       <version>0.10.2</version>
-      <purl>pkg:pypi/toml@0.10.2?repository_url=http://user:password%40pysrc1.acme.org:8080/simple</purl>
+      <purl>pkg:pypi/toml@0.10.2?repository_url=http://pysrc1.acme.org:8080/simple</purl>
       <modified>false</modified>
     </component>
   </components>
