@@ -33,6 +33,7 @@ from cyclonedx_py import __version__
 def make_bom(**kwargs: Any) -> Bom:
     bom = Bom(**kwargs)
     bom.metadata.tools.add(Tool(
+        # keep in sync with `../../../pyproject.toml`
         vendor='CycloneDX',
         name='cyclonedx-bom',
         version=__version__ or 'UNKNOWN',
