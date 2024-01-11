@@ -41,7 +41,7 @@ and might have properties following the Namespace Taxonomies
 .. _Poetry: https://python-poetry.org/
 .. _Pipenv: https://pipenv.pypa.io/
 .. _requirements file format: https://pip.pypa.io/en/stable/reference/requirements-file-format/
-.. _PDM: https://pdm-project.org
+.. _PDM: https://pdm-project.org/
 .. _Conda: https://conda.io/
 
 .. toctree::

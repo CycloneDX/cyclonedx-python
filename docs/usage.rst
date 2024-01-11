@@ -448,7 +448,7 @@ See https://github.com/CycloneDX/cyclonedx-python/issues/604
 However, since PDM utilizes Python virtual environments under the hood,
 it is possible to use the functionality for Python environments as described above.
 
-.. _PDM: https://pdm-project.org
+.. _PDM: https://pdm-project.org/
 
 
 
