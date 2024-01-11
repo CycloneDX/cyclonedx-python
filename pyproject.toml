@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "cyclonedx-bom"
 version = "4.0.0-rc.5"
-description = "CycloneDX Software Bill of Materials (SBOM) generation utility"
+description = "CycloneDX Software Bill of Materials (SBOM) generation utility for python"
 authors = [
   "Jan Kowalleck <jan.kowalleck@gmail.com>",
 ]
