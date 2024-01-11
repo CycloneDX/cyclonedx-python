@@ -26,7 +26,7 @@
             <url>https://github.com/CycloneDX/cyclonedx-python/blob/main/CHANGELOG.md</url>
           </reference>
           <reference type="vcs">
-            <url>https://github.com/CycloneDX/cyclonedx-python</url>
+            <url>https://github.com/CycloneDX/cyclonedx-python/</url>
           </reference>
           <reference type="website">
             <url>https://github.com/CycloneDX/cyclonedx-python/#readme</url>
