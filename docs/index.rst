@@ -42,7 +42,7 @@ and might have properties following the Namespace Taxonomies
 .. _Pipenv: https://pipenv.pypa.io/
 .. _requirements file format: https://pip.pypa.io/en/stable/reference/requirements-file-format/
 .. _PDM: https://pdm-project.org
-.. _conda: https://conda.io/
+.. _Conda: https://conda.io/
 
 .. toctree::
    :maxdepth: 2

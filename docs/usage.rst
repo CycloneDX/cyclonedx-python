@@ -464,7 +464,7 @@ For Conda
 However, since conda might manage a python environment under the hood,
 it is possible to use the functionality for Python environments as described above.
 
-.. _conda: https://conda.io/
+.. _Conda: https://conda.io/
 
 
 
