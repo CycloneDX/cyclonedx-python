@@ -36,7 +36,7 @@ def make_bom(**kwargs: Any) -> Bom:
         # keep in sync with `../../../pyproject.toml`
         vendor='CycloneDX',
         name='cyclonedx-bom',
-        version=__version__ or 'UNKNOWN',
+        version=__version__,
         external_references=[
             ExternalReference(
                 type=ExternalReferenceType.BUILD_SYSTEM,
@@ -64,7 +64,7 @@ def make_bom(**kwargs: Any) -> Bom:
             ),
             ExternalReference(
                 type=ExternalReferenceType.VCS,
-                url=XsUri('https://github.com/CycloneDX/cyclonedx-python')
+                url=XsUri('https://github.com/CycloneDX/cyclonedx-python/')
             ),
             ExternalReference(
                 type=ExternalReferenceType.WEBSITE,
