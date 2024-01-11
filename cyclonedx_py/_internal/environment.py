@@ -60,21 +60,24 @@ class EnvironmentBB(BomBuilder):
                  • Build an SBOM from current python environment:
                        > %(prog)s
                  • Build an SBOM from a Python (virtual) environment:
-                       > %(prog)s "...some\\path\\bin\\python.exe"
-                       > %(prog)s "...some\\path\\.venv\\"
+                       > %(prog)s "...\\some\\path\\bin\\python.exe"
+                       > %(prog)s "...\\some\\path\\.venv"
                  • Build an SBOM from specific Python environment:
                        > where.exe python3.9.exe
-                       > %(prog)s "%%path to specific python%%"
+                       > %(prog)s "%path-to-specific-python%"
                  • Build an SBOM from conda Python environment:
                        > conda.exe run where.exe python
-                       > %(prog)s "%%path to conda python%%"
+                       > %(prog)s "%path-to-conda-python%"
                  • Build an SBOM from Pipenv environment:
                        > pipenv.exe --py
                        > pipenv.exe --venv
-                       > %(prog)s "%%path to pipenv python%%"
+                       > %(prog)s "%path-to-pipenv-python%"
                  • Build an SBOM from Poetry environment:
-                       > poetry.exe env info  --executable
-                       > %(prog)s "%%path to poetry python%%"
+                       > poetry.exe env info --executable
+                       > %(prog)s "%path-to-poetry-python%"
+                 • Build an SBOM from PDM environment:
+                       > pdm.exe info --python
+                       > %(prog)s "%path-to-pdm-python%"
                """)
         else:  # if os_name == 'posix':
             p.epilog = dedent("""\
@@ -82,8 +85,8 @@ class EnvironmentBB(BomBuilder):
                  • Build an SBOM from current python environment:
                        $ %(prog)s
                  • Build an SBOM from a Python (virtual) environment:
-                       $ %(prog)s '...some/path/bin/python'
-                       $ %(prog)s '.../.venv/'
+                       $ %(prog)s '.../some/path/bin/python'
+                       $ %(prog)s '.../some/path/.venv'
                  • Build an SBOM from specific Python environment:
                        $ %(prog)s "$(which python3.9)"
                  • Build an SBOM from conda Python environment:
@@ -93,6 +96,8 @@ class EnvironmentBB(BomBuilder):
                        $ %(prog)s "$(pipenv --venv)"
                  • Build an SBOM from Poetry environment:
                        $ %(prog)s "$(poetry env info --executable)"
+                 • Build an SBOM from PDM environment:
+                       $ %(prog)s "$(pdm info --python)"
                """)
         add_argument_pyproject(p)
         add_argument_mc_type(p)

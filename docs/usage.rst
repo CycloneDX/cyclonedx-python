@@ -106,8 +106,8 @@ Examples for macOS/Linux and alike
 .. code-block:: shell-session
    :caption: Build an SBOM from a Python (virtual) environment
 
-   $ cyclonedx-py environment '...some/path/bin/python'
-   $ cyclonedx-py environment '.../.venv/'
+   $ cyclonedx-py environment '.../some/path/bin/python'
+   $ cyclonedx-py environment '.../some/path/.venv'
 
 .. code-block:: shell-session
    :caption: Build an SBOM from specific Python environment
@@ -118,7 +118,6 @@ Examples for macOS/Linux and alike
    :caption: Build an SBOM from conda Python environment
 
    $ cyclonedx-py environment "$(conda run which python)"
-
 
 .. code-block:: shell-session
    :caption: Build an SBOM from Pipenv environment
@@ -131,6 +130,10 @@ Examples for macOS/Linux and alike
 
    $ cyclonedx-py environment "$(poetry env info --executable)"
 
+.. code-block:: shell-session
+   :caption: Build an SBOM from PDM environment
+
+   $ cyclonedx-py environment "$(pdm info --python)"
 
 Examples for Windows
 ~~~~~~~~~~~~~~~~~~~~
@@ -143,34 +146,39 @@ Examples for Windows
 .. code-block:: doscon
    :caption: Build an SBOM from a Python (virtual) environment
 
-   > cyclonedx-py "...some\\path\\bin\\python.exe"
-   > cyclonedx-py "...some\\path\\.venv\\"
+   > cyclonedx-py "...\some\path\bin\python.exe"
+   > cyclonedx-py "...\some\path\.venv"
 
 .. code-block:: doscon
    :caption: Build an SBOM from specific Python environment
 
    > where.exe python3.9.exe
-   > cyclonedx-py "%%path to specific python%%"
+   > cyclonedx-py "%path-to-specific-python%"
 
 .. code-block:: doscon
    :caption: Build an SBOM from conda Python environment
 
    > conda.exe run where.exe python
-   > cyclonedx-py "%%path to conda python%%"
+   > cyclonedx-py "%path-to-conda-python%"
 
 .. code-block:: doscon
    :caption: Build an SBOM from Pipenv environment
 
    > pipenv.exe --py
    > pipenv.exe --venv
-   > cyclonedx-py "%%path to pipenv python%%"
+   > cyclonedx-py "%path-to-pipenv-python%"
 
 .. code-block:: doscon
    :caption: Build an SBOM from Poetry environment
 
    > poetry.exe env info  --executable
-   > cyclonedx-py "%%path to poetry python%%"
+   > cyclonedx-py "%path-to-poetry-python%"
 
+.. code-block:: doscon
+   :caption: Build an SBOM from Poetry environment
+
+   > pdm.exe info --python
+   > cyclonedx-py "%path-to-pdm-python%"
 
 
 For Pipenv
@@ -427,13 +435,34 @@ Example Usage
 
 
 
+*****
+
+
+
+For PDM
+-------
+
+Support for `PDM`_ manifest and lockfile is not explicitly implemented, yet.
+See https://github.com/CycloneDX/cyclonedx-python/issues/604
+
+However, since PDM utilizes Python virtual environments under the hood,
+it is possible to use the functionality for Python environments as described above.
+
+.. _PDM: https://pdm-project.org
+
+
+
+*****
+
+
+
 For Conda
 ---------
 
 `Conda`_ is a package manager for all kinds on environments.
 
-However, since conda it might manage a python environment under the hood,
-it is possible to utilize the functionality for Python environments as described above.
+However, since conda might manage a python environment under the hood,
+it is possible to use the functionality for Python environments as described above.
 
 .. _conda: https://conda.io/
 

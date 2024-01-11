@@ -17,11 +17,13 @@ This tool generates Software Bill of material (SBOM) documents in OWASP [Cyclone
 Supported data sources are:
 
 * Python (virtual) environment
-* `Poetry` manifest
-* `Pipenv` manifest
+* `Poetry` manifest and lockfile
+* `Pipenv` manifest and lockfile
 * Pip's `requirements.txt` format
+* `PDM` manifest and lockfile are not explicitly supported.  
+  However, PDM's Python virtual environments are fully supported. See the docs for an example.
 * `Conda` as a Package Manager is no longer supported since version 4.
-  However, `conda`'s Python environments are fully supported via the methods listed above.
+  However, conda's Python environments are fully supported via the methods listed above. See the docs for an example.
 
 Based on [OWASP Software Component Verification Standard for Software Bill of Materials](https://scvs.owasp.org/scvs/v2-software-bill-of-materials/)'s
 criteria, this tool is capable of producing SBOM documents almost passing Level-2 (only signing needs to be done externally).
