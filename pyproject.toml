@@ -22,7 +22,7 @@ include = [
 keywords = [
   "OWASP", "CycloneDX",
   "bill-of-materials", "BOM", "software-bill-of-materials","SBOM",
-  "environment", "venv", "poetry", "pipenv", "requirements",
+  "environment", "virtualenv", "venv", "Poetry", "Pipenv", "requirements", "PDM", "Conda",
   "SPDX", "licenses", "PURL", "package-url", "dependency-graph",
 ]
 classifiers = [
