@@ -2,7 +2,7 @@ FROM python:3.11-slim
 
 ARG VERSION
 
-ARG CDX_PATH=/url/local/cyclonedx-py
+ARG CDX_PATH=/opt/cyclonedx-py
 ARG CDX_VENV=${CDX_PATH}/venv
 
 RUN mkdir -p "${CDX_PATH}"
