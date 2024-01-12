@@ -56,8 +56,8 @@ class TestCliPoetry(TestCase, SnapshotMixin):
                 res = run_cli(argv=[
                     'poetry',
                     '-vvv',
-                    f'--sv={sv.to_version()}',
-                    f'--of={of.name}',
+                    '--sv', sv.to_version(),
+                    '--of', of.name,
                     '--outfile=-',
                     'something-that-must-not-exist.testing'])
             err = err.getvalue()
@@ -117,7 +117,7 @@ class TestCliPoetry(TestCase, SnapshotMixin):
                       '] not specified', err)
 
     @named_data(*test_data)
-    def test_with_file_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
+    def test_plain_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
             out.name = '<fakeout>'
@@ -125,15 +125,15 @@ class TestCliPoetry(TestCase, SnapshotMixin):
                 res = run_cli(argv=[
                     'poetry',
                     '-vvv',
-                    f'--sv={sv.to_version()}',
-                    f'--of={of.name}',
+                    '--sv', sv.to_version(),
+                    '--of', of.name,
                     '--output-reproducible',
                     '--outfile=-',
                     projectdir])
             err = err.getvalue()
             out = out.getvalue()
         self.assertEqual(0, res, err)
-        self.assertEqualSnapshot(out, basename(dirname(projectdir)), projectdir, sv, of)
+        self.assertEqualSnapshot(out, 'plain', projectdir, sv, of)
 
     @named_data(*test_data_file_filter('group-deps'))
     def test_with_groups_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
@@ -146,8 +146,8 @@ class TestCliPoetry(TestCase, SnapshotMixin):
                     '-vvv',
                     '--with', 'groupA',
                     '--without', 'groupB,dev',
-                    f'--sv={sv.to_version()}',
-                    f'--of={of.name}',
+                    '--sv', sv.to_version(),
+                    '--of', of.name,
                     '--output-reproducible',
                     '--outfile=-',
                     projectdir])
@@ -166,8 +166,8 @@ class TestCliPoetry(TestCase, SnapshotMixin):
                     'poetry',
                     '-vvv',
                     '--only', 'groupB',
-                    f'--sv={sv.to_version()}',
-                    f'--of={of.name}',
+                    '--sv', sv.to_version(),
+                    '--of', of.name,
                     '--output-reproducible',
                     '--outfile=-',
                     projectdir])
@@ -176,7 +176,8 @@ class TestCliPoetry(TestCase, SnapshotMixin):
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'only-groups', projectdir, sv, of)
 
-    @named_data(*test_data_file_filter('group-deps'))
+    @named_data(*test_data_file_filter('group-deps'),
+                *test_data_file_filter('main-and-dev'))
     def test_nodev_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
@@ -186,8 +187,8 @@ class TestCliPoetry(TestCase, SnapshotMixin):
                     'poetry',
                     '-vvv',
                     '--no-dev',
-                    f'--sv={sv.to_version()}',
-                    f'--of={of.name}',
+                    '--sv', sv.to_version(),
+                    '--of', of.name,
                     '--output-reproducible',
                     '--outfile=-',
                     projectdir])
@@ -206,8 +207,8 @@ class TestCliPoetry(TestCase, SnapshotMixin):
                     'poetry',
                     '-vvv',
                     '-E', 'my-extra',
-                    f'--sv={sv.to_version()}',
-                    f'--of={of.name}',
+                    '--sv', sv.to_version(),
+                    '--of', of.name,
                     '--output-reproducible',
                     '--outfile=-',
                     projectdir])
@@ -224,5 +225,8 @@ class TestCliPoetry(TestCase, SnapshotMixin):
                             ) -> None:  # noqa:N802
         super().assertEqualSnapshot(
             make_comparable(actual, of),
-            join('poetry', f'{purpose}_{basename(projectdir)}_{sv.to_version()}.{of.name.lower()}')
+            join(
+                'poetry',
+                f'{purpose}_{basename(dirname(projectdir))}_{basename(projectdir)}_{sv.to_version()}.{of.name.lower()}'
+            )
         )

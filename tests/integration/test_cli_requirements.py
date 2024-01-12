@@ -68,8 +68,8 @@ class TestCliRequirements(TestCase, SnapshotMixin):
                 res = run_cli(argv=[
                     'requirements',
                     '-vvv',
-                    f'--sv={sv.to_version()}',
-                    f'--of={of.name}',
+                    '--sv', sv.to_version(),
+                    '--of', of.name,
                     '--outfile=-',
                     'something-that-must-not-exist.testing'])
             err = err.getvalue()
@@ -86,8 +86,8 @@ class TestCliRequirements(TestCase, SnapshotMixin):
                 res = run_cli(argv=[
                     'requirements',
                     '-vvv',
-                    f'--sv={sv.to_version()}',
-                    f'--of={of.name}',
+                    '--sv', sv.to_version(),
+                    '--of', of.name,
                     '--outfile=-',
                     '--pyproject=something-that-must-not-exist.testing',
                     infile
@@ -106,8 +106,8 @@ class TestCliRequirements(TestCase, SnapshotMixin):
                 res = run_cli(argv=[
                     'requirements',
                     '-vvv',
-                    f'--sv={sv.to_version()}',
-                    f'--of={of.name}',
+                    '--sv', sv.to_version(),
+                    '--of', of.name,
                     '--output-reproducible',
                     '--outfile=-',
                     '--pyproject', pyproject_file,
@@ -127,8 +127,8 @@ class TestCliRequirements(TestCase, SnapshotMixin):
                     res = run_cli(argv=[
                         'requirements',
                         '-vvv',
-                        f'--sv={sv.to_version()}',
-                        f'--of={of.name}',
+                        '--sv', sv.to_version(),
+                        '--of', of.name,
                         '--output-reproducible',
                         '--outfile=-',
                         # no pyproject for this case
@@ -150,8 +150,8 @@ class TestCliRequirements(TestCase, SnapshotMixin):
                     '--index-url', 'https://user:password@pypackages.acme.org/simple/',
                     '--extra-index-url', 'https://user:password@legacy1.pypackages.acme.org/simple/',
                     '--extra-index-url', 'https://user:password@legacy2.pypackages.acme.org/simple/',
-                    f'--sv={sv.to_version()}',
-                    f'--of={of.name}',
+                    '--sv', sv.to_version(),
+                    '--of', of.name,
                     '--output-reproducible',
                     '--outfile=-',
                     '--pyproject', pyproject_file,
