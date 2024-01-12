@@ -32,6 +32,7 @@ from packageurl import PackageURL
 from . import BomBuilder, PropertyName
 from .cli_common import add_argument_mc_type
 from .utils.cdx import make_bom
+from .utils.packaging import normalize_packagename
 from .utils.poetry import poetry2component
 from .utils.secret import redact_auth_from_url
 from .utils.toml import toml_loads
@@ -229,9 +230,9 @@ class PoetryBB(BomBuilder):
         ) for extra in use_extras)
         self._logger.debug('root-component: %r', root_c)
 
-        lock_data: Dict[str, _LockEntry] = {le.name.lower(): le for le in self._parse_lock(locker)}
+        lock_data: Dict[str, _LockEntry] = {normalize_packagename(le.name): le for le in self._parse_lock(locker)}
 
-        lock_data[root_c.name] = _LockEntry(  # needed for circle dependencies
+        lock_data[normalize_packagename(root_c.name)] = _LockEntry(  # needed for circle dependencies
             name=root_c.name,
             component=root_c,
             dependencies=set(),
@@ -243,15 +244,10 @@ class PoetryBB(BomBuilder):
 
         _dep_pattern = re_compile(r'^(?P<name>[^\[]+)(?:\[(?P<extras>.*)\])?$')
 
-        lock_version = self._get_lockfile_version(locker)
-        should_tidy_lock_names = lock_version >= (2,)
-
         def _add_ld(name: str, extras: Set[str]) -> Optional['Component']:
-            name = name.lower()
+            name = normalize_packagename(name)
             if name == 'python':
                 return None
-            if should_tidy_lock_names:
-                name = name.replace('.', '-')
             le = lock_data.get(name)
             if le is None:
                 self._logger.warning('skip unlocked component: %s', name)
@@ -292,9 +288,7 @@ class PoetryBB(BomBuilder):
         for group_name in use_groups:
             self._logger.debug('processing group %r ...', group_name)
             for dep_name, dep_spec in po_cfg['group'][group_name].get('dependencies', {}).items():
-                dep_name = dep_name.lower()
-                if should_tidy_lock_names:
-                    dep_name = dep_name.replace('.', '-')
+                dep_name = normalize_packagename(dep_name)
                 self._logger.debug('root-component depends on %s', dep_name)
                 if dep_name == 'python':
                     continue
@@ -389,7 +383,7 @@ class PoetryBB(BomBuilder):
             # > For version-controlled files, the VCS location syntax is similar to a URL and has the:
             # > `<vcs_tool>+<transport>://<host_name>[/<path_to_repository>][@<revision_tag_or_branch>][#<sub_path>]`
             qs['vcs_url'] = f'{source["type"]}+{redact_auth_from_url(source["url"])}@' + \
-                source.get('resolved_reference', source.get('reference', ''))
+                            source.get('resolved_reference', source.get('reference', ''))
         elif source_type == 'url':
             if '://files.pythonhosted.org/' not in source['url']:
                 # skip PURL bloat, do not add implicit information

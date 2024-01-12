@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.1" version="1">
+  <components>
+    <component type="library" bom-ref="ruamel-yaml==0.18.5">
+      <name>ruamel-yaml</name>
+      <version>0.18.5</version>
+      <purl>pkg:pypi/ruamel-yaml@0.18.5</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/ruamel-yaml/</url>
+          <comment>from implicit index: pypi</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="ruamel.yaml.clib==0.2.8">
+      <name>ruamel.yaml.clib</name>
+      <version>0.2.8</version>
+      <purl>pkg:pypi/ruamel.yaml.clib@0.2.8</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/ruamel.yaml.clib/</url>
+          <comment>from implicit index: pypi</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="ruamel.yaml.jinja2==0.2.7">
+      <name>ruamel.yaml.jinja2</name>
+      <version>0.2.7</version>
+      <purl>pkg:pypi/ruamel.yaml.jinja2@0.2.7</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/ruamel.yaml.jinja2/</url>
+          <comment>from implicit index: pypi</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+</bom>

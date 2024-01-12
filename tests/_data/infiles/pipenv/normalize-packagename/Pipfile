@@ -1,0 +1,7 @@
+[pipenv]
+sort_pipfile = true
+
+[packages]
+"ruamel-YAML[jinja2]" = "*"   # actually "ruamel.yaml", normalizes to "ruamel-yaml"
+
+[dev-packages]

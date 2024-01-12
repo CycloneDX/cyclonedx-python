@@ -15,6 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
+from re import compile as re_compile
 from typing import TYPE_CHECKING, Generator, List
 
 from cyclonedx.exception.model import InvalidUriException
@@ -71,3 +72,12 @@ def metadata2extrefs(metadata: 'PackageMetadata') -> Generator['ExternalReferenc
                 url=XsUri(url.strip()))
         except InvalidUriException:  # pragma: nocover
             pass
+
+
+# see https://packaging.python.org/en/latest/specifications/name-normalization/#name-normalization
+_NORMALIZE_PN_MATCHER = re_compile(r'[-_.]+')
+_NORMALIZE_PN_REPLACE = '-'
+
+
+def normalize_packagename(name: str) -> str:
+    return _NORMALIZE_PN_MATCHER.sub(_NORMALIZE_PN_REPLACE, name).lower()
