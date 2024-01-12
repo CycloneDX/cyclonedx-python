@@ -11,6 +11,27 @@ version = "0.18.5"
 python = "<3.13"
 version = ">=0.2.7"
 
+[package.dependencies."ruamel.yaml.jinja2"]
+optional = true
+version = ">=0.2"
+
+[package.extras]
+docs = ["ryd", "mercurial (>5.7)"]
+jinja2 = ["ruamel.yaml.jinja2 (>=0.2)"]
+
+[[package]]
+category = "main"
+description = "ruamel.yaml is a YAML parser/emitter that supports roundtrip preservation of comments, seq/map flow style, and map key order"
+name = "ruamel.yaml"
+optional = false
+python-versions = ">=3.7"
+version = "0.18.5"
+
+[package.dependencies]
+[package.dependencies."ruamel.yaml.clib"]
+python = "<3.13"
+version = ">=0.2.7"
+
 [package.extras]
 docs = ["ryd", "mercurial (>5.7)"]
 jinja2 = ["ruamel.yaml.jinja2 (>=0.2)"]
@@ -24,11 +45,24 @@ optional = false
 python-versions = ">=3.6"
 version = "0.2.8"
 
+[[package]]
+category = "main"
+description = "jinja2 pre and post-processor to update with YAML"
+name = "ruamel.yaml.jinja2"
+optional = false
+python-versions = ">=3.6"
+version = "0.2.7"
+
+[package.dependencies]
+"ruamel.yaml" = ">=0.16.1"
+
 [metadata]
-content-hash = "fa797e059b6591315ae21c82779786eff79a69e341b3cbd42cf7c34bbe86ff46"
+content-hash = "48cf5fa29ec4de44621f9eb33922069e130559283728258044f728c3348e0400"
 lock-version = "1.0"
 python-versions = "^3.8"
 
 [metadata.files]
 ruamel-yaml = []
+"ruamel.yaml" = []
 "ruamel.yaml.clib" = []
+"ruamel.yaml.jinja2" = []

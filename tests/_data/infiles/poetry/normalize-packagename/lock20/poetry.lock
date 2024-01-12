@@ -13,6 +13,7 @@ files = [
 
 [package.dependencies]
 "ruamel.yaml.clib" = {version = ">=0.2.7", markers = "platform_python_implementation == \"CPython\" and python_version < \"3.13\""}
+"ruamel.yaml.jinja2" = {version = ">=0.2", optional = true, markers = "extra == \"jinja2\""}
 
 [package.extras]
 docs = ["mercurial (>5.7)", "ryd"]
@@ -77,7 +78,21 @@ files = [
     {file = "ruamel.yaml.clib-0.2.8.tar.gz", hash = "sha256:beb2e0404003de9a4cab9753a8805a8fe9320ee6673136ed7f04255fe60bb512"},
 ]
 
+[[package]]
+name = "ruamel-yaml-jinja2"
+version = "0.2.7"
+description = "jinja2 pre and post-processor to update with YAML"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "ruamel.yaml.jinja2-0.2.7-py2.py3-none-any.whl", hash = "sha256:eb36abd4d308794e9a497e48f98cbd2b921d2cd2946bbc9f1bea42c9b142a241"},
+    {file = "ruamel.yaml.jinja2-0.2.7.tar.gz", hash = "sha256:8449be29d9a157fa92d1648adc161d718e469f0d38a6b21e0eabb76fd5b3e663"},
+]
+
+[package.dependencies]
+"ruamel.yaml" = ">=0.16.1"
+
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "fa797e059b6591315ae21c82779786eff79a69e341b3cbd42cf7c34bbe86ff46"
+content-hash = "48cf5fa29ec4de44621f9eb33922069e130559283728258044f728c3348e0400"

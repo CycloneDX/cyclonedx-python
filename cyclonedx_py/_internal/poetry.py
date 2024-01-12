@@ -32,10 +32,10 @@ from packageurl import PackageURL
 from . import BomBuilder, PropertyName
 from .cli_common import add_argument_mc_type
 from .utils.cdx import make_bom
+from .utils.packaging import normalize_packagename
 from .utils.poetry import poetry2component
 from .utils.secret import redact_auth_from_url
 from .utils.toml import toml_loads
-from .utils.packaging import normalize_packagename
 
 if TYPE_CHECKING:  # pragma: no cover
     from logging import Logger

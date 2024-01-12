@@ -32,10 +32,9 @@ from . import BomBuilder, PropertyName
 from .cli_common import add_argument_mc_type, add_argument_pyproject
 from .utils.args import arparse_split
 from .utils.cdx import make_bom
+from .utils.packaging import normalize_packagename
 from .utils.pyproject import pyproject_file2component
 from .utils.secret import redact_auth_from_url
-from .utils.packaging import normalize_packagename
-
 
 if TYPE_CHECKING:  # pragma: no cover
     from logging import Logger
@@ -158,11 +157,12 @@ class PipenvBB(BomBuilder):
         for group_name in use_groups:
             self._logger.debug('processing group %r ...', group_name)
             for package_name, package_data in locker.get(group_name, {}).items():
-                if package_name in all_components:
-                    component = all_components[package_name]
+                package_name_normalized = normalize_packagename(package_name)
+                if package_name_normalized in all_components:
+                    component = all_components[package_name_normalized]
                     self._logger.info('existing component for package %r', package_name)
                 else:
-                    component = all_components[package_name] = Component(
+                    component = all_components[package_name_normalized] = Component(
                         bom_ref=f'{package_name}{package_data.get("version", "")}',
                         type=ComponentType.LIBRARY,
                         name=package_name,

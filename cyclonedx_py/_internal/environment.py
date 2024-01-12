@@ -34,7 +34,7 @@ from packaging.requirements import Requirement
 from . import BomBuilder, PropertyName
 from .cli_common import add_argument_mc_type, add_argument_pyproject
 from .utils.cdx import licenses_fixup, make_bom
-from .utils.packaging import metadata2extrefs, metadata2licenses
+from .utils.packaging import metadata2extrefs, metadata2licenses, normalize_packagename
 from .utils.pep610 import PackageSourceArchive, PackageSourceVcs, packagesource2extref, packagesource4dist
 from .utils.pyproject import pyproject2component, pyproject2dependencies, pyproject_load
 
@@ -166,7 +166,7 @@ class EnvironmentBB(BomBuilder):
             )
             del dist_meta, dist_name, dist_version
             self.__component_add_extred_and_purl(component, packagesource4dist(dist))
-            all_components[component.name.lower()] = component, map(Requirement, dist.requires or ())
+            all_components[normalize_packagename(component.name)] = component, map(Requirement, dist.requires or ())
 
             self._logger.info('add component for package %r', component.name)
             self._logger.debug('add component: %r', component)
@@ -174,12 +174,12 @@ class EnvironmentBB(BomBuilder):
 
         if rc is not None:
             root_c = rc[0]
-            root_c_lcname = root_c.name.lower()
-            root_c_existed = all_components.get(root_c_lcname)
+            root_c_nname = normalize_packagename(root_c.name)
+            root_c_existed = all_components.get(root_c_nname)
             if root_c_existed is not None:
                 bom.components.remove(root_c_existed[0])
                 del root_c_existed
-            all_components[root_c_lcname] = rc
+            all_components[root_c_nname] = rc
             bom.metadata.component = root_c
             self._logger.debug('root-component: %r', root_c)
 
@@ -189,7 +189,7 @@ class EnvironmentBB(BomBuilder):
         for component, requires in all_components.values():
             component_deps: List[Component] = []
             for req in requires:
-                req_component: Optional[Component] = all_components.get(req.name.lower(), (None,))[0]
+                req_component: Optional[Component] = all_components.get(normalize_packagename(req.name), (None,))[0]
                 if req_component is None:
                     continue
                 if req_component is component:

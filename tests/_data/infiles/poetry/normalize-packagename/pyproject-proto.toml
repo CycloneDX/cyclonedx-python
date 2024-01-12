@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "normalize-packagename"
 version = "0.1.0"
-description = "main and dev depenndencies"
+description = "packages with non-normalized names"
 authors = ["Your Name <you@example.com>"]
 readme = "README.md"
 
@@ -9,7 +9,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-ruamel-yaml = "0.18.5"   # normalized from ruamel.yaml
+"ruamel-YAML" = { version="*", extras=["jinja2"] }   # actually "ruamel.yaml", normalizes to "ruamel-yaml"
 
 
 
