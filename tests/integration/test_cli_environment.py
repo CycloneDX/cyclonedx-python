@@ -116,8 +116,8 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
                 res = run_cli(argv=[
                     'environment',
                     '-vvv',
-                    f'--sv={sv.to_version()}',
-                    f'--of={of.name}',
+                    '--sv', sv.to_version(),
+                    '--of', of.name,
                     '--outfile=-',
                     '--pyproject=something-that-must-not-exist.testing',
                     projectdir
@@ -137,8 +137,8 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
                 res = run_cli(argv=[
                     'environment',
                     '-vvv',
-                    f'--sv={sv.to_version()}',
-                    f'--of={of.name}',
+                    '--sv', sv.to_version(),
+                    '--of', of.name,
                     '--output-reproducible',
                     '--outfile=-',
                     # no project dir -> search in current python
@@ -153,8 +153,8 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
                 res = run_cli(argv=[
                     'environment',
                     '-vvv',
-                    f'--sv={sv.to_version()}',
-                    f'--of={of.name}',
+                    '--sv', sv.to_version(),
+                    '--of', of.name,
                     '--output-reproducible',
                     '--outfile=-',
                     executable  # explicitly current python
@@ -168,7 +168,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
         )
 
     @named_data(*test_data)
-    def test_with_file_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
+    def test_plain_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
             out.name = '<fakeout>'
@@ -176,8 +176,8 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
                 res = run_cli(argv=[
                     'environment',
                     '-vvv',
-                    f'--sv={sv.to_version()}',
-                    f'--of={of.name}',
+                    '--sv', sv.to_version(),
+                    '--of', of.name,
                     '--output-reproducible',
                     '--outfile=-',
                     '--pyproject', join(projectdir, 'pyproject.toml'),
@@ -185,7 +185,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
             err = err.getvalue()
             out = out.getvalue()
         self.assertEqual(0, res, err)
-        self.assertEqualSnapshot(out, 'venv', projectdir, sv, of)
+        self.assertEqualSnapshot(out, 'plain', projectdir, sv, of)
 
     def assertEqualSnapshot(self, actual: str,  # noqa:N802
                             purpose: str,

@@ -56,8 +56,8 @@ class TestCliPipenv(TestCase, SnapshotMixin):
                 res = run_cli(argv=[
                     'pipenv',
                     '-vvv',
-                    f'--sv={sv.to_version()}',
-                    f'--of={of.name}',
+                    '--sv', sv.to_version(),
+                    '--of', of.name,
                     '--outfile=-',
                     'something-that-must-not-exist.testing'])
             err = err.getvalue()
@@ -74,8 +74,8 @@ class TestCliPipenv(TestCase, SnapshotMixin):
                 res = run_cli(argv=[
                     'pipenv',
                     '-vvv',
-                    f'--sv={sv.to_version()}',
-                    f'--of={of.name}',
+                    '--sv', sv.to_version(),
+                    '--of', of.name,
                     '--outfile=-',
                     '--pyproject=something-that-must-not-exist.testing',
                     projectdir
@@ -86,7 +86,7 @@ class TestCliPipenv(TestCase, SnapshotMixin):
         self.assertIn('Could not open pyproject file: something-that-must-not-exist.testing', err)
 
     @named_data(*test_data)
-    def test_with_file_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
+    def test_plain_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
             out.name = '<fakeout>'
@@ -94,8 +94,8 @@ class TestCliPipenv(TestCase, SnapshotMixin):
                 res = run_cli(argv=[
                     'pipenv',
                     '-vvv',
-                    f'--sv={sv.to_version()}',
-                    f'--of={of.name}',
+                    '--sv', sv.to_version(),
+                    '--of', of.name,
                     '--output-reproducible',
                     '--outfile=-',
                     '--pyproject', join(projectdir, 'pyproject.toml'),
@@ -103,7 +103,7 @@ class TestCliPipenv(TestCase, SnapshotMixin):
             err = err.getvalue()
             out = out.getvalue()
         self.assertEqual(0, res, err)
-        self.assertEqualSnapshot(out, 'file', projectdir, sv, of)
+        self.assertEqualSnapshot(out, 'plain', projectdir, sv, of)
 
     @named_data(*test_data_file_filter('category-deps'))
     def test_with_categories_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
@@ -114,8 +114,8 @@ class TestCliPipenv(TestCase, SnapshotMixin):
                 res = run_cli(argv=[
                     'pipenv',
                     '-vvv',
-                    f'--sv={sv.to_version()}',
-                    f'--of={of.name}',
+                    '--sv', sv.to_version(),
+                    '--of', of.name,
                     '--output-reproducible',
                     '--outfile=-',
                     '--categories', 'categoryB,groupA packages,dev-packages',
@@ -134,8 +134,8 @@ class TestCliPipenv(TestCase, SnapshotMixin):
                 res = run_cli(argv=[
                     'pipenv',
                     '-vvv',
-                    f'--sv={sv.to_version()}',
-                    f'--of={of.name}',
+                    '--sv', sv.to_version(),
+                    '--of', of.name,
                     '--output-reproducible',
                     '--outfile=-',
                     '--dev',
@@ -154,8 +154,8 @@ class TestCliPipenv(TestCase, SnapshotMixin):
                 res = run_cli(argv=[
                     'pipenv',
                     '-vvv',
-                    f'--sv={sv.to_version()}',
-                    f'--of={of.name}',
+                    '--sv', sv.to_version(),
+                    '--of', of.name,
                     '--output-reproducible',
                     '--outfile=-',
                     '--pypi-mirror', 'https://user:password@pypy-mirror.testing.acme.org/simple/',

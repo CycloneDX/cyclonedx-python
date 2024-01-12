@@ -1,0 +1,184 @@
+{
+  "components": [
+    {
+      "bom-ref": "arrow@1.3.0",
+      "description": "Better dates & times for Python",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/arrow/#arrow-1.3.0-py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/arrow/#arrow-1.3.0.tar.gz"
+        }
+      ],
+      "name": "arrow",
+      "purl": "pkg:pypi/arrow@1.3.0",
+      "type": "library",
+      "version": "1.3.0"
+    },
+    {
+      "bom-ref": "colorama@0.4.6",
+      "description": "Cross-platform colored terminal text.",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/colorama/#colorama-0.4.6-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/colorama/#colorama-0.4.6.tar.gz"
+        }
+      ],
+      "name": "colorama",
+      "purl": "pkg:pypi/colorama@0.4.6",
+      "type": "library",
+      "version": "0.4.6"
+    },
+    {
+      "bom-ref": "python-dateutil@2.8.2",
+      "description": "Extensions to the standard Python datetime module",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/python-dateutil/#python-dateutil-2.8.2.tar.gz"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/python-dateutil/#python_dateutil-2.8.2-py2.py3-none-any.whl"
+        }
+      ],
+      "name": "python-dateutil",
+      "purl": "pkg:pypi/python-dateutil@2.8.2",
+      "type": "library",
+      "version": "2.8.2"
+    },
+    {
+      "bom-ref": "six@1.16.0",
+      "description": "Python 2 and 3 compatibility utilities",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/six/#six-1.16.0-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/six/#six-1.16.0.tar.gz"
+        }
+      ],
+      "name": "six",
+      "purl": "pkg:pypi/six@1.16.0",
+      "type": "library",
+      "version": "1.16.0"
+    },
+    {
+      "bom-ref": "toml@0.10.2",
+      "description": "Python Library for Tom's Obvious, Minimal Language",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/toml/#toml-0.10.2-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/toml/#toml-0.10.2.tar.gz"
+        }
+      ],
+      "name": "toml",
+      "purl": "pkg:pypi/toml@0.10.2",
+      "type": "library",
+      "version": "0.10.2"
+    },
+    {
+      "bom-ref": "types-python-dateutil@2.8.19.20240106",
+      "description": "Typing stubs for python-dateutil",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/types-python-dateutil/#types-python-dateutil-2.8.19.20240106.tar.gz"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/types-python-dateutil/#types_python_dateutil-2.8.19.20240106-py3-none-any.whl"
+        }
+      ],
+      "name": "types-python-dateutil",
+      "purl": "pkg:pypi/types-python-dateutil@2.8.19.20240106",
+      "type": "library",
+      "version": "2.8.19.20240106"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "python-dateutil@2.8.2",
+        "types-python-dateutil@2.8.19.20240106"
+      ],
+      "ref": "arrow@1.3.0"
+    },
+    {
+      "ref": "colorama@0.4.6"
+    },
+    {
+      "dependsOn": [
+        "arrow@1.3.0",
+        "colorama@0.4.6",
+        "toml@0.10.2"
+      ],
+      "ref": "main-and-dev"
+    },
+    {
+      "dependsOn": [
+        "six@1.16.0"
+      ],
+      "ref": "python-dateutil@2.8.2"
+    },
+    {
+      "ref": "six@1.16.0"
+    },
+    {
+      "ref": "toml@0.10.2"
+    },
+    {
+      "ref": "types-python-dateutil@2.8.19.20240106"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "main-and-dev",
+      "description": "main and dev depenndencies",
+      "name": "main-and-dev",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "tools": [
+      {
+        "name": "cyclonedx-bom",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.2b.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.2"
+}
