@@ -1,0 +1,85 @@
+{
+  "components": [
+    {
+      "bom-ref": "ruamel-yaml==0.18.5",
+      "externalReferences": [
+        {
+          "comment": "from implicit index: pypi",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/ruamel-yaml/"
+        }
+      ],
+      "name": "ruamel-yaml",
+      "purl": "pkg:pypi/ruamel-yaml@0.18.5",
+      "type": "library",
+      "version": "0.18.5"
+    },
+    {
+      "bom-ref": "ruamel.yaml.clib==0.2.8",
+      "externalReferences": [
+        {
+          "comment": "from implicit index: pypi",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/ruamel.yaml.clib/"
+        }
+      ],
+      "name": "ruamel.yaml.clib",
+      "purl": "pkg:pypi/ruamel.yaml.clib@0.2.8",
+      "type": "library",
+      "version": "0.2.8"
+    },
+    {
+      "bom-ref": "ruamel.yaml.jinja2==0.2.7",
+      "externalReferences": [
+        {
+          "comment": "from implicit index: pypi",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/ruamel.yaml.jinja2/"
+        }
+      ],
+      "name": "ruamel.yaml.jinja2",
+      "purl": "pkg:pypi/ruamel.yaml.jinja2@0.2.7",
+      "type": "library",
+      "version": "0.2.7"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "root-component"
+    },
+    {
+      "ref": "ruamel-yaml==0.18.5"
+    },
+    {
+      "ref": "ruamel.yaml.clib==0.2.8"
+    },
+    {
+      "ref": "ruamel.yaml.jinja2==0.2.7"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "root-component",
+      "description": "packages with non-normalized names",
+      "name": "normalize-packagename",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "tools": [
+      {
+        "name": "cyclonedx-bom",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.2b.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.2"
+}
