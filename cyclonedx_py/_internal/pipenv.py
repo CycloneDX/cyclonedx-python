@@ -34,6 +34,8 @@ from .utils.args import arparse_split
 from .utils.cdx import make_bom
 from .utils.pyproject import pyproject_file2component
 from .utils.secret import redact_auth_from_url
+from .utils.packaging import normalize_packagename
+
 
 if TYPE_CHECKING:  # pragma: no cover
     from logging import Logger
@@ -151,8 +153,8 @@ class PipenvBB(BomBuilder):
 
         all_components: Dict[str, Component] = {}
         if root_c:
-            # root for self-installs
-            all_components[root_c.name] = root_c
+            # root for possible self-installs
+            all_components[normalize_packagename(root_c.name)] = root_c
         for group_name in use_groups:
             self._logger.debug('processing group %r ...', group_name)
             for package_name, package_data in locker.get(group_name, {}).items():
