@@ -89,6 +89,9 @@
   ],
   "dependencies": [
     {
+      "dependsOn": [
+        "ruamel.yaml==0.18.5"
+      ],
       "ref": "root-component"
     },
     {

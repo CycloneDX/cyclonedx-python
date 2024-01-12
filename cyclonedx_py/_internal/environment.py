@@ -129,7 +129,7 @@ class EnvironmentBB(BomBuilder):
             pyproject = pyproject_load(pyproject_file)
             root_c = pyproject2component(pyproject, type=mc_type)
             root_c.bom_ref.value = 'root-component'
-            root_d = pyproject2dependencies(pyproject)
+            root_d = tuple(pyproject2dependencies(pyproject))
             rc = (root_c, root_d)
 
         path: List[str]
@@ -166,7 +166,10 @@ class EnvironmentBB(BomBuilder):
             )
             del dist_meta, dist_name, dist_version
             self.__component_add_extred_and_purl(component, packagesource4dist(dist))
-            all_components[normalize_packagename(component.name)] = component, map(Requirement, dist.requires or ())
+            all_components[normalize_packagename(component.name)] = (
+                component,
+                tuple(map(Requirement, dist.requires or ()))
+            )
 
             self._logger.info('add component for package %r', component.name)
             self._logger.debug('add component: %r', component)

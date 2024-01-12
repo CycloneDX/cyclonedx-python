@@ -81,6 +81,9 @@
           <comment>from packaging metadata Project-URL: Home</comment>
         </reference>
       </externalReferences>
+      <properties>
+        <property name="cdx:python:package:required-extra">jinja2</property>
+      </properties>
     </component>
     <component type="library" bom-ref="ruamel.yaml.clib==0.2.8">
       <name>ruamel.yaml.clib</name>
@@ -118,7 +121,9 @@
     </component>
   </components>
   <dependencies>
-    <dependency ref="root-component"/>
+    <dependency ref="root-component">
+      <dependency ref="ruamel.yaml==0.18.5"/>
+    </dependency>
     <dependency ref="ruamel.yaml.clib==0.2.8"/>
     <dependency ref="ruamel.yaml.jinja2==0.2.7">
       <dependency ref="ruamel.yaml==0.18.5"/>

@@ -38,6 +38,12 @@
         }
       ],
       "name": "ruamel.yaml",
+      "properties": [
+        {
+          "name": "cdx:python:package:required-extra",
+          "value": "jinja2"
+        }
+      ],
       "purl": "pkg:pypi/ruamel.yaml@0.18.5",
       "type": "library",
       "version": "0.18.5"
@@ -89,6 +95,9 @@
   ],
   "dependencies": [
     {
+      "dependsOn": [
+        "ruamel.yaml==0.18.5"
+      ],
       "ref": "root-component"
     },
     {
