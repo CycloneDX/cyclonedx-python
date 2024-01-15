@@ -82,6 +82,7 @@ setuptools = ">= 47.0.0"
 pip = ">=23.0"
 pipenv = ">=2023.11.5"
 poetry = "^1.7"
+pdm = "^2.11"
 
 [tool.poetry.scripts]
 cyclonedx-py = "cyclonedx_py._internal.cli:run"

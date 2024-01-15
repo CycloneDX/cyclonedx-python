@@ -37,7 +37,7 @@
   "metadata": {
     "component": {
       "bom-ref": "root-component",
-      "description": "packages with all meta, and some deps",
+      "description": "environment via Pipenv",
       "externalReferences": [
         {
           "comment": "from pyproject urls: documentation",

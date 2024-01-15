@@ -16,7 +16,7 @@
     <component type="application" bom-ref="root-component">
       <name>via-poetry</name>
       <version>0.1.0</version>
-      <description>packages with all meta, and some deps</description>
+      <description>environment via Poetry</description>
       <licenses>
         <expression>Apache-2.0 OR MIT</expression>
       </licenses>
