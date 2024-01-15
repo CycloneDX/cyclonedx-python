@@ -9,6 +9,7 @@ from random import randrange
 from subprocess import CompletedProcess, run  # nosec:B404
 from sys import executable, stderr
 from threading import Thread
+from time import sleep
 from typing import TYPE_CHECKING, Callable
 from venv import EnvBuilder
 
@@ -49,8 +50,23 @@ def pip_install(*args: str) -> None:
 
 
 def main() -> None:
-    # no port retry for now, just hope for a good pick in the range of "dynamic unregistered for temp usage"
-    proxy = make_proxy(randrange(49152, 65535))  # nosec:B311
+    _retries = 5
+    while True:
+        # use the range of "dynamic unregistered for temporary usage"
+        _port = randrange(49152, 65535)  # nosec:B311
+        try:
+            proxy = make_proxy(_port)
+        except Exception as error:
+            print(f'failed attempt to open proxy on port {_port}:', error, file=stderr)
+        else:
+            break
+        if _retries > 0:
+            _retries -= 1
+            print('will retry in 1 second', file=stderr)
+            sleep(1)
+        else:
+            raise RuntimeError('failed to setup proxy')
+
     proxy_threat = Thread(target=proxy.serve_forever)
     proxy_threat.start()
     print(f'running PyPI proxy at: {proxy.server_address!r}', file=stderr)

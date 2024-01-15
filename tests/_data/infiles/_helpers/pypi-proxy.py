@@ -43,8 +43,9 @@ class PypiProxyReqHandler(BaseHTTPRequestHandler):
 
 
 def make_proxy(port: int) -> ThreadingHTTPServer:
-    server_address = ('', port)
-    return ThreadingHTTPServer(server_address, PypiProxyReqHandler)
+    return ThreadingHTTPServer(
+        ('127.0.0.1', port),
+        PypiProxyReqHandler)
 
 
 if __name__ == '__main__':
