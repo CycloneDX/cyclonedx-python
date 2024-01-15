@@ -3,7 +3,7 @@
 name = "via-poetry"
 license = "Apache-2.0 OR MIT"
 version = "0.1.0"
-description = "packages with all meta, and some deps"
+description = "environment via Poetry"
 authors = ["Your Name <you@example.com>", "My Name"]
 maintainers = [
   "John Smith <johnsmith@example.org>",

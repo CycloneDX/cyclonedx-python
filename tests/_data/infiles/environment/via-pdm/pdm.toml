@@ -1,0 +1,10 @@
+# use `pdm config --local` to edit this file
+
+build_isolation = true
+
+[venv]
+in_project = true
+with_pip = false
+
+[python]
+use_venv = true

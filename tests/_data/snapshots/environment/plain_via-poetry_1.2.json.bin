@@ -37,7 +37,7 @@
   "metadata": {
     "component": {
       "bom-ref": "root-component",
-      "description": "packages with all meta, and some deps",
+      "description": "environment via Poetry",
       "externalReferences": [
         {
           "comment": "from poetry: documentation",
