@@ -55,6 +55,9 @@ classifiers = [
 "Bug Tracker" = "https://github.com/CycloneDX/cyclonedx-python/issues"
 "Funding" = "https://owasp.org/donate/?reponame=www-project-cyclonedx&title=OWASP+CycloneDX"
 
+[tool.poetry.scripts]
+cyclonedx-py = "cyclonedx_py._internal.cli:run"
+
 [tool.poetry.dependencies]
 python = "^3.8"
 cyclonedx-python-lib = { version = "^6.1.0", extras = ["validation"] }
@@ -89,9 +92,6 @@ pip = ">=23.0"
 pipenv = ">=2023.11.5"
 poetry = "^1.7"
 pdm = "^2.11"
-
-[tool.poetry.scripts]
-cyclonedx-py = "cyclonedx_py._internal.cli:run"
 
 
 
