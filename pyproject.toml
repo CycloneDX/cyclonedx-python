@@ -1,3 +1,9 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+
 [tool.poetry]
 # keep in sync with `cyclonedx_py/_internal/utils/cdx.py`
 name = "cyclonedx-bom"
@@ -87,9 +93,7 @@ pdm = "^2.11"
 [tool.poetry.scripts]
 cyclonedx-py = "cyclonedx_py._internal.cli:run"
 
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+
 
 [tool.semantic_release]
 # see https://python-semantic-release.readthedocs.io/en/latest/configuration.html
