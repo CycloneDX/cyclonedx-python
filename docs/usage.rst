@@ -483,6 +483,7 @@ This tool does **not** expose any additional *public* API or classes - all code 
 
 However, the CLI is stable - you may call it programmatically like:
 
+.. keep the following code example in sync with the in-comments example in `__init__.py` and `__main__.py`
 .. code-block:: python
 
    from sys import executable

@@ -21,9 +21,9 @@ __all__ = ['toml_loads']
 import sys
 
 # TOML polyfill: https://github.com/hukkin/tomli#intro
-# A version of `tomli`, the `tomllib` module, was added to the standard library in Python 3.11 via PEP 680.
-# `Tomli` continues to provide a backport on PyPI for Python versions
-# where the standard library module is not available and that have not yet reached their end-of-life.
+# > A version of `tomli`, the `tomllib` module, was added to the standard library in Python 3.11 via PEP 680.
+# > `Tomli` continues to provide a backport on PyPI for Python versions
+# > where the standard library module is not available and that have not yet reached their end-of-life.
 if sys.version_info >= (3, 11):
     from tomllib import loads as toml_loads
 else:
