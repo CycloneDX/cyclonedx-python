@@ -177,12 +177,12 @@ class EnvironmentBB(BomBuilder):
 
         if rc is not None:
             root_c = rc[0]
-            root_c_nname = normalize_packagename(root_c.name)
-            root_c_existed = all_components.get(root_c_nname)
+            root_c_npname = normalize_packagename(root_c.name)
+            root_c_existed = all_components.get(root_c_npname)
             if root_c_existed is not None:
                 bom.components.remove(root_c_existed[0])
-                del root_c_existed
-            all_components[root_c_nname] = rc
+            del root_c_existed
+            all_components[root_c_npname] = rc
             bom.metadata.component = root_c
             self._logger.debug('root-component: %r', root_c)
 

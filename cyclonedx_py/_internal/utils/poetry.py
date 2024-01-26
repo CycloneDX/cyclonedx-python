@@ -94,4 +94,5 @@ def poetry2dependencies(poetry: Dict[str, Any]) -> Generator['Requirement', None
         req = Requirement(name)
         if isinstance(spec, dict) and 'extras' in spec:
             req.extras = set(spec['extras'])
+        # add other optional properties as soon as they were needed
         yield req
