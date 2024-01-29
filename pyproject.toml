@@ -24,7 +24,18 @@ packages = [
   { include = "cyclonedx_py" }
 ]
 include = [
-  "LICENSE", "NOTICE"
+  # all is an object -> prevent parse issue with dependabot
+  { path="README.md", format =["sdist","wheel"] },
+  { path="LICENSE", format=["sdist","wheel"] },
+  { path="NOTICE", format=["sdist","wheel"] },
+  { path="tests", format=["sdist"] },
+  { path="CHANGELOG.md", format=["sdist"] },
+  { path="docs", format=["sdist"] },
+]
+exclude = [
+  # exclude dotfiles and dotfolders
+  "**/.*",
+  "docs/_build",
 ]
 keywords = [
   "OWASP", "CycloneDX",
