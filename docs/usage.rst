@@ -446,7 +446,7 @@ Support for `PDM`_ manifest and lockfile is not explicitly implemented, yet.
 See https://github.com/CycloneDX/cyclonedx-python/issues/604
 
 However, since PDM utilizes Python virtual environments under the hood,
-it is possible to use the functionality for Python environments as described above.
+it is possible to use the functionality for Python (virtual) environments as described above.
 
 .. _PDM: https://pdm-project.org/
 
@@ -462,7 +462,7 @@ For Conda
 `Conda`_ is a package manager for all kinds on environments.
 
 However, since conda might manage a python environment under the hood,
-it is possible to use the functionality for Python environments as described above.
+it is possible to use the functionality for Python (virtual) environments as described above.
 
 .. _Conda: https://conda.io/
 
