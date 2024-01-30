@@ -14,6 +14,7 @@ authors = ["Your Name <you@example.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
+# path dependency - https://python-poetry.org/docs/dependency-specification/#path-dependencies
 package-a = {path = "../../../_helpers/local_pckages/a/dist/package-a-23.42.tar.gz"}
 package-b = {path = "../../../_helpers/local_pckages/b/dist/package_b-23.42-py3-none-any.whl"}
 # package-c not in poetry v1.0 available
