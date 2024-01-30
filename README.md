@@ -23,7 +23,7 @@ Supported data sources are:
 * Pip's `requirements.txt` format
 * `PDM` manifest and lockfile are not explicitly supported.  
   However, PDM's Python virtual environments are fully supported. See the docs for an example.
-* `Conda` as a Package Manager is no longer supported since version 4.
+* `Conda` as a package manager is no longer supported since version 4.  
   However, conda's Python environments are fully supported via the methods listed above. See the docs for an example.
 
 Based on [OWASP Software Component Verification Standard for Software Bill of Materials](https://scvs.owasp.org/scvs/v2-software-bill-of-materials/)'s

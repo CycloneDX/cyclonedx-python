@@ -24,9 +24,11 @@ Supported data sources are:
 * `Pipenv`_ manifest and lockfile
 * Pip's `requirements file format`_ format
 * `PDM`_ manifest and lockfile support is not implemented, yet.
-  However, PDM's Python virtual environments are fully supported. See the :doc:`docs </usage>` for an example.
-* `Conda`_ as a Package Manager is no longer supported since version 4.
-  However, conda's Python environments are fully supported via the methods listed above. See the :doc:`docs </usage>` for an example.
+  However, PDM's Python virtual environments are fully supported.
+  See the :doc:`docs </usage>` for an example.
+* `Conda`_ as a package manager is no longer supported since version 4.
+  However, conda's Python environments are fully supported via the methods listed above.
+  See the :doc:`docs </usage>` for an example.
 
 Based on `OWASP Software Component Verification Standard for Software Bill of Materials <https://scvs.owasp.org/scvs/v2-software-bill-of-materials/>`_'s
 criteria, this tool is capable of producing SBOM documents almost passing Level-2 (only signing needs to be done externally).
