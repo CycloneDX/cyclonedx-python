@@ -1,0 +1,9 @@
+## pip option to use an alternative package registry
+
+--index-url https://user:password@pypackages.acme.org/simple/
+--extra-index-url https://user:password@legacy1.pypackages.acme.org/simple/
+--extra-index-url https://user:password@legacy2.pypackages.acme.org/simple/
+
+my-package==1.2.3
+
+my-other-package @ https://user:password@pypackages.acme.org/my-other-package-1.2.3.tar.gz

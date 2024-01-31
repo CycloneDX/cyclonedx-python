@@ -1,0 +1,21 @@
+# hash mode -- https://pip.pypa.io/en/stable/topics/secure-installs/#hash-checking-mode
+
+## oneliner
+certifi==2021.5.30 --hash=sha256:2bbf76fd432960138b3ef6dda3dde0544f27cbf8546c458e60baf371917ba9ee --hash=sha256:50b1e4f8446b06f41be7dd6338db18e0990601dce795c2b1686458aa7e8fa7d8
+
+## unorthodox line breaks
+urllib3==1.26.5 --hash=sha256:753a0374df26658f99d826cfe40394a686d05985786d946fbe4165b5148f5a7c \
+ --hash=sha256:a7acd0977125325f516bda9735fa7142b909a8d01e8b2e4c8108d0984e6e0098
+
+## typical line breaks
+FooProject == 1.2 \
+  --hash=sha256:2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824 \
+  --hash=sha256:486ea46224d1bb4fb680f34f7c9ad96a8f24ec88be73ea8e5a6c65260e9cb8a7
+
+# from direct source
+colorama @ https://github.com/tartley/colorama/archive/refs/tags/0.4.6.tar.gz \
+    --hash=md5:9854316552d41419b678d39af443a75f \
+    --hash=sha1:aa1fc7722b9128a3c945048de03f5b4e55157c6a
+
+# unknown hash type -> ignore hash
+something == 1.33.7 --hash=foo:something-invalid

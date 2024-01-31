@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.0" version="1">
+  <components>
+    <component type="library">
+      <name>boolean.py</name>
+      <version>4.0</version>
+      <description>Define boolean algebras, create and parse boolean expressions and create custom boolean DSL.</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/boolean.py@4.0</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>cyclonedx-python-lib</name>
+      <version>5.1.1</version>
+      <description>Python library for CycloneDX</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/cyclonedx-python-lib@5.1.1</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>defusedxml</name>
+      <version>0.7.1</version>
+      <description>XML bomb protection for Python stdlib modules</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/defusedxml@0.7.1</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>license-expression</name>
+      <version>30.1.1</version>
+      <description>license-expression is a comprehensive utility library to parse, compare, simplify and normalize license expressions (such as SPDX license expressions) using boolean logic.</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/license-expression@30.1.1</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>packageurl-python</name>
+      <version>0.11.2</version>
+      <description>A purl aka. Package URL parser and builder</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/packageurl-python@0.11.2</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>py-serializable</name>
+      <version>0.15.0</version>
+      <description>Library for serializing and deserializing Python Objects to and from JSON and XML.</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/py-serializable@0.15.0</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>sortedcontainers</name>
+      <version>2.4.0</version>
+      <description>Sorted Containers -- Sorted List, Sorted Dict, Sorted Set</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/sortedcontainers@2.4.0</purl>
+      <modified>false</modified>
+    </component>
+  </components>
+</bom>

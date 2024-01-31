@@ -1,0 +1,6 @@
+
+[virtualenvs.options]
+system-site-packages = false
+# these are already dev-dependencies, and therefore will come as needed
+no-pip = true
+no-setuptools = true

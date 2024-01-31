@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.2" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-bom</name>
+        <version>thisVersion-testing</version>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="root-component">
+      <name>normalize-packagename</name>
+      <version>0.1.0</version>
+      <description>packages with non-normalized names</description>
+    </component>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="ruamel-yaml==0.18.5">
+      <name>ruamel-yaml</name>
+      <version>0.18.5</version>
+      <purl>pkg:pypi/ruamel-yaml@0.18.5</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/ruamel-yaml/</url>
+          <comment>from implicit index: pypi</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="ruamel.yaml.clib==0.2.8">
+      <name>ruamel.yaml.clib</name>
+      <version>0.2.8</version>
+      <purl>pkg:pypi/ruamel.yaml.clib@0.2.8</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/ruamel.yaml.clib/</url>
+          <comment>from implicit index: pypi</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="ruamel.yaml.jinja2==0.2.7">
+      <name>ruamel.yaml.jinja2</name>
+      <version>0.2.7</version>
+      <purl>pkg:pypi/ruamel.yaml.jinja2@0.2.7</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/ruamel.yaml.jinja2/</url>
+          <comment>from implicit index: pypi</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="root-component"/>
+    <dependency ref="ruamel-yaml==0.18.5"/>
+    <dependency ref="ruamel.yaml.clib==0.2.8"/>
+    <dependency ref="ruamel.yaml.jinja2==0.2.7"/>
+  </dependencies>
+</bom>

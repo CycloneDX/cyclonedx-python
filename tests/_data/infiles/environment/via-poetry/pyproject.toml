@@ -1,0 +1,51 @@
+[tool.poetry]
+## https://python-poetry.org/docs/pyproject/
+name = "via-poetry"
+license = "Apache-2.0 OR MIT"
+version = "0.1.0"
+description = "environment via Poetry"
+authors = ["Your Name <you@example.com>", "My Name"]
+maintainers = [
+  "John Smith <johnsmith@example.org>",
+  "Jane Smith <janesmith@example.org>",
+]
+homepage = "https://oss.acme.org/my-project/"
+repository = "https://oss.acme.org/my-project.git"
+documentation = "https://oss.acme.org/my-project/docs/"
+keywords = ["packaging", "poetry", "test"]
+classifiers = [
+  "License :: OSI Approved :: Apache Software License",
+  "License :: OSI Approved :: MIT License",
+  "Classifier: Development Status :: 4 - Beta",
+  "Intended Audience :: Developers"
+]
+packages = [
+  { include = "dummy.py" }
+]
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://oss.acme.org/my-project/bugs/"
+"Funding" = "https://oss.acme.org/my-project/funding/"
+"Change log" = "https://oss.acme.org/my-project/changelog/"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+toml = "^0.10.2"
+
+[tool.poetry.group.dev.dependencies]
+ddt = "^1.6.0"
+
+[tool.poetry.group.groupB.dependencies]
+isoduration = "^20.10"
+
+[tool.poetry.group.groupA]
+optional = true
+
+[tool.poetry.group.groupA.dependencies]
+isoduration = "^20.11"
+colorama = "^0.4.6"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

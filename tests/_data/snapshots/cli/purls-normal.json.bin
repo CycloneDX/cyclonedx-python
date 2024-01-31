@@ -1,0 +1,44 @@
+{
+  "components": [
+    {
+      "bom-ref": "my-lib-A",
+      "components": [
+        {
+          "bom-ref": "my-lib-A-sub",
+          "name": "my-lib-A-sub",
+          "purl": "pkg:generic/testing/my-lib-A-sub?foo=bar#bazz",
+          "type": "application"
+        }
+      ],
+      "name": "my-lib-A",
+      "purl": "pkg:generic/testing/my-lib-A@2?lol=rofl",
+      "type": "library"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "my-app"
+    },
+    {
+      "ref": "my-lib-A"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "my-app",
+      "name": "my-app",
+      "purl": "pkg:generic/testing/my-app@1",
+      "type": "application"
+    },
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.4.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.4"
+}

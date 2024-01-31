@@ -12,20 +12,39 @@
    #
    # SPDX-License-Identifier: Apache-2.0
 
-CycloneDX SBOM Generation Tool
-====================================================
+CycloneDX SBOM Generation Tool for Python
+=========================================
 
-This project provides a runnable Python-based application for generating `CycloneDX`_ bill-of-material documents from
-either:
+This tool generates Software Bill of material (SBOM) documents in OWASP `CycloneDX`_ format.
 
-* Your current Python Environment
-* Your project's manifest (e.g. ``Pipfile.lock``, ``poetry.lock`` or ``requirements.txt``)
-* Conda as a Package Manager
+Supported data sources are:
 
-The SBOM will contain an aggregate of all your current project's dependencies, or those defined by the manifest you
-supply.
+* Python (virtual) environment
+* `Poetry`_ manifest and lockfile
+* `Pipenv`_ manifest and lockfile
+* Pip's `requirements file format`_ format
+* `PDM`_ manifest and lockfile support is not implemented, yet.
+  However, PDM's Python virtual environments are fully supported.
+  See the :doc:`docs </usage>` for an example.
+* `Conda`_ as a package manager is no longer supported since version 4.
+  However, conda's Python environments are fully supported via the methods listed above.
+  See the :doc:`docs </usage>` for an example.
 
-`CycloneDX`_ is a lightweight BOM specification that is easily created, human-readable, and simple to parse.
+Based on `OWASP Software Component Verification Standard for Software Bill of Materials <https://scvs.owasp.org/scvs/v2-software-bill-of-materials/>`_'s
+criteria, this tool is capable of producing SBOM documents almost passing Level-2 (only signing needs to be done externally).
+
+The resulting SBOM documents follow `official specifications and standards <https://github.com/CycloneDX/specification>`_,
+and might have properties following the Namespace Taxonomies
+`cdx:python <https://github.com/CycloneDX/cyclonedx-property-taxonomy/blob/main/cdx/python.md>`_,
+`cdx:pipenv <https://github.com/CycloneDX/cyclonedx-property-taxonomy/blob/main/cdx/pipenv.md>`_,
+`cdx:poetry <https://github.com/CycloneDX/cyclonedx-property-taxonomy/blob/main/cdx/poetry.md>`_.
+
+.. _CycloneDX: https://cyclonedx.org/
+.. _Poetry: https://python-poetry.org/
+.. _Pipenv: https://pipenv.pypa.io/
+.. _requirements file format: https://pip.pypa.io/en/stable/reference/requirements-file-format/
+.. _PDM: https://pdm-project.org/
+.. _Conda: https://conda.io/
 
 .. toctree::
    :maxdepth: 2
@@ -33,8 +52,7 @@ supply.
 
    install
    usage
+   contributing
    support
    changelog
-
-
-.. _CycloneDX: https://cyclonedx.org/
+   upgrading

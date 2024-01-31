@@ -23,8 +23,12 @@ Get it all applied via:
 
 ```shell
 poetry run isort .
-poetry run autopep8 --in-place -r .
+poetry run autopep8 -ir cyclonedx_py/ tests/
 ```
+
+This project prefers `f'strings'` over `'string'.format()`.  
+This project prefers `'single quotes'` over `"double quotes"`.  
+This project prefers `lower_snake_case` variable names.
 
 ## Documentation
 
@@ -43,7 +47,7 @@ make html
 ## Testing
 
 ```shell
-poetry run tox
+poetry run tox run
 ```
 
 ## Sign off your commits

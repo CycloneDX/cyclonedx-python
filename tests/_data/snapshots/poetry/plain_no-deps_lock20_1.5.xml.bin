@@ -1,0 +1,84 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.5" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-bom</name>
+        <version>thisVersion-testing</version>
+        <externalReferences>
+          <reference type="build-system">
+            <url>https://github.com/CycloneDX/cyclonedx-python/actions</url>
+          </reference>
+          <reference type="distribution">
+            <url>https://pypi.org/project/cyclonedx-bom/</url>
+          </reference>
+          <reference type="documentation">
+            <url>https://cyclonedx-bom-tool.readthedocs.io/</url>
+          </reference>
+          <reference type="issue-tracker">
+            <url>https://github.com/CycloneDX/cyclonedx-python/issues</url>
+          </reference>
+          <reference type="license">
+            <url>https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE</url>
+          </reference>
+          <reference type="release-notes">
+            <url>https://github.com/CycloneDX/cyclonedx-python/blob/main/CHANGELOG.md</url>
+          </reference>
+          <reference type="vcs">
+            <url>https://github.com/CycloneDX/cyclonedx-python/</url>
+          </reference>
+          <reference type="website">
+            <url>https://github.com/CycloneDX/cyclonedx-python/#readme</url>
+          </reference>
+        </externalReferences>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+        <externalReferences><!-- stripped --></externalReferences>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="no-deps">
+      <name>no-deps</name>
+      <version>0.1.0</version>
+      <description>packages with all meta, but no deps</description>
+      <licenses>
+        <expression>Apache-2.0 OR MIT</expression>
+      </licenses>
+      <externalReferences>
+        <reference type="documentation">
+          <url>https://oss.acme.org/my-project/docs/</url>
+          <comment>from poetry: documentation</comment>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://oss.acme.org/my-project/bugs/</url>
+          <comment>from poetry url: Bug Tracker</comment>
+        </reference>
+        <reference type="other">
+          <url>https://oss.acme.org/my-project/funding/</url>
+          <comment>from poetry url: Funding</comment>
+        </reference>
+        <reference type="release-notes">
+          <url>https://oss.acme.org/my-project/changelog/</url>
+          <comment>from poetry url: Change log</comment>
+        </reference>
+        <reference type="vcs">
+          <url>https://oss.acme.org/my-project.git</url>
+          <comment>from poetry: repository</comment>
+        </reference>
+        <reference type="website">
+          <url>https://oss.acme.org/my-project/</url>
+          <comment>from poetry: homepage</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
+  </metadata>
+  <dependencies>
+    <dependency ref="no-deps"/>
+  </dependencies>
+</bom>

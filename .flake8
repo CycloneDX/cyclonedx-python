@@ -1,0 +1,20 @@
+[flake8]
+## https://flake8.pycqa.org/en/latest/user/configuration.html
+## keep in sync with isort config - in `.isort.cfg` file
+
+exclude =
+    build,dist,__pycache__,.eggs,*.egg-info*,
+    *_cache,*.cache,
+    .git,.tox,.venv,venv
+    _OLD,_TEST,
+    docs
+
+max-line-length = 120
+
+max-complexity = 15
+
+ignore =
+    # ignore `self`, `cls` markers of flake8-annotations>=2.0
+    ANN101,ANN102
+    # ignore ANN401 for dynamically typed *args and **kwargs
+    ANN401

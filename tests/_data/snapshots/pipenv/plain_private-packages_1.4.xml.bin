@@ -1,0 +1,147 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.4" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-bom</name>
+        <version>thisVersion-testing</version>
+        <externalReferences>
+          <reference type="build-system">
+            <url>https://github.com/CycloneDX/cyclonedx-python/actions</url>
+          </reference>
+          <reference type="distribution">
+            <url>https://pypi.org/project/cyclonedx-bom/</url>
+          </reference>
+          <reference type="documentation">
+            <url>https://cyclonedx-bom-tool.readthedocs.io/</url>
+          </reference>
+          <reference type="issue-tracker">
+            <url>https://github.com/CycloneDX/cyclonedx-python/issues</url>
+          </reference>
+          <reference type="license">
+            <url>https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE</url>
+          </reference>
+          <reference type="release-notes">
+            <url>https://github.com/CycloneDX/cyclonedx-python/blob/main/CHANGELOG.md</url>
+          </reference>
+          <reference type="vcs">
+            <url>https://github.com/CycloneDX/cyclonedx-python/</url>
+          </reference>
+          <reference type="website">
+            <url>https://github.com/CycloneDX/cyclonedx-python/#readme</url>
+          </reference>
+        </externalReferences>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+        <externalReferences><!-- stripped --></externalReferences>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="root-component">
+      <name>private-packges</name>
+      <version>0.1.0</version>
+      <description>packages from aternative package repositories</description>
+    </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="numpy==1.26.2">
+      <name>numpy</name>
+      <version>1.26.2</version>
+      <purl>pkg:pypi/numpy@1.26.2</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/numpy/</url>
+          <comment>from explicit index: pypi</comment>
+          <hashes>
+            <hash alg="SHA-256">06fa1ed84aa60ea6ef9f91ba57b5ed963c3729534e6e54055fc151fad0423f0a</hash>
+            <hash alg="SHA-256">174a8880739c16c925799c018f3f55b8130c1f7c8e75ab0a6fa9d41cab092fd6</hash>
+            <hash alg="SHA-256">1a13860fdcd95de7cf58bd6f8bc5a5ef81c0b0625eb2c9a783948847abbef2c2</hash>
+            <hash alg="SHA-256">1cc3d5029a30fb5f06704ad6b23b35e11309491c999838c31f124fee32107c79</hash>
+            <hash alg="SHA-256">22f8fc02fdbc829e7a8c578dd8d2e15a9074b630d4da29cda483337e300e3ee9</hash>
+            <hash alg="SHA-256">26c9d33f8e8b846d5a65dd068c14e04018d05533b348d9eaeef6c1bd787f9919</hash>
+            <hash alg="SHA-256">2b3fca8a5b00184828d12b073af4d0fc5fdd94b1632c2477526f6bd7842d700d</hash>
+            <hash alg="SHA-256">2beef57fb031dcc0dc8fa4fe297a742027b954949cabb52a2a376c144e5e6060</hash>
+            <hash alg="SHA-256">36340109af8da8805d8851ef1d74761b3b88e81a9bd80b290bbfed61bd2b4f75</hash>
+            <hash alg="SHA-256">3703fc9258a4a122d17043e57b35e5ef1c5a5837c3db8be396c82e04c1cf9b0f</hash>
+            <hash alg="SHA-256">3ced40d4e9e18242f70dd02d739e44698df3dcb010d31f495ff00a31ef6014fe</hash>
+            <hash alg="SHA-256">4a06263321dfd3598cacb252f51e521a8cb4b6df471bb12a7ee5cbab20ea9167</hash>
+            <hash alg="SHA-256">4eb8df4bf8d3d90d091e0146f6c28492b0be84da3e409ebef54349f71ed271ef</hash>
+            <hash alg="SHA-256">5d5244aabd6ed7f312268b9247be47343a654ebea52a60f002dc70c769048e75</hash>
+            <hash alg="SHA-256">64308ebc366a8ed63fd0bf426b6a9468060962f1a4339ab1074c228fa6ade8e3</hash>
+            <hash alg="SHA-256">6a3cdb4d9c70e6b8c0814239ead47da00934666f668426fc6e94cce869e13fd7</hash>
+            <hash alg="SHA-256">854ab91a2906ef29dc3925a064fcd365c7b4da743f84b123002f6139bcb3f8a7</hash>
+            <hash alg="SHA-256">94cc3c222bb9fb5a12e334d0479b97bb2df446fbe622b470928f5284ffca3f8d</hash>
+            <hash alg="SHA-256">96ca5482c3dbdd051bcd1fce8034603d6ebfc125a7bd59f55b40d8f5d246832b</hash>
+            <hash alg="SHA-256">a2bbc29fcb1771cd7b7425f98b05307776a6baf43035d3b80c4b0f29e9545186</hash>
+            <hash alg="SHA-256">a4cd6ed4a339c21f1d1b0fdf13426cb3b284555c27ac2f156dfdaaa7e16bfab0</hash>
+            <hash alg="SHA-256">aa18428111fb9a591d7a9cc1b48150097ba6a7e8299fb56bdf574df650e7d1f1</hash>
+            <hash alg="SHA-256">aa317b2325f7aa0a9471663e6093c210cb2ae9c0ad824732b307d2c51983d5b6</hash>
+            <hash alg="SHA-256">b04f5dc6b3efdaab541f7857351aac359e6ae3c126e2edb376929bd3b7f92d7e</hash>
+            <hash alg="SHA-256">b272d4cecc32c9e19911891446b72e986157e6a1809b7b56518b4f3755267523</hash>
+            <hash alg="SHA-256">b361d369fc7e5e1714cf827b731ca32bff8d411212fccd29ad98ad622449cc36</hash>
+            <hash alg="SHA-256">b96e7b9c624ef3ae2ae0e04fa9b460f6b9f17ad8b4bec6d7756510f1f6c0c841</hash>
+            <hash alg="SHA-256">baf8aab04a2c0e859da118f0b38617e5ee65d75b83795055fb66c0d5e9e9b818</hash>
+            <hash alg="SHA-256">bcc008217145b3d77abd3e4d5ef586e3bdfba8fe17940769f8aa09b99e856c00</hash>
+            <hash alg="SHA-256">bd3f0091e845164a20bd5a326860c840fe2af79fa12e0469a12768a3ec578d80</hash>
+            <hash alg="SHA-256">cc392fdcbd21d4be6ae1bb4475a03ce3b025cd49a9be5345d76d7585aea69440</hash>
+            <hash alg="SHA-256">d73a3abcac238250091b11caef9ad12413dab01669511779bc9b29261dd50210</hash>
+            <hash alg="SHA-256">f43740ab089277d403aa07567be138fc2a89d4d9892d113b76153e0e412409f8</hash>
+            <hash alg="SHA-256">f65738447676ab5777f11e6bbbdb8ce11b785e105f690bc45966574816b6d3ea</hash>
+            <hash alg="SHA-256">f79b231bf5c16b1f39c7f4875e1ded36abee1591e98742b05d8a0fb55d8a3eec</hash>
+            <hash alg="SHA-256">fe6b44fb8fcdf7eda4ef4461b97b3f63c466b27ab151bec2366db8b197387841</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:pipenv:category">default</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="six">
+      <name>six</name>
+      <purl>pkg:pypi/six?download_url=https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl</url>
+          <comment>from file</comment>
+          <hashes>
+            <hash alg="SHA-256">1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926</hash>
+            <hash alg="SHA-256">8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:pipenv:category">default</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="toml==0.10.2">
+      <name>toml</name>
+      <version>0.10.2</version>
+      <purl>pkg:pypi/toml@0.10.2?repository_url=http://pysrc1.acme.org:8080/simple</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>http://pysrc1.acme.org:8080/simple/toml/</url>
+          <comment>from explicit index: pysrc1.acme.org</comment>
+          <hashes>
+            <hash alg="SHA-256">806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b</hash>
+            <hash alg="SHA-256">b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:pipenv:category">default</property>
+      </properties>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="numpy==1.26.2"/>
+    <dependency ref="root-component"/>
+    <dependency ref="six"/>
+    <dependency ref="toml==0.10.2"/>
+  </dependencies>
+</bom>

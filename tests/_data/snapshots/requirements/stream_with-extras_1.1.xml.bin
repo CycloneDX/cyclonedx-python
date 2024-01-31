@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.1" version="1">
+  <components>
+    <component type="library" bom-ref="requirements-L3">
+      <name>cyclonedx-python-lib</name>
+      <version>5.1.1</version>
+      <description>requirements line 3: cyclonedx-python-lib[json-validation,xml-validation] == 5.1.1</description>
+      <purl>pkg:pypi/cyclonedx-python-lib@5.1.1</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/cyclonedx-python-lib/</url>
+          <comment>implicit dist url</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+</bom>

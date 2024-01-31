@@ -1,0 +1,102 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.4" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-bom</name>
+        <version>thisVersion-testing</version>
+        <externalReferences>
+          <reference type="build-system">
+            <url>https://github.com/CycloneDX/cyclonedx-python/actions</url>
+          </reference>
+          <reference type="distribution">
+            <url>https://pypi.org/project/cyclonedx-bom/</url>
+          </reference>
+          <reference type="documentation">
+            <url>https://cyclonedx-bom-tool.readthedocs.io/</url>
+          </reference>
+          <reference type="issue-tracker">
+            <url>https://github.com/CycloneDX/cyclonedx-python/issues</url>
+          </reference>
+          <reference type="license">
+            <url>https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE</url>
+          </reference>
+          <reference type="release-notes">
+            <url>https://github.com/CycloneDX/cyclonedx-python/blob/main/CHANGELOG.md</url>
+          </reference>
+          <reference type="vcs">
+            <url>https://github.com/CycloneDX/cyclonedx-python/</url>
+          </reference>
+          <reference type="website">
+            <url>https://github.com/CycloneDX/cyclonedx-python/#readme</url>
+          </reference>
+        </externalReferences>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+        <externalReferences><!-- stripped --></externalReferences>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="root-component">
+      <name>local</name>
+      <version>0.1.0</version>
+      <description>packages from local paths</description>
+    </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="package-a">
+      <name>package-a</name>
+      <externalReferences>
+        <reference type="distribution">
+          <url>../../_helpers/local_pckages/a/dist/package-a-23.42.tar.gz</url>
+          <comment>from file</comment>
+          <hashes>
+            <hash alg="SHA-256">3869fe3f4a6cca5b203b2e2cd8858c834f651e1b0fa76d5c0232e36472199592</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:pipenv:category">default</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="package-b">
+      <name>package-b</name>
+      <externalReferences>
+        <reference type="distribution">
+          <url>file:../../_helpers/local_pckages/b/dist/package_b-23.42-py3-none-any.whl</url>
+          <comment>from file</comment>
+          <hashes>
+            <hash alg="SHA-256">4aacda53fa274f5ff7eed71a9916904ffb3a11b05dc5ca529d7ddb78ae2dc602</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:pipenv:category">default</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="package-c">
+      <name>package-c</name>
+      <externalReferences>
+        <reference type="distribution">
+          <url>../../_helpers/local_pckages/c</url>
+          <comment>from path</comment>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:pipenv:category">default</property>
+      </properties>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="package-a"/>
+    <dependency ref="package-b"/>
+    <dependency ref="package-c"/>
+    <dependency ref="root-component"/>
+  </dependencies>
+</bom>

@@ -1,0 +1,260 @@
+{
+  "components": [
+    {
+      "bom-ref": "numpy==1.26.2",
+      "externalReferences": [
+        {
+          "comment": "from explicit index: pypi",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "06fa1ed84aa60ea6ef9f91ba57b5ed963c3729534e6e54055fc151fad0423f0a"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "174a8880739c16c925799c018f3f55b8130c1f7c8e75ab0a6fa9d41cab092fd6"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "1a13860fdcd95de7cf58bd6f8bc5a5ef81c0b0625eb2c9a783948847abbef2c2"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "1cc3d5029a30fb5f06704ad6b23b35e11309491c999838c31f124fee32107c79"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "22f8fc02fdbc829e7a8c578dd8d2e15a9074b630d4da29cda483337e300e3ee9"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "26c9d33f8e8b846d5a65dd068c14e04018d05533b348d9eaeef6c1bd787f9919"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "2b3fca8a5b00184828d12b073af4d0fc5fdd94b1632c2477526f6bd7842d700d"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "2beef57fb031dcc0dc8fa4fe297a742027b954949cabb52a2a376c144e5e6060"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "36340109af8da8805d8851ef1d74761b3b88e81a9bd80b290bbfed61bd2b4f75"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "3703fc9258a4a122d17043e57b35e5ef1c5a5837c3db8be396c82e04c1cf9b0f"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "3ced40d4e9e18242f70dd02d739e44698df3dcb010d31f495ff00a31ef6014fe"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "4a06263321dfd3598cacb252f51e521a8cb4b6df471bb12a7ee5cbab20ea9167"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "4eb8df4bf8d3d90d091e0146f6c28492b0be84da3e409ebef54349f71ed271ef"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "5d5244aabd6ed7f312268b9247be47343a654ebea52a60f002dc70c769048e75"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "64308ebc366a8ed63fd0bf426b6a9468060962f1a4339ab1074c228fa6ade8e3"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "6a3cdb4d9c70e6b8c0814239ead47da00934666f668426fc6e94cce869e13fd7"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "854ab91a2906ef29dc3925a064fcd365c7b4da743f84b123002f6139bcb3f8a7"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "94cc3c222bb9fb5a12e334d0479b97bb2df446fbe622b470928f5284ffca3f8d"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "96ca5482c3dbdd051bcd1fce8034603d6ebfc125a7bd59f55b40d8f5d246832b"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "a2bbc29fcb1771cd7b7425f98b05307776a6baf43035d3b80c4b0f29e9545186"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "a4cd6ed4a339c21f1d1b0fdf13426cb3b284555c27ac2f156dfdaaa7e16bfab0"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "aa18428111fb9a591d7a9cc1b48150097ba6a7e8299fb56bdf574df650e7d1f1"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "aa317b2325f7aa0a9471663e6093c210cb2ae9c0ad824732b307d2c51983d5b6"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "b04f5dc6b3efdaab541f7857351aac359e6ae3c126e2edb376929bd3b7f92d7e"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "b272d4cecc32c9e19911891446b72e986157e6a1809b7b56518b4f3755267523"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "b361d369fc7e5e1714cf827b731ca32bff8d411212fccd29ad98ad622449cc36"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "b96e7b9c624ef3ae2ae0e04fa9b460f6b9f17ad8b4bec6d7756510f1f6c0c841"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "baf8aab04a2c0e859da118f0b38617e5ee65d75b83795055fb66c0d5e9e9b818"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "bcc008217145b3d77abd3e4d5ef586e3bdfba8fe17940769f8aa09b99e856c00"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "bd3f0091e845164a20bd5a326860c840fe2af79fa12e0469a12768a3ec578d80"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "cc392fdcbd21d4be6ae1bb4475a03ce3b025cd49a9be5345d76d7585aea69440"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "d73a3abcac238250091b11caef9ad12413dab01669511779bc9b29261dd50210"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "f43740ab089277d403aa07567be138fc2a89d4d9892d113b76153e0e412409f8"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "f65738447676ab5777f11e6bbbdb8ce11b785e105f690bc45966574816b6d3ea"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "f79b231bf5c16b1f39c7f4875e1ded36abee1591e98742b05d8a0fb55d8a3eec"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "fe6b44fb8fcdf7eda4ef4461b97b3f63c466b27ab151bec2366db8b197387841"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypy-mirror.testing.acme.org/simple/numpy/"
+        }
+      ],
+      "name": "numpy",
+      "properties": [
+        {
+          "name": "cdx:pipenv:category",
+          "value": "default"
+        }
+      ],
+      "purl": "pkg:pypi/numpy@1.26.2?repository_url=https://pypy-mirror.testing.acme.org/simple",
+      "type": "library",
+      "version": "1.26.2"
+    },
+    {
+      "bom-ref": "six",
+      "externalReferences": [
+        {
+          "comment": "from file",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl"
+        }
+      ],
+      "name": "six",
+      "properties": [
+        {
+          "name": "cdx:pipenv:category",
+          "value": "default"
+        }
+      ],
+      "purl": "pkg:pypi/six?download_url=https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl",
+      "type": "library"
+    },
+    {
+      "bom-ref": "toml==0.10.2",
+      "externalReferences": [
+        {
+          "comment": "from explicit index: pysrc1.acme.org",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f"
+            }
+          ],
+          "type": "distribution",
+          "url": "http://pysrc1.acme.org:8080/simple/toml/"
+        }
+      ],
+      "name": "toml",
+      "properties": [
+        {
+          "name": "cdx:pipenv:category",
+          "value": "default"
+        }
+      ],
+      "purl": "pkg:pypi/toml@0.10.2?repository_url=http://pysrc1.acme.org:8080/simple",
+      "type": "library",
+      "version": "0.10.2"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "numpy==1.26.2"
+    },
+    {
+      "ref": "six"
+    },
+    {
+      "ref": "toml==0.10.2"
+    }
+  ],
+  "metadata": {
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": [
+      {
+        "externalReferences": [   ],
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.4.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.4"
+}

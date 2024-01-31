@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -15,6 +13,16 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-from .client import main
+__all__ = [  # type:ignore[var-annotated]
+    # There is no stable/public API.
+    # You might use this instead:
+    #   from sys import executable
+    #   from subprocess import run
+    #   run((executable, '-m', 'cyclonedx_py', '--help'))
+]
 
-main(prog_name=__package__)
+from sys import exit
+
+from ._internal.cli import run as _run
+
+exit(_run(prog=f'python -m {__package__}' if __package__ else None))

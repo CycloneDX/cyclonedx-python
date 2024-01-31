@@ -1,0 +1,6 @@
+[pipenv]
+sort_pipfile = true
+
+[packages]
+# https://pipenv.pypa.io/en/latest/specifiers.html?highlight=ref#editable-dependencies-e
+editable-self = {path = ".", editable = true}

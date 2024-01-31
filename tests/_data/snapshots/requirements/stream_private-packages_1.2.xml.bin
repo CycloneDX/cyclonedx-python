@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.2" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-bom</name>
+        <version>thisVersion-testing</version>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+      </tool>
+    </tools>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="requirements-L9">
+      <name>my-other-package</name>
+      <version/>
+      <description>requirements line 9: my-other-package @ https://pypackages.acme.org/my-other-package-1.2.3.tar.gz</description>
+      <purl>pkg:pypi/my-other-package?download_url=https://pypackages.acme.org/my-other-package-1.2.3.tar.gz</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypackages.acme.org/my-other-package-1.2.3.tar.gz</url>
+          <comment>explicit dist url</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="requirements-L7">
+      <name>my-package</name>
+      <version>1.2.3</version>
+      <description>requirements line 7: my-package==1.2.3</description>
+      <purl>pkg:pypi/my-package@1.2.3</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://legacy1.pypackages.acme.org/simple/my-package/</url>
+          <comment>implicit dist extra-url</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://legacy2.pypackages.acme.org/simple/my-package/</url>
+          <comment>implicit dist extra-url</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypackages.acme.org/simple/my-package/</url>
+          <comment>implicit dist url</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="requirements-L7"/>
+    <dependency ref="requirements-L9"/>
+  </dependencies>
+</bom>

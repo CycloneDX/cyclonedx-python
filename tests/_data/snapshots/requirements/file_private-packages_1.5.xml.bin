@@ -1,0 +1,119 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.5" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-bom</name>
+        <version>thisVersion-testing</version>
+        <externalReferences>
+          <reference type="build-system">
+            <url>https://github.com/CycloneDX/cyclonedx-python/actions</url>
+          </reference>
+          <reference type="distribution">
+            <url>https://pypi.org/project/cyclonedx-bom/</url>
+          </reference>
+          <reference type="documentation">
+            <url>https://cyclonedx-bom-tool.readthedocs.io/</url>
+          </reference>
+          <reference type="issue-tracker">
+            <url>https://github.com/CycloneDX/cyclonedx-python/issues</url>
+          </reference>
+          <reference type="license">
+            <url>https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE</url>
+          </reference>
+          <reference type="release-notes">
+            <url>https://github.com/CycloneDX/cyclonedx-python/blob/main/CHANGELOG.md</url>
+          </reference>
+          <reference type="vcs">
+            <url>https://github.com/CycloneDX/cyclonedx-python/</url>
+          </reference>
+          <reference type="website">
+            <url>https://github.com/CycloneDX/cyclonedx-python/#readme</url>
+          </reference>
+        </externalReferences>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+        <externalReferences><!-- stripped --></externalReferences>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="root-component">
+      <name>testing-requirements-txt</name>
+      <version>0.1.0</version>
+      <description>some `reuqirements.txt` a root-component with all metadata</description>
+      <licenses>
+        <expression>Apache-2.0 OR MIT</expression>
+      </licenses>
+      <externalReferences>
+        <reference type="documentation">
+          <url>https://oss.acme.org/my-project/docs/</url>
+          <comment>from pyproject urls: documentation</comment>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://oss.acme.org/my-project/bugs/</url>
+          <comment>from pyproject urls: Bug Tracker</comment>
+        </reference>
+        <reference type="other">
+          <url>https://oss.acme.org/my-project/funding/</url>
+          <comment>from pyproject urls: Funding</comment>
+        </reference>
+        <reference type="release-notes">
+          <url>https://oss.acme.org/my-project/changelog/</url>
+          <comment>from pyproject urls: Change log</comment>
+        </reference>
+        <reference type="vcs">
+          <url>https://oss.acme.org/my-project.git</url>
+          <comment>from pyproject urls: repository</comment>
+        </reference>
+        <reference type="website">
+          <url>https://oss.acme.org/my-project/</url>
+          <comment>from pyproject urls: homepage</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="requirements-L9">
+      <name>my-other-package</name>
+      <description>requirements line 9: my-other-package @ https://pypackages.acme.org/my-other-package-1.2.3.tar.gz</description>
+      <purl>pkg:pypi/my-other-package?download_url=https://pypackages.acme.org/my-other-package-1.2.3.tar.gz</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypackages.acme.org/my-other-package-1.2.3.tar.gz</url>
+          <comment>explicit dist url</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="requirements-L7">
+      <name>my-package</name>
+      <version>1.2.3</version>
+      <description>requirements line 7: my-package==1.2.3</description>
+      <purl>pkg:pypi/my-package@1.2.3</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://legacy1.pypackages.acme.org/simple/my-package/</url>
+          <comment>implicit dist extra-url</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://legacy2.pypackages.acme.org/simple/my-package/</url>
+          <comment>implicit dist extra-url</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypackages.acme.org/simple/my-package/</url>
+          <comment>implicit dist url</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="requirements-L7"/>
+    <dependency ref="requirements-L9"/>
+    <dependency ref="root-component"/>
+  </dependencies>
+</bom>

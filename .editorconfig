@@ -31,7 +31,7 @@ trim_trailing_whitespace = false
 indent_style = space
 indent_size = 4
 
-[*.ini]
+[{*.ini,.bandit,.flake8}]
 charset = latin1
 indent_style = space
 indent_size = 4

@@ -1,0 +1,82 @@
+{
+  "components": [
+    {
+      "bom-ref": "package-a",
+      "externalReferences": [
+        {
+          "comment": "from file",
+          "type": "distribution",
+          "url": "../../_helpers/local_pckages/a/dist/package-a-23.42.tar.gz"
+        }
+      ],
+      "name": "package-a",
+      "type": "library",
+      "version": ""
+    },
+    {
+      "bom-ref": "package-b",
+      "externalReferences": [
+        {
+          "comment": "from file",
+          "type": "distribution",
+          "url": "file:../../_helpers/local_pckages/b/dist/package_b-23.42-py3-none-any.whl"
+        }
+      ],
+      "name": "package-b",
+      "type": "library",
+      "version": ""
+    },
+    {
+      "bom-ref": "package-c",
+      "externalReferences": [
+        {
+          "comment": "from path",
+          "type": "distribution",
+          "url": "../../_helpers/local_pckages/c"
+        }
+      ],
+      "name": "package-c",
+      "type": "library",
+      "version": ""
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "package-a"
+    },
+    {
+      "ref": "package-b"
+    },
+    {
+      "ref": "package-c"
+    },
+    {
+      "ref": "root-component"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "root-component",
+      "description": "packages from local paths",
+      "name": "local",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "tools": [
+      {
+        "name": "cyclonedx-bom",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.2b.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.2"
+}

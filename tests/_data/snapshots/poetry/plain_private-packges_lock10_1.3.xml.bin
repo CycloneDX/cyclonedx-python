@@ -1,0 +1,102 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.3" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-bom</name>
+        <version>thisVersion-testing</version>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="private-packges">
+      <name>private-packges</name>
+      <version>0.1.0</version>
+      <description>packages from aternative package repositories</description>
+    </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="colorama@0.4.6">
+      <name>colorama</name>
+      <version>0.4.6</version>
+      <description>Cross-platform colored terminal text.</description>
+      <purl>pkg:pypi/colorama@0.4.6?repository_url=http://pysrc1.acme.org:8080/simple</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>http://pysrc1.acme.org:8080/simple/colorama/#colorama-0.4.6-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.acme.org:8080/simple/colorama/#colorama-0.4.6.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:poetry:group">main</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="six@1.16.0">
+      <name>six</name>
+      <version>1.16.0</version>
+      <description>Python 2 and 3 compatibility utilities</description>
+      <purl>pkg:pypi/six@1.16.0?download_url=https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl</url>
+          <comment>from url</comment>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:poetry:group">main</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="toml@0.10.2">
+      <name>toml</name>
+      <version>0.10.2</version>
+      <description>Python Library for Tom's Obvious, Minimal Language</description>
+      <purl>pkg:pypi/toml@0.10.2?repository_url=http://pysrc2.acme.org:8080/simple</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>http://pysrc2.acme.org:8080/simple/toml/#toml-0.10.2-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc2.acme.org:8080/simple/toml/#toml-0.10.2.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:poetry:group">main</property>
+      </properties>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="colorama@0.4.6"/>
+    <dependency ref="private-packges">
+      <dependency ref="colorama@0.4.6"/>
+      <dependency ref="six@1.16.0"/>
+      <dependency ref="toml@0.10.2"/>
+    </dependency>
+    <dependency ref="six@1.16.0"/>
+    <dependency ref="toml@0.10.2"/>
+  </dependencies>
+</bom>

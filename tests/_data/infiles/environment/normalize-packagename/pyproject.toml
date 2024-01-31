@@ -1,0 +1,11 @@
+[project]
+# https://packaging.python.org/en/latest/specifications/declaring-project-metadata/#declaring-project-metadata
+name = "normalize-packagename"
+version = "0.1.0"
+description = "packages with non-normalized names"
+
+# see https://packaging.python.org/en/latest/specifications/name-normalization/#name-normalization
+
+dependencies = [
+  "ruamel-YAML[jinja2]"   # actually "ruamel.yaml", normalizes to "ruamel-yaml"
+]

@@ -1,93 +1,143 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+
 [tool.poetry]
+# keep in sync with `cyclonedx_py/_internal/utils/cdx.py`
 name = "cyclonedx-bom"
-version = "3.11.7"
-description = "CycloneDX Software Bill of Materials (SBOM) generation utility"
+version = "4.0.0-rc.6"
+description = "CycloneDX Software Bill of Materials (SBOM) generator for Python projects and environments"
 authors = [
-  "Steven Springett <steve.springett@owasp.org>",
-  "Paul Horton <phorton@sonatype.com>",
+  "Jan Kowalleck <jan.kowalleck@gmail.com>",
 ]
 maintainers = [
-  "Paul Horton <phorton@sonatype.com>",
   "Jan Kowalleck <jan.kowalleck@gmail.com>",
 ]
 license = "Apache-2.0"
 readme = "README.md"
 homepage = "https://github.com/CycloneDX/cyclonedx-python/#readme"
-repository = "https://github.com/CycloneDX/cyclonedx-python"
+repository = "https://github.com/CycloneDX/cyclonedx-python/"
 documentation = "https://cyclonedx-bom-tool.readthedocs.io/"
 packages = [
-    { include = "cyclonedx_py" }
+  { include = "cyclonedx_py" }
 ]
 include = [
-    "LICENSE", "NOTICE"
+  # all is an object -> prevent parse issue with dependabot
+  { path="README.md", format =["sdist","wheel"] },
+  { path="LICENSE", format=["sdist","wheel"] },
+  { path="NOTICE", format=["sdist","wheel"] },
+  { path="tests", format=["sdist"] },
+  { path="CHANGELOG.md", format=["sdist"] },
+  { path="docs", format=["sdist"] },
+]
+exclude = [
+  # exclude dotfiles and dotfolders
+  "**/.*",
+  "docs/_build", "docs/processes",
+]
+keywords = [
+  "OWASP", "CycloneDX",
+  "bill-of-materials", "BOM", "software-bill-of-materials","SBOM",
+  "environment", "virtualenv", "venv", "Poetry", "Pipenv", "requirements", "PDM", "Conda",
+  "SPDX", "licenses", "PURL", "package-url", "dependency-graph",
 ]
 classifiers = [
-    # Trove classifiers - https://packaging.python.org/specifications/core-metadata/#metadata-classifier
-    # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
-    'Development Status :: 5 - Production/Stable',
-    'Intended Audience :: Developers',
-    'Intended Audience :: Information Technology',
-    'Intended Audience :: Legal Industry',
-    'Intended Audience :: System Administrators',
-    'Topic :: Security',
-    'Topic :: Software Development',
-    'Topic :: System :: Software Distribution',
-    'License :: OSI Approved :: Apache Software License',
-    'Programming Language :: Python :: 3.6',
-    'Programming Language :: Python :: 3.7',
-    'Programming Language :: Python :: 3.8',
-    'Programming Language :: Python :: 3.9',
-    'Programming Language :: Python :: 3.10',
-    'Typing :: Typed'
+  # Trove classifiers - https://packaging.python.org/specifications/core-metadata/#metadata-classifier
+  # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Information Technology",
+  "Intended Audience :: Legal Industry",
+  "Intended Audience :: System Administrators",
+  "Topic :: Security",
+  "Topic :: Software Development",
+  "Topic :: System :: Software Distribution",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Typing :: Typed"
 ]
-
-[tool.poetry.dependencies]
-python = "^3.6"
-# ATTENTION: keep `deps.lowest.r` file in sync
-cyclonedx-python-lib = ">= 2.0.0, < 4.0.0"
-packageurl-python = ">= 0.9"
-importlib-metadata = { version = ">= 3.4", python = "< 3.8" }
-pip-requirements-parser = "^32.0.0"
-setuptools = ">= 47.0.0"
-toml = "^0.10.0"
-chardet = "^5.0"
-
-[tool.poetry.dev-dependencies]
-autopep8 = "^1.6.0"
-isort = { version = "^5.10.0", python = ">= 3.6.1" }
-ddt = "^1.6.0"
-tox = "^3.25.1"
-coverage = [
-   { python = ">=3.6,<3.7", version = "^6.2", extras = ["toml"] },
-   { python = ">=3.7",      version = "^6.5", extras = ["toml"] },
-]
-mypy = ">=0.971,<1"
-mypy-extensions = ">=0.4.3,<1"
-flake8 = "^4.0.1"
-flake8-annotations = {version = "^2.7.0", python = ">= 3.6.2"}
-flake8-bugbear = "^22.9.23"
-flake8-isort = { version = "^4.2.0", python = ">= 3.6.1" }
-# `types-toml` need to stay in sync with version of `toml`
-types-toml = "^0.10.0"
-# `types-setuptools` need to stay in sync with version of `setuptools` - but 47 was not typed...
-types-setuptools = ">= 57.0.0"
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/CycloneDX/cyclonedx-python/issues"
+"Funding" = "https://owasp.org/donate/?reponame=www-project-cyclonedx&title=OWASP+CycloneDX"
 
 [tool.poetry.scripts]
-cyclonedx-bom = 'cyclonedx_py.client:main_deprecated'  # deprecated as of https://github.com/CycloneDX/cyclonedx-python/issues/488
-cyclonedx-py  = 'cyclonedx_py.client:main'
+cyclonedx-py = "cyclonedx_py._internal.cli:run"
 
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+[tool.poetry.dependencies]
+python = "^3.8"
+cyclonedx-python-lib = { version = "^6.1.0", extras = ["validation"] }
+packageurl-python = ">=0.11, <2"  # keep in sync with same dep in `cyclonedx-python-lib`
+pip-requirements-parser = "^32.0"
+packaging = "^22||^23"
+tomli = { version = "^2.0.1", python = "<3.11" }
+chardet = "^5.1"
+
+[tool.poetry.group.dev.dependencies]
+# pin to exact versions, if the tool/lib/plugin is process-relevant
+coverage = "7.4.1"
+ddt = "1.7.1"
+flake8 = { version = "7.0.0", python = ">=3.8.1" }
+flake8-annotations = { version = "3.0.1", python = ">=3.8.1" }
+flake8-bugbear = { version = "24.1.17", python = ">=3.8.1" }
+flake8-isort = "6.1.1"
+flake8-quotes = "3.3.2"
+flake8-use-fstring = "1.4"
+pep8-naming = "0.13.3"
+flake8-logging = "1.5.0"
+isort = "5.13.2"
+autopep8 = "2.0.4"
+mypy = "1.8.0"
+bandit = "1.7.7"
+tox = "4.11.4"
+# min version required to be able to install some dependencies
+# see https://github.com/MichaelKim0407/flake8-use-fstring/issues/33
+setuptools = ">= 47.0.0"
+# install` needed for setup/init of testbeds for `environment` purpose
+pip = ">=23.0"
+pipenv = ">=2023.11.5"
+poetry = "^1.7"
+pdm = "^2.11"
+
+
 
 [tool.semantic_release]
-# https://python-semantic-release.readthedocs.io/en/latest/configuration.html
-version_variable = [
-    "pyproject.toml:version"
-]
-branch = "main"
-upload_to_pypi = true
-upload_to_repository = true
-upload_to_release = true
+# see https://python-semantic-release.readthedocs.io/en/latest/configuration.html
+commit_author = "semantic-release <semantic-release>"
+commit_message = "chore(release): {version}\n\nAutomatically generated by python-semantic-release\n\nSigned-off-by: semantic-release <semantic-release>"
+upload_to_vcs_release = true
 build_command = "pip install poetry && poetry build"
-remove_dist = false  # dist results required for some CI automation
+version_toml = ["pyproject.toml:tool.poetry.version"]
+version_variables = [
+  "cyclonedx_py/__init__.py:__version__",
+  "docs/conf.py:release",
+]
+
+[tool.semantic_release.publish]
+dist_glob_patterns = ["dist/*"]
+upload_to_vcs_release = true
+
+[tool.semantic_release.changelog]
+changelog_file = "CHANGELOG.md"
+exclude_commit_patterns = [
+  "chore\\(release\\):",
+]
+
+[tool.semantic_release.branches.main]
+match = "(main|master)"
+prerelease = false
+
+[tool.semantic_release.branches."step"]
+match = "(build|chore|ci|docs|feat|fix|perf|style|refactor|test)"
+prerelease = true
+prerelease_token = "alpha"
+
+[tool.semantic_release.branches."major-dev"]
+match = "(\\d+\\.0\\.0-(dev|rc)|dev/\\d+\\.0\\.0)"
+prerelease = true
+prerelease_token = "rc"

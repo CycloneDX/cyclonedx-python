@@ -1,0 +1,71 @@
+{
+  "dependencies": [
+    {
+      "ref": "root-component"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "root-component",
+      "description": "packages with all meta, but no deps",
+      "externalReferences": [
+        {
+          "comment": "from pyproject urls: documentation",
+          "type": "documentation",
+          "url": "https://oss.acme.org/my-project/docs/"
+        },
+        {
+          "comment": "from pyproject urls: Bug Tracker",
+          "type": "issue-tracker",
+          "url": "https://oss.acme.org/my-project/bugs/"
+        },
+        {
+          "comment": "from pyproject urls: Funding",
+          "type": "other",
+          "url": "https://oss.acme.org/my-project/funding/"
+        },
+        {
+          "comment": "from pyproject urls: Change log",
+          "type": "release-notes",
+          "url": "https://oss.acme.org/my-project/changelog/"
+        },
+        {
+          "comment": "from pyproject urls: repository",
+          "type": "vcs",
+          "url": "https://oss.acme.org/my-project.git"
+        },
+        {
+          "comment": "from pyproject urls: homepage",
+          "type": "website",
+          "url": "https://oss.acme.org/my-project/"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR MIT"
+        }
+      ],
+      "name": "no-deps",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": [
+      {
+        "externalReferences": [   ],
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5"
+}

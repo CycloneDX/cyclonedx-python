@@ -1,0 +1,5 @@
+# files are compared bype-wise, so they need to be treated as binary
+*            linguist-generated
+*.bin        binary
+*.xml*.bin   diff=xml
+*.json*.bin  diff=json

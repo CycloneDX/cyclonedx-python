@@ -1,0 +1,80 @@
+{
+  "components": [
+    {
+      "bom-ref": "pyhumps@3.7.1",
+      "description": "\ud83d\udc2b  Convert strings (and dictionary keys) between snake case, camel case and pascal case in Python. Inspired by Humps for Node",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "c6f2d833f2c7afae039d71b7dc0aba5412ae5b8c8c33d4a208c1d412de17229e"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/pyhumps/#pyhumps-3.7.1-py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "5616f0afdbc73ef479fa9999f4abdcb336a0232707ff1a0b86e29fc9339e18da"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/pyhumps/#pyhumps-3.7.1.tar.gz"
+        }
+      ],
+      "name": "pyhumps",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        }
+      ],
+      "purl": "pkg:pypi/pyhumps@3.7.1",
+      "type": "library",
+      "version": "3.7.1"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "pyhumps@3.7.1"
+    },
+    {
+      "dependsOn": [
+        "pyhumps@3.7.1"
+      ],
+      "ref": "regression-issue611"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "regression-issue611",
+      "description": "regression for issue #611",
+      "name": "regression-issue611",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": [
+      {
+        "externalReferences": [   ],
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5"
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.0" version="1">
+  <components>
+    <component type="library">
+      <name>FooProject</name>
+      <version>1.2</version>
+      <description>requirements line 7: FooProject == 1.2   --hash=sha256:2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824   --hash=sha256:486ea46224d1bb4fb680f34f7c9ad96a8f24ec88be73ea8e5a6c65260e9cb8a7</description>
+      <purl>pkg:pypi/fooproject@1.2</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>colorama</name>
+      <version>0.4.6</version>
+      <description>requirements line 4: colorama==0.4.6</description>
+      <purl>pkg:pypi/colorama@0.4.6</purl>
+      <modified>false</modified>
+    </component>
+  </components>
+</bom>

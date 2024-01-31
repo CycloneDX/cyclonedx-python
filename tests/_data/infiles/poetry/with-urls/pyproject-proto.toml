@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "with-urls"
+version = "0.1.0"
+description = "packages from direct urls"
+authors = ["Your Name <you@example.com>"]
+
+
+# You can specify a package in the following forms:
+#    [...]
+#    - A git url (git+https://github.com/python-poetry/poetry.git)
+#    - A git url with a revision (git+https://github.com/python-poetry/poetry.git#develop)
+#    - A git SSH url (git+ssh://github.com/python-poetry/poetry.git)
+#    - A git SSH url with a revision (git+ssh://github.com/python-poetry/poetry.git#develop)
+#    [...]
+#    - A url (https://example.com/packages/my-package-0.1.0.tar.gz)
+
+
+[tool.poetry.dependencies]
+python = "^3.8"
+# direct url - https://python-poetry.org/docs/dependency-specification/#url-dependencies
+wxpython = {url = "https://wxpython.org/Phoenix/snapshot-builds/wxPython-4.2.2a1.dev5618+1f82021f-cp38-cp38-win32.whl"}
+numpy = {url = "https://files.pythonhosted.org/packages/a4/9b/027bec52c633f6556dba6b722d9a0befb40498b9ceddd29cbe67a45a127c/numpy-1.24.4.tar.gz"}
+# git dependency - https://python-poetry.org/docs/dependency-specification/#git-dependencies
+pillow = {git = "https://github.com/python-pillow/Pillow.git", tag = "10.1.0"}
+six = {git = "ssh://git@github.com/benjaminp/six.git", tag = "1.16.0"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

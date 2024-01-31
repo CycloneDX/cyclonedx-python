@@ -1,0 +1,85 @@
+{
+  "components": [
+    {
+      "bom-ref": "numpy==1.26.2",
+      "externalReferences": [
+        {
+          "comment": "from explicit index: pypi",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/numpy/"
+        }
+      ],
+      "name": "numpy",
+      "purl": "pkg:pypi/numpy@1.26.2",
+      "type": "library",
+      "version": "1.26.2"
+    },
+    {
+      "bom-ref": "six",
+      "externalReferences": [
+        {
+          "comment": "from file",
+          "type": "distribution",
+          "url": "https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl"
+        }
+      ],
+      "name": "six",
+      "purl": "pkg:pypi/six?download_url=https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl",
+      "type": "library",
+      "version": ""
+    },
+    {
+      "bom-ref": "toml==0.10.2",
+      "externalReferences": [
+        {
+          "comment": "from explicit index: pysrc1.acme.org",
+          "type": "distribution",
+          "url": "http://pysrc1.acme.org:8080/simple/toml/"
+        }
+      ],
+      "name": "toml",
+      "purl": "pkg:pypi/toml@0.10.2?repository_url=http://pysrc1.acme.org:8080/simple",
+      "type": "library",
+      "version": "0.10.2"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "numpy==1.26.2"
+    },
+    {
+      "ref": "root-component"
+    },
+    {
+      "ref": "six"
+    },
+    {
+      "ref": "toml==0.10.2"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "root-component",
+      "description": "packages from aternative package repositories",
+      "name": "private-packges",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "tools": [
+      {
+        "name": "cyclonedx-bom",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.2b.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.2"
+}

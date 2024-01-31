@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "main-and-dev"
+version = "0.1.0"
+description = "main and dev depenndencies"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+
+
+[tool.poetry.dependencies]
+python = "^3.8"
+toml = "^0.10.2"
+colorama = "*"
+arrow = "^1.3"
+
+# > This group notation is preferred since Poetry 1.2.0 and not usable in earlier versions.
+# > For backwards compatibility with older versions of Poetry, any dependency declared in the dev-dependencies
+# > section will automatically be added to the dev group.
+
+[tool.poetry.dev-dependencies]
+isoduration = "^20.11.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

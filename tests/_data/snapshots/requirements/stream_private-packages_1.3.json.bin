@@ -1,0 +1,76 @@
+{
+  "components": [
+    {
+      "bom-ref": "requirements-L9",
+      "description": "requirements line 9: my-other-package @ https://pypackages.acme.org/my-other-package-1.2.3.tar.gz",
+      "externalReferences": [
+        {
+          "comment": "explicit dist url",
+          "type": "distribution",
+          "url": "https://pypackages.acme.org/my-other-package-1.2.3.tar.gz"
+        }
+      ],
+      "name": "my-other-package",
+      "purl": "pkg:pypi/my-other-package?download_url=https://pypackages.acme.org/my-other-package-1.2.3.tar.gz",
+      "type": "library",
+      "version": ""
+    },
+    {
+      "bom-ref": "requirements-L7",
+      "description": "requirements line 7: my-package==1.2.3",
+      "externalReferences": [
+        {
+          "comment": "implicit dist extra-url",
+          "type": "distribution",
+          "url": "https://legacy1.pypackages.acme.org/simple/my-package/"
+        },
+        {
+          "comment": "implicit dist extra-url",
+          "type": "distribution",
+          "url": "https://legacy2.pypackages.acme.org/simple/my-package/"
+        },
+        {
+          "comment": "implicit dist url",
+          "type": "distribution",
+          "url": "https://pypackages.acme.org/simple/my-package/"
+        }
+      ],
+      "name": "my-package",
+      "purl": "pkg:pypi/my-package@1.2.3",
+      "type": "library",
+      "version": "1.2.3"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "requirements-L7"
+    },
+    {
+      "ref": "requirements-L9"
+    }
+  ],
+  "metadata": {
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": [
+      {
+        "name": "cyclonedx-bom",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.3a.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.3"
+}

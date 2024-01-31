@@ -1,0 +1,54 @@
+[tool.poetry]
+name = "private-packges"
+version = "0.1.0"
+description = "packages from aternative package repositories"
+authors = ["Your Name <you@example.com>"]
+
+
+# see https://github.com/python-poetry/poetry/blob/1.2/docs/repositories.md
+# run the `pypi-proxy.py` to setup a pypi proxy
+
+[[tool.poetry.source]]
+name = "PyPI"
+url = "https://pypi.org/simple/"
+default = false
+secondary = false
+
+[[tool.poetry.source]]
+name = "default-src"
+url = "http://user:password@pysrc1.acme.org:8080/simple/"
+default = true
+secondary = false
+
+
+[[tool.poetry.source]]
+name = "secondary-src"
+url = "http://user:password@pysrc4.acme.org:8080/simple/"
+default = false
+secondary = true
+
+
+[[tool.poetry.source]]
+name = "explicit-src"
+url = "http://user:password@pysrc2.acme.org:8080/simple/"
+default = false
+secondary = true
+
+[[tool.poetry.source]]
+name = "jax-src"
+url = "https://storage.googleapis.com/jax-releases/jax_releases.html"
+default = false
+secondary = false
+
+
+[tool.poetry.dependencies]
+python = ">=3.9,<4"
+# jax = { version = "0.4.20", source = "jax-src" }
+toml = { version = "^0.10.2", source = "explicit-src" }
+colorama = "^0.4.6"
+six = { url = 'https://user:password@files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl' }
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

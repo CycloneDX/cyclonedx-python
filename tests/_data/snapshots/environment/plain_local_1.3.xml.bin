@@ -1,0 +1,87 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.3" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-bom</name>
+        <version>thisVersion-testing</version>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="root-component">
+      <name>local</name>
+      <version>0.1.0</version>
+      <description>packages from local paths</description>
+    </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="package-a==23.42">
+      <name>package-a</name>
+      <version>23.42</version>
+      <description>some package A</description>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <externalReferences>
+        <reference type="distribution">
+          <url>file://.../tests/_data/infiles/_helpers/local_pckages/a/dist/package_a-23.42-py3-none-any.whl</url>
+          <comment>PackageSource: Archive</comment>
+          <hashes>
+            <hash alg="SHA-256">4f37ac4a44c1dcce7f3d6203d45e9d1945a28f69fbfb44f418c44ea73c77de86</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="package-b==23.42">
+      <name>package-b</name>
+      <version>23.42</version>
+      <description>some package B</description>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <externalReferences>
+        <reference type="distribution">
+          <url>file://.../tests/_data/infiles/_helpers/local_pckages/b/dist/package-b-23.42.tar.gz</url>
+          <comment>PackageSource: Archive</comment>
+          <hashes>
+            <hash alg="SHA-256">33d37cf528bc0b20ec8ffd9fa21170e7caadb1b9f15eb559d1937fa4c82d3d40</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="package-c==23.42">
+      <name>package-c</name>
+      <version>23.42</version>
+      <description>some package C</description>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <externalReferences>
+        <reference type="distribution">
+          <url>file://.../tests/_data/infiles/_helpers/local_pckages/c</url>
+          <comment>PackageSource: Local</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="package-a==23.42"/>
+    <dependency ref="package-b==23.42"/>
+    <dependency ref="package-c==23.42"/>
+    <dependency ref="root-component"/>
+  </dependencies>
+</bom>

@@ -1,0 +1,160 @@
+{
+  "components": [
+    {
+      "bom-ref": "requirements-L11",
+      "description": "requirements line 11: FooProject == 1.2   --hash=sha256:2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824   --hash=sha256:486ea46224d1bb4fb680f34f7c9ad96a8f24ec88be73ea8e5a6c65260e9cb8a7",
+      "externalReferences": [
+        {
+          "comment": "implicit dist url",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "486ea46224d1bb4fb680f34f7c9ad96a8f24ec88be73ea8e5a6c65260e9cb8a7"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/FooProject/"
+        }
+      ],
+      "name": "FooProject",
+      "purl": "pkg:pypi/fooproject@1.2",
+      "type": "library",
+      "version": "1.2"
+    },
+    {
+      "bom-ref": "requirements-L4",
+      "description": "requirements line 4: certifi==2021.5.30 --hash=sha256:2bbf76fd432960138b3ef6dda3dde0544f27cbf8546c458e60baf371917ba9ee --hash=sha256:50b1e4f8446b06f41be7dd6338db18e0990601dce795c2b1686458aa7e8fa7d8",
+      "externalReferences": [
+        {
+          "comment": "implicit dist url",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "2bbf76fd432960138b3ef6dda3dde0544f27cbf8546c458e60baf371917ba9ee"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "50b1e4f8446b06f41be7dd6338db18e0990601dce795c2b1686458aa7e8fa7d8"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/certifi/"
+        }
+      ],
+      "name": "certifi",
+      "purl": "pkg:pypi/certifi@2021.5.30",
+      "type": "library",
+      "version": "2021.5.30"
+    },
+    {
+      "bom-ref": "requirements-L16",
+      "description": "requirements line 16: colorama @ https://github.com/tartley/colorama/archive/refs/tags/0.4.6.tar.gz     --hash=md5:9854316552d41419b678d39af443a75f     --hash=sha1:aa1fc7722b9128a3c945048de03f5b4e55157c6a",
+      "externalReferences": [
+        {
+          "comment": "explicit dist url",
+          "hashes": [
+            {
+              "alg": "MD5",
+              "content": "9854316552d41419b678d39af443a75f"
+            },
+            {
+              "alg": "SHA-1",
+              "content": "aa1fc7722b9128a3c945048de03f5b4e55157c6a"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://github.com/tartley/colorama/archive/refs/tags/0.4.6.tar.gz"
+        }
+      ],
+      "name": "colorama",
+      "purl": "pkg:pypi/colorama?download_url=https://github.com/tartley/colorama/archive/refs/tags/0.4.6.tar.gz",
+      "type": "library",
+      "version": ""
+    },
+    {
+      "bom-ref": "requirements-L21",
+      "description": "requirements line 21: something == 1.33.7 --hash=foo:something-invalid",
+      "externalReferences": [
+        {
+          "comment": "implicit dist url",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/something/"
+        }
+      ],
+      "name": "something",
+      "purl": "pkg:pypi/something@1.33.7",
+      "type": "library",
+      "version": "1.33.7"
+    },
+    {
+      "bom-ref": "requirements-L7",
+      "description": "requirements line 7: urllib3==1.26.5 --hash=sha256:753a0374df26658f99d826cfe40394a686d05985786d946fbe4165b5148f5a7c  --hash=sha256:a7acd0977125325f516bda9735fa7142b909a8d01e8b2e4c8108d0984e6e0098",
+      "externalReferences": [
+        {
+          "comment": "implicit dist url",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "753a0374df26658f99d826cfe40394a686d05985786d946fbe4165b5148f5a7c"
+            },
+            {
+              "alg": "SHA-256",
+              "content": "a7acd0977125325f516bda9735fa7142b909a8d01e8b2e4c8108d0984e6e0098"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/urllib3/"
+        }
+      ],
+      "name": "urllib3",
+      "purl": "pkg:pypi/urllib3@1.26.5",
+      "type": "library",
+      "version": "1.26.5"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "requirements-L11"
+    },
+    {
+      "ref": "requirements-L16"
+    },
+    {
+      "ref": "requirements-L21"
+    },
+    {
+      "ref": "requirements-L4"
+    },
+    {
+      "ref": "requirements-L7"
+    }
+  ],
+  "metadata": {
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": [
+      {
+        "name": "cyclonedx-bom",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.3a.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.3"
+}

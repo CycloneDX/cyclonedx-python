@@ -1,0 +1,49 @@
+[project]
+# https://pdm-project.org/
+# https://packaging.python.org/en/latest/specifications/declaring-project-metadata/#declaring-project-metadata
+name = "via-pdm"
+version = "0.1.0"
+description = "environment via PDM"
+license = { text = "Apache-2.0 OR MIT" }
+readme = "README.md"
+requires-python = ">=3.8"
+
+authors = [
+  { name = "Your Name", email = "you@example.com>" },
+]
+maintainers = [
+  "John Smith <johnsmith@example.org>",
+  "Jane Smith <janesmith@example.org>",
+]
+
+keywords = ["packaging", "PDM", "test"]
+classifiers = [
+  "License :: OSI Approved :: Apache Software License",
+  "License :: OSI Approved :: MIT License",
+  "Classifier: Development Status :: 4 - Beta",
+  "Intended Audience :: Developers"
+]
+
+dependencies = [
+  "toml>=0.10.2",
+]
+
+
+
+[tool.pdm]
+package-type = "application"
+
+[tool.pdm.dev-dependencies]
+dev = [
+  "ddt>=1.7.1",
+]
+
+[tool.pdm.options]
+install = ['--venv']
+lock = []
+
+
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"

@@ -1,0 +1,121 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.5" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-bom</name>
+        <version>thisVersion-testing</version>
+        <externalReferences>
+          <reference type="build-system">
+            <url>https://github.com/CycloneDX/cyclonedx-python/actions</url>
+          </reference>
+          <reference type="distribution">
+            <url>https://pypi.org/project/cyclonedx-bom/</url>
+          </reference>
+          <reference type="documentation">
+            <url>https://cyclonedx-bom-tool.readthedocs.io/</url>
+          </reference>
+          <reference type="issue-tracker">
+            <url>https://github.com/CycloneDX/cyclonedx-python/issues</url>
+          </reference>
+          <reference type="license">
+            <url>https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE</url>
+          </reference>
+          <reference type="release-notes">
+            <url>https://github.com/CycloneDX/cyclonedx-python/blob/main/CHANGELOG.md</url>
+          </reference>
+          <reference type="vcs">
+            <url>https://github.com/CycloneDX/cyclonedx-python/</url>
+          </reference>
+          <reference type="website">
+            <url>https://github.com/CycloneDX/cyclonedx-python/#readme</url>
+          </reference>
+        </externalReferences>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+        <externalReferences><!-- stripped --></externalReferences>
+      </tool>
+    </tools>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="requirements-L11">
+      <name>foo</name>
+      <description>requirements line 11: foo @ file://../foo</description>
+      <externalReferences>
+        <reference type="other">
+          <url>file://../foo</url>
+          <comment>explicit local path</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="requirements-L14">
+      <name>numpy</name>
+      <version>1.9.2</version>
+      <description>requirements line 14: ./downloads/numpy-1.9.2-cp34-none-win32.whl</description>
+      <externalReferences>
+        <reference type="other">
+          <url>./downloads/numpy-1.9.2-cp34-none-win32.whl</url>
+          <comment>explicit local path</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="requirements-L2">
+      <name>unknown</name>
+      <description>requirements line 2: ./myproject/chardet</description>
+      <externalReferences>
+        <reference type="other">
+          <url>./myproject/chardet</url>
+          <comment>explicit local path</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="requirements-L5">
+      <name>unknown</name>
+      <description>requirements line 5: ./myproject/requests --hash=sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804</description>
+      <externalReferences>
+        <reference type="other">
+          <url>./myproject/requests</url>
+          <comment>explicit local path</comment>
+          <hashes>
+            <hash alg="SHA-256">27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="requirements-L8">
+      <name>unknown</name>
+      <description>requirements line 8: -e ./myproject/idna.whl</description>
+      <externalReferences>
+        <reference type="other">
+          <url>./myproject/idna.whl</url>
+          <comment>explicit local path</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="requirements-L17">
+      <name>unknown</name>
+      <description>requirements line 17: ./downloads/numpy-1.26.1.tar.gz</description>
+      <externalReferences>
+        <reference type="other">
+          <url>./downloads/numpy-1.26.1.tar.gz</url>
+          <comment>explicit local path</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="requirements-L11"/>
+    <dependency ref="requirements-L14"/>
+    <dependency ref="requirements-L17"/>
+    <dependency ref="requirements-L2"/>
+    <dependency ref="requirements-L5"/>
+    <dependency ref="requirements-L8"/>
+  </dependencies>
+</bom>

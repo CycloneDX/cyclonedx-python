@@ -1,0 +1,78 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.2" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-bom</name>
+        <version>thisVersion-testing</version>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="private-packges">
+      <name>private-packges</name>
+      <version>0.1.0</version>
+      <description>packages from aternative package repositories</description>
+    </component>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="colorama@0.4.6">
+      <name>colorama</name>
+      <version>0.4.6</version>
+      <description>Cross-platform colored terminal text.</description>
+      <purl>pkg:pypi/colorama@0.4.6?repository_url=http://pysrc1.acme.org:8080/simple</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>http://pysrc1.acme.org:8080/simple/colorama/#colorama-0.4.6-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.acme.org:8080/simple/colorama/#colorama-0.4.6.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="six@1.16.0">
+      <name>six</name>
+      <version>1.16.0</version>
+      <description>Python 2 and 3 compatibility utilities</description>
+      <purl>pkg:pypi/six@1.16.0?download_url=https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl</url>
+          <comment>from url</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="toml@0.10.2">
+      <name>toml</name>
+      <version>0.10.2</version>
+      <description>Python Library for Tom's Obvious, Minimal Language</description>
+      <purl>pkg:pypi/toml@0.10.2?repository_url=http://pysrc2.acme.org:8080/simple</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>http://pysrc2.acme.org:8080/simple/toml/#toml-0.10.2-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc2.acme.org:8080/simple/toml/#toml-0.10.2.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="colorama@0.4.6"/>
+    <dependency ref="private-packges">
+      <dependency ref="colorama@0.4.6"/>
+      <dependency ref="six@1.16.0"/>
+      <dependency ref="toml@0.10.2"/>
+    </dependency>
+    <dependency ref="six@1.16.0"/>
+    <dependency ref="toml@0.10.2"/>
+  </dependencies>
+</bom>

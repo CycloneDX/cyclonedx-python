@@ -1,0 +1,9 @@
+[pipenv]
+sort_pipfile = true
+
+[packages]
+package-a = {file = "../../_helpers/local_pckages/a/dist/package-a-23.42.tar.gz"}
+package-b = {file = "file:../../_helpers/local_pckages/b/dist/package_b-23.42-py3-none-any.whl"}
+package-c = {path = "../../_helpers/local_pckages/c"}
+
+[dev-packages]

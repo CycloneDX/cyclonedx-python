@@ -32,10 +32,11 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  PYTHON_VERISON_DEFAULT: "3.11"
-  POETRY_VERSION: "1.1.15"
+  PYTHON_VERSION_DEFAULT: "3.11"
+  POETRY_VERSION: "1.7.1"
   REPORTS_DIR: CI_reports
   TESTS_REPORTS_ARTIFACT: tests-reports
+  PIPENV_VENV_IN_PROJECT: 1
 
 jobs:
   coding-standards:
@@ -50,7 +51,7 @@ jobs:
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ env.PYTHON_VERISON_DEFAULT }}
+          python-version: ${{ env.PYTHON_VERSION_DEFAULT }}
           architecture: 'x64'
       - name: Install poetry
         # see https://github.com/marketplace/actions/setup-poetry
@@ -58,26 +59,24 @@ jobs:
         with:
           poetry-version: ${{ env.POETRY_VERSION }}
       - name: Install dependencies
-        run: poetry install
+        run: poetry install --no-root
       - name: Run tox
-        run: poetry run tox -e flake8 -s false
+        run: poetry run tox r -e flake8 -s false
 
   static-code-analysis:
-    name: Static Coding Analysis (py${{ matrix.python-version}} ${{ matrix.toxenv-factor }})
+    name: StaticCodingAnalysis (py${{ matrix.python-version}} ${{ matrix.toxenv-factors }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
     strategy:
       fail-fast: false
       matrix:
         include:
-          - # test with the locked dependencies
-            python-version: '3.11'
-            toxenv-factor: 'locked'
+          - python-version: '3.12'
             os: ubuntu-latest
-          - # test with the lowest dependencies
-            python-version: '3.6'
-            toxenv-factor: 'lowest'
-            os: ubuntu-20.04
+            toxenv-factors: '-current'
+          - python-version: '3.8'
+            os: ubuntu-latest
+            toxenv-factors: '-lowest'
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
@@ -94,12 +93,65 @@ jobs:
         with:
           poetry-version: ${{ env.POETRY_VERSION }}
       - name: Install dependencies
-        run: poetry install
+        run: poetry install --no-root
       - name: Run tox
-        run: poetry run tox -e mypy-${{ matrix.toxenv-factor }} -s false
+        run: poetry run tox r -e mypy${{ matrix.toxenv-factors }} -s false
+
+  security-issues:
+    name: find Security Issues
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        # see https://github.com/actions/checkout
+        uses: actions/checkout@v4
+      - name: Setup Python Environment
+        # see https://github.com/actions/setup-python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION_DEFAULT }}
+          architecture: 'x64'
+      - name: Install poetry
+        # see https://github.com/marketplace/actions/setup-poetry
+        uses: Gr1N/setup-poetry@v8
+        with:
+          poetry-version: ${{ env.POETRY_VERSION }}
+      - name: Install dependencies
+        run: poetry install --no-root
+      - name: Run tox
+        run: poetry run tox run -e bandit -s false
+
+  install-and-run:
+    name: install & run "${{matrix.command}}" (${{matrix.os}})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        command:
+          - cyclonedx-py --help
+          - python -m cyclonedx_py --help
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+    steps:
+      - name: Checkout
+        # see https://github.com/actions/checkout
+        uses: actions/checkout@v4
+      - name: Setup Python Environment
+        # see https://github.com/actions/setup-python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION_DEFAULT }}
+          architecture: 'x64'
+      - name: Install self
+        run: pip install .
+      - name: run command
+        run: ${{matrix.command}}
 
   build-and-test:
-    name: Test (${{ matrix.os }} py${{ matrix.python-version }} ${{ matrix.toxenv-factor }})
+    name: Test (${{ matrix.os }} py${{ matrix.python-version }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
     strategy:
@@ -108,39 +160,13 @@ jobs:
         os:
           - ubuntu-latest
           - macos-latest
-          # tem disabled: - windows-latest
-          # tests on windows have issues caused by `virtualenv`<=20.21 as a dependency from `tox`
-          # see https://github.com/CycloneDX/cyclonedx-python/actions/runs/5534372036
+          - windows-latest
         python-version:
-          - "3.11" # highest supported
+          - "3.12" # highest supported
+          - "3.11"
           - "3.10"
           - "3.9"
-          - "3.8"
-          - "3.7"
-          - "3.6"  # lowest supported -- handled in include
-        toxenv-factor: ['locked']
-        include:
-          - # test with py36 ubuntu20
-            os: ubuntu-20.04
-            python-version: '3.6'
-            toxenv-factor: 'locked'
-          - # test with the lowest dependencies
-            os: ubuntu-20.04
-            python-version: '3.6'
-            toxenv-factor: 'lowest'
-          - os: windows-latest
-            python-version: '3.7'
-            toxenv-factor: 'locked'
-          - os: windows-latest
-            python-version: '3.6'
-            toxenv-factor: 'locked'
-        exclude:
-          - # no py36 with latest ubuntu - see https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json
-            os: ubuntu-latest
-            python-version: '3.6'
-          - # broken poetry installer - see https://github.com/CycloneDX/cyclonedx-python/actions/runs/3435061093/jobs/5727124247#step:6:15
-            os: macos-latest
-            python-version: '3.11'
+          - "3.8"  # lowest supported -- handled in include
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
@@ -159,18 +185,18 @@ jobs:
         with:
           poetry-version: ${{ env.POETRY_VERSION }}
       - name: Install dependencies
-        run: poetry install
+        run: poetry install --no-root
       - name: Ensure build successful
         run: poetry build
       - name: Run tox
-        run: poetry run tox -e py-${{ matrix.toxenv-factor }} -s false
+        run: poetry run tox r -e py -s false
       - name: Generate coverage reports
         if: ${{ failure() || success() }}
         shell: bash
         run: |
           set -eux
           poetry run coverage report -m
-          poetry run coverage xml -o '${{ env.REPORTS_DIR }}/coverage/${{ matrix.os }}_${{ matrix.python-version }}_${{ matrix.toxenv-factor }}.cobertura.xml'
+          poetry run coverage xml -o '${{ env.REPORTS_DIR }}/coverage/${{ matrix.os }}_${{ matrix.python-version }}.cobertura.xml'
       - name: Artifact reports
         if: ${{ ! cancelled() }}
         # see https://github.com/actions/upload-artifact

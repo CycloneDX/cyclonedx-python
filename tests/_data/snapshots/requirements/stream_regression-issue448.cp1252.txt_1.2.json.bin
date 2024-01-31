@@ -1,0 +1,78 @@
+{
+  "components": [
+    {
+      "bom-ref": "requirements-L6",
+      "description": "requirements line 6: packageurl-python>=0.9.4",
+      "externalReferences": [
+        {
+          "comment": "implicit dist url",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/packageurl-python/"
+        }
+      ],
+      "name": "packageurl-python",
+      "purl": "pkg:pypi/packageurl-python",
+      "type": "library",
+      "version": ""
+    },
+    {
+      "bom-ref": "requirements-L7",
+      "description": "requirements line 7: requirements_parser>=0.2.0",
+      "externalReferences": [
+        {
+          "comment": "implicit dist url",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/requirements_parser/"
+        }
+      ],
+      "name": "requirements_parser",
+      "purl": "pkg:pypi/requirements-parser",
+      "type": "library",
+      "version": ""
+    },
+    {
+      "bom-ref": "requirements-L8",
+      "description": "requirements line 8: setuptools>=50.3.2",
+      "externalReferences": [
+        {
+          "comment": "implicit dist url",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/setuptools/"
+        }
+      ],
+      "name": "setuptools",
+      "purl": "pkg:pypi/setuptools",
+      "type": "library",
+      "version": ""
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "requirements-L6"
+    },
+    {
+      "ref": "requirements-L7"
+    },
+    {
+      "ref": "requirements-L8"
+    }
+  ],
+  "metadata": {
+    "tools": [
+      {
+        "name": "cyclonedx-bom",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.2b.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.2"
+}

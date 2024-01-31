@@ -15,8 +15,8 @@ concurrency:
 
 env:
   REPORTS_DIR: CI_reports
-  PYTHON_VERISON: "3.10"
-  POETRY_VERSION: "1.1.15"
+  PYTHON_VERSION: "3.11"
+  POETRY_VERSION: "1.7.1"
 
 jobs:
   test:
@@ -34,11 +34,12 @@ jobs:
           fetch-depth: 0
       - name: setup reports-dir
         run: mkdir "$REPORTS_DIR"
-      - name: Setup python ${{ env.PYTHON_VERISON }}
+      - name: Setup python ${{ env.PYTHON_VERSION }}
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ env.PYTHON_VERISON }}
+          python-version: ${{ env.PYTHON_VERSION }}
+          architecture: 'x64'
       - name: Setup poetry ${{ env.POETRY_VERSION }}
         # see https://github.com/marketplace/actions/setup-poetry
         uses: Gr1N/setup-poetry@v8
@@ -73,18 +74,16 @@ jobs:
       - name: Build own SBoM (XML)
         run: >
           docker run --rm "$DOCKER_TAG"
-          -X
-          --environment
-          --format=xml
-          --output=-
+          environment
+          -vvv
+          --output-format XML
           > "$REPORTS_DIR/docker-image.bom.xml"
       - name: Build own SBoM (JSON)
         run: >
           docker run --rm "$DOCKER_TAG"
-          -X
-          --environment
-          --format=json
-          --output=-
+          environment
+          -vvv
+          --output-format JSON
           > "$REPORTS_DIR/docker-image.bom.json"
       - name: Artifact reports
         if: ${{ ! cancelled() }}

@@ -1,0 +1,9 @@
+[pipenv]
+sort_pipfile = true
+
+[packages]
+colorama = "*"
+toml = ">=0.10.2, <0.11"
+
+[dev-packages]
+isoduration = ">=20.11.0, <21"

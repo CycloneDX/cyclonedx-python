@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.0" version="1">
+  <components>
+    <component type="library">
+      <name>numpy</name>
+      <version>1.26.2</version>
+      <purl>pkg:pypi/numpy@1.26.2</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>six</name>
+      <version/>
+      <purl>pkg:pypi/six?download_url=https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>toml</name>
+      <version>0.10.2</version>
+      <purl>pkg:pypi/toml@0.10.2?repository_url=http://pysrc1.acme.org:8080/simple</purl>
+      <modified>false</modified>
+    </component>
+  </components>
+</bom>

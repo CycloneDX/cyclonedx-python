@@ -13,7 +13,6 @@
 # limitations under the License.
 #
 # SPDX-License-Identifier: Apache-2.0
-import pkg_resources
 
 # -- Project information -----------------------------------------------------
 
@@ -22,7 +21,8 @@ copyright = '2022, Copyright (c) OWASP Foundation'
 author = 'Paul Horton, Jan Kowalleck, Steve Springett, Patrick Dwyer'
 
 # The full version, including alpha/beta/rc tags
-release = pkg_resources.get_distribution("cyclonedx-bom").version
+# !! version is managed by semantic_release
+release = "4.0.0-rc.6"
 
 # -- General configuration ---------------------------------------------------
 
@@ -31,15 +31,17 @@ release = pkg_resources.get_distribution("cyclonedx-bom").version
 # ones.
 extensions = [
     "sphinx.ext.autodoc",
-    "sphinx.ext.viewcode",
-    "autoapi.extension",
+    # "sphinx.ext.viewcode",
+    # "autoapi.extension",
     "sphinx_rtd_theme",
     "m2r2"
 ]
 
 # Document Python Code
-autoapi_type = 'python'
-autoapi_dirs = ['../cyclonedx_py']
+# autoapi_type = 'python'
+# autoapi_dirs = ['../cyclonedx_py']
+# see https://sphinx-autoapi.readthedocs.io/en/latest/reference/config.html#confval-autoapi_options
+# autoapi_options = ['show-module-summary', 'members', 'undoc-members', 'inherited-members', 'show-inheritance']
 
 source_suffix = ['.rst', '.md']
 
@@ -49,7 +51,13 @@ templates_path = ['_templates']
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+# see https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-exclude_patterns
+exclude_patterns = [
+    'processes',  # internal docs
+    '_build',  # build target
+    '.*', '**/.*',  # dotfiles and folders
+    'Thumbs.db', '**/Thumbs.db',
+]
 
 # -- Options for HTML output -------------------------------------------------
 

@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "normalize-packagename"
+version = "0.1.0"
+description = "packages with non-normalized names"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+# see https://packaging.python.org/en/latest/specifications/name-normalization/#name-normalization
+
+[tool.poetry.dependencies]
+python = "^3.8"
+"ruamel-YAML" = { version="*", extras=["jinja2"] }   # actually "ruamel.yaml", normalizes to "ruamel-yaml"
+
+
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

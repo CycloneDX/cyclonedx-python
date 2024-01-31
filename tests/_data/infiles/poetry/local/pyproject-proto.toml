@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "local"
+version = "0.1.0"
+description = "packages from local paths"
+authors = ["Your Name <you@example.com>"]
+
+
+# You can specify a package in the following forms:
+#    [...]
+#    - A file path (../my-package/my-package.whl)
+#    - A directory (../my-package/)
+#    [...]
+
+
+[tool.poetry.dependencies]
+python = "^3.8"
+# path dependency - https://python-poetry.org/docs/dependency-specification/#path-dependencies
+package-a = {path = "../../../_helpers/local_pckages/a/dist/package-a-23.42.tar.gz"}
+package-b = {path = "../../../_helpers/local_pckages/b/dist/package_b-23.42-py3-none-any.whl"}
+# package-c not in poetry v1.0 available
+package-c = {path = "../../../_helpers/local_pckages/c"}
+
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

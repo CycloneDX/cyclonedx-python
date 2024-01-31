@@ -1,0 +1,153 @@
+{
+  "components": [
+    {
+      "bom-ref": "certifi==2023.11.17",
+      "externalReferences": [
+        {
+          "comment": "from implicit index: pypi",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/certifi/"
+        }
+      ],
+      "name": "certifi",
+      "purl": "pkg:pypi/certifi@2023.11.17",
+      "type": "library",
+      "version": "2023.11.17"
+    },
+    {
+      "bom-ref": "charset-normalizer==3.3.2",
+      "externalReferences": [
+        {
+          "comment": "from implicit index: pypi",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/charset-normalizer/"
+        }
+      ],
+      "name": "charset-normalizer",
+      "purl": "pkg:pypi/charset-normalizer@3.3.2",
+      "type": "library",
+      "version": "3.3.2"
+    },
+    {
+      "bom-ref": "idna==3.6",
+      "externalReferences": [
+        {
+          "comment": "from implicit index: pypi",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/idna/"
+        }
+      ],
+      "name": "idna",
+      "purl": "pkg:pypi/idna@3.6",
+      "type": "library",
+      "version": "3.6"
+    },
+    {
+      "bom-ref": "pillow",
+      "externalReferences": [
+        {
+          "comment": "from git",
+          "type": "vcs",
+          "url": "git+https://github.com/python-pillow/Pillow.git#da59ad000d1405eaecd557175e29083a87d19f7c"
+        }
+      ],
+      "name": "pillow",
+      "purl": "pkg:pypi/pillow?vcs_url=git%2Bhttps://github.com/python-pillow/Pillow.git%40da59ad000d1405eaecd557175e29083a87d19f7c",
+      "type": "library",
+      "version": ""
+    },
+    {
+      "bom-ref": "requests",
+      "externalReferences": [
+        {
+          "comment": "from git",
+          "type": "vcs",
+          "url": "git+https://github.com/requests/requests.git#a25fde6989f8df5c3d823bc9f2e2fc24aa71f375"
+        }
+      ],
+      "name": "requests",
+      "purl": "pkg:pypi/requests?vcs_url=git%2Bhttps://github.com/requests/requests.git%40a25fde6989f8df5c3d823bc9f2e2fc24aa71f375",
+      "type": "library",
+      "version": ""
+    },
+    {
+      "bom-ref": "six",
+      "externalReferences": [
+        {
+          "comment": "from git",
+          "type": "vcs",
+          "url": "git+ssh://git@github.com/benjaminp/six.git#65486e4383f9f411da95937451205d3c7b61b9e1"
+        }
+      ],
+      "name": "six",
+      "purl": "pkg:pypi/six?vcs_url=git%2Bssh://git%40github.com/benjaminp/six.git%4065486e4383f9f411da95937451205d3c7b61b9e1",
+      "type": "library",
+      "version": ""
+    },
+    {
+      "bom-ref": "urllib3",
+      "externalReferences": [
+        {
+          "comment": "from file",
+          "type": "distribution",
+          "url": "https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip"
+        }
+      ],
+      "name": "urllib3",
+      "purl": "pkg:pypi/urllib3?download_url=https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip",
+      "type": "library",
+      "version": ""
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "certifi==2023.11.17"
+    },
+    {
+      "ref": "charset-normalizer==3.3.2"
+    },
+    {
+      "ref": "idna==3.6"
+    },
+    {
+      "ref": "pillow"
+    },
+    {
+      "ref": "requests"
+    },
+    {
+      "ref": "root-component"
+    },
+    {
+      "ref": "six"
+    },
+    {
+      "ref": "urllib3"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "root-component",
+      "description": "packages from direct urls",
+      "name": "with-urls",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "tools": [
+      {
+        "name": "cyclonedx-bom",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.2b.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.2"
+}

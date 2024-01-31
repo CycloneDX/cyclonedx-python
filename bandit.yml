@@ -1,0 +1,9 @@
+# https://bandit.readthedocs.io
+# filename must be like this, so codacy can pick it up: https://github.com/codacy/codacy-bandit/blob/master/src/main/scala/codacy/bandit/Bandit.scala#L35C49-L35C59
+
+exclude_dirs:
+  - docs
+  - .venv
+
+skips:
+  - B101

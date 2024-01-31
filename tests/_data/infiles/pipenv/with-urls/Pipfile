@@ -1,0 +1,12 @@
+[pipenv]
+sort_pipfile = true
+
+[packages]
+# numpy = {file = "https://files.pythonhosted.org/packages/78/23/f78fd8311e0f710fe1d065d50b92ce0057fe877b8ed7fd41b28ad6865bfc/numpy-1.26.1.tar.gz"}
+pillow = {ref = "10.1.0", git = "git+https://github.com/python-pillow/Pillow.git"}
+six = {ref = "1.16.0", git = "git+ssh://git@github.com/benjaminp/six.git"}
+# wxpython-phoenix = {file = "https://wxpython.org/Phoenix/snapshot-builds/wxPython-4.2.2a1.dev5624+e95b6c8b-cp311-cp311-win32.whl", markers="sys_platform == 'win32'"}
+urllib3 = {file = "https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip"}
+requests = {git = "git+https://github.com/requests/requests.git#egg=requests"}
+
+[dev-packages]

@@ -1,0 +1,147 @@
+{
+  "components": [
+    {
+      "bom-ref": "colorama@0.4.6",
+      "description": "Cross-platform colored terminal text.",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"
+            }
+          ],
+          "type": "distribution",
+          "url": "http://pysrc1.acme.org:8080/simple/colorama/#colorama-0.4.6-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44"
+            }
+          ],
+          "type": "distribution",
+          "url": "http://pysrc1.acme.org:8080/simple/colorama/#colorama-0.4.6.tar.gz"
+        }
+      ],
+      "name": "colorama",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        }
+      ],
+      "purl": "pkg:pypi/colorama@0.4.6?repository_url=http://pysrc1.acme.org:8080/simple",
+      "type": "library",
+      "version": "0.4.6"
+    },
+    {
+      "bom-ref": "six@1.16.0",
+      "description": "Python 2 and 3 compatibility utilities",
+      "externalReferences": [
+        {
+          "comment": "from url",
+          "type": "distribution",
+          "url": "https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl"
+        }
+      ],
+      "name": "six",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        }
+      ],
+      "purl": "pkg:pypi/six@1.16.0?download_url=https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl",
+      "type": "library",
+      "version": "1.16.0"
+    },
+    {
+      "bom-ref": "toml@0.10.2",
+      "description": "Python Library for Tom's Obvious, Minimal Language",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"
+            }
+          ],
+          "type": "distribution",
+          "url": "http://pysrc2.acme.org:8080/simple/toml/#toml-0.10.2-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f"
+            }
+          ],
+          "type": "distribution",
+          "url": "http://pysrc2.acme.org:8080/simple/toml/#toml-0.10.2.tar.gz"
+        }
+      ],
+      "name": "toml",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        }
+      ],
+      "purl": "pkg:pypi/toml@0.10.2?repository_url=http://pysrc2.acme.org:8080/simple",
+      "type": "library",
+      "version": "0.10.2"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "colorama@0.4.6"
+    },
+    {
+      "dependsOn": [
+        "colorama@0.4.6",
+        "six@1.16.0",
+        "toml@0.10.2"
+      ],
+      "ref": "private-packges"
+    },
+    {
+      "ref": "six@1.16.0"
+    },
+    {
+      "ref": "toml@0.10.2"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "private-packges",
+      "description": "packages from aternative package repositories",
+      "name": "private-packges",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": [
+      {
+        "externalReferences": [   ],
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5"
+}

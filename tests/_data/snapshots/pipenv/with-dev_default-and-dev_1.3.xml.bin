@@ -1,0 +1,157 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.3" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-bom</name>
+        <version>thisVersion-testing</version>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+      </tool>
+    </tools>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="arrow==1.3.0">
+      <name>arrow</name>
+      <version>1.3.0</version>
+      <purl>pkg:pypi/arrow@1.3.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/arrow/</url>
+          <comment>from implicit index: pypi</comment>
+          <hashes>
+            <hash alg="SHA-256">c728b120ebc00eb84e01882a6f5e7927a53960aa990ce7dd2b10f39005a67f80</hash>
+            <hash alg="SHA-256">d4540617648cb5f895730f1ad8c82a65f2dad0166f57b75f3ca54759c4d67a85</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:pipenv:category">develop</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="colorama==0.4.6">
+      <name>colorama</name>
+      <version>0.4.6</version>
+      <purl>pkg:pypi/colorama@0.4.6</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/colorama/</url>
+          <comment>from explicit index: pypi</comment>
+          <hashes>
+            <hash alg="SHA-256">08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44</hash>
+            <hash alg="SHA-256">4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:pipenv:category">default</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="isoduration==20.11.0">
+      <name>isoduration</name>
+      <version>20.11.0</version>
+      <purl>pkg:pypi/isoduration@20.11.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/isoduration/</url>
+          <comment>from explicit index: pypi</comment>
+          <hashes>
+            <hash alg="SHA-256">ac2f9015137935279eac671f94f89eb00584f940f5dc49462a0c4ee692ba1bd9</hash>
+            <hash alg="SHA-256">b2904c2a4228c3d44f409c8ae8e2370eb21a26f7ac2ec5446df141dde3452042</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:pipenv:category">develop</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="python-dateutil==2.8.2">
+      <name>python-dateutil</name>
+      <version>2.8.2</version>
+      <purl>pkg:pypi/python-dateutil@2.8.2</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/python-dateutil/</url>
+          <comment>from implicit index: pypi</comment>
+          <hashes>
+            <hash alg="SHA-256">0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86</hash>
+            <hash alg="SHA-256">961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:pipenv:category">develop</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="six==1.16.0">
+      <name>six</name>
+      <version>1.16.0</version>
+      <purl>pkg:pypi/six@1.16.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/</url>
+          <comment>from implicit index: pypi</comment>
+          <hashes>
+            <hash alg="SHA-256">1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926</hash>
+            <hash alg="SHA-256">8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:pipenv:category">develop</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="toml==0.10.2">
+      <name>toml</name>
+      <version>0.10.2</version>
+      <purl>pkg:pypi/toml@0.10.2</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/toml/</url>
+          <comment>from explicit index: pypi</comment>
+          <hashes>
+            <hash alg="SHA-256">806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b</hash>
+            <hash alg="SHA-256">b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:pipenv:category">default</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="types-python-dateutil==2.8.19.14">
+      <name>types-python-dateutil</name>
+      <version>2.8.19.14</version>
+      <purl>pkg:pypi/types-python-dateutil@2.8.19.14</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/types-python-dateutil/</url>
+          <comment>from implicit index: pypi</comment>
+          <hashes>
+            <hash alg="SHA-256">1f4f10ac98bb8b16ade9dbee3518d9ace017821d94b057a425b069f834737f4b</hash>
+            <hash alg="SHA-256">f977b8de27787639986b4e28963263fd0e5158942b3ecef91b9335c130cb1ce9</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:pipenv:category">develop</property>
+      </properties>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="arrow==1.3.0"/>
+    <dependency ref="colorama==0.4.6"/>
+    <dependency ref="isoduration==20.11.0"/>
+    <dependency ref="python-dateutil==2.8.2"/>
+    <dependency ref="six==1.16.0"/>
+    <dependency ref="toml==0.10.2"/>
+    <dependency ref="types-python-dateutil==2.8.19.14"/>
+  </dependencies>
+</bom>
