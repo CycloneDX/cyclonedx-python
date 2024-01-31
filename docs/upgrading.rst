@@ -12,8 +12,8 @@ Python support
   It is tested with CPython, support for PyPy is best effort.
 
 
-Removed entry points
---------------------
+Entry points
+------------
 
 * Access via deprecated ``cyclonedx-bom`` was removed. Call ``cyclonedx-py`` instead.
 * Access via ``cyclonedx`` stayed untouched.
