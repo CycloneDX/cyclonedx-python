@@ -26,6 +26,23 @@ Changed Command Line Interface (CLI)
 The following describes migration paths only. For all full list of all features
 see the :doc:`"usage" documentation</usage>`.
 
+Source: Conda
+~~~~~~~~~~~~~
+
+  "Conda provides package, dependency, and environment management for **any** language"
+
+  -- https://docs.conda.io/en/latest/
+
+Conda (lock file) analysis was entirely removed for the fact that conda is not dedicated to Python.
+Yes, conda has some capabilities of managing Python packages and environments, but it does so much more.
+
+However, conda's Python environments are fully supported, as well as other means.
+See the :doc:`"usage" documentation</usage>` for examples.
+
+Old: ``cyclonedx-py [-c|-cj] ...``
+
+New: It depends. See the :doc:`"usage" documentation</usage>` for examples.
+
 Source: Environment
 ~~~~~~~~~~~~~~~~~~~
 
@@ -61,23 +78,6 @@ The functionality was moved to an own subcommand: ``requirements``
 Old: ``cyclonedx-py -r -i some/path/requirements.txt``
 
 New: ``cyclonedx-py requirements some/path/requirements.txt``
-
-Source: Conda
-~~~~~~~~~~~~~
-
-  "Conda provides package, dependency, and environment management for **any** language"
-
-  -- https://docs.conda.io/en/latest/
-
-Conda (lock file) analysis was entirely removed for the fact that conda is not dedicated to Python.
-Yes, conda has some capabilities of managing Python packages and environments, but it does so much more.
-
-However, conda's Python environments are fully supported, as well as other means.
-See the :doc:`"usage" documentation</usage>` for examples.
-
-Old: ``cyclonedx-py [-c|-cj] ...``
-
-New: It depends. See the :doc:`"usage" documentation</usage>` for examples.
 
 Output verbosity
 ~~~~~~~~~~~~~~~~
