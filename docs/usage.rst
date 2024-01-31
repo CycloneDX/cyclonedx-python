@@ -96,7 +96,7 @@ The full documentation can be issued by running with ``environment --help``:
 
 
 Examples for macOS/Linux and alike
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: shell-session
    :caption: Build an SBOM from current python environment
@@ -136,7 +136,7 @@ Examples for macOS/Linux and alike
    $ cyclonedx-py environment "$(pdm info --python)"
 
 Examples for Windows
-~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: doscon
    :caption: Build an SBOM from current python environment
@@ -398,7 +398,7 @@ The full documentation can be issued by running with ``requirements --help``:
 
 
 Example Usage
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^
 
 .. code-block:: shell-session
    :caption: Build an SBOM from a requirements file
