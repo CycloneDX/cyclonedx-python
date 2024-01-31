@@ -70,7 +70,7 @@ Source: Conda
   -- https://docs.conda.io/en/latest/
 
 Conda (lock file) analysis was entirely removed for the fact that conda is not dedicated to Python.
-Yes, conda has some capabilities of managing Python packages and environments, but it does os much more.
+Yes, conda has some capabilities of managing Python packages and environments, but it does so much more.
 
 However, conda's Python environments are fully supported, as well as other means.
 See the :doc:`"usage" documentation</usage>` for examples.
