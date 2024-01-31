@@ -1,6 +1,6 @@
 [project]
 name = "cyclonedx-py"
-version = "1.0.0"
+version = "1.0.1"
 description = "Alias for package 'cyclonedx-bom'"
 readme = "README.md"
 dependencies = [
