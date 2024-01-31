@@ -9,8 +9,8 @@ much detail as possible including:
 * Expected Output(s)
 * Actual Output(s)
 
-Python Version Support
-======================
+Python support
+==============
 
 We endeavour to support all functionality for all `current actively supported Python versions`_.
 However, some features may not be possible/present in older Python versions due to their lack of support.

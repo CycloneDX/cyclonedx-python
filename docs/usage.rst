@@ -477,11 +477,11 @@ Programmatic Usage
 
 This tool utilizes the `CycloneDX Python library`_ to generate the actual data structures, and serialize and validate them.
 
-This tool does **not** expose any additional *public* API or classes - all code is intended to be internal and might change without any notice during version upgrades.
+This tool does **not** expose any additional *public* API or symbols - all code is intended to be internal and might change without any notice during version upgrades.
 
 .. _CycloneDX Python library: https://pypi.org/project/cyclonedx-python-lib
 
-However, the CLI is stable - you may call it programmatically like:
+However, the CLI is stable - you might call it programmatically, like so:
 
 .. keep the following code example in sync with the in-comments example in `__init__.py` and `__main__.py`
 .. code-block:: python
@@ -489,4 +489,3 @@ However, the CLI is stable - you may call it programmatically like:
    from sys import executable
    from subprocess import run
    run((executable, '-m', 'cyclonedx_py', '--help'))
-

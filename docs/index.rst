@@ -55,3 +55,4 @@ and might have properties following the Namespace Taxonomies
    contributing
    support
    changelog
+   upgrading
