@@ -47,7 +47,7 @@
   <components>
     <component type="library" bom-ref="requirements-L1">
       <name>certifi</name>
-      <description>requirements line 1: certifi&gt;=2021.5.30</description>
+      <description>requirements line 1: certifi&gt;=2023.11.17</description>
       <purl>pkg:pypi/certifi</purl>
       <externalReferences>
         <reference type="distribution">

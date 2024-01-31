@@ -135,11 +135,11 @@
     </component>
     <component type="library" bom-ref="requirements-L23">
       <name>urllib3</name>
-      <description>requirements line 23: urllib3 @ https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip</description>
-      <purl>pkg:pypi/urllib3?download_url=https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip</purl>
+      <description>requirements line 23: urllib3 @ https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip</description>
+      <purl>pkg:pypi/urllib3?download_url=https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip</url>
+          <url>https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip</url>
           <comment>explicit dist url</comment>
         </reference>
       </externalReferences>
