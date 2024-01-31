@@ -29,9 +29,9 @@
     </component>
     <component type="library" bom-ref="requirements-L4">
       <name>certifi</name>
-      <version>2021.5.30</version>
-      <description>requirements line 4: certifi==2021.5.30 --hash=sha256:2bbf76fd432960138b3ef6dda3dde0544f27cbf8546c458e60baf371917ba9ee --hash=sha256:50b1e4f8446b06f41be7dd6338db18e0990601dce795c2b1686458aa7e8fa7d8</description>
-      <purl>pkg:pypi/certifi@2021.5.30</purl>
+      <version>2023.11.17</version>
+      <description>requirements line 4: certifi==2023.11.17 --hash=sha256:e036ab49d5b79556f99cfc2d9320b34cfbe5be05c5871b51de9329f0603b0474 --hash=sha256:9b469f3a900bf28dc19b8cfbf8019bf47f7fdd1a65a1d4ffb98fc14166beb4d1</description>
+      <purl>pkg:pypi/certifi@2023.11.17</purl>
       <externalReferences>
         <reference type="distribution">
           <url>https://pypi.org/simple/certifi/</url>
@@ -65,9 +65,9 @@
     </component>
     <component type="library" bom-ref="requirements-L7">
       <name>urllib3</name>
-      <version>1.26.5</version>
-      <description>requirements line 7: urllib3==1.26.5 --hash=sha256:753a0374df26658f99d826cfe40394a686d05985786d946fbe4165b5148f5a7c  --hash=sha256:a7acd0977125325f516bda9735fa7142b909a8d01e8b2e4c8108d0984e6e0098</description>
-      <purl>pkg:pypi/urllib3@1.26.5</purl>
+      <version>2.2.0</version>
+      <description>requirements line 7: urllib3==2.2.0 --hash=sha256:051d961ad0c62a94e50ecf1af379c3aba230c66c710493493560c0c223c49f20  --hash=sha256:ce3711610ddce217e6d113a2732fafad960a03fd0318c91faa79481e35c11224</description>
+      <purl>pkg:pypi/urllib3@2.2.0</purl>
       <externalReferences>
         <reference type="distribution">
           <url>https://pypi.org/simple/urllib3/</url>

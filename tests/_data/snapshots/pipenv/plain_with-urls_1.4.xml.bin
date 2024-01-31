@@ -207,10 +207,10 @@
     </component>
     <component type="library" bom-ref="requests">
       <name>requests</name>
-      <purl>pkg:pypi/requests?vcs_url=git%2Bhttps://github.com/requests/requests.git%40a25fde6989f8df5c3d823bc9f2e2fc24aa71f375</purl>
+      <purl>pkg:pypi/requests?vcs_url=git%2Bhttps://github.com/requests/requests.git%4096b22fa18c00831656ee4b286bf1c9062459b00a</purl>
       <externalReferences>
         <reference type="vcs">
-          <url>git+https://github.com/requests/requests.git#a25fde6989f8df5c3d823bc9f2e2fc24aa71f375</url>
+          <url>git+https://github.com/requests/requests.git#96b22fa18c00831656ee4b286bf1c9062459b00a</url>
           <comment>from git</comment>
         </reference>
       </externalReferences>
@@ -233,10 +233,10 @@
     </component>
     <component type="library" bom-ref="urllib3">
       <name>urllib3</name>
-      <purl>pkg:pypi/urllib3?download_url=https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip</purl>
+      <purl>pkg:pypi/urllib3?download_url=https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip</url>
+          <url>https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip</url>
           <comment>from file</comment>
         </reference>
       </externalReferences>

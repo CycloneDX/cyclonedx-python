@@ -2,7 +2,7 @@
   "components": [
     {
       "bom-ref": "requirements-L1",
-      "description": "requirements line 1: certifi>=2021.5.30",
+      "description": "requirements line 1: certifi>=2023.11.17",
       "externalReferences": [
         {
           "comment": "implicit dist url",

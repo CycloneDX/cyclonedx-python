@@ -71,16 +71,16 @@
     },
     {
       "bom-ref": "requirements-L23",
-      "description": "requirements line 23: urllib3 @ https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip",
+      "description": "requirements line 23: urllib3 @ https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip",
       "externalReferences": [
         {
           "comment": "explicit dist url",
           "type": "distribution",
-          "url": "https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip"
+          "url": "https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip"
         }
       ],
       "name": "urllib3",
-      "purl": "pkg:pypi/urllib3?download_url=https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip",
+      "purl": "pkg:pypi/urllib3?download_url=https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip",
       "type": "library"
     },
     {

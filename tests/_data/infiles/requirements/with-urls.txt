@@ -20,4 +20,4 @@ https://files.pythonhosted.org/packages/78/23/f78fd8311e0f710fe1d065d50b92ce0057
 
 
 ## named fetchable file
-urllib3 @ https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip
+urllib3 @ https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip

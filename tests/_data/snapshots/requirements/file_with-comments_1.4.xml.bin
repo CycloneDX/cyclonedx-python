@@ -81,9 +81,9 @@
   <components>
     <component type="library" bom-ref="requirements-L1">
       <name>certifi</name>
-      <version>2021.5.30</version>
-      <description>requirements line 1: certifi==2021.5.30</description>
-      <purl>pkg:pypi/certifi@2021.5.30</purl>
+      <version>2023.11.17</version>
+      <description>requirements line 1: certifi==2023.11.17</description>
+      <purl>pkg:pypi/certifi@2023.11.17</purl>
       <externalReferences>
         <reference type="distribution">
           <url>https://pypi.org/simple/certifi/</url>
@@ -117,9 +117,9 @@
     </component>
     <component type="library" bom-ref="requirements-L4">
       <name>requests</name>
-      <version>2.25.1</version>
-      <description>requirements line 4: requests==2.25.1</description>
-      <purl>pkg:pypi/requests@2.25.1</purl>
+      <version>2.31.0</version>
+      <description>requirements line 4: requests==2.31.0</description>
+      <purl>pkg:pypi/requests@2.31.0</purl>
       <externalReferences>
         <reference type="distribution">
           <url>https://pypi.org/simple/requests/</url>
@@ -129,9 +129,9 @@
     </component>
     <component type="library" bom-ref="requirements-L5">
       <name>urllib3</name>
-      <version>1.26.5</version>
-      <description>requirements line 5: urllib3==1.26.5</description>
-      <purl>pkg:pypi/urllib3@1.26.5</purl>
+      <version>2.2.0</version>
+      <description>requirements line 5: urllib3==2.2.0</description>
+      <purl>pkg:pypi/urllib3@2.2.0</purl>
       <externalReferences>
         <reference type="distribution">
           <url>https://pypi.org/simple/urllib3/</url>

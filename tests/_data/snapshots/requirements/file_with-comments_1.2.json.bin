@@ -2,7 +2,7 @@
   "components": [
     {
       "bom-ref": "requirements-L1",
-      "description": "requirements line 1: certifi==2021.5.30",
+      "description": "requirements line 1: certifi==2023.11.17",
       "externalReferences": [
         {
           "comment": "implicit dist url",
@@ -11,9 +11,9 @@
         }
       ],
       "name": "certifi",
-      "purl": "pkg:pypi/certifi@2021.5.30",
+      "purl": "pkg:pypi/certifi@2023.11.17",
       "type": "library",
-      "version": "2021.5.30"
+      "version": "2023.11.17"
     },
     {
       "bom-ref": "requirements-L2",
@@ -47,7 +47,7 @@
     },
     {
       "bom-ref": "requirements-L4",
-      "description": "requirements line 4: requests==2.25.1",
+      "description": "requirements line 4: requests==2.31.0",
       "externalReferences": [
         {
           "comment": "implicit dist url",
@@ -56,13 +56,13 @@
         }
       ],
       "name": "requests",
-      "purl": "pkg:pypi/requests@2.25.1",
+      "purl": "pkg:pypi/requests@2.31.0",
       "type": "library",
-      "version": "2.25.1"
+      "version": "2.31.0"
     },
     {
       "bom-ref": "requirements-L5",
-      "description": "requirements line 5: urllib3==1.26.5",
+      "description": "requirements line 5: urllib3==2.2.0",
       "externalReferences": [
         {
           "comment": "implicit dist url",
@@ -71,9 +71,9 @@
         }
       ],
       "name": "urllib3",
-      "purl": "pkg:pypi/urllib3@1.26.5",
+      "purl": "pkg:pypi/urllib3@2.2.0",
       "type": "library",
-      "version": "1.26.5"
+      "version": "2.2.0"
     }
   ],
   "dependencies": [

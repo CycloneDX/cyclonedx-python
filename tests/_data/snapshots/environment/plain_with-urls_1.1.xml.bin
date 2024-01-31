@@ -42,23 +42,23 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="urllib3==1.26.8">
+    <component type="library" bom-ref="urllib3==2.2.0">
       <name>urllib3</name>
-      <version>1.26.8</version>
+      <version>2.2.0</version>
       <description>HTTP library with thread-safe connection pooling, file post, and more.</description>
       <licenses>
         <license>
           <id>MIT</id>
         </license>
       </licenses>
-      <purl>pkg:pypi/urllib3@1.26.8?download_url=https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip</purl>
+      <purl>pkg:pypi/urllib3@2.2.0?download_url=https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip</url>
+          <url>https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip</url>
           <comment>PackageSource: Archive</comment>
         </reference>
         <reference type="documentation">
-          <url>https://urllib3.readthedocs.io/</url>
+          <url>https://urllib3.readthedocs.io</url>
           <comment>from packaging metadata Project-URL: Documentation</comment>
         </reference>
         <reference type="issue-tracker">
@@ -69,9 +69,9 @@
           <url>https://github.com/urllib3/urllib3</url>
           <comment>from packaging metadata Project-URL: Code</comment>
         </reference>
-        <reference type="website">
-          <url>https://urllib3.readthedocs.io/</url>
-          <comment>from packaging metadata: Home-page</comment>
+        <reference type="other">
+          <url>https://github.com/urllib3/urllib3/blob/main/CHANGES.rst</url>
+          <comment>from packaging metadata Project-URL: Changelog</comment>
         </reference>
       </externalReferences>
     </component>

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "7da942b1b25618d83c715727e11e1bd3602acc0aff377dc95d80326e9d77fa5a"
+            "sha256": "77b820625225357a870010516abdd0e92f273af20af9908446833d8627ababe4"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -134,7 +134,7 @@
         "requests": {
             "git": "git+https://github.com/requests/requests.git#egg=requests",
             "markers": "python_version >= '3.7'",
-            "ref": "a25fde6989f8df5c3d823bc9f2e2fc24aa71f375"
+            "ref": "96b22fa18c00831656ee4b286bf1c9062459b00a"
         },
         "six": {
             "git": "git+ssh://git@github.com/benjaminp/six.git",
@@ -142,7 +142,7 @@
             "ref": "65486e4383f9f411da95937451205d3c7b61b9e1"
         },
         "urllib3": {
-            "file": "https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip",
+            "file": "https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip",
             "markers": "python_version >= '3.8'"
         }
     },

@@ -44,7 +44,7 @@ def main() -> None:
 
     pip_install(
         'git+https://github.com/pypa/packaging.git@23.2',
-        'urllib3 @ https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip',
+        'urllib3 @ https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip',
         'https://files.pythonhosted.org/packages/d9/5a/'
         'e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl',
     )

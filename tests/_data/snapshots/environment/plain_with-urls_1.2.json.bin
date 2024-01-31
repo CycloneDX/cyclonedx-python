@@ -53,18 +53,18 @@
       "version": "1.16.0"
     },
     {
-      "bom-ref": "urllib3==1.26.8",
+      "bom-ref": "urllib3==2.2.0",
       "description": "HTTP library with thread-safe connection pooling, file post, and more.",
       "externalReferences": [
         {
           "comment": "PackageSource: Archive",
           "type": "distribution",
-          "url": "https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip"
+          "url": "https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip"
         },
         {
           "comment": "from packaging metadata Project-URL: Documentation",
           "type": "documentation",
-          "url": "https://urllib3.readthedocs.io/"
+          "url": "https://urllib3.readthedocs.io"
         },
         {
           "comment": "from packaging metadata Project-URL: Issue tracker",
@@ -77,9 +77,9 @@
           "url": "https://github.com/urllib3/urllib3"
         },
         {
-          "comment": "from packaging metadata: Home-page",
-          "type": "website",
-          "url": "https://urllib3.readthedocs.io/"
+          "comment": "from packaging metadata Project-URL: Changelog",
+          "type": "other",
+          "url": "https://github.com/urllib3/urllib3/blob/main/CHANGES.rst"
         }
       ],
       "licenses": [
@@ -90,9 +90,9 @@
         }
       ],
       "name": "urllib3",
-      "purl": "pkg:pypi/urllib3@1.26.8?download_url=https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip",
+      "purl": "pkg:pypi/urllib3@2.2.0?download_url=https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip",
       "type": "library",
-      "version": "1.26.8"
+      "version": "2.2.0"
     }
   ],
   "dependencies": [
@@ -109,7 +109,7 @@
       "ref": "six==1.16.0"
     },
     {
-      "ref": "urllib3==1.26.8"
+      "ref": "urllib3==2.2.0"
     }
   ],
   "metadata": {

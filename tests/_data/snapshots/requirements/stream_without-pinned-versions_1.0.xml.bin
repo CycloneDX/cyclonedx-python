@@ -4,7 +4,7 @@
     <component type="library">
       <name>certifi</name>
       <version/>
-      <description>requirements line 1: certifi&gt;=2021.5.30</description>
+      <description>requirements line 1: certifi&gt;=2023.11.17</description>
       <purl>pkg:pypi/certifi</purl>
       <modified>false</modified>
     </component>

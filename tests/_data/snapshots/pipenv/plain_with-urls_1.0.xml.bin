@@ -28,7 +28,7 @@
     <component type="library">
       <name>requests</name>
       <version/>
-      <purl>pkg:pypi/requests?vcs_url=git%2Bhttps://github.com/requests/requests.git%40a25fde6989f8df5c3d823bc9f2e2fc24aa71f375</purl>
+      <purl>pkg:pypi/requests?vcs_url=git%2Bhttps://github.com/requests/requests.git%4096b22fa18c00831656ee4b286bf1c9062459b00a</purl>
       <modified>false</modified>
     </component>
     <component type="library">
@@ -40,7 +40,7 @@
     <component type="library">
       <name>urllib3</name>
       <version/>
-      <purl>pkg:pypi/urllib3?download_url=https://github.com/urllib3/urllib3/archive/refs/tags/1.26.8.zip</purl>
+      <purl>pkg:pypi/urllib3?download_url=https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip</purl>
       <modified>false</modified>
     </component>
   </components>
