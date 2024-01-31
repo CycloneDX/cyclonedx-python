@@ -1,0 +1,12 @@
+[project]
+name = "cyclonedx-py"
+version = "1.0.0"
+description = "Alias for package 'cyclonedx-bom'"
+readme = "README.md"
+dependencies = [
+  # no versions, just the name
+  "cyclonedx-bom"
+]
+
+[project.urls]
+repository = "https://github.com/CycloneDX/cyclonedx-python/#package_aliases/cyclonedx-py"
