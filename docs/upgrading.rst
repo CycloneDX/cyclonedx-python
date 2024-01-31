@@ -4,6 +4,8 @@ Upgrading to v4
 Version 4 is not backwards compatible. Nearly all behaviours and integrations changed.
 This document covers all breaking changes and should give guidance how to migrate from previous versions.
 
+This document is not a full :doc:`change log <changelog>`, but a migration path.
+
 
 Python support
 --------------
@@ -135,6 +137,23 @@ Enable debug
 
 Example: ``cyclonedx-py environment -vv ...``
 
+BomRefs based on PURL
+~~~~~~~~~~~~~~~~~~~~~
+
+The option ``--purl-bom-ref`` was entirely removed.
+
+Per CycloneDX specifications, ``bom-ref`` values were never intended to shp any meaning, but being linkable.
+Therefore, ``bom-ref`` values are arbitrary stings, period.
+
+PURL values
+~~~~~~~~~~~
+
+PURL values may be longer now, to shop more meaning. All according to `PackageURL spec`_
+
+.. _PackageURL spec: https://github.com/package-url/purl-spec/blob/master/PURL-SPECIFICATION.rst
+
+It is a known fact, that some SBOM ingesting tools have issues with PURL values being longer than *x* characters.
+You may use the CLI option ``--short-PURLs``, which causes information loss in trade-off shorter PURL values.
 
 Removed API
 -----------
