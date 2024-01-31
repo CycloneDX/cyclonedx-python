@@ -12,6 +12,7 @@
    #
    # SPDX-License-Identifier: Apache-2.0
 
+=========================================
 CycloneDX SBOM Generation Tool for Python
 =========================================
 
@@ -54,5 +55,5 @@ and might have properties following the Namespace Taxonomies
    usage
    contributing
    support
-   changelog
+   Changelog <changelog>
    upgrading
