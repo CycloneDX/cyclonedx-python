@@ -36,7 +36,7 @@ Source: Conda
 Conda (lock file) analysis was entirely removed for the fact that conda is not dedicated to Python.
 Yes, conda has some capabilities of managing Python packages and environments, but it does so much more.
 
-However, conda's Python environments are fully supported now, as well as other means.
+However, conda's Python environments are fully supported now.
 See the :doc:`"usage" documentation</usage>` for examples.
 
 Old: ``cyclonedx-py -c ...`` and ``cyclonedx-py -cj ...``
