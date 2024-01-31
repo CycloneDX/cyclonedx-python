@@ -39,7 +39,7 @@ Yes, conda has some capabilities of managing Python packages and environments, b
 However, conda's Python environments are fully supported, as well as other means.
 See the :doc:`"usage" documentation</usage>` for examples.
 
-Old: ``cyclonedx-py [-c|-cj] ...``
+Old: ``cyclonedx-py -c ...`` and ``cyclonedx-py -cj ...``
 
 New: It depends. See the :doc:`"usage" documentation</usage>` for examples.
 
