@@ -48,7 +48,7 @@
         <property name="cdx:poetry:group">main</property>
       </properties>
     </component>
-    <component type="library" bom-ref="BomRef.6496837104612342.8027834775788298">
+    <component type="library" bom-ref="pathlib2@2.3.5#1">
       <name>pathlib2</name>
       <version>2.3.5</version>
       <description>Object-oriented filesystem paths</description>
@@ -65,7 +65,7 @@
         <property name="cdx:poetry:source:package:reference">2.3.5</property>
       </properties>
     </component>
-    <component type="library" bom-ref="pathlib2@2.3.6">
+    <component type="library" bom-ref="pathlib2@2.3.6#2">
       <name>pathlib2</name>
       <version>2.3.6</version>
       <description>Object-oriented filesystem paths</description>
@@ -90,7 +90,7 @@
         <property name="cdx:poetry:group">main</property>
       </properties>
     </component>
-    <component type="library" bom-ref="pathlib2@2.3.7.post1">
+    <component type="library" bom-ref="pathlib2@2.3.7.post1#3">
       <name>pathlib2</name>
       <version>2.3.7.post1</version>
       <description>Object-oriented filesystem paths</description>
@@ -222,7 +222,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="six@1.16.0">
+    <component type="library" bom-ref="six@1.16.0#1">
       <name>six</name>
       <version>1.16.0</version>
       <description>Python 2 and 3 compatibility utilities</description>
@@ -248,30 +248,31 @@
   <dependencies>
     <dependency ref="multi-constraint-deps">
       <dependency ref="pathlib2@2.3.5"/>
-      <dependency ref="pathlib2@2.3.6"/>
-      <dependency ref="pathlib2@2.3.7.post1"/>
+      <dependency ref="pathlib2@2.3.5#1"/>
+      <dependency ref="pathlib2@2.3.6#2"/>
+      <dependency ref="pathlib2@2.3.7.post1#3"/>
     </dependency>
     <dependency ref="pathlib2@2.3.5">
       <dependency ref="scandir@1.10.0"/>
       <dependency ref="six@1.11.0"/>
-      <dependency ref="six@1.16.0"/>
+      <dependency ref="six@1.16.0#1"/>
     </dependency>
-    <dependency ref="BomRef.6496837104612342.8027834775788298">
+    <dependency ref="pathlib2@2.3.5#1">
       <dependency ref="scandir@1.10.0"/>
       <dependency ref="six@1.11.0"/>
-      <dependency ref="six@1.16.0"/>
+      <dependency ref="six@1.16.0#1"/>
     </dependency>
-    <dependency ref="pathlib2@2.3.6">
+    <dependency ref="pathlib2@2.3.6#2">
       <dependency ref="scandir@1.10.0"/>
       <dependency ref="six@1.11.0"/>
-      <dependency ref="six@1.16.0"/>
+      <dependency ref="six@1.16.0#1"/>
     </dependency>
-    <dependency ref="pathlib2@2.3.7.post1">
+    <dependency ref="pathlib2@2.3.7.post1#3">
       <dependency ref="six@1.11.0"/>
-      <dependency ref="six@1.16.0"/>
+      <dependency ref="six@1.16.0#1"/>
     </dependency>
     <dependency ref="scandir@1.10.0"/>
     <dependency ref="six@1.11.0"/>
-    <dependency ref="six@1.16.0"/>
+    <dependency ref="six@1.16.0#1"/>
   </dependencies>
 </bom>

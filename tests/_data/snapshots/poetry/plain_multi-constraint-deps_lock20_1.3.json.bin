@@ -39,7 +39,7 @@
       "version": "2.3.5"
     },
     {
-      "bom-ref": "BomRef.1610710146195271.9181732268810469",
+      "bom-ref": "pathlib2@2.3.5#1",
       "description": "Object-oriented filesystem paths",
       "externalReferences": [
         {
@@ -68,7 +68,7 @@
       "version": "2.3.5"
     },
     {
-      "bom-ref": "pathlib2@2.3.6",
+      "bom-ref": "pathlib2@2.3.6#2",
       "description": "Object-oriented filesystem paths",
       "externalReferences": [
         {
@@ -106,7 +106,7 @@
       "version": "2.3.6"
     },
     {
-      "bom-ref": "pathlib2@2.3.7.post1",
+      "bom-ref": "pathlib2@2.3.7.post1#3",
       "description": "Object-oriented filesystem paths",
       "externalReferences": [
         {
@@ -307,7 +307,7 @@
       "version": "1.11.0"
     },
     {
-      "bom-ref": "six@1.16.0",
+      "bom-ref": "six@1.16.0#1",
       "description": "Python 2 and 3 compatibility utilities",
       "externalReferences": [
         {
@@ -343,8 +343,9 @@
     {
       "dependsOn": [
         "pathlib2@2.3.5",
-        "pathlib2@2.3.6",
-        "pathlib2@2.3.7.post1"
+        "pathlib2@2.3.5#1",
+        "pathlib2@2.3.6#2",
+        "pathlib2@2.3.7.post1#3"
       ],
       "ref": "multi-constraint-deps"
     },
@@ -352,7 +353,7 @@
       "dependsOn": [
         "scandir@1.10.0",
         "six@1.11.0",
-        "six@1.16.0"
+        "six@1.16.0#1"
       ],
       "ref": "pathlib2@2.3.5"
     },
@@ -360,24 +361,24 @@
       "dependsOn": [
         "scandir@1.10.0",
         "six@1.11.0",
-        "six@1.16.0"
+        "six@1.16.0#1"
       ],
-      "ref": "BomRef.1610710146195271.9181732268810469"
+      "ref": "pathlib2@2.3.5#1"
     },
     {
       "dependsOn": [
         "scandir@1.10.0",
         "six@1.11.0",
-        "six@1.16.0"
+        "six@1.16.0#1"
       ],
-      "ref": "pathlib2@2.3.6"
+      "ref": "pathlib2@2.3.6#2"
     },
     {
       "dependsOn": [
         "six@1.11.0",
-        "six@1.16.0"
+        "six@1.16.0#1"
       ],
-      "ref": "pathlib2@2.3.7.post1"
+      "ref": "pathlib2@2.3.7.post1#3"
     },
     {
       "ref": "scandir@1.10.0"
@@ -386,7 +387,7 @@
       "ref": "six@1.11.0"
     },
     {
-      "ref": "six@1.16.0"
+      "ref": "six@1.16.0#1"
     }
   ],
   "metadata": {

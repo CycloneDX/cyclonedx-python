@@ -17,7 +17,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="BomRef.1419781292133353.03988749970703176">
+    <component type="library" bom-ref="pathlib2@2.3.5#1">
       <name>pathlib2</name>
       <version>2.3.5</version>
       <description>Object-oriented filesystem paths</description>
@@ -29,7 +29,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pathlib2@2.3.6">
+    <component type="library" bom-ref="pathlib2@2.3.6#2">
       <name>pathlib2</name>
       <version>2.3.6</version>
       <description>Object-oriented filesystem paths</description>
@@ -45,7 +45,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pathlib2@2.3.7.post1">
+    <component type="library" bom-ref="pathlib2@2.3.7.post1#3">
       <name>pathlib2</name>
       <version>2.3.7.post1</version>
       <description>Object-oriented filesystem paths</description>
@@ -129,7 +129,7 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="six@1.16.0">
+    <component type="library" bom-ref="six@1.16.0#1">
       <name>six</name>
       <version>1.16.0</version>
       <description>Python 2 and 3 compatibility utilities</description>

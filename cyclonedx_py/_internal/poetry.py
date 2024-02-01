@@ -236,9 +236,11 @@ class PoetryBB(BomBuilder):
 
         lock_data: '_LockData' = {}
         for lock_entry in self._parse_lock(locker):
-            lock_data.setdefault(
-                lock_entry.name, []
-            ).append(lock_entry)
+            _ld = lock_data.setdefault(lock_entry.name, [])
+            _ldl = len(_ld)
+            if _ldl > 0:  # best-effort for reproducibility
+                lock_entry.component.bom_ref.value += f'#{_ldl}'
+            _ld.append(lock_entry)
 
         root_c_nname = normalize_packagename(root_c.name)
         lock_data[root_c_nname] = [_LockEntry(  # needed for circle dependencies
@@ -255,13 +257,15 @@ class PoetryBB(BomBuilder):
             for dep_name, dep_spec in po_cfg['group'][group_name].get('dependencies', {}).items():
                 dep_name = normalize_packagename(dep_name)
                 dep_spec = dep_spec if isinstance(dep_spec, dict) else {'version': dep_spec}
+                self._logger.debug('root-component depends on %s', dep_name)
                 if dep_name == 'python':
                     continue  # skip python constraint
-                if dep_spec.get('optional') and dep_name not in use_extras_dep_names:
-                    continue
                 lock_entries = lock_data.get(dep_name)
                 if lock_entries is None:
                     self._logger.warning('skip unlocked dependency: %s', dep_name)
+                    continue
+                if dep_spec.get('optional') and dep_name not in use_extras_dep_names:
+                    self._logger.debug('skip optional unused dependency: %s', dep_name)
                     continue
                 for lock_entry in lock_entries:
                     lock_entry.component.properties.add(Property(
@@ -275,7 +279,10 @@ class PoetryBB(BomBuilder):
 
     def __add_le(self, bom: 'Bom', lock_entry: _LockEntry, lock_data: '_LockData') -> None:
         if lock_entry.added2bom:
+            self._logger.debug('existing component: %r', lock_entry.component)
             return
+        self._logger.info('add component for package %r', lock_entry.name)
+        self._logger.debug('add component: %r', lock_entry.component)
         lock_entry.added2bom = True
         bom.components.add(lock_entry.component)
         lock_entry_dep = Dependency(lock_entry.component.bom_ref)
@@ -284,7 +291,7 @@ class PoetryBB(BomBuilder):
             dep_lock_entries = lock_data.get(dep_name)
             if dep_lock_entries is None:
                 if not dep_spec.get('optional'):
-                    self._logger.warning('skip unlocked dependency: %s', dep_name)
+                    self._logger.warning('skip unlocked component: %s', dep_name)
                 continue
             for dep_lock_entry in dep_lock_entries:
                 lock_entry_dep.dependencies.add(Dependency(dep_lock_entry.component.bom_ref))
