@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "multi-constraint-deps"
+version = "0.1.0"
+description = "multi-constraint depenndencies"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+# multi-constraint dependencies
+# see https://python-poetry.org/docs/dependency-specification/#multiple-constraints-dependencies
+
+[tool.poetry.dependencies]
+python = "^3"
+pathlib2 = [
+  { version = "2.3.7.post1", python = ">=3.7" },
+  { version = "2.3.6", markers = "python_version < '3.7' and sys_platform == 'win32'" },
+  { version = "2.3.5", python = "<3.7", platform = "linux" },
+  # same version but from different source -- SHALL be treated as non-identical
+  { git = "https://github.com/jazzband/pathlib2.git", tag = "2.3.5", python = "<3.7", platform = "darwin" },
+]
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

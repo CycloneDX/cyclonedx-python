@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.2" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-bom</name>
+        <version>thisVersion-testing</version>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="multi-constraint-deps">
+      <name>multi-constraint-deps</name>
+      <version>0.1.0</version>
+      <description>multi-constraint depenndencies</description>
+    </component>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="pathlib2@2.3.7.post1">
+      <name>pathlib2</name>
+      <version>2.3.7.post1</version>
+      <description>Object-oriented filesystem paths</description>
+      <purl>pkg:pypi/pathlib2@2.3.7.post1</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.7.post1-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.7.post1.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="six@1.16.0">
+      <name>six</name>
+      <version>1.16.0</version>
+      <description>Python 2 and 3 compatibility utilities</description>
+      <purl>pkg:pypi/six@1.16.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/#six-1.16.0-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/#six-1.16.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="multi-constraint-deps">
+      <dependency ref="pathlib2@2.3.7.post1"/>
+    </dependency>
+    <dependency ref="pathlib2@2.3.7.post1">
+      <dependency ref="six@1.16.0"/>
+    </dependency>
+    <dependency ref="six@1.16.0"/>
+  </dependencies>
+</bom>

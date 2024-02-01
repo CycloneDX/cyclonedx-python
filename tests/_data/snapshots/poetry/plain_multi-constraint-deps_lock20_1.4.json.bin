@@ -1,0 +1,118 @@
+{
+  "components": [
+    {
+      "bom-ref": "pathlib2@2.3.7.post1",
+      "description": "Object-oriented filesystem paths",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "5266a0fd000452f1b3467d782f079a4343c63aaa119221fbdc4e39577489ca5b"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/pathlib2/#pathlib2-2.3.7.post1-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "9fe0edad898b83c0c3e199c842b27ed216645d2e177757b2dd67384d4113c641"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/pathlib2/#pathlib2-2.3.7.post1.tar.gz"
+        }
+      ],
+      "name": "pathlib2",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        }
+      ],
+      "purl": "pkg:pypi/pathlib2@2.3.7.post1",
+      "type": "library",
+      "version": "2.3.7.post1"
+    },
+    {
+      "bom-ref": "six@1.16.0",
+      "description": "Python 2 and 3 compatibility utilities",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/six/#six-1.16.0-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/six/#six-1.16.0.tar.gz"
+        }
+      ],
+      "name": "six",
+      "purl": "pkg:pypi/six@1.16.0",
+      "type": "library",
+      "version": "1.16.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "pathlib2@2.3.7.post1"
+      ],
+      "ref": "multi-constraint-deps"
+    },
+    {
+      "dependsOn": [
+        "six@1.16.0"
+      ],
+      "ref": "pathlib2@2.3.7.post1"
+    },
+    {
+      "ref": "six@1.16.0"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "multi-constraint-deps",
+      "description": "multi-constraint depenndencies",
+      "name": "multi-constraint-deps",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": [
+      {
+        "externalReferences": [   ],
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.4.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.4"
+}
