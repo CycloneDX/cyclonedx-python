@@ -32,10 +32,6 @@
         {
           "name": "cdx:poetry:group",
           "value": "main"
-        },
-        {
-          "name": "cdx:python:package:required-extra",
-          "value": "jinja2"
         }
       ],
       "purl": "pkg:pypi/ruamel-yaml@0.18.5",

@@ -6,16 +6,6 @@
       <version>0.10.2</version>
       <description>Python Library for Tom's Obvious, Minimal Language</description>
       <purl>pkg:pypi/toml@0.10.2</purl>
-      <externalReferences>
-        <reference type="distribution">
-          <url>https://pypi.org/simple/toml/#toml-0.10.2-py2.py3-none-any.whl</url>
-          <comment>from legacy-api</comment>
-        </reference>
-        <reference type="distribution">
-          <url>https://pypi.org/simple/toml/#toml-0.10.2.tar.gz</url>
-          <comment>from legacy-api</comment>
-        </reference>
-      </externalReferences>
     </component>
   </components>
 </bom>

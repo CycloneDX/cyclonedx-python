@@ -28,22 +28,6 @@
       <version>0.10.2</version>
       <description>Python Library for Tom's Obvious, Minimal Language</description>
       <purl>pkg:pypi/toml@0.10.2</purl>
-      <externalReferences>
-        <reference type="distribution">
-          <url>https://pypi.org/simple/toml/#toml-0.10.2-py2.py3-none-any.whl</url>
-          <comment>from legacy-api</comment>
-          <hashes>
-            <hash alg="SHA-256">806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b</hash>
-          </hashes>
-        </reference>
-        <reference type="distribution">
-          <url>https://pypi.org/simple/toml/#toml-0.10.2.tar.gz</url>
-          <comment>from legacy-api</comment>
-          <hashes>
-            <hash alg="SHA-256">b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f</hash>
-          </hashes>
-        </reference>
-      </externalReferences>
       <properties>
         <property name="cdx:poetry:group">main</property>
       </properties>

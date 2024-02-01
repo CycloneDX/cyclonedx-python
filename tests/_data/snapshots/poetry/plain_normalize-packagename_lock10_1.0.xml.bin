@@ -2,6 +2,13 @@
 <bom xmlns="http://cyclonedx.org/schema/bom/1.0" version="1">
   <components>
     <component type="library">
+      <name>ruamel-yaml</name>
+      <version>0.18.5</version>
+      <description>ruamel.yaml is a YAML parser/emitter that supports roundtrip preservation of comments, seq/map flow style, and map key order</description>
+      <purl>pkg:pypi/ruamel-yaml@0.18.5</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
       <name>ruamel.yaml</name>
       <version>0.18.5</version>
       <description>ruamel.yaml is a YAML parser/emitter that supports roundtrip preservation of comments, seq/map flow style, and map key order</description>
