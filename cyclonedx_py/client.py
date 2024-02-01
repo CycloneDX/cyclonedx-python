@@ -91,12 +91,13 @@ class CycloneDxCmd:
             exit(1)
 
         if parser and parser.has_warnings():
+            warning_packages = [str(warning.get_item()) for warning in parser.get_warnings()]
             print('',
                   '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
                   '!! Some of your dependencies do not have pinned version !!',
                   '!! numbers in your requirements.txt                     !!',
                   '!!                                                      !!',
-                  *('!! -> {} !!'.format(warning.get_item().ljust(49)) for warning in parser.get_warnings()),
+                  *('!! -> {} !!'.format(warn_package.ljust(49)) for warn_package in warning_packages),
                   '!!                                                      !!',
                   '!! The above will NOT be included in the generated      !!',
                   '!! CycloneDX as version is a mandatory field.           !!',

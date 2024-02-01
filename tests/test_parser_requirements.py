@@ -100,6 +100,20 @@ class TestRequirementsParser(TestCase):
         self.assertEqual(HashAlgorithm.SHA_256, hash.alg)
         self.assertNotEqual(0, len(hash.content), f'{hash.content}')
 
+    def test_example_local_installed_packages(self) -> None:
+        with open(os.path.join(os.path.dirname(__file__),
+                               'fixtures/requirements-local-installed-package.txt')) as r:
+            parser = RequirementsParser(
+                requirements_content=r.read()
+            )
+        components = parser.get_components()
+
+        warnings = parser.get_warnings()
+        self.assertEqual(1, len(warnings), f'{parser.get_warnings()}')
+        warning = warnings[0]
+        self.assertIsNone(warning.get_item(), f'{warning.get_item()}')
+        self.assertEqual(0, len(components), f'{components}')
+
     def test_example_local_packages(self) -> None:
         with open(os.path.join(os.path.dirname(__file__),
                                'fixtures/requirements-local-and-remote-packages.txt')) as r:
