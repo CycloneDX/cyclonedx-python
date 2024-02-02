@@ -21,7 +21,7 @@ from dataclasses import dataclass
 from itertools import chain
 from os.path import join
 from textwrap import dedent
-from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, List, Set, Tuple
+from typing import TYPE_CHECKING, Any, Dict, FrozenSet, Generator, Iterable, List, Tuple
 
 from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
@@ -161,15 +161,18 @@ class PoetryBB(BomBuilder):
             po_cfg_group = po_cfg.setdefault('group', {})
             po_cfg_group.setdefault('main', {'dependencies': po_cfg.get('dependencies', {})})
             po_cfg_group.setdefault('dev', {'dependencies': po_cfg.get('dev-dependencies', {})})
-            po_cfg_extras = po_cfg.setdefault('extras', {})
+            po_cfg_extras = po_cfg['extras'] = {
+                normalize_packagename(en): es
+                for en, es in po_cfg.get('extras', {}).items()
+            }
 
             # the group-args shall mimic the ones from poetry, which uses comma-separated lists and multi-use
             # values be like: ['foo', 'bar,bazz'] -> ['foo', 'bar', 'bazz']
-            groups_only_s = set(filter(None, ','.join(groups_only).split(',')))
-            groups_with_s = set(filter(None, ','.join(groups_with).split(',')))
-            groups_without_s = set(filter(None, ','.join(groups_without).split(',')))
+            groups_only_s = frozenset(filter(None, ','.join(groups_only).split(',')))
+            groups_with_s = frozenset(filter(None, ','.join(groups_with).split(',')))
+            groups_without_s = frozenset(filter(None, ','.join(groups_without).split(',')))
             del groups_only, groups_with, groups_without
-            groups_not_found = set(
+            groups_not_found = frozenset(
                 (gn, srcn) for gns, srcn in [
                     (groups_only_s, 'only'),
                     (groups_with_s, 'with'),
@@ -182,27 +185,29 @@ class PoetryBB(BomBuilder):
                 raise ValueError('some Poetry groups are unknown') from groups_error
             del groups_not_found
 
-            # values be like: ['foo', 'bar,bazz'] -> ['foo', 'bar', 'bazz']
-            extras_s = set(filter(None, ','.join(extras).split(',')))
+            if all_extras:
+                extras_s = frozenset(po_cfg_extras)
+            else:
+                # values be like: ['foo', 'bar,bazz'] -> ['foo', 'bar', 'bazz']
+                extras_s = frozenset(map(normalize_packagename, filter(None, ','.join(extras).split(','))))
+                extras_not_found = extras_s - po_cfg_extras.keys()
+                if len(extras_not_found) > 0:
+                    extras_error = ExtrasNotFoundError(extras_not_found)
+                    self._logger.error(extras_error)
+                    raise ValueError('some package extras are unknown') from extras_error
+                del extras_not_found
             del extras
-            extras_defined = set(po_cfg_extras)
-            extras_not_found = extras_s - extras_defined
-            if len(extras_not_found) > 0:
-                extras_error = ExtrasNotFoundError(extras_not_found)
-                self._logger.error(extras_error)
-                raise ValueError('some package extras are unknown') from extras_error
-            del extras_not_found
 
             # the group-args shall mimic the ones from Poetry.
             # Poetry handles this pseudo-exclusive-group of args programmatically
             if no_dev:
-                groups = {'main', }
+                groups = frozenset({'main', })
             elif len(groups_only_s) > 0:
                 groups = groups_only_s
             else:
                 # When used together, `--without` takes precedence over `--with`.
                 # see https://python-poetry.org/docs/managing-dependencies/#installing-group-dependencies
-                groups = set(
+                groups = frozenset(
                     gn for gn, gc in po_cfg['group'].items()
                     # all non-optionals and the `with`-whitelisted optionals
                     if not gc.get('optional') or gn in groups_with_s
@@ -212,12 +217,12 @@ class PoetryBB(BomBuilder):
             return self._make_bom(
                 project, toml_loads(lock.read()),
                 groups,
-                extras_defined if all_extras else extras_s,
+                extras_s,
                 mc_type,
             )
 
     def _make_bom(self, project: 'NameDict', locker: 'NameDict',
-                  use_groups: Set[str], use_extras: Set[str],
+                  use_groups: FrozenSet[str], use_extras: FrozenSet[str],
                   mc_type: 'ComponentType') -> 'Bom':
         self._logger.debug('use_groups: %r', use_groups)
         self._logger.debug('use_extras: %r', use_extras)
@@ -256,8 +261,8 @@ class PoetryBB(BomBuilder):
         )]
         del root_c_nname
 
-        use_extras_dep_names = set(map(normalize_packagename,
-                                       chain.from_iterable(po_cfg['extras'][e] for e in use_extras)))
+        use_extras_dep_names = frozenset(map(normalize_packagename,
+                                             chain.from_iterable(po_cfg['extras'][e] for e in use_extras)))
         for group_name in use_groups:
             for dep_name, dep_spec in po_cfg['group'][group_name].get('dependencies', {}).items():
                 dep_name = normalize_packagename(dep_name)
@@ -283,7 +288,7 @@ class PoetryBB(BomBuilder):
         return bom
 
     def __add_dep(self, bom: 'Bom', lock_entry: _LockEntry, use_extras: Iterable[str], lock_data: '_LockData') -> None:
-        use_extras = set(map(normalize_packagename, use_extras))
+        use_extras = frozenset(map(normalize_packagename, use_extras))
         lock_entry.component.properties.update(Property(
             name=PropertyName.PackageExtra.value,
             value=extra
