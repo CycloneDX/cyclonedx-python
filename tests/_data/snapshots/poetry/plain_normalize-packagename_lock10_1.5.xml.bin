@@ -105,6 +105,7 @@
     </dependency>
     <dependency ref="ruamel.yaml@0.18.5#1">
       <dependency ref="ruamel.yaml.clib@0.2.8"/>
+      <dependency ref="ruamel.yaml.jinja2@0.2.7"/>
     </dependency>
   </dependencies>
 </bom>

@@ -251,7 +251,7 @@ class PoetryBB(BomBuilder):
             name=root_c_nname,
             component=root_c,
             dependencies={},
-            extras={},  # todo
+            extras={},  # TODO - skipped unless a real-world case comes up
             added2bom=True,
         )]
         del root_c_nname
@@ -290,36 +290,43 @@ class PoetryBB(BomBuilder):
         ) for extra in use_extras)
         if lock_entry.added2bom:
             self._logger.debug('existing component: %r', lock_entry.component)
-            return
-        lock_entry.added2bom = True
-        self._logger.info('add component for package %r', lock_entry.name)
-        self._logger.debug('add component: %r', lock_entry.component)
-        bom.components.add(lock_entry.component)
-        lock_entry_dep = Dependency(lock_entry.component.bom_ref)
-        bom.dependencies.add(lock_entry_dep)
-        for dep_name, dep_spec in lock_entry.dependencies.items():
-            dep_lock_entries = lock_data.get(dep_name)
-            if dep_lock_entries is None:
-                self._logger.warning('skip unlocked component: %s', dep_name)
-                continue
-            if dep_spec.get('optional'):
-                # optionals are not installed, per default. they may be added via `use_extras` later.
-                continue
-            for dep_lock_entry in dep_lock_entries:
-                lock_entry_dep.dependencies.add(Dependency(dep_lock_entry.component.bom_ref))
-                self.__add_dep(bom, dep_lock_entry, dep_spec.get('extras', ()), lock_data)
-        for req in map(
-            Requirement,
-            chain.from_iterable(es for en, es in lock_entry.extras.items() if en in use_extras)
-        ):
-            dep_name = normalize_packagename(req.name)
-            dep_lock_entries = lock_data.get(dep_name)
-            if dep_lock_entries is None:
-                self._logger.warning('skip unlocked component: %s', dep_name)
-                continue
-            for dep_lock_entry in dep_lock_entries:
-                lock_entry_dep.dependencies.add(Dependency(dep_lock_entry.component.bom_ref))
-                self.__add_dep(bom, dep_lock_entry, req.extras, lock_data)
+            lock_entry_dep = None
+        else:
+            lock_entry.added2bom = True
+            self._logger.info('add component for package %r', lock_entry.name)
+            self._logger.debug('add component: %r', lock_entry.component)
+            bom.components.add(lock_entry.component)
+            lock_entry_dep = Dependency(lock_entry.component.bom_ref)
+            bom.dependencies.add(lock_entry_dep)
+            for dep_name, dep_spec in lock_entry.dependencies.items():
+                # Actually, a best-path should be calculated here, like it is done by Poetry itself...
+                # This would require heavy computation and might cause false-negatives or insufficient picks.
+                # Instead, we pick all dependencies, just to be on the safe side.
+                dep_lock_entries = lock_data.get(dep_name)
+                if dep_lock_entries is None:
+                    self._logger.warning('skip unlocked component: %s', dep_name)
+                    continue
+                if dep_spec.get('optional'):
+                    # optionals are not installed, per default. they may be added via `use_extras` later.
+                    continue
+                for dep_lock_entry in dep_lock_entries:
+                    lock_entry_dep.dependencies.add(Dependency(dep_lock_entry.component.bom_ref))
+                    self.__add_dep(bom, dep_lock_entry, dep_spec.get('extras', ()), lock_data)
+        if use_extras:
+            lock_entry_dep = lock_entry_dep \
+                or next(filter(lambda d: d.ref is lock_entry.component.bom_ref, bom.dependencies))
+            for req in map(
+                Requirement,
+                chain.from_iterable(es for en, es in lock_entry.extras.items() if en in use_extras)
+            ):
+                dep_name = normalize_packagename(req.name)
+                dep_lock_entries = lock_data.get(dep_name)
+                if dep_lock_entries is None:
+                    self._logger.warning('skip unlocked component: %s', dep_name)
+                    continue
+                for dep_lock_entry in dep_lock_entries:
+                    lock_entry_dep.dependencies.add(Dependency(dep_lock_entry.component.bom_ref))
+                    self.__add_dep(bom, dep_lock_entry, req.extras, lock_data)
 
     @staticmethod
     def _get_lockfile_version(locker: 'NameDict') -> Tuple[int, ...]:

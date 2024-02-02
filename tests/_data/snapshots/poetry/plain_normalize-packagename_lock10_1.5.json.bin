@@ -92,7 +92,8 @@
     },
     {
       "dependsOn": [
-        "ruamel.yaml.clib@0.2.8"
+        "ruamel.yaml.clib@0.2.8",
+        "ruamel.yaml.jinja2@0.2.7"
       ],
       "ref": "ruamel.yaml@0.18.5#1"
     }
