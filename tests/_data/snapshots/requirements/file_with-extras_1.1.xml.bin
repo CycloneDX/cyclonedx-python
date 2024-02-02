@@ -1,10 +1,10 @@
 <?xml version="1.0" ?>
 <bom xmlns="http://cyclonedx.org/schema/bom/1.1" version="1">
   <components>
-    <component type="library" bom-ref="requirements-L3">
+    <component type="library" bom-ref="requirements-L4">
       <name>cyclonedx-python-lib</name>
       <version>5.1.1</version>
-      <description>requirements line 3: cyclonedx-python-lib[json-validation,xml-validation] == 5.1.1</description>
+      <description>requirements line 4: cyclonedx-python-lib[JSON-validation,xml-Validation] == 5.1.1</description>
       <purl>pkg:pypi/cyclonedx-python-lib@5.1.1</purl>
       <externalReferences>
         <reference type="distribution">

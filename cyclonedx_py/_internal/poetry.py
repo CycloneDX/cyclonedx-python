@@ -44,19 +44,17 @@ if TYPE_CHECKING:  # pragma: no cover
     from cyclonedx.model.bom import Bom
     from cyclonedx.model.component import ComponentType
 
-    NameDict = Dict[str, Any]
+    T_NameDict = Dict[str, Any]
+    T_LockData = Dict[str, List['_LockEntry']]
 
 
 @dataclass
 class _LockEntry:
     name: str
     component: Component
-    dependencies: Dict[str, 'NameDict']  # keys MUST go through `normalize_packagename()`
+    dependencies: Dict[str, 'T_NameDict']  # keys MUST go through `normalize_packagename()`
     extras: Dict[str, List[str]]  # keys MUST go through `normalize_packagename()`
     added2bom: bool
-
-
-_LockData = Dict[str, List[_LockEntry]]
 
 
 class GroupsNotFoundError(ValueError):
@@ -188,8 +186,9 @@ class PoetryBB(BomBuilder):
             if all_extras:
                 extras_s = frozenset(po_cfg_extras)
             else:
-                # values be like: ['foo', 'bar,bazz'] -> ['foo', 'bar', 'bazz']
-                extras_s = frozenset(map(normalize_packagename, filter(None, ','.join(extras).split(','))))
+                extras_s = frozenset(map(normalize_packagename,
+                                         # values be like: ['foo', 'bar,bazz'] -> ['foo', 'bar', 'bazz']
+                                         filter(None, ','.join(extras).split(','))))
                 extras_not_found = extras_s - po_cfg_extras.keys()
                 if len(extras_not_found) > 0:
                     extras_error = ExtrasNotFoundError(extras_not_found)
@@ -221,7 +220,7 @@ class PoetryBB(BomBuilder):
                 mc_type,
             )
 
-    def _make_bom(self, project: 'NameDict', locker: 'NameDict',
+    def _make_bom(self, project: 'T_NameDict', locker: 'T_NameDict',
                   use_groups: FrozenSet[str], use_extras: FrozenSet[str],
                   mc_type: 'ComponentType') -> 'Bom':
         self._logger.debug('use_groups: %r', use_groups)
@@ -241,7 +240,7 @@ class PoetryBB(BomBuilder):
         root_d = Dependency(root_c.bom_ref)
         bom.dependencies.add(root_d)
 
-        lock_data: '_LockData' = {}
+        lock_data: 'T_LockData' = {}
         for lock_entry in self._parse_lock(locker):
             _ld = lock_data.setdefault(lock_entry.name, [])
             _ldl = len(_ld)
@@ -287,7 +286,7 @@ class PoetryBB(BomBuilder):
 
         return bom
 
-    def __add_dep(self, bom: 'Bom', lock_entry: _LockEntry, use_extras: Iterable[str], lock_data: '_LockData') -> None:
+    def __add_dep(self, bom: 'Bom', lock_entry: _LockEntry, use_extras: Iterable[str], lock_data: 'T_LockData') -> None:
         use_extras = frozenset(map(normalize_packagename, use_extras))
         lock_entry.component.properties.update(Property(
             name=PropertyName.PackageExtra.value,
@@ -334,14 +333,14 @@ class PoetryBB(BomBuilder):
                     self.__add_dep(bom, dep_lock_entry, req.extras, lock_data)
 
     @staticmethod
-    def _get_lockfile_version(locker: 'NameDict') -> Tuple[int, ...]:
+    def _get_lockfile_version(locker: 'T_NameDict') -> Tuple[int, ...]:
         return tuple(map(int, locker['metadata'].get('lock-version', '1.0').split('.')))
 
-    def _parse_lock(self, locker: 'NameDict') -> Generator[_LockEntry, None, None]:
+    def _parse_lock(self, locker: 'T_NameDict') -> Generator[_LockEntry, None, None]:
         lock_version = self._get_lockfile_version(locker)
         self._logger.debug('lock_version: %r', lock_version)
         metavar_files = locker.get('metadata', {}).get('files', {}) if lock_version < (2,) else {}
-        package: 'NameDict'
+        package: 'T_NameDict'
         for package in locker.get('package', []):
             package.setdefault('files', metavar_files.get(package['name'], []))
             yield _LockEntry(
@@ -361,7 +360,7 @@ class PoetryBB(BomBuilder):
     __PACKAGE_SRC_VCS = ['git']  # not supported yet: hg, svn
     __PACKAGE_SRC_LOCAL = ['file', 'directory']
 
-    def __make_component4lock(self, package: 'NameDict') -> 'Component':
+    def __make_component4lock(self, package: 'T_NameDict') -> 'Component':
         source = package.get('source', {})
         is_vcs = source.get('type') in self.__PACKAGE_SRC_VCS
         is_local = source.get('type') in self.__PACKAGE_SRC_LOCAL
@@ -394,7 +393,7 @@ class PoetryBB(BomBuilder):
                             ) if not is_local else None
         )
 
-    def __purl_qualifiers4lock(self, package: 'NameDict') -> 'NameDict':
+    def __purl_qualifiers4lock(self, package: 'T_NameDict') -> 'T_NameDict':
         # see https://github.com/package-url/purl-spec/blob/master/PURL-SPECIFICATION.rst
         qs = {}
 
@@ -419,7 +418,7 @@ class PoetryBB(BomBuilder):
 
         return qs
 
-    def __extrefs4lock(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
+    def __extrefs4lock(self, package: 'T_NameDict') -> Generator['ExternalReference', None, None]:
         source_type = package.get('source', {}).get('type', 'legacy')
         if 'legacy' == source_type:
             yield from self.__extrefs4lock_legacy(package)
@@ -432,7 +431,7 @@ class PoetryBB(BomBuilder):
         elif source_type in self.__PACKAGE_SRC_VCS:
             yield from self.__extrefs4lock_vcs(package)
 
-    def __extrefs4lock_legacy(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
+    def __extrefs4lock_legacy(self, package: 'T_NameDict') -> Generator['ExternalReference', None, None]:
         source_url = redact_auth_from_url(package.get('source', {}).get('url', 'https://pypi.org/simple'))
         for file in package['files']:
             try:
@@ -446,7 +445,7 @@ class PoetryBB(BomBuilder):
                 self._logger.debug('skipped dist-extRef for: %r | %r', package['name'], file, exc_info=error)
                 del error
 
-    def __extrefs4lock_url(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
+    def __extrefs4lock_url(self, package: 'T_NameDict') -> Generator['ExternalReference', None, None]:
         try:
             yield ExternalReference(
                 comment='from url',
@@ -457,7 +456,7 @@ class PoetryBB(BomBuilder):
         except (InvalidUriException, UnknownHashTypeException) as error:  # pragma: nocover
             self._logger.debug('skipped dist-extRef for: %r', package['name'], exc_info=error)
 
-    def __extrefs4lock_file(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
+    def __extrefs4lock_file(self, package: 'T_NameDict') -> Generator['ExternalReference', None, None]:
         try:
             yield ExternalReference(
                 comment='from file',
@@ -468,7 +467,7 @@ class PoetryBB(BomBuilder):
         except (InvalidUriException, UnknownHashTypeException) as error:  # pragma: nocover
             self._logger.debug('skipped dist-extRef for: %r', package['name'], exc_info=error)
 
-    def __extrefs4lock_directory(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
+    def __extrefs4lock_directory(self, package: 'T_NameDict') -> Generator['ExternalReference', None, None]:
         try:
             yield ExternalReference(
                 comment='from directory',
@@ -479,7 +478,7 @@ class PoetryBB(BomBuilder):
         except InvalidUriException as error:  # pragma: nocover
             self._logger.debug('skipped dist-extRef for: %r', package['name'], exc_info=error)
 
-    def __extrefs4lock_vcs(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
+    def __extrefs4lock_vcs(self, package: 'T_NameDict') -> Generator['ExternalReference', None, None]:
         source = package['source']
         vcs_ref = source.get('resolved_reference', source.get('reference', ''))
         try:

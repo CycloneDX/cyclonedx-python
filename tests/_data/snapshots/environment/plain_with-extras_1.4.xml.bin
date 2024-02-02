@@ -156,6 +156,9 @@
           <comment>from packaging metadata: Home-page</comment>
         </reference>
       </externalReferences>
+      <properties>
+        <property name="cdx:python:package:required-extra">xml-validation</property>
+      </properties>
     </component>
     <component type="library" bom-ref="defusedxml==0.7.1">
       <name>defusedxml</name>
@@ -795,7 +798,9 @@
       <dependency ref="six==1.16.0"/>
     </dependency>
     <dependency ref="rfc3987==1.3.8"/>
-    <dependency ref="root-component"/>
+    <dependency ref="root-component">
+      <dependency ref="cyclonedx-python-lib==6.0.0"/>
+    </dependency>
     <dependency ref="rpds-py==0.15.2"/>
     <dependency ref="six==1.16.0"/>
     <dependency ref="sortedcontainers==2.4.0"/>

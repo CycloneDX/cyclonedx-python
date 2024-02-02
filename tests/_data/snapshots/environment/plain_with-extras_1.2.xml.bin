@@ -762,7 +762,9 @@
       <dependency ref="six==1.16.0"/>
     </dependency>
     <dependency ref="rfc3987==1.3.8"/>
-    <dependency ref="root-component"/>
+    <dependency ref="root-component">
+      <dependency ref="cyclonedx-python-lib==6.0.0"/>
+    </dependency>
     <dependency ref="rpds-py==0.15.2"/>
     <dependency ref="six==1.16.0"/>
     <dependency ref="sortedcontainers==2.4.0"/>

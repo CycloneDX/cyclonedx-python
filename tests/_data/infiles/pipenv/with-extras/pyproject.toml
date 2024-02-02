@@ -3,3 +3,7 @@
 name = "with-extras"
 version = "0.1.0"
 description = "depenndencies with extras"
+
+dependencies = [
+  "cyclonedx-python-lib[xml-Validation]"   # extra name is expected to be normalized
+]

@@ -111,9 +111,10 @@ class TestCliPoetry(TestCase, SnapshotMixin):
             out = out.getvalue()
         self.assertNotEqual(0, res, err)
         self.assertIn('Extra(s) ['
-                      'MNE-extra-A,'
-                      'MNE-extra-B,'
-                      'MNE-extra-C'
+                      # extra names were normalized!
+                      'mne-extra-a,'
+                      'mne-extra-b,'
+                      'mne-extra-c'
                       '] not specified', err)
 
     @named_data(*test_data)
@@ -206,7 +207,7 @@ class TestCliPoetry(TestCase, SnapshotMixin):
                 res = run_cli(argv=[
                     'poetry',
                     '-vvv',
-                    '-E', 'my-extra',
+                    '-E', 'my_Extra',  # expected to be normalized
                     '--sv', sv.to_version(),
                     '--of', of.name,
                     '--output-reproducible',
