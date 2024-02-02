@@ -74,10 +74,15 @@ def metadata2extrefs(metadata: 'PackageMetadata') -> Generator['ExternalReferenc
             pass
 
 
-# see https://packaging.python.org/en/latest/specifications/name-normalization/#name-normalization
 _NORMALIZE_PN_MATCHER = re_compile(r'[-_.]+')
 _NORMALIZE_PN_REPLACE = '-'
 
 
 def normalize_packagename(name: str) -> str:
+    """
+    Normalize package names.
+    Also applies to names of package extras.
+
+    see https://packaging.python.org/en/latest/specifications/name-normalization/#name-normalization
+    """
     return _NORMALIZE_PN_MATCHER.sub(_NORMALIZE_PN_REPLACE, name).lower()

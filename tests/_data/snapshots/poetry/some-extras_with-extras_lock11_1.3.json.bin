@@ -53,6 +53,14 @@
         {
           "name": "cdx:poetry:group",
           "value": "main"
+        },
+        {
+          "name": "cdx:python:package:required-extra",
+          "value": "json-validation"
+        },
+        {
+          "name": "cdx:python:package:required-extra",
+          "value": "xml-validation"
         }
       ],
       "purl": "pkg:pypi/cyclonedx-python-lib@5.1.1",
@@ -158,6 +166,10 @@
         {
           "name": "cdx:poetry:group",
           "value": "main"
+        },
+        {
+          "name": "cdx:python:package:required-extra",
+          "value": "format"
         }
       ],
       "purl": "pkg:pypi/jsonschema@4.19.2",

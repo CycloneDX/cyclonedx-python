@@ -30,6 +30,7 @@
       <purl>pkg:pypi/ruamel-yaml@0.18.5</purl>
       <properties>
         <property name="cdx:poetry:group">main</property>
+        <property name="cdx:python:package:required-extra">jinja2</property>
       </properties>
     </component>
     <component type="library" bom-ref="ruamel.yaml@0.18.5#1">
@@ -39,6 +40,7 @@
       <purl>pkg:pypi/ruamel.yaml@0.18.5</purl>
       <properties>
         <property name="cdx:poetry:group">main</property>
+        <property name="cdx:python:package:required-extra">jinja2</property>
       </properties>
     </component>
     <component type="library" bom-ref="ruamel.yaml.clib@0.2.8">

@@ -71,6 +71,8 @@
       <purl>pkg:pypi/cyclonedx-python-lib@5.1.1</purl>
       <properties>
         <property name="cdx:poetry:group">main</property>
+        <property name="cdx:python:package:required-extra">json-validation</property>
+        <property name="cdx:python:package:required-extra">xml-validation</property>
       </properties>
     </component>
     <component type="library" bom-ref="defusedxml@0.7.1">

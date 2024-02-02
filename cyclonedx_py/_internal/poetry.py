@@ -28,6 +28,7 @@ from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, 
 from cyclonedx.model.component import Component, ComponentScope
 from cyclonedx.model.dependency import Dependency
 from packageurl import PackageURL
+from packaging.requirements import Requirement
 
 from . import BomBuilder, PropertyName
 from .cli_common import add_argument_mc_type
@@ -50,7 +51,8 @@ if TYPE_CHECKING:  # pragma: no cover
 class _LockEntry:
     name: str
     component: Component
-    dependencies: Dict[str, 'NameDict']
+    dependencies: Dict[str, 'NameDict']  # keys MUST go through `normalize_packagename()`
+    extras: Dict[str, List[str]]  # keys MUST go through `normalize_packagename()`
     added2bom: bool
 
 
@@ -238,7 +240,9 @@ class PoetryBB(BomBuilder):
         for lock_entry in self._parse_lock(locker):
             _ld = lock_data.setdefault(lock_entry.name, [])
             _ldl = len(_ld)
-            if _ldl > 0:  # best-effort for reproducibility
+            if _ldl > 0 and lock_entry.component.bom_ref.value:
+                # Best-effort for reproducibility: enumerate the potential duplicates.
+                # To prevent auto-assigning names for duplicates when rendering the CycloneDX document.
                 lock_entry.component.bom_ref.value += f'#{_ldl}'
             _ld.append(lock_entry)
 
@@ -247,6 +251,7 @@ class PoetryBB(BomBuilder):
             name=root_c_nname,
             component=root_c,
             dependencies={},
+            extras={},  # todo
             added2bom=True,
         )]
         del root_c_nname
@@ -273,29 +278,48 @@ class PoetryBB(BomBuilder):
                         value=group_name
                     ))
                     root_d.dependencies.add(Dependency(lock_entry.component.bom_ref))
-                    self.__add_le(bom, lock_entry, lock_data)
+                    self.__add_dep(bom, lock_entry, dep_spec.get('extras', ()), lock_data)
 
         return bom
 
-    def __add_le(self, bom: 'Bom', lock_entry: _LockEntry, lock_data: '_LockData') -> None:
+    def __add_dep(self, bom: 'Bom', lock_entry: _LockEntry, use_extras: Iterable[str], lock_data: '_LockData') -> None:
+        use_extras = set(map(normalize_packagename, use_extras))
+        lock_entry.component.properties.update(Property(
+            name=PropertyName.PackageExtra.value,
+            value=extra
+        ) for extra in use_extras)
         if lock_entry.added2bom:
             self._logger.debug('existing component: %r', lock_entry.component)
             return
+        lock_entry.added2bom = True
         self._logger.info('add component for package %r', lock_entry.name)
         self._logger.debug('add component: %r', lock_entry.component)
-        lock_entry.added2bom = True
         bom.components.add(lock_entry.component)
         lock_entry_dep = Dependency(lock_entry.component.bom_ref)
         bom.dependencies.add(lock_entry_dep)
         for dep_name, dep_spec in lock_entry.dependencies.items():
             dep_lock_entries = lock_data.get(dep_name)
             if dep_lock_entries is None:
-                if not dep_spec.get('optional'):
-                    self._logger.warning('skip unlocked component: %s', dep_name)
+                self._logger.warning('skip unlocked component: %s', dep_name)
+                continue
+            if dep_spec.get('optional'):
+                # optionals are not installed, per default. they may be added via `use_extras` later.
                 continue
             for dep_lock_entry in dep_lock_entries:
                 lock_entry_dep.dependencies.add(Dependency(dep_lock_entry.component.bom_ref))
-                self.__add_le(bom, dep_lock_entry, lock_data)
+                self.__add_dep(bom, dep_lock_entry, dep_spec.get('extras', ()), lock_data)
+        for req in map(
+            Requirement,
+            chain.from_iterable(es for en, es in lock_entry.extras.items() if en in use_extras)
+        ):
+            dep_name = normalize_packagename(req.name)
+            dep_lock_entries = lock_data.get(dep_name)
+            if dep_lock_entries is None:
+                self._logger.warning('skip unlocked component: %s', dep_name)
+                continue
+            for dep_lock_entry in dep_lock_entries:
+                lock_entry_dep.dependencies.add(Dependency(dep_lock_entry.component.bom_ref))
+                self.__add_dep(bom, dep_lock_entry, req.extras, lock_data)
 
     @staticmethod
     def _get_lockfile_version(locker: 'NameDict') -> Tuple[int, ...]:
@@ -308,13 +332,16 @@ class PoetryBB(BomBuilder):
         package: 'NameDict'
         for package in locker.get('package', []):
             package.setdefault('files', metavar_files.get(package['name'], []))
-            package.setdefault('source', {})
             yield _LockEntry(
                 name=normalize_packagename(package['name']),
                 component=self.__make_component4lock(package),
                 dependencies={
                     normalize_packagename(dn): ds if isinstance(ds, dict) else {'version': ds}
                     for dn, ds in package.get('dependencies', {}).items()
+                },
+                extras={
+                    normalize_packagename(en): es
+                    for en, es in package.get('extras', {}).items()
                 },
                 added2bom=False,
             )
@@ -323,7 +350,7 @@ class PoetryBB(BomBuilder):
     __PACKAGE_SRC_LOCAL = ['file', 'directory']
 
     def __make_component4lock(self, package: 'NameDict') -> 'Component':
-        source = package['source']
+        source = package.get('source', {})
         is_vcs = source.get('type') in self.__PACKAGE_SRC_VCS
         is_local = source.get('type') in self.__PACKAGE_SRC_LOCAL
 
@@ -359,21 +386,21 @@ class PoetryBB(BomBuilder):
         # see https://github.com/package-url/purl-spec/blob/master/PURL-SPECIFICATION.rst
         qs = {}
 
-        source = package['source']
-        source_type = package['source'].get('type')
+        source = package.get('source', {})
+        source_type = source.get('type')
 
         if source_type in self.__PACKAGE_SRC_VCS:
             # see section 3.7.4 in https://github.com/spdx/spdx-spec/blob/cfa1b9d08903/chapters/3-package-information.md
             # > For version-controlled files, the VCS location syntax is similar to a URL and has the:
             # > `<vcs_tool>+<transport>://<host_name>[/<path_to_repository>][@<revision_tag_or_branch>][#<sub_path>]`
-            qs['vcs_url'] = f'{source["type"]}+{redact_auth_from_url(source["url"])}@' + \
+            qs['vcs_url'] = f'{source_type}+{redact_auth_from_url(source["url"])}@' + \
                             source.get('resolved_reference', source.get('reference', ''))
         elif source_type == 'url':
             if '://files.pythonhosted.org/' not in source['url']:
                 # skip PURL bloat, do not add implicit information
                 qs['download_url'] = redact_auth_from_url(source['url'])
         elif source_type == 'legacy':
-            source_url = package['source'].get('url', 'https://pypi.org/simple')
+            source_url = source.get('url', 'https://pypi.org/simple')
             if '://pypi.org/' not in source_url:
                 # skip PURL bloat, do not add implicit information
                 qs['repository_url'] = redact_auth_from_url(source_url)
@@ -381,7 +408,7 @@ class PoetryBB(BomBuilder):
         return qs
 
     def __extrefs4lock(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
-        source_type = package['source'].get('type', 'legacy')
+        source_type = package.get('source', {}).get('type', 'legacy')
         if 'legacy' == source_type:
             yield from self.__extrefs4lock_legacy(package)
         elif 'url' == source_type:
@@ -394,7 +421,7 @@ class PoetryBB(BomBuilder):
             yield from self.__extrefs4lock_vcs(package)
 
     def __extrefs4lock_legacy(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
-        source_url = redact_auth_from_url(package['source'].get('url', 'https://pypi.org/simple'))
+        source_url = redact_auth_from_url(package.get('source', {}).get('url', 'https://pypi.org/simple'))
         for file in package['files']:
             try:
                 yield ExternalReference(
