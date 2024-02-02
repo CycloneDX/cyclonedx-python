@@ -1,0 +1,376 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.3" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-bom</name>
+        <version>thisVersion-testing</version>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="multi-constraint-deps">
+      <name>multi-constraint-deps</name>
+      <version>0.1.0</version>
+      <description>multi-constraint depenndencies</description>
+    </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="pathlib2@2.3.5">
+      <name>pathlib2</name>
+      <version>2.3.5</version>
+      <description>Object-oriented filesystem paths</description>
+      <purl>pkg:pypi/pathlib2@2.3.5</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.5-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">0ec8205a157c80d7acc301c0b18fbd5d44fe655968f5d947b6ecef5290fc35db</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.5.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">6cd9a47b597b37cc57de1c05e56fb1a1c9cc9fab04fe78c29acd090418529868</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.6-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">3a130b266b3a36134dcc79c17b3c7ac9634f083825ca6ea9d8f557ee6195c9c8</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.6.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">7d8bcb5555003cdf4a8d2872c538faa3a0f5d20630cb360e518ca3b981795e5f</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.7.post1-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">5266a0fd000452f1b3467d782f079a4343c63aaa119221fbdc4e39577489ca5b</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.7.post1.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">9fe0edad898b83c0c3e199c842b27ed216645d2e177757b2dd67384d4113c641</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:poetry:group">main</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="pathlib2@2.3.6#1">
+      <name>pathlib2</name>
+      <version>2.3.6</version>
+      <description>Object-oriented filesystem paths</description>
+      <purl>pkg:pypi/pathlib2@2.3.6</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.5-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">0ec8205a157c80d7acc301c0b18fbd5d44fe655968f5d947b6ecef5290fc35db</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.5.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">6cd9a47b597b37cc57de1c05e56fb1a1c9cc9fab04fe78c29acd090418529868</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.6-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">3a130b266b3a36134dcc79c17b3c7ac9634f083825ca6ea9d8f557ee6195c9c8</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.6.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">7d8bcb5555003cdf4a8d2872c538faa3a0f5d20630cb360e518ca3b981795e5f</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.7.post1-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">5266a0fd000452f1b3467d782f079a4343c63aaa119221fbdc4e39577489ca5b</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.7.post1.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">9fe0edad898b83c0c3e199c842b27ed216645d2e177757b2dd67384d4113c641</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:poetry:group">main</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="pathlib2@2.3.7.post1#2">
+      <name>pathlib2</name>
+      <version>2.3.7.post1</version>
+      <description>Object-oriented filesystem paths</description>
+      <purl>pkg:pypi/pathlib2@2.3.7.post1</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.5-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">0ec8205a157c80d7acc301c0b18fbd5d44fe655968f5d947b6ecef5290fc35db</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.5.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">6cd9a47b597b37cc57de1c05e56fb1a1c9cc9fab04fe78c29acd090418529868</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.6-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">3a130b266b3a36134dcc79c17b3c7ac9634f083825ca6ea9d8f557ee6195c9c8</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.6.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">7d8bcb5555003cdf4a8d2872c538faa3a0f5d20630cb360e518ca3b981795e5f</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.7.post1-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">5266a0fd000452f1b3467d782f079a4343c63aaa119221fbdc4e39577489ca5b</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.7.post1.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">9fe0edad898b83c0c3e199c842b27ed216645d2e177757b2dd67384d4113c641</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:poetry:group">main</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="scandir@1.10.0">
+      <name>scandir</name>
+      <version>1.10.0</version>
+      <description>scandir, a better directory iterator and faster os.walk()</description>
+      <purl>pkg:pypi/scandir@1.10.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/scandir/#scandir-1.10.0-cp27-cp27m-win32.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">92c85ac42f41ffdc35b6da57ed991575bdbe69db895507af88b9f499b701c188</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/scandir/#scandir-1.10.0-cp27-cp27m-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">cb925555f43060a1745d0a321cca94bcea927c50114b623d73179189a4e100ac</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/scandir/#scandir-1.10.0-cp34-cp34m-win32.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">2c712840c2e2ee8dfaf36034080108d30060d759c7b73a01a52251cc8989f11f</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/scandir/#scandir-1.10.0-cp34-cp34m-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">2586c94e907d99617887daed6c1d102b5ca28f1085f90446554abf1faf73123e</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/scandir/#scandir-1.10.0-cp35-cp35m-win32.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">2b8e3888b11abb2217a32af0766bc06b65cc4a928d8727828ee68af5a967fa6f</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/scandir/#scandir-1.10.0-cp35-cp35m-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">8c5922863e44ffc00c5c693190648daa6d15e7c1207ed02d6f46a8dcc2869d32</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/scandir/#scandir-1.10.0-cp36-cp36m-win32.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">2ae41f43797ca0c11591c0c35f2f5875fa99f8797cb1a1fd440497ec0ae4b022</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/scandir/#scandir-1.10.0-cp36-cp36m-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">7d2d7a06a252764061a020407b997dd036f7bd6a175a5ba2b345f0a357f0b3f4</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/scandir/#scandir-1.10.0-cp37-cp37m-win32.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">67f15b6f83e6507fdc6fca22fedf6ef8b334b399ca27c6b568cbfaa82a364173</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/scandir/#scandir-1.10.0-cp37-cp37m-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">b24086f2375c4a094a6b51e78b4cf7ca16c721dcee2eddd7aa6494b42d6d519d</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/scandir/#scandir-1.10.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">4d4631f6062e658e9007ab3149a9b914f3548cb38bfb021c64f39a025ce578ae</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:poetry:group">main</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="six@1.11.0">
+      <name>six</name>
+      <version>1.11.0</version>
+      <description>Python 2 and 3 compatibility utilities</description>
+      <purl>pkg:pypi/six@1.11.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/#six-1.11.0-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">832dc0e10feb1aa2c68dcc57dbb658f1c7e65b9b61af69048abc87a2db00a0eb</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/#six-1.11.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/#six-1.16.0-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/#six-1.16.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:poetry:group">main</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="six@1.16.0#1">
+      <name>six</name>
+      <version>1.16.0</version>
+      <description>Python 2 and 3 compatibility utilities</description>
+      <purl>pkg:pypi/six@1.16.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/#six-1.11.0-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">832dc0e10feb1aa2c68dcc57dbb658f1c7e65b9b61af69048abc87a2db00a0eb</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/#six-1.11.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/#six-1.16.0-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/#six-1.16.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:poetry:group">main</property>
+      </properties>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="multi-constraint-deps">
+      <dependency ref="pathlib2@2.3.5"/>
+      <dependency ref="pathlib2@2.3.6#1"/>
+      <dependency ref="pathlib2@2.3.7.post1#2"/>
+    </dependency>
+    <dependency ref="pathlib2@2.3.5">
+      <dependency ref="scandir@1.10.0"/>
+      <dependency ref="six@1.11.0"/>
+      <dependency ref="six@1.16.0#1"/>
+    </dependency>
+    <dependency ref="pathlib2@2.3.6#1">
+      <dependency ref="scandir@1.10.0"/>
+      <dependency ref="six@1.11.0"/>
+      <dependency ref="six@1.16.0#1"/>
+    </dependency>
+    <dependency ref="pathlib2@2.3.7.post1#2">
+      <dependency ref="six@1.11.0"/>
+      <dependency ref="six@1.16.0#1"/>
+    </dependency>
+    <dependency ref="scandir@1.10.0"/>
+    <dependency ref="six@1.11.0"/>
+    <dependency ref="six@1.16.0#1"/>
+  </dependencies>
+</bom>

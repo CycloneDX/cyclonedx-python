@@ -4,5 +4,5 @@ poetry lock file version -- preferred poetry versions:
 - `2.0` -> poetry==1.7.1
 
 !! remove [poetry cache dir](https://python-poetry.org/docs/configuration/#cache-directory),
-when switching verisons:
+when switching versions:
 - `rm -rf "$HOME/.cache/pypoetry" "$XDG_CACHE_HOME/pypoetry"`

@@ -1,0 +1,201 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.1" version="1">
+  <components>
+    <component type="library" bom-ref="pathlib2@2.3.5">
+      <name>pathlib2</name>
+      <version>2.3.5</version>
+      <description>Object-oriented filesystem paths</description>
+      <purl>pkg:pypi/pathlib2@2.3.5</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.5-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.5.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.6-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.6.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.7.post1-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.7.post1.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pathlib2@2.3.6#1">
+      <name>pathlib2</name>
+      <version>2.3.6</version>
+      <description>Object-oriented filesystem paths</description>
+      <purl>pkg:pypi/pathlib2@2.3.6</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.5-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.5.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.6-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.6.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.7.post1-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.7.post1.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pathlib2@2.3.7.post1#2">
+      <name>pathlib2</name>
+      <version>2.3.7.post1</version>
+      <description>Object-oriented filesystem paths</description>
+      <purl>pkg:pypi/pathlib2@2.3.7.post1</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.5-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.5.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.6-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.6.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.7.post1-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pathlib2/#pathlib2-2.3.7.post1.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="scandir@1.10.0">
+      <name>scandir</name>
+      <version>1.10.0</version>
+      <description>scandir, a better directory iterator and faster os.walk()</description>
+      <purl>pkg:pypi/scandir@1.10.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/scandir/#scandir-1.10.0-cp27-cp27m-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/scandir/#scandir-1.10.0-cp27-cp27m-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/scandir/#scandir-1.10.0-cp34-cp34m-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/scandir/#scandir-1.10.0-cp34-cp34m-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/scandir/#scandir-1.10.0-cp35-cp35m-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/scandir/#scandir-1.10.0-cp35-cp35m-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/scandir/#scandir-1.10.0-cp36-cp36m-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/scandir/#scandir-1.10.0-cp36-cp36m-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/scandir/#scandir-1.10.0-cp37-cp37m-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/scandir/#scandir-1.10.0-cp37-cp37m-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/scandir/#scandir-1.10.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="six@1.11.0">
+      <name>six</name>
+      <version>1.11.0</version>
+      <description>Python 2 and 3 compatibility utilities</description>
+      <purl>pkg:pypi/six@1.11.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/#six-1.11.0-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/#six-1.11.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/#six-1.16.0-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/#six-1.16.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="six@1.16.0#1">
+      <name>six</name>
+      <version>1.16.0</version>
+      <description>Python 2 and 3 compatibility utilities</description>
+      <purl>pkg:pypi/six@1.16.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/#six-1.11.0-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/#six-1.11.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/#six-1.16.0-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/#six-1.16.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+</bom>
