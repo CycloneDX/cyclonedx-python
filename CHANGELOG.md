@@ -2,6 +2,26 @@
 
 
 
+## v4.1.0 (2024-02-02)
+
+### Feature
+
+* feat: support poetry multi-constraint dependencies (#668)
+
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`50d2a4b`](https://github.com/CycloneDX/cyclonedx-python/commit/50d2a4bb1827fc0e7de83a7f78fc0a4d278df93e))
+
+### Unknown
+
+* tests: modernize testbeds (#667)
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`2fd3faf`](https://github.com/CycloneDX/cyclonedx-python/commit/2fd3faf45a5d3b9024bbf47d6e50c995880e2fd4))
+
+* docs (#666)
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`491e875`](https://github.com/CycloneDX/cyclonedx-python/commit/491e87564d124ccc91e21772423a10434ba5ff28))
+
+
 ## v4.0.0 (2024-01-31)
 
 ### Breaking
