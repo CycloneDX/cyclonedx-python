@@ -15,7 +15,7 @@
 
 __all__ = [  # type:ignore[var-annotated]
     # There is no stable/public API.
-    # You might use this instead:
+    # However, you might call the stable CLI instead, like so:
     #   from sys import executable
     #   from subprocess import run
     #   run((executable, '-m', 'cyclonedx_py', '--help'))

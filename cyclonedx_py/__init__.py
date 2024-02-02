@@ -13,13 +13,12 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-# !! version is managed by semantic_release
+# !! version is managed by `semantic_release`
 # do not use typing here, or else `semantic_release` might have issues finding the variable
-# flake8: noqa
-__version__ = "4.1.0"
+__version__ = "4.1.0"  # noqa:Q000
 
 # There is no stable/public API.
-# You might use this instead:
+# However, you might call the stable CLI instead, like so:
 #   from sys import executable
 #   from subprocess import run
 #   run((executable, '-m', 'cyclonedx_py', '--help'))
