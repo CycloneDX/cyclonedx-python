@@ -328,7 +328,7 @@ class PoetryBB(BomBuilder):
     def _parse_lock(self, locker: 'NameDict') -> Generator[_LockEntry, None, None]:
         lock_version = self._get_lockfile_version(locker)
         self._logger.debug('lock_version: %r', lock_version)
-        metavar_files = locker.get('metavar', {}).get('files', {}) if lock_version < (2,) else {}
+        metavar_files = locker.get('metadata', {}).get('files', {}) if lock_version < (2,) else {}
         package: 'NameDict'
         for package in locker.get('package', []):
             package.setdefault('files', metavar_files.get(package['name'], []))

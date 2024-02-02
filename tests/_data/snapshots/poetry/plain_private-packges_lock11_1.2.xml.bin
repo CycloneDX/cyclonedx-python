@@ -25,6 +25,16 @@
       <version>0.4.6</version>
       <description>Cross-platform colored terminal text.</description>
       <purl>pkg:pypi/colorama@0.4.6?repository_url=http://pysrc1.acme.org:8080/simple</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>http://pysrc1.acme.org:8080/simple/colorama/#colorama-0.4.6-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.acme.org:8080/simple/colorama/#colorama-0.4.6.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
     </component>
     <component type="library" bom-ref="six@1.16.0">
       <name>six</name>
@@ -43,6 +53,16 @@
       <version>0.10.2</version>
       <description>Python Library for Tom's Obvious, Minimal Language</description>
       <purl>pkg:pypi/toml@0.10.2?repository_url=http://pysrc2.acme.org:8080/simple</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>http://pysrc2.acme.org:8080/simple/toml/#toml-0.10.2-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc2.acme.org:8080/simple/toml/#toml-0.10.2.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
     </component>
   </components>
   <dependencies>
