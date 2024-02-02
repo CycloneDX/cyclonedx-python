@@ -227,7 +227,7 @@ class PoetryBB(BomBuilder):
         po_cfg = project['tool']['poetry']
 
         bom.metadata.component = root_c = poetry2component(po_cfg, type=mc_type)
-        root_c.bom_ref.value = root_c.name  # 'root-component'
+        root_c.bom_ref.value = root_c.name
         root_c.properties.update(Property(
             name=PropertyName.PackageExtra.value,
             value=extra
