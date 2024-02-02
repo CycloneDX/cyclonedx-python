@@ -20,14 +20,15 @@ from argparse import OPTIONAL, ArgumentParser
 from dataclasses import dataclass
 from itertools import chain
 from os.path import join
-from re import compile as re_compile
 from textwrap import dedent
-from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, List, Optional, Set, Tuple
+from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, List, Set, Tuple
 
 from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
 from cyclonedx.model.component import Component, ComponentScope
+from cyclonedx.model.dependency import Dependency
 from packageurl import PackageURL
+from packaging.requirements import Requirement
 
 from . import BomBuilder, PropertyName
 from .cli_common import add_argument_mc_type
@@ -49,11 +50,13 @@ if TYPE_CHECKING:  # pragma: no cover
 @dataclass
 class _LockEntry:
     name: str
-    component: 'Component'
-    dependencies: Set[str]
-    extra_deps: Dict[str, Set[str]]
+    component: Component
+    dependencies: Dict[str, 'NameDict']  # keys MUST go through `normalize_packagename()`
+    extras: Dict[str, List[str]]  # keys MUST go through `normalize_packagename()`
     added2bom: bool
-    added2bom_extras: Set[str]
+
+
+_LockData = Dict[str, List[_LockEntry]]
 
 
 class GroupsNotFoundError(ValueError):
@@ -155,10 +158,10 @@ class PoetryBB(BomBuilder):
         with pyproject, lock:
             project = toml_loads(pyproject.read())
             po_cfg = project['tool']['poetry']
-            po_cfg.setdefault('group', {})
-            po_cfg['group'].setdefault('main', {'dependencies': po_cfg.get('dependencies', {})})
-            po_cfg['group'].setdefault('dev', {'dependencies': po_cfg.get('dev-dependencies', {})})
-            po_cfg.setdefault('extras', {})
+            po_cfg_group = po_cfg.setdefault('group', {})
+            po_cfg_group.setdefault('main', {'dependencies': po_cfg.get('dependencies', {})})
+            po_cfg_group.setdefault('dev', {'dependencies': po_cfg.get('dev-dependencies', {})})
+            po_cfg_extras = po_cfg.setdefault('extras', {})
 
             # the group-args shall mimic the ones from poetry, which uses comma-separated lists and multi-use
             # values be like: ['foo', 'bar,bazz'] -> ['foo', 'bar', 'bazz']
@@ -172,16 +175,17 @@ class PoetryBB(BomBuilder):
                     (groups_with_s, 'with'),
                     (groups_without_s, 'without'),
                 ] for gn in gns
-                if gn not in po_cfg['group'].keys())
+                if gn not in po_cfg_group)
             if len(groups_not_found) > 0:
                 groups_error = GroupsNotFoundError(f'{gn!r} (via {srcn})' for gn, srcn in groups_not_found)
                 self._logger.error(groups_error)
                 raise ValueError('some Poetry groups are unknown') from groups_error
             del groups_not_found
 
+            # values be like: ['foo', 'bar,bazz'] -> ['foo', 'bar', 'bazz']
             extras_s = set(filter(None, ','.join(extras).split(',')))
             del extras
-            extras_defined = set(po_cfg['extras'].keys())
+            extras_defined = set(po_cfg_extras)
             extras_not_found = extras_s - extras_defined
             if len(extras_not_found) > 0:
                 extras_error = ExtrasNotFoundError(extras_not_found)
@@ -223,123 +227,137 @@ class PoetryBB(BomBuilder):
         po_cfg = project['tool']['poetry']
 
         bom.metadata.component = root_c = poetry2component(po_cfg, type=mc_type)
-        root_c.bom_ref.value = root_c.name  # 'root-component'
+        root_c.bom_ref.value = root_c.name
         root_c.properties.update(Property(
             name=PropertyName.PackageExtra.value,
             value=extra
         ) for extra in use_extras)
         self._logger.debug('root-component: %r', root_c)
+        root_d = Dependency(root_c.bom_ref)
+        bom.dependencies.add(root_d)
 
-        lock_data: Dict[str, _LockEntry] = {normalize_packagename(le.name): le for le in self._parse_lock(locker)}
+        lock_data: '_LockData' = {}
+        for lock_entry in self._parse_lock(locker):
+            _ld = lock_data.setdefault(lock_entry.name, [])
+            _ldl = len(_ld)
+            if _ldl > 0 and lock_entry.component.bom_ref.value:
+                # Best-effort for reproducibility: enumerate the potential duplicates.
+                # To prevent auto-assigning names for duplicates when rendering the CycloneDX document.
+                lock_entry.component.bom_ref.value += f'#{_ldl}'
+            _ld.append(lock_entry)
 
-        lock_data[normalize_packagename(root_c.name)] = _LockEntry(  # needed for circle dependencies
-            name=root_c.name,
+        root_c_nname = normalize_packagename(root_c.name)
+        lock_data[root_c_nname] = [_LockEntry(  # needed for circle dependencies
+            name=root_c_nname,
             component=root_c,
-            dependencies=set(),
-            extra_deps={},
+            dependencies={},
+            extras={},  # TODO - skipped unless a real-world case comes up
             added2bom=True,
-            added2bom_extras=use_extras
-        )
-        extra_deps = set(map(str.lower, chain.from_iterable(po_cfg['extras'][extra] for extra in use_extras)))
+        )]
+        del root_c_nname
 
-        _dep_pattern = re_compile(r'^(?P<name>[^\[]+)(?:\[(?P<extras>.*)\])?$')
-
-        def _add_ld(name: str, extras: Set[str]) -> Optional['Component']:
-            name = normalize_packagename(name)
-            if name == 'python':
-                return None
-            le = lock_data.get(name)
-            if le is None:
-                self._logger.warning('skip unlocked component: %s', name)
-                return None
-            _existed = le.added2bom
-            if _existed:
-                self._logger.debug('existing component: %r', le.component)
-            else:
-                self._logger.info('add component for package %r', name)
-                self._logger.debug('add component: %r', le.component)
-                le.added2bom = True
-                bom.components.add(le.component)
-            new_extras = extras - le.added2bom_extras
-            self._logger.debug('new extras for %r: %r', le.component, new_extras)
-            le.added2bom_extras.update(new_extras)
-            le.component.properties.update(Property(
-                name=PropertyName.PackageExtra.value,
-                value=extra
-            ) for extra in new_extras)
-            depends_on: List[Optional['Component']] = []
-            for dep in set(chain(
-                () if _existed else le.dependencies,
-                chain.from_iterable(le.extra_deps.get(extra, ()) for extra in new_extras)
-            )):
-                self._logger.debug('component %r depends on %r', le.component, dep)
-                depm = _dep_pattern.match(dep)
-                if depm is None:  # pragma: nocover
-                    self._logger.warning('skipping malformed dependency: %r', dep)
-                    continue
-                depends_on.append(_add_ld(
-                    depm.group('name'),
-                    set(filter(None, map(str.strip, (depm.group('extras') or '').split(','))))
-                ))
-            bom.register_dependency(le.component, filter(None, depends_on))
-            return le.component
-
-        depends_on: List[Optional['Component']] = []
+        use_extras_dep_names = set(map(normalize_packagename,
+                                       chain.from_iterable(po_cfg['extras'][e] for e in use_extras)))
         for group_name in use_groups:
-            self._logger.debug('processing group %r ...', group_name)
             for dep_name, dep_spec in po_cfg['group'][group_name].get('dependencies', {}).items():
                 dep_name = normalize_packagename(dep_name)
+                dep_spec = dep_spec if isinstance(dep_spec, dict) else {'version': dep_spec}
                 self._logger.debug('root-component depends on %s', dep_name)
                 if dep_name == 'python':
-                    continue
-                if dep_name not in lock_data:
+                    continue  # skip python constraint
+                lock_entries = lock_data.get(dep_name)
+                if lock_entries is None:
                     self._logger.warning('skip unlocked dependency: %s', dep_name)
                     continue
-                lock_data[dep_name].component.properties.add(Property(
-                    name=PropertyName.PoetryGroup.value,
-                    value=group_name
-                ))
-                dep_spec = dep_spec if isinstance(dep_spec, dict) else {'version': dep_spec}
-                if dep_spec.get('optional', False) and dep_name not in extra_deps:
-                    self._logger.debug('skip optional dependency: %s', dep_name)
+                if dep_spec.get('optional') and dep_name not in use_extras_dep_names:
+                    self._logger.debug('skip optional unused dependency: %s', dep_name)
                     continue
-                depends_on.append(_add_ld(dep_name, set(dep_spec.get('extras', ()))))
-        bom.register_dependency(root_c, filter(None, depends_on))
+                for lock_entry in lock_entries:
+                    lock_entry.component.properties.add(Property(
+                        name=PropertyName.PoetryGroup.value,
+                        value=group_name
+                    ))
+                    root_d.dependencies.add(Dependency(lock_entry.component.bom_ref))
+                    self.__add_dep(bom, lock_entry, dep_spec.get('extras', ()), lock_data)
 
         return bom
 
+    def __add_dep(self, bom: 'Bom', lock_entry: _LockEntry, use_extras: Iterable[str], lock_data: '_LockData') -> None:
+        use_extras = set(map(normalize_packagename, use_extras))
+        lock_entry.component.properties.update(Property(
+            name=PropertyName.PackageExtra.value,
+            value=extra
+        ) for extra in use_extras)
+        if lock_entry.added2bom:
+            self._logger.debug('existing component: %r', lock_entry.component)
+            lock_entry_dep = None
+        else:
+            lock_entry.added2bom = True
+            self._logger.info('add component for package %r', lock_entry.name)
+            self._logger.debug('add component: %r', lock_entry.component)
+            bom.components.add(lock_entry.component)
+            lock_entry_dep = Dependency(lock_entry.component.bom_ref)
+            bom.dependencies.add(lock_entry_dep)
+            for dep_name, dep_spec in lock_entry.dependencies.items():
+                # Actually, a best-path should be calculated here, like it is done by Poetry itself...
+                # This would require heavy computation and might cause false-negatives or insufficient picks.
+                # Instead, we pick all dependencies, just to be on the safe side.
+                dep_lock_entries = lock_data.get(dep_name)
+                if dep_lock_entries is None:
+                    self._logger.warning('skip unlocked component: %s', dep_name)
+                    continue
+                if dep_spec.get('optional'):
+                    # optionals are not installed, per default. they may be added via `use_extras` later.
+                    continue
+                for dep_lock_entry in dep_lock_entries:
+                    lock_entry_dep.dependencies.add(Dependency(dep_lock_entry.component.bom_ref))
+                    self.__add_dep(bom, dep_lock_entry, dep_spec.get('extras', ()), lock_data)
+        if use_extras:
+            lock_entry_dep = lock_entry_dep \
+                or next(filter(lambda d: d.ref is lock_entry.component.bom_ref, bom.dependencies))
+            for req in map(
+                Requirement,
+                chain.from_iterable(es for en, es in lock_entry.extras.items() if en in use_extras)
+            ):
+                dep_name = normalize_packagename(req.name)
+                dep_lock_entries = lock_data.get(dep_name)
+                if dep_lock_entries is None:
+                    self._logger.warning('skip unlocked component: %s', dep_name)
+                    continue
+                for dep_lock_entry in dep_lock_entries:
+                    lock_entry_dep.dependencies.add(Dependency(dep_lock_entry.component.bom_ref))
+                    self.__add_dep(bom, dep_lock_entry, req.extras, lock_data)
+
     @staticmethod
     def _get_lockfile_version(locker: 'NameDict') -> Tuple[int, ...]:
-        return tuple(int(v) for v in locker['metadata'].get('lock-version', '1.0').split('.'))
+        return tuple(map(int, locker['metadata'].get('lock-version', '1.0').split('.')))
 
     def _parse_lock(self, locker: 'NameDict') -> Generator[_LockEntry, None, None]:
-        locker.setdefault('metavar', {})
-        locker.setdefault('package', [])
-
         lock_version = self._get_lockfile_version(locker)
         self._logger.debug('lock_version: %r', lock_version)
-
-        metavar_files = locker['metadata'].get('files', {}) if lock_version < (2,) else {}
-
+        metavar_files = locker.get('metadata', {}).get('files', {}) if lock_version < (2,) else {}
         package: 'NameDict'
-        for package in locker['package']:
+        for package in locker.get('package', []):
             package.setdefault('files', metavar_files.get(package['name'], []))
-            package.setdefault('source', {})
             yield _LockEntry(
-                name=package['name'],
+                name=normalize_packagename(package['name']),
                 component=self.__make_component4lock(package),
-                dependencies=set(dn for dn, ds in package.get('dependencies', {}).items()
-                                 if not isinstance(ds, dict) or not ds.get('optional', False)),
-                extra_deps={en: set(di.split(' ')[0] for di in ds) for en, ds in package.get('extras', {}).items()},
+                dependencies={
+                    normalize_packagename(dn): ds if isinstance(ds, dict) else {'version': ds}
+                    for dn, ds in package.get('dependencies', {}).items()
+                },
+                extras={
+                    normalize_packagename(en): es
+                    for en, es in package.get('extras', {}).items()
+                },
                 added2bom=False,
-                added2bom_extras=set()
             )
 
     __PACKAGE_SRC_VCS = ['git']  # not supported yet: hg, svn
     __PACKAGE_SRC_LOCAL = ['file', 'directory']
 
     def __make_component4lock(self, package: 'NameDict') -> 'Component':
-        source = package['source']
+        source = package.get('source', {})
         is_vcs = source.get('type') in self.__PACKAGE_SRC_VCS
         is_local = source.get('type') in self.__PACKAGE_SRC_LOCAL
 
@@ -375,21 +393,21 @@ class PoetryBB(BomBuilder):
         # see https://github.com/package-url/purl-spec/blob/master/PURL-SPECIFICATION.rst
         qs = {}
 
-        source = package['source']
-        source_type = package['source'].get('type')
+        source = package.get('source', {})
+        source_type = source.get('type')
 
         if source_type in self.__PACKAGE_SRC_VCS:
             # see section 3.7.4 in https://github.com/spdx/spdx-spec/blob/cfa1b9d08903/chapters/3-package-information.md
             # > For version-controlled files, the VCS location syntax is similar to a URL and has the:
             # > `<vcs_tool>+<transport>://<host_name>[/<path_to_repository>][@<revision_tag_or_branch>][#<sub_path>]`
-            qs['vcs_url'] = f'{source["type"]}+{redact_auth_from_url(source["url"])}@' + \
+            qs['vcs_url'] = f'{source_type}+{redact_auth_from_url(source["url"])}@' + \
                             source.get('resolved_reference', source.get('reference', ''))
         elif source_type == 'url':
             if '://files.pythonhosted.org/' not in source['url']:
                 # skip PURL bloat, do not add implicit information
                 qs['download_url'] = redact_auth_from_url(source['url'])
         elif source_type == 'legacy':
-            source_url = package['source'].get('url', 'https://pypi.org/simple')
+            source_url = source.get('url', 'https://pypi.org/simple')
             if '://pypi.org/' not in source_url:
                 # skip PURL bloat, do not add implicit information
                 qs['repository_url'] = redact_auth_from_url(source_url)
@@ -397,7 +415,7 @@ class PoetryBB(BomBuilder):
         return qs
 
     def __extrefs4lock(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
-        source_type = package['source'].get('type', 'legacy')
+        source_type = package.get('source', {}).get('type', 'legacy')
         if 'legacy' == source_type:
             yield from self.__extrefs4lock_legacy(package)
         elif 'url' == source_type:
@@ -410,7 +428,7 @@ class PoetryBB(BomBuilder):
             yield from self.__extrefs4lock_vcs(package)
 
     def __extrefs4lock_legacy(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
-        source_url = redact_auth_from_url(package['source'].get('url', 'https://pypi.org/simple'))
+        source_url = redact_auth_from_url(package.get('source', {}).get('url', 'https://pypi.org/simple'))
         for file in package['files']:
             try:
                 yield ExternalReference(

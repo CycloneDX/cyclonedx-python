@@ -1,0 +1,316 @@
+{
+  "components": [
+    {
+      "bom-ref": "pathlib2@2.3.5",
+      "description": "Object-oriented filesystem paths",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/pathlib2/#pathlib2-2.3.5-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/pathlib2/#pathlib2-2.3.5.tar.gz"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/pathlib2/#pathlib2-2.3.6-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/pathlib2/#pathlib2-2.3.6.tar.gz"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/pathlib2/#pathlib2-2.3.7.post1-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/pathlib2/#pathlib2-2.3.7.post1.tar.gz"
+        }
+      ],
+      "name": "pathlib2",
+      "purl": "pkg:pypi/pathlib2@2.3.5",
+      "type": "library",
+      "version": "2.3.5"
+    },
+    {
+      "bom-ref": "pathlib2@2.3.6#1",
+      "description": "Object-oriented filesystem paths",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/pathlib2/#pathlib2-2.3.5-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/pathlib2/#pathlib2-2.3.5.tar.gz"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/pathlib2/#pathlib2-2.3.6-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/pathlib2/#pathlib2-2.3.6.tar.gz"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/pathlib2/#pathlib2-2.3.7.post1-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/pathlib2/#pathlib2-2.3.7.post1.tar.gz"
+        }
+      ],
+      "name": "pathlib2",
+      "purl": "pkg:pypi/pathlib2@2.3.6",
+      "type": "library",
+      "version": "2.3.6"
+    },
+    {
+      "bom-ref": "pathlib2@2.3.7.post1#2",
+      "description": "Object-oriented filesystem paths",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/pathlib2/#pathlib2-2.3.5-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/pathlib2/#pathlib2-2.3.5.tar.gz"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/pathlib2/#pathlib2-2.3.6-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/pathlib2/#pathlib2-2.3.6.tar.gz"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/pathlib2/#pathlib2-2.3.7.post1-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/pathlib2/#pathlib2-2.3.7.post1.tar.gz"
+        }
+      ],
+      "name": "pathlib2",
+      "purl": "pkg:pypi/pathlib2@2.3.7.post1",
+      "type": "library",
+      "version": "2.3.7.post1"
+    },
+    {
+      "bom-ref": "scandir@1.10.0",
+      "description": "scandir, a better directory iterator and faster os.walk()",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/scandir/#scandir-1.10.0-cp27-cp27m-win32.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/scandir/#scandir-1.10.0-cp27-cp27m-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/scandir/#scandir-1.10.0-cp34-cp34m-win32.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/scandir/#scandir-1.10.0-cp34-cp34m-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/scandir/#scandir-1.10.0-cp35-cp35m-win32.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/scandir/#scandir-1.10.0-cp35-cp35m-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/scandir/#scandir-1.10.0-cp36-cp36m-win32.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/scandir/#scandir-1.10.0-cp36-cp36m-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/scandir/#scandir-1.10.0-cp37-cp37m-win32.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/scandir/#scandir-1.10.0-cp37-cp37m-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/scandir/#scandir-1.10.0.tar.gz"
+        }
+      ],
+      "name": "scandir",
+      "purl": "pkg:pypi/scandir@1.10.0",
+      "type": "library",
+      "version": "1.10.0"
+    },
+    {
+      "bom-ref": "six@1.11.0",
+      "description": "Python 2 and 3 compatibility utilities",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/six/#six-1.11.0-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/six/#six-1.11.0.tar.gz"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/six/#six-1.16.0-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/six/#six-1.16.0.tar.gz"
+        }
+      ],
+      "name": "six",
+      "purl": "pkg:pypi/six@1.11.0",
+      "type": "library",
+      "version": "1.11.0"
+    },
+    {
+      "bom-ref": "six@1.16.0#1",
+      "description": "Python 2 and 3 compatibility utilities",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/six/#six-1.11.0-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/six/#six-1.11.0.tar.gz"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/six/#six-1.16.0-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/six/#six-1.16.0.tar.gz"
+        }
+      ],
+      "name": "six",
+      "purl": "pkg:pypi/six@1.16.0",
+      "type": "library",
+      "version": "1.16.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "pathlib2@2.3.5",
+        "pathlib2@2.3.6#1",
+        "pathlib2@2.3.7.post1#2"
+      ],
+      "ref": "multi-constraint-deps"
+    },
+    {
+      "dependsOn": [
+        "scandir@1.10.0",
+        "six@1.11.0",
+        "six@1.16.0#1"
+      ],
+      "ref": "pathlib2@2.3.5"
+    },
+    {
+      "dependsOn": [
+        "scandir@1.10.0",
+        "six@1.11.0",
+        "six@1.16.0#1"
+      ],
+      "ref": "pathlib2@2.3.6#1"
+    },
+    {
+      "dependsOn": [
+        "six@1.11.0",
+        "six@1.16.0#1"
+      ],
+      "ref": "pathlib2@2.3.7.post1#2"
+    },
+    {
+      "ref": "scandir@1.10.0"
+    },
+    {
+      "ref": "six@1.11.0"
+    },
+    {
+      "ref": "six@1.16.0#1"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "multi-constraint-deps",
+      "description": "multi-constraint depenndencies",
+      "name": "multi-constraint-deps",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "tools": [
+      {
+        "name": "cyclonedx-bom",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.2b.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.2"
+}

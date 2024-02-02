@@ -1,7 +1,25 @@
 {
   "components": [
     {
-      "bom-ref": "ruamel.yaml@0.18.5",
+      "bom-ref": "ruamel-yaml@0.18.5",
+      "description": "ruamel.yaml is a YAML parser/emitter that supports roundtrip preservation of comments, seq/map flow style, and map key order",
+      "name": "ruamel-yaml",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        },
+        {
+          "name": "cdx:python:package:required-extra",
+          "value": "jinja2"
+        }
+      ],
+      "purl": "pkg:pypi/ruamel-yaml@0.18.5",
+      "type": "library",
+      "version": "0.18.5"
+    },
+    {
+      "bom-ref": "ruamel.yaml@0.18.5#1",
       "description": "ruamel.yaml is a YAML parser/emitter that supports roundtrip preservation of comments, seq/map flow style, and map key order",
       "name": "ruamel.yaml",
       "properties": [
@@ -50,16 +68,25 @@
   "dependencies": [
     {
       "dependsOn": [
-        "ruamel.yaml@0.18.5"
+        "ruamel-yaml@0.18.5",
+        "ruamel.yaml@0.18.5#1"
       ],
       "ref": "normalize-packagename"
+    },
+    {
+      "dependsOn": [
+        "ruamel.yaml.clib@0.2.8",
+        "ruamel.yaml.jinja2@0.2.7"
+      ],
+      "ref": "ruamel-yaml@0.18.5"
     },
     {
       "ref": "ruamel.yaml.clib@0.2.8"
     },
     {
       "dependsOn": [
-        "ruamel.yaml@0.18.5"
+        "ruamel-yaml@0.18.5",
+        "ruamel.yaml@0.18.5#1"
       ],
       "ref": "ruamel.yaml.jinja2@0.2.7"
     },
@@ -68,7 +95,7 @@
         "ruamel.yaml.clib@0.2.8",
         "ruamel.yaml.jinja2@0.2.7"
       ],
-      "ref": "ruamel.yaml@0.18.5"
+      "ref": "ruamel.yaml@0.18.5#1"
     }
   ],
   "metadata": {

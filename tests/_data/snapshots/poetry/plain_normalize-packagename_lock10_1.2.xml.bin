@@ -20,7 +20,13 @@
     </component>
   </metadata>
   <components>
-    <component type="library" bom-ref="ruamel.yaml@0.18.5">
+    <component type="library" bom-ref="ruamel-yaml@0.18.5">
+      <name>ruamel-yaml</name>
+      <version>0.18.5</version>
+      <description>ruamel.yaml is a YAML parser/emitter that supports roundtrip preservation of comments, seq/map flow style, and map key order</description>
+      <purl>pkg:pypi/ruamel-yaml@0.18.5</purl>
+    </component>
+    <component type="library" bom-ref="ruamel.yaml@0.18.5#1">
       <name>ruamel.yaml</name>
       <version>0.18.5</version>
       <description>ruamel.yaml is a YAML parser/emitter that supports roundtrip preservation of comments, seq/map flow style, and map key order</description>
@@ -41,13 +47,19 @@
   </components>
   <dependencies>
     <dependency ref="normalize-packagename">
-      <dependency ref="ruamel.yaml@0.18.5"/>
+      <dependency ref="ruamel-yaml@0.18.5"/>
+      <dependency ref="ruamel.yaml@0.18.5#1"/>
+    </dependency>
+    <dependency ref="ruamel-yaml@0.18.5">
+      <dependency ref="ruamel.yaml.clib@0.2.8"/>
+      <dependency ref="ruamel.yaml.jinja2@0.2.7"/>
     </dependency>
     <dependency ref="ruamel.yaml.clib@0.2.8"/>
     <dependency ref="ruamel.yaml.jinja2@0.2.7">
-      <dependency ref="ruamel.yaml@0.18.5"/>
+      <dependency ref="ruamel-yaml@0.18.5"/>
+      <dependency ref="ruamel.yaml@0.18.5#1"/>
     </dependency>
-    <dependency ref="ruamel.yaml@0.18.5">
+    <dependency ref="ruamel.yaml@0.18.5#1">
       <dependency ref="ruamel.yaml.clib@0.2.8"/>
       <dependency ref="ruamel.yaml.jinja2@0.2.7"/>
     </dependency>

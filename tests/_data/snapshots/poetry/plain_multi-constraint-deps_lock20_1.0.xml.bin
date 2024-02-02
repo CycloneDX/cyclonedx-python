@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.0" version="1">
+  <components>
+    <component type="library">
+      <name>pathlib2</name>
+      <version>2.3.5</version>
+      <description>Object-oriented filesystem paths</description>
+      <purl>pkg:pypi/pathlib2@2.3.5</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>pathlib2</name>
+      <version>2.3.5</version>
+      <description>Object-oriented filesystem paths</description>
+      <purl>pkg:pypi/pathlib2@2.3.5?vcs_url=git%2Bhttps://github.com/jazzband/pathlib2.git%405a6a88db3cc1d08dbc86fbe15edfb69fb5f5a3d6</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>pathlib2</name>
+      <version>2.3.6</version>
+      <description>Object-oriented filesystem paths</description>
+      <purl>pkg:pypi/pathlib2@2.3.6</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>pathlib2</name>
+      <version>2.3.7.post1</version>
+      <description>Object-oriented filesystem paths</description>
+      <purl>pkg:pypi/pathlib2@2.3.7.post1</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>scandir</name>
+      <version>1.10.0</version>
+      <description>scandir, a better directory iterator and faster os.walk()</description>
+      <purl>pkg:pypi/scandir@1.10.0</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>six</name>
+      <version>1.11.0</version>
+      <description>Python 2 and 3 compatibility utilities</description>
+      <purl>pkg:pypi/six@1.11.0</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>six</name>
+      <version>1.16.0</version>
+      <description>Python 2 and 3 compatibility utilities</description>
+      <purl>pkg:pypi/six@1.16.0</purl>
+      <modified>false</modified>
+    </component>
+  </components>
+</bom>
