@@ -181,10 +181,12 @@ class PipenvBB(BomBuilder):
                     name=PropertyName.PipenvCategory.value,
                     value=group_name
                 ))
-                component.properties.update(Property(
-                    name=PropertyName.PackageExtra.value,
-                    value=normalize_packagename(package_extra)
-                ) for package_extra in package_data.get('extras', ()))
+                component.properties.update(
+                    Property(
+                        name=PropertyName.PackageExtra.value,
+                        value=normalize_packagename(package_extra)
+                    ) for package_extra in package_data.get('extras', ())
+                )
 
         return bom
 

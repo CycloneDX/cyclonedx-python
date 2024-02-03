@@ -232,10 +232,12 @@ class PoetryBB(BomBuilder):
 
         bom.metadata.component = root_c = poetry2component(po_cfg, type=mc_type)
         root_c.bom_ref.value = root_c.name
-        root_c.properties.update(Property(
-            name=PropertyName.PackageExtra.value,
-            value=extra
-        ) for extra in use_extras)
+        root_c.properties.update(
+            Property(
+                name=PropertyName.PackageExtra.value,
+                value=extra
+            ) for extra in use_extras
+        )
         self._logger.debug('root-component: %r', root_c)
         root_d = Dependency(root_c.bom_ref)
         bom.dependencies.add(root_d)
@@ -287,11 +289,6 @@ class PoetryBB(BomBuilder):
         return bom
 
     def __add_dep(self, bom: 'Bom', lock_entry: _LockEntry, use_extras: Iterable[str], lock_data: 'T_LockData') -> None:
-        use_extras = frozenset(map(normalize_packagename, use_extras))
-        lock_entry.component.properties.update(Property(
-            name=PropertyName.PackageExtra.value,
-            value=extra
-        ) for extra in use_extras)
         if lock_entry.added2bom:
             self._logger.debug('existing component: %r', lock_entry.component)
             lock_entry_dep = None
@@ -317,6 +314,13 @@ class PoetryBB(BomBuilder):
                     lock_entry_dep.dependencies.add(Dependency(dep_lock_entry.component.bom_ref))
                     self.__add_dep(bom, dep_lock_entry, dep_spec.get('extras', ()), lock_data)
         if use_extras:
+            use_extras = frozenset(map(normalize_packagename, use_extras))
+            lock_entry.component.properties.update(
+                Property(
+                    name=PropertyName.PackageExtra.value,
+                    value=extra
+                ) for extra in use_extras
+            )
             lock_entry_dep = lock_entry_dep \
                 or next(filter(lambda d: d.ref is lock_entry.component.bom_ref, bom.dependencies))
             for req in map(

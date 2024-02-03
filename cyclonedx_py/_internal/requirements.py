@@ -217,9 +217,10 @@ class RequirementsBB(BomBuilder):
             type=ComponentType.LIBRARY,
             name=name or 'unknown',
             version=version,
-            purl=PackageURL(type='pypi', name=req.name, version=version,
-                            qualifiers=purl_qualifiers
-                            ) if not is_local and name else None,
+            purl=PackageURL(
+                type='pypi', name=req.name, version=version,
+                qualifiers=purl_qualifiers
+            ) if not is_local and name else None,
             external_references=external_references,
             properties=(Property(
                 name=PropertyName.PackageExtra.value,
