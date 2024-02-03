@@ -202,7 +202,7 @@ class EnvironmentBB(BomBuilder):
                 req_component.properties.update(
                     Property(
                         name=PropertyName.PackageExtra.value,
-                        value=extra
+                        value=normalize_packagename(extra)
                     ) for extra in req.extras
                 )
             bom.register_dependency(component, component_deps)

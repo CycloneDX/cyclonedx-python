@@ -4,7 +4,7 @@
     <component type="library">
       <name>cyclonedx-python-lib</name>
       <version>5.1.1</version>
-      <description>requirements line 3: cyclonedx-python-lib[json-validation,xml-validation] == 5.1.1</description>
+      <description>requirements line 4: cyclonedx-python-lib[JSON-validation,xml-Validation] == 5.1.1</description>
       <purl>pkg:pypi/cyclonedx-python-lib@5.1.1</purl>
       <modified>false</modified>
     </component>

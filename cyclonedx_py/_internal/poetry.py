@@ -21,7 +21,7 @@ from dataclasses import dataclass
 from itertools import chain
 from os.path import join
 from textwrap import dedent
-from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, List, Set, Tuple
+from typing import TYPE_CHECKING, Any, Dict, FrozenSet, Generator, Iterable, List, Tuple
 
 from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
@@ -44,19 +44,17 @@ if TYPE_CHECKING:  # pragma: no cover
     from cyclonedx.model.bom import Bom
     from cyclonedx.model.component import ComponentType
 
-    NameDict = Dict[str, Any]
+    T_NameDict = Dict[str, Any]
+    T_LockData = Dict[str, List['_LockEntry']]
 
 
 @dataclass
 class _LockEntry:
     name: str
     component: Component
-    dependencies: Dict[str, 'NameDict']  # keys MUST go through `normalize_packagename()`
+    dependencies: Dict[str, 'T_NameDict']  # keys MUST go through `normalize_packagename()`
     extras: Dict[str, List[str]]  # keys MUST go through `normalize_packagename()`
     added2bom: bool
-
-
-_LockData = Dict[str, List[_LockEntry]]
 
 
 class GroupsNotFoundError(ValueError):
@@ -161,15 +159,18 @@ class PoetryBB(BomBuilder):
             po_cfg_group = po_cfg.setdefault('group', {})
             po_cfg_group.setdefault('main', {'dependencies': po_cfg.get('dependencies', {})})
             po_cfg_group.setdefault('dev', {'dependencies': po_cfg.get('dev-dependencies', {})})
-            po_cfg_extras = po_cfg.setdefault('extras', {})
+            po_cfg_extras = po_cfg['extras'] = {
+                normalize_packagename(en): es
+                for en, es in po_cfg.get('extras', {}).items()
+            }
 
             # the group-args shall mimic the ones from poetry, which uses comma-separated lists and multi-use
             # values be like: ['foo', 'bar,bazz'] -> ['foo', 'bar', 'bazz']
-            groups_only_s = set(filter(None, ','.join(groups_only).split(',')))
-            groups_with_s = set(filter(None, ','.join(groups_with).split(',')))
-            groups_without_s = set(filter(None, ','.join(groups_without).split(',')))
+            groups_only_s = frozenset(filter(None, ','.join(groups_only).split(',')))
+            groups_with_s = frozenset(filter(None, ','.join(groups_with).split(',')))
+            groups_without_s = frozenset(filter(None, ','.join(groups_without).split(',')))
             del groups_only, groups_with, groups_without
-            groups_not_found = set(
+            groups_not_found = frozenset(
                 (gn, srcn) for gns, srcn in [
                     (groups_only_s, 'only'),
                     (groups_with_s, 'with'),
@@ -182,27 +183,30 @@ class PoetryBB(BomBuilder):
                 raise ValueError('some Poetry groups are unknown') from groups_error
             del groups_not_found
 
-            # values be like: ['foo', 'bar,bazz'] -> ['foo', 'bar', 'bazz']
-            extras_s = set(filter(None, ','.join(extras).split(',')))
+            if all_extras:
+                extras_s = frozenset(po_cfg_extras)
+            else:
+                extras_s = frozenset(map(normalize_packagename,
+                                         # values be like: ['foo', 'bar,bazz'] -> ['foo', 'bar', 'bazz']
+                                         filter(None, ','.join(extras).split(','))))
+                extras_not_found = extras_s - po_cfg_extras.keys()
+                if len(extras_not_found) > 0:
+                    extras_error = ExtrasNotFoundError(extras_not_found)
+                    self._logger.error(extras_error)
+                    raise ValueError('some package extras are unknown') from extras_error
+                del extras_not_found
             del extras
-            extras_defined = set(po_cfg_extras)
-            extras_not_found = extras_s - extras_defined
-            if len(extras_not_found) > 0:
-                extras_error = ExtrasNotFoundError(extras_not_found)
-                self._logger.error(extras_error)
-                raise ValueError('some package extras are unknown') from extras_error
-            del extras_not_found
 
             # the group-args shall mimic the ones from Poetry.
             # Poetry handles this pseudo-exclusive-group of args programmatically
             if no_dev:
-                groups = {'main', }
+                groups = frozenset({'main', })
             elif len(groups_only_s) > 0:
                 groups = groups_only_s
             else:
                 # When used together, `--without` takes precedence over `--with`.
                 # see https://python-poetry.org/docs/managing-dependencies/#installing-group-dependencies
-                groups = set(
+                groups = frozenset(
                     gn for gn, gc in po_cfg['group'].items()
                     # all non-optionals and the `with`-whitelisted optionals
                     if not gc.get('optional') or gn in groups_with_s
@@ -212,12 +216,12 @@ class PoetryBB(BomBuilder):
             return self._make_bom(
                 project, toml_loads(lock.read()),
                 groups,
-                extras_defined if all_extras else extras_s,
+                extras_s,
                 mc_type,
             )
 
-    def _make_bom(self, project: 'NameDict', locker: 'NameDict',
-                  use_groups: Set[str], use_extras: Set[str],
+    def _make_bom(self, project: 'T_NameDict', locker: 'T_NameDict',
+                  use_groups: FrozenSet[str], use_extras: FrozenSet[str],
                   mc_type: 'ComponentType') -> 'Bom':
         self._logger.debug('use_groups: %r', use_groups)
         self._logger.debug('use_extras: %r', use_extras)
@@ -228,15 +232,17 @@ class PoetryBB(BomBuilder):
 
         bom.metadata.component = root_c = poetry2component(po_cfg, type=mc_type)
         root_c.bom_ref.value = root_c.name
-        root_c.properties.update(Property(
-            name=PropertyName.PackageExtra.value,
-            value=extra
-        ) for extra in use_extras)
+        root_c.properties.update(
+            Property(
+                name=PropertyName.PackageExtra.value,
+                value=extra
+            ) for extra in use_extras
+        )
         self._logger.debug('root-component: %r', root_c)
         root_d = Dependency(root_c.bom_ref)
         bom.dependencies.add(root_d)
 
-        lock_data: '_LockData' = {}
+        lock_data: 'T_LockData' = {}
         for lock_entry in self._parse_lock(locker):
             _ld = lock_data.setdefault(lock_entry.name, [])
             _ldl = len(_ld)
@@ -256,8 +262,8 @@ class PoetryBB(BomBuilder):
         )]
         del root_c_nname
 
-        use_extras_dep_names = set(map(normalize_packagename,
-                                       chain.from_iterable(po_cfg['extras'][e] for e in use_extras)))
+        use_extras_dep_names = frozenset(map(normalize_packagename,
+                                             chain.from_iterable(po_cfg['extras'][e] for e in use_extras)))
         for group_name in use_groups:
             for dep_name, dep_spec in po_cfg['group'][group_name].get('dependencies', {}).items():
                 dep_name = normalize_packagename(dep_name)
@@ -282,12 +288,7 @@ class PoetryBB(BomBuilder):
 
         return bom
 
-    def __add_dep(self, bom: 'Bom', lock_entry: _LockEntry, use_extras: Iterable[str], lock_data: '_LockData') -> None:
-        use_extras = set(map(normalize_packagename, use_extras))
-        lock_entry.component.properties.update(Property(
-            name=PropertyName.PackageExtra.value,
-            value=extra
-        ) for extra in use_extras)
+    def __add_dep(self, bom: 'Bom', lock_entry: _LockEntry, use_extras: Iterable[str], lock_data: 'T_LockData') -> None:
         if lock_entry.added2bom:
             self._logger.debug('existing component: %r', lock_entry.component)
             lock_entry_dep = None
@@ -313,6 +314,13 @@ class PoetryBB(BomBuilder):
                     lock_entry_dep.dependencies.add(Dependency(dep_lock_entry.component.bom_ref))
                     self.__add_dep(bom, dep_lock_entry, dep_spec.get('extras', ()), lock_data)
         if use_extras:
+            use_extras = frozenset(map(normalize_packagename, use_extras))
+            lock_entry.component.properties.update(
+                Property(
+                    name=PropertyName.PackageExtra.value,
+                    value=extra
+                ) for extra in use_extras
+            )
             lock_entry_dep = lock_entry_dep \
                 or next(filter(lambda d: d.ref is lock_entry.component.bom_ref, bom.dependencies))
             for req in map(
@@ -329,14 +337,14 @@ class PoetryBB(BomBuilder):
                     self.__add_dep(bom, dep_lock_entry, req.extras, lock_data)
 
     @staticmethod
-    def _get_lockfile_version(locker: 'NameDict') -> Tuple[int, ...]:
+    def _get_lockfile_version(locker: 'T_NameDict') -> Tuple[int, ...]:
         return tuple(map(int, locker['metadata'].get('lock-version', '1.0').split('.')))
 
-    def _parse_lock(self, locker: 'NameDict') -> Generator[_LockEntry, None, None]:
+    def _parse_lock(self, locker: 'T_NameDict') -> Generator[_LockEntry, None, None]:
         lock_version = self._get_lockfile_version(locker)
         self._logger.debug('lock_version: %r', lock_version)
         metavar_files = locker.get('metadata', {}).get('files', {}) if lock_version < (2,) else {}
-        package: 'NameDict'
+        package: 'T_NameDict'
         for package in locker.get('package', []):
             package.setdefault('files', metavar_files.get(package['name'], []))
             yield _LockEntry(
@@ -356,7 +364,7 @@ class PoetryBB(BomBuilder):
     __PACKAGE_SRC_VCS = ['git']  # not supported yet: hg, svn
     __PACKAGE_SRC_LOCAL = ['file', 'directory']
 
-    def __make_component4lock(self, package: 'NameDict') -> 'Component':
+    def __make_component4lock(self, package: 'T_NameDict') -> 'Component':
         source = package.get('source', {})
         is_vcs = source.get('type') in self.__PACKAGE_SRC_VCS
         is_local = source.get('type') in self.__PACKAGE_SRC_LOCAL
@@ -389,7 +397,7 @@ class PoetryBB(BomBuilder):
                             ) if not is_local else None
         )
 
-    def __purl_qualifiers4lock(self, package: 'NameDict') -> 'NameDict':
+    def __purl_qualifiers4lock(self, package: 'T_NameDict') -> 'T_NameDict':
         # see https://github.com/package-url/purl-spec/blob/master/PURL-SPECIFICATION.rst
         qs = {}
 
@@ -414,7 +422,7 @@ class PoetryBB(BomBuilder):
 
         return qs
 
-    def __extrefs4lock(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
+    def __extrefs4lock(self, package: 'T_NameDict') -> Generator['ExternalReference', None, None]:
         source_type = package.get('source', {}).get('type', 'legacy')
         if 'legacy' == source_type:
             yield from self.__extrefs4lock_legacy(package)
@@ -427,7 +435,7 @@ class PoetryBB(BomBuilder):
         elif source_type in self.__PACKAGE_SRC_VCS:
             yield from self.__extrefs4lock_vcs(package)
 
-    def __extrefs4lock_legacy(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
+    def __extrefs4lock_legacy(self, package: 'T_NameDict') -> Generator['ExternalReference', None, None]:
         source_url = redact_auth_from_url(package.get('source', {}).get('url', 'https://pypi.org/simple'))
         for file in package['files']:
             try:
@@ -441,7 +449,7 @@ class PoetryBB(BomBuilder):
                 self._logger.debug('skipped dist-extRef for: %r | %r', package['name'], file, exc_info=error)
                 del error
 
-    def __extrefs4lock_url(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
+    def __extrefs4lock_url(self, package: 'T_NameDict') -> Generator['ExternalReference', None, None]:
         try:
             yield ExternalReference(
                 comment='from url',
@@ -452,7 +460,7 @@ class PoetryBB(BomBuilder):
         except (InvalidUriException, UnknownHashTypeException) as error:  # pragma: nocover
             self._logger.debug('skipped dist-extRef for: %r', package['name'], exc_info=error)
 
-    def __extrefs4lock_file(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
+    def __extrefs4lock_file(self, package: 'T_NameDict') -> Generator['ExternalReference', None, None]:
         try:
             yield ExternalReference(
                 comment='from file',
@@ -463,7 +471,7 @@ class PoetryBB(BomBuilder):
         except (InvalidUriException, UnknownHashTypeException) as error:  # pragma: nocover
             self._logger.debug('skipped dist-extRef for: %r', package['name'], exc_info=error)
 
-    def __extrefs4lock_directory(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
+    def __extrefs4lock_directory(self, package: 'T_NameDict') -> Generator['ExternalReference', None, None]:
         try:
             yield ExternalReference(
                 comment='from directory',
@@ -474,7 +482,7 @@ class PoetryBB(BomBuilder):
         except InvalidUriException as error:  # pragma: nocover
             self._logger.debug('skipped dist-extRef for: %r', package['name'], exc_info=error)
 
-    def __extrefs4lock_vcs(self, package: 'NameDict') -> Generator['ExternalReference', None, None]:
+    def __extrefs4lock_vcs(self, package: 'T_NameDict') -> Generator['ExternalReference', None, None]:
         source = package['source']
         vcs_ref = source.get('resolved_reference', source.get('reference', ''))
         try:

@@ -2,6 +2,6 @@
 sort_pipfile = true
 
 [packages]
-cyclonedx-python-lib = {version = "==5.1.1", extras = ["xml-validation", "json-validation"]}
+cyclonedx-python-lib = {version = "==5.1.1", extras = ["xml-Validation", "JSON-validation"]}
 
 [dev-packages]

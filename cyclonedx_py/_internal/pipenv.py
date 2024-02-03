@@ -21,7 +21,7 @@ from json import loads as json_loads
 from os import getenv
 from os.path import join
 from textwrap import dedent
-from typing import TYPE_CHECKING, Any, Dict, Generator, List, Optional, Set, Tuple
+from typing import TYPE_CHECKING, Any, Dict, FrozenSet, Generator, List, Optional, Set, Tuple
 
 from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
@@ -132,10 +132,10 @@ class PipenvBB(BomBuilder):
 
             return self._make_bom(rc,
                                   json_loads(lock.read()),
-                                  lock_groups)
+                                  frozenset(lock_groups))
 
     def _make_bom(self, root_c: Optional['Component'],
-                  locker: 'NameDict', use_groups: Set[str]) -> 'Bom':
+                  locker: 'NameDict', use_groups: FrozenSet[str]) -> 'Bom':
         self._logger.debug('use_groups: %r', use_groups)
 
         bom = make_bom()
@@ -181,10 +181,12 @@ class PipenvBB(BomBuilder):
                     name=PropertyName.PipenvCategory.value,
                     value=group_name
                 ))
-                component.properties.update(Property(
-                    name=PropertyName.PackageExtra.value,
-                    value=package_extra
-                ) for package_extra in package_data.get('extras', ()))
+                component.properties.update(
+                    Property(
+                        name=PropertyName.PackageExtra.value,
+                        value=normalize_packagename(package_extra)
+                    ) for package_extra in package_data.get('extras', ())
+                )
 
         return bom
 

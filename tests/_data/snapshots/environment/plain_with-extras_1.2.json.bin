@@ -990,6 +990,9 @@
       "ref": "rfc3987==1.3.8"
     },
     {
+      "dependsOn": [
+        "cyclonedx-python-lib==6.0.0"
+      ],
       "ref": "root-component"
     },
     {

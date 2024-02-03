@@ -111,9 +111,10 @@ class TestCliPoetry(TestCase, SnapshotMixin):
             out = out.getvalue()
         self.assertNotEqual(0, res, err)
         self.assertIn('Extra(s) ['
-                      'MNE-extra-A,'
-                      'MNE-extra-B,'
-                      'MNE-extra-C'
+                      # extra names were normalized!
+                      'mne-extra-a,'
+                      'mne-extra-b,'
+                      'mne-extra-c'
                       '] not specified', err)
 
     @named_data(*test_data)
@@ -206,7 +207,7 @@ class TestCliPoetry(TestCase, SnapshotMixin):
                 res = run_cli(argv=[
                     'poetry',
                     '-vvv',
-                    '-E', 'my-extra',
+                    '-E', 'my_Extra',  # expected to be normalized
                     '--sv', sv.to_version(),
                     '--of', of.name,
                     '--output-reproducible',
@@ -216,6 +217,26 @@ class TestCliPoetry(TestCase, SnapshotMixin):
             out = out.getvalue()
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'some-extras', projectdir, sv, of)
+
+    @named_data(*test_data_file_filter('with-extras'))
+    def test_with_all_extras_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
+        with StringIO() as err, StringIO() as out:
+            err.name = '<fakeerr>'
+            out.name = '<fakeout>'
+            with redirect_stderr(err), redirect_stdout(out):
+                res = run_cli(argv=[
+                    'poetry',
+                    '-vvv',
+                    '--all-extras',
+                    '--sv', sv.to_version(),
+                    '--of', of.name,
+                    '--output-reproducible',
+                    '--outfile=-',
+                    projectdir])
+            err = err.getvalue()
+            out = out.getvalue()
+        self.assertEqual(0, res, err)
+        self.assertEqualSnapshot(out, 'all-extras', projectdir, sv, of)
 
     def assertEqualSnapshot(self, actual: str,  # noqa:N802
                             purpose: str,

@@ -7,7 +7,7 @@ authors = ["Your Name <you@example.com>"]
 
 [tool.poetry.dependencies]
 python  = "^3.8"
-cyclonedx-python-lib = {version = "5.1.1", extras = ["json-validation", "xml-validation"], optional = true}
+cyclonedx-python-lib = {version = "5.1.1", extras = ["json-validation", "xml-Validation"], optional = true}
 
 [tool.poetry.extras]
 my-extra = ["cyclonedx-python-lib"]

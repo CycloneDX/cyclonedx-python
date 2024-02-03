@@ -21,7 +21,7 @@ from functools import reduce
 from itertools import chain
 from os import unlink
 from textwrap import dedent
-from typing import TYPE_CHECKING, Any, Generator, Iterable, Optional, Set
+from typing import TYPE_CHECKING, Any, FrozenSet, Generator, Iterable, Optional
 
 from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
@@ -33,6 +33,7 @@ from . import BomBuilder, PropertyName
 from .cli_common import add_argument_mc_type, add_argument_pyproject
 from .utils.cdx import make_bom
 from .utils.io import io2file
+from .utils.packaging import normalize_packagename
 from .utils.pyproject import pyproject_file2component
 from .utils.secret import redact_auth_from_url
 
@@ -141,7 +142,7 @@ class RequirementsBB(BomBuilder):
         index_url = redact_auth_from_url(reduce(
             lambda c, i: i.options.get('index_url') or c, rf.options, self._index_url
         ).rstrip('/'))
-        extra_index_urls = set(map(
+        extra_index_urls = frozenset(map(
             lambda u: redact_auth_from_url(u.rstrip('/')),
             chain(self._extra_index_urls, chain.from_iterable(
                 i.options['extra_index_urls'] for i in rf.options if 'extra_index_urls' in i.options
@@ -167,7 +168,7 @@ class RequirementsBB(BomBuilder):
                 del error
 
     def _make_component(self, req: 'InstallRequirement',
-                        index_url: str, extra_index_urls: Set[str]) -> 'Component':
+                        index_url: str, extra_index_urls: FrozenSet[str]) -> 'Component':
         name = req.name
         version = req.get_pinned_version or None
         hashes = list(self.__hashes4req(req))
@@ -216,12 +217,13 @@ class RequirementsBB(BomBuilder):
             type=ComponentType.LIBRARY,
             name=name or 'unknown',
             version=version,
-            purl=PackageURL(type='pypi', name=req.name, version=version,
-                            qualifiers=purl_qualifiers
-                            ) if not is_local and name else None,
+            purl=PackageURL(
+                type='pypi', name=req.name, version=version,
+                qualifiers=purl_qualifiers
+            ) if not is_local and name else None,
             external_references=external_references,
             properties=(Property(
                 name=PropertyName.PackageExtra.value,
-                value=extra
+                value=normalize_packagename(extra)
             ) for extra in req.extras)
         )
