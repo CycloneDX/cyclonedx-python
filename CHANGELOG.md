@@ -2,6 +2,25 @@
 
 
 
+## v4.1.1 (2024-02-03)
+
+### Documentation
+
+* docs: improve example for programmatic call of CLI (#670)
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`2ac3f21`](https://github.com/CycloneDX/cyclonedx-python/commit/2ac3f218840b256bc84f25fa962febf484800860))
+
+### Fix
+
+* fix: normalize package extras (#671)
+
+ALL names of package extras are normalized,  according to spec &lt;https://packaging.python.org/en/latest/specifications/name-normalization/#name-normalization&gt;
+
+---------
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`4d550ad`](https://github.com/CycloneDX/cyclonedx-python/commit/4d550ad2467bcfbf3a8705188fd4f15e0dee194e))
+
+
 ## v4.1.0 (2024-02-02)
 
 ### Feature
