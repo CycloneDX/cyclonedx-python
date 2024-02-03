@@ -218,6 +218,26 @@ class TestCliPoetry(TestCase, SnapshotMixin):
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'some-extras', projectdir, sv, of)
 
+    @named_data(*test_data_file_filter('with-extras'))
+    def test_with_all_extras_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
+        with StringIO() as err, StringIO() as out:
+            err.name = '<fakeerr>'
+            out.name = '<fakeout>'
+            with redirect_stderr(err), redirect_stdout(out):
+                res = run_cli(argv=[
+                    'poetry',
+                    '-vvv',
+                    '--all-extras',
+                    '--sv', sv.to_version(),
+                    '--of', of.name,
+                    '--output-reproducible',
+                    '--outfile=-',
+                    projectdir])
+            err = err.getvalue()
+            out = out.getvalue()
+        self.assertEqual(0, res, err)
+        self.assertEqualSnapshot(out, 'all-extras', projectdir, sv, of)
+
     def assertEqualSnapshot(self, actual: str,  # noqa:N802
                             purpose: str,
                             projectdir: str,

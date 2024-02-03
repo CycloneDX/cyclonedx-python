@@ -1,0 +1,191 @@
+{
+  "components": [
+    {
+      "bom-ref": "boolean.py@4.0",
+      "description": "Define boolean algebras, create and parse boolean expressions and create custom boolean DSL.",
+      "name": "boolean.py",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        }
+      ],
+      "purl": "pkg:pypi/boolean.py@4.0",
+      "scope": "optional",
+      "type": "library",
+      "version": "4.0"
+    },
+    {
+      "bom-ref": "cyclonedx-python-lib@5.1.1",
+      "description": "Python library for CycloneDX",
+      "name": "cyclonedx-python-lib",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        },
+        {
+          "name": "cdx:python:package:required-extra",
+          "value": "json-validation"
+        },
+        {
+          "name": "cdx:python:package:required-extra",
+          "value": "xml-validation"
+        }
+      ],
+      "purl": "pkg:pypi/cyclonedx-python-lib@5.1.1",
+      "scope": "optional",
+      "type": "library",
+      "version": "5.1.1"
+    },
+    {
+      "bom-ref": "defusedxml@0.7.1",
+      "description": "XML bomb protection for Python stdlib modules",
+      "name": "defusedxml",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        }
+      ],
+      "purl": "pkg:pypi/defusedxml@0.7.1",
+      "scope": "optional",
+      "type": "library",
+      "version": "0.7.1"
+    },
+    {
+      "bom-ref": "license-expression@30.1.1",
+      "description": "license-expression is a comprehensive utility library to parse, compare, simplify and normalize license expressions (such as SPDX license expressions) using boolean logic.",
+      "name": "license-expression",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        }
+      ],
+      "purl": "pkg:pypi/license-expression@30.1.1",
+      "scope": "optional",
+      "type": "library",
+      "version": "30.1.1"
+    },
+    {
+      "bom-ref": "packageurl-python@0.11.2",
+      "description": "A purl aka. Package URL parser and builder",
+      "name": "packageurl-python",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        }
+      ],
+      "purl": "pkg:pypi/packageurl-python@0.11.2",
+      "scope": "optional",
+      "type": "library",
+      "version": "0.11.2"
+    },
+    {
+      "bom-ref": "py-serializable@0.15.0",
+      "description": "Library for serializing and deserializing Python Objects to and from JSON and XML.",
+      "name": "py-serializable",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        }
+      ],
+      "purl": "pkg:pypi/py-serializable@0.15.0",
+      "scope": "optional",
+      "type": "library",
+      "version": "0.15.0"
+    },
+    {
+      "bom-ref": "sortedcontainers@2.4.0",
+      "description": "Sorted Containers -- Sorted List, Sorted Dict, Sorted Set",
+      "name": "sortedcontainers",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        }
+      ],
+      "purl": "pkg:pypi/sortedcontainers@2.4.0",
+      "scope": "optional",
+      "type": "library",
+      "version": "2.4.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "boolean.py@4.0"
+    },
+    {
+      "dependsOn": [
+        "license-expression@30.1.1",
+        "packageurl-python@0.11.2",
+        "py-serializable@0.15.0",
+        "sortedcontainers@2.4.0"
+      ],
+      "ref": "cyclonedx-python-lib@5.1.1"
+    },
+    {
+      "ref": "defusedxml@0.7.1"
+    },
+    {
+      "dependsOn": [
+        "boolean.py@4.0"
+      ],
+      "ref": "license-expression@30.1.1"
+    },
+    {
+      "ref": "packageurl-python@0.11.2"
+    },
+    {
+      "dependsOn": [
+        "defusedxml@0.7.1"
+      ],
+      "ref": "py-serializable@0.15.0"
+    },
+    {
+      "ref": "sortedcontainers@2.4.0"
+    },
+    {
+      "dependsOn": [
+        "cyclonedx-python-lib@5.1.1"
+      ],
+      "ref": "with-extras"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "with-extras",
+      "description": "depenndencies with extras",
+      "name": "with-extras",
+      "properties": [
+        {
+          "name": "cdx:python:package:required-extra",
+          "value": "my-extra"
+        }
+      ],
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": [
+      {
+        "externalReferences": [   ],
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5"
+}
