@@ -84,7 +84,7 @@ coverage = "7.4.1"
 ddt = "1.7.1"
 flake8 = { version = "7.0.0", python = ">=3.8.1" }
 flake8-annotations = { version = "3.0.1", python = ">=3.8.1" }
-flake8-bugbear = { version = "24.1.17", python = ">=3.8.1" }
+flake8-bugbear = { version = "24.2.6", python = ">=3.8.1" }
 flake8-isort = "6.1.1"
 flake8-quotes = "3.3.2"
 flake8-use-fstring = "1.4"
