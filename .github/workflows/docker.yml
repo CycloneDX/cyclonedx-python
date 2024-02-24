@@ -42,7 +42,7 @@ jobs:
           architecture: 'x64'
       - name: Setup poetry ${{ env.POETRY_VERSION }}
         # see https://github.com/marketplace/actions/setup-poetry
-        uses: Gr1N/setup-poetry@v8
+        uses: Gr1N/setup-poetry@v9
         with:
           poetry-version: ${{ env.POETRY_VERSION }}
       - name: bump version
