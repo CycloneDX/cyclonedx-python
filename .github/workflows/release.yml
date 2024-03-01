@@ -42,7 +42,7 @@ env:
   DIST_DIR: dist
   DIST_ARTIFACT: python-dist
   PYTHON_VERSION_DEFAULT: "3.11"
-  POETRY_VERSION: "1.7.1"
+  POETRY_VERSION: "1.8.1"
 
 jobs:
   quicktest:
