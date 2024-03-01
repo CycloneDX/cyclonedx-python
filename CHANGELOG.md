@@ -2,6 +2,78 @@
 
 
 
+## v4.1.2 (2024-03-01)
+
+### Build
+
+* build: use poetry v1.8.1 (#682)
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`dba63b8`](https://github.com/CycloneDX/cyclonedx-python/commit/dba63b8509336757d17d1cd21cdbe72517ecfd67))
+
+### Chore
+
+* chore(deps-dev): Update coverage requirement from 7.4.1 to 7.4.3 (#680)
+
+Updates the requirements on [coverage](https://github.com/nedbat/coveragepy) to permit the latest version.
+- [Release notes](https://github.com/nedbat/coveragepy/releases)
+- [Changelog](https://github.com/nedbat/coveragepy/blob/master/CHANGES.rst)
+- [Commits](https://github.com/nedbat/coveragepy/compare/7.4.1...7.4.3)
+
+---
+updated-dependencies:
+- dependency-name: coverage
+  dependency-type: direct:development
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
+Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`dadc9b5`](https://github.com/CycloneDX/cyclonedx-python/commit/dadc9b50fb2738f76cc5a5a32ace57491789a52c))
+
+* chore(deps): Bump Gr1N/setup-poetry from 8 to 9 (#681)
+
+Bumps [Gr1N/setup-poetry](https://github.com/gr1n/setup-poetry) from 8 to 9.
+- [Release notes](https://github.com/gr1n/setup-poetry/releases)
+- [Commits](https://github.com/gr1n/setup-poetry/compare/v8...v9)
+
+---
+updated-dependencies:
+- dependency-name: Gr1N/setup-poetry
+  dependency-type: direct:production
+  update-type: version-update:semver-major
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
+Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`5ee8bb2`](https://github.com/CycloneDX/cyclonedx-python/commit/5ee8bb2e32ed0d6410b456ed3660690077142e2e))
+
+* chore(deps-dev): Update flake8-quotes requirement from 3.3.2 to 3.4.0 (#679)
+
+Updates the requirements on [flake8-quotes](https://github.com/zheller/flake8-quotes) to permit the latest version.
+- [Commits](https://github.com/zheller/flake8-quotes/compare/3.3.2...3.4.0)
+
+---
+updated-dependencies:
+- dependency-name: flake8-quotes
+  dependency-type: direct:development
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
+Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`4da9c9e`](https://github.com/CycloneDX/cyclonedx-python/commit/4da9c9edb604cad57757c50f277f07289fef3880))
+
+* chore(deps-dev): Update flake8-bugbear requirement (#677)
+
+Updates the requirements on [flake8-bugbear](https://github.com/PyCQA/flake8-bugbear) to permit the latest version.
+- [Release notes](https://github.com/PyCQA/flake8-bugbear/releases)
+- [Commits](https://github.com/PyCQA/flake8-bugbear/compare/24.1.17...24.2.6)
+
+---
+updated-dependencies:
+- dependency-name: flake8-bugbear
+  dependency-type: direct:development
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
+Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`14a8ec0`](https://github.com/CycloneDX/cyclonedx-python/commit/14a8ec025e6aca0c2d8b6c0875a23f708b152923))
+
+
 ## v4.1.1 (2024-02-03)
 
 ### Documentation
