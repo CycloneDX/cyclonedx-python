@@ -57,11 +57,13 @@ class EnvironmentBB(BomBuilder):
         if os_name == 'nt':
             p.epilog = dedent("""\
                Example Usage:
-                 • Build an SBOM from current python environment:
+                 • Build an SBOM from python environment:
                        > %(prog)s
                  • Build an SBOM from a Python (virtual) environment:
                        > %(prog)s "...\\some\\path\\bin\\python.exe"
                        > %(prog)s "...\\some\\path\\.venv"
+                       > %(prog)s "$env:VIRTUAL_ENV"
+                       > %(prog)s %VIRTUAL_ENV%
                  • Build an SBOM from specific Python environment:
                        > where.exe python3.9.exe
                        > %(prog)s "%path-to-specific-python%"
@@ -82,11 +84,12 @@ class EnvironmentBB(BomBuilder):
         else:  # if os_name == 'posix':
             p.epilog = dedent("""\
                Example Usage:
-                 • Build an SBOM from current python environment:
+                 • Build an SBOM from python environment:
                        $ %(prog)s
                  • Build an SBOM from a Python (virtual) environment:
                        $ %(prog)s '.../some/path/bin/python'
                        $ %(prog)s '.../some/path/.venv'
+                       $ %(prog)s "$VIRTUAL_ENV"
                  • Build an SBOM from specific Python environment:
                        $ %(prog)s "$(which python3.9)"
                  • Build an SBOM from conda Python environment:
