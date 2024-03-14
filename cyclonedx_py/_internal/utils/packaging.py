@@ -43,7 +43,7 @@ def metadata2licenses(metadata: 'PackageMetadata') -> Generator['License', None,
         # see https://packaging.python.org/en/latest/specifications/core-metadata/#classifier-multiple-use
         classifiers: List[str] = metadata.get_all('Classifier')  # type:ignore[assignment]
         yield from classifiers2licenses(classifiers, lfac)
-    if len(mlicense := metadata['License'] if 'License' in metadata else '') > 0:
+    if 'License' in metadata and len(mlicense := metadata['License']) > 0:
         # see https://packaging.python.org/en/latest/specifications/core-metadata/#license
         license = lfac.make_from_string(mlicense)
         if isinstance(license, DisjunctiveLicense) and license.id is None:
