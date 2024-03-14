@@ -15,7 +15,6 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-
 """
 Functionality related to PEP 621.
 
@@ -23,12 +22,13 @@ See https://packaging.python.org/en/latest/specifications/declaring-project-meta
 See https://peps.python.org/pep-0621/
 """
 
+from base64 import b64encode
 from itertools import chain
 from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, Iterator
 
 from cyclonedx.exception.model import InvalidUriException
 from cyclonedx.factory.license import LicenseFactory
-from cyclonedx.model import AttachedText, ExternalReference, XsUri
+from cyclonedx.model import AttachedText, Encoding, ExternalReference, XsUri
 from cyclonedx.model.component import Component
 from cyclonedx.model.license import DisjunctiveLicense
 from packaging.requirements import Requirement
@@ -75,7 +75,8 @@ def project2licenses(project: Dict[str, Any], lfac: 'LicenseFactory') -> Generat
             if isinstance(license, DisjunctiveLicense) and license.id is None:
                 # per spec, `License` is either a SPDX ID/Expression, or a license text(not name!)
                 yield DisjunctiveLicense(name=f"declared license of '{project['name']}'",
-                                         text=AttachedText(content=plicense_text))
+                                         text=AttachedText(encoding=Encoding.BASE_64,
+                                                           content=b64encode(plicense_text.encode()).decode()))
             else:
                 yield license
 

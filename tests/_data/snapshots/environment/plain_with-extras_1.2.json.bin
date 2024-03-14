@@ -161,8 +161,9 @@
           "license": {
             "name": "declared license of 'defusedxml'",
             "text": {
-              "content": "PSFL",
-              "contentType": "text/plain"
+              "content": "UFNGTA==",
+              "contentType": "text/plain",
+              "encoding": "base64"
             }
           }
         }
@@ -187,8 +188,9 @@
           "license": {
             "name": "declared license of 'fqdn'",
             "text": {
-              "content": "MPL 2.0",
-              "contentType": "text/plain"
+              "content": "TVBMIDIuMA==",
+              "contentType": "text/plain",
+              "encoding": "base64"
             }
           }
         }
@@ -278,8 +280,9 @@
           "license": {
             "name": "declared license of 'isoduration'",
             "text": {
-              "content": "UNKNOWN",
-              "contentType": "text/plain"
+              "content": "VU5LTk9XTg==",
+              "contentType": "text/plain",
+              "encoding": "base64"
             }
           }
         }
@@ -304,8 +307,9 @@
           "license": {
             "name": "declared license of 'jsonpointer'",
             "text": {
-              "content": "Modified BSD License",
-              "contentType": "text/plain"
+              "content": "TW9kaWZpZWQgQlNEIExpY2Vuc2U=",
+              "contentType": "text/plain",
+              "encoding": "base64"
             }
           }
         }
@@ -564,8 +568,9 @@
           "license": {
             "name": "declared license of 'python-dateutil'",
             "text": {
-              "content": "Dual License",
-              "contentType": "text/plain"
+              "content": "RHVhbCBMaWNlbnNl",
+              "contentType": "text/plain",
+              "encoding": "base64"
             }
           }
         }
@@ -642,8 +647,9 @@
           "license": {
             "name": "declared license of 'rfc3339-validator'",
             "text": {
-              "content": "MIT license",
-              "contentType": "text/plain"
+              "content": "TUlUIGxpY2Vuc2U=",
+              "contentType": "text/plain",
+              "encoding": "base64"
             }
           }
         }
@@ -678,8 +684,9 @@
           "license": {
             "name": "declared license of 'rfc3987'",
             "text": {
-              "content": "GNU GPLv3+",
-              "contentType": "text/plain"
+              "content": "R05VIEdQTHYzKw==",
+              "contentType": "text/plain",
+              "encoding": "base64"
             }
           }
         }
@@ -773,8 +780,9 @@
           "license": {
             "name": "declared license of 'sortedcontainers'",
             "text": {
-              "content": "Apache 2.0",
-              "contentType": "text/plain"
+              "content": "QXBhY2hlIDIuMA==",
+              "contentType": "text/plain",
+              "encoding": "base64"
             }
           }
         }
@@ -819,8 +827,9 @@
           "license": {
             "name": "declared license of 'types-python-dateutil'",
             "text": {
-              "content": "Apache-2.0 license",
-              "contentType": "text/plain"
+              "content": "QXBhY2hlLTIuMCBsaWNlbnNl",
+              "contentType": "text/plain",
+              "encoding": "base64"
             }
           }
         }
@@ -850,8 +859,9 @@
           "license": {
             "name": "declared license of 'uri-template'",
             "text": {
-              "content": "MIT License",
-              "contentType": "text/plain"
+              "content": "TUlUIExpY2Vuc2U=",
+              "contentType": "text/plain",
+              "encoding": "base64"
             }
           }
         }

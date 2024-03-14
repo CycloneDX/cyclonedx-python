@@ -35,8 +35,9 @@
           "license": {
             "name": "declared license of 'ruamel.yaml'",
             "text": {
-              "content": "MIT license",
-              "contentType": "text/plain"
+              "content": "TUlUIGxpY2Vuc2U=",
+              "contentType": "text/plain",
+              "encoding": "base64"
             }
           }
         }
