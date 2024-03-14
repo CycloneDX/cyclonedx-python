@@ -32,6 +32,12 @@
       "externalReferences": [
         {
           "comment": "PackageSource: Archive",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "20e983935a800046222a02674ed37baf3e7a4ef7cd40e6033d9c0efaeb73206f"
+            }
+          ],
           "type": "distribution",
           "url": "file://.../tests/_data/infiles/_helpers/local_pckages/b/dist/package-b-23.42.tar.gz"
         }

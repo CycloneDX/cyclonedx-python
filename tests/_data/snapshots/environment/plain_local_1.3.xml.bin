@@ -53,6 +53,9 @@
         <reference type="distribution">
           <url>file://.../tests/_data/infiles/_helpers/local_pckages/b/dist/package-b-23.42.tar.gz</url>
           <comment>PackageSource: Archive</comment>
+          <hashes>
+            <hash alg="SHA-256">20e983935a800046222a02674ed37baf3e7a4ef7cd40e6033d9c0efaeb73206f</hash>
+          </hashes>
         </reference>
       </externalReferences>
     </component>
