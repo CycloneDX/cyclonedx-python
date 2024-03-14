@@ -66,7 +66,10 @@ def project2licenses(project: Dict[str, Any], lfac: 'LicenseFactory') -> Generat
             # > These keys are mutually exclusive, so a tool MUST raise an error if the metadata specifies both keys.
             raise ValueError('`license.file` and `license.text` are mutually exclusive,')
         if 'file' in plicense:
-            pass  # @TODO - https://github.com/CycloneDX/cyclonedx-python/issues/570
+            # per spec:
+            # > [...] a string value that is a relative file path [...].
+            # > Tools MUST assume the file’s encoding is UTF-8.
+            pass  # @TODO
         elif len(plicense_text := plicense.get('text', '')) > 0:
             license = lfac.make_from_string(plicense_text)
             if isinstance(license, DisjunctiveLicense) and license.id is None:
