@@ -61,7 +61,7 @@ def poetry2extrefs(poetry: Dict[str, Any]) -> Generator['ExternalReference', Non
             pass
 
 
-def poetry2component(poetry: Dict[str, Any], *, type: 'ComponentType') -> 'Component':
+def poetry2component(poetry: Dict[str, Any], *, ctype: 'ComponentType') -> 'Component':
     licenses: List['License'] = []
     lfac = LicenseFactory()
     if 'classifiers' in poetry:
@@ -72,7 +72,7 @@ def poetry2component(poetry: Dict[str, Any], *, type: 'ComponentType') -> 'Compo
         licenses.append(lfac.make_from_string(poetry['license']))
 
     return Component(
-        type=type,
+        type=ctype,
         name=poetry['name'],
         version=poetry.get('version'),
         description=poetry.get('description'),

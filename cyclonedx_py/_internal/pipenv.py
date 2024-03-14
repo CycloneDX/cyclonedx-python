@@ -127,7 +127,7 @@ class PipenvBB(BomBuilder):
             if pyproject_file is None:
                 rc = None
             else:
-                rc = pyproject_file2component(pyproject_file, type=mc_type)
+                rc = pyproject_file2component(pyproject_file, ctype=mc_type)
                 rc.bom_ref.value = 'root-component'
 
             return self._make_bom(rc,

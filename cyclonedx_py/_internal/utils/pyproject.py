@@ -14,12 +14,12 @@ if TYPE_CHECKING:  # pragma: no cover
 
 
 def pyproject2component(data: Dict[str, Any], *,
-                        type: 'ComponentType') -> 'Component':
+                        ctype: 'ComponentType', fpath: str) -> 'Component':
     tool = data.get('tool', {})
-    if 'poetry' in tool:
-        return poetry2component(tool['poetry'], type=type)
-    if 'project' in data:
-        return project2component(data['project'], type=type)
+    if poetry := tool.get('poetry'):
+        return poetry2component(poetry, ctype=ctype)
+    if project := data.get('project'):
+        return project2component(project, ctype=ctype, fpath=fpath)
     raise ValueError('Unable to build component from pyproject')
 
 
@@ -33,10 +33,10 @@ def pyproject_load(pyproject_file: str) -> Dict[str, Any]:
 
 
 def pyproject_file2component(pyproject_file: str, *,
-                             type: 'ComponentType') -> 'Component':
+                             ctype: 'ComponentType') -> 'Component':
     return pyproject2component(
         pyproject_load(pyproject_file),
-        type=type
+        ctype=ctype, fpath=pyproject_file
     )
 
 
