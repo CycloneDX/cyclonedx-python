@@ -59,7 +59,8 @@
           <id>MIT</id>
         </license>
         <license>
-          <name>MIT license</name>
+          <name>declared license of 'ruamel.yaml'</name>
+          <text content-type="text/plain">MIT license</text>
         </license>
       </licenses>
       <purl>pkg:pypi/ruamel.yaml@0.18.5</purl>

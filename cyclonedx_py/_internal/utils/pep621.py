@@ -28,8 +28,9 @@ from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, Iterator
 
 from cyclonedx.exception.model import InvalidUriException
 from cyclonedx.factory.license import LicenseFactory
-from cyclonedx.model import ExternalReference, XsUri
+from cyclonedx.model import AttachedText, ExternalReference, XsUri
 from cyclonedx.model.component import Component
+from cyclonedx.model.license import DisjunctiveLicense
 from packaging.requirements import Requirement
 
 from .cdx import licenses_fixup, url_label_to_ert
@@ -56,12 +57,24 @@ def project2licenses(project: Dict[str, Any], lfac: 'LicenseFactory') -> Generat
         # https://peps.python.org/pep-0621/#classifiers
         # https://packaging.python.org/en/latest/specifications/core-metadata/#classifier-multiple-use
         yield from classifiers2licenses(project['classifiers'], lfac)
-    license = project.get('license')
-    # https://packaging.python.org/en/latest/specifications/pyproject-toml/#license
-    # https://peps.python.org/pep-0621/#license
-    # https://packaging.python.org/en/latest/specifications/core-metadata/#license
-    if isinstance(license, dict) and 'text' in license:
-        yield lfac.make_from_string(license['text'])
+    if isinstance(plicense := project.get('license'), dict):
+        # https://packaging.python.org/en/latest/specifications/pyproject-toml/#license
+        # https://peps.python.org/pep-0621/#license
+        # https://packaging.python.org/en/latest/specifications/core-metadata/#license
+        if 'file' in plicense and 'text' in plicense:
+            # per spec:
+            # > These keys are mutually exclusive, so a tool MUST raise an error if the metadata specifies both keys.
+            raise ValueError('`license.file` and `license.text` are mutually exclusive,')
+        if 'file' in plicense:
+            pass  # @TODO - https://github.com/CycloneDX/cyclonedx-python/issues/570
+        elif len(plicense_text := plicense.get('text', '')) > 0:
+            license = lfac.make_from_string(plicense_text)
+            if isinstance(license, DisjunctiveLicense) and license.id is None:
+                # per spec, `License` is either a SPDX ID/Expression, or a license text(not name!)
+                yield DisjunctiveLicense(name=f"declared license of '{project['name']}'",
+                                         text=AttachedText(content=plicense_text))
+            else:
+                yield license
 
 
 def project2extrefs(project: Dict[str, Any]) -> Generator['ExternalReference', None, None]:

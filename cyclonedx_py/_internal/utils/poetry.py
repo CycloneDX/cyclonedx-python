@@ -67,8 +67,9 @@ def poetry2component(poetry: Dict[str, Any], *, type: 'ComponentType') -> 'Compo
     if 'classifiers' in poetry:
         licenses.extend(classifiers2licenses(poetry['classifiers'], lfac))
     if 'license' in poetry:
+        # per spec(https://python-poetry.org/docs/pyproject#license):
+        # the `license` is intended to be the name of a license, not the license text itself.
         licenses.append(lfac.make_from_string(poetry['license']))
-    del lfac
 
     return Component(
         type=type,
