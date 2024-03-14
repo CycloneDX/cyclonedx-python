@@ -1,1 +1,4 @@
-build via `python -m build`
+build via
+```shell
+python -m build
+```

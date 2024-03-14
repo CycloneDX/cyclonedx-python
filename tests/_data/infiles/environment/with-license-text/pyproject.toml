@@ -6,7 +6,3 @@ description = "with licenses as text, instead of SPDX ID/Expression"
 # see https://packaging.python.org/en/latest/specifications/pyproject-toml/#license
 license = {text="This is the license text of this component.\nIt is expected to be available in a SBOM."}
 
-dependencies = [
-  # some packages that have a complete license text declared
-  "numpy==1.24.4"
-]

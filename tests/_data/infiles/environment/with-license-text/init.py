@@ -3,7 +3,7 @@ initialize this testbed.
 """
 
 from os import name as os_name
-from os.path import dirname, join
+from os.path import abspath, dirname, join
 from subprocess import PIPE, CompletedProcess, run  # nosec:B404
 from sys import argv, executable
 from typing import Any
@@ -14,6 +14,8 @@ __all__ = ['main']
 this_dir = dirname(__file__)
 env_dir = join(this_dir, '.venv')
 constraint_file = join(this_dir, 'pinning.txt')
+
+localpackages_dir = abspath(join(dirname(__file__), '..', '..', '_helpers', 'local_pckages'))
 
 
 def pip_run(*args: str, **kwargs: Any) -> CompletedProcess:
@@ -33,7 +35,6 @@ def pip_run(*args: str, **kwargs: Any) -> CompletedProcess:
 def pip_install(*args: str) -> None:
     pip_run(
         'install', '--require-virtualenv', '--no-input', '--progress-bar=off', '--no-color',
-        '-c', constraint_file,  # needed for reproducibility
         *args
     )
 
@@ -46,13 +47,11 @@ def main() -> None:
     ).create(env_dir)
 
     pip_install(
-        'numpy==1.26.4',
+        join(localpackages_dir, 'a', 'dist', 'package_a-23.42-py3-none-any.whl'),
+        join(localpackages_dir, 'b', 'dist', 'package_b-23.42-py3-none-any.whl'),
+        join(localpackages_dir, 'c', 'dist', 'package_c-23.42-py3-none-any.whl'),
     )
 
 
 if __name__ == '__main__':
     main()
-    if '--pin' in argv:
-        res = pip_run('freeze', '--all', '--local', stdout=PIPE)
-        with open(constraint_file, 'wb') as cf:
-            cf.write(res.stdout)

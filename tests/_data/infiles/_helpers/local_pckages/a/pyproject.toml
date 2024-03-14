@@ -2,7 +2,7 @@
 name = "package-a"
 version = "23.42"
 description = "some package A"
-license = {text =  "Apache-2.0"}
+license = { text = "some license text" }  # intentional not a SPDX ID/Expression
 authors = []
 requires-python = ">=3.8"
 

@@ -2,10 +2,21 @@
 <bom xmlns="http://cyclonedx.org/schema/bom/1.0" version="1">
   <components>
     <component type="library">
-      <name>numpy</name>
-      <version>1.26.4</version>
-      <description>Fundamental package for array computing in Python</description>
-      <purl>pkg:pypi/numpy@1.26.4</purl>
+      <name>package-a</name>
+      <version>23.42</version>
+      <description>some package A</description>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>package-b</name>
+      <version>23.42</version>
+      <description>some package B</description>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>package-c</name>
+      <version>23.42</version>
+      <description>some package C</description>
       <modified>false</modified>
     </component>
   </components>

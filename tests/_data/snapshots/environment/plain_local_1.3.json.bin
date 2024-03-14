@@ -6,12 +6,6 @@
       "externalReferences": [
         {
           "comment": "PackageSource: Archive",
-          "hashes": [
-            {
-              "alg": "SHA-256",
-              "content": "4f37ac4a44c1dcce7f3d6203d45e9d1945a28f69fbfb44f418c44ea73c77de86"
-            }
-          ],
           "type": "distribution",
           "url": "file://.../tests/_data/infiles/_helpers/local_pckages/a/dist/package_a-23.42-py3-none-any.whl"
         }
@@ -19,7 +13,12 @@
       "licenses": [
         {
           "license": {
-            "id": "Apache-2.0"
+            "name": "declared license of 'package-a'",
+            "text": {
+              "content": "c29tZSBsaWNlbnNlIHRleHQ=",
+              "contentType": "text/plain",
+              "encoding": "base64"
+            }
           }
         }
       ],
@@ -33,12 +32,6 @@
       "externalReferences": [
         {
           "comment": "PackageSource: Archive",
-          "hashes": [
-            {
-              "alg": "SHA-256",
-              "content": "33d37cf528bc0b20ec8ffd9fa21170e7caadb1b9f15eb559d1937fa4c82d3d40"
-            }
-          ],
           "type": "distribution",
           "url": "file://.../tests/_data/infiles/_helpers/local_pckages/b/dist/package-b-23.42.tar.gz"
         }
@@ -66,9 +59,7 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "Apache-2.0"
-          }
+          "expression": "Apache-2.0 OR MIT"
         }
       ],
       "name": "package-c",

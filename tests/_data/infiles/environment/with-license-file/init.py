@@ -10,7 +10,6 @@ __all__ = ['main']
 
 this_dir = dirname(__file__)
 env_dir = join(this_dir, '.venv')
-constraint_file = join(this_dir, 'pinning.txt')
 
 
 def main() -> None:
