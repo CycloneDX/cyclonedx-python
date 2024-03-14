@@ -15,7 +15,7 @@ concurrency:
 
 env:
   REPORTS_DIR: CI_reports
-  PYTHON_VERSION: "3.11"
+  PYTHON_VERSION: "3.12"
   POETRY_VERSION: "1.8.1"
 
 jobs:
