@@ -4,8 +4,8 @@ initialize this testbed.
 
 from os import name as os_name
 from os.path import abspath, dirname, join
-from subprocess import PIPE, CompletedProcess, run  # nosec:B404
-from sys import argv, executable
+from subprocess import CompletedProcess, run  # nosec:B404
+from sys import executable
 from typing import Any
 from venv import EnvBuilder
 
