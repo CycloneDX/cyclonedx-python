@@ -2,6 +2,140 @@
 
 
 
+## v4.1.3 (2024-03-15)
+
+### Chore
+
+* chore(deps): Bump python-semantic-release/python-semantic-release (#683)
+
+Bumps [python-semantic-release/python-semantic-release](https://github.com/python-semantic-release/python-semantic-release) from 8.5.1 to 9.1.1.
+- [Release notes](https://github.com/python-semantic-release/python-semantic-release/releases)
+- [Changelog](https://github.com/python-semantic-release/python-semantic-release/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/python-semantic-release/python-semantic-release/compare/v8.5.1...v9.1.1)
+
+---
+updated-dependencies:
+- dependency-name: python-semantic-release/python-semantic-release
+  dependency-type: direct:production
+  update-type: version-update:semver-major
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
+Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`f27170e`](https://github.com/CycloneDX/cyclonedx-python/commit/f27170edfda6945ae5328d5e1ef135e084d011b8))
+
+* chore(deps): Bump actions/setup-python from 4 to 5 (#673)
+
+Bumps [actions/setup-python](https://github.com/actions/setup-python) from 4 to 5.
+- [Release notes](https://github.com/actions/setup-python/releases)
+- [Commits](https://github.com/actions/setup-python/compare/v4...v5)
+
+---
+updated-dependencies:
+- dependency-name: actions/setup-python
+  dependency-type: direct:production
+  update-type: version-update:semver-major
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
+Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`e661fb2`](https://github.com/CycloneDX/cyclonedx-python/commit/e661fb29bb9b7e30788575de70b0047cc5129552))
+
+* chore(deps-dev): Update bandit requirement from 1.7.7 to 1.7.8 (#688)
+
+Updates the requirements on [bandit](https://github.com/PyCQA/bandit) to permit the latest version.
+- [Release notes](https://github.com/PyCQA/bandit/releases)
+- [Commits](https://github.com/PyCQA/bandit/compare/1.7.7...1.7.8)
+
+---
+updated-dependencies:
+- dependency-name: bandit
+  dependency-type: direct:development
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
+Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`40f16e0`](https://github.com/CycloneDX/cyclonedx-python/commit/40f16e039abf7e23c6328d5c295b45c69d63a096))
+
+* chore(deps-dev): Update tox requirement from 4.13.0 to 4.14.1 (#687)
+
+Updates the requirements on [tox](https://github.com/tox-dev/tox) to permit the latest version.
+- [Release notes](https://github.com/tox-dev/tox/releases)
+- [Changelog](https://github.com/tox-dev/tox/blob/main/docs/changelog.rst)
+- [Commits](https://github.com/tox-dev/tox/compare/4.13.0...4.14.1)
+
+---
+updated-dependencies:
+- dependency-name: tox
+  dependency-type: direct:development
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
+Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`16efe0b`](https://github.com/CycloneDX/cyclonedx-python/commit/16efe0b14fa80bafa986998bde3c4c92090906ed))
+
+* chore(deps-dev): Update mypy requirement from 1.8.0 to 1.9.0 (#686)
+
+Updates the requirements on [mypy](https://github.com/python/mypy) to permit the latest version.
+- [Changelog](https://github.com/python/mypy/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/python/mypy/compare/v1.8.0...1.9.0)
+
+---
+updated-dependencies:
+- dependency-name: mypy
+  dependency-type: direct:development
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
+Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`de3be95`](https://github.com/CycloneDX/cyclonedx-python/commit/de3be95b6deb2801adf0d8389183627274a71968))
+
+* chore(deps-dev): Update tox requirement from 4.11.4 to 4.13.0 (#685)
+
+Updates the requirements on [tox](https://github.com/tox-dev/tox) to permit the latest version.
+- [Release notes](https://github.com/tox-dev/tox/releases)
+- [Changelog](https://github.com/tox-dev/tox/blob/main/docs/changelog.rst)
+- [Commits](https://github.com/tox-dev/tox/compare/4.11.4...4.13.0)
+
+---
+updated-dependencies:
+- dependency-name: tox
+  dependency-type: direct:development
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
+Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`33d2b9b`](https://github.com/CycloneDX/cyclonedx-python/commit/33d2b9b492d1ea85028f1c890745117fed82ac1f))
+
+* chore(deps-dev): Update ddt requirement from 1.7.1 to 1.7.2 (#684)
+
+Updates the requirements on [ddt](https://github.com/datadriventests/ddt) to permit the latest version.
+- [Release notes](https://github.com/datadriventests/ddt/releases)
+- [Commits](https://github.com/datadriventests/ddt/compare/1.7.1...1.7.2)
+
+---
+updated-dependencies:
+- dependency-name: ddt
+  dependency-type: direct:development
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
+Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`743324a`](https://github.com/CycloneDX/cyclonedx-python/commit/743324aaa9a7b16c33ec4b164d0e59a82c9e6a3e))
+
+### Ci
+
+* ci: default to python 3.12 (#693)
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`dc81c35`](https://github.com/CycloneDX/cyclonedx-python/commit/dc81c35e3389906ef1fe6944ee720b17c47a19e7))
+
+### Documentation
+
+* docs: imprve `environment` use cases and examples (#690)
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`0d38c7b`](https://github.com/CycloneDX/cyclonedx-python/commit/0d38c7b252e8d7f868656dd4663d1aac1c10fba5))
+
+### Fix
+
+* fix: declared license texts as such, not as license name (#694)
+
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`ec7ab3e`](https://github.com/CycloneDX/cyclonedx-python/commit/ec7ab3eb3a0aba31ce84227637aa0c91e05e76ba))
+
+
 ## v4.1.2 (2024-03-01)
 
 ### Build
