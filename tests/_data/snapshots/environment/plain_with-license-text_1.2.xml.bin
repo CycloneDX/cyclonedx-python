@@ -20,7 +20,8 @@
       <licenses>
         <license>
           <name>declared license of 'with-license-text'</name>
-          <text content-type="text/plain" encoding="base64">VGhpcyBpcyB0aGUgbGljZW5zZSB0ZXh0IG9mIHRoaXMgY29tcG9uZW50LgpJdCBpcyBleHBlY3RlZCB0byBiZSBhdmFpbGFibGUgaW4gYSBTQk9NLg==</text>
+          <text content-type="text/plain">This is the license text of this component.
+It is expected to be available in a SBOM.</text>
         </license>
       </licenses>
     </component>
@@ -33,7 +34,7 @@
       <licenses>
         <license>
           <name>declared license of 'package-a'</name>
-          <text content-type="text/plain" encoding="base64">c29tZSBsaWNlbnNlIHRleHQ=</text>
+          <text content-type="text/plain">some license text</text>
         </license>
       </licenses>
       <externalReferences>

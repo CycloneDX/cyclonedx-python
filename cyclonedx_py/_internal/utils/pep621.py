@@ -80,8 +80,7 @@ def project2licenses(project: Dict[str, Any], lfac: 'LicenseFactory', *,
             if isinstance(license, DisjunctiveLicense) and license.id is None:
                 # per spec, `License` is either a SPDX ID/Expression, or a license text(not name!)
                 yield DisjunctiveLicense(name=f"declared license of '{project['name']}'",
-                                         text=AttachedText(encoding=Encoding.BASE_64,
-                                                           content=b64encode(plicense_text.encode()).decode()))
+                                         text=AttachedText(content=plicense_text))
             else:
                 yield license
 

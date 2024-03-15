@@ -27,7 +27,7 @@
       <licenses>
         <license>
           <name>declared license of 'package-a'</name>
-          <text content-type="text/plain" encoding="base64">c29tZSBsaWNlbnNlIHRleHQ=</text>
+          <text content-type="text/plain">some license text</text>
         </license>
       </licenses>
       <externalReferences>

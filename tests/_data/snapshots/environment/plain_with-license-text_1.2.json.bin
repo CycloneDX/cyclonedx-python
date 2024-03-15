@@ -15,9 +15,8 @@
           "license": {
             "name": "declared license of 'package-a'",
             "text": {
-              "content": "c29tZSBsaWNlbnNlIHRleHQ=",
-              "contentType": "text/plain",
-              "encoding": "base64"
+              "content": "some license text",
+              "contentType": "text/plain"
             }
           }
         }
@@ -90,9 +89,8 @@
           "license": {
             "name": "declared license of 'with-license-text'",
             "text": {
-              "content": "VGhpcyBpcyB0aGUgbGljZW5zZSB0ZXh0IG9mIHRoaXMgY29tcG9uZW50LgpJdCBpcyBleHBlY3RlZCB0byBiZSBhdmFpbGFibGUgaW4gYSBTQk9NLg==",
-              "contentType": "text/plain",
-              "encoding": "base64"
+              "content": "This is the license text of this component.\nIt is expected to be available in a SBOM.",
+              "contentType": "text/plain"
             }
           }
         }

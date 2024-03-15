@@ -6,12 +6,6 @@
       "externalReferences": [
         {
           "comment": "PackageSource: Archive",
-          "hashes": [
-            {
-              "alg": "SHA-256",
-              "content": "5c8da28603857d4073c67e751ba3cd526a7ef414135faecfec164e7d01be24be"
-            }
-          ],
           "type": "distribution",
           "url": "file://.../tests/_data/infiles/_helpers/local_pckages/a/dist/package_a-23.42-py3-none-any.whl"
         }
@@ -21,9 +15,8 @@
           "license": {
             "name": "declared license of 'package-a'",
             "text": {
-              "content": "c29tZSBsaWNlbnNlIHRleHQ=",
-              "contentType": "text/plain",
-              "encoding": "base64"
+              "content": "some license text",
+              "contentType": "text/plain"
             }
           }
         }
@@ -38,12 +31,6 @@
       "externalReferences": [
         {
           "comment": "PackageSource: Archive",
-          "hashes": [
-            {
-              "alg": "SHA-256",
-              "content": "583f7cb9db5c26194e8004ac82a90d7b46664da8da674919d3e2189c332a1f78"
-            }
-          ],
           "type": "distribution",
           "url": "file://.../tests/_data/infiles/_helpers/local_pckages/b/dist/package_b-23.42-py3-none-any.whl"
         }
@@ -65,12 +52,6 @@
       "externalReferences": [
         {
           "comment": "PackageSource: Archive",
-          "hashes": [
-            {
-              "alg": "SHA-256",
-              "content": "daf0241d5c794c9954979f07320a5ef1673dd09584bf118d337d679be1ac6c09"
-            }
-          ],
           "type": "distribution",
           "url": "file://.../tests/_data/infiles/_helpers/local_pckages/c/dist/package_c-23.42-py3-none-any.whl"
         }
@@ -108,9 +89,8 @@
           "license": {
             "name": "declared license of 'with-license-text'",
             "text": {
-              "content": "VGhpcyBpcyB0aGUgbGljZW5zZSB0ZXh0IG9mIHRoaXMgY29tcG9uZW50LgpJdCBpcyBleHBlY3RlZCB0byBiZSBhdmFpbGFibGUgaW4gYSBTQk9NLg==",
-              "contentType": "text/plain",
-              "encoding": "base64"
+              "content": "This is the license text of this component.\nIt is expected to be available in a SBOM.",
+              "contentType": "text/plain"
             }
           }
         }

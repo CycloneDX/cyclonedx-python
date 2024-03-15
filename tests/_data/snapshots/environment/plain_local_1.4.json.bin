@@ -15,9 +15,8 @@
           "license": {
             "name": "declared license of 'package-a'",
             "text": {
-              "content": "c29tZSBsaWNlbnNlIHRleHQ=",
-              "contentType": "text/plain",
-              "encoding": "base64"
+              "content": "some license text",
+              "contentType": "text/plain"
             }
           }
         }

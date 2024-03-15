@@ -15,13 +15,12 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-from base64 import b64encode
 from re import compile as re_compile
 from typing import TYPE_CHECKING, Generator, List
 
 from cyclonedx.exception.model import InvalidUriException
 from cyclonedx.factory.license import LicenseFactory
-from cyclonedx.model import AttachedText, Encoding, ExternalReference, ExternalReferenceType, XsUri
+from cyclonedx.model import AttachedText, ExternalReference, ExternalReferenceType, XsUri
 from cyclonedx.model.license import DisjunctiveLicense
 
 from .cdx import url_label_to_ert
@@ -50,8 +49,7 @@ def metadata2licenses(metadata: 'PackageMetadata') -> Generator['License', None,
         if isinstance(license, DisjunctiveLicense) and license.id is None:
             # per spec, `License` is either a SPDX ID/Expression, or a license text(not name!)
             yield DisjunctiveLicense(name=f"declared license of '{metadata['Name']}'",
-                                     text=AttachedText(encoding=Encoding.BASE_64,
-                                                       content=b64encode(mlicense.encode()).decode()))
+                                     text=AttachedText(content=mlicense))
         else:
             yield license
 

@@ -47,7 +47,8 @@
       <licenses>
         <license>
           <name>declared license of 'with-license-text'</name>
-          <text content-type="text/plain" encoding="base64">VGhpcyBpcyB0aGUgbGljZW5zZSB0ZXh0IG9mIHRoaXMgY29tcG9uZW50LgpJdCBpcyBleHBlY3RlZCB0byBiZSBhdmFpbGFibGUgaW4gYSBTQk9NLg==</text>
+          <text content-type="text/plain">This is the license text of this component.
+It is expected to be available in a SBOM.</text>
         </license>
       </licenses>
     </component>
@@ -63,16 +64,13 @@
       <licenses>
         <license>
           <name>declared license of 'package-a'</name>
-          <text content-type="text/plain" encoding="base64">c29tZSBsaWNlbnNlIHRleHQ=</text>
+          <text content-type="text/plain">some license text</text>
         </license>
       </licenses>
       <externalReferences>
         <reference type="distribution">
           <url>file://.../tests/_data/infiles/_helpers/local_pckages/a/dist/package_a-23.42-py3-none-any.whl</url>
           <comment>PackageSource: Archive</comment>
-          <hashes>
-            <hash alg="SHA-256">5c8da28603857d4073c67e751ba3cd526a7ef414135faecfec164e7d01be24be</hash>
-          </hashes>
         </reference>
       </externalReferences>
     </component>
@@ -89,9 +87,6 @@
         <reference type="distribution">
           <url>file://.../tests/_data/infiles/_helpers/local_pckages/b/dist/package_b-23.42-py3-none-any.whl</url>
           <comment>PackageSource: Archive</comment>
-          <hashes>
-            <hash alg="SHA-256">583f7cb9db5c26194e8004ac82a90d7b46664da8da674919d3e2189c332a1f78</hash>
-          </hashes>
         </reference>
       </externalReferences>
     </component>
@@ -106,9 +101,6 @@
         <reference type="distribution">
           <url>file://.../tests/_data/infiles/_helpers/local_pckages/c/dist/package_c-23.42-py3-none-any.whl</url>
           <comment>PackageSource: Archive</comment>
-          <hashes>
-            <hash alg="SHA-256">daf0241d5c794c9954979f07320a5ef1673dd09584bf118d337d679be1ac6c09</hash>
-          </hashes>
         </reference>
       </externalReferences>
     </component>
