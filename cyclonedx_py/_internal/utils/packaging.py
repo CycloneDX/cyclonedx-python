@@ -20,7 +20,8 @@ from typing import TYPE_CHECKING, Generator, List
 
 from cyclonedx.exception.model import InvalidUriException
 from cyclonedx.factory.license import LicenseFactory
-from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
+from cyclonedx.model import AttachedText, ExternalReference, ExternalReferenceType, XsUri
+from cyclonedx.model.license import DisjunctiveLicense
 
 from .cdx import url_label_to_ert
 from .pep621 import classifiers2licenses
@@ -42,9 +43,15 @@ def metadata2licenses(metadata: 'PackageMetadata') -> Generator['License', None,
         # see https://packaging.python.org/en/latest/specifications/core-metadata/#classifier-multiple-use
         classifiers: List[str] = metadata.get_all('Classifier')  # type:ignore[assignment]
         yield from classifiers2licenses(classifiers, lfac)
-    if 'License' in metadata:
+    if 'License' in metadata and len(mlicense := metadata['License']) > 0:
         # see https://packaging.python.org/en/latest/specifications/core-metadata/#license
-        yield lfac.make_from_string(metadata['License'])
+        license = lfac.make_from_string(mlicense)
+        if isinstance(license, DisjunctiveLicense) and license.id is None:
+            # per spec, `License` is either a SPDX ID/Expression, or a license text(not name!)
+            yield DisjunctiveLicense(name=f"declared license of '{metadata['Name']}'",
+                                     text=AttachedText(content=mlicense))
+        else:
+            yield license
 
 
 def metadata2extrefs(metadata: 'PackageMetadata') -> Generator['ExternalReference', None, None]:

@@ -9,7 +9,7 @@
           "hashes": [
             {
               "alg": "SHA-256",
-              "content": "4f37ac4a44c1dcce7f3d6203d45e9d1945a28f69fbfb44f418c44ea73c77de86"
+              "content": "5c8da28603857d4073c67e751ba3cd526a7ef414135faecfec164e7d01be24be"
             }
           ],
           "type": "distribution",
@@ -19,7 +19,11 @@
       "licenses": [
         {
           "license": {
-            "id": "Apache-2.0"
+            "name": "declared license of 'package-a'",
+            "text": {
+              "content": "some license text",
+              "contentType": "text/plain"
+            }
           }
         }
       ],
@@ -36,7 +40,7 @@
           "hashes": [
             {
               "alg": "SHA-256",
-              "content": "33d37cf528bc0b20ec8ffd9fa21170e7caadb1b9f15eb559d1937fa4c82d3d40"
+              "content": "20e983935a800046222a02674ed37baf3e7a4ef7cd40e6033d9c0efaeb73206f"
             }
           ],
           "type": "distribution",
@@ -66,9 +70,7 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "Apache-2.0"
-          }
+          "expression": "Apache-2.0 OR MIT"
         }
       ],
       "name": "package-c",

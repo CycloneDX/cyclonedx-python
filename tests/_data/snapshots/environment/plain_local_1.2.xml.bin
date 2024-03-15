@@ -26,7 +26,8 @@
       <description>some package A</description>
       <licenses>
         <license>
-          <id>Apache-2.0</id>
+          <name>declared license of 'package-a'</name>
+          <text content-type="text/plain">some license text</text>
         </license>
       </licenses>
       <externalReferences>
@@ -57,9 +58,7 @@
       <version>23.42</version>
       <description>some package C</description>
       <licenses>
-        <license>
-          <id>Apache-2.0</id>
-        </license>
+        <expression>Apache-2.0 OR MIT</expression>
       </licenses>
       <externalReferences>
         <reference type="distribution">

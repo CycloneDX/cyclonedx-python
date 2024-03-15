@@ -165,7 +165,11 @@
         },
         {
           "license": {
-            "name": "PSFL"
+            "name": "declared license of 'defusedxml'",
+            "text": {
+              "content": "PSFL",
+              "contentType": "text/plain"
+            }
           }
         }
       ],
@@ -187,7 +191,11 @@
       "licenses": [
         {
           "license": {
-            "name": "MPL 2.0"
+            "name": "declared license of 'fqdn'",
+            "text": {
+              "content": "MPL 2.0",
+              "contentType": "text/plain"
+            }
           }
         }
       ],
@@ -274,7 +282,11 @@
         },
         {
           "license": {
-            "name": "UNKNOWN"
+            "name": "declared license of 'isoduration'",
+            "text": {
+              "content": "UNKNOWN",
+              "contentType": "text/plain"
+            }
           }
         }
       ],
@@ -296,7 +308,11 @@
       "licenses": [
         {
           "license": {
-            "name": "Modified BSD License"
+            "name": "declared license of 'jsonpointer'",
+            "text": {
+              "content": "Modified BSD License",
+              "contentType": "text/plain"
+            }
           }
         }
       ],
@@ -558,7 +574,11 @@
       "licenses": [
         {
           "license": {
-            "name": "Dual License"
+            "name": "declared license of 'python-dateutil'",
+            "text": {
+              "content": "Dual License",
+              "contentType": "text/plain"
+            }
           }
         }
       ],
@@ -632,7 +652,11 @@
         },
         {
           "license": {
-            "name": "MIT license"
+            "name": "declared license of 'rfc3339-validator'",
+            "text": {
+              "content": "MIT license",
+              "contentType": "text/plain"
+            }
           }
         }
       ],
@@ -664,7 +688,11 @@
         },
         {
           "license": {
-            "name": "GNU GPLv3+"
+            "name": "declared license of 'rfc3987'",
+            "text": {
+              "content": "GNU GPLv3+",
+              "contentType": "text/plain"
+            }
           }
         }
       ],
@@ -755,7 +783,11 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache 2.0"
+            "name": "declared license of 'sortedcontainers'",
+            "text": {
+              "content": "Apache 2.0",
+              "contentType": "text/plain"
+            }
           }
         }
       ],
@@ -797,7 +829,11 @@
       "licenses": [
         {
           "license": {
-            "name": "Apache-2.0 license"
+            "name": "declared license of 'types-python-dateutil'",
+            "text": {
+              "content": "Apache-2.0 license",
+              "contentType": "text/plain"
+            }
           }
         }
       ],
@@ -824,7 +860,11 @@
         },
         {
           "license": {
-            "name": "MIT License"
+            "name": "declared license of 'uri-template'",
+            "text": {
+              "content": "MIT License",
+              "contentType": "text/plain"
+            }
           }
         }
       ],

@@ -2,9 +2,12 @@
 name = "package-b"
 version = "23.42"
 description = "some package B"
-license = {text =  "Apache-2.0"}
+license = { text = "Apache-2.0" }  # intentional same as a classifier
 authors = []
 requires-python = ">=3.8"
+classifiers = [
+  "License :: OSI Approved :: Apache Software License"
+]
 
 [tool.setuptools]
 py-modules = ["module_b"]

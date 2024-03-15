@@ -29,7 +29,8 @@
       <description>some package A</description>
       <licenses>
         <license>
-          <id>Apache-2.0</id>
+          <name>declared license of 'package-a'</name>
+          <text content-type="text/plain">some license text</text>
         </license>
       </licenses>
       <externalReferences>
@@ -37,7 +38,7 @@
           <url>file://.../tests/_data/infiles/_helpers/local_pckages/a/dist/package_a-23.42-py3-none-any.whl</url>
           <comment>PackageSource: Archive</comment>
           <hashes>
-            <hash alg="SHA-256">4f37ac4a44c1dcce7f3d6203d45e9d1945a28f69fbfb44f418c44ea73c77de86</hash>
+            <hash alg="SHA-256">5c8da28603857d4073c67e751ba3cd526a7ef414135faecfec164e7d01be24be</hash>
           </hashes>
         </reference>
       </externalReferences>
@@ -56,7 +57,7 @@
           <url>file://.../tests/_data/infiles/_helpers/local_pckages/b/dist/package-b-23.42.tar.gz</url>
           <comment>PackageSource: Archive</comment>
           <hashes>
-            <hash alg="SHA-256">33d37cf528bc0b20ec8ffd9fa21170e7caadb1b9f15eb559d1937fa4c82d3d40</hash>
+            <hash alg="SHA-256">20e983935a800046222a02674ed37baf3e7a4ef7cd40e6033d9c0efaeb73206f</hash>
           </hashes>
         </reference>
       </externalReferences>
@@ -66,9 +67,7 @@
       <version>23.42</version>
       <description>some package C</description>
       <licenses>
-        <license>
-          <id>Apache-2.0</id>
-        </license>
+        <expression>Apache-2.0 OR MIT</expression>
       </licenses>
       <externalReferences>
         <reference type="distribution">

@@ -169,7 +169,8 @@
           <id>Python-2.0</id>
         </license>
         <license>
-          <name>PSFL</name>
+          <name>declared license of 'defusedxml'</name>
+          <text content-type="text/plain">PSFL</text>
         </license>
       </licenses>
       <purl>pkg:pypi/defusedxml@0.7.1</purl>
@@ -190,7 +191,8 @@
       <description>Validates fully-qualified domain names against RFC 1123, so that they are acceptable to modern bowsers</description>
       <licenses>
         <license>
-          <name>MPL 2.0</name>
+          <name>declared license of 'fqdn'</name>
+          <text content-type="text/plain">MPL 2.0</text>
         </license>
       </licenses>
       <purl>pkg:pypi/fqdn@1.5.1</purl>
@@ -246,7 +248,8 @@
           <id>ISC</id>
         </license>
         <license>
-          <name>UNKNOWN</name>
+          <name>declared license of 'isoduration'</name>
+          <text content-type="text/plain">UNKNOWN</text>
         </license>
       </licenses>
       <purl>pkg:pypi/isoduration@20.11.0</purl>
@@ -275,7 +278,8 @@
       <description>Identify specific nodes in a JSON document (RFC 6901) </description>
       <licenses>
         <license>
-          <name>Modified BSD License</name>
+          <name>declared license of 'jsonpointer'</name>
+          <text content-type="text/plain">Modified BSD License</text>
         </license>
       </licenses>
       <purl>pkg:pypi/jsonpointer@2.4</purl>
@@ -470,7 +474,8 @@
       <description>Extensions to the standard Python datetime module</description>
       <licenses>
         <license>
-          <name>Dual License</name>
+          <name>declared license of 'python-dateutil'</name>
+          <text content-type="text/plain">Dual License</text>
         </license>
       </licenses>
       <purl>pkg:pypi/python-dateutil@2.8.2</purl>
@@ -535,7 +540,8 @@
           <id>MIT</id>
         </license>
         <license>
-          <name>MIT license</name>
+          <name>declared license of 'rfc3339-validator'</name>
+          <text content-type="text/plain">MIT license</text>
         </license>
       </licenses>
       <purl>pkg:pypi/rfc3339-validator@0.1.4</purl>
@@ -555,7 +561,8 @@
           <id>GPL-3.0-or-later</id>
         </license>
         <license>
-          <name>GNU GPLv3+</name>
+          <name>declared license of 'rfc3987'</name>
+          <text content-type="text/plain">GNU GPLv3+</text>
         </license>
       </licenses>
       <purl>pkg:pypi/rfc3987@1.3.8</purl>
@@ -630,7 +637,8 @@
       <description>Sorted Containers -- Sorted List, Sorted Dict, Sorted Set</description>
       <licenses>
         <license>
-          <name>Apache 2.0</name>
+          <name>declared license of 'sortedcontainers'</name>
+          <text content-type="text/plain">Apache 2.0</text>
         </license>
       </licenses>
       <purl>pkg:pypi/sortedcontainers@2.4.0</purl>
@@ -647,7 +655,8 @@
       <description>Typing stubs for python-dateutil</description>
       <licenses>
         <license>
-          <name>Apache-2.0 license</name>
+          <name>declared license of 'types-python-dateutil'</name>
+          <text content-type="text/plain">Apache-2.0 license</text>
         </license>
       </licenses>
       <purl>pkg:pypi/types-python-dateutil@2.8.19.14</purl>
@@ -683,7 +692,8 @@
           <id>MIT</id>
         </license>
         <license>
-          <name>MIT License</name>
+          <name>declared license of 'uri-template'</name>
+          <text content-type="text/plain">MIT License</text>
         </license>
       </licenses>
       <purl>pkg:pypi/uri-template@1.3.0</purl>

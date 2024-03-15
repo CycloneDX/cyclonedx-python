@@ -15,7 +15,6 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-
 """
 Functionality related to PEP 621.
 
@@ -23,13 +22,16 @@ See https://packaging.python.org/en/latest/specifications/declaring-project-meta
 See https://peps.python.org/pep-0621/
 """
 
+from base64 import b64encode
 from itertools import chain
+from os.path import dirname, join
 from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, Iterator
 
 from cyclonedx.exception.model import InvalidUriException
 from cyclonedx.factory.license import LicenseFactory
-from cyclonedx.model import ExternalReference, XsUri
+from cyclonedx.model import AttachedText, Encoding, ExternalReference, XsUri
 from cyclonedx.model.component import Component
+from cyclonedx.model.license import DisjunctiveLicense
 from packaging.requirements import Requirement
 
 from .cdx import licenses_fixup, url_label_to_ert
@@ -50,18 +52,37 @@ def classifiers2licenses(classifiers: Iterable[str], lfac: 'LicenseFactory') -> 
                               classifiers)))
 
 
-def project2licenses(project: Dict[str, Any], lfac: 'LicenseFactory') -> Generator['License', None, None]:
-    if 'classifiers' in project:
+def project2licenses(project: Dict[str, Any], lfac: 'LicenseFactory', *,
+                     fpath: str) -> Generator['License', None, None]:
+    if classifiers := project.get('classifiers'):
         # https://packaging.python.org/en/latest/specifications/pyproject-toml/#classifiers
         # https://peps.python.org/pep-0621/#classifiers
         # https://packaging.python.org/en/latest/specifications/core-metadata/#classifier-multiple-use
-        yield from classifiers2licenses(project['classifiers'], lfac)
-    license = project.get('license')
-    # https://packaging.python.org/en/latest/specifications/pyproject-toml/#license
-    # https://peps.python.org/pep-0621/#license
-    # https://packaging.python.org/en/latest/specifications/core-metadata/#license
-    if isinstance(license, dict) and 'text' in license:
-        yield lfac.make_from_string(license['text'])
+        yield from classifiers2licenses(classifiers, lfac)
+    if plicense := project.get('license'):
+        # https://packaging.python.org/en/latest/specifications/pyproject-toml/#license
+        # https://peps.python.org/pep-0621/#license
+        # https://packaging.python.org/en/latest/specifications/core-metadata/#license
+        if 'file' in plicense and 'text' in plicense:
+            # per spec:
+            # > These keys are mutually exclusive, so a tool MUST raise an error if the metadata specifies both keys.
+            raise ValueError('`license.file` and `license.text` are mutually exclusive,')
+        if 'file' in plicense:
+            # per spec:
+            # > [...] a string value that is a relative file path [...].
+            # > Tools MUST assume the file’s encoding is UTF-8.
+            with open(join(dirname(fpath), plicense['file']), 'rb') as plicense_fileh:
+                yield DisjunctiveLicense(name=f"declared license of '{project['name']}'",
+                                         text=AttachedText(encoding=Encoding.BASE_64,
+                                                           content=b64encode(plicense_fileh.read()).decode()))
+        elif len(plicense_text := plicense.get('text', '')) > 0:
+            license = lfac.make_from_string(plicense_text)
+            if isinstance(license, DisjunctiveLicense) and license.id is None:
+                # per spec, `License` is either a SPDX ID/Expression, or a license text(not name!)
+                yield DisjunctiveLicense(name=f"declared license of '{project['name']}'",
+                                         text=AttachedText(content=plicense_text))
+            else:
+                yield license
 
 
 def project2extrefs(project: Dict[str, Any]) -> Generator['ExternalReference', None, None]:
@@ -77,14 +98,14 @@ def project2extrefs(project: Dict[str, Any]) -> Generator['ExternalReference', N
 
 
 def project2component(project: Dict[str, Any], *,
-                      type: 'ComponentType') -> 'Component':
+                      ctype: 'ComponentType', fpath: str) -> 'Component':
     dynamic = project.get('dynamic', ())
     return Component(
-        type=type,
+        type=ctype,
         name=project['name'],
         version=project.get('version', None) if 'version' not in dynamic else None,
         description=project.get('description', None) if 'description' not in dynamic else None,
-        licenses=licenses_fixup(project2licenses(project, LicenseFactory())),
+        licenses=licenses_fixup(project2licenses(project, LicenseFactory(), fpath=fpath)),
         external_references=project2extrefs(project),
         # TODO add more properties according to spec
     )

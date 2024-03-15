@@ -15,5 +15,5 @@
 
 
 """
-module B
+module C
 """

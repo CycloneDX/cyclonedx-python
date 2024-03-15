@@ -13,7 +13,11 @@
       "licenses": [
         {
           "license": {
-            "id": "Apache-2.0"
+            "name": "declared license of 'package-a'",
+            "text": {
+              "content": "some license text",
+              "contentType": "text/plain"
+            }
           }
         }
       ],
@@ -54,9 +58,7 @@
       ],
       "licenses": [
         {
-          "license": {
-            "id": "Apache-2.0"
-          }
+          "expression": "Apache-2.0 OR MIT"
         }
       ],
       "name": "package-c",

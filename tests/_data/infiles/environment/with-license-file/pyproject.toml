@@ -1,0 +1,7 @@
+[project]
+# https://packaging.python.org/en/latest/specifications/declaring-project-metadata/#declaring-project-metadata
+name = "with-license-file"
+version = "0.1.0"
+description = "with licenses from file, instead of SPDX ID/Expression"
+# see https://packaging.python.org/en/latest/specifications/pyproject-toml/#license
+license = { file = "testing/someLicenseFile.txt.bin" }

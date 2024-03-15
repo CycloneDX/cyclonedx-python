@@ -33,7 +33,11 @@
         },
         {
           "license": {
-            "name": "MIT license"
+            "name": "declared license of 'ruamel.yaml'",
+            "text": {
+              "content": "MIT license",
+              "contentType": "text/plain"
+            }
           }
         }
       ],

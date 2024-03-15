@@ -1,0 +1,7 @@
+[project]
+# https://packaging.python.org/en/latest/specifications/declaring-project-metadata/#declaring-project-metadata
+name = "with-license-text"
+version = "0.1.0"
+description = "with licenses as text, instead of SPDX ID/Expression"
+# see https://packaging.python.org/en/latest/specifications/pyproject-toml/#license
+license = { text = "This is the license text of this component.\nIt is expected to be available in a SBOM." }
