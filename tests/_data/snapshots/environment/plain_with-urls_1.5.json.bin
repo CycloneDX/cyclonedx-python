@@ -41,6 +41,12 @@
       "externalReferences": [
         {
           "comment": "PackageSource: Archive",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"
+            }
+          ],
           "type": "distribution",
           "url": "https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl"
         },
@@ -68,6 +74,12 @@
       "externalReferences": [
         {
           "comment": "PackageSource: Archive",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "672a674765aba37fe6f3e3b05372bf13140ef501c4d79ae29e998e3910b6a8e9"
+            }
+          ],
           "type": "distribution",
           "url": "https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip"
         },

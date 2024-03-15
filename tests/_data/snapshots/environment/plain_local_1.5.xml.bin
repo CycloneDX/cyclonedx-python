@@ -64,6 +64,9 @@
         <reference type="distribution">
           <url>file://.../tests/_data/infiles/_helpers/local_pckages/a/dist/package_a-23.42-py3-none-any.whl</url>
           <comment>PackageSource: Archive</comment>
+          <hashes>
+            <hash alg="SHA-256">5c8da28603857d4073c67e751ba3cd526a7ef414135faecfec164e7d01be24be</hash>
+          </hashes>
         </reference>
       </externalReferences>
     </component>

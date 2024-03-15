@@ -37,6 +37,9 @@
         <reference type="distribution">
           <url>https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl</url>
           <comment>PackageSource: Archive</comment>
+          <hashes>
+            <hash alg="SHA-256">8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254</hash>
+          </hashes>
         </reference>
         <reference type="website">
           <url>https://github.com/benjaminp/six</url>
