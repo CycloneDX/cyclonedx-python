@@ -200,7 +200,7 @@ jobs:
       - name: Artifact reports
         if: ${{ ! cancelled() }}
         # see https://github.com/actions/upload-artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.TESTS_REPORTS_ARTIFACT }}
           path: ${{ env.REPORTS_DIR }}
