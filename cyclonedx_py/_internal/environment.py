@@ -16,8 +16,10 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
+import re
 from argparse import OPTIONAL, ArgumentParser
-from importlib.metadata import distributions
+from base64 import b64encode
+from importlib.metadata import Distribution, distributions
 from json import loads
 from os import getcwd, name as os_name
 from os.path import exists, isdir, join
@@ -26,8 +28,9 @@ from sys import path as sys_path
 from textwrap import dedent
 from typing import TYPE_CHECKING, Any, Dict, Iterable, List, Optional, Tuple
 
-from cyclonedx.model import Property
-from cyclonedx.model.component import Component, ComponentType
+from cyclonedx.model import AttachedText, Encoding, Property
+from cyclonedx.model.component import Component, ComponentEvidence, ComponentType
+from cyclonedx.model.license import DisjunctiveLicense
 from packageurl import PackageURL
 from packaging.requirements import Requirement
 
@@ -46,6 +49,8 @@ if TYPE_CHECKING:  # pragma: no cover
     from .utils.pep610 import PackageSource
 
     T_AllComponents = Dict[str, Tuple['Component', Iterable[Requirement]]]
+
+LICENSE_FILE_REGEX = re.compile('LICEN[CS]E.*|COPYING.*')
 
 
 class EnvironmentBB(BomBuilder):
@@ -109,6 +114,11 @@ class EnvironmentBB(BomBuilder):
         #  `--local`        If in a virtualenv that has global access, do not list globally-installed packages.
         #  `--user`         Only output packages installed in user-site.
         #  `--path <path>`  Restrict to the specified installation path for listing packages
+        p.add_argument('--collect-evidence',
+                       help='Whether to collect license evidence from components',
+                       action='store_true',
+                       dest='collect_evidence',
+                       default=False)
         p.add_argument('python',
                        metavar='<python>',
                        help='Python interpreter',
@@ -118,8 +128,10 @@ class EnvironmentBB(BomBuilder):
 
     def __init__(self, *,
                  logger: 'Logger',
+                 collect_evidence: bool,
                  **__: Any) -> None:
         self._logger = logger
+        self._collect_evidence = collect_evidence
 
     def __call__(self, *,  # type:ignore[override]
                  python: Optional[str],
@@ -147,6 +159,24 @@ class EnvironmentBB(BomBuilder):
         self.__add_components(bom, rc, path=path)
         return bom
 
+    @staticmethod
+    def __collect_license_evidence(dist: Distribution) -> Optional[ComponentEvidence]:
+        if not (dist_files := dist.files):
+            return None
+
+        if not (license_files := [f for f in dist_files if LICENSE_FILE_REGEX.match(f.name)]):
+            return None
+
+        licenses = []
+        for license_file in license_files:
+            license_name = f'License detected in {license_file}'
+            encoded_content = b64encode(license_file.read_binary()).decode('ascii')
+            license_text = AttachedText(content=encoded_content, encoding=Encoding.BASE_64)
+            license = DisjunctiveLicense(name=license_name, text=license_text)
+            licenses.append(license)
+
+        return ComponentEvidence(licenses=licenses)
+
     def __add_components(self, bom: 'Bom',
                          rc: Optional[Tuple['Component', Iterable['Requirement']]],
                          **kwargs: Any) -> None:
@@ -168,6 +198,10 @@ class EnvironmentBB(BomBuilder):
                 # path of dist-package on disc? naaa... a package may have multiple files/folders on disc
             )
             del dist_meta, dist_name, dist_version
+
+            if self._collect_evidence and (evidence := self.__collect_license_evidence(dist)):
+                component.evidence = evidence
+
             self.__component_add_extred_and_purl(component, packagesource4dist(dist))
             all_components[normalize_packagename(component.name)] = (
                 component,
