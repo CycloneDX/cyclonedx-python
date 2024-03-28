@@ -29,7 +29,6 @@ from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, 
 from cyclonedx.model.component import Component, ComponentScope
 from cyclonedx.model.dependency import Dependency
 from packageurl import PackageURL
-from packaging.requirements import Requirement
 
 from . import BomBuilder, PropertyName
 from .cli_common import add_argument_mc_type
@@ -41,6 +40,7 @@ from .utils.toml import toml_loads
 
 if TYPE_CHECKING:  # pragma: no cover
     from logging import Logger
+    from typing import Type
 
     from cyclonedx.model.bom import Bom
     from cyclonedx.model.component import ComponentType
@@ -83,7 +83,7 @@ class _PoetryPackageRequirement:
     __lock_pattern = re_compile(r'^([a-zA-Z0-9._-]+)(?:\[(.+?)\])?')
 
     @classmethod
-    def from_poetry_lock(cls, r: str):
+    def from_poetry_lock(cls: 'Type[_PoetryPackageRequirement]', r: str) -> '_PoetryPackageRequirement':
         matches = cls.__lock_pattern.match(r)
         if matches is None:
             raise ValueError(f'cannot parse: {r}')
