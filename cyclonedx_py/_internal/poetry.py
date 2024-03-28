@@ -80,7 +80,7 @@ class _PoetryPackageRequirement:
     extras: Set[str]
 
     # the pattern is good enough for the job
-    __lock_pattern = re_compile(r'^([a-zA-Z0-9._-]+)(\[.+?\])?')
+    __lock_pattern = re_compile(r'^([a-zA-Z0-9._-]+)(?:\[(.+?)\])?')
 
     @classmethod
     def from_poetry_lock(cls, r: str):
