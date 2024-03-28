@@ -20,15 +20,15 @@ from argparse import OPTIONAL, ArgumentParser
 from dataclasses import dataclass
 from itertools import chain
 from os.path import join
+from re import compile as re_compile
 from textwrap import dedent
-from typing import TYPE_CHECKING, Any, Dict, FrozenSet, Generator, Iterable, List, Tuple
+from typing import TYPE_CHECKING, Any, Dict, FrozenSet, Generator, Iterable, List, Set, Tuple
 
 from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
 from cyclonedx.model.component import Component, ComponentScope
 from cyclonedx.model.dependency import Dependency
 from packageurl import PackageURL
-from packaging.requirements import Requirement
 
 from . import BomBuilder, PropertyName
 from .cli_common import add_argument_mc_type
@@ -40,6 +40,7 @@ from .utils.toml import toml_loads
 
 if TYPE_CHECKING:  # pragma: no cover
     from logging import Logger
+    from typing import Type
 
     from cyclonedx.model.bom import Bom
     from cyclonedx.model.component import ComponentType
@@ -71,6 +72,26 @@ class ExtrasNotFoundError(ValueError):
 
     def __str__(self) -> str:
         return f'Extra(s) [{",".join(sorted(self.__extras))}] not specified.'
+
+
+@dataclass(frozen=True)
+class _PoetryPackageRequirement:
+    name: str
+    extras: Set[str]
+
+    # the pattern is good enough for the job
+    __lock_pattern = re_compile(r'^([a-zA-Z0-9._-]+)(?:\[(.+?)\])?')
+
+    @classmethod
+    def from_poetry_lock(cls: 'Type[_PoetryPackageRequirement]', r: str) -> '_PoetryPackageRequirement':
+        matches = cls.__lock_pattern.match(r)
+        if matches is None:
+            raise ValueError(f'cannot parse: {r}')
+        # ! no normalization is done here - this is just a data structure, nothing more
+        return cls(
+            matches[1],
+            set(matches[2].split(',') if matches[2] else ())
+        )
 
 
 class PoetryBB(BomBuilder):
@@ -324,7 +345,7 @@ class PoetryBB(BomBuilder):
             lock_entry_dep = lock_entry_dep \
                 or next(filter(lambda d: d.ref is lock_entry.component.bom_ref, bom.dependencies))
             for req in map(
-                Requirement,
+                _PoetryPackageRequirement.from_poetry_lock,
                 chain.from_iterable(es for en, es in lock_entry.extras.items() if en in use_extras)
             ):
                 dep_name = normalize_packagename(req.name)

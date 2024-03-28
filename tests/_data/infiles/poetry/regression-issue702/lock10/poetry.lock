@@ -1,0 +1,893 @@
+[[package]]
+category = "main"
+description = "Async http client/server framework (asyncio)"
+name = "aiohttp"
+optional = false
+python-versions = ">=3.8"
+version = "3.9.3"
+
+[package.dependencies]
+aiosignal = ">=1.1.2"
+attrs = ">=17.3.0"
+frozenlist = ">=1.1.1"
+multidict = ">=4.5,<7.0"
+yarl = ">=1.0,<2.0"
+
+[package.dependencies.async-timeout]
+python = "<3.11"
+version = ">=4.0,<5.0"
+
+[package.extras]
+speedups = ["brotlicffi", "brotli", "aiodns"]
+
+[[package]]
+category = "main"
+description = "CORS support for aiohttp"
+name = "aiohttp-cors"
+optional = false
+python-versions = "*"
+version = "0.7.0"
+
+[package.dependencies]
+aiohttp = ">=1.1"
+
+[[package]]
+category = "main"
+description = "aiosignal: a list of registered asynchronous callbacks"
+name = "aiosignal"
+optional = false
+python-versions = ">=3.7"
+version = "1.3.1"
+
+[package.dependencies]
+frozenlist = ">=1.1.0"
+
+[[package]]
+category = "main"
+description = "Reusable constraint types to use with typing.Annotated"
+name = "annotated-types"
+optional = false
+python-versions = ">=3.8"
+version = "0.6.0"
+
+[[package]]
+category = "main"
+description = "High level compatibility layer for multiple asynchronous event loop implementations"
+name = "anyio"
+optional = false
+python-versions = ">=3.8"
+version = "4.3.0"
+
+[package.dependencies]
+idna = ">=2.8"
+sniffio = ">=1.1"
+
+[package.dependencies.exceptiongroup]
+python = "<3.11"
+version = ">=1.0.2"
+
+[package.dependencies.typing-extensions]
+python = "<3.11"
+version = ">=4.1"
+
+[package.extras]
+doc = ["packaging", "Sphinx (>=7)", "sphinx-rtd-theme", "sphinx-autodoc-typehints (>=1.2.0)"]
+test = ["anyio", "coverage (>=7)", "exceptiongroup (>=1.2.0)", "hypothesis (>=4.0)", "psutil (>=5.9)", "pytest (>=7.0)", "pytest-mock (>=3.6.1)", "trustme", "uvloop (>=0.17)"]
+trio = ["trio (>=0.23)"]
+
+[[package]]
+category = "main"
+description = "Timeout context manager for asyncio programs"
+marker = "python_version < \"3.11\""
+name = "async-timeout"
+optional = false
+python-versions = ">=3.7"
+version = "4.0.3"
+
+[[package]]
+category = "main"
+description = "Classes Without Boilerplate"
+name = "attrs"
+optional = false
+python-versions = ">=3.7"
+version = "23.2.0"
+
+[package.extras]
+cov = ["attrs", "coverage (>=5.3)"]
+dev = ["attrs", "pre-commit"]
+docs = ["furo", "myst-parser", "sphinx", "sphinx-notfound-page", "sphinxcontrib-towncrier", "towncrier", "zope-interface"]
+tests = ["attrs", "zope-interface"]
+tests-mypy = ["mypy (>=1.6)", "pytest-mypy-plugins"]
+tests-no-zope = ["attrs", "cloudpickle", "hypothesis", "pympler", "pytest-xdist", "pytest (>=4.3.0)"]
+
+[[package]]
+category = "main"
+description = "Extensible memoizing collections and decorators"
+marker = "python_version >= \"3.6\""
+name = "cachetools"
+optional = false
+python-versions = ">=3.7"
+version = "5.3.3"
+
+[[package]]
+category = "main"
+description = "Python package for providing Mozilla's CA Bundle."
+name = "certifi"
+optional = false
+python-versions = ">=3.6"
+version = "2024.2.2"
+
+[[package]]
+category = "main"
+description = "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet."
+name = "charset-normalizer"
+optional = false
+python-versions = ">=3.7.0"
+version = "3.3.2"
+
+[[package]]
+category = "main"
+description = "Composable command line interface toolkit"
+name = "click"
+optional = false
+python-versions = ">=3.7"
+version = "8.1.7"
+
+[package.dependencies]
+colorama = "*"
+
+[[package]]
+category = "main"
+description = "Cross-platform colored terminal text."
+marker = "sys_platform == \"win32\" or platform_system == \"Windows\""
+name = "colorama"
+optional = false
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7"
+version = "0.4.6"
+
+[[package]]
+category = "main"
+description = "Terminal string styling done right, in Python."
+name = "colorful"
+optional = false
+python-versions = "*"
+version = "0.5.6"
+
+[package.dependencies]
+colorama = "*"
+
+[[package]]
+category = "main"
+description = "Distribution utilities"
+name = "distlib"
+optional = false
+python-versions = "*"
+version = "0.3.8"
+
+[[package]]
+category = "main"
+description = "Backport of PEP 654 (exception groups)"
+marker = "python_version < \"3.11\""
+name = "exceptiongroup"
+optional = false
+python-versions = ">=3.7"
+version = "1.2.0"
+
+[package.extras]
+test = ["pytest (>=6)"]
+
+[[package]]
+category = "main"
+description = "FastAPI framework, high performance, easy to learn, fast to code, ready for production"
+name = "fastapi"
+optional = false
+python-versions = ">=3.6"
+version = "0.1.17"
+
+[package.dependencies]
+pydantic = ">=0.17"
+starlette = ">=0.9.7"
+
+[package.extras]
+all = ["requests", "aiofiles", "jinja2", "python-multipart", "itsdangerous", "pyyaml", "graphene", "ujson", "ujson", "email-validator", "uvicorn"]
+dev = ["pyjwt", "passlib"]
+doc = ["mkdocs", "mkdocs-material", "markdown-include"]
+test = ["pytest (>=4.0.0)", "pytest-cov", "mypy", "black", "isort", "requests", "email-validator"]
+
+[[package]]
+category = "main"
+description = "A platform independent file lock."
+name = "filelock"
+optional = false
+python-versions = ">=3.8"
+version = "3.13.3"
+
+[package.extras]
+docs = ["furo (>=2023.9.10)", "sphinx-autodoc-typehints (>=1.25.2)", "sphinx (>=7.2.6)"]
+testing = ["covdefaults (>=2.3)", "coverage (>=7.3.2)", "diff-cover (>=8.0.1)", "pytest-cov (>=4.1)", "pytest-mock (>=3.12)", "pytest-timeout (>=2.2)", "pytest (>=7.4.3)"]
+typing = ["typing-extensions (>=4.8)"]
+
+[[package]]
+category = "main"
+description = "A list-like structure which implements collections.abc.MutableSequence"
+name = "frozenlist"
+optional = false
+python-versions = ">=3.8"
+version = "1.4.1"
+
+[[package]]
+category = "main"
+description = "Google API client core library"
+marker = "python_version >= \"3.6\""
+name = "google-api-core"
+optional = false
+python-versions = ">=3.6"
+version = "2.8.0"
+
+[package.dependencies]
+google-auth = ">=1.25.0,<3.0dev"
+googleapis-common-protos = ">=1.52.0,<2.0dev"
+protobuf = ">=3.12.0"
+requests = ">=2.18.0,<3.0.0dev"
+
+[package.extras]
+grpc = ["grpcio (>=1.33.2,<2.0dev)", "grpcio-status (>=1.33.2,<2.0dev)"]
+grpcgcp = ["grpcio-gcp (>=0.2.2)"]
+grpcio-gcp = ["grpcio-gcp (>=0.2.2)"]
+
+[[package]]
+category = "main"
+description = "Google Authentication Library"
+marker = "python_version >= \"3.6\""
+name = "google-auth"
+optional = false
+python-versions = ">=3.7"
+version = "2.29.0"
+
+[package.dependencies]
+cachetools = ">=2.0.0,<6.0"
+pyasn1-modules = ">=0.2.1"
+rsa = ">=3.1.4,<5"
+
+[package.extras]
+aiohttp = ["aiohttp (>=3.6.2,<4.0.0.dev0)", "requests (>=2.20.0,<3.0.0.dev0)"]
+enterprise-cert = ["cryptography (36.0.2)", "pyopenssl (22.0.0)"]
+pyopenssl = ["pyopenssl (>=20.0.0)", "cryptography (>=38.0.3)"]
+reauth = ["pyu2f (>=0.1.5)"]
+requests = ["requests (>=2.20.0,<3.0.0.dev0)"]
+
+[[package]]
+category = "main"
+description = "Common protobufs used in Google APIs"
+marker = "python_version >= \"3.6\""
+name = "googleapis-common-protos"
+optional = false
+python-versions = ">=3.6"
+version = "1.56.1"
+
+[package.dependencies]
+protobuf = ">=3.15.0"
+
+[package.extras]
+grpc = ["grpcio (>=1.0.0)"]
+
+[[package]]
+category = "main"
+description = "HTTP/2-based RPC framework"
+marker = "python_version >= \"3.10\""
+name = "grpcio"
+optional = false
+python-versions = ">=3.7"
+version = "1.62.1"
+
+[package.extras]
+protobuf = ["grpcio-tools (>=1.62.1)"]
+
+[[package]]
+category = "main"
+description = "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1"
+name = "h11"
+optional = false
+python-versions = ">=3.7"
+version = "0.14.0"
+
+[[package]]
+category = "main"
+description = "A collection of framework independent HTTP protocol utils."
+name = "httptools"
+optional = false
+python-versions = ">=3.8.0"
+version = "0.6.1"
+
+[package.extras]
+test = ["Cython (>=0.29.24,<0.30.0)"]
+
+[[package]]
+category = "main"
+description = "Internationalized Domain Names in Applications (IDNA)"
+name = "idna"
+optional = false
+python-versions = ">=3.5"
+version = "3.6"
+
+[[package]]
+category = "main"
+description = "An implementation of JSON Schema validation for Python"
+name = "jsonschema"
+optional = false
+python-versions = ">=3.8"
+version = "4.21.1"
+
+[package.dependencies]
+attrs = ">=22.2.0"
+jsonschema-specifications = ">=2023.03.6"
+referencing = ">=0.28.4"
+rpds-py = ">=0.7.1"
+
+[package.extras]
+format = ["fqdn", "idna", "isoduration", "jsonpointer (>1.13)", "rfc3339-validator", "rfc3987", "uri-template", "webcolors (>=1.11)"]
+format-nongpl = ["fqdn", "idna", "isoduration", "jsonpointer (>1.13)", "rfc3339-validator", "rfc3986-validator (>0.1.0)", "uri-template", "webcolors (>=1.11)"]
+
+[[package]]
+category = "main"
+description = "The JSON Schema meta-schemas and vocabularies, exposed as a Registry"
+name = "jsonschema-specifications"
+optional = false
+python-versions = ">=3.8"
+version = "2023.12.1"
+
+[package.dependencies]
+referencing = ">=0.31.0"
+
+[[package]]
+category = "main"
+description = "MessagePack serializer"
+name = "msgpack"
+optional = false
+python-versions = ">=3.8"
+version = "1.0.8"
+
+[[package]]
+category = "main"
+description = "multidict implementation"
+name = "multidict"
+optional = false
+python-versions = ">=3.7"
+version = "6.0.5"
+
+[[package]]
+category = "main"
+description = "A stats collection and distributed tracing framework"
+name = "opencensus"
+optional = false
+python-versions = "*"
+version = "0.11.4"
+
+[package.dependencies]
+opencensus-context = ">=0.1.3"
+six = ">=1.16,<2.0"
+
+[package.dependencies.google-api-core]
+python = ">=3.6"
+version = ">=1.0.0,<3.0.0"
+
+[[package]]
+category = "main"
+description = "OpenCensus Runtime Context"
+name = "opencensus-context"
+optional = false
+python-versions = "*"
+version = "0.1.3"
+
+[[package]]
+category = "main"
+description = "Core utilities for Python packages"
+name = "packaging"
+optional = false
+python-versions = ">=3.7"
+version = "24.0"
+
+[[package]]
+category = "main"
+description = "A small Python package for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
+name = "platformdirs"
+optional = false
+python-versions = ">=3.8"
+version = "4.2.0"
+
+[package.extras]
+docs = ["furo (>=2023.9.10)", "proselint (>=0.13)", "sphinx-autodoc-typehints (>=1.25.2)", "sphinx (>=7.2.6)"]
+test = ["appdirs (1.4.4)", "covdefaults (>=2.3)", "pytest-cov (>=4.1)", "pytest-mock (>=3.12)", "pytest (>=7.4.3)"]
+
+[[package]]
+category = "main"
+description = "Python client for the Prometheus monitoring system."
+name = "prometheus-client"
+optional = false
+python-versions = ">=3.8"
+version = "0.20.0"
+
+[package.extras]
+twisted = ["twisted"]
+
+[[package]]
+category = "main"
+description = ""
+name = "protobuf"
+optional = false
+python-versions = ">=3.8"
+version = "5.26.1"
+
+[[package]]
+category = "main"
+description = "Sampling profiler for Python programs"
+name = "py-spy"
+optional = false
+python-versions = "*"
+version = "0.3.14"
+
+[[package]]
+category = "main"
+description = "Pure-Python implementation of ASN.1 types and DER/BER/CER codecs (X.208)"
+marker = "python_version >= \"3.6\""
+name = "pyasn1"
+optional = false
+python-versions = ">=3.8"
+version = "0.6.0"
+
+[[package]]
+category = "main"
+description = "A collection of ASN.1-based protocols modules"
+marker = "python_version >= \"3.6\""
+name = "pyasn1-modules"
+optional = false
+python-versions = ">=3.8"
+version = "0.4.0"
+
+[package.dependencies]
+pyasn1 = ">=0.4.6,<0.7.0"
+
+[[package]]
+category = "main"
+description = "Data validation using Python type hints"
+name = "pydantic"
+optional = false
+python-versions = ">=3.8"
+version = "2.6.4"
+
+[package.dependencies]
+annotated-types = ">=0.4.0"
+pydantic-core = "2.16.3"
+typing-extensions = ">=4.6.1"
+
+[package.extras]
+email = ["email-validator (>=2.0.0)"]
+
+[[package]]
+category = "main"
+description = ""
+name = "pydantic-core"
+optional = false
+python-versions = ">=3.8"
+version = "2.16.3"
+
+[package.dependencies]
+typing-extensions = ">=4.6.0,<4.7.0 || >4.7.0"
+
+[[package]]
+category = "main"
+description = "Read key-value pairs from a .env file and set them as environment variables"
+name = "python-dotenv"
+optional = false
+python-versions = ">=3.8"
+version = "1.0.1"
+
+[package.extras]
+cli = ["click (>=5.0)"]
+
+[[package]]
+category = "main"
+description = "YAML parser and emitter for Python"
+name = "pyyaml"
+optional = false
+python-versions = ">=3.6"
+version = "6.0.1"
+
+[[package]]
+category = "main"
+description = "Ray provides a simple, universal API for building distributed applications."
+name = "ray"
+optional = false
+python-versions = ">=3.8"
+version = "2.10.0"
+
+[package.dependencies]
+aiosignal = "*"
+click = ">=7.0"
+filelock = "*"
+frozenlist = "*"
+jsonschema = "*"
+msgpack = ">=1.0.0,<2.0.0"
+packaging = "*"
+protobuf = ">=3.15.3,<3.19.5 || >3.19.5"
+pyyaml = "*"
+requests = "*"
+
+[package.dependencies.aiohttp]
+optional = true
+version = ">=3.7"
+
+[package.dependencies.aiohttp-cors]
+optional = true
+version = "*"
+
+[package.dependencies.colorful]
+optional = true
+version = "*"
+
+[package.dependencies.fastapi]
+optional = true
+version = "*"
+
+[package.dependencies.grpcio]
+optional = true
+python = ">=3.10"
+version = ">=1.42.0"
+
+[package.dependencies.opencensus]
+optional = true
+version = "*"
+
+[package.dependencies.prometheus-client]
+optional = true
+version = ">=0.7.1"
+
+[package.dependencies.py-spy]
+optional = true
+version = ">=0.2.0"
+
+[package.dependencies.pydantic]
+optional = true
+version = "<2.0.0 || >=2.5.0,<3"
+
+[package.dependencies.smart-open]
+optional = true
+version = "*"
+
+[package.dependencies.starlette]
+optional = true
+version = "*"
+
+[package.dependencies.uvicorn]
+extras = ["standard"]
+optional = true
+version = "*"
+
+[package.dependencies.virtualenv]
+optional = true
+version = ">=20.0.24,<20.21.1 || >20.21.1"
+
+[package.dependencies.watchfiles]
+optional = true
+version = "*"
+
+[package.extras]
+air = ["aiohttp-cors", "virtualenv (>=20.0.24,<20.21.1 || >20.21.1)", "colorful", "pandas (>=1.3)", "aiohttp (>=3.7)", "fsspec", "tensorboardX (>=1.9)", "starlette", "pandas", "requests", "prometheus-client (>=0.7.1)", "pyarrow (>=6.0.1)", "numpy (>=1.20)", "py-spy (>=0.2.0)", "uvicorn", "opencensus", "watchfiles", "fastapi", "smart-open", "pydantic (<2.0.0 || >=2.5.0,<3)", "grpcio (>=1.32.0)", "grpcio (>=1.42.0)"]
+all = ["aiohttp-cors", "virtualenv (>=20.0.24,<20.21.1 || >20.21.1)", "lz4", "gymnasium (0.28.1)", "grpcio (!=1.56.0)", "colorful", "pandas (>=1.3)", "aiohttp (>=3.7)", "ray-cpp (2.10.0)", "dm-tree", "fsspec", "tensorboardX (>=1.9)", "starlette", "opentelemetry-sdk", "pandas", "requests", "prometheus-client (>=0.7.1)", "scikit-image", "pyarrow (>=6.0.1)", "numpy (>=1.20)", "py-spy (>=0.2.0)", "pyyaml", "opentelemetry-api", "rich", "typer", "uvicorn", "opencensus", "scipy", "watchfiles", "fastapi", "smart-open", "pydantic (<2.0.0 || >=2.5.0,<3)", "opentelemetry-exporter-otlp", "grpcio (>=1.32.0)", "grpcio (>=1.42.0)"]
+client = ["grpcio (!=1.56.0)"]
+cpp = ["ray-cpp (2.10.0)"]
+data = ["numpy (>=1.20)", "pandas (>=1.3)", "pyarrow (>=6.0.1)", "fsspec"]
+default = ["aiohttp (>=3.7)", "aiohttp-cors", "colorful", "py-spy (>=0.2.0)", "requests", "opencensus", "pydantic (<2.0.0 || >=2.5.0,<3)", "prometheus-client (>=0.7.1)", "smart-open", "virtualenv (>=20.0.24,<20.21.1 || >20.21.1)", "grpcio (>=1.32.0)", "grpcio (>=1.42.0)"]
+observability = ["opentelemetry-api", "opentelemetry-sdk", "opentelemetry-exporter-otlp"]
+rllib = ["pandas", "tensorboardX (>=1.9)", "requests", "pyarrow (>=6.0.1)", "fsspec", "dm-tree", "gymnasium (0.28.1)", "lz4", "scikit-image", "pyyaml", "scipy", "typer", "rich"]
+serve = ["opencensus", "aiohttp-cors", "starlette", "colorful", "watchfiles", "virtualenv (>=20.0.24,<20.21.1 || >20.21.1)", "requests", "fastapi", "prometheus-client (>=0.7.1)", "smart-open", "aiohttp (>=3.7)", "pydantic (<2.0.0 || >=2.5.0,<3)", "py-spy (>=0.2.0)", "uvicorn", "grpcio (>=1.32.0)", "grpcio (>=1.42.0)"]
+serve-grpc = ["opencensus", "aiohttp-cors", "starlette", "watchfiles", "virtualenv (>=20.0.24,<20.21.1 || >20.21.1)", "aiohttp (>=3.7)", "requests", "fastapi", "prometheus-client (>=0.7.1)", "smart-open", "colorful", "pydantic (<2.0.0 || >=2.5.0,<3)", "py-spy (>=0.2.0)", "uvicorn", "grpcio (>=1.32.0)", "grpcio (>=1.42.0)"]
+train = ["pandas", "tensorboardX (>=1.9)", "requests", "pyarrow (>=6.0.1)", "fsspec"]
+tune = ["pandas", "tensorboardX (>=1.9)", "requests", "pyarrow (>=6.0.1)", "fsspec"]
+
+[[package]]
+category = "main"
+description = "JSON Referencing + Python"
+name = "referencing"
+optional = false
+python-versions = ">=3.8"
+version = "0.34.0"
+
+[package.dependencies]
+attrs = ">=22.2.0"
+rpds-py = ">=0.7.0"
+
+[[package]]
+category = "main"
+description = "Python HTTP for Humans."
+name = "requests"
+optional = false
+python-versions = ">=3.7"
+version = "2.31.0"
+
+[package.dependencies]
+certifi = ">=2017.4.17"
+charset-normalizer = ">=2,<4"
+idna = ">=2.5,<4"
+urllib3 = ">=1.21.1,<3"
+
+[package.extras]
+socks = ["PySocks (>=1.5.6,<1.5.7 || >1.5.7)"]
+use_chardet_on_py3 = ["chardet (>=3.0.2,<6)"]
+
+[[package]]
+category = "main"
+description = "Python bindings to Rust's persistent data structures (rpds)"
+name = "rpds-py"
+optional = false
+python-versions = ">=3.8"
+version = "0.18.0"
+
+[[package]]
+category = "main"
+description = "Pure-Python RSA implementation"
+marker = "python_version >= \"3.6\""
+name = "rsa"
+optional = false
+python-versions = ">=3.6,<4"
+version = "4.9"
+
+[package.dependencies]
+pyasn1 = ">=0.1.3"
+
+[[package]]
+category = "main"
+description = "Python 2 and 3 compatibility utilities"
+name = "six"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
+version = "1.16.0"
+
+[[package]]
+category = "main"
+description = "Utils for streaming large files (S3, HDFS, GCS, Azure Blob Storage, gzip, bz2...)"
+name = "smart-open"
+optional = false
+python-versions = "<4.0,>=3.7"
+version = "7.0.4"
+
+[package.dependencies]
+wrapt = "*"
+
+[package.extras]
+all = ["boto3", "google-cloud-storage (>=2.6.0)", "azure-storage-blob", "azure-common", "azure-core", "requests", "paramiko", "zstandard"]
+azure = ["azure-storage-blob", "azure-common", "azure-core"]
+gcs = ["google-cloud-storage (>=2.6.0)"]
+http = ["requests"]
+s3 = ["boto3"]
+ssh = ["paramiko"]
+test = ["boto3", "google-cloud-storage (>=2.6.0)", "azure-storage-blob", "azure-common", "azure-core", "requests", "paramiko", "zstandard", "moto", "responses", "pytest", "pytest-rerunfailures"]
+webhdfs = ["requests"]
+zst = ["zstandard"]
+
+[[package]]
+category = "main"
+description = "Sniff out which async library your code is running under"
+name = "sniffio"
+optional = false
+python-versions = ">=3.7"
+version = "1.3.1"
+
+[[package]]
+category = "main"
+description = "The little ASGI library that shines."
+name = "starlette"
+optional = false
+python-versions = ">=3.8"
+version = "0.37.2"
+
+[package.dependencies]
+anyio = ">=3.4.0,<5"
+
+[package.extras]
+full = ["httpx (>=0.22.0)", "itsdangerous", "jinja2", "python-multipart (>=0.0.7)", "pyyaml"]
+
+[[package]]
+category = "main"
+description = "Backported and Experimental Type Hints for Python 3.8+"
+name = "typing-extensions"
+optional = false
+python-versions = ">=3.8"
+version = "4.10.0"
+
+[[package]]
+category = "main"
+description = "HTTP library with thread-safe connection pooling, file post, and more."
+name = "urllib3"
+optional = false
+python-versions = ">=3.8"
+version = "2.2.1"
+
+[package.extras]
+brotli = ["brotli (>=1.0.9)", "brotlicffi (>=0.8.0)"]
+h2 = ["h2 (>=4,<5)"]
+socks = ["pysocks (>=1.5.6,<1.5.7 || >1.5.7,<2.0)"]
+zstd = ["zstandard (>=0.18.0)"]
+
+[[package]]
+category = "main"
+description = "The lightning-fast ASGI server."
+name = "uvicorn"
+optional = false
+python-versions = ">=3.8"
+version = "0.29.0"
+
+[package.dependencies]
+click = ">=7.0"
+h11 = ">=0.8"
+
+[package.dependencies.colorama]
+optional = true
+version = ">=0.4"
+
+[package.dependencies.httptools]
+optional = true
+version = ">=0.5.0"
+
+[package.dependencies.python-dotenv]
+optional = true
+version = ">=0.13"
+
+[package.dependencies.pyyaml]
+optional = true
+version = ">=5.1"
+
+[package.dependencies.typing-extensions]
+python = "<3.11"
+version = ">=4.0"
+
+[package.dependencies.uvloop]
+optional = true
+version = ">=0.14.0,<0.15.0 || >0.15.0,<0.15.1 || >0.15.1"
+
+[package.dependencies.watchfiles]
+optional = true
+version = ">=0.13"
+
+[package.dependencies.websockets]
+optional = true
+version = ">=10.4"
+
+[package.extras]
+standard = ["colorama (>=0.4)", "httptools (>=0.5.0)", "python-dotenv (>=0.13)", "pyyaml (>=5.1)", "uvloop (>=0.14.0,<0.15.0 || >0.15.0,<0.15.1 || >0.15.1)", "watchfiles (>=0.13)", "websockets (>=10.4)"]
+
+[[package]]
+category = "main"
+description = "Fast implementation of asyncio event loop on top of libuv"
+marker = "sys_platform != \"win32\" and sys_platform != \"cygwin\" and platform_python_implementation != \"PyPy\""
+name = "uvloop"
+optional = false
+python-versions = ">=3.8.0"
+version = "0.19.0"
+
+[package.extras]
+docs = ["Sphinx (>=4.1.2,<4.2.0)", "sphinxcontrib-asyncio (>=0.3.0,<0.4.0)", "sphinx-rtd-theme (>=0.5.2,<0.6.0)"]
+test = ["flake8 (>=5.0,<6.0)", "psutil", "pycodestyle (>=2.9.0,<2.10.0)", "pyOpenSSL (>=23.0.0,<23.1.0)", "mypy (>=0.800)", "Cython (>=0.29.36,<0.30.0)", "aiohttp (>=3.8.1)", "aiohttp (3.9.0b0)"]
+
+[[package]]
+category = "main"
+description = "Virtual Python Environment builder"
+name = "virtualenv"
+optional = false
+python-versions = ">=3.7"
+version = "20.25.1"
+
+[package.dependencies]
+distlib = ">=0.3.7,<1"
+filelock = ">=3.12.2,<4"
+platformdirs = ">=3.9.1,<5"
+
+[package.extras]
+docs = ["furo (>=2023.7.26)", "proselint (>=0.13)", "sphinx-argparse (>=0.4)", "sphinx (>=7.1.2)", "sphinxcontrib-towncrier (>=0.2.1a0)", "towncrier (>=23.6)"]
+test = ["covdefaults (>=2.3)", "coverage-enable-subprocess (>=1)", "coverage (>=7.2.7)", "flaky (>=3.7)", "packaging (>=23.1)", "pytest-env (>=0.8.2)", "pytest-freezer (>=0.4.8)", "pytest-mock (>=3.11.1)", "pytest-randomly (>=3.12)", "pytest-timeout (>=2.1)", "pytest (>=7.4)", "setuptools (>=68)", "time-machine (>=2.10)"]
+
+[[package]]
+category = "main"
+description = "Simple, modern and high performance file watching and code reload in python."
+name = "watchfiles"
+optional = false
+python-versions = ">=3.8"
+version = "0.21.0"
+
+[package.dependencies]
+anyio = ">=3.0.0"
+
+[[package]]
+category = "main"
+description = "An implementation of the WebSocket Protocol (RFC 6455 & 7692)"
+name = "websockets"
+optional = false
+python-versions = ">=3.8"
+version = "12.0"
+
+[[package]]
+category = "main"
+description = "Module for decorators, wrappers and monkey patching."
+name = "wrapt"
+optional = false
+python-versions = ">=3.6"
+version = "1.16.0"
+
+[[package]]
+category = "main"
+description = "Yet another URL library"
+name = "yarl"
+optional = false
+python-versions = ">=3.7"
+version = "1.9.4"
+
+[package.dependencies]
+idna = ">=2.0"
+multidict = ">=4.0"
+
+[metadata]
+content-hash = "fc7e548734aab56796041caa8591da8e293fc18959a1abd338da95f4323ca75c"
+lock-version = "1.0"
+python-versions = "^3.10.13" # like in issue report
+
+[metadata.files]
+aiohttp = []
+aiohttp-cors = []
+aiosignal = []
+annotated-types = []
+anyio = []
+async-timeout = []
+attrs = []
+cachetools = []
+certifi = []
+charset-normalizer = []
+click = []
+colorama = []
+colorful = []
+distlib = []
+exceptiongroup = []
+fastapi = []
+filelock = []
+frozenlist = []
+google-api-core = []
+google-auth = []
+googleapis-common-protos = []
+grpcio = []
+h11 = []
+httptools = []
+idna = []
+jsonschema = []
+jsonschema-specifications = []
+msgpack = []
+multidict = []
+opencensus = []
+opencensus-context = []
+packaging = []
+platformdirs = []
+prometheus-client = []
+protobuf = []
+py-spy = []
+pyasn1 = []
+pyasn1-modules = []
+pydantic = []
+pydantic-core = []
+python-dotenv = []
+pyyaml = []
+ray = []
+referencing = []
+requests = []
+rpds-py = []
+rsa = []
+six = []
+smart-open = []
+sniffio = []
+starlette = []
+typing-extensions = []
+urllib3 = []
+uvicorn = []
+uvloop = []
+virtualenv = []
+watchfiles = []
+websockets = []
+wrapt = []
+yarl = []

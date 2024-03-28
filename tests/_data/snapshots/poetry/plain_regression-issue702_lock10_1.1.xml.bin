@@ -1,0 +1,341 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.1" version="1">
+  <components>
+    <component type="library" bom-ref="aiohttp@3.9.3">
+      <name>aiohttp</name>
+      <version>3.9.3</version>
+      <description>Async http client/server framework (asyncio)</description>
+      <purl>pkg:pypi/aiohttp@3.9.3</purl>
+    </component>
+    <component type="library" bom-ref="aiohttp-cors@0.7.0">
+      <name>aiohttp-cors</name>
+      <version>0.7.0</version>
+      <description>CORS support for aiohttp</description>
+      <purl>pkg:pypi/aiohttp-cors@0.7.0</purl>
+    </component>
+    <component type="library" bom-ref="aiosignal@1.3.1">
+      <name>aiosignal</name>
+      <version>1.3.1</version>
+      <description>aiosignal: a list of registered asynchronous callbacks</description>
+      <purl>pkg:pypi/aiosignal@1.3.1</purl>
+    </component>
+    <component type="library" bom-ref="annotated-types@0.6.0">
+      <name>annotated-types</name>
+      <version>0.6.0</version>
+      <description>Reusable constraint types to use with typing.Annotated</description>
+      <purl>pkg:pypi/annotated-types@0.6.0</purl>
+    </component>
+    <component type="library" bom-ref="anyio@4.3.0">
+      <name>anyio</name>
+      <version>4.3.0</version>
+      <description>High level compatibility layer for multiple asynchronous event loop implementations</description>
+      <purl>pkg:pypi/anyio@4.3.0</purl>
+    </component>
+    <component type="library" bom-ref="async-timeout@4.0.3">
+      <name>async-timeout</name>
+      <version>4.0.3</version>
+      <description>Timeout context manager for asyncio programs</description>
+      <purl>pkg:pypi/async-timeout@4.0.3</purl>
+    </component>
+    <component type="library" bom-ref="attrs@23.2.0">
+      <name>attrs</name>
+      <version>23.2.0</version>
+      <description>Classes Without Boilerplate</description>
+      <purl>pkg:pypi/attrs@23.2.0</purl>
+    </component>
+    <component type="library" bom-ref="cachetools@5.3.3">
+      <name>cachetools</name>
+      <version>5.3.3</version>
+      <description>Extensible memoizing collections and decorators</description>
+      <purl>pkg:pypi/cachetools@5.3.3</purl>
+    </component>
+    <component type="library" bom-ref="certifi@2024.2.2">
+      <name>certifi</name>
+      <version>2024.2.2</version>
+      <description>Python package for providing Mozilla's CA Bundle.</description>
+      <purl>pkg:pypi/certifi@2024.2.2</purl>
+    </component>
+    <component type="library" bom-ref="charset-normalizer@3.3.2">
+      <name>charset-normalizer</name>
+      <version>3.3.2</version>
+      <description>The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet.</description>
+      <purl>pkg:pypi/charset-normalizer@3.3.2</purl>
+    </component>
+    <component type="library" bom-ref="click@8.1.7">
+      <name>click</name>
+      <version>8.1.7</version>
+      <description>Composable command line interface toolkit</description>
+      <purl>pkg:pypi/click@8.1.7</purl>
+    </component>
+    <component type="library" bom-ref="colorama@0.4.6">
+      <name>colorama</name>
+      <version>0.4.6</version>
+      <description>Cross-platform colored terminal text.</description>
+      <purl>pkg:pypi/colorama@0.4.6</purl>
+    </component>
+    <component type="library" bom-ref="colorful@0.5.6">
+      <name>colorful</name>
+      <version>0.5.6</version>
+      <description>Terminal string styling done right, in Python.</description>
+      <purl>pkg:pypi/colorful@0.5.6</purl>
+    </component>
+    <component type="library" bom-ref="distlib@0.3.8">
+      <name>distlib</name>
+      <version>0.3.8</version>
+      <description>Distribution utilities</description>
+      <purl>pkg:pypi/distlib@0.3.8</purl>
+    </component>
+    <component type="library" bom-ref="exceptiongroup@1.2.0">
+      <name>exceptiongroup</name>
+      <version>1.2.0</version>
+      <description>Backport of PEP 654 (exception groups)</description>
+      <purl>pkg:pypi/exceptiongroup@1.2.0</purl>
+    </component>
+    <component type="library" bom-ref="fastapi@0.1.17">
+      <name>fastapi</name>
+      <version>0.1.17</version>
+      <description>FastAPI framework, high performance, easy to learn, fast to code, ready for production</description>
+      <purl>pkg:pypi/fastapi@0.1.17</purl>
+    </component>
+    <component type="library" bom-ref="filelock@3.13.3">
+      <name>filelock</name>
+      <version>3.13.3</version>
+      <description>A platform independent file lock.</description>
+      <purl>pkg:pypi/filelock@3.13.3</purl>
+    </component>
+    <component type="library" bom-ref="frozenlist@1.4.1">
+      <name>frozenlist</name>
+      <version>1.4.1</version>
+      <description>A list-like structure which implements collections.abc.MutableSequence</description>
+      <purl>pkg:pypi/frozenlist@1.4.1</purl>
+    </component>
+    <component type="library" bom-ref="google-api-core@2.8.0">
+      <name>google-api-core</name>
+      <version>2.8.0</version>
+      <description>Google API client core library</description>
+      <purl>pkg:pypi/google-api-core@2.8.0</purl>
+    </component>
+    <component type="library" bom-ref="google-auth@2.29.0">
+      <name>google-auth</name>
+      <version>2.29.0</version>
+      <description>Google Authentication Library</description>
+      <purl>pkg:pypi/google-auth@2.29.0</purl>
+    </component>
+    <component type="library" bom-ref="googleapis-common-protos@1.56.1">
+      <name>googleapis-common-protos</name>
+      <version>1.56.1</version>
+      <description>Common protobufs used in Google APIs</description>
+      <purl>pkg:pypi/googleapis-common-protos@1.56.1</purl>
+    </component>
+    <component type="library" bom-ref="grpcio@1.62.1">
+      <name>grpcio</name>
+      <version>1.62.1</version>
+      <description>HTTP/2-based RPC framework</description>
+      <purl>pkg:pypi/grpcio@1.62.1</purl>
+    </component>
+    <component type="library" bom-ref="h11@0.14.0">
+      <name>h11</name>
+      <version>0.14.0</version>
+      <description>A pure-Python, bring-your-own-I/O implementation of HTTP/1.1</description>
+      <purl>pkg:pypi/h11@0.14.0</purl>
+    </component>
+    <component type="library" bom-ref="idna@3.6">
+      <name>idna</name>
+      <version>3.6</version>
+      <description>Internationalized Domain Names in Applications (IDNA)</description>
+      <purl>pkg:pypi/idna@3.6</purl>
+    </component>
+    <component type="library" bom-ref="jsonschema@4.21.1">
+      <name>jsonschema</name>
+      <version>4.21.1</version>
+      <description>An implementation of JSON Schema validation for Python</description>
+      <purl>pkg:pypi/jsonschema@4.21.1</purl>
+    </component>
+    <component type="library" bom-ref="jsonschema-specifications@2023.12.1">
+      <name>jsonschema-specifications</name>
+      <version>2023.12.1</version>
+      <description>The JSON Schema meta-schemas and vocabularies, exposed as a Registry</description>
+      <purl>pkg:pypi/jsonschema-specifications@2023.12.1</purl>
+    </component>
+    <component type="library" bom-ref="msgpack@1.0.8">
+      <name>msgpack</name>
+      <version>1.0.8</version>
+      <description>MessagePack serializer</description>
+      <purl>pkg:pypi/msgpack@1.0.8</purl>
+    </component>
+    <component type="library" bom-ref="multidict@6.0.5">
+      <name>multidict</name>
+      <version>6.0.5</version>
+      <description>multidict implementation</description>
+      <purl>pkg:pypi/multidict@6.0.5</purl>
+    </component>
+    <component type="library" bom-ref="opencensus@0.11.4">
+      <name>opencensus</name>
+      <version>0.11.4</version>
+      <description>A stats collection and distributed tracing framework</description>
+      <purl>pkg:pypi/opencensus@0.11.4</purl>
+    </component>
+    <component type="library" bom-ref="opencensus-context@0.1.3">
+      <name>opencensus-context</name>
+      <version>0.1.3</version>
+      <description>OpenCensus Runtime Context</description>
+      <purl>pkg:pypi/opencensus-context@0.1.3</purl>
+    </component>
+    <component type="library" bom-ref="packaging@24.0">
+      <name>packaging</name>
+      <version>24.0</version>
+      <description>Core utilities for Python packages</description>
+      <purl>pkg:pypi/packaging@24.0</purl>
+    </component>
+    <component type="library" bom-ref="platformdirs@4.2.0">
+      <name>platformdirs</name>
+      <version>4.2.0</version>
+      <description>A small Python package for determining appropriate platform-specific dirs, e.g. a &quot;user data dir&quot;.</description>
+      <purl>pkg:pypi/platformdirs@4.2.0</purl>
+    </component>
+    <component type="library" bom-ref="prometheus-client@0.20.0">
+      <name>prometheus-client</name>
+      <version>0.20.0</version>
+      <description>Python client for the Prometheus monitoring system.</description>
+      <purl>pkg:pypi/prometheus-client@0.20.0</purl>
+    </component>
+    <component type="library" bom-ref="protobuf@5.26.1">
+      <name>protobuf</name>
+      <version>5.26.1</version>
+      <description/>
+      <purl>pkg:pypi/protobuf@5.26.1</purl>
+    </component>
+    <component type="library" bom-ref="py-spy@0.3.14">
+      <name>py-spy</name>
+      <version>0.3.14</version>
+      <description>Sampling profiler for Python programs</description>
+      <purl>pkg:pypi/py-spy@0.3.14</purl>
+    </component>
+    <component type="library" bom-ref="pyasn1@0.6.0">
+      <name>pyasn1</name>
+      <version>0.6.0</version>
+      <description>Pure-Python implementation of ASN.1 types and DER/BER/CER codecs (X.208)</description>
+      <purl>pkg:pypi/pyasn1@0.6.0</purl>
+    </component>
+    <component type="library" bom-ref="pyasn1-modules@0.4.0">
+      <name>pyasn1-modules</name>
+      <version>0.4.0</version>
+      <description>A collection of ASN.1-based protocols modules</description>
+      <purl>pkg:pypi/pyasn1-modules@0.4.0</purl>
+    </component>
+    <component type="library" bom-ref="pydantic@2.6.4">
+      <name>pydantic</name>
+      <version>2.6.4</version>
+      <description>Data validation using Python type hints</description>
+      <purl>pkg:pypi/pydantic@2.6.4</purl>
+    </component>
+    <component type="library" bom-ref="pydantic-core@2.16.3">
+      <name>pydantic-core</name>
+      <version>2.16.3</version>
+      <description/>
+      <purl>pkg:pypi/pydantic-core@2.16.3</purl>
+    </component>
+    <component type="library" bom-ref="pyyaml@6.0.1">
+      <name>pyyaml</name>
+      <version>6.0.1</version>
+      <description>YAML parser and emitter for Python</description>
+      <purl>pkg:pypi/pyyaml@6.0.1</purl>
+    </component>
+    <component type="library" bom-ref="ray@2.10.0">
+      <name>ray</name>
+      <version>2.10.0</version>
+      <description>Ray provides a simple, universal API for building distributed applications.</description>
+      <purl>pkg:pypi/ray@2.10.0</purl>
+    </component>
+    <component type="library" bom-ref="referencing@0.34.0">
+      <name>referencing</name>
+      <version>0.34.0</version>
+      <description>JSON Referencing + Python</description>
+      <purl>pkg:pypi/referencing@0.34.0</purl>
+    </component>
+    <component type="library" bom-ref="requests@2.31.0">
+      <name>requests</name>
+      <version>2.31.0</version>
+      <description>Python HTTP for Humans.</description>
+      <purl>pkg:pypi/requests@2.31.0</purl>
+    </component>
+    <component type="library" bom-ref="rpds-py@0.18.0">
+      <name>rpds-py</name>
+      <version>0.18.0</version>
+      <description>Python bindings to Rust's persistent data structures (rpds)</description>
+      <purl>pkg:pypi/rpds-py@0.18.0</purl>
+    </component>
+    <component type="library" bom-ref="rsa@4.9">
+      <name>rsa</name>
+      <version>4.9</version>
+      <description>Pure-Python RSA implementation</description>
+      <purl>pkg:pypi/rsa@4.9</purl>
+    </component>
+    <component type="library" bom-ref="six@1.16.0">
+      <name>six</name>
+      <version>1.16.0</version>
+      <description>Python 2 and 3 compatibility utilities</description>
+      <purl>pkg:pypi/six@1.16.0</purl>
+    </component>
+    <component type="library" bom-ref="smart-open@7.0.4">
+      <name>smart-open</name>
+      <version>7.0.4</version>
+      <description>Utils for streaming large files (S3, HDFS, GCS, Azure Blob Storage, gzip, bz2...)</description>
+      <purl>pkg:pypi/smart-open@7.0.4</purl>
+    </component>
+    <component type="library" bom-ref="sniffio@1.3.1">
+      <name>sniffio</name>
+      <version>1.3.1</version>
+      <description>Sniff out which async library your code is running under</description>
+      <purl>pkg:pypi/sniffio@1.3.1</purl>
+    </component>
+    <component type="library" bom-ref="starlette@0.37.2">
+      <name>starlette</name>
+      <version>0.37.2</version>
+      <description>The little ASGI library that shines.</description>
+      <purl>pkg:pypi/starlette@0.37.2</purl>
+    </component>
+    <component type="library" bom-ref="typing-extensions@4.10.0">
+      <name>typing-extensions</name>
+      <version>4.10.0</version>
+      <description>Backported and Experimental Type Hints for Python 3.8+</description>
+      <purl>pkg:pypi/typing-extensions@4.10.0</purl>
+    </component>
+    <component type="library" bom-ref="urllib3@2.2.1">
+      <name>urllib3</name>
+      <version>2.2.1</version>
+      <description>HTTP library with thread-safe connection pooling, file post, and more.</description>
+      <purl>pkg:pypi/urllib3@2.2.1</purl>
+    </component>
+    <component type="library" bom-ref="uvicorn@0.29.0">
+      <name>uvicorn</name>
+      <version>0.29.0</version>
+      <description>The lightning-fast ASGI server.</description>
+      <purl>pkg:pypi/uvicorn@0.29.0</purl>
+    </component>
+    <component type="library" bom-ref="virtualenv@20.25.1">
+      <name>virtualenv</name>
+      <version>20.25.1</version>
+      <description>Virtual Python Environment builder</description>
+      <purl>pkg:pypi/virtualenv@20.25.1</purl>
+    </component>
+    <component type="library" bom-ref="watchfiles@0.21.0">
+      <name>watchfiles</name>
+      <version>0.21.0</version>
+      <description>Simple, modern and high performance file watching and code reload in python.</description>
+      <purl>pkg:pypi/watchfiles@0.21.0</purl>
+    </component>
+    <component type="library" bom-ref="wrapt@1.16.0">
+      <name>wrapt</name>
+      <version>1.16.0</version>
+      <description>Module for decorators, wrappers and monkey patching.</description>
+      <purl>pkg:pypi/wrapt@1.16.0</purl>
+    </component>
+    <component type="library" bom-ref="yarl@1.9.4">
+      <name>yarl</name>
+      <version>1.9.4</version>
+      <description>Yet another URL library</description>
+      <purl>pkg:pypi/yarl@1.9.4</purl>
+    </component>
+  </components>
+</bom>
