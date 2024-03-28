@@ -21,7 +21,8 @@ from dataclasses import dataclass
 from itertools import chain
 from os.path import join
 from textwrap import dedent
-from typing import TYPE_CHECKING, Any, Dict, FrozenSet, Generator, Iterable, List, Tuple
+from typing import TYPE_CHECKING, Any, Dict, FrozenSet, Generator, Iterable, List, Tuple, Set
+from re import compile as re_compile
 
 from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
@@ -71,6 +72,26 @@ class ExtrasNotFoundError(ValueError):
 
     def __str__(self) -> str:
         return f'Extra(s) [{",".join(sorted(self.__extras))}] not specified.'
+
+
+@dataclass(frozen=True)
+class _PoetryPackageRequirement:
+    name: str
+    extras: Set[str]
+
+    # the pattern is good enough for the job
+    __lock_pattern = re_compile(r'^([a-zA-Z0-9._-]+)(\[.+?\])?')
+
+    @classmethod
+    def from_poetry_lock(cls, r: str):
+        matches = cls.__lock_pattern.match(r)
+        if matches is None:
+            raise ValueError(f'cannot parse: {r}')
+        # ! no normalization is done here - this is just a data structure, nothing more
+        return cls(
+            matches[1],
+            set(matches[2].split(',') if matches[2] else ())
+        )
 
 
 class PoetryBB(BomBuilder):
@@ -322,9 +343,9 @@ class PoetryBB(BomBuilder):
                 ) for extra in use_extras
             )
             lock_entry_dep = lock_entry_dep \
-                or next(filter(lambda d: d.ref is lock_entry.component.bom_ref, bom.dependencies))
+                             or next(filter(lambda d: d.ref is lock_entry.component.bom_ref, bom.dependencies))
             for req in map(
-                Requirement,
+                _PoetryPackageRequirement.from_poetry_lock,
                 chain.from_iterable(es for en, es in lock_entry.extras.items() if en in use_extras)
             ):
                 dep_name = normalize_packagename(req.name)
