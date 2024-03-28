@@ -1,0 +1,784 @@
+{
+  "components": [
+    {
+      "bom-ref": "aiohttp@3.9.3",
+      "description": "Async http client/server framework (asyncio)",
+      "name": "aiohttp",
+      "purl": "pkg:pypi/aiohttp@3.9.3",
+      "type": "library",
+      "version": "3.9.3"
+    },
+    {
+      "bom-ref": "aiohttp-cors@0.7.0",
+      "description": "CORS support for aiohttp",
+      "name": "aiohttp-cors",
+      "purl": "pkg:pypi/aiohttp-cors@0.7.0",
+      "type": "library",
+      "version": "0.7.0"
+    },
+    {
+      "bom-ref": "aiosignal@1.3.1",
+      "description": "aiosignal: a list of registered asynchronous callbacks",
+      "name": "aiosignal",
+      "purl": "pkg:pypi/aiosignal@1.3.1",
+      "type": "library",
+      "version": "1.3.1"
+    },
+    {
+      "bom-ref": "annotated-types@0.6.0",
+      "description": "Reusable constraint types to use with typing.Annotated",
+      "name": "annotated-types",
+      "purl": "pkg:pypi/annotated-types@0.6.0",
+      "type": "library",
+      "version": "0.6.0"
+    },
+    {
+      "bom-ref": "anyio@4.3.0",
+      "description": "High level compatibility layer for multiple asynchronous event loop implementations",
+      "name": "anyio",
+      "purl": "pkg:pypi/anyio@4.3.0",
+      "type": "library",
+      "version": "4.3.0"
+    },
+    {
+      "bom-ref": "async-timeout@4.0.3",
+      "description": "Timeout context manager for asyncio programs",
+      "name": "async-timeout",
+      "purl": "pkg:pypi/async-timeout@4.0.3",
+      "type": "library",
+      "version": "4.0.3"
+    },
+    {
+      "bom-ref": "attrs@23.2.0",
+      "description": "Classes Without Boilerplate",
+      "name": "attrs",
+      "purl": "pkg:pypi/attrs@23.2.0",
+      "type": "library",
+      "version": "23.2.0"
+    },
+    {
+      "bom-ref": "cachetools@5.3.3",
+      "description": "Extensible memoizing collections and decorators",
+      "name": "cachetools",
+      "purl": "pkg:pypi/cachetools@5.3.3",
+      "type": "library",
+      "version": "5.3.3"
+    },
+    {
+      "bom-ref": "certifi@2024.2.2",
+      "description": "Python package for providing Mozilla's CA Bundle.",
+      "name": "certifi",
+      "purl": "pkg:pypi/certifi@2024.2.2",
+      "type": "library",
+      "version": "2024.2.2"
+    },
+    {
+      "bom-ref": "charset-normalizer@3.3.2",
+      "description": "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet.",
+      "name": "charset-normalizer",
+      "purl": "pkg:pypi/charset-normalizer@3.3.2",
+      "type": "library",
+      "version": "3.3.2"
+    },
+    {
+      "bom-ref": "click@8.1.7",
+      "description": "Composable command line interface toolkit",
+      "name": "click",
+      "purl": "pkg:pypi/click@8.1.7",
+      "type": "library",
+      "version": "8.1.7"
+    },
+    {
+      "bom-ref": "colorama@0.4.6",
+      "description": "Cross-platform colored terminal text.",
+      "name": "colorama",
+      "purl": "pkg:pypi/colorama@0.4.6",
+      "type": "library",
+      "version": "0.4.6"
+    },
+    {
+      "bom-ref": "colorful@0.5.6",
+      "description": "Terminal string styling done right, in Python.",
+      "name": "colorful",
+      "purl": "pkg:pypi/colorful@0.5.6",
+      "type": "library",
+      "version": "0.5.6"
+    },
+    {
+      "bom-ref": "distlib@0.3.8",
+      "description": "Distribution utilities",
+      "name": "distlib",
+      "purl": "pkg:pypi/distlib@0.3.8",
+      "type": "library",
+      "version": "0.3.8"
+    },
+    {
+      "bom-ref": "exceptiongroup@1.2.0",
+      "description": "Backport of PEP 654 (exception groups)",
+      "name": "exceptiongroup",
+      "purl": "pkg:pypi/exceptiongroup@1.2.0",
+      "type": "library",
+      "version": "1.2.0"
+    },
+    {
+      "bom-ref": "fastapi@0.1.17",
+      "description": "FastAPI framework, high performance, easy to learn, fast to code, ready for production",
+      "name": "fastapi",
+      "purl": "pkg:pypi/fastapi@0.1.17",
+      "type": "library",
+      "version": "0.1.17"
+    },
+    {
+      "bom-ref": "filelock@3.13.3",
+      "description": "A platform independent file lock.",
+      "name": "filelock",
+      "purl": "pkg:pypi/filelock@3.13.3",
+      "type": "library",
+      "version": "3.13.3"
+    },
+    {
+      "bom-ref": "frozenlist@1.4.1",
+      "description": "A list-like structure which implements collections.abc.MutableSequence",
+      "name": "frozenlist",
+      "purl": "pkg:pypi/frozenlist@1.4.1",
+      "type": "library",
+      "version": "1.4.1"
+    },
+    {
+      "bom-ref": "google-api-core@2.8.0",
+      "description": "Google API client core library",
+      "name": "google-api-core",
+      "purl": "pkg:pypi/google-api-core@2.8.0",
+      "type": "library",
+      "version": "2.8.0"
+    },
+    {
+      "bom-ref": "google-auth@2.29.0",
+      "description": "Google Authentication Library",
+      "name": "google-auth",
+      "purl": "pkg:pypi/google-auth@2.29.0",
+      "type": "library",
+      "version": "2.29.0"
+    },
+    {
+      "bom-ref": "googleapis-common-protos@1.56.1",
+      "description": "Common protobufs used in Google APIs",
+      "name": "googleapis-common-protos",
+      "purl": "pkg:pypi/googleapis-common-protos@1.56.1",
+      "type": "library",
+      "version": "1.56.1"
+    },
+    {
+      "bom-ref": "grpcio@1.62.1",
+      "description": "HTTP/2-based RPC framework",
+      "name": "grpcio",
+      "purl": "pkg:pypi/grpcio@1.62.1",
+      "type": "library",
+      "version": "1.62.1"
+    },
+    {
+      "bom-ref": "h11@0.14.0",
+      "description": "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1",
+      "name": "h11",
+      "purl": "pkg:pypi/h11@0.14.0",
+      "type": "library",
+      "version": "0.14.0"
+    },
+    {
+      "bom-ref": "idna@3.6",
+      "description": "Internationalized Domain Names in Applications (IDNA)",
+      "name": "idna",
+      "purl": "pkg:pypi/idna@3.6",
+      "type": "library",
+      "version": "3.6"
+    },
+    {
+      "bom-ref": "jsonschema@4.21.1",
+      "description": "An implementation of JSON Schema validation for Python",
+      "name": "jsonschema",
+      "purl": "pkg:pypi/jsonschema@4.21.1",
+      "type": "library",
+      "version": "4.21.1"
+    },
+    {
+      "bom-ref": "jsonschema-specifications@2023.12.1",
+      "description": "The JSON Schema meta-schemas and vocabularies, exposed as a Registry",
+      "name": "jsonschema-specifications",
+      "purl": "pkg:pypi/jsonschema-specifications@2023.12.1",
+      "type": "library",
+      "version": "2023.12.1"
+    },
+    {
+      "bom-ref": "msgpack@1.0.8",
+      "description": "MessagePack serializer",
+      "name": "msgpack",
+      "purl": "pkg:pypi/msgpack@1.0.8",
+      "type": "library",
+      "version": "1.0.8"
+    },
+    {
+      "bom-ref": "multidict@6.0.5",
+      "description": "multidict implementation",
+      "name": "multidict",
+      "purl": "pkg:pypi/multidict@6.0.5",
+      "type": "library",
+      "version": "6.0.5"
+    },
+    {
+      "bom-ref": "opencensus@0.11.4",
+      "description": "A stats collection and distributed tracing framework",
+      "name": "opencensus",
+      "purl": "pkg:pypi/opencensus@0.11.4",
+      "type": "library",
+      "version": "0.11.4"
+    },
+    {
+      "bom-ref": "opencensus-context@0.1.3",
+      "description": "OpenCensus Runtime Context",
+      "name": "opencensus-context",
+      "purl": "pkg:pypi/opencensus-context@0.1.3",
+      "type": "library",
+      "version": "0.1.3"
+    },
+    {
+      "bom-ref": "packaging@24.0",
+      "description": "Core utilities for Python packages",
+      "name": "packaging",
+      "purl": "pkg:pypi/packaging@24.0",
+      "type": "library",
+      "version": "24.0"
+    },
+    {
+      "bom-ref": "platformdirs@4.2.0",
+      "description": "A small Python package for determining appropriate platform-specific dirs, e.g. a \"user data dir\".",
+      "name": "platformdirs",
+      "purl": "pkg:pypi/platformdirs@4.2.0",
+      "type": "library",
+      "version": "4.2.0"
+    },
+    {
+      "bom-ref": "prometheus-client@0.20.0",
+      "description": "Python client for the Prometheus monitoring system.",
+      "name": "prometheus-client",
+      "purl": "pkg:pypi/prometheus-client@0.20.0",
+      "type": "library",
+      "version": "0.20.0"
+    },
+    {
+      "bom-ref": "protobuf@5.26.1",
+      "description": "",
+      "name": "protobuf",
+      "purl": "pkg:pypi/protobuf@5.26.1",
+      "type": "library",
+      "version": "5.26.1"
+    },
+    {
+      "bom-ref": "py-spy@0.3.14",
+      "description": "Sampling profiler for Python programs",
+      "name": "py-spy",
+      "purl": "pkg:pypi/py-spy@0.3.14",
+      "type": "library",
+      "version": "0.3.14"
+    },
+    {
+      "bom-ref": "pyasn1@0.6.0",
+      "description": "Pure-Python implementation of ASN.1 types and DER/BER/CER codecs (X.208)",
+      "name": "pyasn1",
+      "purl": "pkg:pypi/pyasn1@0.6.0",
+      "type": "library",
+      "version": "0.6.0"
+    },
+    {
+      "bom-ref": "pyasn1-modules@0.4.0",
+      "description": "A collection of ASN.1-based protocols modules",
+      "name": "pyasn1-modules",
+      "purl": "pkg:pypi/pyasn1-modules@0.4.0",
+      "type": "library",
+      "version": "0.4.0"
+    },
+    {
+      "bom-ref": "pydantic@2.6.4",
+      "description": "Data validation using Python type hints",
+      "name": "pydantic",
+      "purl": "pkg:pypi/pydantic@2.6.4",
+      "type": "library",
+      "version": "2.6.4"
+    },
+    {
+      "bom-ref": "pydantic-core@2.16.3",
+      "description": "",
+      "name": "pydantic-core",
+      "purl": "pkg:pypi/pydantic-core@2.16.3",
+      "type": "library",
+      "version": "2.16.3"
+    },
+    {
+      "bom-ref": "pyyaml@6.0.1",
+      "description": "YAML parser and emitter for Python",
+      "name": "pyyaml",
+      "purl": "pkg:pypi/pyyaml@6.0.1",
+      "type": "library",
+      "version": "6.0.1"
+    },
+    {
+      "bom-ref": "ray@2.10.0",
+      "description": "Ray provides a simple, universal API for building distributed applications.",
+      "name": "ray",
+      "purl": "pkg:pypi/ray@2.10.0",
+      "type": "library",
+      "version": "2.10.0"
+    },
+    {
+      "bom-ref": "referencing@0.34.0",
+      "description": "JSON Referencing + Python",
+      "name": "referencing",
+      "purl": "pkg:pypi/referencing@0.34.0",
+      "type": "library",
+      "version": "0.34.0"
+    },
+    {
+      "bom-ref": "requests@2.31.0",
+      "description": "Python HTTP for Humans.",
+      "name": "requests",
+      "purl": "pkg:pypi/requests@2.31.0",
+      "type": "library",
+      "version": "2.31.0"
+    },
+    {
+      "bom-ref": "rpds-py@0.18.0",
+      "description": "Python bindings to Rust's persistent data structures (rpds)",
+      "name": "rpds-py",
+      "purl": "pkg:pypi/rpds-py@0.18.0",
+      "type": "library",
+      "version": "0.18.0"
+    },
+    {
+      "bom-ref": "rsa@4.9",
+      "description": "Pure-Python RSA implementation",
+      "name": "rsa",
+      "purl": "pkg:pypi/rsa@4.9",
+      "type": "library",
+      "version": "4.9"
+    },
+    {
+      "bom-ref": "six@1.16.0",
+      "description": "Python 2 and 3 compatibility utilities",
+      "name": "six",
+      "purl": "pkg:pypi/six@1.16.0",
+      "type": "library",
+      "version": "1.16.0"
+    },
+    {
+      "bom-ref": "smart-open@7.0.4",
+      "description": "Utils for streaming large files (S3, HDFS, GCS, Azure Blob Storage, gzip, bz2...)",
+      "name": "smart-open",
+      "purl": "pkg:pypi/smart-open@7.0.4",
+      "type": "library",
+      "version": "7.0.4"
+    },
+    {
+      "bom-ref": "sniffio@1.3.1",
+      "description": "Sniff out which async library your code is running under",
+      "name": "sniffio",
+      "purl": "pkg:pypi/sniffio@1.3.1",
+      "type": "library",
+      "version": "1.3.1"
+    },
+    {
+      "bom-ref": "starlette@0.37.2",
+      "description": "The little ASGI library that shines.",
+      "name": "starlette",
+      "purl": "pkg:pypi/starlette@0.37.2",
+      "type": "library",
+      "version": "0.37.2"
+    },
+    {
+      "bom-ref": "typing-extensions@4.10.0",
+      "description": "Backported and Experimental Type Hints for Python 3.8+",
+      "name": "typing-extensions",
+      "purl": "pkg:pypi/typing-extensions@4.10.0",
+      "type": "library",
+      "version": "4.10.0"
+    },
+    {
+      "bom-ref": "urllib3@2.2.1",
+      "description": "HTTP library with thread-safe connection pooling, file post, and more.",
+      "name": "urllib3",
+      "purl": "pkg:pypi/urllib3@2.2.1",
+      "type": "library",
+      "version": "2.2.1"
+    },
+    {
+      "bom-ref": "uvicorn@0.29.0",
+      "description": "The lightning-fast ASGI server.",
+      "name": "uvicorn",
+      "purl": "pkg:pypi/uvicorn@0.29.0",
+      "type": "library",
+      "version": "0.29.0"
+    },
+    {
+      "bom-ref": "virtualenv@20.25.1",
+      "description": "Virtual Python Environment builder",
+      "name": "virtualenv",
+      "purl": "pkg:pypi/virtualenv@20.25.1",
+      "type": "library",
+      "version": "20.25.1"
+    },
+    {
+      "bom-ref": "watchfiles@0.21.0",
+      "description": "Simple, modern and high performance file watching and code reload in python.",
+      "name": "watchfiles",
+      "purl": "pkg:pypi/watchfiles@0.21.0",
+      "type": "library",
+      "version": "0.21.0"
+    },
+    {
+      "bom-ref": "wrapt@1.16.0",
+      "description": "Module for decorators, wrappers and monkey patching.",
+      "name": "wrapt",
+      "purl": "pkg:pypi/wrapt@1.16.0",
+      "type": "library",
+      "version": "1.16.0"
+    },
+    {
+      "bom-ref": "yarl@1.9.4",
+      "description": "Yet another URL library",
+      "name": "yarl",
+      "purl": "pkg:pypi/yarl@1.9.4",
+      "type": "library",
+      "version": "1.9.4"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "aiohttp@3.9.3"
+      ],
+      "ref": "aiohttp-cors@0.7.0"
+    },
+    {
+      "dependsOn": [
+        "aiosignal@1.3.1",
+        "async-timeout@4.0.3",
+        "attrs@23.2.0",
+        "frozenlist@1.4.1",
+        "multidict@6.0.5",
+        "yarl@1.9.4"
+      ],
+      "ref": "aiohttp@3.9.3"
+    },
+    {
+      "dependsOn": [
+        "frozenlist@1.4.1"
+      ],
+      "ref": "aiosignal@1.3.1"
+    },
+    {
+      "ref": "annotated-types@0.6.0"
+    },
+    {
+      "dependsOn": [
+        "exceptiongroup@1.2.0",
+        "idna@3.6",
+        "sniffio@1.3.1",
+        "typing-extensions@4.10.0"
+      ],
+      "ref": "anyio@4.3.0"
+    },
+    {
+      "ref": "async-timeout@4.0.3"
+    },
+    {
+      "ref": "attrs@23.2.0"
+    },
+    {
+      "ref": "cachetools@5.3.3"
+    },
+    {
+      "ref": "certifi@2024.2.2"
+    },
+    {
+      "ref": "charset-normalizer@3.3.2"
+    },
+    {
+      "dependsOn": [
+        "colorama@0.4.6"
+      ],
+      "ref": "click@8.1.7"
+    },
+    {
+      "ref": "colorama@0.4.6"
+    },
+    {
+      "dependsOn": [
+        "colorama@0.4.6"
+      ],
+      "ref": "colorful@0.5.6"
+    },
+    {
+      "ref": "distlib@0.3.8"
+    },
+    {
+      "ref": "exceptiongroup@1.2.0"
+    },
+    {
+      "dependsOn": [
+        "pydantic@2.6.4",
+        "starlette@0.37.2"
+      ],
+      "ref": "fastapi@0.1.17"
+    },
+    {
+      "ref": "filelock@3.13.3"
+    },
+    {
+      "ref": "frozenlist@1.4.1"
+    },
+    {
+      "dependsOn": [
+        "google-auth@2.29.0",
+        "googleapis-common-protos@1.56.1",
+        "protobuf@5.26.1",
+        "requests@2.31.0"
+      ],
+      "ref": "google-api-core@2.8.0"
+    },
+    {
+      "dependsOn": [
+        "cachetools@5.3.3",
+        "pyasn1-modules@0.4.0",
+        "rsa@4.9"
+      ],
+      "ref": "google-auth@2.29.0"
+    },
+    {
+      "dependsOn": [
+        "protobuf@5.26.1"
+      ],
+      "ref": "googleapis-common-protos@1.56.1"
+    },
+    {
+      "ref": "grpcio@1.62.1"
+    },
+    {
+      "ref": "h11@0.14.0"
+    },
+    {
+      "ref": "idna@3.6"
+    },
+    {
+      "dependsOn": [
+        "referencing@0.34.0"
+      ],
+      "ref": "jsonschema-specifications@2023.12.1"
+    },
+    {
+      "dependsOn": [
+        "attrs@23.2.0",
+        "jsonschema-specifications@2023.12.1",
+        "referencing@0.34.0",
+        "rpds-py@0.18.0"
+      ],
+      "ref": "jsonschema@4.21.1"
+    },
+    {
+      "ref": "msgpack@1.0.8"
+    },
+    {
+      "ref": "multidict@6.0.5"
+    },
+    {
+      "ref": "opencensus-context@0.1.3"
+    },
+    {
+      "dependsOn": [
+        "google-api-core@2.8.0",
+        "opencensus-context@0.1.3",
+        "six@1.16.0"
+      ],
+      "ref": "opencensus@0.11.4"
+    },
+    {
+      "ref": "packaging@24.0"
+    },
+    {
+      "ref": "platformdirs@4.2.0"
+    },
+    {
+      "ref": "prometheus-client@0.20.0"
+    },
+    {
+      "ref": "protobuf@5.26.1"
+    },
+    {
+      "ref": "py-spy@0.3.14"
+    },
+    {
+      "dependsOn": [
+        "pyasn1@0.6.0"
+      ],
+      "ref": "pyasn1-modules@0.4.0"
+    },
+    {
+      "ref": "pyasn1@0.6.0"
+    },
+    {
+      "dependsOn": [
+        "typing-extensions@4.10.0"
+      ],
+      "ref": "pydantic-core@2.16.3"
+    },
+    {
+      "dependsOn": [
+        "annotated-types@0.6.0",
+        "pydantic-core@2.16.3",
+        "typing-extensions@4.10.0"
+      ],
+      "ref": "pydantic@2.6.4"
+    },
+    {
+      "ref": "pyyaml@6.0.1"
+    },
+    {
+      "dependsOn": [
+        "aiohttp-cors@0.7.0",
+        "aiohttp@3.9.3",
+        "aiosignal@1.3.1",
+        "click@8.1.7",
+        "colorful@0.5.6",
+        "fastapi@0.1.17",
+        "filelock@3.13.3",
+        "frozenlist@1.4.1",
+        "grpcio@1.62.1",
+        "jsonschema@4.21.1",
+        "msgpack@1.0.8",
+        "opencensus@0.11.4",
+        "packaging@24.0",
+        "prometheus-client@0.20.0",
+        "protobuf@5.26.1",
+        "py-spy@0.3.14",
+        "pydantic@2.6.4",
+        "pyyaml@6.0.1",
+        "requests@2.31.0",
+        "smart-open@7.0.4",
+        "starlette@0.37.2",
+        "uvicorn@0.29.0",
+        "virtualenv@20.25.1",
+        "watchfiles@0.21.0"
+      ],
+      "ref": "ray@2.10.0"
+    },
+    {
+      "dependsOn": [
+        "attrs@23.2.0",
+        "rpds-py@0.18.0"
+      ],
+      "ref": "referencing@0.34.0"
+    },
+    {
+      "dependsOn": [
+        "ray@2.10.0"
+      ],
+      "ref": "regression-issue702"
+    },
+    {
+      "dependsOn": [
+        "certifi@2024.2.2",
+        "charset-normalizer@3.3.2",
+        "idna@3.6",
+        "urllib3@2.2.1"
+      ],
+      "ref": "requests@2.31.0"
+    },
+    {
+      "ref": "rpds-py@0.18.0"
+    },
+    {
+      "dependsOn": [
+        "pyasn1@0.6.0"
+      ],
+      "ref": "rsa@4.9"
+    },
+    {
+      "ref": "six@1.16.0"
+    },
+    {
+      "dependsOn": [
+        "wrapt@1.16.0"
+      ],
+      "ref": "smart-open@7.0.4"
+    },
+    {
+      "ref": "sniffio@1.3.1"
+    },
+    {
+      "dependsOn": [
+        "anyio@4.3.0"
+      ],
+      "ref": "starlette@0.37.2"
+    },
+    {
+      "ref": "typing-extensions@4.10.0"
+    },
+    {
+      "ref": "urllib3@2.2.1"
+    },
+    {
+      "dependsOn": [
+        "click@8.1.7",
+        "h11@0.14.0",
+        "typing-extensions@4.10.0"
+      ],
+      "ref": "uvicorn@0.29.0"
+    },
+    {
+      "dependsOn": [
+        "distlib@0.3.8",
+        "filelock@3.13.3",
+        "platformdirs@4.2.0"
+      ],
+      "ref": "virtualenv@20.25.1"
+    },
+    {
+      "dependsOn": [
+        "anyio@4.3.0"
+      ],
+      "ref": "watchfiles@0.21.0"
+    },
+    {
+      "ref": "wrapt@1.16.0"
+    },
+    {
+      "dependsOn": [
+        "idna@3.6",
+        "multidict@6.0.5"
+      ],
+      "ref": "yarl@1.9.4"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "regression-issue702",
+      "description": "regression for issue #702",
+      "name": "regression-issue702",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "tools": [
+      {
+        "name": "cyclonedx-bom",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.2b.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.2"
+}
