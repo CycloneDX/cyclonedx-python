@@ -20,9 +20,9 @@ from argparse import OPTIONAL, ArgumentParser
 from dataclasses import dataclass
 from itertools import chain
 from os.path import join
-from textwrap import dedent
-from typing import TYPE_CHECKING, Any, Dict, FrozenSet, Generator, Iterable, List, Tuple, Set
 from re import compile as re_compile
+from textwrap import dedent
+from typing import TYPE_CHECKING, Any, Dict, FrozenSet, Generator, Iterable, List, Set, Tuple
 
 from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
@@ -343,7 +343,7 @@ class PoetryBB(BomBuilder):
                 ) for extra in use_extras
             )
             lock_entry_dep = lock_entry_dep \
-                             or next(filter(lambda d: d.ref is lock_entry.component.bom_ref, bom.dependencies))
+                or next(filter(lambda d: d.ref is lock_entry.component.bom_ref, bom.dependencies))
             for req in map(
                 _PoetryPackageRequirement.from_poetry_lock,
                 chain.from_iterable(es for en, es in lock_entry.extras.items() if en in use_extras)
