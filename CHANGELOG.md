@@ -2,6 +2,92 @@
 
 
 
+## v4.1.4 (2024-03-28)
+
+### Chore
+
+* chore(deps-dev): Update autopep8 requirement from 2.0.4 to 2.1.0 (#699)
+
+Updates the requirements on [autopep8](https://github.com/hhatto/autopep8) to permit the latest version.
+- [Release notes](https://github.com/hhatto/autopep8/releases)
+- [Commits](https://github.com/hhatto/autopep8/compare/v2.0.4...v2.1.0)
+
+---
+updated-dependencies:
+- dependency-name: autopep8
+  dependency-type: direct:development
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
+Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`59f07c1`](https://github.com/CycloneDX/cyclonedx-python/commit/59f07c1f26be43111c50194d86796731aa4fa11e))
+
+* chore(deps-dev): Update flake8-logging requirement from 1.5.0 to 1.6.0 (#701)
+
+Updates the requirements on [flake8-logging](https://github.com/adamchainz/flake8-logging) to permit the latest version.
+- [Changelog](https://github.com/adamchainz/flake8-logging/blob/main/CHANGELOG.rst)
+- [Commits](https://github.com/adamchainz/flake8-logging/compare/1.5.0...1.6.0)
+
+---
+updated-dependencies:
+- dependency-name: flake8-logging
+  dependency-type: direct:development
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
+Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`dfc63b6`](https://github.com/CycloneDX/cyclonedx-python/commit/dfc63b650408545e53e065b595bd4ab2e4302f7c))
+
+* chore(deps-dev): Update tox requirement from 4.14.1 to 4.14.2 (#700)
+
+Updates the requirements on [tox](https://github.com/tox-dev/tox) to permit the latest version.
+- [Release notes](https://github.com/tox-dev/tox/releases)
+- [Changelog](https://github.com/tox-dev/tox/blob/main/docs/changelog.rst)
+- [Commits](https://github.com/tox-dev/tox/compare/4.14.1...4.14.2)
+
+---
+updated-dependencies:
+- dependency-name: tox
+  dependency-type: direct:development
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
+Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`7ae2145`](https://github.com/CycloneDX/cyclonedx-python/commit/7ae2145de46db25881375a9f179f13c9e68c23ac))
+
+* chore(deps): Update packaging requirement || ^24 (#697)
+
+---
+updated-dependencies:
+- dependency-name: packaging
+  dependency-type: direct:production
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
+Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`bd3f232`](https://github.com/CycloneDX/cyclonedx-python/commit/bd3f2324fbe80bb3bab7efcab8837adba04e14ac))
+
+* chore(deps-dev): Update coverage requirement from 7.4.3 to 7.4.4 (#696)
+
+Updates the requirements on [coverage](https://github.com/nedbat/coveragepy) to permit the latest version.
+- [Release notes](https://github.com/nedbat/coveragepy/releases)
+- [Changelog](https://github.com/nedbat/coveragepy/blob/master/CHANGES.rst)
+- [Commits](https://github.com/nedbat/coveragepy/compare/7.4.3...7.4.4)
+
+---
+updated-dependencies:
+- dependency-name: coverage
+  dependency-type: direct:development
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
+Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`8181ce9`](https://github.com/CycloneDX/cyclonedx-python/commit/8181ce98ad66e39af762271fd6d19ce7cc69b1cc))
+
+### Fix
+
+* fix: poetry analyzer crashed with certain optional package&#39;s version constraints (#703)
+
+
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`8ade6e1`](https://github.com/CycloneDX/cyclonedx-python/commit/8ade6e18637428e86332ecd1019416dfc121e862))
+
+
 ## v4.1.3 (2024-03-15)
 
 ### Chore
