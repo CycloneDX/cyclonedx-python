@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "regression-issue702"
+version = "0.1.0"
+description = "regression for issue #702"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10.13" # like in issue report
+ray = { version = ">=2.10.0", extras = ["serve"] } # like in issue report
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
