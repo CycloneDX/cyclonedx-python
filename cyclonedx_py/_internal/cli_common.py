@@ -44,7 +44,7 @@ def add_argument_mc_type(p: 'ArgumentParser') -> 'Action':
                           metavar='<type>',
                           help='Type of the main component'
                                f' {{choices: {", ".join(t.value for t in choices)}}}'
-                               ' (default: %(default)s)',
+                               f' (default: {ComponentType.APPLICATION.value})',
                           dest='mc_type',
                           choices=choices,
                           type=argparse_type4enum(ComponentType),
