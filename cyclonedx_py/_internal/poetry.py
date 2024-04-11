@@ -107,20 +107,23 @@ class PoetryBB(BomBuilder):
         # the options and switches SHALL mimic the ones from Poetry, which uses comma-separated lists and multi-use
         p.add_argument('--without',
                        metavar='<groups>',
-                       help='The dependency groups to ignore (multiple values allowed)',
+                       help='The dependency groups to ignore'
+                            ' (multiple values allowed)',
                        action='append',
                        dest='groups_without',
                        default=[])
         p.add_argument('--with',
                        metavar='<groups>',
-                       help='The optional dependency groups to include (multiple values allowed)',
+                       help='The optional dependency groups to include'
+                            ' (multiple values allowed)',
                        action='append',
                        dest='groups_with',
                        default=[])
         og = p.add_mutually_exclusive_group()
         og.add_argument('--only',
                         metavar='<groups>',
-                        help='The only dependency groups to include (multiple values allowed)',
+                        help='The only dependency groups to include'
+                             ' (multiple values allowed)',
                         action='append',
                         dest='groups_only',
                         default=[])
@@ -132,12 +135,14 @@ class PoetryBB(BomBuilder):
         eg = p.add_mutually_exclusive_group()
         eg.add_argument('-E', '--extras',
                         metavar='<extras>',
-                        help='Extra sets of dependencies to include (multiple values allowed)',
+                        help='Extra sets of dependencies to include'
+                             ' (multiple values allowed)',
                         action='append',
                         dest='extras',
                         default=[])
         eg.add_argument('--all-extras',
-                        help='Include all extra dependencies (default: %(default)s)',
+                        help='Include all extra dependencies'
+                             ' (default: %(default)s)',
                         action='store_true',
                         dest='all_extras',
                         default=False)
@@ -145,7 +150,8 @@ class PoetryBB(BomBuilder):
         add_argument_mc_type(p)
         p.add_argument('project_directory',
                        metavar='<project-directory>',
-                       help='The project directory for Poetry (default: current working directory)',
+                       help='The project directory for Poetry'
+                            ' (default: current working directory)',
                        nargs=OPTIONAL,
                        default='.')
         return p

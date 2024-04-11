@@ -73,7 +73,9 @@ class Command:
                         default=False)
         op.add_argument('-o', '--outfile',
                         metavar='<file>',
-                        help='Output file path for your SBOM (set to "-" to output to <stdout>) (default: %(default)s)',
+                        help='Output file path for your SBOM'
+                             ' (set to "-" to output to <stdout>)'
+                             ' (default: %(default)s)',
                         type=FileType('wt', encoding='utf8'),
                         dest='outfile',
                         default='-')
@@ -88,7 +90,9 @@ class Command:
                         default=SchemaVersion.V1_5.to_version())
         op.add_argument('--of', '--output-format',
                         metavar='<format>',
-                        help=f'The output format for your SBOM {choices4enum(OutputFormat)} (default: %(default)s)',
+                        help='The output format for your SBOM'
+                             f' {choices4enum(OutputFormat)}'
+                             ' (default: %(default)s)',
                         dest='output_format',
                         choices=OutputFormat,
                         type=argparse_type4enum(OutputFormat),
@@ -101,14 +105,16 @@ class Command:
                         default=False)
         if BooleanOptionalAction:
             op.add_argument('--validate',
-                            help='Whether validate the result before outputting (default: %(default)s)',
+                            help='Whether validate the result before outputting'
+                                 ' (default: %(default)s)',
                             action=BooleanOptionalAction,
                             dest='should_validate',
                             default=True)
         else:
             vg = op.add_mutually_exclusive_group()
             vg.add_argument('--validate',
-                            help='Validate the result before outputting (default: %(default)s)',
+                            help='Validate the result before outputting'
+                                 ' (default: %(default)s)',
                             action='store_true',
                             dest='should_validate',
                             default=True)
@@ -253,7 +259,9 @@ class Command:
 def run(*, argv: Optional[List[str]] = None, **kwargs: Any) -> int:
     arg_co = ArgumentParser(add_help=False)
     arg_co.add_argument('-v', '--verbose',
-                        help='Increase the verbosity of messages (multiple for more effect) (default: silent)',
+                        help='Increase the verbosity of messages'
+                             ' (multiple for more effect)'
+                             ' (default: silent)',
                         dest='verbosity',
                         action='count',
                         default=0)

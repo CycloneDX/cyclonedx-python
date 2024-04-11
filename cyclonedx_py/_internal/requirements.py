@@ -76,14 +76,14 @@ class RequirementsBB(BomBuilder):
                        metavar='<url>',
                        help='Base URL of the Python Package Index. '
                             'This should point to a repository compliant with PEP 503 (the simple repository API) '
-                            'or a local directory laid out in the same format. '
-                            '(default: %(default)s)',
+                            'or a local directory laid out in the same format.'
+                            ' (default: %(default)s)',
                        dest='index_url',
                        default='https://pypi.org/simple')
         p.add_argument('--extra-index-url',
                        metavar='<url>',
-                       help='Extra URLs of package indexes to use in addition to --index-url.'
-                            ' Should follow the same rules as --index-url',
+                       help='Extra URLs of package indexes to use in addition to --index-url. '
+                            'Should follow the same rules as --index-url',
                        action='append',
                        dest='extra_index_urls',
                        default=[])
@@ -91,8 +91,8 @@ class RequirementsBB(BomBuilder):
         add_argument_mc_type(p)
         p.add_argument('requirements_file',
                        metavar='<requirements-file>',
-                       help='Path to requirements file. May be set to "-" to read from <stdin>. '
-                            '(default: %(default)r in current working directory)',
+                       help='Path to requirements file. May be set to "-" to read from <stdin>.'
+                            ' (default: %(default)r in current working directory)',
                        nargs=OPTIONAL,
                        default='requirements.txt')
         return p
