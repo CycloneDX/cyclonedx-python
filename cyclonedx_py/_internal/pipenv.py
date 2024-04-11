@@ -64,20 +64,23 @@ class PipenvBB(BomBuilder):
                        type=arparse_split(' ', ','),
                        default=[])
         p.add_argument('-d', '--dev',
-                       help='Analyse both develop and default packages [env var: PIPENV_DEV]',
+                       help='Analyse both develop and default packages'
+                            ' [env var: PIPENV_DEV]',
                        action='store_true',
                        dest='dev',
                        default=getenv('PIPENV_DEV', '').lower() in ('1', 'true', 'yes', 'on'))
         p.add_argument('--pypi-mirror',
                        metavar='<url>',
-                       help='Specify a PyPI mirror [env var: PIPENV_PYPI_MIRROR]',
+                       help='Specify a PyPI mirror'
+                            ' [env var: PIPENV_PYPI_MIRROR]',
                        dest='pypi_url',
                        default=getenv('PIPENV_PYPI_MIRROR'))
         add_argument_pyproject(p)
         add_argument_mc_type(p)
         p.add_argument('project_directory',
                        metavar='<project-directory>',
-                       help='The project directory for Pipenv (default: current working directory)\n'
+                       help='The project directory for Pipenv'
+                            ' (default: current working directory)\n'
                             'Unlike Pipenv tool, there is no search-up in this very tool. '  # yet
                             'Please provide the actual directory that contains `Pipfile` and `Pipfile.lock` file.',
                        nargs=OPTIONAL,

@@ -48,4 +48,4 @@ def add_argument_mc_type(p: 'ArgumentParser') -> 'Action':
                           dest='mc_type',
                           choices=choices,
                           type=argparse_type4enum(ComponentType),
-                          default=ComponentType.APPLICATION)
+                          default=ComponentType.APPLICATION.value)

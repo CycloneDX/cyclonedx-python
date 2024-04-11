@@ -69,7 +69,7 @@ The full documentation can be issued by running with ``environment --help``:
                             This should point to a file compliant with PEP 621 (storing project metadata).
       --mc-type <type>      Type of the main component
                             {choices: application, firmware, library}
-                            (default: ComponentType.APPLICATION)
+                            (default: application)
       --short-PURLs         Omit all qualifiers from PackageURLs.
                             This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
       -o <file>, --outfile <file>
@@ -229,7 +229,7 @@ The full documentation can be issued by running with ``pipenv --help``:
                             This should point to a file compliant with PEP 621 (storing project metadata).
       --mc-type <type>      Type of the main component
                             {choices: application, firmware, library}
-                            (default: ComponentType.APPLICATION)
+                            (default: application)
       --short-PURLs         Omit all qualifiers from PackageURLs.
                             This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
       -o <file>, --outfile <file>
@@ -302,9 +302,9 @@ The full documentation can be issued by running with ``poetry --help``:
                             (multiple values allowed)
       --all-extras          Include all extra dependencies
                             (default: False)
-      --mc-type <type>        Type of the main component
+      --mc-type <type>      Type of the main component
                             {choices: application, firmware, library}
-                            (default: ComponentType.APPLICATION)
+                            (default: application)
       --short-PURLs         Omit all qualifiers from PackageURLs.
                             This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
       -o <file>, --outfile <file>
@@ -374,7 +374,7 @@ The full documentation can be issued by running with ``requirements --help``:
                             This should point to a file compliant with PEP 621 (storing project metadata).
       --mc-type <type>      Type of the main component
                             {choices: application, firmware, library}
-                            (default: ComponentType.APPLICATION)
+                            (default: application)
       --short-PURLs         Omit all qualifiers from PackageURLs.
                             This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
       -o <file>, --outfile <file>
