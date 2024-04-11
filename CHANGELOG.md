@@ -2,6 +2,17 @@
 
 
 
+## v4.1.5 (2024-04-11)
+
+### Fix
+
+* fix: docs for default of CLI switch `--mc-type` (#710)
+
+
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`a218b40`](https://github.com/CycloneDX/cyclonedx-python/commit/a218b40ae8bc383e449b69ba3aa5280253387f19))
+
+
 ## v4.1.4 (2024-03-28)
 
 ### Chore

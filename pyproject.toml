@@ -7,7 +7,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry]
 # keep in sync with `cyclonedx_py/_internal/utils/cdx.py`
 name = "cyclonedx-bom"
-version = "4.1.4"
+version = "4.1.5"
 description = "CycloneDX Software Bill of Materials (SBOM) generator for Python projects and environments"
 authors = [
   "Jan Kowalleck <jan.kowalleck@gmail.com>",
