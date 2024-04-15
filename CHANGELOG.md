@@ -2,6 +2,15 @@
 
 
 
+## v4.1.6 (2024-04-15)
+
+### Fix
+
+* fix: more resilent PEP610 parsing (#716)
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`93f0184`](https://github.com/CycloneDX/cyclonedx-python/commit/93f0184dd969db1536128d1ec4861f84977f0a91))
+
+
 ## v4.1.5 (2024-04-11)
 
 ### Fix
