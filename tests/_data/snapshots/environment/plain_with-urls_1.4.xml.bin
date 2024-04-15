@@ -98,6 +98,34 @@
         </reference>
       </externalReferences>
     </component>
+    <component type="library" bom-ref="tomli==2.0.1">
+      <name>tomli</name>
+      <version>2.0.1</version>
+      <description>A lil' TOML parser</description>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+      <purl>pkg:pypi/tomli@2.0.1</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://files.pythonhosted.org/packages/c0/3f/d7af728f075fb08564c5949a9c95e44352e23dee646869fa104a3b2060a3/tomli-2.0.1.tar.gz</url>
+          <comment>PackageSource: Archive</comment>
+          <hashes>
+            <hash alg="SHA-256">de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f</hash>
+          </hashes>
+        </reference>
+        <reference type="release-notes">
+          <url>https://github.com/hukkin/tomli/blob/master/CHANGELOG.md</url>
+          <comment>from packaging metadata Project-URL: Changelog</comment>
+        </reference>
+        <reference type="website">
+          <url>https://github.com/hukkin/tomli</url>
+          <comment>from packaging metadata Project-URL: Homepage</comment>
+        </reference>
+      </externalReferences>
+    </component>
     <component type="library" bom-ref="urllib3==2.2.0">
       <name>urllib3</name>
       <version>2.2.0</version>
@@ -141,6 +169,7 @@
       <dependency ref="six==1.16.0"/>
     </dependency>
     <dependency ref="six==1.16.0"/>
+    <dependency ref="tomli==2.0.1"/>
     <dependency ref="urllib3==2.2.0"/>
   </dependencies>
 </bom>

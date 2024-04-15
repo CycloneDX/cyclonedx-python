@@ -62,20 +62,25 @@ class PackageSourceArchive(PackageSource):
     # see https://packaging.python.org/en/latest/specifications/direct-url-data-structure/#archive-urls
 
     def __init__(self, url: str, subdirectory: Optional[str],
-                 hashes: Optional[Dict[str, str]]) -> None:
+                 hashes: Dict[str, str]) -> None:
         super().__init__(url, subdirectory)
-        self.hashes = hashes or {}
+        self.hashes = hashes
 
     @classmethod
     def from_data(cls, url: str, subdirectory: Optional[str],
                   info: Dict[str, Any]) -> 'PackageSourceArchive':
+        hashes = {}
         if 'hashes' in info:
             hashes = info['hashes']
-        elif 'hash' in info:
-            hash_parts = str(info['hash']).split('=', maxsplit=1)
-            hashes = {hash_parts[0]: hash_parts[1]}
-        else:
-            hashes = None
+        elif 'hash' in info:  # pragma: no cover
+            # best effort for deprecated behaviour
+            try:
+                alg, val = str(info['hash']).split('=', maxsplit=1)
+            except ValueError:
+                # https://github.com/CycloneDX/cyclonedx-python/issues/715
+                pass
+            else:
+                hashes[alg] = val
         return cls(url, subdirectory, hashes)
 
 
