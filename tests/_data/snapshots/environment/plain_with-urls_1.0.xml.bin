@@ -16,6 +16,13 @@
       <modified>false</modified>
     </component>
     <component type="library">
+      <name>tomli</name>
+      <version>2.0.1</version>
+      <description>A lil' TOML parser</description>
+      <purl>pkg:pypi/tomli@2.0.1</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
       <name>urllib3</name>
       <version>2.2.0</version>
       <description>HTTP library with thread-safe connection pooling, file post, and more.</description>

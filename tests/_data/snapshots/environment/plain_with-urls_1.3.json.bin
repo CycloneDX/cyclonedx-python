@@ -69,6 +69,44 @@
       "version": "1.16.0"
     },
     {
+      "bom-ref": "tomli==2.0.1",
+      "description": "A lil' TOML parser",
+      "externalReferences": [
+        {
+          "comment": "PackageSource: Archive",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://files.pythonhosted.org/packages/c0/3f/d7af728f075fb08564c5949a9c95e44352e23dee646869fa104a3b2060a3/tomli-2.0.1.tar.gz"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Changelog",
+          "type": "other",
+          "url": "https://github.com/hukkin/tomli/blob/master/CHANGELOG.md"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Homepage",
+          "type": "website",
+          "url": "https://github.com/hukkin/tomli"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "tomli",
+      "purl": "pkg:pypi/tomli@2.0.1",
+      "type": "library",
+      "version": "2.0.1"
+    },
+    {
       "bom-ref": "urllib3==2.2.0",
       "description": "HTTP library with thread-safe connection pooling, file post, and more.",
       "externalReferences": [
@@ -129,6 +167,9 @@
     },
     {
       "ref": "six==1.16.0"
+    },
+    {
+      "ref": "tomli==2.0.1"
     },
     {
       "ref": "urllib3==2.2.0"
