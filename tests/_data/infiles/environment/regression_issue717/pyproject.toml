@@ -1,0 +1,10 @@
+[project]
+# https://packaging.python.org/en/latest/specifications/declaring-project-metadata/#declaring-project-metadata
+name = "regression-issue717"
+version = "0.1.0"
+description = "regression for issue 717. "
+dependencies = [
+  'celery==5.1.2'
+]
+[project.urls]
+homepage = "https://github.com/CycloneDX/cyclonedx-python/issues/717"
