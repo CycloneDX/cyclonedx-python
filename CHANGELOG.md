@@ -2,6 +2,16 @@
 
 
 
+## v4.2.0 (2024-04-18)
+
+### Feature
+
+* feat: support CycloneDX 1.6 output (#720)
+
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`639b35a`](https://github.com/CycloneDX/cyclonedx-python/commit/639b35ad7e9aa832a4ad9b489a2391348f97fc15))
+
+
 ## v4.1.6 (2024-04-15)
 
 ### Fix
