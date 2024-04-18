@@ -128,7 +128,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
         self.assertIn('Could not open pyproject file: something-that-must-not-exist.testing', err)
 
     def test_with_current_python(self) -> None:
-        sv = SchemaVersion.V1_5
+        sv = SchemaVersion.V1_6
         of = random.choice((OutputFormat.XML, OutputFormat.JSON))  # nosec B311
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
@@ -187,12 +187,13 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'plain', projectdir, sv, of)
 
-    def assertEqualSnapshot(self, actual: str,  # noqa:N802
-                            purpose: str,
-                            projectdir: str,
-                            sv: SchemaVersion,
-                            of: OutputFormat
-                            ) -> None:
+    def assertEqualSnapshot(  # noqa:N802
+        self, actual: str,
+        purpose: str,
+        projectdir: str,
+        sv: SchemaVersion,
+        of: OutputFormat
+    ) -> None:
         super().assertEqualSnapshot(
             make_comparable(actual, of),
             join('environment', f'{purpose}_{basename(projectdir)}_{sv.to_version()}.{of.name.lower()}')

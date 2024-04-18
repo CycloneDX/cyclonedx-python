@@ -1,0 +1,34 @@
+{
+  "dependencies": [
+    {
+      "ref": "with-extras"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "with-extras",
+      "description": "depenndencies with extras",
+      "name": "with-extras",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": [
+      {
+        "externalReferences": [   ],
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6"
+}

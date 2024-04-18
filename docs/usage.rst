@@ -29,11 +29,11 @@ The full documentation can be issued by running with ``--help``:
       -h, --help      show this help message and exit
       --version       show program's version number and exit
 
-Example usage: save SBOM in CycloneDX 1.5 XML format, generated from current python environment
+Example usage: save SBOM in CycloneDX 1.6 XML format, generated from current python environment
 
 .. code-block:: shell
 
-   cyclonedx-py environment --outfile my-sbom.xml --schema-version 1.5 --output-format XML
+   cyclonedx-py environment --outfile my-sbom.xml --schema-version 1.6 --output-format XML
 
 
 For Python (virtual) environment
@@ -78,7 +78,7 @@ The full documentation can be issued by running with ``environment --help``:
                             (default: -)
       --sv <version>, --schema-version <version>
                             The CycloneDX schema version for your SBOM
-                            {choices: 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
+                            {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
                             (default: 1.5)
       --of <format>, --output-format <format>
                             The output format for your SBOM
@@ -238,7 +238,7 @@ The full documentation can be issued by running with ``pipenv --help``:
                             (default: -)
       --sv <version>, --schema-version <version>
                             The CycloneDX schema version for your SBOM
-                            {choices: 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
+                            {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
                             (default: 1.5)
       --of <format>, --output-format <format>
                             The output format for your SBOM
@@ -313,7 +313,8 @@ The full documentation can be issued by running with ``poetry --help``:
                             (default: -)
       --sv <version>, --schema-version <version>
                             The CycloneDX schema version for your SBOM
-                            {choices: 1.5, 1.4, 1.3, 1.2, 1.1, 1.0} (default: 1.5)
+                            {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
+                            (default: 1.5)
       --of <format>, --output-format <format>
                             The output format for your SBOM
                             {choices: JSON, XML}
@@ -383,7 +384,7 @@ The full documentation can be issued by running with ``requirements --help``:
                             (default: -)
       --sv <version>, --schema-version <version>
                             The CycloneDX schema version for your SBOM
-                            {choices: 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
+                            {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
                             (default: 1.5)
       --of <format>, --output-format <format>
                             The output format for your SBOM

@@ -1,0 +1,135 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.6" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-bom</name>
+        <version>thisVersion-testing</version>
+        <externalReferences>
+          <reference type="build-system">
+            <url>https://github.com/CycloneDX/cyclonedx-python/actions</url>
+          </reference>
+          <reference type="distribution">
+            <url>https://pypi.org/project/cyclonedx-bom/</url>
+          </reference>
+          <reference type="documentation">
+            <url>https://cyclonedx-bom-tool.readthedocs.io/</url>
+          </reference>
+          <reference type="issue-tracker">
+            <url>https://github.com/CycloneDX/cyclonedx-python/issues</url>
+          </reference>
+          <reference type="license">
+            <url>https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE</url>
+          </reference>
+          <reference type="release-notes">
+            <url>https://github.com/CycloneDX/cyclonedx-python/blob/main/CHANGELOG.md</url>
+          </reference>
+          <reference type="vcs">
+            <url>https://github.com/CycloneDX/cyclonedx-python/</url>
+          </reference>
+          <reference type="website">
+            <url>https://github.com/CycloneDX/cyclonedx-python/#readme</url>
+          </reference>
+        </externalReferences>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+        <externalReferences><!-- stripped --></externalReferences>
+      </tool>
+    </tools>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="requirements-L11">
+      <name>package-four</name>
+      <description>requirements line 11: git+https://github.com/path/to/package-four@releases/tag/v3.7.1#egg=package-four</description>
+      <purl>pkg:pypi/package-four?vcs_url=git%2Bhttps://github.com/path/to/package-four%40releases/tag/v3.7.1%23egg%3Dpackage-four</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>git+https://github.com/path/to/package-four@releases/tag/v3.7.1#egg=package-four</url>
+          <comment>explicit dist url</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="requirements-L5">
+      <name>package-one</name>
+      <description>requirements line 5: git+https://github.com/path/to/package-one@41b95ec#egg=package-one</description>
+      <purl>pkg:pypi/package-one?vcs_url=git%2Bhttps://github.com/path/to/package-one%4041b95ec%23egg%3Dpackage-one</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>git+https://github.com/path/to/package-one@41b95ec#egg=package-one</url>
+          <comment>explicit dist url</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="requirements-L9">
+      <name>package-three</name>
+      <description>requirements line 9: git+https://github.com/path/to/package-three@0.1#egg=package-three</description>
+      <purl>pkg:pypi/package-three?vcs_url=git%2Bhttps://github.com/path/to/package-three%400.1%23egg%3Dpackage-three</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>git+https://github.com/path/to/package-three@0.1#egg=package-three</url>
+          <comment>explicit dist url</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="requirements-L7">
+      <name>package-two</name>
+      <description>requirements line 7: git+https://github.com/path/to/package-two@master#egg=package-two</description>
+      <purl>pkg:pypi/package-two?vcs_url=git%2Bhttps://github.com/path/to/package-two%40master%23egg%3Dpackage-two</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>git+https://github.com/path/to/package-two@master#egg=package-two</url>
+          <comment>explicit dist url</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="requirements-L19">
+      <name>unknown</name>
+      <description>requirements line 19: https://files.pythonhosted.org/packages/78/23/f78fd8311e0f710fe1d065d50b92ce0057fe877b8ed7fd41b28ad6865bfc/numpy-1.26.1.tar.gz</description>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://files.pythonhosted.org/packages/78/23/f78fd8311e0f710fe1d065d50b92ce0057fe877b8ed7fd41b28ad6865bfc/numpy-1.26.1.tar.gz</url>
+          <comment>explicit dist url</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="requirements-L23">
+      <name>urllib3</name>
+      <description>requirements line 23: urllib3 @ https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip</description>
+      <purl>pkg:pypi/urllib3?download_url=https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip</url>
+          <comment>explicit dist url</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="requirements-L15">
+      <name>wxPython-Phoenix</name>
+      <version>3.0.3.dev1820+49a8884</version>
+      <description>requirements line 15: http://wxpython.org/Phoenix/snapshot-builds/wxPython_Phoenix-3.0.3.dev1820+49a8884-cp34-none-win_amd64.whl</description>
+      <purl>pkg:pypi/wxpython-phoenix@3.0.3.dev1820%2B49a8884?download_url=http://wxpython.org/Phoenix/snapshot-builds/wxPython_Phoenix-3.0.3.dev1820%2B49a8884-cp34-none-win_amd64.whl</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>http://wxpython.org/Phoenix/snapshot-builds/wxPython_Phoenix-3.0.3.dev1820+49a8884-cp34-none-win_amd64.whl</url>
+          <comment>explicit dist url</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="requirements-L11"/>
+    <dependency ref="requirements-L15"/>
+    <dependency ref="requirements-L19"/>
+    <dependency ref="requirements-L23"/>
+    <dependency ref="requirements-L5"/>
+    <dependency ref="requirements-L7"/>
+    <dependency ref="requirements-L9"/>
+  </dependencies>
+</bom>
