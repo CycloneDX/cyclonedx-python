@@ -1,0 +1,122 @@
+{
+  "components": [
+    {
+      "bom-ref": "package-a@23.42",
+      "description": "some package A",
+      "externalReferences": [
+        {
+          "comment": "from file",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "3869fe3f4a6cca5b203b2e2cd8858c834f651e1b0fa76d5c0232e36472199592"
+            }
+          ],
+          "type": "distribution",
+          "url": "../../../_helpers/local_pckages/a/dist/package-a-23.42.tar.gz"
+        }
+      ],
+      "name": "package-a",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        }
+      ],
+      "type": "library",
+      "version": "23.42"
+    },
+    {
+      "bom-ref": "package-b@23.42",
+      "description": "some package B",
+      "externalReferences": [
+        {
+          "comment": "from file",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "4aacda53fa274f5ff7eed71a9916904ffb3a11b05dc5ca529d7ddb78ae2dc602"
+            }
+          ],
+          "type": "distribution",
+          "url": "../../../_helpers/local_pckages/b/dist/package_b-23.42-py3-none-any.whl"
+        }
+      ],
+      "name": "package-b",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        }
+      ],
+      "type": "library",
+      "version": "23.42"
+    },
+    {
+      "bom-ref": "package-c@23.42",
+      "description": "some package C",
+      "externalReferences": [
+        {
+          "comment": "from directory",
+          "type": "distribution",
+          "url": "../../../_helpers/local_pckages/c"
+        }
+      ],
+      "name": "package-c",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        }
+      ],
+      "type": "library",
+      "version": "23.42"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "package-a@23.42",
+        "package-b@23.42",
+        "package-c@23.42"
+      ],
+      "ref": "local"
+    },
+    {
+      "ref": "package-a@23.42"
+    },
+    {
+      "ref": "package-b@23.42"
+    },
+    {
+      "ref": "package-c@23.42"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "local",
+      "description": "packages from local paths",
+      "name": "local",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": [
+      {
+        "externalReferences": [   ],
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6"
+}

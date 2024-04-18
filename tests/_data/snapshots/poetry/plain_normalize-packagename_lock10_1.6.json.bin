@@ -1,0 +1,128 @@
+{
+  "components": [
+    {
+      "bom-ref": "ruamel-yaml@0.18.5",
+      "description": "ruamel.yaml is a YAML parser/emitter that supports roundtrip preservation of comments, seq/map flow style, and map key order",
+      "name": "ruamel-yaml",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        },
+        {
+          "name": "cdx:python:package:required-extra",
+          "value": "jinja2"
+        }
+      ],
+      "purl": "pkg:pypi/ruamel-yaml@0.18.5",
+      "type": "library",
+      "version": "0.18.5"
+    },
+    {
+      "bom-ref": "ruamel.yaml@0.18.5#1",
+      "description": "ruamel.yaml is a YAML parser/emitter that supports roundtrip preservation of comments, seq/map flow style, and map key order",
+      "name": "ruamel.yaml",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        },
+        {
+          "name": "cdx:python:package:required-extra",
+          "value": "jinja2"
+        }
+      ],
+      "purl": "pkg:pypi/ruamel.yaml@0.18.5",
+      "type": "library",
+      "version": "0.18.5"
+    },
+    {
+      "bom-ref": "ruamel.yaml.clib@0.2.8",
+      "description": "C version of reader, parser and emitter for ruamel.yaml derived from libyaml",
+      "name": "ruamel.yaml.clib",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        }
+      ],
+      "purl": "pkg:pypi/ruamel.yaml.clib@0.2.8",
+      "type": "library",
+      "version": "0.2.8"
+    },
+    {
+      "bom-ref": "ruamel.yaml.jinja2@0.2.7",
+      "description": "jinja2 pre and post-processor to update with YAML",
+      "name": "ruamel.yaml.jinja2",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        }
+      ],
+      "purl": "pkg:pypi/ruamel.yaml.jinja2@0.2.7",
+      "type": "library",
+      "version": "0.2.7"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "ruamel-yaml@0.18.5",
+        "ruamel.yaml@0.18.5#1"
+      ],
+      "ref": "normalize-packagename"
+    },
+    {
+      "dependsOn": [
+        "ruamel.yaml.clib@0.2.8",
+        "ruamel.yaml.jinja2@0.2.7"
+      ],
+      "ref": "ruamel-yaml@0.18.5"
+    },
+    {
+      "ref": "ruamel.yaml.clib@0.2.8"
+    },
+    {
+      "dependsOn": [
+        "ruamel-yaml@0.18.5",
+        "ruamel.yaml@0.18.5#1"
+      ],
+      "ref": "ruamel.yaml.jinja2@0.2.7"
+    },
+    {
+      "dependsOn": [
+        "ruamel.yaml.clib@0.2.8",
+        "ruamel.yaml.jinja2@0.2.7"
+      ],
+      "ref": "ruamel.yaml@0.18.5#1"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "normalize-packagename",
+      "description": "packages with non-normalized names",
+      "name": "normalize-packagename",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": [
+      {
+        "externalReferences": [   ],
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6"
+}

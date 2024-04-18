@@ -1,0 +1,145 @@
+{
+  "components": [
+    {
+      "bom-ref": "requirements-L11",
+      "description": "requirements line 11: git+https://github.com/path/to/package-four@releases/tag/v3.7.1#egg=package-four",
+      "externalReferences": [
+        {
+          "comment": "explicit dist url",
+          "type": "vcs",
+          "url": "git+https://github.com/path/to/package-four@releases/tag/v3.7.1#egg=package-four"
+        }
+      ],
+      "name": "package-four",
+      "purl": "pkg:pypi/package-four?vcs_url=git%2Bhttps://github.com/path/to/package-four%40releases/tag/v3.7.1%23egg%3Dpackage-four",
+      "type": "library"
+    },
+    {
+      "bom-ref": "requirements-L5",
+      "description": "requirements line 5: git+https://github.com/path/to/package-one@41b95ec#egg=package-one",
+      "externalReferences": [
+        {
+          "comment": "explicit dist url",
+          "type": "vcs",
+          "url": "git+https://github.com/path/to/package-one@41b95ec#egg=package-one"
+        }
+      ],
+      "name": "package-one",
+      "purl": "pkg:pypi/package-one?vcs_url=git%2Bhttps://github.com/path/to/package-one%4041b95ec%23egg%3Dpackage-one",
+      "type": "library"
+    },
+    {
+      "bom-ref": "requirements-L9",
+      "description": "requirements line 9: git+https://github.com/path/to/package-three@0.1#egg=package-three",
+      "externalReferences": [
+        {
+          "comment": "explicit dist url",
+          "type": "vcs",
+          "url": "git+https://github.com/path/to/package-three@0.1#egg=package-three"
+        }
+      ],
+      "name": "package-three",
+      "purl": "pkg:pypi/package-three?vcs_url=git%2Bhttps://github.com/path/to/package-three%400.1%23egg%3Dpackage-three",
+      "type": "library"
+    },
+    {
+      "bom-ref": "requirements-L7",
+      "description": "requirements line 7: git+https://github.com/path/to/package-two@master#egg=package-two",
+      "externalReferences": [
+        {
+          "comment": "explicit dist url",
+          "type": "vcs",
+          "url": "git+https://github.com/path/to/package-two@master#egg=package-two"
+        }
+      ],
+      "name": "package-two",
+      "purl": "pkg:pypi/package-two?vcs_url=git%2Bhttps://github.com/path/to/package-two%40master%23egg%3Dpackage-two",
+      "type": "library"
+    },
+    {
+      "bom-ref": "requirements-L19",
+      "description": "requirements line 19: https://files.pythonhosted.org/packages/78/23/f78fd8311e0f710fe1d065d50b92ce0057fe877b8ed7fd41b28ad6865bfc/numpy-1.26.1.tar.gz",
+      "externalReferences": [
+        {
+          "comment": "explicit dist url",
+          "type": "distribution",
+          "url": "https://files.pythonhosted.org/packages/78/23/f78fd8311e0f710fe1d065d50b92ce0057fe877b8ed7fd41b28ad6865bfc/numpy-1.26.1.tar.gz"
+        }
+      ],
+      "name": "unknown",
+      "type": "library"
+    },
+    {
+      "bom-ref": "requirements-L23",
+      "description": "requirements line 23: urllib3 @ https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip",
+      "externalReferences": [
+        {
+          "comment": "explicit dist url",
+          "type": "distribution",
+          "url": "https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip"
+        }
+      ],
+      "name": "urllib3",
+      "purl": "pkg:pypi/urllib3?download_url=https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip",
+      "type": "library"
+    },
+    {
+      "bom-ref": "requirements-L15",
+      "description": "requirements line 15: http://wxpython.org/Phoenix/snapshot-builds/wxPython_Phoenix-3.0.3.dev1820+49a8884-cp34-none-win_amd64.whl",
+      "externalReferences": [
+        {
+          "comment": "explicit dist url",
+          "type": "distribution",
+          "url": "http://wxpython.org/Phoenix/snapshot-builds/wxPython_Phoenix-3.0.3.dev1820+49a8884-cp34-none-win_amd64.whl"
+        }
+      ],
+      "name": "wxPython-Phoenix",
+      "purl": "pkg:pypi/wxpython-phoenix@3.0.3.dev1820%2B49a8884?download_url=http://wxpython.org/Phoenix/snapshot-builds/wxPython_Phoenix-3.0.3.dev1820%2B49a8884-cp34-none-win_amd64.whl",
+      "type": "library",
+      "version": "3.0.3.dev1820+49a8884"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "requirements-L11"
+    },
+    {
+      "ref": "requirements-L15"
+    },
+    {
+      "ref": "requirements-L19"
+    },
+    {
+      "ref": "requirements-L23"
+    },
+    {
+      "ref": "requirements-L5"
+    },
+    {
+      "ref": "requirements-L7"
+    },
+    {
+      "ref": "requirements-L9"
+    }
+  ],
+  "metadata": {
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": [
+      {
+        "externalReferences": [   ],
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6"
+}

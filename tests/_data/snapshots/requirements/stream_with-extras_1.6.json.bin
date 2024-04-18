@@ -1,0 +1,54 @@
+{
+  "components": [
+    {
+      "bom-ref": "requirements-L4",
+      "description": "requirements line 4: cyclonedx-python-lib[JSON-validation,xml-Validation] == 5.1.1",
+      "externalReferences": [
+        {
+          "comment": "implicit dist url",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/cyclonedx-python-lib/"
+        }
+      ],
+      "name": "cyclonedx-python-lib",
+      "properties": [
+        {
+          "name": "cdx:python:package:required-extra",
+          "value": "json-validation"
+        },
+        {
+          "name": "cdx:python:package:required-extra",
+          "value": "xml-validation"
+        }
+      ],
+      "purl": "pkg:pypi/cyclonedx-python-lib@5.1.1",
+      "type": "library",
+      "version": "5.1.1"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "requirements-L4"
+    }
+  ],
+  "metadata": {
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": [
+      {
+        "externalReferences": [   ],
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6"
+}
