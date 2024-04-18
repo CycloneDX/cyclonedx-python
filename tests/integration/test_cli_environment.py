@@ -187,8 +187,8 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'plain', projectdir, sv, of)
 
-    def assertEqualSnapshot(
-        self, actual: str,  # noqa:N802
+    def assertEqualSnapshot(  # noqa:N802
+        self, actual: str,
         purpose: str,
         projectdir: str,
         sv: SchemaVersion,
