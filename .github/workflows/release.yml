@@ -165,7 +165,8 @@ jobs:
     env:
       VERSION: ${{ needs.release-PyPI.outputs.version }}
       ARTIFACT_DOCKER_SBOM: 'docker-image-bom'
-      DOCKER_REPO: cyclonedx/cyclonedx-python
+      DOCKERHUB_REPO: cyclonedx/cyclonedx-python
+      GHCR_REPO: ${{ github.repository }}
     steps:
       - name: Checkout code (${{ env.TAG }})
         # see https://github.com/actions/checkout
@@ -186,19 +187,21 @@ jobs:
         run: >
           docker build -f Dockerfile
           --build-arg "VERSION=$VERSION"
-          -t "$DOCKER_REPO:$VERSION"
-          -t "$DOCKER_REPO:latest"
+          -t "$DOCKERHUB_REPO:$VERSION"
+          -t "$DOCKERHUB_REPO:latest"
+          -t "$GHCR_REPO:$VERSION"
+          -t "$GHCR_REPO:latest"
           .
       - name: Build own SBoM (XML)
         run: >
-          docker run --rm "$DOCKER_REPO:$VERSION"
+          docker run --rm "$DOCKERHUB_REPO:$VERSION"
           environment
           -vvv
           --output-format XML
           > "$REPORTS_DIR/$ARTIFACT_DOCKER_SBOM.bom.xml"
       - name: Build own SBoM (JSON)
         run: >
-          docker run --rm "$DOCKER_REPO:$VERSION"
+          docker run --rm "$DOCKERHUB_REPO:$VERSION"
           environment
           -vvv
           --output-format JSON
@@ -212,16 +215,27 @@ jobs:
           path: ${{ env.REPORTS_DIR }}/*.bom.*
           if-no-files-found: error
       # publish AFTER the boms were build, as the bom-generation is kind of a test if the image works
-      - name: Docker login
+      - name: Login to Docker Hub
         run: docker login --username "$DOCKERHUB_USERNAME" --password "$DOCKERHUB_TOKEN"
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Publish Docker Image for version "${{ env.VERSION }}"
-        run: docker push "$DOCKER_REPO:$VERSION"
+        run: docker push "$DOCKERHUB_REPO:$VERSION"
       - name: Publish Docker Image as "latest"
         if: ${{ github.event.inputs.prerelease == 'false' }}
-        run: docker push "$DOCKER_REPO:latest"
+        run: docker push "$DOCKERHUB_REPO:latest"
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.GHCR_USERNAME }}
+          password: ${{ secrets.GHCR_TOKEN }}
+      - name: Publish Docker Image to GHCR for version "${{ env.VERSION }}"
+        run: docker push "$GHCR_REPO:$VERSION"
+      - name: Publish Docker Image as "latest"
+        if: ${{ github.event.inputs.prerelease == 'false' }}
+        run: docker push "$GHCR_REPO:latest"
       # TODO: publish all files in $REPORTS_DIR as release assets - see https://github.com/actions/upload-release-asset
       - name: Docker logout
         if: ${{ always() }}
@@ -231,5 +245,5 @@ jobs:
         if: ${{ always() }}
         run: >
           docker rmi -f
-          "$DOCKER_REPO:$VERSION"
-          "$DOCKER_REPO:latest"
+          "$DOCKERHUB_REPO:$VERSION"
+          "$DOCKERHUB_REPO:latest"
