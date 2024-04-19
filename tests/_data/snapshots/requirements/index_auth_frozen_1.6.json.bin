@@ -130,6 +130,7 @@
       ],
       "licenses": [
         {
+          "acknowledgement": "declared",
           "expression": "Apache-2.0 OR MIT"
         }
       ],

@@ -33,6 +33,81 @@
         },
         {
           "license": {
+            "name": "Development Status :: 4 - Beta"
+          }
+        },
+        {
+          "license": {
+            "name": "Intended Audience :: Developers"
+          }
+        },
+        {
+          "license": {
+            "name": "Operating System :: OS Independent"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3 :: Only"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.10"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.11"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.12"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.7"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.8"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.9"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: Implementation :: CPython"
+          }
+        },
+        {
+          "license": {
+            "name": "Topic :: Software Development :: Libraries :: Python Modules"
+          }
+        },
+        {
+          "license": {
+            "name": "Topic :: Text Processing :: Markup"
+          }
+        },
+        {
+          "license": {
+            "name": "Typing :: Typed"
+          }
+        },
+        {
+          "license": {
             "name": "declared license of 'ruamel.yaml'",
             "text": {
               "content": "MIT license",
@@ -61,6 +136,66 @@
           "license": {
             "id": "MIT"
           }
+        },
+        {
+          "license": {
+            "name": "Development Status :: 4 - Beta"
+          }
+        },
+        {
+          "license": {
+            "name": "Intended Audience :: Developers"
+          }
+        },
+        {
+          "license": {
+            "name": "Operating System :: OS Independent"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.10"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.11"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.6"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.7"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.8"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.9"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: Implementation :: CPython"
+          }
+        },
+        {
+          "license": {
+            "name": "Topic :: Software Development :: Libraries :: Python Modules"
+          }
         }
       ],
       "name": "ruamel.yaml.clib",
@@ -82,6 +217,26 @@
         {
           "license": {
             "id": "MIT"
+          }
+        },
+        {
+          "license": {
+            "name": "Development Status :: 4 - Beta"
+          }
+        },
+        {
+          "license": {
+            "name": "Intended Audience :: Developers"
+          }
+        },
+        {
+          "license": {
+            "name": "Operating System :: OS Independent"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python"
           }
         }
       ],

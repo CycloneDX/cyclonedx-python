@@ -20,6 +20,88 @@
           "url": "https://github.com/pypa/packaging.git#b3a5d7d68991c040615d5345bb55f61de53ba176"
         }
       ],
+      "licenses": [
+        {
+          "license": {
+            "name": "Development Status :: 5 - Production/Stable"
+          }
+        },
+        {
+          "license": {
+            "name": "Intended Audience :: Developers"
+          }
+        },
+        {
+          "license": {
+            "name": "License :: OSI Approved :: Apache Software License"
+          }
+        },
+        {
+          "license": {
+            "name": "License :: OSI Approved :: BSD License"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3 :: Only"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.10"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.11"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.12"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.7"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.8"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.9"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: Implementation :: CPython"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: Implementation :: PyPy"
+          }
+        },
+        {
+          "license": {
+            "name": "Typing :: Typed"
+          }
+        }
+      ],
       "name": "packaging",
       "properties": [
         {
@@ -61,6 +143,36 @@
           "license": {
             "id": "MIT"
           }
+        },
+        {
+          "license": {
+            "name": "Development Status :: 5 - Production/Stable"
+          }
+        },
+        {
+          "license": {
+            "name": "Intended Audience :: Developers"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 2"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3"
+          }
+        },
+        {
+          "license": {
+            "name": "Topic :: Software Development :: Libraries"
+          }
+        },
+        {
+          "license": {
+            "name": "Topic :: Utilities"
+          }
         }
       ],
       "name": "six",
@@ -98,6 +210,66 @@
         {
           "license": {
             "id": "MIT"
+          }
+        },
+        {
+          "license": {
+            "name": "Operating System :: MacOS"
+          }
+        },
+        {
+          "license": {
+            "name": "Operating System :: Microsoft :: Windows"
+          }
+        },
+        {
+          "license": {
+            "name": "Operating System :: POSIX :: Linux"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3 :: Only"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.10"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.7"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.8"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.9"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: Implementation :: CPython"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: Implementation :: PyPy"
+          }
+        },
+        {
+          "license": {
+            "name": "Topic :: Software Development :: Libraries :: Python Modules"
+          }
+        },
+        {
+          "license": {
+            "name": "Typing :: Typed"
           }
         }
       ],
@@ -146,6 +318,81 @@
         {
           "license": {
             "id": "MIT"
+          }
+        },
+        {
+          "license": {
+            "name": "Environment :: Web Environment"
+          }
+        },
+        {
+          "license": {
+            "name": "Intended Audience :: Developers"
+          }
+        },
+        {
+          "license": {
+            "name": "Operating System :: OS Independent"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3 :: Only"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.10"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.11"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.12"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.8"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3.9"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: Implementation :: CPython"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: Implementation :: PyPy"
+          }
+        },
+        {
+          "license": {
+            "name": "Topic :: Internet :: WWW/HTTP"
+          }
+        },
+        {
+          "license": {
+            "name": "Topic :: Software Development :: Libraries"
           }
         }
       ],

@@ -31,6 +31,57 @@
         <license>
           <id>MIT</id>
         </license>
+        <license>
+          <name>Development Status :: 5 - Production/Stable</name>
+        </license>
+        <license>
+          <name>Intended Audience :: Developers</name>
+        </license>
+        <license>
+          <name>Operating System :: OS Independent</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: 2</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: 2.6</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: 2.7</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: 3</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: 3.3</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: 3.4</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: 3.5</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: 3.6</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: 3.7</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: 3.8</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: 3.9</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: Implementation :: CPython</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: Implementation :: PyPy</name>
+        </license>
       </licenses>
       <purl>pkg:pypi/toml@0.10.2</purl>
       <externalReferences>

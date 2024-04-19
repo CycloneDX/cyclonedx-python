@@ -45,7 +45,7 @@
       <version>0.1.0</version>
       <description>some `reuqirements.txt` a root-component with all metadata</description>
       <licenses>
-        <expression>Apache-2.0 OR MIT</expression>
+        <expression acknowledgement="declared">Apache-2.0 OR MIT</expression>
       </licenses>
       <externalReferences>
         <reference type="documentation">

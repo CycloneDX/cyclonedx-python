@@ -10,6 +10,51 @@
           <id>MIT</id>
         </license>
         <license>
+          <name>Development Status :: 4 - Beta</name>
+        </license>
+        <license>
+          <name>Intended Audience :: Developers</name>
+        </license>
+        <license>
+          <name>Operating System :: OS Independent</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: 3 :: Only</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: 3.10</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: 3.11</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: 3.12</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: 3.7</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: 3.8</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: 3.9</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: Implementation :: CPython</name>
+        </license>
+        <license>
+          <name>Topic :: Software Development :: Libraries :: Python Modules</name>
+        </license>
+        <license>
+          <name>Topic :: Text Processing :: Markup</name>
+        </license>
+        <license>
+          <name>Typing :: Typed</name>
+        </license>
+        <license>
           <name>declared license of 'ruamel.yaml'</name>
           <text content-type="text/plain">MIT license</text>
         </license>
@@ -42,6 +87,42 @@
         <license>
           <id>MIT</id>
         </license>
+        <license>
+          <name>Development Status :: 4 - Beta</name>
+        </license>
+        <license>
+          <name>Intended Audience :: Developers</name>
+        </license>
+        <license>
+          <name>Operating System :: OS Independent</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: 3.10</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: 3.11</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: 3.6</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: 3.7</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: 3.8</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: 3.9</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python :: Implementation :: CPython</name>
+        </license>
+        <license>
+          <name>Topic :: Software Development :: Libraries :: Python Modules</name>
+        </license>
       </licenses>
       <purl>pkg:pypi/ruamel.yaml.clib@0.2.8</purl>
       <externalReferences>
@@ -58,6 +139,18 @@
       <licenses>
         <license>
           <id>MIT</id>
+        </license>
+        <license>
+          <name>Development Status :: 4 - Beta</name>
+        </license>
+        <license>
+          <name>Intended Audience :: Developers</name>
+        </license>
+        <license>
+          <name>Operating System :: OS Independent</name>
+        </license>
+        <license>
+          <name>Programming Language :: Python</name>
         </license>
       </licenses>
       <purl>pkg:pypi/ruamel.yaml.jinja2@0.2.7</purl>

@@ -45,7 +45,7 @@
       <version>0.1.0</version>
       <description>with licenses from file, instead of SPDX ID/Expression</description>
       <licenses>
-        <license>
+        <license acknowledgement="declared">
           <name>declared license of 'with-license-file'</name>
           <text content-type="text/plain" encoding="base64">VGhpcyBpcyB0aGUgbGljZW5zZSB0ZXh0IG9mIHRoaXMgY29tcG9uZW50LgpJdCBpcyBleHBlY3RlZCB0byBiZSBhdmFpbGFibGUgaW4gYSBTQk9NLgo=</text>
         </license>

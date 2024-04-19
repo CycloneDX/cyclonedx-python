@@ -15,6 +15,36 @@
           "license": {
             "id": "MIT"
           }
+        },
+        {
+          "license": {
+            "name": "Development Status :: 5 - Production/Stable"
+          }
+        },
+        {
+          "license": {
+            "name": "Intended Audience :: Developers"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 2"
+          }
+        },
+        {
+          "license": {
+            "name": "Programming Language :: Python :: 3"
+          }
+        },
+        {
+          "license": {
+            "name": "Topic :: Software Development :: Libraries"
+          }
+        },
+        {
+          "license": {
+            "name": "Topic :: Utilities"
+          }
         }
       ],
       "name": "six",
