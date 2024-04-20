@@ -2,6 +2,23 @@
 
 
 
+## v4.3.0 (2024-04-20)
+
+### Feature
+
+* feat: improve declared licenses detection (#722)
+
+- Add declared licenses from License Troves if not mapped to SPDX
+license ID
+- CycloneDX 1.6 mark licenses as &#34;declared&#34;
+
+fixes #718
+
+---------
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`b0ae453`](https://github.com/CycloneDX/cyclonedx-python/commit/b0ae453e7dc69356ba5e1b987a6b19a31d106909))
+
+
 ## v4.2.0 (2024-04-18)
 
 ### Feature
