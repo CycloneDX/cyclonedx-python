@@ -186,7 +186,7 @@ jobs:
       - name: Build Container Image (${{ env.VERSION }})
         run: >
           docker build -f Dockerfile
-          --label 'org.opencontainers.image.source=${{ github.server_url }}/${{ github.github.repository }}'
+          --label 'org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}'
           --build-arg "VERSION=$VERSION"
           -t "$DOCKERHUB_REPO:$VERSION"
           -t "$DOCKERHUB_REPO:latest"
