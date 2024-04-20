@@ -61,7 +61,6 @@ def metadata2licenses(metadata: 'PackageMetadata') -> Generator['License', None,
     # for mlfile in  metadata.get_all('License-File'): ...
 
 
-
 def metadata2extrefs(metadata: 'PackageMetadata') -> Generator['ExternalReference', None, None]:
     for meta_key, extref_typet in (
         # see https://packaging.python.org/en/latest/specifications/core-metadata/#home-page
