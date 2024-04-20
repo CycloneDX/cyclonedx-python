@@ -2,6 +2,88 @@
 
 
 
+## v4.3.1-alpha.1 (2024-04-20)
+
+### Chore
+
+* chore: semantic-release git commit/sign valid email address
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`692b8ea`](https://github.com/CycloneDX/cyclonedx-python/commit/692b8eaa0aecf7821e829edd6324cf33f07a86b7))
+
+### Ci
+
+* ci: release to GitHub registry (#721)
+
+Closes #695. ([`87218e6`](https://github.com/CycloneDX/cyclonedx-python/commit/87218e6c8163c5f887c21bf466cb9f279ff33277))
+
+### Feature
+
+* feat: improve declared licenses detection (#722)
+
+- Add declared licenses from License Troves if not mapped to SPDX
+license ID
+- CycloneDX 1.6 mark licenses as &#34;declared&#34;
+
+fixes #718
+
+---------
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt;
+Signed-off-by: jxdv &lt;virgoj@protonmail.com&gt; ([`d47640b`](https://github.com/CycloneDX/cyclonedx-python/commit/d47640b07d131055f70b17378eda41ac94c08932))
+
+### Unknown
+
+* Update release.yml
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`bfce1d1`](https://github.com/CycloneDX/cyclonedx-python/commit/bfce1d11e49b795f9c6bb5f7c0cc4d8116c28ca5))
+
+* prep ghcr release
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`6644556`](https://github.com/CycloneDX/cyclonedx-python/commit/6644556b5c1822e67b1000da9b5daffd6c03c7b7))
+
+* docker build label  org.opencontainers.image.source
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`3d6a7ce`](https://github.com/CycloneDX/cyclonedx-python/commit/3d6a7ce2225cbf6571f0fadf1de184cb39c89805))
+
+* docker build label org.opencontainers.image.source
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`aefd5a6`](https://github.com/CycloneDX/cyclonedx-python/commit/aefd5a6a2e472b31dce8d7d1b52a714ecf6b70e5))
+
+* container image label &#39;org.opencontainers.image.source&#39;
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`f8ff29e`](https://github.com/CycloneDX/cyclonedx-python/commit/f8ff29eda2cc694def4f689d710768564e68b880))
+
+* Merge branch &#39;main&#39; into ghcr-publish ([`46f7ada`](https://github.com/CycloneDX/cyclonedx-python/commit/46f7ada9d2cdd1207a2304ba4925a6b365ef9e8e))
+
+* Merge branch &#39;main&#39; into ghcr-publish ([`1cb7a5f`](https://github.com/CycloneDX/cyclonedx-python/commit/1cb7a5fddec5e29d26d369bc0e33570c657d7590))
+
+* docs
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt;
+Signed-off-by: jxdv &lt;virgoj@protonmail.com&gt; ([`b7975ea`](https://github.com/CycloneDX/cyclonedx-python/commit/b7975ea22574eadac8b0b9434435d9eac7ae7f48))
+
+* tidy and docs
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt;
+Signed-off-by: jxdv &lt;virgoj@protonmail.com&gt; ([`b8b9409`](https://github.com/CycloneDX/cyclonedx-python/commit/b8b94092ae5f57743dcd33e2ef50768f9295e7ce))
+
+* rename job and description
+
+Signed-off-by: jxdv &lt;virgoj@protonmail.com&gt; ([`da572de`](https://github.com/CycloneDX/cyclonedx-python/commit/da572deb23921c254282554f9b6c2536559d0260))
+
+* update release-DockerHub job
+
+Signed-off-by: jxdv &lt;virgoj@protonmail.com&gt; ([`25d2449`](https://github.com/CycloneDX/cyclonedx-python/commit/25d24494800feac98f2fbed6af7f8aed94b8c2a1))
+
+* remove redundant job &amp; fix typo
+
+Signed-off-by: jxdv &lt;virgoj@protonmail.com&gt; ([`2e9d2fc`](https://github.com/CycloneDX/cyclonedx-python/commit/2e9d2fcd57baf1a539a286caa53b7ccdec2fbf6e))
+
+* add release-GHCR job
+
+Signed-off-by: jxdv &lt;virgoj@protonmail.com&gt; ([`9508cd0`](https://github.com/CycloneDX/cyclonedx-python/commit/9508cd089575693212a128811111236690b20d15))
+
+
 ## v4.3.0 (2024-04-20)
 
 ### Feature
