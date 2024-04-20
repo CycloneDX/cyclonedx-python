@@ -24,79 +24,7 @@
         {
           "license": {
             "acknowledgement": "declared",
-            "name": "Development Status :: 5 - Production/Stable"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Information Technology"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
             "name": "License :: OSI Approved :: Apache Software License"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Operating System :: OS Independent"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3 :: Only"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.10"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.11"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.12"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.8"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.9"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Software Development :: Libraries :: Python Modules"
           }
         }
       ],
@@ -146,66 +74,6 @@
             "acknowledgement": "declared",
             "id": "MIT"
           }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Development Status :: 5 - Production/Stable"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.10"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.11"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.7"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.8"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.9"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: Implementation :: CPython"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: Implementation :: PyPy"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Typing :: Typed"
-          }
         }
       ],
       "name": "attrs",
@@ -228,60 +96,6 @@
           "license": {
             "acknowledgement": "declared",
             "id": "BSD-2-Clause"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Development Status :: 5 - Production/Stable"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Operating System :: OS Independent"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Scientific/Engineering :: Mathematics"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Software Development :: Compilers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Software Development :: Libraries"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Utilities"
           }
         }
       ],
@@ -330,97 +144,7 @@
         {
           "license": {
             "acknowledgement": "declared",
-            "name": "Development Status :: 5 - Production/Stable"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Information Technology"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Legal Industry"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: System Administrators"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
             "name": "License :: OSI Approved :: Apache Software License"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.10"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.11"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.12"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.8"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.9"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Security"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Software Development"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: System :: Software Distribution"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Typing :: Typed"
           }
         }
       ],
@@ -460,84 +184,6 @@
         {
           "license": {
             "acknowledgement": "declared",
-            "name": "Development Status :: 5 - Production/Stable"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Natural Language :: English"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 2"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 2.7"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.5"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.6"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.7"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.8"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.9"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Text Processing :: Markup :: XML"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
             "name": "declared license of 'defusedxml'",
             "text": {
               "content": "PSFL",
@@ -565,109 +211,7 @@
         {
           "license": {
             "acknowledgement": "declared",
-            "name": "Development Status :: 5 - Production/Stable"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Environment :: Web Environment"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: System Administrators"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
             "name": "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Operating System :: OS Independent"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 2.7"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.5"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.6"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.7"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.8"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.9"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: Implementation :: CPython"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: Implementation :: PyPy"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Internet"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Internet :: Name Service (DNS)"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: System :: Systems Administration"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Utilities"
           }
         },
         {
@@ -710,127 +254,7 @@
         {
           "license": {
             "acknowledgement": "declared",
-            "name": "Development Status :: 5 - Production/Stable"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: System Administrators"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
             "name": "License :: OSI Approved :: BSD License"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Operating System :: OS Independent"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3 :: Only"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.10"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.11"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.12"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.5"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.6"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.7"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.8"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.9"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: Implementation :: CPython"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: Implementation :: PyPy"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Internet :: Name Service (DNS)"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Software Development :: Libraries :: Python Modules"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Utilities"
           }
         }
       ],
@@ -858,31 +282,7 @@
         {
           "license": {
             "acknowledgement": "declared",
-            "name": "Development Status :: 5 - Production/Stable"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
             "name": "License :: OSI Approved :: Apache Software License"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3 :: Only"
           }
         }
       ],
@@ -926,36 +326,6 @@
         {
           "license": {
             "acknowledgement": "declared",
-            "name": "Development Status :: 4 - Beta"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Operating System :: OS Independent"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Software Development :: Libraries :: Python Modules"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
             "name": "declared license of 'isoduration'",
             "text": {
               "content": "UNKNOWN",
@@ -983,109 +353,7 @@
         {
           "license": {
             "acknowledgement": "declared",
-            "name": "Development Status :: 5 - Production/Stable"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Environment :: Console"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
             "name": "License :: OSI Approved :: BSD License"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Operating System :: OS Independent"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 2"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 2.7"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.10"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.11"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.7"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.8"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.9"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: Implementation :: CPython"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: Implementation :: PyPy"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Software Development :: Libraries"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Utilities"
           }
         },
         {
@@ -1150,84 +418,6 @@
             "acknowledgement": "declared",
             "id": "MIT"
           }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Development Status :: 5 - Production/Stable"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Operating System :: OS Independent"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.10"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.11"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.12"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.8"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.9"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: Implementation :: CPython"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: Implementation :: PyPy"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: File Formats :: JSON"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: File Formats :: JSON :: JSON Schema"
-          }
         }
       ],
       "name": "jsonschema",
@@ -1282,78 +472,6 @@
             "acknowledgement": "declared",
             "id": "MIT"
           }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Development Status :: 5 - Production/Stable"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Operating System :: OS Independent"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.10"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.11"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.12"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.8"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.9"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: Implementation :: CPython"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: Implementation :: PyPy"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: File Formats :: JSON :: JSON Schema"
-          }
         }
       ],
       "name": "jsonschema-specifications",
@@ -1376,42 +494,6 @@
           "license": {
             "acknowledgement": "declared",
             "id": "Apache-2.0"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Development Status :: 5 - Production/Stable"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3 :: Only"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Software Development"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Utilities"
           }
         }
       ],
@@ -1445,121 +527,7 @@
         {
           "license": {
             "acknowledgement": "declared",
-            "name": "Development Status :: 5 - Production/Stable"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Information Technology"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
             "name": "License :: OSI Approved :: BSD License"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Operating System :: OS Independent"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: C"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Cython"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 2"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 2.7"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.10"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.11"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.12"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.6"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.7"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.8"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.9"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Software Development :: Libraries :: Python Modules"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Text Processing :: Markup :: HTML"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Text Processing :: Markup :: XML"
           }
         }
       ],
@@ -1583,90 +551,6 @@
           "license": {
             "acknowledgement": "declared",
             "id": "MIT"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Development Status :: 4 - Beta"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Operating System :: OS Independent"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3 :: Only"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.10"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.11"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.12"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.7"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.8"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.9"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Software Development :: Libraries"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Utilities"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Typing :: Typed"
           }
         }
       ],
@@ -1728,73 +612,7 @@
         {
           "license": {
             "acknowledgement": "declared",
-            "name": "Development Status :: 4 - Beta"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Information Technology"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
             "name": "License :: OSI Approved :: Apache Software License"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.10"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.11"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.7"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.8"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.9"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Software Development"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Typing :: Typed"
           }
         }
       ],
@@ -1827,18 +645,6 @@
         {
           "license": {
             "acknowledgement": "declared",
-            "name": "Development Status :: 5 - Production/Stable"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
             "name": "License :: OSI Approved :: Apache Software License"
           }
         },
@@ -1846,78 +652,6 @@
           "license": {
             "acknowledgement": "declared",
             "name": "License :: OSI Approved :: BSD License"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 2"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 2.7"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.3"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.4"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.5"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.6"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.7"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.8"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.9"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Software Development :: Libraries"
           }
         },
         {
@@ -1977,84 +711,6 @@
             "acknowledgement": "declared",
             "id": "MIT"
           }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Development Status :: 3 - Alpha"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Operating System :: OS Independent"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.10"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.11"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.12"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.8"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.9"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: Implementation :: CPython"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: Implementation :: PyPy"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: File Formats :: JSON"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: File Formats :: JSON :: JSON Schema"
-          }
         }
       ],
       "name": "referencing",
@@ -2077,66 +733,6 @@
           "license": {
             "acknowledgement": "declared",
             "id": "MIT"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Development Status :: 2 - Pre-Alpha"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Natural Language :: English"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 2"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 2.7"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.5"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.6"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.7"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.8"
           }
         },
         {
@@ -2175,90 +771,6 @@
           "license": {
             "acknowledgement": "declared",
             "id": "GPL-3.0-or-later"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Development Status :: 5 - Production/Stable"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Operating System :: OS Independent"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 2"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 2.6"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 2.7"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.2"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.3"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.4"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.5"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.6"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Internet"
           }
         },
         {
@@ -2318,78 +830,6 @@
             "acknowledgement": "declared",
             "id": "MIT"
           }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Development Status :: 3 - Alpha"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Operating System :: OS Independent"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.10"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.11"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.12"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.8"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.9"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: Implementation :: CPython"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: Implementation :: PyPy"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Rust"
-          }
         }
       ],
       "name": "rpds-py",
@@ -2413,42 +853,6 @@
             "acknowledgement": "declared",
             "id": "MIT"
           }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Development Status :: 5 - Production/Stable"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 2"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Software Development :: Libraries"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Utilities"
-          }
         }
       ],
       "name": "six",
@@ -2470,97 +874,7 @@
         {
           "license": {
             "acknowledgement": "declared",
-            "name": "Development Status :: 5 - Production/Stable"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
             "name": "License :: OSI Approved :: Apache Software License"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Natural Language :: English"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 2"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 2.7"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.2"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.3"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.4"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.5"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.6"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.7"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: Implementation :: CPython"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: Implementation :: PyPy"
           }
         },
         {
@@ -2619,18 +933,6 @@
         {
           "license": {
             "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Typing :: Stubs Only"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
             "name": "declared license of 'types-python-dateutil'",
             "text": {
               "content": "Apache-2.0 license",
@@ -2659,66 +961,6 @@
           "license": {
             "acknowledgement": "declared",
             "id": "MIT"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Operating System :: OS Independent"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.10"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.11"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.7"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.8"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.9"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Software Development :: Libraries :: Python Modules"
           }
         },
         {
@@ -2762,79 +1004,7 @@
         {
           "license": {
             "acknowledgement": "declared",
-            "name": "Development Status :: 5 - Production/Stable"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Environment :: Web Environment"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
             "name": "License :: OSI Approved :: BSD License"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Operating System :: OS Independent"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.10"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.11"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.7"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.8"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.9"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Utilities"
           }
         }
       ],
@@ -2858,30 +1028,6 @@
           "license": {
             "acknowledgement": "declared",
             "id": "MIT"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Development Status :: 5 - Production/Stable"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3 :: Only"
           }
         }
       ],

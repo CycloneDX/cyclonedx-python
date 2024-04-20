@@ -29,43 +29,7 @@
       <description>Better dates &amp; times for Python</description>
       <licenses>
         <license>
-          <name>Development Status :: 5 - Production/Stable</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Information Technology</name>
-        </license>
-        <license>
           <name>License :: OSI Approved :: Apache Software License</name>
-        </license>
-        <license>
-          <name>Operating System :: OS Independent</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3 :: Only</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.10</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.11</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.12</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.8</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.9</name>
-        </license>
-        <license>
-          <name>Topic :: Software Development :: Libraries :: Python Modules</name>
         </license>
       </licenses>
       <purl>pkg:pypi/arrow@1.3.0</purl>
@@ -91,36 +55,6 @@
       <licenses>
         <license>
           <id>MIT</id>
-        </license>
-        <license>
-          <name>Development Status :: 5 - Production/Stable</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.10</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.11</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.7</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.8</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.9</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: Implementation :: CPython</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: Implementation :: PyPy</name>
-        </license>
-        <license>
-          <name>Typing :: Typed</name>
         </license>
       </licenses>
       <purl>pkg:pypi/attrs@23.1.0</purl>
@@ -159,33 +93,6 @@
         <license>
           <id>BSD-2-Clause</id>
         </license>
-        <license>
-          <name>Development Status :: 5 - Production/Stable</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
-          <name>Operating System :: OS Independent</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3</name>
-        </license>
-        <license>
-          <name>Topic :: Scientific/Engineering :: Mathematics</name>
-        </license>
-        <license>
-          <name>Topic :: Software Development :: Compilers</name>
-        </license>
-        <license>
-          <name>Topic :: Software Development :: Libraries</name>
-        </license>
-        <license>
-          <name>Topic :: Utilities</name>
-        </license>
       </licenses>
       <purl>pkg:pypi/boolean.py@4.0</purl>
       <externalReferences>
@@ -204,52 +111,7 @@
           <id>Apache-2.0</id>
         </license>
         <license>
-          <name>Development Status :: 5 - Production/Stable</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Information Technology</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Legal Industry</name>
-        </license>
-        <license>
-          <name>Intended Audience :: System Administrators</name>
-        </license>
-        <license>
           <name>License :: OSI Approved :: Apache Software License</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.10</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.11</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.12</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.8</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.9</name>
-        </license>
-        <license>
-          <name>Topic :: Security</name>
-        </license>
-        <license>
-          <name>Topic :: Software Development</name>
-        </license>
-        <license>
-          <name>Topic :: System :: Software Distribution</name>
-        </license>
-        <license>
-          <name>Typing :: Typed</name>
         </license>
       </licenses>
       <purl>pkg:pypi/cyclonedx-python-lib@6.0.0</purl>
@@ -288,45 +150,6 @@
           <id>Python-2.0</id>
         </license>
         <license>
-          <name>Development Status :: 5 - Production/Stable</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
-          <name>Natural Language :: English</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 2</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 2.7</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.5</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.6</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.7</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.8</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.9</name>
-        </license>
-        <license>
-          <name>Topic :: Text Processing :: Markup :: XML</name>
-        </license>
-        <license>
           <name>declared license of 'defusedxml'</name>
           <text content-type="text/plain">PSFL</text>
         </license>
@@ -349,58 +172,7 @@
       <description>Validates fully-qualified domain names against RFC 1123, so that they are acceptable to modern bowsers</description>
       <licenses>
         <license>
-          <name>Development Status :: 5 - Production/Stable</name>
-        </license>
-        <license>
-          <name>Environment :: Web Environment</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
-          <name>Intended Audience :: System Administrators</name>
-        </license>
-        <license>
           <name>License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)</name>
-        </license>
-        <license>
-          <name>Operating System :: OS Independent</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 2.7</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.5</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.6</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.7</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.8</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.9</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: Implementation :: CPython</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: Implementation :: PyPy</name>
-        </license>
-        <license>
-          <name>Topic :: Internet</name>
-        </license>
-        <license>
-          <name>Topic :: Internet :: Name Service (DNS)</name>
-        </license>
-        <license>
-          <name>Topic :: System :: Systems Administration</name>
-        </license>
-        <license>
-          <name>Topic :: Utilities</name>
         </license>
         <license>
           <name>declared license of 'fqdn'</name>
@@ -421,67 +193,7 @@
       <description>Internationalized Domain Names in Applications (IDNA)</description>
       <licenses>
         <license>
-          <name>Development Status :: 5 - Production/Stable</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
-          <name>Intended Audience :: System Administrators</name>
-        </license>
-        <license>
           <name>License :: OSI Approved :: BSD License</name>
-        </license>
-        <license>
-          <name>Operating System :: OS Independent</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3 :: Only</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.10</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.11</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.12</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.5</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.6</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.7</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.8</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.9</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: Implementation :: CPython</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: Implementation :: PyPy</name>
-        </license>
-        <license>
-          <name>Topic :: Internet :: Name Service (DNS)</name>
-        </license>
-        <license>
-          <name>Topic :: Software Development :: Libraries :: Python Modules</name>
-        </license>
-        <license>
-          <name>Topic :: Utilities</name>
         </license>
       </licenses>
       <purl>pkg:pypi/idna@3.6</purl>
@@ -506,19 +218,7 @@
       <description>Read resources from Python packages</description>
       <licenses>
         <license>
-          <name>Development Status :: 5 - Production/Stable</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
           <name>License :: OSI Approved :: Apache Software License</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3 :: Only</name>
         </license>
       </licenses>
       <purl>pkg:pypi/importlib-resources@6.1.1</purl>
@@ -540,21 +240,6 @@
       <licenses>
         <license>
           <id>ISC</id>
-        </license>
-        <license>
-          <name>Development Status :: 4 - Beta</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
-          <name>Operating System :: OS Independent</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3</name>
-        </license>
-        <license>
-          <name>Topic :: Software Development :: Libraries :: Python Modules</name>
         </license>
         <license>
           <name>declared license of 'isoduration'</name>
@@ -587,58 +272,7 @@
       <description>Identify specific nodes in a JSON document (RFC 6901) </description>
       <licenses>
         <license>
-          <name>Development Status :: 5 - Production/Stable</name>
-        </license>
-        <license>
-          <name>Environment :: Console</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
           <name>License :: OSI Approved :: BSD License</name>
-        </license>
-        <license>
-          <name>Operating System :: OS Independent</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 2</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 2.7</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.10</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.11</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.7</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.8</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.9</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: Implementation :: CPython</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: Implementation :: PyPy</name>
-        </license>
-        <license>
-          <name>Topic :: Software Development :: Libraries</name>
-        </license>
-        <license>
-          <name>Topic :: Utilities</name>
         </license>
         <license>
           <name>declared license of 'jsonpointer'</name>
@@ -660,45 +294,6 @@
       <licenses>
         <license>
           <id>MIT</id>
-        </license>
-        <license>
-          <name>Development Status :: 5 - Production/Stable</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
-          <name>Operating System :: OS Independent</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.10</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.11</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.12</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.8</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.9</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: Implementation :: CPython</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: Implementation :: PyPy</name>
-        </license>
-        <license>
-          <name>Topic :: File Formats :: JSON</name>
-        </license>
-        <license>
-          <name>Topic :: File Formats :: JSON :: JSON Schema</name>
         </license>
       </licenses>
       <purl>pkg:pypi/jsonschema@4.20.0</purl>
@@ -744,42 +339,6 @@
         <license>
           <id>MIT</id>
         </license>
-        <license>
-          <name>Development Status :: 5 - Production/Stable</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
-          <name>Operating System :: OS Independent</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.10</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.11</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.12</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.8</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.9</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: Implementation :: CPython</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: Implementation :: PyPy</name>
-        </license>
-        <license>
-          <name>Topic :: File Formats :: JSON :: JSON Schema</name>
-        </license>
       </licenses>
       <purl>pkg:pypi/jsonschema-specifications@2023.11.2</purl>
       <externalReferences>
@@ -817,24 +376,6 @@
         <license>
           <id>Apache-2.0</id>
         </license>
-        <license>
-          <name>Development Status :: 5 - Production/Stable</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3 :: Only</name>
-        </license>
-        <license>
-          <name>Topic :: Software Development</name>
-        </license>
-        <license>
-          <name>Topic :: Utilities</name>
-        </license>
       </licenses>
       <purl>pkg:pypi/license-expression@30.2.0</purl>
       <externalReferences>
@@ -853,64 +394,7 @@
           <id>BSD-3-Clause</id>
         </license>
         <license>
-          <name>Development Status :: 5 - Production/Stable</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Information Technology</name>
-        </license>
-        <license>
           <name>License :: OSI Approved :: BSD License</name>
-        </license>
-        <license>
-          <name>Operating System :: OS Independent</name>
-        </license>
-        <license>
-          <name>Programming Language :: C</name>
-        </license>
-        <license>
-          <name>Programming Language :: Cython</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 2</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 2.7</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.10</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.11</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.12</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.6</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.7</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.8</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.9</name>
-        </license>
-        <license>
-          <name>Topic :: Software Development :: Libraries :: Python Modules</name>
-        </license>
-        <license>
-          <name>Topic :: Text Processing :: Markup :: HTML</name>
-        </license>
-        <license>
-          <name>Topic :: Text Processing :: Markup :: XML</name>
         </license>
       </licenses>
       <purl>pkg:pypi/lxml@4.9.4</purl>
@@ -932,48 +416,6 @@
       <licenses>
         <license>
           <id>MIT</id>
-        </license>
-        <license>
-          <name>Development Status :: 4 - Beta</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
-          <name>Operating System :: OS Independent</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3 :: Only</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.10</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.11</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.12</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.7</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.8</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.9</name>
-        </license>
-        <license>
-          <name>Topic :: Software Development :: Libraries</name>
-        </license>
-        <license>
-          <name>Topic :: Utilities</name>
-        </license>
-        <license>
-          <name>Typing :: Typed</name>
         </license>
       </licenses>
       <purl>pkg:pypi/packageurl-python@0.13.1</purl>
@@ -1010,40 +452,7 @@
           <id>Apache-2.0</id>
         </license>
         <license>
-          <name>Development Status :: 4 - Beta</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Information Technology</name>
-        </license>
-        <license>
           <name>License :: OSI Approved :: Apache Software License</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.10</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.11</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.7</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.8</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.9</name>
-        </license>
-        <license>
-          <name>Topic :: Software Development</name>
-        </license>
-        <license>
-          <name>Typing :: Typed</name>
         </license>
       </licenses>
       <purl>pkg:pypi/py-serializable@0.16.0</purl>
@@ -1068,52 +477,10 @@
       <description>Extensions to the standard Python datetime module</description>
       <licenses>
         <license>
-          <name>Development Status :: 5 - Production/Stable</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
           <name>License :: OSI Approved :: Apache Software License</name>
         </license>
         <license>
           <name>License :: OSI Approved :: BSD License</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 2</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 2.7</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.3</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.4</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.5</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.6</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.7</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.8</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.9</name>
-        </license>
-        <license>
-          <name>Topic :: Software Development :: Libraries</name>
         </license>
         <license>
           <name>declared license of 'python-dateutil'</name>
@@ -1143,45 +510,6 @@
       <licenses>
         <license>
           <id>MIT</id>
-        </license>
-        <license>
-          <name>Development Status :: 3 - Alpha</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
-          <name>Operating System :: OS Independent</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.10</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.11</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.12</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.8</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.9</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: Implementation :: CPython</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: Implementation :: PyPy</name>
-        </license>
-        <license>
-          <name>Topic :: File Formats :: JSON</name>
-        </license>
-        <license>
-          <name>Topic :: File Formats :: JSON :: JSON Schema</name>
         </license>
       </licenses>
       <purl>pkg:pypi/referencing@0.32.0</purl>
@@ -1221,36 +549,6 @@
           <id>MIT</id>
         </license>
         <license>
-          <name>Development Status :: 2 - Pre-Alpha</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
-          <name>Natural Language :: English</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 2</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 2.7</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.5</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.6</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.7</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.8</name>
-        </license>
-        <license>
           <name>declared license of 'rfc3339-validator'</name>
           <text content-type="text/plain">MIT license</text>
         </license>
@@ -1270,48 +568,6 @@
       <licenses>
         <license>
           <id>GPL-3.0-or-later</id>
-        </license>
-        <license>
-          <name>Development Status :: 5 - Production/Stable</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
-          <name>Operating System :: OS Independent</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 2</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 2.6</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 2.7</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.2</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.3</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.4</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.5</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.6</name>
-        </license>
-        <license>
-          <name>Topic :: Internet</name>
         </license>
         <license>
           <name>declared license of 'rfc3987'</name>
@@ -1337,42 +593,6 @@
       <licenses>
         <license>
           <id>MIT</id>
-        </license>
-        <license>
-          <name>Development Status :: 3 - Alpha</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
-          <name>Operating System :: OS Independent</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.10</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.11</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.12</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.8</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.9</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: Implementation :: CPython</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: Implementation :: PyPy</name>
-        </license>
-        <license>
-          <name>Programming Language :: Rust</name>
         </license>
       </licenses>
       <purl>pkg:pypi/rpds-py@0.15.2</purl>
@@ -1411,24 +631,6 @@
         <license>
           <id>MIT</id>
         </license>
-        <license>
-          <name>Development Status :: 5 - Production/Stable</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 2</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3</name>
-        </license>
-        <license>
-          <name>Topic :: Software Development :: Libraries</name>
-        </license>
-        <license>
-          <name>Topic :: Utilities</name>
-        </license>
       </licenses>
       <purl>pkg:pypi/six@1.16.0</purl>
       <externalReferences>
@@ -1444,52 +646,7 @@
       <description>Sorted Containers -- Sorted List, Sorted Dict, Sorted Set</description>
       <licenses>
         <license>
-          <name>Development Status :: 5 - Production/Stable</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
           <name>License :: OSI Approved :: Apache Software License</name>
-        </license>
-        <license>
-          <name>Natural Language :: English</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 2</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 2.7</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.2</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.3</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.4</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.5</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.6</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.7</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: Implementation :: CPython</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: Implementation :: PyPy</name>
         </license>
         <license>
           <name>declared license of 'sortedcontainers'</name>
@@ -1511,12 +668,6 @@
       <licenses>
         <license>
           <name>License :: OSI Approved :: Apache Software License</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3</name>
-        </license>
-        <license>
-          <name>Typing :: Stubs Only</name>
         </license>
         <license>
           <name>declared license of 'types-python-dateutil'</name>
@@ -1556,36 +707,6 @@
           <id>MIT</id>
         </license>
         <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
-          <name>Operating System :: OS Independent</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.10</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.11</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.7</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.8</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.9</name>
-        </license>
-        <license>
-          <name>Topic :: Software Development :: Libraries :: Python Modules</name>
-        </license>
-        <license>
           <name>declared license of 'uri-template'</name>
           <text content-type="text/plain">MIT License</text>
         </license>
@@ -1607,43 +728,7 @@
           <id>BSD-3-Clause</id>
         </license>
         <license>
-          <name>Development Status :: 5 - Production/Stable</name>
-        </license>
-        <license>
-          <name>Environment :: Web Environment</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
           <name>License :: OSI Approved :: BSD License</name>
-        </license>
-        <license>
-          <name>Operating System :: OS Independent</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.10</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.11</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.7</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.8</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3.9</name>
-        </license>
-        <license>
-          <name>Topic :: Utilities</name>
         </license>
       </licenses>
       <purl>pkg:pypi/webcolors@1.13</purl>
@@ -1665,18 +750,6 @@
       <licenses>
         <license>
           <id>MIT</id>
-        </license>
-        <license>
-          <name>Development Status :: 5 - Production/Stable</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3 :: Only</name>
         </license>
       </licenses>
       <purl>pkg:pypi/zipp@3.17.0</purl>

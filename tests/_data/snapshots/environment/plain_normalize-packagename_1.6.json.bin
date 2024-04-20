@@ -35,96 +35,6 @@
         {
           "license": {
             "acknowledgement": "declared",
-            "name": "Development Status :: 4 - Beta"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Operating System :: OS Independent"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3 :: Only"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.10"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.11"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.12"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.7"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.8"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.9"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: Implementation :: CPython"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Software Development :: Libraries :: Python Modules"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Text Processing :: Markup"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Typing :: Typed"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
             "name": "declared license of 'ruamel.yaml'",
             "text": {
               "content": "MIT license",
@@ -160,78 +70,6 @@
             "acknowledgement": "declared",
             "id": "MIT"
           }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Development Status :: 4 - Beta"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Operating System :: OS Independent"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.10"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.11"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.6"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.7"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.8"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: 3.9"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python :: Implementation :: CPython"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Topic :: Software Development :: Libraries :: Python Modules"
-          }
         }
       ],
       "name": "ruamel.yaml.clib",
@@ -254,30 +92,6 @@
           "license": {
             "acknowledgement": "declared",
             "id": "MIT"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Development Status :: 4 - Beta"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Operating System :: OS Independent"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "Programming Language :: Python"
           }
         }
       ],

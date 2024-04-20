@@ -20,36 +20,6 @@
           "license": {
             "id": "MIT"
           }
-        },
-        {
-          "license": {
-            "name": "Development Status :: 5 - Production/Stable"
-          }
-        },
-        {
-          "license": {
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "name": "Programming Language :: Python :: 2"
-          }
-        },
-        {
-          "license": {
-            "name": "Programming Language :: Python :: 3"
-          }
-        },
-        {
-          "license": {
-            "name": "Topic :: Software Development :: Libraries"
-          }
-        },
-        {
-          "license": {
-            "name": "Topic :: Utilities"
-          }
         }
       ],
       "name": "six",
@@ -71,91 +41,6 @@
         {
           "license": {
             "id": "MIT"
-          }
-        },
-        {
-          "license": {
-            "name": "Development Status :: 5 - Production/Stable"
-          }
-        },
-        {
-          "license": {
-            "name": "Intended Audience :: Developers"
-          }
-        },
-        {
-          "license": {
-            "name": "Operating System :: OS Independent"
-          }
-        },
-        {
-          "license": {
-            "name": "Programming Language :: Python"
-          }
-        },
-        {
-          "license": {
-            "name": "Programming Language :: Python :: 2"
-          }
-        },
-        {
-          "license": {
-            "name": "Programming Language :: Python :: 2.6"
-          }
-        },
-        {
-          "license": {
-            "name": "Programming Language :: Python :: 2.7"
-          }
-        },
-        {
-          "license": {
-            "name": "Programming Language :: Python :: 3"
-          }
-        },
-        {
-          "license": {
-            "name": "Programming Language :: Python :: 3.3"
-          }
-        },
-        {
-          "license": {
-            "name": "Programming Language :: Python :: 3.4"
-          }
-        },
-        {
-          "license": {
-            "name": "Programming Language :: Python :: 3.5"
-          }
-        },
-        {
-          "license": {
-            "name": "Programming Language :: Python :: 3.6"
-          }
-        },
-        {
-          "license": {
-            "name": "Programming Language :: Python :: 3.7"
-          }
-        },
-        {
-          "license": {
-            "name": "Programming Language :: Python :: 3.8"
-          }
-        },
-        {
-          "license": {
-            "name": "Programming Language :: Python :: 3.9"
-          }
-        },
-        {
-          "license": {
-            "name": "Programming Language :: Python :: Implementation :: CPython"
-          }
-        },
-        {
-          "license": {
-            "name": "Programming Language :: Python :: Implementation :: PyPy"
           }
         }
       ],

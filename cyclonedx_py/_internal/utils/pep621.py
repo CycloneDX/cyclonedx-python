@@ -35,7 +35,7 @@ from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
 from packaging.requirements import Requirement
 
 from .cdx import licenses_fixup, url_label_to_ert
-from .license_trove_classifier import license_trove2spdx
+from .license_trove_classifier import license_trove2spdx, is_license_trove
 
 if TYPE_CHECKING:
     from cyclonedx.model.component import ComponentType
@@ -46,8 +46,9 @@ def classifiers2licenses(classifiers: Iterable[str], lfac: 'LicenseFactory',
                          lack: 'LicenseAcknowledgement'
                          ) -> Generator['License', None, None]:
     for c in classifiers:
-        yield lfac.make_from_string(license_trove2spdx(c) or c,
-                                    license_acknowledgement=lack)
+        if is_license_trove(c):
+            yield lfac.make_from_string(license_trove2spdx(c) or c,
+                                        license_acknowledgement=lack)
 
 
 def project2licenses(project: Dict[str, Any], lfac: 'LicenseFactory', *,

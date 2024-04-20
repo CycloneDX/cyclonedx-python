@@ -58,24 +58,6 @@
         <license acknowledgement="declared">
           <id>MIT</id>
         </license>
-        <license acknowledgement="declared">
-          <name>Development Status :: 5 - Production/Stable</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: 2</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: 3</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Topic :: Software Development :: Libraries</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Topic :: Utilities</name>
-        </license>
       </licenses>
       <purl>pkg:pypi/six@1.16.0</purl>
       <externalReferences>

@@ -9,24 +9,6 @@
         <license>
           <id>MIT</id>
         </license>
-        <license>
-          <name>Development Status :: 5 - Production/Stable</name>
-        </license>
-        <license>
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 2</name>
-        </license>
-        <license>
-          <name>Programming Language :: Python :: 3</name>
-        </license>
-        <license>
-          <name>Topic :: Software Development :: Libraries</name>
-        </license>
-        <license>
-          <name>Topic :: Utilities</name>
-        </license>
       </licenses>
       <purl>pkg:pypi/six@1.16.0</purl>
       <externalReferences>

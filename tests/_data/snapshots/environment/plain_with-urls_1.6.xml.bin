@@ -56,52 +56,10 @@
       <description>Core utilities for Python packages</description>
       <licenses>
         <license acknowledgement="declared">
-          <name>Development Status :: 5 - Production/Stable</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license acknowledgement="declared">
           <name>License :: OSI Approved :: Apache Software License</name>
         </license>
         <license acknowledgement="declared">
           <name>License :: OSI Approved :: BSD License</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: 3</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: 3 :: Only</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: 3.10</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: 3.11</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: 3.12</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: 3.7</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: 3.8</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: 3.9</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: Implementation :: CPython</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: Implementation :: PyPy</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Typing :: Typed</name>
         </license>
       </licenses>
       <purl>pkg:pypi/packaging@23.2?vcs_url=git%2Bhttps://github.com/pypa/packaging.git%40b3a5d7d68991c040615d5345bb55f61de53ba176</purl>
@@ -132,24 +90,6 @@
         <license acknowledgement="declared">
           <id>MIT</id>
         </license>
-        <license acknowledgement="declared">
-          <name>Development Status :: 5 - Production/Stable</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: 2</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: 3</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Topic :: Software Development :: Libraries</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Topic :: Utilities</name>
-        </license>
       </licenses>
       <purl>pkg:pypi/six@1.16.0</purl>
       <externalReferences>
@@ -173,42 +113,6 @@
       <licenses>
         <license acknowledgement="declared">
           <id>MIT</id>
-        </license>
-        <license acknowledgement="declared">
-          <name>Operating System :: MacOS</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Operating System :: Microsoft :: Windows</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Operating System :: POSIX :: Linux</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: 3 :: Only</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: 3.10</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: 3.7</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: 3.8</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: 3.9</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: Implementation :: CPython</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: Implementation :: PyPy</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Topic :: Software Development :: Libraries :: Python Modules</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Typing :: Typed</name>
         </license>
       </licenses>
       <purl>pkg:pypi/tomli@2.0.1</purl>
@@ -237,51 +141,6 @@
       <licenses>
         <license acknowledgement="declared">
           <id>MIT</id>
-        </license>
-        <license acknowledgement="declared">
-          <name>Environment :: Web Environment</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Intended Audience :: Developers</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Operating System :: OS Independent</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: 3</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: 3 :: Only</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: 3.10</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: 3.11</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: 3.12</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: 3.8</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: 3.9</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: Implementation :: CPython</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Programming Language :: Python :: Implementation :: PyPy</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Topic :: Internet :: WWW/HTTP</name>
-        </license>
-        <license acknowledgement="declared">
-          <name>Topic :: Software Development :: Libraries</name>
         </license>
       </licenses>
       <purl>pkg:pypi/urllib3@2.2.0?download_url=https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip</purl>

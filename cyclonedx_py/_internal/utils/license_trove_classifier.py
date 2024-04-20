@@ -21,8 +21,14 @@ This module is internal - it is not public API.
 All in here may have breaking change without notice.
 """
 
-
 from typing import Optional
+
+__LICENSE_TROVE_PREFIX = 'License :: '
+
+
+def is_license_trove(classifier: str) -> bool:
+    return classifier.startswith(__LICENSE_TROVE_PREFIX)
+
 
 """
 Map of trove classifiers to SPDX license ID or SPDX license expression.
