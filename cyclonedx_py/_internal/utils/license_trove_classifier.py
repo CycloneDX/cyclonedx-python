@@ -21,8 +21,14 @@ This module is internal - it is not public API.
 All in here may have breaking change without notice.
 """
 
-
 from typing import Optional
+
+__LICENSE_TROVE_PREFIX = 'License :: '
+
+
+def is_license_trove(classifier: str) -> bool:
+    return classifier.startswith(__LICENSE_TROVE_PREFIX)
+
 
 """
 Map of trove classifiers to SPDX license ID or SPDX license expression.
@@ -73,6 +79,7 @@ __TO_SPDX_MAP = {
     # !! see the ideas and cases of https://peps.python.org/pep-0639/#mapping-license-classifiers-to-spdx-identifiers
     # 'License :: OSI Approved :: Academic Free License (AFL)': which one?
     #   -  AFL-1.1
+    #   -  AFL-...
     #   -  AFL-3.0
     # 'License :: OSI Approved :: Apache Software License': which one?
     #    -  Apache-1.1
@@ -81,6 +88,9 @@ __TO_SPDX_MAP = {
     #    -  APSL-1.0
     #    -  APSL-2.0
     # 'License :: OSI Approved :: Artistic License': which version?
+    #    - Artistic-1.0
+    #    - Artistic-...
+    #    - Artistic-3.0
     'License :: OSI Approved :: Attribution Assurance License': 'AAL',
     # 'License :: OSI Approved :: BSD License': which exactly?
     'License :: OSI Approved :: Boost Software License 1.0 (BSL-1.0)': 'BSL-1.0',

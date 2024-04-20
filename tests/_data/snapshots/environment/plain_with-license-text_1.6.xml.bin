@@ -45,7 +45,7 @@
       <version>0.1.0</version>
       <description>with licenses as text, instead of SPDX ID/Expression</description>
       <licenses>
-        <license>
+        <license acknowledgement="declared">
           <name>declared license of 'with-license-text'</name>
           <text content-type="text/plain">This is the license text of this component.
 It is expected to be available in a SBOM.</text>
@@ -62,7 +62,7 @@ It is expected to be available in a SBOM.</text>
       <version>23.42</version>
       <description>some package A</description>
       <licenses>
-        <license>
+        <license acknowledgement="declared">
           <name>declared license of 'package-a'</name>
           <text content-type="text/plain">some license text</text>
         </license>
@@ -82,8 +82,11 @@ It is expected to be available in a SBOM.</text>
       <version>23.42</version>
       <description>some package B</description>
       <licenses>
-        <license>
+        <license acknowledgement="declared">
           <id>Apache-2.0</id>
+        </license>
+        <license acknowledgement="declared">
+          <name>License :: OSI Approved :: Apache Software License</name>
         </license>
       </licenses>
       <externalReferences>
@@ -101,7 +104,7 @@ It is expected to be available in a SBOM.</text>
       <version>23.42</version>
       <description>some package C</description>
       <licenses>
-        <expression>Apache-2.0 OR MIT</expression>
+        <expression acknowledgement="declared">Apache-2.0 OR MIT</expression>
       </licenses>
       <externalReferences>
         <reference type="distribution">

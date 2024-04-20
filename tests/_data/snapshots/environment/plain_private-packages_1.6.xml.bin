@@ -55,7 +55,7 @@
       <version>1.16.0</version>
       <description>Python 2 and 3 compatibility utilities</description>
       <licenses>
-        <license>
+        <license acknowledgement="declared">
           <id>MIT</id>
         </license>
       </licenses>
@@ -79,7 +79,7 @@
       <version>0.10.2</version>
       <description>Python Library for Tom's Obvious, Minimal Language</description>
       <licenses>
-        <license>
+        <license acknowledgement="declared">
           <id>MIT</id>
         </license>
       </licenses>

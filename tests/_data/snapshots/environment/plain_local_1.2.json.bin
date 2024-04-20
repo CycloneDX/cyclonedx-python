@@ -40,6 +40,11 @@
           "license": {
             "id": "Apache-2.0"
           }
+        },
+        {
+          "license": {
+            "name": "License :: OSI Approved :: Apache Software License"
+          }
         }
       ],
       "name": "package-b",

@@ -13,6 +13,7 @@
       "licenses": [
         {
           "license": {
+            "acknowledgement": "declared",
             "id": "MIT"
           }
         }

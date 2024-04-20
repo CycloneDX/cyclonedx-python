@@ -20,6 +20,13 @@
           "url": "https://github.com/arrow-py/arrow"
         }
       ],
+      "licenses": [
+        {
+          "license": {
+            "name": "License :: OSI Approved :: Apache Software License"
+          }
+        }
+      ],
       "name": "arrow",
       "purl": "pkg:pypi/arrow@1.3.0",
       "type": "library",
@@ -129,6 +136,11 @@
           "license": {
             "id": "Apache-2.0"
           }
+        },
+        {
+          "license": {
+            "name": "License :: OSI Approved :: Apache Software License"
+          }
         }
       ],
       "name": "cyclonedx-python-lib",
@@ -185,6 +197,11 @@
       "licenses": [
         {
           "license": {
+            "name": "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)"
+          }
+        },
+        {
+          "license": {
             "name": "declared license of 'fqdn'",
             "text": {
               "content": "MPL 2.0",
@@ -218,6 +235,13 @@
           "url": "https://github.com/kjd/idna/blob/master/HISTORY.rst"
         }
       ],
+      "licenses": [
+        {
+          "license": {
+            "name": "License :: OSI Approved :: BSD License"
+          }
+        }
+      ],
       "name": "idna",
       "purl": "pkg:pypi/idna@3.6",
       "type": "library",
@@ -236,6 +260,13 @@
           "comment": "from packaging metadata: Home-page",
           "type": "website",
           "url": "https://github.com/python/importlib_resources"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "name": "License :: OSI Approved :: Apache Software License"
+          }
         }
       ],
       "name": "importlib-resources",
@@ -300,6 +331,11 @@
         }
       ],
       "licenses": [
+        {
+          "license": {
+            "name": "License :: OSI Approved :: BSD License"
+          }
+        },
         {
           "license": {
             "name": "declared license of 'jsonpointer'",
@@ -456,6 +492,11 @@
           "license": {
             "id": "BSD-3-Clause"
           }
+        },
+        {
+          "license": {
+            "name": "License :: OSI Approved :: BSD License"
+          }
         }
       ],
       "name": "lxml",
@@ -532,6 +573,11 @@
           "license": {
             "id": "Apache-2.0"
           }
+        },
+        {
+          "license": {
+            "name": "License :: OSI Approved :: Apache Software License"
+          }
         }
       ],
       "name": "py-serializable",
@@ -560,6 +606,16 @@
         }
       ],
       "licenses": [
+        {
+          "license": {
+            "name": "License :: OSI Approved :: Apache Software License"
+          }
+        },
+        {
+          "license": {
+            "name": "License :: OSI Approved :: BSD License"
+          }
+        },
         {
           "license": {
             "name": "declared license of 'python-dateutil'",
@@ -771,6 +827,11 @@
       "licenses": [
         {
           "license": {
+            "name": "License :: OSI Approved :: Apache Software License"
+          }
+        },
+        {
+          "license": {
             "name": "declared license of 'sortedcontainers'",
             "text": {
               "content": "Apache 2.0",
@@ -815,6 +876,11 @@
         }
       ],
       "licenses": [
+        {
+          "license": {
+            "name": "License :: OSI Approved :: Apache Software License"
+          }
+        },
         {
           "license": {
             "name": "declared license of 'types-python-dateutil'",
@@ -880,6 +946,11 @@
         {
           "license": {
             "id": "BSD-3-Clause"
+          }
+        },
+        {
+          "license": {
+            "name": "License :: OSI Approved :: BSD License"
           }
         }
       ],

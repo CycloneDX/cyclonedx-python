@@ -28,11 +28,13 @@
       "licenses": [
         {
           "license": {
+            "acknowledgement": "declared",
             "id": "MIT"
           }
         },
         {
           "license": {
+            "acknowledgement": "declared",
             "name": "declared license of 'ruamel.yaml'",
             "text": {
               "content": "MIT license",
@@ -65,6 +67,7 @@
       "licenses": [
         {
           "license": {
+            "acknowledgement": "declared",
             "id": "MIT"
           }
         }
@@ -87,6 +90,7 @@
       "licenses": [
         {
           "license": {
+            "acknowledgement": "declared",
             "id": "MIT"
           }
         }

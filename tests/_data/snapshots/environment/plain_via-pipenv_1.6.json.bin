@@ -13,6 +13,7 @@
       "licenses": [
         {
           "license": {
+            "acknowledgement": "declared",
             "id": "MIT"
           }
         }
@@ -72,6 +73,7 @@
       ],
       "licenses": [
         {
+          "acknowledgement": "declared",
           "expression": "Apache-2.0 OR MIT"
         }
       ],

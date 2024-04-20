@@ -28,6 +28,7 @@ from cyclonedx.exception.model import InvalidUriException
 from cyclonedx.factory.license import LicenseFactory
 from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
 from cyclonedx.model.component import Component
+from cyclonedx.model.license import LicenseAcknowledgement
 from packaging.requirements import Requirement
 
 from .cdx import licenses_fixup, url_label_to_ert
@@ -64,12 +65,14 @@ def poetry2extrefs(poetry: Dict[str, Any]) -> Generator['ExternalReference', Non
 def poetry2component(poetry: Dict[str, Any], *, ctype: 'ComponentType') -> 'Component':
     licenses: List['License'] = []
     lfac = LicenseFactory()
+    lack = LicenseAcknowledgement.DECLARED
     if 'classifiers' in poetry:
-        licenses.extend(classifiers2licenses(poetry['classifiers'], lfac))
+        licenses.extend(classifiers2licenses(poetry['classifiers'], lfac, lack))
     if 'license' in poetry:
         # per spec(https://python-poetry.org/docs/pyproject#license):
         # the `license` is intended to be the name of a license, not the license text itself.
-        licenses.append(lfac.make_from_string(poetry['license']))
+        licenses.append(lfac.make_from_string(poetry['license'],
+                                              license_acknowledgement=lack))
 
     return Component(
         type=ctype,
