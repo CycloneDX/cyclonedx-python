@@ -45,7 +45,7 @@
       <version>0.1.0</version>
       <description>environment via Pipenv</description>
       <licenses>
-        <expression>Apache-2.0 OR MIT</expression>
+        <expression acknowledgement="declared">Apache-2.0 OR MIT</expression>
       </licenses>
       <externalReferences>
         <reference type="documentation">
@@ -84,7 +84,7 @@
       <version>0.10.2</version>
       <description>Python Library for Tom's Obvious, Minimal Language</description>
       <licenses>
-        <license>
+        <license acknowledgement="declared">
           <id>MIT</id>
         </license>
       </licenses>

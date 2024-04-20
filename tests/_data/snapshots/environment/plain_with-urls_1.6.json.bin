@@ -20,6 +20,20 @@
           "url": "https://github.com/pypa/packaging.git#b3a5d7d68991c040615d5345bb55f61de53ba176"
         }
       ],
+      "licenses": [
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "name": "License :: OSI Approved :: Apache Software License"
+          }
+        },
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "name": "License :: OSI Approved :: BSD License"
+          }
+        }
+      ],
       "name": "packaging",
       "properties": [
         {
@@ -59,6 +73,7 @@
       "licenses": [
         {
           "license": {
+            "acknowledgement": "declared",
             "id": "MIT"
           }
         }
@@ -97,6 +112,7 @@
       "licenses": [
         {
           "license": {
+            "acknowledgement": "declared",
             "id": "MIT"
           }
         }
@@ -145,6 +161,7 @@
       "licenses": [
         {
           "license": {
+            "acknowledgement": "declared",
             "id": "MIT"
           }
         }

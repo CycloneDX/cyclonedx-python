@@ -19,6 +19,7 @@
       "licenses": [
         {
           "license": {
+            "acknowledgement": "declared",
             "name": "declared license of 'package-a'",
             "text": {
               "content": "some license text",
@@ -50,7 +51,14 @@
       "licenses": [
         {
           "license": {
+            "acknowledgement": "declared",
             "id": "Apache-2.0"
+          }
+        },
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "name": "License :: OSI Approved :: Apache Software License"
           }
         }
       ],
@@ -76,6 +84,7 @@
       ],
       "licenses": [
         {
+          "acknowledgement": "declared",
           "expression": "Apache-2.0 OR MIT"
         }
       ],
@@ -105,6 +114,7 @@
       "licenses": [
         {
           "license": {
+            "acknowledgement": "declared",
             "name": "declared license of 'with-license-text'",
             "text": {
               "content": "This is the license text of this component.\nIt is expected to be available in a SBOM.",

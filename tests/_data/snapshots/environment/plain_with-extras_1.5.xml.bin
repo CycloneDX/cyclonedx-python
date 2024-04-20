@@ -54,6 +54,11 @@
       <name>arrow</name>
       <version>1.3.0</version>
       <description>Better dates &amp; times for Python</description>
+      <licenses>
+        <license>
+          <name>License :: OSI Approved :: Apache Software License</name>
+        </license>
+      </licenses>
       <purl>pkg:pypi/arrow@1.3.0</purl>
       <externalReferences>
         <reference type="documentation">
@@ -132,6 +137,9 @@
         <license>
           <id>Apache-2.0</id>
         </license>
+        <license>
+          <name>License :: OSI Approved :: Apache Software License</name>
+        </license>
       </licenses>
       <purl>pkg:pypi/cyclonedx-python-lib@6.0.0</purl>
       <externalReferences>
@@ -191,6 +199,9 @@
       <description>Validates fully-qualified domain names against RFC 1123, so that they are acceptable to modern bowsers</description>
       <licenses>
         <license>
+          <name>License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)</name>
+        </license>
+        <license>
           <name>declared license of 'fqdn'</name>
           <text content-type="text/plain">MPL 2.0</text>
         </license>
@@ -207,6 +218,11 @@
       <name>idna</name>
       <version>3.6</version>
       <description>Internationalized Domain Names in Applications (IDNA)</description>
+      <licenses>
+        <license>
+          <name>License :: OSI Approved :: BSD License</name>
+        </license>
+      </licenses>
       <purl>pkg:pypi/idna@3.6</purl>
       <externalReferences>
         <reference type="issue-tracker">
@@ -227,6 +243,11 @@
       <name>importlib-resources</name>
       <version>6.1.1</version>
       <description>Read resources from Python packages</description>
+      <licenses>
+        <license>
+          <name>License :: OSI Approved :: Apache Software License</name>
+        </license>
+      </licenses>
       <purl>pkg:pypi/importlib-resources@6.1.1</purl>
       <externalReferences>
         <reference type="documentation">
@@ -277,6 +298,9 @@
       <version>2.4</version>
       <description>Identify specific nodes in a JSON document (RFC 6901) </description>
       <licenses>
+        <license>
+          <name>License :: OSI Approved :: BSD License</name>
+        </license>
         <license>
           <name>declared license of 'jsonpointer'</name>
           <text content-type="text/plain">Modified BSD License</text>
@@ -396,6 +420,9 @@
         <license>
           <id>BSD-3-Clause</id>
         </license>
+        <license>
+          <name>License :: OSI Approved :: BSD License</name>
+        </license>
       </licenses>
       <purl>pkg:pypi/lxml@4.9.4</purl>
       <externalReferences>
@@ -451,6 +478,9 @@
         <license>
           <id>Apache-2.0</id>
         </license>
+        <license>
+          <name>License :: OSI Approved :: Apache Software License</name>
+        </license>
       </licenses>
       <purl>pkg:pypi/py-serializable@0.16.0</purl>
       <externalReferences>
@@ -473,6 +503,12 @@
       <version>2.8.2</version>
       <description>Extensions to the standard Python datetime module</description>
       <licenses>
+        <license>
+          <name>License :: OSI Approved :: Apache Software License</name>
+        </license>
+        <license>
+          <name>License :: OSI Approved :: BSD License</name>
+        </license>
         <license>
           <name>declared license of 'python-dateutil'</name>
           <text content-type="text/plain">Dual License</text>
@@ -637,6 +673,9 @@
       <description>Sorted Containers -- Sorted List, Sorted Dict, Sorted Set</description>
       <licenses>
         <license>
+          <name>License :: OSI Approved :: Apache Software License</name>
+        </license>
+        <license>
           <name>declared license of 'sortedcontainers'</name>
           <text content-type="text/plain">Apache 2.0</text>
         </license>
@@ -654,6 +693,9 @@
       <version>2.8.19.14</version>
       <description>Typing stubs for python-dateutil</description>
       <licenses>
+        <license>
+          <name>License :: OSI Approved :: Apache Software License</name>
+        </license>
         <license>
           <name>declared license of 'types-python-dateutil'</name>
           <text content-type="text/plain">Apache-2.0 license</text>
@@ -711,6 +753,9 @@
       <licenses>
         <license>
           <id>BSD-3-Clause</id>
+        </license>
+        <license>
+          <name>License :: OSI Approved :: BSD License</name>
         </license>
       </licenses>
       <purl>pkg:pypi/webcolors@1.13</purl>

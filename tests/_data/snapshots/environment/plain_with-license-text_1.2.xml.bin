@@ -52,6 +52,9 @@ It is expected to be available in a SBOM.</text>
         <license>
           <id>Apache-2.0</id>
         </license>
+        <license>
+          <name>License :: OSI Approved :: Apache Software License</name>
+        </license>
       </licenses>
       <externalReferences>
         <reference type="distribution">

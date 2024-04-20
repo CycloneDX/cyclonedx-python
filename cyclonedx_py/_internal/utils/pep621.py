@@ -31,34 +31,34 @@ from cyclonedx.exception.model import InvalidUriException
 from cyclonedx.factory.license import LicenseFactory
 from cyclonedx.model import AttachedText, Encoding, ExternalReference, XsUri
 from cyclonedx.model.component import Component
-from cyclonedx.model.license import DisjunctiveLicense
+from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
 from packaging.requirements import Requirement
 
 from .cdx import licenses_fixup, url_label_to_ert
-from .license_trove_classifier import license_trove2spdx
+from .license_trove_classifier import is_license_trove, license_trove2spdx
 
 if TYPE_CHECKING:
     from cyclonedx.model.component import ComponentType
     from cyclonedx.model.license import License
 
 
-def classifiers2licenses(classifiers: Iterable[str], lfac: 'LicenseFactory') -> Generator['License', None, None]:
-    yield from map(lfac.make_from_string,
-                   # `lfac.make_with_id` could be a shortcut,
-                   # but some SPDX ID might not (yet) be known to CDX.
-                   # So better go with `lfac.make_from_string` and be safe.
-                   filter(None,
-                          map(license_trove2spdx,
-                              classifiers)))
+def classifiers2licenses(classifiers: Iterable[str], lfac: 'LicenseFactory',
+                         lack: 'LicenseAcknowledgement'
+                         ) -> Generator['License', None, None]:
+    for c in classifiers:
+        if is_license_trove(c):
+            yield lfac.make_from_string(license_trove2spdx(c) or c,
+                                        license_acknowledgement=lack)
 
 
 def project2licenses(project: Dict[str, Any], lfac: 'LicenseFactory', *,
                      fpath: str) -> Generator['License', None, None]:
+    lack = LicenseAcknowledgement.DECLARED
     if classifiers := project.get('classifiers'):
         # https://packaging.python.org/en/latest/specifications/pyproject-toml/#classifiers
         # https://peps.python.org/pep-0621/#classifiers
         # https://packaging.python.org/en/latest/specifications/core-metadata/#classifier-multiple-use
-        yield from classifiers2licenses(classifiers, lfac)
+        yield from classifiers2licenses(classifiers, lfac, lack)
     if plicense := project.get('license'):
         # https://packaging.python.org/en/latest/specifications/pyproject-toml/#license
         # https://peps.python.org/pep-0621/#license
@@ -73,13 +73,16 @@ def project2licenses(project: Dict[str, Any], lfac: 'LicenseFactory', *,
             # > Tools MUST assume the file’s encoding is UTF-8.
             with open(join(dirname(fpath), plicense['file']), 'rb') as plicense_fileh:
                 yield DisjunctiveLicense(name=f"declared license of '{project['name']}'",
+                                         acknowledgement=lack,
                                          text=AttachedText(encoding=Encoding.BASE_64,
                                                            content=b64encode(plicense_fileh.read()).decode()))
         elif len(plicense_text := plicense.get('text', '')) > 0:
-            license = lfac.make_from_string(plicense_text)
+            license = lfac.make_from_string(plicense_text,
+                                            license_acknowledgement=lack)
             if isinstance(license, DisjunctiveLicense) and license.id is None:
                 # per spec, `License` is either a SPDX ID/Expression, or a license text(not name!)
                 yield DisjunctiveLicense(name=f"declared license of '{project['name']}'",
+                                         acknowledgement=lack,
                                          text=AttachedText(content=plicense_text))
             else:
                 yield license

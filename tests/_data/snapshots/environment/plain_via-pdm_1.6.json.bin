@@ -13,6 +13,7 @@
       "licenses": [
         {
           "license": {
+            "acknowledgement": "declared",
             "id": "MIT"
           }
         }
@@ -40,6 +41,7 @@
       "description": "environment via PDM",
       "licenses": [
         {
+          "acknowledgement": "declared",
           "expression": "Apache-2.0 OR MIT"
         }
       ],
