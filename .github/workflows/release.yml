@@ -151,8 +151,8 @@ jobs:
           # see https://python-semantic-release.readthedocs.io/en/latest/configuration.html?highlight=remove_dist#remove-dist
 
 
-  release-DockerHub:
-    name: "Release: DockerHub"
+  release-docker-image:
+    name: "Release: DockerHub & GHCR"
     needs:
       - release-PyPI
     if: |
