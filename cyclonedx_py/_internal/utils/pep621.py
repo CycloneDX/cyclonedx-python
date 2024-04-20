@@ -35,7 +35,7 @@ from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
 from packaging.requirements import Requirement
 
 from .cdx import licenses_fixup, url_label_to_ert
-from .license_trove_classifier import license_trove2spdx, is_license_trove
+from .license_trove_classifier import is_license_trove, license_trove2spdx
 
 if TYPE_CHECKING:
     from cyclonedx.model.component import ComponentType
