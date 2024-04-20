@@ -216,16 +216,16 @@ jobs:
           path: ${{ env.REPORTS_DIR }}/*.bom.*
           if-no-files-found: error
       # publish AFTER the boms were build, as the bom-generation is kind of a test if the image works
-      - name: Login to Docker Hub
+      - name: Login to DockerHub
         # see hhttps://github.com/docker/login-action?tab=readme-ov-file#docker-hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Publish Docker Image for version "${{ env.VERSION }}"
+      - name: Publish Container Image to DockerHub for version "${{ env.VERSION }}"
         run: docker push "$DOCKERHUB_REPO:$VERSION"
-      - name: Publish Docker Image as "latest"
-        if: ${{ github.event.inputs.prerelease == 'false' }}
+      - name: Publish Container Image to DockerHub as "latest"
+        if: ${{ !cancelled() && github.event.inputs.prerelease == 'false' }}
         run: docker push "$DOCKERHUB_REPO:latest"
       # endregion
       # region publish to GHCR
@@ -236,14 +236,14 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Publish Docker Image to GHCR for version "${{ env.VERSION }}"
+      - name: Publish Container Image to GHCR for version "${{ env.VERSION }}"
         run: docker push "$GHCR_REPO:$VERSION"
-      - name: Publish Docker Image as "latest"
-        if: ${{ github.event.inputs.prerelease == 'false' }}
+      - name: Publish Container Image to GHCR as "latest"
+        if: ${{ !cancelled() && github.event.inputs.prerelease == 'false' }}
         run: docker push "$GHCR_REPO:latest"
       # endregion
       # TODO: publish all files in $REPORTS_DIR as release assets - see https://github.com/actions/upload-release-asset
-      - name: Destroy Docker image
+      - name: Destroy Container image
         # run regardless of outcome
         if: ${{ always() }}
         run: >
