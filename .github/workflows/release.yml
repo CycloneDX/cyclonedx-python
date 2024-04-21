@@ -232,7 +232,7 @@ jobs:
       - name: Publish Container Image to DockerHub for version "${{ env.VERSION }}"
         run: docker push "$DOCKERHUB_REPO:$VERSION"
       - name: Publish Container Image to DockerHub as "latest"
-        if: ${{ github.event.inputs.prerelease == 'false' }}
+        if: ${{ github.event.inputs.prerelease != 'false' }}
         run: docker push "$DOCKERHUB_REPO:latest"
       # endregion
       # region publish to GHCR
@@ -246,7 +246,7 @@ jobs:
       - name: Publish Container Image to GHCR for version "${{ env.VERSION }}"
         run: docker push "$GHCR_REPO:$VERSION"
       - name: Publish Container Image to GHCR as "latest"
-        if: ${{ github.event.inputs.prerelease == 'false' }}
+        if: ${{ github.event.inputs.prerelease != 'false' }}
         run: docker push "$GHCR_REPO:latest"
       # endregion
       # TODO: publish all files in $REPORTS_DIR as release assets - see https://github.com/actions/upload-release-asset
