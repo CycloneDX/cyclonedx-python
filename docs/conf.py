@@ -22,7 +22,7 @@ author = 'Paul Horton, Jan Kowalleck, Steve Springett, Patrick Dwyer'
 
 # The full version, including alpha/beta/rc tags
 # !! version is managed by semantic_release
-release = "4.3.3-alpha.1"
+release = "4.3.4-alpha.1"
 
 # -- General configuration ---------------------------------------------------
 

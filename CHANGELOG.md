@@ -2,6 +2,15 @@
 
 
 
+## v4.3.4-alpha.1 (2024-04-21)
+
+### Unknown
+
+* Update release.yml
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`c48096b`](https://github.com/CycloneDX/cyclonedx-python/commit/c48096bcc227b73b96f22e5957ecc263da2c806e))
+
+
 ## v4.3.3-alpha.1 (2024-04-21)
 
 ### Unknown
