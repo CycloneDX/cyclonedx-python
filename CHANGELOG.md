@@ -2,6 +2,27 @@
 
 
 
+## v4.3.2-alpha.1 (2024-04-21)
+
+### Unknown
+
+* Update release.yml
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`44608d0`](https://github.com/CycloneDX/cyclonedx-python/commit/44608d06b4d5f0679c59806da2b000ac1648aa23))
+
+* Update docker.yml
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`3c9428f`](https://github.com/CycloneDX/cyclonedx-python/commit/3c9428f0398115deeca66b2d81a3d82348910a50))
+
+* Update release.yml
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`fba87d9`](https://github.com/CycloneDX/cyclonedx-python/commit/fba87d9b13b8e6c03414b8ec1c7169817989dae0))
+
+* Update release.yml
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`43a3dad`](https://github.com/CycloneDX/cyclonedx-python/commit/43a3dad0cafee3345d505a63741a282392c06236))
+
+
 ## v4.3.1-alpha.1 (2024-04-20)
 
 ### Chore
