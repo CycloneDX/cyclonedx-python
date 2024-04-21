@@ -68,6 +68,8 @@ jobs:
           VERSION: ${{ steps.bump-version.outputs.version }}
         run: >
           docker build -f Dockerfile
+          --label "org.opencontainers.image.source=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}"
+          --label "org.opencontainers.image.revision=${GITHUB_SHA}"
           --build-arg "VERSION=$VERSION"
           -t "$DOCKER_TAG"
           .
