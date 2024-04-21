@@ -2,6 +2,15 @@
 
 
 
+## v4.4.2 (2024-04-21)
+
+### Fix
+
+* fix: release `lates` container image (#726)
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`0155450`](https://github.com/CycloneDX/cyclonedx-python/commit/015545014d7bb0fe72438d6707db4abc89dba031))
+
+
 ## v4.4.1 (2024-04-21)
 
 ### Fix
