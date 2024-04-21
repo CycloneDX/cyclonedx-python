@@ -168,6 +168,10 @@ jobs:
       DOCKERHUB_REPO: cyclonedx/cyclonedx-python
       GHCR_REPO: ghcr.io/${{ github.repository_owner }}/cyclonedx-python
     steps:
+      - name: lowercase image tags
+        run:
+          echo "DOCKERHUB_REPO=${DOCKERHUB_REPO@L}" >> "${GITHUB_ENV}"
+          echo "GHCR_REPO=${GHCR_REPO@L}" >> "${GITHUB_ENV}"
       - name: Checkout code (${{ env.TAG }})
         # see https://github.com/actions/checkout
         uses: actions/checkout@v4
@@ -190,7 +194,7 @@ jobs:
           --build-arg "VERSION=$VERSION"
           -t "$DOCKERHUB_REPO:$VERSION"
           -t "$DOCKERHUB_REPO:latest"
-          -t "$GHCR_REPO:$VERSION"
+          -t "$GHCR_REPO@L:$VERSION"
           -t "$GHCR_REPO:latest"
           .
       - name: Build own SBoM (XML)
