@@ -29,6 +29,20 @@
       "version": "1.9.2"
     },
     {
+      "bom-ref": "requirements-L17",
+      "description": "requirements line 17: ./downloads/numpy-1.26.1.tar.gz",
+      "externalReferences": [
+        {
+          "comment": "explicit local path",
+          "type": "other",
+          "url": "./downloads/numpy-1.26.1.tar.gz"
+        }
+      ],
+      "name": "unknown",
+      "type": "library",
+      "version": ""
+    },
+    {
       "bom-ref": "requirements-L2",
       "description": "requirements line 2: ./myproject/chardet",
       "externalReferences": [
@@ -64,20 +78,6 @@
           "comment": "explicit local path",
           "type": "other",
           "url": "./myproject/idna.whl"
-        }
-      ],
-      "name": "unknown",
-      "type": "library",
-      "version": ""
-    },
-    {
-      "bom-ref": "requirements-L17",
-      "description": "requirements line 17: ./downloads/numpy-1.26.1.tar.gz",
-      "externalReferences": [
-        {
-          "comment": "explicit local path",
-          "type": "other",
-          "url": "./downloads/numpy-1.26.1.tar.gz"
         }
       ],
       "name": "unknown",

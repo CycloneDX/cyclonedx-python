@@ -66,6 +66,16 @@
         </reference>
       </externalReferences>
     </component>
+    <component type="library" bom-ref="requirements-L17">
+      <name>unknown</name>
+      <description>requirements line 17: ./downloads/numpy-1.26.1.tar.gz</description>
+      <externalReferences>
+        <reference type="other">
+          <url>./downloads/numpy-1.26.1.tar.gz</url>
+          <comment>explicit local path</comment>
+        </reference>
+      </externalReferences>
+    </component>
     <component type="library" bom-ref="requirements-L2">
       <name>unknown</name>
       <description>requirements line 2: ./myproject/chardet</description>
@@ -95,16 +105,6 @@
       <externalReferences>
         <reference type="other">
           <url>./myproject/idna.whl</url>
-          <comment>explicit local path</comment>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="requirements-L17">
-      <name>unknown</name>
-      <description>requirements line 17: ./downloads/numpy-1.26.1.tar.gz</description>
-      <externalReferences>
-        <reference type="other">
-          <url>./downloads/numpy-1.26.1.tar.gz</url>
           <comment>explicit local path</comment>
         </reference>
       </externalReferences>

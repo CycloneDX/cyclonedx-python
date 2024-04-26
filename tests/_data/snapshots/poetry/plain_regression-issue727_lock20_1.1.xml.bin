@@ -1,0 +1,601 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.1" version="1">
+  <components>
+    <component type="library" bom-ref="filelock@3.13.4">
+      <name>filelock</name>
+      <version>3.13.4</version>
+      <description>A platform independent file lock.</description>
+      <purl>pkg:pypi/filelock@3.13.4</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/filelock/#filelock-3.13.4-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/filelock/#filelock-3.13.4.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="fsspec@2024.3.1">
+      <name>fsspec</name>
+      <version>2024.3.1</version>
+      <description>File-system specification</description>
+      <purl>pkg:pypi/fsspec@2024.3.1</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/fsspec/#fsspec-2024.3.1-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/fsspec/#fsspec-2024.3.1.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="jinja2@3.1.3">
+      <name>jinja2</name>
+      <version>3.1.3</version>
+      <description>A very fast and expressive template engine.</description>
+      <purl>pkg:pypi/jinja2@3.1.3</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/jinja2/#Jinja2-3.1.3-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/jinja2/#Jinja2-3.1.3.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="markupsafe@2.1.5">
+      <name>markupsafe</name>
+      <version>2.1.5</version>
+      <description>Safely add untrusted strings to HTML/XML markup.</description>
+      <purl>pkg:pypi/markupsafe@2.1.5</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp310-cp310-macosx_10_9_universal2.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp310-cp310-macosx_10_9_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp310-cp310-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp310-cp310-musllinux_1_1_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp310-cp310-musllinux_1_1_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp310-cp310-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp310-cp310-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp310-cp310-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp311-cp311-macosx_10_9_universal2.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp311-cp311-macosx_10_9_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp311-cp311-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp311-cp311-musllinux_1_1_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp311-cp311-musllinux_1_1_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp311-cp311-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp311-cp311-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp311-cp311-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp312-cp312-macosx_10_9_universal2.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp312-cp312-macosx_10_9_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp312-cp312-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp312-cp312-musllinux_1_1_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp312-cp312-musllinux_1_1_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp312-cp312-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp312-cp312-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp312-cp312-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp37-cp37m-macosx_10_9_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp37-cp37m-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp37-cp37m-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp37-cp37m-musllinux_1_1_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp37-cp37m-musllinux_1_1_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp37-cp37m-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp37-cp37m-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp37-cp37m-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp38-cp38-macosx_10_9_universal2.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp38-cp38-macosx_10_9_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp38-cp38-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp38-cp38-musllinux_1_1_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp38-cp38-musllinux_1_1_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp38-cp38-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp38-cp38-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp38-cp38-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp39-cp39-macosx_10_9_universal2.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp39-cp39-macosx_10_9_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp39-cp39-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp39-cp39-musllinux_1_1_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp39-cp39-musllinux_1_1_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp39-cp39-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp39-cp39-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp39-cp39-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="mpmath@1.3.0">
+      <name>mpmath</name>
+      <version>1.3.0</version>
+      <description>Python library for arbitrary-precision floating-point arithmetic</description>
+      <purl>pkg:pypi/mpmath@1.3.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/mpmath/#mpmath-1.3.0-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/mpmath/#mpmath-1.3.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="networkx@3.3">
+      <name>networkx</name>
+      <version>3.3</version>
+      <description>Python package for creating and manipulating graphs and networks</description>
+      <purl>pkg:pypi/networkx@3.3</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/networkx/#networkx-3.3-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/networkx/#networkx-3.3.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="nvidia-cublas-cu12@12.1.3.1">
+      <name>nvidia-cublas-cu12</name>
+      <version>12.1.3.1</version>
+      <description>CUBLAS native runtime libraries</description>
+      <purl>pkg:pypi/nvidia-cublas-cu12@12.1.3.1</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cublas-cu12/#nvidia_cublas_cu12-12.1.3.1-py3-none-manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cublas-cu12/#nvidia_cublas_cu12-12.1.3.1-py3-none-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="nvidia-cuda-cupti-cu12@12.1.105">
+      <name>nvidia-cuda-cupti-cu12</name>
+      <version>12.1.105</version>
+      <description>CUDA profiling tools runtime libs.</description>
+      <purl>pkg:pypi/nvidia-cuda-cupti-cu12@12.1.105</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cuda-cupti-cu12/#nvidia_cuda_cupti_cu12-12.1.105-py3-none-manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cuda-cupti-cu12/#nvidia_cuda_cupti_cu12-12.1.105-py3-none-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="nvidia-cuda-nvrtc-cu12@12.1.105">
+      <name>nvidia-cuda-nvrtc-cu12</name>
+      <version>12.1.105</version>
+      <description>NVRTC native runtime libraries</description>
+      <purl>pkg:pypi/nvidia-cuda-nvrtc-cu12@12.1.105</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cuda-nvrtc-cu12/#nvidia_cuda_nvrtc_cu12-12.1.105-py3-none-manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cuda-nvrtc-cu12/#nvidia_cuda_nvrtc_cu12-12.1.105-py3-none-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="nvidia-cuda-runtime-cu12@12.1.105">
+      <name>nvidia-cuda-runtime-cu12</name>
+      <version>12.1.105</version>
+      <description>CUDA Runtime native Libraries</description>
+      <purl>pkg:pypi/nvidia-cuda-runtime-cu12@12.1.105</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cuda-runtime-cu12/#nvidia_cuda_runtime_cu12-12.1.105-py3-none-manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cuda-runtime-cu12/#nvidia_cuda_runtime_cu12-12.1.105-py3-none-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="nvidia-cudnn-cu12@8.9.2.26">
+      <name>nvidia-cudnn-cu12</name>
+      <version>8.9.2.26</version>
+      <description>cuDNN runtime libraries</description>
+      <purl>pkg:pypi/nvidia-cudnn-cu12@8.9.2.26</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cudnn-cu12/#nvidia_cudnn_cu12-8.9.2.26-py3-none-manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="nvidia-cufft-cu12@11.0.2.54">
+      <name>nvidia-cufft-cu12</name>
+      <version>11.0.2.54</version>
+      <description>CUFFT native runtime libraries</description>
+      <purl>pkg:pypi/nvidia-cufft-cu12@11.0.2.54</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cufft-cu12/#nvidia_cufft_cu12-11.0.2.54-py3-none-manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cufft-cu12/#nvidia_cufft_cu12-11.0.2.54-py3-none-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="nvidia-curand-cu12@10.3.2.106">
+      <name>nvidia-curand-cu12</name>
+      <version>10.3.2.106</version>
+      <description>CURAND native runtime libraries</description>
+      <purl>pkg:pypi/nvidia-curand-cu12@10.3.2.106</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-curand-cu12/#nvidia_curand_cu12-10.3.2.106-py3-none-manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-curand-cu12/#nvidia_curand_cu12-10.3.2.106-py3-none-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="nvidia-cusolver-cu12@11.4.5.107">
+      <name>nvidia-cusolver-cu12</name>
+      <version>11.4.5.107</version>
+      <description>CUDA solver native runtime libraries</description>
+      <purl>pkg:pypi/nvidia-cusolver-cu12@11.4.5.107</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cusolver-cu12/#nvidia_cusolver_cu12-11.4.5.107-py3-none-manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cusolver-cu12/#nvidia_cusolver_cu12-11.4.5.107-py3-none-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="nvidia-cusparse-cu12@12.1.0.106">
+      <name>nvidia-cusparse-cu12</name>
+      <version>12.1.0.106</version>
+      <description>CUSPARSE native runtime libraries</description>
+      <purl>pkg:pypi/nvidia-cusparse-cu12@12.1.0.106</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cusparse-cu12/#nvidia_cusparse_cu12-12.1.0.106-py3-none-manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cusparse-cu12/#nvidia_cusparse_cu12-12.1.0.106-py3-none-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="nvidia-nccl-cu12@2.18.1">
+      <name>nvidia-nccl-cu12</name>
+      <version>2.18.1</version>
+      <description>NVIDIA Collective Communication Library (NCCL) Runtime</description>
+      <purl>pkg:pypi/nvidia-nccl-cu12@2.18.1</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-nccl-cu12/#nvidia_nccl_cu12-2.18.1-py3-none-manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="nvidia-nvjitlink-cu12@12.4.127">
+      <name>nvidia-nvjitlink-cu12</name>
+      <version>12.4.127</version>
+      <description>Nvidia JIT LTO Library</description>
+      <purl>pkg:pypi/nvidia-nvjitlink-cu12@12.4.127</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-nvjitlink-cu12/#nvidia_nvjitlink_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-nvjitlink-cu12/#nvidia_nvjitlink_cu12-12.4.127-py3-none-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="nvidia-nvtx-cu12@12.1.105">
+      <name>nvidia-nvtx-cu12</name>
+      <version>12.1.105</version>
+      <description>NVIDIA Tools Extension</description>
+      <purl>pkg:pypi/nvidia-nvtx-cu12@12.1.105</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-nvtx-cu12/#nvidia_nvtx_cu12-12.1.105-py3-none-manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-nvtx-cu12/#nvidia_nvtx_cu12-12.1.105-py3-none-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="sympy@1.12">
+      <name>sympy</name>
+      <version>1.12</version>
+      <description>Computer algebra system (CAS) in Python</description>
+      <purl>pkg:pypi/sympy@1.12</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/sympy/#sympy-1.12-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/sympy/#sympy-1.12.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="torch@2.1.2">
+      <name>torch</name>
+      <version>2.1.2</version>
+      <description>Tensors and Dynamic neural networks in Python with strong GPU acceleration</description>
+      <purl>pkg:pypi/torch@2.1.2?download_url=https://download.pytorch.org/whl/cpu/torch-2.1.2-cp310-none-macosx_11_0_arm64.whl</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://download.pytorch.org/whl/cpu/torch-2.1.2-cp310-none-macosx_11_0_arm64.whl</url>
+          <comment>from url</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="triton@2.1.0">
+      <name>triton</name>
+      <version>2.1.0</version>
+      <description>A language and compiler for custom Deep Learning operations</description>
+      <purl>pkg:pypi/triton@2.1.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/triton/#triton-2.1.0-0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/triton/#triton-2.1.0-0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/triton/#triton-2.1.0-0-cp37-cp37m-manylinux2014_x86_64.manylinux_2_17_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/triton/#triton-2.1.0-0-cp38-cp38-manylinux2014_x86_64.manylinux_2_17_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/triton/#triton-2.1.0-0-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/triton/#triton-2.1.0-0-pp37-pypy37_pp73-manylinux2014_x86_64.manylinux_2_17_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/triton/#triton-2.1.0-0-pp38-pypy38_pp73-manylinux2014_x86_64.manylinux_2_17_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/triton/#triton-2.1.0-0-pp39-pypy39_pp73-manylinux2014_x86_64.manylinux_2_17_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="typing-extensions@4.11.0">
+      <name>typing-extensions</name>
+      <version>4.11.0</version>
+      <description>Backported and Experimental Type Hints for Python 3.8+</description>
+      <purl>pkg:pypi/typing-extensions@4.11.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/typing-extensions/#typing_extensions-4.11.0-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/typing-extensions/#typing_extensions-4.11.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+</bom>

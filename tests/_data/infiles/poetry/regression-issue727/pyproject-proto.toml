@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "regression-issue727"
+version = "0.1.0"
+description = "regression for issue #727"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+torch = [
+  {url = "https://download.pytorch.org/whl/cpu/torch-2.1.2-cp310-none-macosx_11_0_arm64.whl"},
+]
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

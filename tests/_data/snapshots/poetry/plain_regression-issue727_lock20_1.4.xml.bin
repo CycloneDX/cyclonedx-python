@@ -1,0 +1,1028 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.4" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-bom</name>
+        <version>thisVersion-testing</version>
+        <externalReferences>
+          <reference type="build-system">
+            <url>https://github.com/CycloneDX/cyclonedx-python/actions</url>
+          </reference>
+          <reference type="distribution">
+            <url>https://pypi.org/project/cyclonedx-bom/</url>
+          </reference>
+          <reference type="documentation">
+            <url>https://cyclonedx-bom-tool.readthedocs.io/</url>
+          </reference>
+          <reference type="issue-tracker">
+            <url>https://github.com/CycloneDX/cyclonedx-python/issues</url>
+          </reference>
+          <reference type="license">
+            <url>https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE</url>
+          </reference>
+          <reference type="release-notes">
+            <url>https://github.com/CycloneDX/cyclonedx-python/blob/main/CHANGELOG.md</url>
+          </reference>
+          <reference type="vcs">
+            <url>https://github.com/CycloneDX/cyclonedx-python/</url>
+          </reference>
+          <reference type="website">
+            <url>https://github.com/CycloneDX/cyclonedx-python/#readme</url>
+          </reference>
+        </externalReferences>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+        <externalReferences><!-- stripped --></externalReferences>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="regression-issue727">
+      <name>regression-issue727</name>
+      <version>0.1.0</version>
+      <description>regression for issue #727</description>
+    </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="filelock@3.13.4">
+      <name>filelock</name>
+      <version>3.13.4</version>
+      <description>A platform independent file lock.</description>
+      <purl>pkg:pypi/filelock@3.13.4</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/filelock/#filelock-3.13.4-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">404e5e9253aa60ad457cae1be07c0f0ca90a63931200a47d9b6a6af84fd7b45f</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/filelock/#filelock-3.13.4.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">d13f466618bfde72bd2c18255e269f72542c6e70e7bac83a0232d6b1cc5c8cf4</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="fsspec@2024.3.1">
+      <name>fsspec</name>
+      <version>2024.3.1</version>
+      <description>File-system specification</description>
+      <purl>pkg:pypi/fsspec@2024.3.1</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/fsspec/#fsspec-2024.3.1-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">918d18d41bf73f0e2b261824baeb1b124bcf771767e3a26425cd7dec3332f512</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/fsspec/#fsspec-2024.3.1.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">f39780e282d7d117ffb42bb96992f8a90795e4d0fb0f661a70ca39fe9c43ded9</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="jinja2@3.1.3">
+      <name>jinja2</name>
+      <version>3.1.3</version>
+      <description>A very fast and expressive template engine.</description>
+      <purl>pkg:pypi/jinja2@3.1.3</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/jinja2/#Jinja2-3.1.3-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">7d6d50dd97d52cbc355597bd845fabfbac3f551e1f99619e39a35ce8c370b5fa</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/jinja2/#Jinja2-3.1.3.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">ac8bd6544d4bb2c9792bf3a159e80bba8fda7f07e81bc3aed565432d5925ba90</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="markupsafe@2.1.5">
+      <name>markupsafe</name>
+      <version>2.1.5</version>
+      <description>Safely add untrusted strings to HTML/XML markup.</description>
+      <purl>pkg:pypi/markupsafe@2.1.5</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp310-cp310-macosx_10_9_universal2.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">a17a92de5231666cfbe003f0e4b9b3a7ae3afb1ec2845aadc2bacc93ff85febc</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp310-cp310-macosx_10_9_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">72b6be590cc35924b02c78ef34b467da4ba07e4e0f0454a2c5907f473fc50ce5</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">e61659ba32cf2cf1481e575d0462554625196a1f2fc06a1c777d3f48e8865d46</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">2174c595a0d73a3080ca3257b40096db99799265e1c27cc5a610743acd86d62f</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp310-cp310-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">ae2ad8ae6ebee9d2d94b17fb62763125f3f374c25618198f40cbb8b525411900</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp310-cp310-musllinux_1_1_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">075202fa5b72c86ad32dc7d0b56024ebdbcf2048c0ba09f1cde31bfdd57bcfff</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp310-cp310-musllinux_1_1_i686.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">598e3276b64aff0e7b3451b72e94fa3c238d452e7ddcd893c3ab324717456bad</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp310-cp310-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">fce659a462a1be54d2ffcacea5e3ba2d74daa74f30f5f143fe0c58636e355fdd</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp310-cp310-win32.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">d9fad5155d72433c921b782e58892377c44bd6252b5af2f67f16b194987338a4</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp310-cp310-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">bf50cd79a75d181c9181df03572cdce0fbb75cc353bc350712073108cba98de5</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp311-cp311-macosx_10_9_universal2.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">629ddd2ca402ae6dbedfceeba9c46d5f7b2a61d9749597d4307f943ef198fc1f</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp311-cp311-macosx_10_9_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">5b7b716f97b52c5a14bffdf688f971b2d5ef4029127f1ad7a513973cfd818df2</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">6ec585f69cec0aa07d945b20805be741395e28ac1627333b1c5b0105962ffced</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">b91c037585eba9095565a3556f611e3cbfaa42ca1e865f7b8015fe5c7336d5a5</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp311-cp311-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">7502934a33b54030eaf1194c21c692a534196063db72176b0c4028e140f8f32c</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp311-cp311-musllinux_1_1_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">0e397ac966fdf721b2c528cf028494e86172b4feba51d65f81ffd65c63798f3f</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp311-cp311-musllinux_1_1_i686.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">c061bb86a71b42465156a3ee7bd58c8c2ceacdbeb95d05a99893e08b8467359a</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp311-cp311-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">3a57fdd7ce31c7ff06cdfbf31dafa96cc533c21e443d57f5b1ecc6cdc668ec7f</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp311-cp311-win32.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">397081c1a0bfb5124355710fe79478cdbeb39626492b15d399526ae53422b906</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp311-cp311-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">2b7c57a4dfc4f16f7142221afe5ba4e093e09e728ca65c51f5620c9aaeb9a617</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp312-cp312-macosx_10_9_universal2.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">8dec4936e9c3100156f8a2dc89c4b88d5c435175ff03413b443469c7c8c5f4d1</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp312-cp312-macosx_10_9_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">3c6b973f22eb18a789b1460b4b91bf04ae3f0c4234a0a6aa6b0a92f6f7b951d4</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">ac07bad82163452a6884fe8fa0963fb98c2346ba78d779ec06bd7a6262132aee</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">f5dfb42c4604dddc8e4305050aa6deb084540643ed5804d7455b5df8fe16f5e5</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp312-cp312-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">ea3d8a3d18833cf4304cd2fc9cbb1efe188ca9b5efef2bdac7adc20594a0e46b</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp312-cp312-musllinux_1_1_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">d050b3361367a06d752db6ead6e7edeb0009be66bc3bae0ee9d97fb326badc2a</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp312-cp312-musllinux_1_1_i686.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">bec0a414d016ac1a18862a519e54b2fd0fc8bbfd6890376898a6c0891dd82e9f</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp312-cp312-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">58c98fee265677f63a4385256a6d7683ab1832f3ddd1e66fe948d5880c21a169</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp312-cp312-win32.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">8590b4ae07a35970728874632fed7bd57b26b0102df2d2b233b6d9d82f6c62ad</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp312-cp312-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">823b65d8706e32ad2df51ed89496147a42a2a6e01c13cfb6ffb8b1e92bc910bb</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp37-cp37m-macosx_10_9_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">c8b29db45f8fe46ad280a7294f5c3ec36dbac9491f2d1c17345be8e69cc5928f</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp37-cp37m-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">ec6a563cff360b50eed26f13adc43e61bc0c04d94b8be985e6fb24b81f6dcfdf</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">a549b9c31bec33820e885335b451286e2969a2d9e24879f83fe904a5ce59d70a</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp37-cp37m-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">4f11aa001c540f62c6166c7726f71f7573b52c68c31f014c25cc7901deea0b52</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp37-cp37m-musllinux_1_1_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">7b2e5a267c855eea6b4283940daa6e88a285f5f2a67f2220203786dfa59b37e9</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp37-cp37m-musllinux_1_1_i686.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">2d2d793e36e230fd32babe143b04cec8a8b3eb8a3122d2aceb4a371e6b09b8df</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp37-cp37m-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">ce409136744f6521e39fd8e2a24c53fa18ad67aa5bc7c2cf83645cce5b5c4e50</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp37-cp37m-win32.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">4096e9de5c6fdf43fb4f04c26fb114f61ef0bf2e5604b6ee3019d51b69e8c371</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp37-cp37m-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">4275d846e41ecefa46e2015117a9f491e57a71ddd59bbead77e904dc02b1bed2</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp38-cp38-macosx_10_9_universal2.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">656f7526c69fac7f600bd1f400991cc282b417d17539a1b228617081106feb4a</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp38-cp38-macosx_10_9_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">97cafb1f3cbcd3fd2b6fbfb99ae11cdb14deea0736fc2b0952ee177f2b813a46</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">1f3fbcb7ef1f16e48246f704ab79d79da8a46891e2da03f8783a5b6fa41a9532</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">fa9db3f79de01457b03d4f01b34cf91bc0048eb2c3846ff26f66687c2f6d16ab</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp38-cp38-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">ffee1f21e5ef0d712f9033568f8344d5da8cc2869dbd08d87c84656e6a2d2f68</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp38-cp38-musllinux_1_1_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">5dedb4db619ba5a2787a94d877bc8ffc0566f92a01c0ef214865e54ecc9ee5e0</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp38-cp38-musllinux_1_1_i686.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">30b600cf0a7ac9234b2638fbc0fb6158ba5bdcdf46aeb631ead21248b9affbc4</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp38-cp38-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">8dd717634f5a044f860435c1d8c16a270ddf0ef8588d4887037c5028b859b0c3</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp38-cp38-win32.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">daa4ee5a243f0f20d528d939d06670a298dd39b1ad5f8a72a4275124a7819eff</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp38-cp38-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">619bc166c4f2de5caa5a633b8b7326fbe98e0ccbfacabd87268a2b15ff73a029</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp39-cp39-macosx_10_9_universal2.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">7a68b554d356a91cce1236aa7682dc01df0edba8d043fd1ce607c49dd3c1edcf</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp39-cp39-macosx_10_9_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">db0b55e0f3cc0be60c1f19efdde9a637c32740486004f20d1cff53c3c0ece4d2</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">3e53af139f8579a6d5f7b76549125f0d94d7e630761a2111bc431fd820e163b8</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">17b950fccb810b3293638215058e432159d2b71005c74371d784862b7e4683f3</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp39-cp39-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">4c31f53cdae6ecfa91a77820e8b151dba54ab528ba65dfd235c80b086d68a465</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp39-cp39-musllinux_1_1_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">bff1b4290a66b490a2f4719358c0cdcd9bafb6b8f061e45c7a2460866bf50c2e</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp39-cp39-musllinux_1_1_i686.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">bc1667f8b83f48511b94671e0e441401371dfd0f0a795c7daa4a3cd1dde55bea</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp39-cp39-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">5049256f536511ee3f7e1b3f87d1d1209d327e818e6ae1365e8653d7e3abb6a6</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp39-cp39-win32.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">00e046b6dd71aa03a41079792f8473dc494d564611a8f89bbbd7cb93295ebdcf</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5-cp39-cp39-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">fa173ec60341d6bb97a89f5ea19c85c5643c1e7dedebc22f5181eb73573142c5</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/markupsafe/#MarkupSafe-2.1.5.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">d283d37a890ba4c1ae73ffadf8046435c76e7bc2247bbb63c00bd1a709c6544b</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="mpmath@1.3.0">
+      <name>mpmath</name>
+      <version>1.3.0</version>
+      <description>Python library for arbitrary-precision floating-point arithmetic</description>
+      <purl>pkg:pypi/mpmath@1.3.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/mpmath/#mpmath-1.3.0-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">a0b2b9fe80bbcd81a6647ff13108738cfb482d481d826cc0e02f5b35e5c88d2c</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/mpmath/#mpmath-1.3.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">7a28eb2a9774d00c7bc92411c19a89209d5da7c4c9a9e227be8330a23a25b91f</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="networkx@3.3">
+      <name>networkx</name>
+      <version>3.3</version>
+      <description>Python package for creating and manipulating graphs and networks</description>
+      <purl>pkg:pypi/networkx@3.3</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/networkx/#networkx-3.3-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">28575580c6ebdaf4505b22c6256a2b9de86b316dc63ba9e93abde3d78dfdbcf2</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/networkx/#networkx-3.3.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">0c127d8b2f4865f59ae9cb8aafcd60b5c70f3241ebd66f7defad7c4ab90126c9</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="nvidia-cublas-cu12@12.1.3.1">
+      <name>nvidia-cublas-cu12</name>
+      <version>12.1.3.1</version>
+      <description>CUBLAS native runtime libraries</description>
+      <purl>pkg:pypi/nvidia-cublas-cu12@12.1.3.1</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cublas-cu12/#nvidia_cublas_cu12-12.1.3.1-py3-none-manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">ee53ccca76a6fc08fb9701aa95b6ceb242cdaab118c3bb152af4e579af792728</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cublas-cu12/#nvidia_cublas_cu12-12.1.3.1-py3-none-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">2b964d60e8cf11b5e1073d179d85fa340c120e99b3067558f3cf98dd69d02906</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="nvidia-cuda-cupti-cu12@12.1.105">
+      <name>nvidia-cuda-cupti-cu12</name>
+      <version>12.1.105</version>
+      <description>CUDA profiling tools runtime libs.</description>
+      <purl>pkg:pypi/nvidia-cuda-cupti-cu12@12.1.105</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cuda-cupti-cu12/#nvidia_cuda_cupti_cu12-12.1.105-py3-none-manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">e54fde3983165c624cb79254ae9818a456eb6e87a7fd4d56a2352c24ee542d7e</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cuda-cupti-cu12/#nvidia_cuda_cupti_cu12-12.1.105-py3-none-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">bea8236d13a0ac7190bd2919c3e8e6ce1e402104276e6f9694479e48bb0eb2a4</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="nvidia-cuda-nvrtc-cu12@12.1.105">
+      <name>nvidia-cuda-nvrtc-cu12</name>
+      <version>12.1.105</version>
+      <description>NVRTC native runtime libraries</description>
+      <purl>pkg:pypi/nvidia-cuda-nvrtc-cu12@12.1.105</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cuda-nvrtc-cu12/#nvidia_cuda_nvrtc_cu12-12.1.105-py3-none-manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">339b385f50c309763ca65456ec75e17bbefcbbf2893f462cb8b90584cd27a1c2</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cuda-nvrtc-cu12/#nvidia_cuda_nvrtc_cu12-12.1.105-py3-none-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">0a98a522d9ff138b96c010a65e145dc1b4850e9ecb75a0172371793752fd46ed</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="nvidia-cuda-runtime-cu12@12.1.105">
+      <name>nvidia-cuda-runtime-cu12</name>
+      <version>12.1.105</version>
+      <description>CUDA Runtime native Libraries</description>
+      <purl>pkg:pypi/nvidia-cuda-runtime-cu12@12.1.105</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cuda-runtime-cu12/#nvidia_cuda_runtime_cu12-12.1.105-py3-none-manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">6e258468ddf5796e25f1dc591a31029fa317d97a0a94ed93468fc86301d61e40</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cuda-runtime-cu12/#nvidia_cuda_runtime_cu12-12.1.105-py3-none-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">dfb46ef84d73fababab44cf03e3b83f80700d27ca300e537f85f636fac474344</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="nvidia-cudnn-cu12@8.9.2.26">
+      <name>nvidia-cudnn-cu12</name>
+      <version>8.9.2.26</version>
+      <description>cuDNN runtime libraries</description>
+      <purl>pkg:pypi/nvidia-cudnn-cu12@8.9.2.26</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cudnn-cu12/#nvidia_cudnn_cu12-8.9.2.26-py3-none-manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">5ccb288774fdfb07a7e7025ffec286971c06d8d7b4fb162525334616d7629ff9</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="nvidia-cufft-cu12@11.0.2.54">
+      <name>nvidia-cufft-cu12</name>
+      <version>11.0.2.54</version>
+      <description>CUFFT native runtime libraries</description>
+      <purl>pkg:pypi/nvidia-cufft-cu12@11.0.2.54</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cufft-cu12/#nvidia_cufft_cu12-11.0.2.54-py3-none-manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">794e3948a1aa71fd817c3775866943936774d1c14e7628c74f6f7417224cdf56</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cufft-cu12/#nvidia_cufft_cu12-11.0.2.54-py3-none-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">d9ac353f78ff89951da4af698f80870b1534ed69993f10a4cf1d96f21357e253</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="nvidia-curand-cu12@10.3.2.106">
+      <name>nvidia-curand-cu12</name>
+      <version>10.3.2.106</version>
+      <description>CURAND native runtime libraries</description>
+      <purl>pkg:pypi/nvidia-curand-cu12@10.3.2.106</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-curand-cu12/#nvidia_curand_cu12-10.3.2.106-py3-none-manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">9d264c5036dde4e64f1de8c50ae753237c12e0b1348738169cd0f8a536c0e1e0</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-curand-cu12/#nvidia_curand_cu12-10.3.2.106-py3-none-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">75b6b0c574c0037839121317e17fd01f8a69fd2ef8e25853d826fec30bdba74a</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="nvidia-cusolver-cu12@11.4.5.107">
+      <name>nvidia-cusolver-cu12</name>
+      <version>11.4.5.107</version>
+      <description>CUDA solver native runtime libraries</description>
+      <purl>pkg:pypi/nvidia-cusolver-cu12@11.4.5.107</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cusolver-cu12/#nvidia_cusolver_cu12-11.4.5.107-py3-none-manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">8a7ec542f0412294b15072fa7dab71d31334014a69f953004ea7a118206fe0dd</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cusolver-cu12/#nvidia_cusolver_cu12-11.4.5.107-py3-none-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">74e0c3a24c78612192a74fcd90dd117f1cf21dea4822e66d89e8ea80e3cd2da5</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="nvidia-cusparse-cu12@12.1.0.106">
+      <name>nvidia-cusparse-cu12</name>
+      <version>12.1.0.106</version>
+      <description>CUSPARSE native runtime libraries</description>
+      <purl>pkg:pypi/nvidia-cusparse-cu12@12.1.0.106</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cusparse-cu12/#nvidia_cusparse_cu12-12.1.0.106-py3-none-manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">f3b50f42cf363f86ab21f720998517a659a48131e8d538dc02f8768237bd884c</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-cusparse-cu12/#nvidia_cusparse_cu12-12.1.0.106-py3-none-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">b798237e81b9719373e8fae8d4f091b70a0cf09d9d85c95a557e11df2d8e9a5a</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="nvidia-nccl-cu12@2.18.1">
+      <name>nvidia-nccl-cu12</name>
+      <version>2.18.1</version>
+      <description>NVIDIA Collective Communication Library (NCCL) Runtime</description>
+      <purl>pkg:pypi/nvidia-nccl-cu12@2.18.1</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-nccl-cu12/#nvidia_nccl_cu12-2.18.1-py3-none-manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">1a6c4acefcbebfa6de320f412bf7866de856e786e0462326ba1bac40de0b5e71</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="nvidia-nvjitlink-cu12@12.4.127">
+      <name>nvidia-nvjitlink-cu12</name>
+      <version>12.4.127</version>
+      <description>Nvidia JIT LTO Library</description>
+      <purl>pkg:pypi/nvidia-nvjitlink-cu12@12.4.127</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-nvjitlink-cu12/#nvidia_nvjitlink_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">06b3b9b25bf3f8af351d664978ca26a16d2c5127dbd53c0497e28d1fb9611d57</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-nvjitlink-cu12/#nvidia_nvjitlink_cu12-12.4.127-py3-none-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">fd9020c501d27d135f983c6d3e244b197a7ccad769e34df53a42e276b0e25fa1</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="nvidia-nvtx-cu12@12.1.105">
+      <name>nvidia-nvtx-cu12</name>
+      <version>12.1.105</version>
+      <description>NVIDIA Tools Extension</description>
+      <purl>pkg:pypi/nvidia-nvtx-cu12@12.1.105</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-nvtx-cu12/#nvidia_nvtx_cu12-12.1.105-py3-none-manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">dc21cf308ca5691e7c04d962e213f8a4aa9bbfa23d95412f452254c2caeb09e5</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/nvidia-nvtx-cu12/#nvidia_nvtx_cu12-12.1.105-py3-none-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">65f4d98982b31b60026e0e6de73fbdfc09d08a96f4656dd3665ca616a11e1e82</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="sympy@1.12">
+      <name>sympy</name>
+      <version>1.12</version>
+      <description>Computer algebra system (CAS) in Python</description>
+      <purl>pkg:pypi/sympy@1.12</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/sympy/#sympy-1.12-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">c3588cd4295d0c0f603d0f2ae780587e64e2efeedb3521e46b9bb1d08d184fa5</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/sympy/#sympy-1.12.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">ebf595c8dac3e0fdc4152c51878b498396ec7f30e7a914d6071e674d49420fb8</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="torch@2.1.2">
+      <name>torch</name>
+      <version>2.1.2</version>
+      <description>Tensors and Dynamic neural networks in Python with strong GPU acceleration</description>
+      <purl>pkg:pypi/torch@2.1.2?download_url=https://download.pytorch.org/whl/cpu/torch-2.1.2-cp310-none-macosx_11_0_arm64.whl</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://download.pytorch.org/whl/cpu/torch-2.1.2-cp310-none-macosx_11_0_arm64.whl</url>
+          <comment>from url</comment>
+          <hashes>
+            <hash alg="SHA-256">f9a55d55af02826ebfbadf4e9b682f0f27766bc33df8236b48d28d705587868f</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:poetry:group">main</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="triton@2.1.0">
+      <name>triton</name>
+      <version>2.1.0</version>
+      <description>A language and compiler for custom Deep Learning operations</description>
+      <purl>pkg:pypi/triton@2.1.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/triton/#triton-2.1.0-0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">66439923a30d5d48399b08a9eae10370f6c261a5ec864a64983bae63152d39d7</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/triton/#triton-2.1.0-0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">919b06453f0033ea52c13eaf7833de0e57db3178d23d4e04f9fc71c4f2c32bf8</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/triton/#triton-2.1.0-0-cp37-cp37m-manylinux2014_x86_64.manylinux_2_17_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">ae4bb8a91de790e1866405211c4d618379781188f40d5c4c399766914e84cd94</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/triton/#triton-2.1.0-0-cp38-cp38-manylinux2014_x86_64.manylinux_2_17_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">39f6fb6bdccb3e98f3152e3fbea724f1aeae7d749412bbb1fa9c441d474eba26</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/triton/#triton-2.1.0-0-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">21544e522c02005a626c8ad63d39bdff2f31d41069592919ef281e964ed26446</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/triton/#triton-2.1.0-0-pp37-pypy37_pp73-manylinux2014_x86_64.manylinux_2_17_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">143582ca31dd89cd982bd3bf53666bab1c7527d41e185f9e3d8a3051ce1b663b</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/triton/#triton-2.1.0-0-pp38-pypy38_pp73-manylinux2014_x86_64.manylinux_2_17_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">82fc5aeeedf6e36be4e4530cbdcba81a09d65c18e02f52dc298696d45721f3bd</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/triton/#triton-2.1.0-0-pp39-pypy39_pp73-manylinux2014_x86_64.manylinux_2_17_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">81a96d110a738ff63339fc892ded095b31bd0d205e3aace262af8400d40b6fa8</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="typing-extensions@4.11.0">
+      <name>typing-extensions</name>
+      <version>4.11.0</version>
+      <description>Backported and Experimental Type Hints for Python 3.8+</description>
+      <purl>pkg:pypi/typing-extensions@4.11.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/typing-extensions/#typing_extensions-4.11.0-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">c1f94d72897edaf4ce775bb7558d5b79d8126906a14ea5ed1635921406c0387a</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/typing-extensions/#typing_extensions-4.11.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">83f085bd5ca59c80295fc2a82ab5dac679cbe02b9f33f7d83af68e241bea51b0</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="filelock@3.13.4"/>
+    <dependency ref="fsspec@2024.3.1"/>
+    <dependency ref="jinja2@3.1.3">
+      <dependency ref="markupsafe@2.1.5"/>
+    </dependency>
+    <dependency ref="markupsafe@2.1.5"/>
+    <dependency ref="mpmath@1.3.0"/>
+    <dependency ref="networkx@3.3"/>
+    <dependency ref="nvidia-cublas-cu12@12.1.3.1"/>
+    <dependency ref="nvidia-cuda-cupti-cu12@12.1.105"/>
+    <dependency ref="nvidia-cuda-nvrtc-cu12@12.1.105"/>
+    <dependency ref="nvidia-cuda-runtime-cu12@12.1.105"/>
+    <dependency ref="nvidia-cudnn-cu12@8.9.2.26">
+      <dependency ref="nvidia-cublas-cu12@12.1.3.1"/>
+    </dependency>
+    <dependency ref="nvidia-cufft-cu12@11.0.2.54"/>
+    <dependency ref="nvidia-curand-cu12@10.3.2.106"/>
+    <dependency ref="nvidia-cusolver-cu12@11.4.5.107">
+      <dependency ref="nvidia-cublas-cu12@12.1.3.1"/>
+      <dependency ref="nvidia-cusparse-cu12@12.1.0.106"/>
+      <dependency ref="nvidia-nvjitlink-cu12@12.4.127"/>
+    </dependency>
+    <dependency ref="nvidia-cusparse-cu12@12.1.0.106">
+      <dependency ref="nvidia-nvjitlink-cu12@12.4.127"/>
+    </dependency>
+    <dependency ref="nvidia-nccl-cu12@2.18.1"/>
+    <dependency ref="nvidia-nvjitlink-cu12@12.4.127"/>
+    <dependency ref="nvidia-nvtx-cu12@12.1.105"/>
+    <dependency ref="regression-issue727">
+      <dependency ref="torch@2.1.2"/>
+    </dependency>
+    <dependency ref="sympy@1.12">
+      <dependency ref="mpmath@1.3.0"/>
+    </dependency>
+    <dependency ref="torch@2.1.2">
+      <dependency ref="filelock@3.13.4"/>
+      <dependency ref="fsspec@2024.3.1"/>
+      <dependency ref="jinja2@3.1.3"/>
+      <dependency ref="networkx@3.3"/>
+      <dependency ref="nvidia-cublas-cu12@12.1.3.1"/>
+      <dependency ref="nvidia-cuda-cupti-cu12@12.1.105"/>
+      <dependency ref="nvidia-cuda-nvrtc-cu12@12.1.105"/>
+      <dependency ref="nvidia-cuda-runtime-cu12@12.1.105"/>
+      <dependency ref="nvidia-cudnn-cu12@8.9.2.26"/>
+      <dependency ref="nvidia-cufft-cu12@11.0.2.54"/>
+      <dependency ref="nvidia-curand-cu12@10.3.2.106"/>
+      <dependency ref="nvidia-cusolver-cu12@11.4.5.107"/>
+      <dependency ref="nvidia-cusparse-cu12@12.1.0.106"/>
+      <dependency ref="nvidia-nccl-cu12@2.18.1"/>
+      <dependency ref="nvidia-nvtx-cu12@12.1.105"/>
+      <dependency ref="sympy@1.12"/>
+      <dependency ref="triton@2.1.0"/>
+      <dependency ref="typing-extensions@4.11.0"/>
+    </dependency>
+    <dependency ref="triton@2.1.0">
+      <dependency ref="filelock@3.13.4"/>
+    </dependency>
+    <dependency ref="typing-extensions@4.11.0"/>
+  </dependencies>
+</bom>
