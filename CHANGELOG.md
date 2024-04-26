@@ -2,6 +2,20 @@
 
 
 
+## v4.4.3 (2024-04-26)
+
+### Fix
+
+* fix: do not use `cyclonedx-lib==7.3.1`  (#729)
+
+add regression test for #727 
+fixes #727
+
+---------
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`aa715c0`](https://github.com/CycloneDX/cyclonedx-python/commit/aa715c0e94045c35fda7b6908c3c59cb84fb5e0c))
+
+
 ## v4.4.2 (2024-04-21)
 
 ### Fix
