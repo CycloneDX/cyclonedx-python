@@ -1,6 +1,35 @@
 {
   "components": [
     {
+      "bom-ref": "pathlib2@2.3.5#1",
+      "description": "Object-oriented filesystem paths",
+      "externalReferences": [
+        {
+          "comment": "from VCS",
+          "type": "vcs",
+          "url": "git+https://github.com/jazzband/pathlib2.git#5a6a88db3cc1d08dbc86fbe15edfb69fb5f5a3d6"
+        }
+      ],
+      "name": "pathlib2",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        },
+        {
+          "name": "cdx:poetry:package:source:resolved_reference",
+          "value": "5a6a88db3cc1d08dbc86fbe15edfb69fb5f5a3d6"
+        },
+        {
+          "name": "cdx:poetry:source:package:reference",
+          "value": "2.3.5"
+        }
+      ],
+      "purl": "pkg:pypi/pathlib2@2.3.5?vcs_url=git%2Bhttps://github.com/jazzband/pathlib2.git%405a6a88db3cc1d08dbc86fbe15edfb69fb5f5a3d6",
+      "type": "library",
+      "version": "2.3.5"
+    },
+    {
       "bom-ref": "pathlib2@2.3.5",
       "description": "Object-oriented filesystem paths",
       "externalReferences": [
@@ -35,35 +64,6 @@
         }
       ],
       "purl": "pkg:pypi/pathlib2@2.3.5",
-      "type": "library",
-      "version": "2.3.5"
-    },
-    {
-      "bom-ref": "pathlib2@2.3.5#1",
-      "description": "Object-oriented filesystem paths",
-      "externalReferences": [
-        {
-          "comment": "from VCS",
-          "type": "vcs",
-          "url": "git+https://github.com/jazzband/pathlib2.git#5a6a88db3cc1d08dbc86fbe15edfb69fb5f5a3d6"
-        }
-      ],
-      "name": "pathlib2",
-      "properties": [
-        {
-          "name": "cdx:poetry:group",
-          "value": "main"
-        },
-        {
-          "name": "cdx:poetry:package:source:resolved_reference",
-          "value": "5a6a88db3cc1d08dbc86fbe15edfb69fb5f5a3d6"
-        },
-        {
-          "name": "cdx:poetry:source:package:reference",
-          "value": "2.3.5"
-        }
-      ],
-      "purl": "pkg:pypi/pathlib2@2.3.5?vcs_url=git%2Bhttps://github.com/jazzband/pathlib2.git%405a6a88db3cc1d08dbc86fbe15edfb69fb5f5a3d6",
       "type": "library",
       "version": "2.3.5"
     },
