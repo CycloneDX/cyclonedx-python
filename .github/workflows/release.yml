@@ -141,7 +141,7 @@ jobs:
           !failure() && !cancelled() &&
           steps.release.outputs.released == 'true'
         # see https://github.com/actions/upload-artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.DIST_ARTIFACT }}
           path: ${{ env.DIST_DIR }}/
@@ -184,7 +184,7 @@ jobs:
           mkdir "$DIST_DIR"
       - name: Fetch python dist artifact
         # see https://github.com/actions/download-artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ env.DIST_ARTIFACT }}
           path: ${{ env.DIST_DIR }}/
@@ -217,7 +217,7 @@ jobs:
       - name: Artifact reports
         if: ${{ ! cancelled() }}
         # see https://github.com/actions/upload-artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.ARTIFACT_DOCKER_SBOM }}
           path: ${{ env.REPORTS_DIR }}/*.bom.*
