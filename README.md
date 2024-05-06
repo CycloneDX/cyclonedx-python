@@ -131,7 +131,7 @@ See the [LICENSE][license_file] file for the full license.
 [shield_groups]: https://img.shields.io/badge/discussion-groups.io-blue.svg "groups discussion"
 [shield_twitter-follow]: https://img.shields.io/badge/Twitter-follow-blue?logo=Twitter&logoColor=white "twitter follow"
 [shield_coverage]: https://img.shields.io/codacy/coverage/682ceda9a1044832a087afb95ae280fe?logo=Codacy&logoColor=white "test coverage"
-[shield_ossf-best-practices]: https://img.shields.io/cii/level/7957?label=OpenSSF%20best%20practices "OpenSSF best practices"
+[shield_ossf-best-practices]: https://img.shields.io/cii/summary/7957?label=OpenSSF%20best%20practices "OpenSSF best practices"
 
 [link_gh-workflow-test]: https://github.com/CycloneDX/cyclonedx-python/actions/workflows/python.yml?query=branch%3Amain
 [link_pypi]: https://pypi.org/project/cyclonedx-bom/
