@@ -1,39 +1,6 @@
 # CHANGELOG
 
 
-## Unreleased
-
-### Chore
-
-* chore: shield_ossf-best-practices subbary
-
-Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`1a1ad60`](https://github.com/CycloneDX/cyclonedx-python/commit/1a1ad606af261fc0e13095306571b2073ad4b3c3))
-
-### Ci
-
-* ci: modernize artifact action (#737)
-
-supersedes #625 
-supersedes #624
-
----------
-
-Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
-Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt;
-Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`1222201`](https://github.com/CycloneDX/cyclonedx-python/commit/122220199bf1185c2c607c2c9774e4f39427e866))
-
-### Documentation
-
-* docs: exclude dep bumps from chaneglog
-
-Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`5e811ba`](https://github.com/CycloneDX/cyclonedx-python/commit/5e811ba437f9e664b45c4d02135b21dce8f64dd4))
-
-* docs: OSSF best practice badge percentage
-
-Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`5717803`](https://github.com/CycloneDX/cyclonedx-python/commit/5717803b27f71d6133cce5a5ea91cd87f130626a))
-
-
-
 ## v4.4.3 (2024-04-26)
 
 ### Fix
