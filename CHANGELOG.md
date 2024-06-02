@@ -1,7 +1,6 @@
 # CHANGELOG
 
 
-
 ## v4.4.3 (2024-04-26)
 
 ### Fix
@@ -107,81 +106,6 @@ Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`a218b40`](https:
 
 ## v4.1.4 (2024-03-28)
 
-### Chore
-
-* chore(deps-dev): Update autopep8 requirement from 2.0.4 to 2.1.0 (#699)
-
-Updates the requirements on [autopep8](https://github.com/hhatto/autopep8) to permit the latest version.
-- [Release notes](https://github.com/hhatto/autopep8/releases)
-- [Commits](https://github.com/hhatto/autopep8/compare/v2.0.4...v2.1.0)
-
----
-updated-dependencies:
-- dependency-name: autopep8
-  dependency-type: direct:development
-...
-
-Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
-Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`59f07c1`](https://github.com/CycloneDX/cyclonedx-python/commit/59f07c1f26be43111c50194d86796731aa4fa11e))
-
-* chore(deps-dev): Update flake8-logging requirement from 1.5.0 to 1.6.0 (#701)
-
-Updates the requirements on [flake8-logging](https://github.com/adamchainz/flake8-logging) to permit the latest version.
-- [Changelog](https://github.com/adamchainz/flake8-logging/blob/main/CHANGELOG.rst)
-- [Commits](https://github.com/adamchainz/flake8-logging/compare/1.5.0...1.6.0)
-
----
-updated-dependencies:
-- dependency-name: flake8-logging
-  dependency-type: direct:development
-...
-
-Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
-Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`dfc63b6`](https://github.com/CycloneDX/cyclonedx-python/commit/dfc63b650408545e53e065b595bd4ab2e4302f7c))
-
-* chore(deps-dev): Update tox requirement from 4.14.1 to 4.14.2 (#700)
-
-Updates the requirements on [tox](https://github.com/tox-dev/tox) to permit the latest version.
-- [Release notes](https://github.com/tox-dev/tox/releases)
-- [Changelog](https://github.com/tox-dev/tox/blob/main/docs/changelog.rst)
-- [Commits](https://github.com/tox-dev/tox/compare/4.14.1...4.14.2)
-
----
-updated-dependencies:
-- dependency-name: tox
-  dependency-type: direct:development
-...
-
-Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
-Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`7ae2145`](https://github.com/CycloneDX/cyclonedx-python/commit/7ae2145de46db25881375a9f179f13c9e68c23ac))
-
-* chore(deps): Update packaging requirement || ^24 (#697)
-
----
-updated-dependencies:
-- dependency-name: packaging
-  dependency-type: direct:production
-...
-
-Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
-Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`bd3f232`](https://github.com/CycloneDX/cyclonedx-python/commit/bd3f2324fbe80bb3bab7efcab8837adba04e14ac))
-
-* chore(deps-dev): Update coverage requirement from 7.4.3 to 7.4.4 (#696)
-
-Updates the requirements on [coverage](https://github.com/nedbat/coveragepy) to permit the latest version.
-- [Release notes](https://github.com/nedbat/coveragepy/releases)
-- [Changelog](https://github.com/nedbat/coveragepy/blob/master/CHANGES.rst)
-- [Commits](https://github.com/nedbat/coveragepy/compare/7.4.3...7.4.4)
-
----
-updated-dependencies:
-- dependency-name: coverage
-  dependency-type: direct:development
-...
-
-Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
-Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`8181ce9`](https://github.com/CycloneDX/cyclonedx-python/commit/8181ce98ad66e39af762271fd6d19ce7cc69b1cc))
-
 ### Fix
 
 * fix: poetry analyzer crashed with certain optional package&#39;s version constraints (#703)
@@ -192,118 +116,6 @@ Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`8ade6e1`](https:
 
 
 ## v4.1.3 (2024-03-15)
-
-### Chore
-
-* chore(deps): Bump python-semantic-release/python-semantic-release (#683)
-
-Bumps [python-semantic-release/python-semantic-release](https://github.com/python-semantic-release/python-semantic-release) from 8.5.1 to 9.1.1.
-- [Release notes](https://github.com/python-semantic-release/python-semantic-release/releases)
-- [Changelog](https://github.com/python-semantic-release/python-semantic-release/blob/master/CHANGELOG.md)
-- [Commits](https://github.com/python-semantic-release/python-semantic-release/compare/v8.5.1...v9.1.1)
-
----
-updated-dependencies:
-- dependency-name: python-semantic-release/python-semantic-release
-  dependency-type: direct:production
-  update-type: version-update:semver-major
-...
-
-Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
-Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`f27170e`](https://github.com/CycloneDX/cyclonedx-python/commit/f27170edfda6945ae5328d5e1ef135e084d011b8))
-
-* chore(deps): Bump actions/setup-python from 4 to 5 (#673)
-
-Bumps [actions/setup-python](https://github.com/actions/setup-python) from 4 to 5.
-- [Release notes](https://github.com/actions/setup-python/releases)
-- [Commits](https://github.com/actions/setup-python/compare/v4...v5)
-
----
-updated-dependencies:
-- dependency-name: actions/setup-python
-  dependency-type: direct:production
-  update-type: version-update:semver-major
-...
-
-Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
-Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`e661fb2`](https://github.com/CycloneDX/cyclonedx-python/commit/e661fb29bb9b7e30788575de70b0047cc5129552))
-
-* chore(deps-dev): Update bandit requirement from 1.7.7 to 1.7.8 (#688)
-
-Updates the requirements on [bandit](https://github.com/PyCQA/bandit) to permit the latest version.
-- [Release notes](https://github.com/PyCQA/bandit/releases)
-- [Commits](https://github.com/PyCQA/bandit/compare/1.7.7...1.7.8)
-
----
-updated-dependencies:
-- dependency-name: bandit
-  dependency-type: direct:development
-...
-
-Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
-Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`40f16e0`](https://github.com/CycloneDX/cyclonedx-python/commit/40f16e039abf7e23c6328d5c295b45c69d63a096))
-
-* chore(deps-dev): Update tox requirement from 4.13.0 to 4.14.1 (#687)
-
-Updates the requirements on [tox](https://github.com/tox-dev/tox) to permit the latest version.
-- [Release notes](https://github.com/tox-dev/tox/releases)
-- [Changelog](https://github.com/tox-dev/tox/blob/main/docs/changelog.rst)
-- [Commits](https://github.com/tox-dev/tox/compare/4.13.0...4.14.1)
-
----
-updated-dependencies:
-- dependency-name: tox
-  dependency-type: direct:development
-...
-
-Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
-Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`16efe0b`](https://github.com/CycloneDX/cyclonedx-python/commit/16efe0b14fa80bafa986998bde3c4c92090906ed))
-
-* chore(deps-dev): Update mypy requirement from 1.8.0 to 1.9.0 (#686)
-
-Updates the requirements on [mypy](https://github.com/python/mypy) to permit the latest version.
-- [Changelog](https://github.com/python/mypy/blob/master/CHANGELOG.md)
-- [Commits](https://github.com/python/mypy/compare/v1.8.0...1.9.0)
-
----
-updated-dependencies:
-- dependency-name: mypy
-  dependency-type: direct:development
-...
-
-Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
-Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`de3be95`](https://github.com/CycloneDX/cyclonedx-python/commit/de3be95b6deb2801adf0d8389183627274a71968))
-
-* chore(deps-dev): Update tox requirement from 4.11.4 to 4.13.0 (#685)
-
-Updates the requirements on [tox](https://github.com/tox-dev/tox) to permit the latest version.
-- [Release notes](https://github.com/tox-dev/tox/releases)
-- [Changelog](https://github.com/tox-dev/tox/blob/main/docs/changelog.rst)
-- [Commits](https://github.com/tox-dev/tox/compare/4.11.4...4.13.0)
-
----
-updated-dependencies:
-- dependency-name: tox
-  dependency-type: direct:development
-...
-
-Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
-Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`33d2b9b`](https://github.com/CycloneDX/cyclonedx-python/commit/33d2b9b492d1ea85028f1c890745117fed82ac1f))
-
-* chore(deps-dev): Update ddt requirement from 1.7.1 to 1.7.2 (#684)
-
-Updates the requirements on [ddt](https://github.com/datadriventests/ddt) to permit the latest version.
-- [Release notes](https://github.com/datadriventests/ddt/releases)
-- [Commits](https://github.com/datadriventests/ddt/compare/1.7.1...1.7.2)
-
----
-updated-dependencies:
-- dependency-name: ddt
-  dependency-type: direct:development
-...
-
-Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
-Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`743324a`](https://github.com/CycloneDX/cyclonedx-python/commit/743324aaa9a7b16c33ec4b164d0e59a82c9e6a3e))
 
 ### Ci
 
@@ -332,69 +144,6 @@ Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`ec7ab3e`](https:
 * build: use poetry v1.8.1 (#682)
 
 Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`dba63b8`](https://github.com/CycloneDX/cyclonedx-python/commit/dba63b8509336757d17d1cd21cdbe72517ecfd67))
-
-### Chore
-
-* chore(deps-dev): Update coverage requirement from 7.4.1 to 7.4.3 (#680)
-
-Updates the requirements on [coverage](https://github.com/nedbat/coveragepy) to permit the latest version.
-- [Release notes](https://github.com/nedbat/coveragepy/releases)
-- [Changelog](https://github.com/nedbat/coveragepy/blob/master/CHANGES.rst)
-- [Commits](https://github.com/nedbat/coveragepy/compare/7.4.1...7.4.3)
-
----
-updated-dependencies:
-- dependency-name: coverage
-  dependency-type: direct:development
-...
-
-Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
-Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`dadc9b5`](https://github.com/CycloneDX/cyclonedx-python/commit/dadc9b50fb2738f76cc5a5a32ace57491789a52c))
-
-* chore(deps): Bump Gr1N/setup-poetry from 8 to 9 (#681)
-
-Bumps [Gr1N/setup-poetry](https://github.com/gr1n/setup-poetry) from 8 to 9.
-- [Release notes](https://github.com/gr1n/setup-poetry/releases)
-- [Commits](https://github.com/gr1n/setup-poetry/compare/v8...v9)
-
----
-updated-dependencies:
-- dependency-name: Gr1N/setup-poetry
-  dependency-type: direct:production
-  update-type: version-update:semver-major
-...
-
-Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
-Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`5ee8bb2`](https://github.com/CycloneDX/cyclonedx-python/commit/5ee8bb2e32ed0d6410b456ed3660690077142e2e))
-
-* chore(deps-dev): Update flake8-quotes requirement from 3.3.2 to 3.4.0 (#679)
-
-Updates the requirements on [flake8-quotes](https://github.com/zheller/flake8-quotes) to permit the latest version.
-- [Commits](https://github.com/zheller/flake8-quotes/compare/3.3.2...3.4.0)
-
----
-updated-dependencies:
-- dependency-name: flake8-quotes
-  dependency-type: direct:development
-...
-
-Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
-Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`4da9c9e`](https://github.com/CycloneDX/cyclonedx-python/commit/4da9c9edb604cad57757c50f277f07289fef3880))
-
-* chore(deps-dev): Update flake8-bugbear requirement (#677)
-
-Updates the requirements on [flake8-bugbear](https://github.com/PyCQA/flake8-bugbear) to permit the latest version.
-- [Release notes](https://github.com/PyCQA/flake8-bugbear/releases)
-- [Commits](https://github.com/PyCQA/flake8-bugbear/compare/24.1.17...24.2.6)
-
----
-updated-dependencies:
-- dependency-name: flake8-bugbear
-  dependency-type: direct:development
-...
-
-Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
-Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`14a8ec0`](https://github.com/CycloneDX/cyclonedx-python/commit/14a8ec025e6aca0c2d8b6c0875a23f708b152923))
 
 
 ## v4.1.1 (2024-02-03)
@@ -496,24 +245,6 @@ Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.githu
 Co-authored-by: github-actions &lt;github-actions@github.com&gt;
 Co-authored-by: Andreas Fehlner &lt;fehlner@arcor.de&gt; ([`6d24e65`](https://github.com/CycloneDX/cyclonedx-python/commit/6d24e656835d1be2705237100b289ae0c3ff51df))
 
-### Chore
-
-* chore(deps): Bump actions/setup-python from 4 to 5 (#620)
-
-Bumps [actions/setup-python](https://github.com/actions/setup-python) from 4 to 5.
-- [Release notes](https://github.com/actions/setup-python/releases)
-- [Commits](https://github.com/actions/setup-python/compare/v4...v5)
-
----
-updated-dependencies:
-- dependency-name: actions/setup-python
-  dependency-type: direct:production
-  update-type: version-update:semver-major
-...
-
-Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
-Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`0181aeb`](https://github.com/CycloneDX/cyclonedx-python/commit/0181aeb40a23c312d2a2540d106269bb0413cf4c))
-
 
 ## v3.11.7 (2023-11-03)
 
@@ -585,23 +316,6 @@ Automatically generated by python-semantic-release ([`70889be`](https://github.c
 * chore: Update CONTRIBUTING.md
 
 Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@owasp.org&gt; ([`4adab1c`](https://github.com/CycloneDX/cyclonedx-python/commit/4adab1c4b5d79416db6fa6b24928ec7358ad4268))
-
-* chore(deps): Bump actions/checkout from 3 to 4 (#581)
-
-Bumps [actions/checkout](https://github.com/actions/checkout) from 3 to 4.
-- [Release notes](https://github.com/actions/checkout/releases)
-- [Changelog](https://github.com/actions/checkout/blob/main/CHANGELOG.md)
-- [Commits](https://github.com/actions/checkout/compare/v3...v4)
-
----
-updated-dependencies:
-- dependency-name: actions/checkout
-  dependency-type: direct:production
-  update-type: version-update:semver-major
-...
-
-Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
-Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`7a3f8d2`](https://github.com/CycloneDX/cyclonedx-python/commit/7a3f8d259cd6f9aa9afbce5333e3605d4c5a4285))
 
 ### Documentation
 
@@ -676,23 +390,6 @@ but forgot to transition the CI triggers.
 fixed this
 
 Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`ea233cb`](https://github.com/CycloneDX/cyclonedx-python/commit/ea233cbfced743859842336bfcc0cdd07ad3a7da))
-
-* chore(deps): Bump relekang/python-semantic-release from 7.33.1 to 7.34.6 (#550)
-
-Bumps [relekang/python-semantic-release](https://github.com/relekang/python-semantic-release) from 7.33.1 to 7.34.6.
-- [Release notes](https://github.com/relekang/python-semantic-release/releases)
-- [Changelog](https://github.com/python-semantic-release/python-semantic-release/blob/master/CHANGELOG.md)
-- [Commits](https://github.com/relekang/python-semantic-release/compare/v7.33.1...v7.34.6)
-
----
-updated-dependencies:
-- dependency-name: relekang/python-semantic-release
-  dependency-type: direct:production
-  update-type: version-update:semver-minor
-...
-
-Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
-Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`82c901b`](https://github.com/CycloneDX/cyclonedx-python/commit/82c901b829162f592a34313a22446413244398a0))
 
 * chore: rename file for lowest constraints/requirements (#517)
 
@@ -769,90 +466,17 @@ Automatically generated by python-semantic-release ([`d90b45c`](https://github.c
 
 ### Chore
 
-* chore(deps): Bump relekang/python-semantic-release from 7.31.4 to 7.33.1 (#492)
-
-Bumps [relekang/python-semantic-release](https://github.com/relekang/python-semantic-release) from 7.31.4 to 7.33.1.
-- [Release notes](https://github.com/relekang/python-semantic-release/releases)
-- [Changelog](https://github.com/python-semantic-release/python-semantic-release/blob/master/CHANGELOG.md)
-- [Commits](https://github.com/relekang/python-semantic-release/compare/v7.31.4...v7.33.1)
-
----
-updated-dependencies:
-- dependency-name: relekang/python-semantic-release
-  dependency-type: direct:production
-  update-type: version-update:semver-minor
-...
-
-Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
-Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`04a25b1`](https://github.com/CycloneDX/cyclonedx-python/commit/04a25b1d37fc53cc182d52f947f2f72f970ff9c7))
-
 * chore: fix lowest requirements for tests (#499)
 
 Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`4928515`](https://github.com/CycloneDX/cyclonedx-python/commit/492851592fe8c130a3e55fe79c46bdf1d0def7bc))
-
-* chore(deps): Bump types-toml from 0.10.8 to 0.10.8.3 (#496)
-
-Bumps [types-toml](https://github.com/python/typeshed) from 0.10.8 to 0.10.8.3.
-- [Release notes](https://github.com/python/typeshed/releases)
-- [Commits](https://github.com/python/typeshed/commits)
-
----
-updated-dependencies:
-- dependency-name: types-toml
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
-Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`2cf3379`](https://github.com/CycloneDX/cyclonedx-python/commit/2cf33792581771c9c3ad49609ec5347ffcef8049))
-
-* chore(deps): Bump pip-requirements-parser from 32.0.0 to 32.0.1 (#493)
-
-Bumps [pip-requirements-parser](https://github.com/nexB/pip-requirements-parser) from 32.0.0 to 32.0.1.
-- [Release notes](https://github.com/nexB/pip-requirements-parser/releases)
-- [Changelog](https://github.com/nexB/pip-requirements-parser/blob/main/CHANGELOG.rst)
-- [Commits](https://github.com/nexB/pip-requirements-parser/compare/v32.0.0...v32.0.1)
-
----
-updated-dependencies:
-- dependency-name: pip-requirements-parser
-  dependency-type: direct:production
-  update-type: version-update:semver-patch
-...
-
-Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
-Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`b5e8e93`](https://github.com/CycloneDX/cyclonedx-python/commit/b5e8e93fcda6698dbc91dd5b81767cf51f8edce6))
 
 * chore: add Paul Horton &amp; Jan Kowalleck as a maintainer
 
 Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`b1a52fc`](https://github.com/CycloneDX/cyclonedx-python/commit/b1a52fc297f0ee774e77ceff47b99d780a4cc58c))
 
-* chore(deps): Bump Gr1N/setup-poetry from 7 to 8 (#480)
-
-Bumps [Gr1N/setup-poetry](https://github.com/Gr1N/setup-poetry) from 7 to 8.
-- [Release notes](https://github.com/Gr1N/setup-poetry/releases)
-- [Commits](https://github.com/Gr1N/setup-poetry/compare/v7...v8)
-
----
-updated-dependencies:
-- dependency-name: Gr1N/setup-poetry
-  dependency-type: direct:production
-  update-type: version-update:semver-major
-...
-
-Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
-
-Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
-Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`bd97484`](https://github.com/CycloneDX/cyclonedx-python/commit/bd9748416c035980175fcd25c9cd63b6a7277917))
-
 * chore: editorconfig
 
 Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`2122dba`](https://github.com/CycloneDX/cyclonedx-python/commit/2122dba8fada2336f7fd07dff33321dea165858b))
-
-* chore(deps-dev): slack version pinning of `mypy` (#478)
-
-
-Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`8ab1b4b`](https://github.com/CycloneDX/cyclonedx-python/commit/8ab1b4b527334ddd1d4a25f8c48310f070a37619))
 
 ### Documentation
 
