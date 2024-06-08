@@ -143,12 +143,15 @@ class EnvironmentBB(BomBuilder):
         if path[0] in ('', getcwd()):
             path.pop(0)
 
+        gather_license_text = True
+
         bom = make_bom()
-        self.__add_components(bom, rc, path=path)
+        self.__add_components(bom, rc, gather_license_text, path=path)
         return bom
 
     def __add_components(self, bom: 'Bom',
                          rc: Optional[Tuple['Component', Iterable['Requirement']]],
+                         gather_license_text,
                          **kwargs: Any) -> None:
         all_components: 'T_AllComponents' = {}
         self._logger.debug('distribution context args: %r', kwargs)
@@ -163,7 +166,7 @@ class EnvironmentBB(BomBuilder):
                 name=dist_name,
                 version=dist_version,
                 description=dist_meta['Summary'] if 'Summary' in dist_meta else None,
-                licenses=licenses_fixup(metadata2licenses(dist_meta)),
+                licenses=licenses_fixup(metadata2licenses(dist, gather_license_text)),
                 external_references=metadata2extrefs(dist_meta),
                 # path of dist-package on disc? naaa... a package may have multiple files/folders on disc
             )

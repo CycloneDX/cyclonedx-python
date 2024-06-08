@@ -14,13 +14,15 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
-
+from base64 import b64encode
+from mimetypes import guess_type
+from os.path import join
 from re import compile as re_compile
 from typing import TYPE_CHECKING, Generator, List
 
 from cyclonedx.exception.model import InvalidUriException
 from cyclonedx.factory.license import LicenseFactory
-from cyclonedx.model import AttachedText, ExternalReference, ExternalReferenceType, XsUri
+from cyclonedx.model import AttachedText, Encoding, ExternalReference, ExternalReferenceType, XsUri
 from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
 
 from .cdx import url_label_to_ert
@@ -28,6 +30,7 @@ from .pep621 import classifiers2licenses
 
 if TYPE_CHECKING:  # pragma: no cover
     import sys
+    from importlib.metadata import Distribution
 
     from cyclonedx.model.license import License
 
@@ -37,15 +40,16 @@ if TYPE_CHECKING:  # pragma: no cover
         from email.message import Message as PackageMetadata
 
 
-def metadata2licenses(metadata: 'PackageMetadata') -> Generator['License', None, None]:
+def metadata2licenses(dist: 'Distribution', gather_text: bool) -> Generator['License', None, None]:
     lfac = LicenseFactory()
     lack = LicenseAcknowledgement.DECLARED
+    metadata = dist.metadata  # see https://packaging.python.org/en/latest/specifications/core-metadata/
     if 'Classifier' in metadata:
         # see spec: https://packaging.python.org/en/latest/specifications/core-metadata/#classifier-multiple-use
         classifiers: List[str] = metadata.get_all('Classifier')  # type:ignore[assignment]
         yield from classifiers2licenses(classifiers, lfac, lack)
-    for mlicense in metadata.get_all('License', ()):
-        # see spec:  https://packaging.python.org/en/latest/specifications/core-metadata/#license
+    for mlicense in set(metadata.get_all('License', ())):
+        # see spec: https://packaging.python.org/en/latest/specifications/core-metadata/#license
         if len(mlicense) <= 0:
             continue
         license = lfac.make_from_string(mlicense,
@@ -57,8 +61,32 @@ def metadata2licenses(metadata: 'PackageMetadata') -> Generator['License', None,
                                      text=AttachedText(content=mlicense))
         else:
             yield license
-    # TODO: iterate over "License-File" declarations and read them
-    # for mlfile in  metadata.get_all('License-File'): ...
+    if (lexp := metadata.get('License-Expression')) is not None:
+        # see spec: https://peps.python.org/pep-0639/#add-license-expression-field
+        yield lfac.make_from_string(lexp,
+                                    license_acknowledgement=lack)
+    if gather_text:
+        for mlfile in set(metadata.get_all('License-File', ())):
+            # see spec: https://peps.python.org/pep-0639/#add-license-file-field
+            try:
+                # the PEP draft tells to put the file in the package root ... but some just dont ...
+                mlfile_c = dist.read_text(mlfile) \
+                    or dist.read_text(join('licenses', mlfile)) \
+                    or dist.read_text(join('license_files', mlfile))
+                if mlfile_c is None:
+                    pass  # todo add debug output
+                else:
+                    mlfile_cb64, mlfile_c = b64encode(bytes(mlfile_c, 'utf-8')).decode('ascii'), None
+                    yield DisjunctiveLicense(name=f"declared license file '{mlfile}'",
+                                             acknowledgement=lack,
+                                             text=AttachedText(
+                                                 content=mlfile_cb64,
+                                                 encoding=Encoding.BASE_64,
+                                                 content_type=guess_type(mlfile)[0]
+                                                 or AttachedText.DEFAULT_CONTENT_TYPE
+                                             ))
+            except BaseException:
+                pass
 
 
 def metadata2extrefs(metadata: 'PackageMetadata') -> Generator['ExternalReference', None, None]:
