@@ -143,7 +143,7 @@ class EnvironmentBB(BomBuilder):
         if path[0] in ('', getcwd()):
             path.pop(0)
 
-        # TODO: make a CLI switch `--gather-license-evidence`, disabled by default
+        # TODO: make a CLI switch `--gather-license-texts`, disabled by default
         gather_license_text = True
 
         bom = make_bom()
