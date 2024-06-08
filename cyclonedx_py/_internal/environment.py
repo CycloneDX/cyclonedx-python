@@ -18,6 +18,7 @@
 
 from argparse import OPTIONAL, ArgumentParser
 from importlib.metadata import distributions
+from itertools import chain
 from json import loads
 from os import getcwd, name as os_name
 from os.path import exists, isdir, join
@@ -36,6 +37,7 @@ from .cli_common import add_argument_mc_type, add_argument_pyproject
 from .utils.cdx import licenses_fixup, make_bom
 from .utils.packaging import metadata2extrefs, metadata2licenses, normalize_packagename
 from .utils.pep610 import PackageSourceArchive, PackageSourceVcs, packagesource2extref, packagesource4dist
+from .utils.pep639 import dist2licenses_pep639
 from .utils.pyproject import pyproject2component, pyproject2dependencies, pyproject_load
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -167,7 +169,9 @@ class EnvironmentBB(BomBuilder):
                 name=dist_name,
                 version=dist_version,
                 description=dist_meta['Summary'] if 'Summary' in dist_meta else None,
-                licenses=licenses_fixup(metadata2licenses(dist, gather_license_text)),
+                licenses=licenses_fixup(chain(
+                    metadata2licenses(dist_meta),
+                    dist2licenses_pep639(dist, gather_license_text))),
                 external_references=metadata2extrefs(dist_meta),
                 # path of dist-package on disc? naaa... a package may have multiple files/folders on disc
             )
