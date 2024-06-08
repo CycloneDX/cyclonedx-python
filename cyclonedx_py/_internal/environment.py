@@ -168,7 +168,7 @@ class EnvironmentBB(BomBuilder):
                 # path of dist-package on disc? naaa... a package may have multiple files/folders on disc
             )
             del dist_meta, dist_name, dist_version
-            self.__component_add_extred_and_purl(component, packagesource4dist(dist))
+            self.__component_add_extref_and_purl(component, packagesource4dist(dist))
             all_components[normalize_packagename(component.name)] = (
                 component,
                 tuple(map(Requirement, dist.requires or ()))
@@ -210,7 +210,7 @@ class EnvironmentBB(BomBuilder):
                 )
             bom.register_dependency(component, component_deps)
 
-    def __component_add_extred_and_purl(self, component: 'Component',
+    def __component_add_extref_and_purl(self, component: 'Component',
                                         packagesource: Optional['PackageSource']) -> None:
         purl_qs = {}  # https://github.com/package-url/purl-spec/blob/master/PURL-SPECIFICATION.rst
         purl_subpath = None
