@@ -74,3 +74,6 @@ class PropertyName(Enum):
     # see https://github.com/CycloneDX/cyclonedx-property-taxonomy/blob/main/cdx/pipenv.md
     PipenvCategory = 'cdx:pipenv:category'
     # endregion pipenv
+
+
+PurlTypePypi = 'pypi'

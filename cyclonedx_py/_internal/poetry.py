@@ -30,7 +30,7 @@ from cyclonedx.model.component import Component, ComponentScope
 from cyclonedx.model.dependency import Dependency
 from packageurl import PackageURL
 
-from . import BomBuilder, PropertyName
+from . import BomBuilder, PropertyName, PurlTypePypi
 from .cli_common import add_argument_mc_type
 from .utils.cdx import make_bom
 from .utils.packaging import normalize_packagename
@@ -417,11 +417,12 @@ class PoetryBB(BomBuilder):
                     value=source['resolved_reference']
                 ) if is_vcs and 'resolved_reference' in source else None,
             ]),
-            purl=PackageURL(type='pypi',
-                            name=package['name'],
-                            version=package['version'],
-                            qualifiers=self.__purl_qualifiers4lock(package)
-                            ) if not is_local else None
+            purl=PackageURL(
+                type=PurlTypePypi,
+                name=package['name'],
+                version=package['version'],
+                qualifiers=self.__purl_qualifiers4lock(package)
+            ) if not is_local else None
         )
 
     def __purl_qualifiers4lock(self, package: 'T_NameDict') -> 'T_NameDict':

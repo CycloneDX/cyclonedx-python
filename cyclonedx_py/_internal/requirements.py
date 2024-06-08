@@ -29,7 +29,7 @@ from cyclonedx.model.component import Component, ComponentType
 from packageurl import PackageURL
 from pip_requirements_parser import RequirementsFile  # type:ignore[import-untyped]
 
-from . import BomBuilder, PropertyName
+from . import BomBuilder, PropertyName, PurlTypePypi
 from .cli_common import add_argument_mc_type, add_argument_pyproject
 from .utils.cdx import make_bom
 from .utils.io import io2file
@@ -218,7 +218,9 @@ class RequirementsBB(BomBuilder):
             name=name or 'unknown',
             version=version,
             purl=PackageURL(
-                type='pypi', name=req.name, version=version,
+                type=PurlTypePypi,
+                name=req.name,
+                version=version,
                 qualifiers=purl_qualifiers
             ) if not is_local and name else None,
             external_references=external_references,

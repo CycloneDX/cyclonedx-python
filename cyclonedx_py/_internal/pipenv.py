@@ -28,7 +28,7 @@ from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, 
 from cyclonedx.model.component import Component, ComponentType
 from packageurl import PackageURL
 
-from . import BomBuilder, PropertyName
+from . import BomBuilder, PropertyName, PurlTypePypi
 from .cli_common import add_argument_mc_type, add_argument_pyproject
 from .utils.args import arparse_split
 from .utils.cdx import make_bom
@@ -172,11 +172,12 @@ class PipenvBB(BomBuilder):
                         version=package_data['version'][2:] if 'version' in package_data else None,
                         external_references=self.__make_extrefs(package_name, package_data, source_urls),
                     )
-                    component.purl = PackageURL(type='pypi',
-                                                name=component.name,
-                                                version=component.version,
-                                                qualifiers=self.__purl_qualifiers4lock(package_data, source_urls)
-                                                ) if not self.__is_local(package_data) else None
+                    component.purl = PackageURL(
+                        type=PurlTypePypi,
+                        name=component.name,
+                        version=component.version,
+                        qualifiers=self.__purl_qualifiers4lock(package_data, source_urls)
+                    ) if not self.__is_local(package_data) else None
                     self._logger.info('add component for package %r', package_name)
                     self._logger.debug('add component: %r', component)
                     bom.components.add(component)
