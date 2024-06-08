@@ -15,6 +15,12 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
+"""
+Functionality related to PEP 639.
+
+See https://peps.python.org/pep-0639/
+"""
+
 from base64 import b64encode
 from mimetypes import guess_type
 from os.path import join
