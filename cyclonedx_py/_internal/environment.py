@@ -31,7 +31,7 @@ from cyclonedx.model.component import Component, ComponentType
 from packageurl import PackageURL
 from packaging.requirements import Requirement
 
-from . import BomBuilder, PropertyName
+from . import BomBuilder, PropertyName, PurlTypePypi
 from .cli_common import add_argument_mc_type, add_argument_pyproject
 from .utils.cdx import licenses_fixup, make_bom
 from .utils.packaging import metadata2extrefs, metadata2licenses, normalize_packagename
@@ -236,8 +236,12 @@ class EnvironmentBB(BomBuilder):
             del packagesource_extref
         if packagesource is None or not packagesource.url.startswith('file://'):
             # no purl for locals and unpublished packages
-            component.purl = PackageURL('pypi', name=component.name, version=component.version,
-                                        qualifiers=purl_qs, subpath=purl_subpath)
+            component.purl = PackageURL(
+                type=PurlTypePypi,
+                name=component.name,
+                version=component.version,
+                qualifiers=purl_qs,
+                subpath=purl_subpath)
 
     @staticmethod
     def __py_interpreter(value: str) -> str:
