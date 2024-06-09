@@ -133,7 +133,7 @@ class EnvironmentBB(BomBuilder):
                  **__: Any) -> None:
         self._logger = logger
         self._pep639 = pep639
-        self._gather_license_text = gather_license_texts
+        self._gather_license_texts = gather_license_texts
 
     def __call__(self, *,  # type:ignore[override]
                  python: Optional[str],
@@ -184,7 +184,7 @@ class EnvironmentBB(BomBuilder):
             if self._pep639:
                 component.licenses.update(
                     dist2licenses_pep639(dist,
-                                         self._gather_license_text,
+                                         self._gather_license_texts,
                                          self._logger))
             del dist_meta, dist_name, dist_version
             self.__component_add_extref_and_purl(component, packagesource4dist(dist))
