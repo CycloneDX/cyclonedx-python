@@ -112,7 +112,7 @@ class EnvironmentBB(BomBuilder):
         p.add_argument('--gather-license-texts',
                        action='store_true',
                        dest='gather_license_texts',
-                       help='')  # TODO help text
+                       help='Enable license text gathering.')
         add_argument_pyproject(p)
         add_argument_mc_type(p)
         # TODO possible additional switch:
