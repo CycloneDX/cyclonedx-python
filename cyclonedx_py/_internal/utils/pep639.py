@@ -59,16 +59,19 @@ def dist2licenses(
             mlfile_c = dist.read_text(join('licenses', mlfile)) \
                 or dist.read_text(mlfile) \
                 or dist.read_text(join('license_files', mlfile))
-            if mlfile_c is None:
+            if mlfile_c is None:  # pragma: no cover
                 logger.debug('Error: failed to read license file %r for dist %r',
                              mlfile, metadata['Name'])
                 continue
-            mlfile_cb64, mlfile_c = b64encode(bytes(mlfile_c, 'utf-8')).decode('ascii'), None
+            content_type = guess_type(mlfile)[0] or AttachedText.DEFAULT_CONTENT_TYPE
+            encoding = None
+            if content_type.startswith('text/'):
+                mlfile_c, encoding = b64encode(bytes(mlfile_c, 'utf-8')).decode('ascii'), Encoding.BASE_64
             yield DisjunctiveLicense(
                 name=f'declared license file: {mlfile}',
                 acknowledgement=lack,
                 text=AttachedText(
-                    content=mlfile_cb64,
-                    encoding=Encoding.BASE_64,
-                    content_type=guess_type(mlfile)[0] or AttachedText.DEFAULT_CONTENT_TYPE
+                    content=mlfile_c,
+                    encoding=encoding,
+                    content_type=content_type
                 ))
