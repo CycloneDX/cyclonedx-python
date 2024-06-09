@@ -37,7 +37,7 @@ if TYPE_CHECKING:  # pragma: no cover
     from cyclonedx.model.license import License
 
 
-def dist2licenses_pep639(
+def dist2licenses(
     dist: 'Distribution', *,
     gather_text: bool,
     logger: 'Logger'

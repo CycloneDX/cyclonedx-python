@@ -37,7 +37,7 @@ from .cli_common import add_argument_mc_type, add_argument_pyproject
 from .utils.cdx import licenses_fixup, make_bom
 from .utils.packaging import metadata2extrefs, metadata2licenses, normalize_packagename
 from .utils.pep610 import PackageSourceArchive, PackageSourceVcs, packagesource2extref, packagesource4dist
-from .utils.pep639 import dist2licenses_pep639
+from .utils.pep639 import dist2licenses as dist2licenses_pep639
 from .utils.pyproject import pyproject2component, pyproject2dependencies, pyproject_load
 
 if TYPE_CHECKING:  # pragma: no cover
