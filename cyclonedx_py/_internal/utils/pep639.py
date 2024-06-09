@@ -24,7 +24,7 @@ See https://peps.python.org/pep-0639/
 from base64 import b64encode
 from mimetypes import guess_type
 from os.path import join
-from typing import TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Generator, Optional
 
 from cyclonedx.factory.license import LicenseFactory
 from cyclonedx.model import AttachedText, Encoding
@@ -32,11 +32,15 @@ from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
 
 if TYPE_CHECKING:  # pragma: no cover
     from importlib.metadata import Distribution
+    from logging import Logger
 
     from cyclonedx.model.license import License
 
 
-def dist2licenses_pep639(dist: 'Distribution', gather_text: bool) -> Generator['License', None, None]:
+def dist2licenses_pep639(
+    dist: 'Distribution', gather_text: bool,
+    logger: Optional['Logger'] = None
+) -> Generator['License', None, None]:
     lfac = LicenseFactory()
     lack = LicenseAcknowledgement.DECLARED
     metadata = dist.metadata  # see https://packaging.python.org/en/latest/specifications/core-metadata/
@@ -52,17 +56,19 @@ def dist2licenses_pep639(dist: 'Distribution', gather_text: bool) -> Generator['
                 or dist.read_text(join('licenses', mlfile)) \
                 or dist.read_text(join('license_files', mlfile))
             if mlfile_c is None:
-                pass  # todo add debug output
-            else:
-                try:
-                    mlfile_cb64, mlfile_c = b64encode(bytes(mlfile_c, 'utf-8')).decode('ascii'), None
-                    yield DisjunctiveLicense(
-                        name=f"declared license file '{mlfile}'",
-                        acknowledgement=lack,
-                        text=AttachedText(
-                            content=mlfile_cb64,
-                            encoding=Encoding.BASE_64,
-                            content_type=guess_type(mlfile)[0] or AttachedText.DEFAULT_CONTENT_TYPE
-                        ))
-                except BaseException:
-                    pass
+                logger and logger.debug(
+                    'Error: failed to read license file %r for dist %r',
+                    mlfile, dist.name)
+                continue
+            try:
+                mlfile_cb64, mlfile_c = b64encode(bytes(mlfile_c, 'utf-8')).decode('ascii'), None
+                yield DisjunctiveLicense(
+                    name=f"declared license file: {mlfile}",
+                    acknowledgement=lack,
+                    text=AttachedText(
+                        content=mlfile_cb64,
+                        encoding=Encoding.BASE_64,
+                        content_type=guess_type(mlfile)[0] or AttachedText.DEFAULT_CONTENT_TYPE
+                    ))
+            except BaseException:
+                pass
