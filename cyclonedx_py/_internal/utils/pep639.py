@@ -52,7 +52,7 @@ def dist2licenses(
     if gather_text:
         for mlfile in set(metadata.get_all('License-File', ())):
             # see spec: https://peps.python.org/pep-0639/#add-license-file-field
-            # latets spec rev: https://discuss.python.org/t/pep-639-round-3-improving-license-clarity-with-better-package-metadata/53020
+            # latest spec rev: https://discuss.python.org/t/pep-639-round-3-improving-license-clarity-with-better-package-metadata/53020  # noqa: E501
 
             # per spec > license files are stored in the `.dist-info/licenses/` subdirectory of the produced wheel.
             # but in practice other locations are used, too.
@@ -62,15 +62,12 @@ def dist2licenses(
             if mlfile_c is None:
                 logger.debug('Error: failed to read license file %r for dist %r', mlfile, dist.name)
                 continue
-            try:
-                mlfile_cb64, mlfile_c = b64encode(bytes(mlfile_c, 'utf-8')).decode('ascii'), None
-                yield DisjunctiveLicense(
-                    name=f"declared license file: {mlfile}",
-                    acknowledgement=lack,
-                    text=AttachedText(
-                        content=mlfile_cb64,
-                        encoding=Encoding.BASE_64,
-                        content_type=guess_type(mlfile)[0] or AttachedText.DEFAULT_CONTENT_TYPE
-                    ))
-            except BaseException:
-                pass
+            mlfile_cb64, mlfile_c = b64encode(bytes(mlfile_c, 'utf-8')).decode('ascii'), None
+            yield DisjunctiveLicense(
+                name=f'declared license file: {mlfile}',
+                acknowledgement=lack,
+                text=AttachedText(
+                    content=mlfile_cb64,
+                    encoding=Encoding.BASE_64,
+                    content_type=guess_type(mlfile)[0] or AttachedText.DEFAULT_CONTENT_TYPE
+                ))

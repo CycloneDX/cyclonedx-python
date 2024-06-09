@@ -18,7 +18,6 @@
 
 from argparse import OPTIONAL, ArgumentParser
 from importlib.metadata import distributions
-from itertools import chain
 from json import loads
 from os import getcwd, name as os_name
 from os.path import exists, isdir, join
