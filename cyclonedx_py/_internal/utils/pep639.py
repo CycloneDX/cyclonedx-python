@@ -24,7 +24,7 @@ See https://peps.python.org/pep-0639/
 from base64 import b64encode
 from mimetypes import guess_type
 from os.path import join
-from typing import TYPE_CHECKING, Generator, Optional
+from typing import TYPE_CHECKING, Generator
 
 from cyclonedx.factory.license import LicenseFactory
 from cyclonedx.model import AttachedText, Encoding
@@ -38,8 +38,9 @@ if TYPE_CHECKING:  # pragma: no cover
 
 
 def dist2licenses_pep639(
-    dist: 'Distribution', gather_text: bool,
-    logger: Optional['Logger'] = None
+    dist: 'Distribution', *,
+    gather_text: bool,
+    logger: 'Logger'
 ) -> Generator['License', None, None]:
     lfac = LicenseFactory()
     lack = LicenseAcknowledgement.DECLARED
@@ -56,9 +57,7 @@ def dist2licenses_pep639(
                 or dist.read_text(join('licenses', mlfile)) \
                 or dist.read_text(join('license_files', mlfile))
             if mlfile_c is None:
-                logger and logger.debug(
-                    'Error: failed to read license file %r for dist %r',
-                    mlfile, dist.name)
+                logger.debug('Error: failed to read license file %r for dist %r', mlfile, dist.name)
                 continue
             try:
                 mlfile_cb64, mlfile_c = b64encode(bytes(mlfile_c, 'utf-8')).decode('ascii'), None

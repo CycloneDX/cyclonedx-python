@@ -171,7 +171,7 @@ class EnvironmentBB(BomBuilder):
                 description=dist_meta['Summary'] if 'Summary' in dist_meta else None,
                 licenses=licenses_fixup(chain(
                     metadata2licenses(dist_meta),
-                    dist2licenses_pep639(dist, gather_license_text, self._logger))),
+                    dist2licenses_pep639(dist, gather_text=gather_license_text, logger=self._logger))),
                 external_references=metadata2extrefs(dist_meta),
                 # path of dist-package on disc? naaa... a package may have multiple files/folders on disc
             )
