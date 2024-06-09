@@ -64,7 +64,7 @@ def dist2licenses(
                              mlfile, metadata['Name'])
                 continue
             content_type = guess_type(mlfile)[0] or AttachedText.DEFAULT_CONTENT_TYPE
-            encoding = None
+            encoding = None  # per default, license files are human readable texts
             if not content_type.startswith('text/'):
                 mlfile_c = b64encode(bytes(mlfile_c, 'utf-8')).decode('ascii')
                 encoding = Encoding.BASE_64
