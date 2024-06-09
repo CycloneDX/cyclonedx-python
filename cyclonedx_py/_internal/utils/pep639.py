@@ -65,7 +65,7 @@ def dist2licenses(
                 continue
             content_type = guess_type(mlfile)[0] or AttachedText.DEFAULT_CONTENT_TYPE
             encoding = None
-            if content_type.startswith('text/'):
+            if not content_type.startswith('text/'):
                 mlfile_c, encoding = b64encode(bytes(mlfile_c, 'utf-8')).decode('ascii'), Encoding.BASE_64
             yield DisjunctiveLicense(
                 name=f'declared license file: {mlfile}',
