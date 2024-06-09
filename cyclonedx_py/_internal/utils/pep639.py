@@ -54,6 +54,7 @@ def dist2licenses(
             # see spec: https://peps.python.org/pep-0639/#add-license-file-field
             # latets spec rev: https://discuss.python.org/t/pep-639-round-3-improving-license-clarity-with-better-package-metadata/53020
             # per spec > license files are stored in the `.dist-info/licenses/` subdirectory of the produced wheel.
+            # but in practice other locations are used, too.
             mlfile_c = dist.read_text(join('licenses', mlfile)) \
                 or dist.read_text(mlfile) \
                 or dist.read_text(join('license_files', mlfile))
