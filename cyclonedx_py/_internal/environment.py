@@ -105,10 +105,14 @@ class EnvironmentBB(BomBuilder):
                        $ %(prog)s "$(pdm info --python)"
                """)
         p.add_argument('--PEP-639',
+                       action='store_true',
                        dest='pep639',
                        help='Enable license gathering according to PEP 639 '
-                            '(improving license clarity with better package metadata)',
-                       action='store_true')
+                            '(improving license clarity with better package metadata)')
+        p.add_argument('--gather-license-texts',
+                       action='store_true',
+                       dest='gather_license_texts',
+                       help='')  # TODO help text
         add_argument_pyproject(p)
         add_argument_mc_type(p)
         # TODO possible additional switch:
@@ -126,11 +130,11 @@ class EnvironmentBB(BomBuilder):
     def __init__(self, *,
                  logger: 'Logger',
                  pep639: bool,
+                 gather_license_texts: bool,
                  **__: Any) -> None:
         self._logger = logger
         self._pep639 = pep639
-        # TODO: make a CLI switch `--gather-license-texts`, disabled by default
-        self._gather_license_text = True
+        self._gather_license_text = gather_license_texts
 
     def __call__(self, *,  # type:ignore[override]
                  python: Optional[str],
