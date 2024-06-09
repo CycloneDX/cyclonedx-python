@@ -201,7 +201,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
                     '--output-reproducible',
                     '--outfile=-',
                     '--pyproject', join(projectdir, 'pyproject.toml'),
-                    '--PEP639',
+                    '--PEP-639',
                     join(projectdir, '.venv')])
             err = err.getvalue()
             out = out.getvalue()
@@ -222,7 +222,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
                     '--output-reproducible',
                     '--outfile=-',
                     '--pyproject', join(projectdir, 'pyproject.toml'),
-                    '--PEP639',
+                    '--PEP-639',
                     '--gather-license-texts',
                     join(projectdir, '.venv')])
             err = err.getvalue()
