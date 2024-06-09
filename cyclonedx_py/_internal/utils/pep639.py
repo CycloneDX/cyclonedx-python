@@ -38,7 +38,7 @@ if TYPE_CHECKING:  # pragma: no cover
 
 
 def dist2licenses(
-    dist: 'Distribution', *,
+    dist: 'Distribution',
     gather_text: bool,
     logger: 'Logger'
 ) -> Generator['License', None, None]:

@@ -104,6 +104,11 @@ class EnvironmentBB(BomBuilder):
                  • Build an SBOM from PDM environment:
                        $ %(prog)s "$(pdm info --python)"
                """)
+        p.add_argument('--PEP-639',
+                       dest='pep639',
+                       help='Enable license gathering according to PEP 639 '
+                            '(improving license clarity with better package metadata)',
+                       action='store_true')
         add_argument_pyproject(p)
         add_argument_mc_type(p)
         # TODO possible additional switch:
@@ -120,8 +125,12 @@ class EnvironmentBB(BomBuilder):
 
     def __init__(self, *,
                  logger: 'Logger',
+                 pep639: bool,
                  **__: Any) -> None:
         self._logger = logger
+        self._pep639 = pep639
+        # TODO: make a CLI switch `--gather-license-texts`, disabled by default
+        self._gather_license_text = True
 
     def __call__(self, *,  # type:ignore[override]
                  python: Optional[str],
@@ -145,16 +154,12 @@ class EnvironmentBB(BomBuilder):
         if path[0] in ('', getcwd()):
             path.pop(0)
 
-        # TODO: make a CLI switch `--gather-license-texts`, disabled by default
-        gather_license_text = True
-
         bom = make_bom()
-        self.__add_components(bom, rc, gather_license_text, path=path)
+        self.__add_components(bom, rc, path=path)
         return bom
 
     def __add_components(self, bom: 'Bom',
                          rc: Optional[Tuple['Component', Iterable['Requirement']]],
-                         gather_license_text,
                          **kwargs: Any) -> None:
         all_components: 'T_AllComponents' = {}
         self._logger.debug('distribution context args: %r', kwargs)
@@ -169,12 +174,15 @@ class EnvironmentBB(BomBuilder):
                 name=dist_name,
                 version=dist_version,
                 description=dist_meta['Summary'] if 'Summary' in dist_meta else None,
-                licenses=licenses_fixup(chain(
-                    metadata2licenses(dist_meta),
-                    dist2licenses_pep639(dist, gather_text=gather_license_text, logger=self._logger))),
+                licenses=licenses_fixup(metadata2licenses(dist_meta)),
                 external_references=metadata2extrefs(dist_meta),
                 # path of dist-package on disc? naaa... a package may have multiple files/folders on disc
             )
+            if self._pep639:
+                component.licenses.update(
+                    dist2licenses_pep639(dist,
+                                         self._gather_license_text,
+                                         self._logger))
             del dist_meta, dist_name, dist_version
             self.__component_add_extref_and_purl(component, packagesource4dist(dist))
             all_components[normalize_packagename(component.name)] = (
