@@ -31,7 +31,6 @@ from cyclonedx.model import AttachedText, Encoding
 from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
 
 if TYPE_CHECKING:  # pragma: no cover
-    import sys
     from importlib.metadata import Distribution
     from logging import Logger
 
