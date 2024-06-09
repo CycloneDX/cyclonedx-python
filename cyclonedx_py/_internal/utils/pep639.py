@@ -31,6 +31,7 @@ from cyclonedx.model import AttachedText, Encoding
 from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
 
 if TYPE_CHECKING:  # pragma: no cover
+    import sys
     from importlib.metadata import Distribution
     from logging import Logger
 
@@ -45,7 +46,7 @@ def dist2licenses(
     lfac = LicenseFactory()
     lack = LicenseAcknowledgement.DECLARED
     metadata = dist.metadata  # see https://packaging.python.org/en/latest/specifications/core-metadata/
-    if (lexp := metadata.get('License-Expression')) is not None:
+    if (lexp := metadata['License-Expression']) is not None:
         # see spec: https://peps.python.org/pep-0639/#add-license-expression-field
         yield lfac.make_from_string(lexp,
                                     license_acknowledgement=lack)
@@ -60,7 +61,8 @@ def dist2licenses(
                 or dist.read_text(mlfile) \
                 or dist.read_text(join('license_files', mlfile))
             if mlfile_c is None:
-                logger.debug('Error: failed to read license file %r for dist %r', mlfile, dist.name)
+                logger.debug('Error: failed to read license file %r for dist %r',
+                             mlfile, metadata['Name'])
                 continue
             mlfile_cb64, mlfile_c = b64encode(bytes(mlfile_c, 'utf-8')).decode('ascii'), None
             yield DisjunctiveLicense(
