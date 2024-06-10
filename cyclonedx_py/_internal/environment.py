@@ -108,7 +108,7 @@ class EnvironmentBB(BomBuilder):
                        dest='pep639',
                        help='Enable license gathering according to PEP 639 '
                             '(improving license clarity with better package metadata).\n'
-                            'The behaviour may change during the draft development of the PEP.')
+                            'The behavior may change during the draft development of the PEP.')
         p.add_argument('--gather-license-texts',
                        action='store_true',
                        dest='gather_license_texts',
