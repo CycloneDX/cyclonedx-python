@@ -21,14 +21,14 @@ Functionality related to PEP 639.
 See https://peps.python.org/pep-0639/
 """
 
-from base64 import b64encode
-from mimetypes import guess_type
 from os.path import join
 from typing import TYPE_CHECKING, Generator
 
 from cyclonedx.factory.license import LicenseFactory
-from cyclonedx.model import AttachedText, Encoding
+from cyclonedx.model import AttachedText
 from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
+
+from .mimetypes import guess_type
 
 if TYPE_CHECKING:  # pragma: no cover
     from importlib.metadata import Distribution
@@ -63,16 +63,12 @@ def dist2licenses(
                 logger.debug('Error: failed to read license file %r for dist %r',
                              mlfile, metadata['Name'])
                 continue
-            content_type = guess_type(mlfile)[0] or AttachedText.DEFAULT_CONTENT_TYPE
-            encoding = None  # per default, license files are human readable texts
-            if not content_type.startswith('text/'):
-                mlfile_c = b64encode(bytes(mlfile_c, 'utf-8')).decode('ascii')
-                encoding = Encoding.BASE_64
             yield DisjunctiveLicense(
                 name=f'declared license file: {mlfile}',
                 acknowledgement=lack,
                 text=AttachedText(
                     content=mlfile_c,
-                    encoding=encoding,
-                    content_type=content_type
+                    # per default, license files are human-readable texts. no need for base64
+                    encoding=None,
+                    content_type=guess_type(mlfile) or AttachedText.DEFAULT_CONTENT_TYPE
                 ))
