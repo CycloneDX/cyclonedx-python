@@ -187,7 +187,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'plain', projectdir, sv, of)
 
-    @named_data(*test_data_file_filter('with-extras'))
+    @named_data(*test_data_file_filter('pep639'))
     def test_pep639_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
@@ -208,7 +208,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'pep639', projectdir, sv, of)
 
-    @named_data(*test_data_file_filter('with-extras'))
+    @named_data(*test_data_file_filter('pep639'))
     def test_pep639_texts_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'
@@ -230,7 +230,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'pep639-texts', projectdir, sv, of)
 
-    @named_data(*test_data_file_filter('with-extras'))
+    @named_data(*test_data_file_filter('pep639'))
     def test_texts_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
         with StringIO() as err, StringIO() as out:
             err.name = '<fakeerr>'

@@ -21,11 +21,12 @@ Functionality related to PEP 639.
 See https://peps.python.org/pep-0639/
 """
 
+from base64 import b64encode
 from os.path import join
 from typing import TYPE_CHECKING, Generator
 
 from cyclonedx.factory.license import LicenseFactory
-from cyclonedx.model import AttachedText
+from cyclonedx.model import AttachedText, Encoding
 from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
 
 from .mimetypes import guess_type
@@ -55,20 +56,25 @@ def dist2licenses(
             # latest spec rev: https://discuss.python.org/t/pep-639-round-3-improving-license-clarity-with-better-package-metadata/53020  # noqa: E501
 
             # per spec > license files are stored in the `.dist-info/licenses/` subdirectory of the produced wheel.
-            # but in practice other locations are used, too.
-            mlfile_c = dist.read_text(join('licenses', mlfile)) \
+            # but in practice, other locations are used, too.
+            content = dist.read_text(join('licenses', mlfile)) \
                 or dist.read_text(mlfile) \
                 or dist.read_text(join('license_files', mlfile))
-            if mlfile_c is None:  # pragma: no cover
+            if content is None:  # pragma: no cover
                 logger.debug('Error: failed to read license file %r for dist %r',
                              mlfile, metadata['Name'])
                 continue
+            encoding = None
+            content_type = guess_type(mlfile) or AttachedText.DEFAULT_CONTENT_TYPE
+            # per default, license files are human-readable texts.
+            if not content_type.startswith('text/'):
+                encoding = Encoding.BASE_64
+                content = b64encode(content.encode('utf-8')).decode('ascii')
             yield DisjunctiveLicense(
                 name=f'declared license file: {mlfile}',
                 acknowledgement=lack,
                 text=AttachedText(
-                    content=mlfile_c,
-                    # per default, license files are human-readable texts. no need for base64
-                    encoding=None,
-                    content_type=guess_type(mlfile) or AttachedText.DEFAULT_CONTENT_TYPE
+                    content=content,
+                    encoding=encoding,
+                    content_type=content_type
                 ))

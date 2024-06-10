@@ -15,22 +15,24 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
+from mimetypes import guess_type as _stdlib_guess_type
 from os.path import splitext
 from typing import Optional
 
 _ext_mime_map = {
+    # https://www.iana.org/assignments/media-types/media-types.xhtml
     'md': 'text/markdown',
     'txt': 'text/plain',
     'rst': 'text/prs.fallenstein.rst',
-    'rtf': 'text/rtf',
     # add more mime types. pull-requests welcome!
 }
 
 
 def guess_type(file_name: str) -> Optional[str]:
     """
-    The stdlib `mimetypes.guess_type()` is inconsistent, as it depends heavily on types registry of the environment/os.
+    The stdlib `mimetypes.guess_type()` is inconsistent, as it depends heavily on type registry in the env/os.
     Therefore, this polyfill exists.
     """
     ext = splitext(file_name)[1][1:].lower()
-    return _ext_mime_map.get(ext)
+    return _ext_mime_map.get(ext) \
+        or _stdlib_guess_type(file_name)[0]
