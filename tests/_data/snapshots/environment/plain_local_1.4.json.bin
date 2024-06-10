@@ -1,0 +1,127 @@
+{
+  "components": [
+    {
+      "bom-ref": "package-a==23.42",
+      "description": "some package A",
+      "externalReferences": [
+        {
+          "comment": "PackageSource: Archive",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "5c8da28603857d4073c67e751ba3cd526a7ef414135faecfec164e7d01be24be"
+            }
+          ],
+          "type": "distribution",
+          "url": "file://.../tests/_data/infiles/_helpers/local_pckages/a/dist/package_a-23.42-py3-none-any.whl"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "name": "declared license of 'package-a'",
+            "text": {
+              "content": "some license text",
+              "contentType": "text/plain"
+            }
+          }
+        }
+      ],
+      "name": "package-a",
+      "type": "library",
+      "version": "23.42"
+    },
+    {
+      "bom-ref": "package-b==23.42",
+      "description": "some package B",
+      "externalReferences": [
+        {
+          "comment": "PackageSource: Archive",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "20e983935a800046222a02674ed37baf3e7a4ef7cd40e6033d9c0efaeb73206f"
+            }
+          ],
+          "type": "distribution",
+          "url": "file://.../tests/_data/infiles/_helpers/local_pckages/b/dist/package-b-23.42.tar.gz"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        },
+        {
+          "license": {
+            "name": "License :: OSI Approved :: Apache Software License"
+          }
+        }
+      ],
+      "name": "package-b",
+      "type": "library",
+      "version": "23.42"
+    },
+    {
+      "bom-ref": "package-c==23.42",
+      "description": "some package C",
+      "externalReferences": [
+        {
+          "comment": "PackageSource: Local",
+          "type": "distribution",
+          "url": "file://.../tests/_data/infiles/_helpers/local_pckages/c"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR MIT"
+        }
+      ],
+      "name": "package-c",
+      "type": "library",
+      "version": "23.42"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "package-a==23.42"
+    },
+    {
+      "ref": "package-b==23.42"
+    },
+    {
+      "ref": "package-c==23.42"
+    },
+    {
+      "ref": "root-component"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "root-component",
+      "description": "packages from local paths",
+      "name": "local",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": [
+      {
+        "externalReferences": [   ],
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.4.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.4"
+}

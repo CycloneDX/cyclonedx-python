@@ -1,0 +1,101 @@
+{
+  "components": [
+    {
+      "bom-ref": "toml==0.10.2",
+      "description": "Python Library for Tom's Obvious, Minimal Language",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata: Home-page",
+          "type": "website",
+          "url": "https://github.com/uiri/toml"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "toml",
+      "purl": "pkg:pypi/toml@0.10.2",
+      "type": "library",
+      "version": "0.10.2"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "toml==0.10.2"
+      ],
+      "ref": "root-component"
+    },
+    {
+      "ref": "toml==0.10.2"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "root-component",
+      "description": "environment via Poetry",
+      "externalReferences": [
+        {
+          "comment": "from poetry: documentation",
+          "type": "documentation",
+          "url": "https://oss.acme.org/my-project/docs/"
+        },
+        {
+          "comment": "from poetry url: Bug Tracker",
+          "type": "issue-tracker",
+          "url": "https://oss.acme.org/my-project/bugs/"
+        },
+        {
+          "comment": "from poetry url: Funding",
+          "type": "other",
+          "url": "https://oss.acme.org/my-project/funding/"
+        },
+        {
+          "comment": "from poetry url: Change log",
+          "type": "release-notes",
+          "url": "https://oss.acme.org/my-project/changelog/"
+        },
+        {
+          "comment": "from poetry: repository",
+          "type": "vcs",
+          "url": "https://oss.acme.org/my-project.git"
+        },
+        {
+          "comment": "from poetry: homepage",
+          "type": "website",
+          "url": "https://oss.acme.org/my-project/"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR MIT"
+        }
+      ],
+      "name": "via-poetry",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": [
+      {
+        "externalReferences": [   ],
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.4.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.4"
+}

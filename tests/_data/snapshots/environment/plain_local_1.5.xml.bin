@@ -1,0 +1,116 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.5" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-bom</name>
+        <version>thisVersion-testing</version>
+        <externalReferences>
+          <reference type="build-system">
+            <url>https://github.com/CycloneDX/cyclonedx-python/actions</url>
+          </reference>
+          <reference type="distribution">
+            <url>https://pypi.org/project/cyclonedx-bom/</url>
+          </reference>
+          <reference type="documentation">
+            <url>https://cyclonedx-bom-tool.readthedocs.io/</url>
+          </reference>
+          <reference type="issue-tracker">
+            <url>https://github.com/CycloneDX/cyclonedx-python/issues</url>
+          </reference>
+          <reference type="license">
+            <url>https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE</url>
+          </reference>
+          <reference type="release-notes">
+            <url>https://github.com/CycloneDX/cyclonedx-python/blob/main/CHANGELOG.md</url>
+          </reference>
+          <reference type="vcs">
+            <url>https://github.com/CycloneDX/cyclonedx-python/</url>
+          </reference>
+          <reference type="website">
+            <url>https://github.com/CycloneDX/cyclonedx-python/#readme</url>
+          </reference>
+        </externalReferences>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+        <externalReferences><!-- stripped --></externalReferences>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="root-component">
+      <name>local</name>
+      <version>0.1.0</version>
+      <description>packages from local paths</description>
+    </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="package-a==23.42">
+      <name>package-a</name>
+      <version>23.42</version>
+      <description>some package A</description>
+      <licenses>
+        <license>
+          <name>declared license of 'package-a'</name>
+          <text content-type="text/plain">some license text</text>
+        </license>
+      </licenses>
+      <externalReferences>
+        <reference type="distribution">
+          <url>file://.../tests/_data/infiles/_helpers/local_pckages/a/dist/package_a-23.42-py3-none-any.whl</url>
+          <comment>PackageSource: Archive</comment>
+          <hashes>
+            <hash alg="SHA-256">5c8da28603857d4073c67e751ba3cd526a7ef414135faecfec164e7d01be24be</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="package-b==23.42">
+      <name>package-b</name>
+      <version>23.42</version>
+      <description>some package B</description>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+        <license>
+          <name>License :: OSI Approved :: Apache Software License</name>
+        </license>
+      </licenses>
+      <externalReferences>
+        <reference type="distribution">
+          <url>file://.../tests/_data/infiles/_helpers/local_pckages/b/dist/package-b-23.42.tar.gz</url>
+          <comment>PackageSource: Archive</comment>
+          <hashes>
+            <hash alg="SHA-256">20e983935a800046222a02674ed37baf3e7a4ef7cd40e6033d9c0efaeb73206f</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="package-c==23.42">
+      <name>package-c</name>
+      <version>23.42</version>
+      <description>some package C</description>
+      <licenses>
+        <expression>Apache-2.0 OR MIT</expression>
+      </licenses>
+      <externalReferences>
+        <reference type="distribution">
+          <url>file://.../tests/_data/infiles/_helpers/local_pckages/c</url>
+          <comment>PackageSource: Local</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="package-a==23.42"/>
+    <dependency ref="package-b==23.42"/>
+    <dependency ref="package-c==23.42"/>
+    <dependency ref="root-component"/>
+  </dependencies>
+</bom>

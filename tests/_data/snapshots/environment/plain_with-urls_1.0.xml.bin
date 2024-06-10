@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.0" version="1">
+  <components>
+    <component type="library">
+      <name>packaging</name>
+      <version>23.2</version>
+      <description>Core utilities for Python packages</description>
+      <purl>pkg:pypi/packaging@23.2?vcs_url=git%2Bhttps://github.com/pypa/packaging.git%40b3a5d7d68991c040615d5345bb55f61de53ba176</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>six</name>
+      <version>1.16.0</version>
+      <description>Python 2 and 3 compatibility utilities</description>
+      <purl>pkg:pypi/six@1.16.0</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>tomli</name>
+      <version>2.0.1</version>
+      <description>A lil' TOML parser</description>
+      <purl>pkg:pypi/tomli@2.0.1</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>urllib3</name>
+      <version>2.2.0</version>
+      <description>HTTP library with thread-safe connection pooling, file post, and more.</description>
+      <purl>pkg:pypi/urllib3@2.2.0?download_url=https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip</purl>
+      <modified>false</modified>
+    </component>
+  </components>
+</bom>

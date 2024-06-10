@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.2" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-bom</name>
+        <version>thisVersion-testing</version>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="root-component">
+      <name>via-pdm</name>
+      <version>0.1.0</version>
+      <description>environment via PDM</description>
+      <licenses>
+        <expression>Apache-2.0 OR MIT</expression>
+      </licenses>
+    </component>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="toml==0.10.2">
+      <name>toml</name>
+      <version>0.10.2</version>
+      <description>Python Library for Tom's Obvious, Minimal Language</description>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+      <purl>pkg:pypi/toml@0.10.2</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/uiri/toml</url>
+          <comment>from packaging metadata: Home-page</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="root-component">
+      <dependency ref="toml==0.10.2"/>
+    </dependency>
+    <dependency ref="toml==0.10.2"/>
+  </dependencies>
+</bom>

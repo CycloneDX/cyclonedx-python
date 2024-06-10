@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.1" version="1">
+  <components>
+    <component type="library" bom-ref="ruamel.yaml==0.18.5">
+      <name>ruamel.yaml</name>
+      <version>0.18.5</version>
+      <description>ruamel.yaml is a YAML parser/emitter that supports roundtrip preservation of comments, seq/map flow style, and map key order</description>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+        <license>
+          <name>declared license of 'ruamel.yaml'</name>
+          <text content-type="text/plain">MIT license</text>
+        </license>
+      </licenses>
+      <purl>pkg:pypi/ruamel.yaml@0.18.5</purl>
+      <externalReferences>
+        <reference type="documentation">
+          <url>https://yaml.readthedocs.io/</url>
+          <comment>from packaging metadata Project-URL: Documentation</comment>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://sourceforge.net/p/ruamel-yaml/tickets/</url>
+          <comment>from packaging metadata Project-URL: Tracker</comment>
+        </reference>
+        <reference type="other">
+          <url>https://sourceforge.net/p/ruamel-yaml/code/ci/default/tree/</url>
+          <comment>from packaging metadata Project-URL: Source</comment>
+        </reference>
+        <reference type="website">
+          <url>https://sourceforge.net/p/ruamel-yaml/</url>
+          <comment>from packaging metadata Project-URL: Home</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="ruamel.yaml.clib==0.2.8">
+      <name>ruamel.yaml.clib</name>
+      <version>0.2.8</version>
+      <description>C version of reader, parser and emitter for ruamel.yaml derived from libyaml</description>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+      <purl>pkg:pypi/ruamel.yaml.clib@0.2.8</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://sourceforge.net/p/ruamel-yaml-clib/code/ci/default/tree</url>
+          <comment>from packaging metadata: Home-page</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="ruamel.yaml.jinja2==0.2.7">
+      <name>ruamel.yaml.jinja2</name>
+      <version>0.2.7</version>
+      <description>jinja2 pre and post-processor to update with YAML</description>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+      <purl>pkg:pypi/ruamel.yaml.jinja2@0.2.7</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://sourceforge.net/p/ruamel-yaml-jinja2/code/ci/default/tree</url>
+          <comment>from packaging metadata: Home-page</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+</bom>

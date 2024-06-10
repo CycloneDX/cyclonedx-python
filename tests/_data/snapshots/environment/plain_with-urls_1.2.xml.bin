@@ -1,0 +1,140 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.2" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-bom</name>
+        <version>thisVersion-testing</version>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="root-component">
+      <name>with-urls</name>
+      <version>0.1.0</version>
+      <description>packages from direct urls</description>
+    </component>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="packaging==23.2">
+      <name>packaging</name>
+      <version>23.2</version>
+      <description>Core utilities for Python packages</description>
+      <licenses>
+        <license>
+          <name>License :: OSI Approved :: Apache Software License</name>
+        </license>
+        <license>
+          <name>License :: OSI Approved :: BSD License</name>
+        </license>
+      </licenses>
+      <purl>pkg:pypi/packaging@23.2?vcs_url=git%2Bhttps://github.com/pypa/packaging.git%40b3a5d7d68991c040615d5345bb55f61de53ba176</purl>
+      <externalReferences>
+        <reference type="documentation">
+          <url>https://packaging.pypa.io/</url>
+          <comment>from packaging metadata Project-URL: Documentation</comment>
+        </reference>
+        <reference type="other">
+          <url>https://github.com/pypa/packaging</url>
+          <comment>from packaging metadata Project-URL: Source</comment>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/pypa/packaging.git#b3a5d7d68991c040615d5345bb55f61de53ba176</url>
+          <comment>PackageSource: VCS 'git'</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="six==1.16.0">
+      <name>six</name>
+      <version>1.16.0</version>
+      <description>Python 2 and 3 compatibility utilities</description>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+      <purl>pkg:pypi/six@1.16.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl</url>
+          <comment>PackageSource: Archive</comment>
+        </reference>
+        <reference type="website">
+          <url>https://github.com/benjaminp/six</url>
+          <comment>from packaging metadata: Home-page</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="tomli==2.0.1">
+      <name>tomli</name>
+      <version>2.0.1</version>
+      <description>A lil' TOML parser</description>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+      <purl>pkg:pypi/tomli@2.0.1</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://files.pythonhosted.org/packages/c0/3f/d7af728f075fb08564c5949a9c95e44352e23dee646869fa104a3b2060a3/tomli-2.0.1.tar.gz</url>
+          <comment>PackageSource: Archive</comment>
+        </reference>
+        <reference type="other">
+          <url>https://github.com/hukkin/tomli/blob/master/CHANGELOG.md</url>
+          <comment>from packaging metadata Project-URL: Changelog</comment>
+        </reference>
+        <reference type="website">
+          <url>https://github.com/hukkin/tomli</url>
+          <comment>from packaging metadata Project-URL: Homepage</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="urllib3==2.2.0">
+      <name>urllib3</name>
+      <version>2.2.0</version>
+      <description>HTTP library with thread-safe connection pooling, file post, and more.</description>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+      <purl>pkg:pypi/urllib3@2.2.0?download_url=https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip</url>
+          <comment>PackageSource: Archive</comment>
+        </reference>
+        <reference type="documentation">
+          <url>https://urllib3.readthedocs.io</url>
+          <comment>from packaging metadata Project-URL: Documentation</comment>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/urllib3/urllib3/issues</url>
+          <comment>from packaging metadata Project-URL: Issue tracker</comment>
+        </reference>
+        <reference type="other">
+          <url>https://github.com/urllib3/urllib3</url>
+          <comment>from packaging metadata Project-URL: Code</comment>
+        </reference>
+        <reference type="other">
+          <url>https://github.com/urllib3/urllib3/blob/main/CHANGES.rst</url>
+          <comment>from packaging metadata Project-URL: Changelog</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="packaging==23.2"/>
+    <dependency ref="root-component">
+      <dependency ref="six==1.16.0"/>
+    </dependency>
+    <dependency ref="six==1.16.0"/>
+    <dependency ref="tomli==2.0.1"/>
+    <dependency ref="urllib3==2.2.0"/>
+  </dependencies>
+</bom>

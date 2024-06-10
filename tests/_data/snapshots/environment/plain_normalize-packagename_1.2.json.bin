@@ -1,0 +1,143 @@
+{
+  "components": [
+    {
+      "bom-ref": "ruamel.yaml==0.18.5",
+      "description": "ruamel.yaml is a YAML parser/emitter that supports roundtrip preservation of comments, seq/map flow style, and map key order",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://yaml.readthedocs.io/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Tracker",
+          "type": "issue-tracker",
+          "url": "https://sourceforge.net/p/ruamel-yaml/tickets/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Source",
+          "type": "other",
+          "url": "https://sourceforge.net/p/ruamel-yaml/code/ci/default/tree/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Home",
+          "type": "website",
+          "url": "https://sourceforge.net/p/ruamel-yaml/"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        },
+        {
+          "license": {
+            "name": "declared license of 'ruamel.yaml'",
+            "text": {
+              "content": "MIT license",
+              "contentType": "text/plain"
+            }
+          }
+        }
+      ],
+      "name": "ruamel.yaml",
+      "purl": "pkg:pypi/ruamel.yaml@0.18.5",
+      "type": "library",
+      "version": "0.18.5"
+    },
+    {
+      "bom-ref": "ruamel.yaml.clib==0.2.8",
+      "description": "C version of reader, parser and emitter for ruamel.yaml derived from libyaml",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata: Home-page",
+          "type": "website",
+          "url": "https://sourceforge.net/p/ruamel-yaml-clib/code/ci/default/tree"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "ruamel.yaml.clib",
+      "purl": "pkg:pypi/ruamel.yaml.clib@0.2.8",
+      "type": "library",
+      "version": "0.2.8"
+    },
+    {
+      "bom-ref": "ruamel.yaml.jinja2==0.2.7",
+      "description": "jinja2 pre and post-processor to update with YAML",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata: Home-page",
+          "type": "website",
+          "url": "https://sourceforge.net/p/ruamel-yaml-jinja2/code/ci/default/tree"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "ruamel.yaml.jinja2",
+      "purl": "pkg:pypi/ruamel.yaml.jinja2@0.2.7",
+      "type": "library",
+      "version": "0.2.7"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "ruamel.yaml==0.18.5"
+      ],
+      "ref": "root-component"
+    },
+    {
+      "ref": "ruamel.yaml.clib==0.2.8"
+    },
+    {
+      "dependsOn": [
+        "ruamel.yaml==0.18.5"
+      ],
+      "ref": "ruamel.yaml.jinja2==0.2.7"
+    },
+    {
+      "dependsOn": [
+        "ruamel.yaml.clib==0.2.8",
+        "ruamel.yaml.jinja2==0.2.7"
+      ],
+      "ref": "ruamel.yaml==0.18.5"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "root-component",
+      "description": "packages with non-normalized names",
+      "name": "normalize-packagename",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "tools": [
+      {
+        "name": "cyclonedx-bom",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.2b.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.2"
+}

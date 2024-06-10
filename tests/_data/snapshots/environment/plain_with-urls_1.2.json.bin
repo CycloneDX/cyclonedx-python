@@ -1,0 +1,187 @@
+{
+  "components": [
+    {
+      "bom-ref": "packaging==23.2",
+      "description": "Core utilities for Python packages",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://packaging.pypa.io/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Source",
+          "type": "other",
+          "url": "https://github.com/pypa/packaging"
+        },
+        {
+          "comment": "PackageSource: VCS 'git'",
+          "type": "vcs",
+          "url": "https://github.com/pypa/packaging.git#b3a5d7d68991c040615d5345bb55f61de53ba176"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "name": "License :: OSI Approved :: Apache Software License"
+          }
+        },
+        {
+          "license": {
+            "name": "License :: OSI Approved :: BSD License"
+          }
+        }
+      ],
+      "name": "packaging",
+      "purl": "pkg:pypi/packaging@23.2?vcs_url=git%2Bhttps://github.com/pypa/packaging.git%40b3a5d7d68991c040615d5345bb55f61de53ba176",
+      "type": "library",
+      "version": "23.2"
+    },
+    {
+      "bom-ref": "six==1.16.0",
+      "description": "Python 2 and 3 compatibility utilities",
+      "externalReferences": [
+        {
+          "comment": "PackageSource: Archive",
+          "type": "distribution",
+          "url": "https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from packaging metadata: Home-page",
+          "type": "website",
+          "url": "https://github.com/benjaminp/six"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "six",
+      "purl": "pkg:pypi/six@1.16.0",
+      "type": "library",
+      "version": "1.16.0"
+    },
+    {
+      "bom-ref": "tomli==2.0.1",
+      "description": "A lil' TOML parser",
+      "externalReferences": [
+        {
+          "comment": "PackageSource: Archive",
+          "type": "distribution",
+          "url": "https://files.pythonhosted.org/packages/c0/3f/d7af728f075fb08564c5949a9c95e44352e23dee646869fa104a3b2060a3/tomli-2.0.1.tar.gz"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Changelog",
+          "type": "other",
+          "url": "https://github.com/hukkin/tomli/blob/master/CHANGELOG.md"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Homepage",
+          "type": "website",
+          "url": "https://github.com/hukkin/tomli"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "tomli",
+      "purl": "pkg:pypi/tomli@2.0.1",
+      "type": "library",
+      "version": "2.0.1"
+    },
+    {
+      "bom-ref": "urllib3==2.2.0",
+      "description": "HTTP library with thread-safe connection pooling, file post, and more.",
+      "externalReferences": [
+        {
+          "comment": "PackageSource: Archive",
+          "type": "distribution",
+          "url": "https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://urllib3.readthedocs.io"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Issue tracker",
+          "type": "issue-tracker",
+          "url": "https://github.com/urllib3/urllib3/issues"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Code",
+          "type": "other",
+          "url": "https://github.com/urllib3/urllib3"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Changelog",
+          "type": "other",
+          "url": "https://github.com/urllib3/urllib3/blob/main/CHANGES.rst"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "urllib3",
+      "purl": "pkg:pypi/urllib3@2.2.0?download_url=https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip",
+      "type": "library",
+      "version": "2.2.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "packaging==23.2"
+    },
+    {
+      "dependsOn": [
+        "six==1.16.0"
+      ],
+      "ref": "root-component"
+    },
+    {
+      "ref": "six==1.16.0"
+    },
+    {
+      "ref": "tomli==2.0.1"
+    },
+    {
+      "ref": "urllib3==2.2.0"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "root-component",
+      "description": "packages from direct urls",
+      "name": "with-urls",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "tools": [
+      {
+        "name": "cyclonedx-bom",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.2b.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.2"
+}

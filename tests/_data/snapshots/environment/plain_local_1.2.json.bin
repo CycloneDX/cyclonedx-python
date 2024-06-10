@@ -1,0 +1,113 @@
+{
+  "components": [
+    {
+      "bom-ref": "package-a==23.42",
+      "description": "some package A",
+      "externalReferences": [
+        {
+          "comment": "PackageSource: Archive",
+          "type": "distribution",
+          "url": "file://.../tests/_data/infiles/_helpers/local_pckages/a/dist/package_a-23.42-py3-none-any.whl"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "name": "declared license of 'package-a'",
+            "text": {
+              "content": "some license text",
+              "contentType": "text/plain"
+            }
+          }
+        }
+      ],
+      "name": "package-a",
+      "type": "library",
+      "version": "23.42"
+    },
+    {
+      "bom-ref": "package-b==23.42",
+      "description": "some package B",
+      "externalReferences": [
+        {
+          "comment": "PackageSource: Archive",
+          "type": "distribution",
+          "url": "file://.../tests/_data/infiles/_helpers/local_pckages/b/dist/package-b-23.42.tar.gz"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        },
+        {
+          "license": {
+            "name": "License :: OSI Approved :: Apache Software License"
+          }
+        }
+      ],
+      "name": "package-b",
+      "type": "library",
+      "version": "23.42"
+    },
+    {
+      "bom-ref": "package-c==23.42",
+      "description": "some package C",
+      "externalReferences": [
+        {
+          "comment": "PackageSource: Local",
+          "type": "distribution",
+          "url": "file://.../tests/_data/infiles/_helpers/local_pckages/c"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR MIT"
+        }
+      ],
+      "name": "package-c",
+      "type": "library",
+      "version": "23.42"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "package-a==23.42"
+    },
+    {
+      "ref": "package-b==23.42"
+    },
+    {
+      "ref": "package-c==23.42"
+    },
+    {
+      "ref": "root-component"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "root-component",
+      "description": "packages from local paths",
+      "name": "local",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "tools": [
+      {
+        "name": "cyclonedx-bom",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.2b.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.2"
+}

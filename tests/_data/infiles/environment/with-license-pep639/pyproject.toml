@@ -1,0 +1,15 @@
+[project]
+# https://packaging.python.org/en/latest/specifications/declaring-project-metadata/#declaring-project-metadata
+name = "with-extras"
+version = "0.1.0"
+description = "depenndencies with license declaration accoring to PEP 639"
+
+dependencies = [
+  # with License-Expression
+  "attrs==23.1.0",
+  # with License-File
+  "boolean.py==4.0",
+  "jsonpointer==2.4",
+  "license_expression==30.2.0",
+  "lxml==4.9.4",
+]
