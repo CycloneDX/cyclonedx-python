@@ -67,7 +67,7 @@ The full documentation can be issued by running with ``environment --help``:
     options:
       -h, --help            show this help message and exit
      --PEP-639              Enable license gathering according to PEP 639 (improving license clarity with better package metadata).
-                            The behaviour may change during the draft development of the PEP.
+                            The behavior may change during the draft development of the PEP.
      --gather-license-texts
                             Enable license text gathering.
       --pyproject <file>    Path to the root component's `pyproject.toml` file.
