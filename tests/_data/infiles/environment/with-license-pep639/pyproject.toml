@@ -6,10 +6,10 @@ description = "depenndencies with license declaration accoring to PEP 639"
 
 dependencies = [
   # with License-Expression
-  "attrs==23.1.0",
+  "attrs",
   # with License-File
-  "boolean.py==4.0",
-  "jsonpointer==2.4",
-  "license_expression==30.2.0",
-  "lxml==4.9.4",
+  "boolean.py",
+  "jsonpointer",
+  "license_expression",
+  "lxml",
 ]
