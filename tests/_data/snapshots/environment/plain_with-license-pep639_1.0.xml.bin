@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.0" version="1">
+  <components>
+    <component type="library">
+      <name>attrs</name>
+      <version>23.2.0</version>
+      <description>Classes Without Boilerplate</description>
+      <purl>pkg:pypi/attrs@23.2.0</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>boolean.py</name>
+      <version>4.0</version>
+      <description>Define boolean algebras, create and parse boolean expressions and create custom boolean DSL.</description>
+      <purl>pkg:pypi/boolean.py@4.0</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>jsonpointer</name>
+      <version>2.4</version>
+      <description>Identify specific nodes in a JSON document (RFC 6901) </description>
+      <purl>pkg:pypi/jsonpointer@2.4</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>license-expression</name>
+      <version>30.3.0</version>
+      <description>license-expression is a comprehensive utility library to parse, compare, simplify and normalize license expressions (such as SPDX license expressions) using boolean logic.</description>
+      <purl>pkg:pypi/license-expression@30.3.0</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>lxml</name>
+      <version>5.2.2</version>
+      <description>Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API.</description>
+      <purl>pkg:pypi/lxml@5.2.2</purl>
+      <modified>false</modified>
+    </component>
+  </components>
+</bom>

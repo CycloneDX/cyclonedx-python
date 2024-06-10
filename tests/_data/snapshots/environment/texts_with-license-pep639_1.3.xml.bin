@@ -1,0 +1,155 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.3" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-bom</name>
+        <version>thisVersion-testing</version>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="root-component">
+      <name>with-extras</name>
+      <version>0.1.0</version>
+      <description>depenndencies with license declaration accoring to PEP 639</description>
+    </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="attrs==23.2.0">
+      <name>attrs</name>
+      <version>23.2.0</version>
+      <description>Classes Without Boilerplate</description>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+      <purl>pkg:pypi/attrs@23.2.0</purl>
+      <externalReferences>
+        <reference type="documentation">
+          <url>https://www.attrs.org/</url>
+          <comment>from packaging metadata Project-URL: Documentation</comment>
+        </reference>
+        <reference type="other">
+          <url>https://github.com/sponsors/hynek</url>
+          <comment>from packaging metadata Project-URL: Funding</comment>
+        </reference>
+        <reference type="other">
+          <url>https://tidelift.com/subscription/pkg/pypi-attrs?utm_source=pypi-attrs&amp;utm_medium=pypi</url>
+          <comment>from packaging metadata Project-URL: Tidelift</comment>
+        </reference>
+        <reference type="other">
+          <url>https://www.attrs.org/en/stable/changelog.html</url>
+          <comment>from packaging metadata Project-URL: Changelog</comment>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/python-attrs/attrs</url>
+          <comment>from packaging metadata Project-URL: GitHub</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="boolean.py==4.0">
+      <name>boolean.py</name>
+      <version>4.0</version>
+      <description>Define boolean algebras, create and parse boolean expressions and create custom boolean DSL.</description>
+      <licenses>
+        <license>
+          <id>BSD-2-Clause</id>
+        </license>
+      </licenses>
+      <purl>pkg:pypi/boolean.py@4.0</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/bastikr/boolean.py</url>
+          <comment>from packaging metadata: Home-page</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="jsonpointer==2.4">
+      <name>jsonpointer</name>
+      <version>2.4</version>
+      <description>Identify specific nodes in a JSON document (RFC 6901) </description>
+      <licenses>
+        <license>
+          <name>License :: OSI Approved :: BSD License</name>
+        </license>
+        <license>
+          <name>declared license of 'jsonpointer'</name>
+          <text content-type="text/plain">Modified BSD License</text>
+        </license>
+      </licenses>
+      <purl>pkg:pypi/jsonpointer@2.4</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/stefankoegl/python-json-pointer</url>
+          <comment>from packaging metadata: Home-page</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="license-expression==30.3.0">
+      <name>license-expression</name>
+      <version>30.3.0</version>
+      <description>license-expression is a comprehensive utility library to parse, compare, simplify and normalize license expressions (such as SPDX license expressions) using boolean logic.</description>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:pypi/license-expression@30.3.0</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/nexB/license-expression</url>
+          <comment>from packaging metadata: Home-page</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="lxml==5.2.2">
+      <name>lxml</name>
+      <version>5.2.2</version>
+      <description>Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API.</description>
+      <licenses>
+        <license>
+          <id>BSD-3-Clause</id>
+        </license>
+        <license>
+          <name>License :: OSI Approved :: BSD License</name>
+        </license>
+      </licenses>
+      <purl>pkg:pypi/lxml@5.2.2</purl>
+      <externalReferences>
+        <reference type="other">
+          <url>https://github.com/lxml/lxml</url>
+          <comment>from packaging metadata Project-URL: Source</comment>
+        </reference>
+        <reference type="website">
+          <url>https://lxml.de/</url>
+          <comment>from packaging metadata: Home-page</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="attrs==23.2.0"/>
+    <dependency ref="boolean.py==4.0"/>
+    <dependency ref="jsonpointer==2.4"/>
+    <dependency ref="license-expression==30.3.0">
+      <dependency ref="boolean.py==4.0"/>
+    </dependency>
+    <dependency ref="lxml==5.2.2"/>
+    <dependency ref="root-component">
+      <dependency ref="attrs==23.2.0"/>
+      <dependency ref="boolean.py==4.0"/>
+      <dependency ref="jsonpointer==2.4"/>
+      <dependency ref="license-expression==30.3.0"/>
+      <dependency ref="lxml==5.2.2"/>
+    </dependency>
+  </dependencies>
+</bom>

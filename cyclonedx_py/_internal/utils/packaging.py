@@ -44,8 +44,8 @@ def metadata2licenses(metadata: 'PackageMetadata') -> Generator['License', None,
         # see spec: https://packaging.python.org/en/latest/specifications/core-metadata/#classifier-multiple-use
         classifiers: List[str] = metadata.get_all('Classifier')  # type:ignore[assignment]
         yield from classifiers2licenses(classifiers, lfac, lack)
-    for mlicense in metadata.get_all('License', ()):
-        # see spec:  https://packaging.python.org/en/latest/specifications/core-metadata/#license
+    for mlicense in set(metadata.get_all('License', ())):
+        # see spec: https://packaging.python.org/en/latest/specifications/core-metadata/#license
         if len(mlicense) <= 0:
             continue
         license = lfac.make_from_string(mlicense,
@@ -57,8 +57,6 @@ def metadata2licenses(metadata: 'PackageMetadata') -> Generator['License', None,
                                      text=AttachedText(content=mlicense))
         else:
             yield license
-    # TODO: iterate over "License-File" declarations and read them
-    # for mlfile in  metadata.get_all('License-File'): ...
 
 
 def metadata2extrefs(metadata: 'PackageMetadata') -> Generator['ExternalReference', None, None]:

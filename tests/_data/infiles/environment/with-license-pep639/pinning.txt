@@ -1,0 +1,5 @@
+attrs==23.2.0
+boolean.py==4.0
+jsonpointer==2.4
+license-expression==30.3.0
+lxml==5.2.2

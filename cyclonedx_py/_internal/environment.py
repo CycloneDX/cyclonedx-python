@@ -36,6 +36,7 @@ from .cli_common import add_argument_mc_type, add_argument_pyproject
 from .utils.cdx import licenses_fixup, make_bom
 from .utils.packaging import metadata2extrefs, metadata2licenses, normalize_packagename
 from .utils.pep610 import PackageSourceArchive, PackageSourceVcs, packagesource2extref, packagesource4dist
+from .utils.pep639 import dist2licenses as dist2licenses_pep639
 from .utils.pyproject import pyproject2component, pyproject2dependencies, pyproject_load
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -102,6 +103,16 @@ class EnvironmentBB(BomBuilder):
                  • Build an SBOM from PDM environment:
                        $ %(prog)s "$(pdm info --python)"
                """)
+        p.add_argument('--PEP-639',
+                       action='store_true',
+                       dest='pep639',
+                       help='Enable license gathering according to PEP 639 '
+                            '(improving license clarity with better package metadata).\n'
+                            'The behavior may change during the draft development of the PEP.')
+        p.add_argument('--gather-license-texts',
+                       action='store_true',
+                       dest='gather_license_texts',
+                       help='Enable license text gathering.')
         add_argument_pyproject(p)
         add_argument_mc_type(p)
         # TODO possible additional switch:
@@ -118,8 +129,12 @@ class EnvironmentBB(BomBuilder):
 
     def __init__(self, *,
                  logger: 'Logger',
+                 pep639: bool,
+                 gather_license_texts: bool,
                  **__: Any) -> None:
         self._logger = logger
+        self._pep639 = pep639
+        self._gather_license_texts = gather_license_texts
 
     def __call__(self, *,  # type:ignore[override]
                  python: Optional[str],
@@ -167,6 +182,11 @@ class EnvironmentBB(BomBuilder):
                 external_references=metadata2extrefs(dist_meta),
                 # path of dist-package on disc? naaa... a package may have multiple files/folders on disc
             )
+            if self._pep639:
+                component.licenses.update(
+                    dist2licenses_pep639(dist,
+                                         self._gather_license_texts,
+                                         self._logger))
             del dist_meta, dist_name, dist_version
             self.__component_add_extref_and_purl(component, packagesource4dist(dist))
             all_components[normalize_packagename(component.name)] = (

@@ -1,0 +1,1013 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.2" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-bom</name>
+        <version>thisVersion-testing</version>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="root-component">
+      <name>with-extras</name>
+      <version>0.1.0</version>
+      <description>depenndencies with license declaration accoring to PEP 639</description>
+    </component>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="attrs==23.2.0">
+      <name>attrs</name>
+      <version>23.2.0</version>
+      <description>Classes Without Boilerplate</description>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+        <license>
+          <name>declared license file: LICENSE</name>
+          <text content-type="text/plain">The MIT License (MIT)
+
+Copyright (c) 2015 Hynek Schlawack and the attrs contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+</text>
+        </license>
+      </licenses>
+      <purl>pkg:pypi/attrs@23.2.0</purl>
+      <externalReferences>
+        <reference type="documentation">
+          <url>https://www.attrs.org/</url>
+          <comment>from packaging metadata Project-URL: Documentation</comment>
+        </reference>
+        <reference type="other">
+          <url>https://github.com/sponsors/hynek</url>
+          <comment>from packaging metadata Project-URL: Funding</comment>
+        </reference>
+        <reference type="other">
+          <url>https://tidelift.com/subscription/pkg/pypi-attrs?utm_source=pypi-attrs&amp;utm_medium=pypi</url>
+          <comment>from packaging metadata Project-URL: Tidelift</comment>
+        </reference>
+        <reference type="other">
+          <url>https://www.attrs.org/en/stable/changelog.html</url>
+          <comment>from packaging metadata Project-URL: Changelog</comment>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/python-attrs/attrs</url>
+          <comment>from packaging metadata Project-URL: GitHub</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="boolean.py==4.0">
+      <name>boolean.py</name>
+      <version>4.0</version>
+      <description>Define boolean algebras, create and parse boolean expressions and create custom boolean DSL.</description>
+      <licenses>
+        <license>
+          <id>BSD-2-Clause</id>
+        </license>
+        <license>
+          <name>declared license file: CHANGELOG.rst</name>
+          <text content-type="text/prs.fallenstein.rst">
+Changelog
+=========
+
+
+next
+----
+
+
+4.0 (2022-05-05)
+----------------
+
+* API changes
+
+ * Drop support for Python 2.
+ * Test on Python 3.10
+ * Make Expression.sort_order an instance attributes and not a class attribute
+
+* Misc.
+
+ * Correct licensing documentation
+ * Improve docstringf and apply minor refactorings
+ * Adopt black code style and isort for imports
+ * Drop Travis and use GitHub actions for CI
+
+
+3.8 (2020-06-10)
+----------------
+
+* API changes
+
+ * Add support for evaluation of boolean expression.
+   Thank you to Lars van Gemerden @gemerden
+
+* Bug fixes
+
+ * Fix parsing of tokens that have a number as the first character. 
+   Thank you to Jeff Cohen @ jcohen28
+ * Restore proper Python 2 compatibility. 
+   Thank you to Benjy Weinberger @benjyw
+
+* Improve documentation
+
+ * Add pointers to Linux distro packages.
+   Thank you to Max Mehl @mxmehl and Carmen Bianca Bakker @carmenbianca
+ * Fix typo.
+   Thank you to Gabriel Niebler @der-gabe
+
+
+3.7 (2019-10-04)
+----------------
+
+* API changes
+
+ * Add new sort argument to simplify() to optionally not sort when simplifying
+   expressions (e.g. not applying &quot;commutativity&quot;). Thank you to Steven Esser
+   @majurg for this
+ * Add new argument to tokenizer to optionally accept extra characters in symbol
+   tokens. Thank you to @carpie for this
+
+
+3.6 (2018-08-06)
+----------------
+
+* No API changes
+
+* Bug fixes
+
+ * Fix De Morgan's laws effect on double negation propositions. Thank you to Douglas Cardoso for this
+ * Improve error checking when parsing
+
+
+3.5 (Nov 1, 2017)
+-----------------
+
+* No API changes
+
+* Bug fixes
+
+ * Documentation updates and add testing for Python 3.6. Thank you to Alexander Lisianoi @alisianoi
+ * Improve testng and expression equivalence checks
+ * Improve subs() method to an expression 
+
+ 
+
+3.4 (May 12, 2017)
+------------------
+
+* No API changes
+
+* Bug fixes and improvements
+
+ * Fix various documentation typos and improve tests . Thank you to Alexander Lisianoi @alisianoi
+ * Fix handling for literals vs. symbols in negations Thank you to @YaronK
+
+
+3.3 (2017-02-09)
+----------------
+
+* API changes
+
+ * #40 and #50 Expression.subs() now takes 'default' thanks to @kronuz
+ * #45 simplify=False is now the default for parse and related functions or methods.
+ * #40 Use &quot;&amp;&quot; and &quot;|&quot; as default operators
+
+* Bug fixes
+
+ * #60 Fix bug for &quot;a or b c&quot; which is not a valid expression
+ * #58 Fix math formula display in docs
+ * Improve handling of parse errors
+
+
+2.0.0 (2016-05-11)
+------------------
+
+* API changes
+
+ * New algebra definition. Refactored class hierarchy. Improved parsing.
+
+* New features
+
+ * possibility to subclass algebra definition
+ * new normal forms shortcuts for DNF and CNF.
+
+
+1.1 (2016-04-06)
+------------------
+
+* Initial release on Pypi.
+</text>
+        </license>
+        <license>
+          <name>declared license file: LICENSE.txt</name>
+          <text content-type="text/plain">Copyright (c) Sebastian Kraemer, basti.kr@gmail.com and others
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation and/or
+other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+</text>
+        </license>
+        <license>
+          <name>declared license file: README.rst</name>
+          <text content-type="text/prs.fallenstein.rst">boolean.py
+==========
+
+&quot;boolean.py&quot; is a small library implementing a boolean algebra. It
+defines two base elements, TRUE and FALSE, and a Symbol class that can
+take on one of these two values. Calculations are done in terms of AND,
+OR and NOT - other compositions like XOR and NAND are not implemented
+but can be emulated with AND or and NOT. Expressions are constructed
+from parsed strings or in Python.
+
+It runs on Python 3.6+
+You can use older version 3.x for Python 2.7+ support.
+
+https://github.com/bastikr/boolean.py
+
+Build status: |Build Status|
+
+
+Example
+-------
+
+::
+
+    &gt;&gt;&gt; import boolean
+    &gt;&gt;&gt; algebra = boolean.BooleanAlgebra()
+    &gt;&gt;&gt; expression1 = algebra.parse(u'apple and (oranges or banana) and not banana', simplify=False)
+    &gt;&gt;&gt; expression1
+    AND(Symbol('apple'), OR(Symbol('oranges'), Symbol('banana')), NOT(Symbol('banana')))
+
+    &gt;&gt;&gt; expression2 = algebra.parse('(oranges | banana) and not banana &amp; apple', simplify=True)
+    &gt;&gt;&gt; expression2
+    AND(Symbol('apple'), NOT(Symbol('banana')), Symbol('oranges'))
+
+    &gt;&gt;&gt; expression1 == expression2
+    False
+    &gt;&gt;&gt; expression1.simplify() == expression2
+    True
+
+
+Documentation
+-------------
+
+http://readthedocs.org/docs/booleanpy/en/latest/
+
+
+Installation
+------------
+
+Installation via pip
+~~~~~~~~~~~~~~~~~~~~
+
+To install boolean.py, you need to have the following pieces of software
+on your computer:
+
+-  Python 3.6+
+-  pip
+
+You then only need to run the following command:
+
+``pip install boolean.py``
+
+
+Installation via package managers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+There are packages available for easy install on some operating systems.
+You are welcome to help us package this tool for more distributions!
+
+-  boolean.py has been packaged as Arch Linux, Fedora, openSus,
+   nixpkgs, Guix, DragonFly and FreeBSD 
+   `packages &lt;https://repology.org/project/python:boolean.py/versions&gt;`__ .
+
+In particular:
+
+-  Arch Linux (AUR):
+   `python-boolean.py &lt;https://aur.archlinux.org/packages/python-boolean.py/&gt;`__
+-  Fedora:
+   `python-boolean.py &lt;https://apps.fedoraproject.org/packages/python-boolean.py&gt;`__
+-  openSUSE:
+   `python-boolean.py &lt;https://software.opensuse.org/package/python-boolean.py&gt;`__
+
+
+Testing
+-------
+
+Test ``boolean.py`` with your current Python environment:
+
+``python setup.py test``
+
+Test with all of the supported Python environments using ``tox``:
+
+::
+
+    pip install -r requirements-dev.txt
+    tox
+
+If ``tox`` throws ``InterpreterNotFound``, limit it to python
+interpreters that are actually installed on your machine:
+
+::
+
+    tox -e py36
+
+Alternatively use pytest.
+
+
+License
+-------
+
+Copyright (c) Sebastian Kraemer, basti.kr@gmail.com and others
+SPDX-License-Identifier: BSD-2-Clause
+
+.. |Build Status| image:: https://travis-ci.org/bastikr/boolean.py.svg?branch=master
+   :target: https://travis-ci.org/bastikr/boolean.py
+</text>
+        </license>
+      </licenses>
+      <purl>pkg:pypi/boolean.py@4.0</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/bastikr/boolean.py</url>
+          <comment>from packaging metadata: Home-page</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="jsonpointer==2.4">
+      <name>jsonpointer</name>
+      <version>2.4</version>
+      <description>Identify specific nodes in a JSON document (RFC 6901) </description>
+      <licenses>
+        <license>
+          <name>License :: OSI Approved :: BSD License</name>
+        </license>
+        <license>
+          <name>declared license file: AUTHORS</name>
+          <text content-type="text/plain">Stefan Kögl &lt;stefan@skoegl.net&gt;
+Alexander Shorin &lt;kxepal@gmail.com&gt;
+Christopher J. White &lt;chris@grierwhite.com&gt;
+</text>
+        </license>
+        <license>
+          <name>declared license file: LICENSE.txt</name>
+          <text content-type="text/plain">Copyright (c) 2011 Stefan Kögl &lt;stefan@skoegl.net&gt;
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions
+are met:
+
+1. Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+3. The name of the author may not be used to endorse or promote products
+   derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+</text>
+        </license>
+        <license>
+          <name>declared license of 'jsonpointer'</name>
+          <text content-type="text/plain">Modified BSD License</text>
+        </license>
+      </licenses>
+      <purl>pkg:pypi/jsonpointer@2.4</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/stefankoegl/python-json-pointer</url>
+          <comment>from packaging metadata: Home-page</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="license-expression==30.3.0">
+      <name>license-expression</name>
+      <version>30.3.0</version>
+      <description>license-expression is a comprehensive utility library to parse, compare, simplify and normalize license expressions (such as SPDX license expressions) using boolean logic.</description>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+        <license>
+          <name>declared license file: AUTHORS.rst</name>
+          <text content-type="text/prs.fallenstein.rst">The following organizations or individuals have contributed to this code:
+
+- Ayan Sinha Mahapatra @AyanSinhaMahapatra
+- Carmen Bianca Bakker @carmenbianca
+- Chin-Yeung Li @chinyeungli
+- Dennis Clark @DennisClark
+- John Horan @johnmhoran
+- Jono Yang @JonoYang
+- Max Mehl @mxmehl
+- nexB Inc. @nexB
+- Peter Kolbus @pkolbus
+- Philippe Ombredanne @pombredanne
+- Sebastian Schuberth @sschuberth
+- Steven Esser @majurg
+- Thomas Druez @tdruez
+</text>
+        </license>
+        <license>
+          <name>declared license file: CHANGELOG.rst</name>
+          <text content-type="text/prs.fallenstein.rst">Changelog
+=========
+
+v30.3.0 - 2024-03-18
+--------------------
+
+This is a minor release without API changes:
+
+- Use latest skeleton
+- Update license list to latest ScanCode and SPDX 3.23
+- Drop support for Python 3.7
+
+v30.2.0 - 2023-11-29
+--------------------
+
+This is a minor release without API changes:
+
+- Use latest skeleton
+- Update license list to latest ScanCode and SPDX 3.22
+- Add Python 3.12 support in CI
+
+
+v30.1.1 - 2023-01-16
+----------------------
+
+This is a minor dot release without API changes
+
+- Use latest skeleton
+- Update license list to latest ScanCode and SPDX 3.20
+
+
+v30.1.0 - 2023-01-16
+----------------------
+
+This is a minor release without API changes
+
+- Use latest skeleton (and updated configure script)
+- Update license list to latest ScanCode and SPDX 3.19
+- Use correct syntax for python_require
+- Drop using Travis and Appveyor
+- Drop support for Python 3.7 and add Python 3.11 in CI
+
+
+v30.0.0 - 2022-05-10
+----------------------
+
+This is a minor release with API changes
+
+- Use latest skeleton (and updated configure script)
+- Drop using calver
+- Improve error checking when combining licenses
+
+
+
+v21.6.14 - 2021-06-14
+----------------------
+
+Added
+~~~~~
+
+- Switch to calver for package versioning to better convey the currency of the
+  bundled data.
+
+- Include https://scancode-licensedb.aboutcode.org/ licenses list with
+  ScanCode (v21.6.7) and SPDX licenses (v3.13) keys. Add new functions to
+  create Licensing using these licenses as LicenseSymbol.
+
+- Add new License.dedup() method to deduplicate and simplify license expressions
+  without over simplifying.
+
+- Add new License.validate() method to return a new ExpressionInfo object with
+  details on a license expression validation.
+
+
+Changed
+~~~~~~~
+- Drop support for Python 2.
+- Adopt the project skeleton from https://github.com/nexB/skeleton
+  and its new configure script
+
+
+v1.2 - 2019-11-14
+------------------
+Added
+~~~~~
+- Add ability to render WITH expression wrapped in parenthesis
+
+Fixes
+~~~~~
+- Fix anomalous backslashes in strings
+
+Changed
+~~~~~~~
+- Update the thirdparty directory structure.
+
+
+v1.0 - 2019-10-16
+------------------
+Added
+~~~~~
+- New version of boolean.py library
+- Add ability to leave license expressions unsorted when simplifying
+
+Changed
+~~~~~~~
+- updated travis CI settings
+
+
+v0.999 - 2019-04-29
+--------------------
+- Initial release
+- license-expression is small utility library to parse, compare and
+  simplify and normalize license expressions.
+
+</text>
+        </license>
+        <license>
+          <name>declared license file: CODE_OF_CONDUCT.rst</name>
+          <text content-type="text/prs.fallenstein.rst">Contributor Covenant Code of Conduct
+====================================
+
+Our Pledge
+----------
+
+In the interest of fostering an open and welcoming environment, we as
+contributors and maintainers pledge to making participation in our
+project and our community a harassment-free experience for everyone,
+regardless of age, body size, disability, ethnicity, gender identity and
+expression, level of experience, education, socio-economic status,
+nationality, personal appearance, race, religion, or sexual identity and
+orientation.
+
+Our Standards
+-------------
+
+Examples of behavior that contributes to creating a positive environment
+include:
+
+-  Using welcoming and inclusive language
+-  Being respectful of differing viewpoints and experiences
+-  Gracefully accepting constructive criticism
+-  Focusing on what is best for the community
+-  Showing empathy towards other community members
+
+Examples of unacceptable behavior by participants include:
+
+-  The use of sexualized language or imagery and unwelcome sexual
+   attention or advances
+-  Trolling, insulting/derogatory comments, and personal or political
+   attacks
+-  Public or private harassment
+-  Publishing others’ private information, such as a physical or
+   electronic address, without explicit permission
+-  Other conduct which could reasonably be considered inappropriate in a
+   professional setting
+
+Our Responsibilities
+--------------------
+
+Project maintainers are responsible for clarifying the standards of
+acceptable behavior and are expected to take appropriate and fair
+corrective action in response to any instances of unacceptable behavior.
+
+Project maintainers have the right and responsibility to remove, edit,
+or reject comments, commits, code, wiki edits, issues, and other
+contributions that are not aligned to this Code of Conduct, or to ban
+temporarily or permanently any contributor for other behaviors that they
+deem inappropriate, threatening, offensive, or harmful.
+
+Scope
+-----
+
+This Code of Conduct applies both within project spaces and in public
+spaces when an individual is representing the project or its community.
+Examples of representing a project or community include using an
+official project e-mail address, posting via an official social media
+account, or acting as an appointed representative at an online or
+offline event. Representation of a project may be further defined and
+clarified by project maintainers.
+
+Enforcement
+-----------
+
+Instances of abusive, harassing, or otherwise unacceptable behavior may
+be reported by contacting the project team at pombredanne@gmail.com
+or on the Gitter chat channel at https://gitter.im/aboutcode-org/discuss .
+All complaints will be reviewed and investigated and will result in a
+response that is deemed necessary and appropriate to the circumstances.
+The project team is obligated to maintain confidentiality with regard to
+the reporter of an incident. Further details of specific enforcement
+policies may be posted separately.
+
+Project maintainers who do not follow or enforce the Code of Conduct in
+good faith may face temporary or permanent repercussions as determined
+by other members of the project’s leadership.
+
+Attribution
+-----------
+
+This Code of Conduct is adapted from the `Contributor Covenant`_ ,
+version 1.4, available at
+https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
+
+.. _Contributor Covenant: https://www.contributor-covenant.org
+</text>
+        </license>
+        <license>
+          <name>declared license file: NOTICE</name>
+          <text content-type="text/plain">#
+# Copyright (c) nexB Inc. and others.
+# SPDX-License-Identifier: Apache-2.0
+#
+# Visit https://aboutcode.org and https://github.com/nexB/license-expression
+# for support and download.
+#
+# Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+</text>
+        </license>
+        <license>
+          <name>declared license file: apache-2.0.LICENSE</name>
+          <text content-type="text/plain">                                 Apache License
+                           Version 2.0, January 2004
+                        http://www.apache.org/licenses/
+
+   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+   1. Definitions.
+
+      &quot;License&quot; shall mean the terms and conditions for use, reproduction,
+      and distribution as defined by Sections 1 through 9 of this document.
+
+      &quot;Licensor&quot; shall mean the copyright owner or entity authorized by
+      the copyright owner that is granting the License.
+
+      &quot;Legal Entity&quot; shall mean the union of the acting entity and all
+      other entities that control, are controlled by, or are under common
+      control with that entity. For the purposes of this definition,
+      &quot;control&quot; means (i) the power, direct or indirect, to cause the
+      direction or management of such entity, whether by contract or
+      otherwise, or (ii) ownership of fifty percent (50%) or more of the
+      outstanding shares, or (iii) beneficial ownership of such entity.
+
+      &quot;You&quot; (or &quot;Your&quot;) shall mean an individual or Legal Entity
+      exercising permissions granted by this License.
+
+      &quot;Source&quot; form shall mean the preferred form for making modifications,
+      including but not limited to software source code, documentation
+      source, and configuration files.
+
+      &quot;Object&quot; form shall mean any form resulting from mechanical
+      transformation or translation of a Source form, including but
+      not limited to compiled object code, generated documentation,
+      and conversions to other media types.
+
+      &quot;Work&quot; shall mean the work of authorship, whether in Source or
+      Object form, made available under the License, as indicated by a
+      copyright notice that is included in or attached to the work
+      (an example is provided in the Appendix below).
+
+      &quot;Derivative Works&quot; shall mean any work, whether in Source or Object
+      form, that is based on (or derived from) the Work and for which the
+      editorial revisions, annotations, elaborations, or other modifications
+      represent, as a whole, an original work of authorship. For the purposes
+      of this License, Derivative Works shall not include works that remain
+      separable from, or merely link (or bind by name) to the interfaces of,
+      the Work and Derivative Works thereof.
+
+      &quot;Contribution&quot; shall mean any work of authorship, including
+      the original version of the Work and any modifications or additions
+      to that Work or Derivative Works thereof, that is intentionally
+      submitted to Licensor for inclusion in the Work by the copyright owner
+      or by an individual or Legal Entity authorized to submit on behalf of
+      the copyright owner. For the purposes of this definition, &quot;submitted&quot;
+      means any form of electronic, verbal, or written communication sent
+      to the Licensor or its representatives, including but not limited to
+      communication on electronic mailing lists, source code control systems,
+      and issue tracking systems that are managed by, or on behalf of, the
+      Licensor for the purpose of discussing and improving the Work, but
+      excluding communication that is conspicuously marked or otherwise
+      designated in writing by the copyright owner as &quot;Not a Contribution.&quot;
+
+      &quot;Contributor&quot; shall mean Licensor and any individual or Legal Entity
+      on behalf of whom a Contribution has been received by Licensor and
+      subsequently incorporated within the Work.
+
+   2. Grant of Copyright License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      copyright license to reproduce, prepare Derivative Works of,
+      publicly display, publicly perform, sublicense, and distribute the
+      Work and such Derivative Works in Source or Object form.
+
+   3. Grant of Patent License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      (except as stated in this section) patent license to make, have made,
+      use, offer to sell, sell, import, and otherwise transfer the Work,
+      where such license applies only to those patent claims licensable
+      by such Contributor that are necessarily infringed by their
+      Contribution(s) alone or by combination of their Contribution(s)
+      with the Work to which such Contribution(s) was submitted. If You
+      institute patent litigation against any entity (including a
+      cross-claim or counterclaim in a lawsuit) alleging that the Work
+      or a Contribution incorporated within the Work constitutes direct
+      or contributory patent infringement, then any patent licenses
+      granted to You under this License for that Work shall terminate
+      as of the date such litigation is filed.
+
+   4. Redistribution. You may reproduce and distribute copies of the
+      Work or Derivative Works thereof in any medium, with or without
+      modifications, and in Source or Object form, provided that You
+      meet the following conditions:
+
+      (a) You must give any other recipients of the Work or
+          Derivative Works a copy of this License; and
+
+      (b) You must cause any modified files to carry prominent notices
+          stating that You changed the files; and
+
+      (c) You must retain, in the Source form of any Derivative Works
+          that You distribute, all copyright, patent, trademark, and
+          attribution notices from the Source form of the Work,
+          excluding those notices that do not pertain to any part of
+          the Derivative Works; and
+
+      (d) If the Work includes a &quot;NOTICE&quot; text file as part of its
+          distribution, then any Derivative Works that You distribute must
+          include a readable copy of the attribution notices contained
+          within such NOTICE file, excluding those notices that do not
+          pertain to any part of the Derivative Works, in at least one
+          of the following places: within a NOTICE text file distributed
+          as part of the Derivative Works; within the Source form or
+          documentation, if provided along with the Derivative Works; or,
+          within a display generated by the Derivative Works, if and
+          wherever such third-party notices normally appear. The contents
+          of the NOTICE file are for informational purposes only and
+          do not modify the License. You may add Your own attribution
+          notices within Derivative Works that You distribute, alongside
+          or as an addendum to the NOTICE text from the Work, provided
+          that such additional attribution notices cannot be construed
+          as modifying the License.
+
+      You may add Your own copyright statement to Your modifications and
+      may provide additional or different license terms and conditions
+      for use, reproduction, or distribution of Your modifications, or
+      for any such Derivative Works as a whole, provided Your use,
+      reproduction, and distribution of the Work otherwise complies with
+      the conditions stated in this License.
+
+   5. Submission of Contributions. Unless You explicitly state otherwise,
+      any Contribution intentionally submitted for inclusion in the Work
+      by You to the Licensor shall be under the terms and conditions of
+      this License, without any additional terms or conditions.
+      Notwithstanding the above, nothing herein shall supersede or modify
+      the terms of any separate license agreement you may have executed
+      with Licensor regarding such Contributions.
+
+   6. Trademarks. This License does not grant permission to use the trade
+      names, trademarks, service marks, or product names of the Licensor,
+      except as required for reasonable and customary use in describing the
+      origin of the Work and reproducing the content of the NOTICE file.
+
+   7. Disclaimer of Warranty. Unless required by applicable law or
+      agreed to in writing, Licensor provides the Work (and each
+      Contributor provides its Contributions) on an &quot;AS IS&quot; BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+      implied, including, without limitation, any warranties or conditions
+      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+      PARTICULAR PURPOSE. You are solely responsible for determining the
+      appropriateness of using or redistributing the Work and assume any
+      risks associated with Your exercise of permissions under this License.
+
+   8. Limitation of Liability. In no event and under no legal theory,
+      whether in tort (including negligence), contract, or otherwise,
+      unless required by applicable law (such as deliberate and grossly
+      negligent acts) or agreed to in writing, shall any Contributor be
+      liable to You for damages, including any direct, indirect, special,
+      incidental, or consequential damages of any character arising as a
+      result of this License or out of the use or inability to use the
+      Work (including but not limited to damages for loss of goodwill,
+      work stoppage, computer failure or malfunction, or any and all
+      other commercial damages or losses), even if such Contributor
+      has been advised of the possibility of such damages.
+
+   9. Accepting Warranty or Additional Liability. While redistributing
+      the Work or Derivative Works thereof, You may choose to offer,
+      and charge a fee for, acceptance of support, warranty, indemnity,
+      or other liability obligations and/or rights consistent with this
+      License. However, in accepting such obligations, You may act only
+      on Your own behalf and on Your sole responsibility, not on behalf
+      of any other Contributor, and only if You agree to indemnify,
+      defend, and hold each Contributor harmless for any liability
+      incurred by, or claims asserted against, such Contributor by reason
+      of your accepting any such warranty or additional liability.
+
+   END OF TERMS AND CONDITIONS
+
+   APPENDIX: How to apply the Apache License to your work.
+
+      To apply the Apache License to your work, attach the following
+      boilerplate notice, with the fields enclosed by brackets &quot;[]&quot;
+      replaced with your own identifying information. (Don't include
+      the brackets!)  The text should be enclosed in the appropriate
+      comment syntax for the file format. We also recommend that a
+      file or class name and description of purpose be included on the
+      same &quot;printed page&quot; as the copyright notice for easier
+      identification within third-party archives.
+
+   Copyright [yyyy] [name of copyright owner]
+
+   Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+</text>
+        </license>
+      </licenses>
+      <purl>pkg:pypi/license-expression@30.3.0</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/nexB/license-expression</url>
+          <comment>from packaging metadata: Home-page</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="lxml==5.2.2">
+      <name>lxml</name>
+      <version>5.2.2</version>
+      <description>Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API.</description>
+      <licenses>
+        <license>
+          <id>BSD-3-Clause</id>
+        </license>
+        <license>
+          <name>License :: OSI Approved :: BSD License</name>
+        </license>
+        <license>
+          <name>declared license file: LICENSE.txt</name>
+          <text content-type="text/plain">Copyright (c) 2004 Infrae. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+  1. Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+   
+  2. Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in
+     the documentation and/or other materials provided with the
+     distribution.
+
+  3. Neither the name of Infrae nor the names of its contributors may
+     be used to endorse or promote products derived from this software
+     without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+&quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL INFRAE OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+</text>
+        </license>
+        <license>
+          <name>declared license file: LICENSES.txt</name>
+          <text content-type="text/plain">lxml is copyright Infrae and distributed under the BSD license (see
+doc/licenses/BSD.txt), with the following exceptions:
+
+Some code, such a selftest.py, selftest2.py and
+src/lxml/_elementpath.py are derived from ElementTree and
+cElementTree. See doc/licenses/elementtree.txt for the license text.
+
+lxml.cssselect and lxml.html are copyright Ian Bicking and distributed
+under the BSD license (see doc/licenses/BSD.txt).
+
+test.py, the test-runner script, is GPL and copyright Shuttleworth
+Foundation. See doc/licenses/GPL.txt. It is believed the unchanged
+inclusion of test.py to run the unit test suite falls under the
+&quot;aggregation&quot; clause of the GPL and thus does not affect the license
+of the rest of the package.
+
+The isoschematron implementation uses several XSL and RelaxNG resources:
+ * The (XML syntax) RelaxNG schema for schematron, copyright International
+   Organization for Standardization (see 
+   src/lxml/isoschematron/resources/rng/iso-schematron.rng for the license
+   text)
+ * The skeleton iso-schematron-xlt1 pure-xslt schematron implementation
+   xsl stylesheets, copyright Rick Jelliffe and Academia Sinica Computing
+   Center, Taiwan (see the xsl files here for the license text: 
+   src/lxml/isoschematron/resources/xsl/iso-schematron-xslt1/)
+ * The xsd/rng schema schematron extraction xsl transformations are unlicensed
+   and copyright the respective authors as noted (see 
+   src/lxml/isoschematron/resources/xsl/RNG2Schtrn.xsl and
+   src/lxml/isoschematron/resources/xsl/XSD2Schtrn.xsl)
+</text>
+        </license>
+      </licenses>
+      <purl>pkg:pypi/lxml@5.2.2</purl>
+      <externalReferences>
+        <reference type="other">
+          <url>https://github.com/lxml/lxml</url>
+          <comment>from packaging metadata Project-URL: Source</comment>
+        </reference>
+        <reference type="website">
+          <url>https://lxml.de/</url>
+          <comment>from packaging metadata: Home-page</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="attrs==23.2.0"/>
+    <dependency ref="boolean.py==4.0"/>
+    <dependency ref="jsonpointer==2.4"/>
+    <dependency ref="license-expression==30.3.0">
+      <dependency ref="boolean.py==4.0"/>
+    </dependency>
+    <dependency ref="lxml==5.2.2"/>
+    <dependency ref="root-component">
+      <dependency ref="attrs==23.2.0"/>
+      <dependency ref="boolean.py==4.0"/>
+      <dependency ref="jsonpointer==2.4"/>
+      <dependency ref="license-expression==30.3.0"/>
+      <dependency ref="lxml==5.2.2"/>
+    </dependency>
+  </dependencies>
+</bom>
