@@ -1,6 +1,86 @@
 # CHANGELOG
 
 
+
+## v4.5.0 (2024-06-10)
+
+### Chore
+
+* chore: shield_ossf-best-practices subbary
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`1a1ad60`](https://github.com/CycloneDX/cyclonedx-python/commit/1a1ad606af261fc0e13095306571b2073ad4b3c3))
+
+### Ci
+
+* ci: modernize artifact action (#737)
+
+supersedes #625 
+supersedes #624
+
+---------
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt;
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt;
+Co-authored-by: dependabot[bot] &lt;49699333+dependabot[bot]@users.noreply.github.com&gt; ([`1222201`](https://github.com/CycloneDX/cyclonedx-python/commit/122220199bf1185c2c607c2c9774e4f39427e866))
+
+### Documentation
+
+* docs: exclude dep bumps from changelog (#750)
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`3d02d6a`](https://github.com/CycloneDX/cyclonedx-python/commit/3d02d6ab32d864a6cf9c84a12f60623c6a784c4b))
+
+* docs: OSSF best practice badge percentage
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`5717803`](https://github.com/CycloneDX/cyclonedx-python/commit/5717803b27f71d6133cce5a5ea91cd87f130626a))
+
+### Feature
+
+* feat: environment - gather declared license information according to PEP639 (#755)
+
+From python environments, gather additional declared license information
+according to [PEP 639](https://peps.python.org/pep-0639) (improving
+license clarity with better package metadata).
+
+New CLI switches for `cyclonedx environment`: 
+* `--PEP-639`: Enable license gathering according to PEP 639 (improving
+license clarity with better package metadata).
+  The behavior may change during the draft development of the PEP.
+* `--gather-license-texts`: Enable license text gathering.
+
+In current state of implementation, `--gather-license-texts` has effect
+only if `--PEP-639` is also given.
+
+
+
+---------
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`e9cc805`](https://github.com/CycloneDX/cyclonedx-python/commit/e9cc8058bb299e98a6f645426a2626bcfa3f06eb))
+
+### Refactor
+
+* refactor: const for purl type `pypi` (#754)
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`cba521e`](https://github.com/CycloneDX/cyclonedx-python/commit/cba521ee01aeb7bd3309518b4f46ba71d74abac9))
+
+* refactor: `extred` -&gt; `extref` (#753)
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`a178d2e`](https://github.com/CycloneDX/cyclonedx-python/commit/a178d2ec62e2af7afab05a9807cc24102ff51a19))
+
+### Unknown
+
+* Create config.yml
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@owasp.org&gt; ([`f13311b`](https://github.com/CycloneDX/cyclonedx-python/commit/f13311bc691cd494636684a502760b5929cec3fb))
+
+* Rename feature_request.md to 1-feature_request.md
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@owasp.org&gt; ([`c4b15d8`](https://github.com/CycloneDX/cyclonedx-python/commit/c4b15d82b5146d78edd87be2d799ec9be38df6f1))
+
+* Rename bug_report.md to 2-bug_report.md
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@owasp.org&gt; ([`58199a5`](https://github.com/CycloneDX/cyclonedx-python/commit/58199a5c1bdc7fa9092a97a2bd24256e6b79de42))
+
+
 ## v4.4.3 (2024-04-26)
 
 ### Fix
