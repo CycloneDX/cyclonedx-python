@@ -47,12 +47,12 @@ def main() -> None:
 
     pip_install(
         # with License-Expression
-        "attrs",
+        'attrs',
         # with License-File
-        "boolean.py",
-        "jsonpointer",
-        "license_expression",
-        "lxml",
+        'boolean.py',
+        'jsonpointer',
+        'license_expression',
+        'lxml',
     )
 
 
