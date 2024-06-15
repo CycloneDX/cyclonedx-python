@@ -91,7 +91,7 @@ flake8-logging = "1.6.0"
 isort = "5.13.2"
 autopep8 = "2.2.0"
 mypy = "1.10.0"
-bandit = "1.7.8"
+bandit = "1.7.9"
 tox = "4.15.1"
 # min version required to be able to install some dependencies
 # see https://github.com/MichaelKim0407/flake8-use-fstring/issues/33
