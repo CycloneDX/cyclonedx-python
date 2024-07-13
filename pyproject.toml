@@ -78,7 +78,7 @@ chardet = "^5.1"
 
 [tool.poetry.group.dev.dependencies]
 # pin to exact versions, if the tool/lib/plugin is process-relevant
-coverage = "7.5.4"
+coverage = "7.6.0"
 ddt = "1.7.2"
 flake8 = { version = "7.1.0", python = ">=3.8.1" }
 flake8-annotations = { version = "3.1.1", python = ">=3.8.1" }
