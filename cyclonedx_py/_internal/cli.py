@@ -124,7 +124,7 @@ class Command:
                             action='store_false')
 
         scbbc: Type['BomBuilder']
-        for sct, scbbc in (  # type:ignore[assignment]
+        for sct, scbbc in (
             ('environment', EnvironmentBB),
             ('requirements', RequirementsBB),
             ('pipenv', PipenvBB),
