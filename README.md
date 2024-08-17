@@ -26,7 +26,7 @@ Supported data sources are:
 * `Conda` as a package manager is no longer supported since version 4.  
   However, conda's Python environments are fully supported via the methods listed above. See the docs for an example.
 
-Based on [OWASP Software Component Verification Standard for Software Bill of Materials](https://scvs.owasp.org/scvs/v2-software-bill-of-materials/)'s
+Based on [OWASP Software Component Verification Standard for Software Bill of Materials](https://scvs.owasp.org/scvs/v2-software-bill-of-materials/)'
 criteria, this tool is capable of producing SBOM documents almost passing Level-2 (only signing needs to be done externally).
 
 The resulting SBOM documents follow [official specifications and standards](https://github.com/CycloneDX/specification),
