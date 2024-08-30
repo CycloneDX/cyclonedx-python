@@ -58,8 +58,8 @@ class PropertyName(Enum):
     # see https://github.com/CycloneDX/cyclonedx-property-taxonomy/blob/main/cdx/python.md
     PackageExtra = 'cdx:python:package:required-extra'
     PackageSourceSubdirectory = 'cdx:python:package:source:subdirectory'
-    PackageSourceVcsRequestedRevision = 'cdx:poetry:package:source:vcs:requested_revision'
-    PackageSourceVcsCommitId = 'cdx:poetry:package:source:vcs:commit_id'
+    PackageSourceVcsRequestedRevision = 'cdx:python:package:source:vcs:requested_revision'
+    PackageSourceVcsCommitId = 'cdx:python:package:source:vcs:commit_id'
     PackageSourceLocalEditable = 'cdx:python:package:source:local:editable'
     # endregion python
 
