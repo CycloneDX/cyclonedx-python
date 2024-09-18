@@ -27,7 +27,7 @@ from cyclonedx.schema import OutputFormat, SchemaVersion
 from cyclonedx.validation import make_schemabased_validator
 
 from .. import __version__
-from . import PropertyName
+from . import PropertyName, PropertyValue
 from .environment import EnvironmentBB
 from .pipenv import PipenvBB
 from .poetry import PoetryBB
@@ -230,7 +230,7 @@ class Command:
 
         if self._output_reproducible:
             bom.metadata.properties.add(Property(name=PropertyName.Reproducible.value,
-                                                 value=PropertyName.BooleanTrue.value))
+                                                 value=PropertyValue.BooleanTrue.value))
             # dirty hacks to remove these mandatory properties
             bom.serial_number = None  # type:ignore[assignment]
             bom.metadata.timestamp = None  # type:ignore[assignment]

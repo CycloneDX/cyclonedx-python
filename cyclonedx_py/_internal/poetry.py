@@ -261,7 +261,7 @@ class PoetryBB(BomBuilder):
         root_c.bom_ref.value = root_c.name
         root_c.properties.update(
             Property(
-                name=PropertyName.PackageExtra.value,
+                name=PropertyName.PythonPackageExtra.value,
                 value=extra
             ) for extra in use_extras
         )
@@ -344,7 +344,7 @@ class PoetryBB(BomBuilder):
             use_extras = frozenset(map(normalize_packagename, use_extras))
             lock_entry.component.properties.update(
                 Property(
-                    name=PropertyName.PackageExtra.value,
+                    name=PropertyName.PythonPackageExtra.value,
                     value=extra
                 ) for extra in use_extras
             )

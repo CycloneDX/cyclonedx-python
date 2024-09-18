@@ -187,7 +187,7 @@ class PipenvBB(BomBuilder):
                 ))
                 component.properties.update(
                     Property(
-                        name=PropertyName.PackageExtra.value,
+                        name=PropertyName.PythonPackageExtra.value,
                         value=normalize_packagename(package_extra)
                     ) for package_extra in package_data.get('extras', ())
                 )
