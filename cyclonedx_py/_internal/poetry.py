@@ -416,6 +416,7 @@ class PoetryBB(BomBuilder):
                     name=PropertyName.PoetryGroup.value,
                     value=package['category']
                 ) if 'category' in package else None,
+                # region deprecated
                 Property(
                     name=PropertyName.PoetryPackageSourceReference_misspelled.value,  # deprecated
                     value=source['reference']
@@ -428,6 +429,7 @@ class PoetryBB(BomBuilder):
                     name=PropertyName.PoetryPackageSourceResolvedReference.value,  # deprecated
                     value=source['resolved_reference']
                 ) if is_vcs and 'resolved_reference' in source else None,
+                # endregion deprecated
             )),
             purl=PackageURL(
                 type=PurlTypePypi,
