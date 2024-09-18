@@ -73,8 +73,8 @@ class PropertyName(Enum):
     PoetryGroup = 'cdx:poetry:group'
     # region poetry-deprecated
     # the following property names are deprecated
-    PoetryPackageSourceReference_misspelled = 'cdx:poetry:package:source:reference'
-    PoetryPackageSourceReference = 'cdx:poetry:source:package:reference'
+    PoetryPackageSourceReference_misspelled  = 'cdx:poetry:source:package:reference'
+    PoetryPackageSourceReference = 'cdx:poetry:package:source:reference'
     PoetryPackageSourceResolvedReference = 'cdx:poetry:package:source:resolved_reference'
     PoetryPackageSourceVcsRequestedRevision = 'cdx:poetry:package:source:vcs:requested_revision'
     PoetryPackageSourceVcsCommitId = 'cdx:poetry:package:source:vcs:commit_id'
