@@ -2,6 +2,25 @@
 
 
 
+## v4.5.1 (2024-09-18)
+
+### Documentation
+
+* docs: fix typo
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`9f9fa9e`](https://github.com/CycloneDX/cyclonedx-python/commit/9f9fa9e795b2aea847ae7639b018fd6c32d7e38c))
+
+### Fix
+
+* fix: assert copyright headers (#787)
+
+utilizes flake8 plugin
+&lt;https://pypi.org/project/flake8-copyright-validator/&gt; to assert the
+correct headers
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`dddcb5d`](https://github.com/CycloneDX/cyclonedx-python/commit/dddcb5dc6529e60c82dcfd756a0a8b31ae76e9bf))
+
+
 ## v4.5.0 (2024-06-10)
 
 ### Chore
