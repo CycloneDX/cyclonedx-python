@@ -422,10 +422,6 @@ class PoetryBB(BomBuilder):
                     value=source['reference']
                 ) if is_vcs and 'reference' in source else None,
                 Property(
-                    name=PropertyName.PoetryPackageSourceReference.value,  # deprecated
-                    value=source['reference']
-                ) if is_vcs and 'reference' in source else None,
-                Property(
                     name=PropertyName.PoetryPackageSourceResolvedReference.value,  # deprecated
                     value=source['resolved_reference']
                 ) if is_vcs and 'resolved_reference' in source else None,

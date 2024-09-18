@@ -17,10 +17,6 @@
           "value": "main"
         },
         {
-          "name": "cdx:poetry:package:source:reference",
-          "value": "10.1.0"
-        },
-        {
           "name": "cdx:poetry:package:source:resolved_reference",
           "value": "da59ad000d1405eaecd557175e29083a87d19f7c"
         },
@@ -83,10 +79,6 @@
         {
           "name": "cdx:poetry:group",
           "value": "main"
-        },
-        {
-          "name": "cdx:poetry:package:source:reference",
-          "value": "1.16.0"
         },
         {
           "name": "cdx:poetry:package:source:resolved_reference",
