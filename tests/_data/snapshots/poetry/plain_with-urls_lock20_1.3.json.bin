@@ -17,11 +17,23 @@
           "value": "main"
         },
         {
+          "name": "cdx:poetry:package:source:reference",
+          "value": "10.1.0"
+        },
+        {
           "name": "cdx:poetry:package:source:resolved_reference",
           "value": "da59ad000d1405eaecd557175e29083a87d19f7c"
         },
         {
           "name": "cdx:poetry:source:package:reference",
+          "value": "10.1.0"
+        },
+        {
+          "name": "cdx:python:package:source:vcs:commit_id",
+          "value": "da59ad000d1405eaecd557175e29083a87d19f7c"
+        },
+        {
+          "name": "cdx:python:package:source:vcs:requested_revision",
           "value": "10.1.0"
         }
       ],
@@ -73,11 +85,23 @@
           "value": "main"
         },
         {
+          "name": "cdx:poetry:package:source:reference",
+          "value": "1.16.0"
+        },
+        {
           "name": "cdx:poetry:package:source:resolved_reference",
           "value": "65486e4383f9f411da95937451205d3c7b61b9e1"
         },
         {
           "name": "cdx:poetry:source:package:reference",
+          "value": "1.16.0"
+        },
+        {
+          "name": "cdx:python:package:source:vcs:commit_id",
+          "value": "65486e4383f9f411da95937451205d3c7b61b9e1"
+        },
+        {
+          "name": "cdx:python:package:source:vcs:requested_revision",
           "value": "1.16.0"
         }
       ],

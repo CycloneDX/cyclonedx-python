@@ -71,10 +71,11 @@ class PropertyName(Enum):
     # region poetry
     # see https://github.com/CycloneDX/cyclonedx-property-taxonomy/blob/main/cdx/poetry.md
     PoetryGroup = 'cdx:poetry:group'
-    PoetryPackageSourceReference = 'cdx:poetry:source:package:reference'
-    PoetryPackageSourceResolvedReference = 'cdx:poetry:package:source:resolved_reference'
     # region poetry-deprecated
     # the following property names are deprecated
+    PoetryPackageSourceReference_misspelled = 'cdx:poetry:package:source:reference'
+    PoetryPackageSourceReference = 'cdx:poetry:source:package:reference'
+    PoetryPackageSourceResolvedReference = 'cdx:poetry:package:source:resolved_reference'
     PoetryPackageSourceVcsRequestedRevision = 'cdx:poetry:package:source:vcs:requested_revision'
     PoetryPackageSourceVcsCommitId = 'cdx:poetry:package:source:vcs:commit_id'
     # endregion poetry-deprecated
