@@ -2,6 +2,32 @@
 
 
 
+## v4.6.0 (2024-09-20)
+
+### Documentation
+
+* docs: reformat help page in `usage` docs (#788)
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`a1354e5`](https://github.com/CycloneDX/cyclonedx-python/commit/a1354e5fd074036499d308488e0e621647afc3ce))
+
+### Feature
+
+* feat: populate properties `cdx:python:package:source:vcs:...` (#790)
+
+populate the newly added/fixed CycloneDX properties
+`cdx:python:package:source:vcs:...` in accordance with
+&lt;https://github.com/CycloneDX/cyclonedx-property-taxonomy/pull/96&gt; and
+&lt;https://github.com/CycloneDX/cyclonedx-property-taxonomy/pull/98&gt;.
+
+the deprecated properties are still used, so no breaking changes exist.
+
+fixes #789
+
+---------
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`b08e1bb`](https://github.com/CycloneDX/cyclonedx-python/commit/b08e1bb46871b167fb0ca135d2f97ad8a19df313))
+
+
 ## v4.5.1 (2024-09-18)
 
 ### Documentation
