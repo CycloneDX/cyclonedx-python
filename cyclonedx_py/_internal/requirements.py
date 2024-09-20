@@ -225,7 +225,7 @@ class RequirementsBB(BomBuilder):
             ) if not is_local and name else None,
             external_references=external_references,
             properties=(Property(
-                name=PropertyName.PackageExtra.value,
+                name=PropertyName.PythonPackageExtra.value,
                 value=normalize_packagename(extra)
             ) for extra in req.extras)
         )

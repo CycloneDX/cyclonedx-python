@@ -38,6 +38,8 @@
         <property name="cdx:poetry:group">main</property>
         <property name="cdx:poetry:package:source:resolved_reference">5a6a88db3cc1d08dbc86fbe15edfb69fb5f5a3d6</property>
         <property name="cdx:poetry:source:package:reference">2.3.5</property>
+        <property name="cdx:python:package:source:vcs:commit_id">5a6a88db3cc1d08dbc86fbe15edfb69fb5f5a3d6</property>
+        <property name="cdx:python:package:source:vcs:requested_revision">2.3.5</property>
       </properties>
     </component>
     <component type="library" bom-ref="pathlib2@2.3.5">

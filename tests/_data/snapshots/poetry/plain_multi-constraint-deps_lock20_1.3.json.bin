@@ -23,6 +23,14 @@
         {
           "name": "cdx:poetry:source:package:reference",
           "value": "2.3.5"
+        },
+        {
+          "name": "cdx:python:package:source:vcs:commit_id",
+          "value": "5a6a88db3cc1d08dbc86fbe15edfb69fb5f5a3d6"
+        },
+        {
+          "name": "cdx:python:package:source:vcs:requested_revision",
+          "value": "2.3.5"
         }
       ],
       "purl": "pkg:pypi/pathlib2@2.3.5?vcs_url=git%2Bhttps://github.com/jazzband/pathlib2.git%405a6a88db3cc1d08dbc86fbe15edfb69fb5f5a3d6",

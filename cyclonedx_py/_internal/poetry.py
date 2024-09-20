@@ -261,7 +261,7 @@ class PoetryBB(BomBuilder):
         root_c.bom_ref.value = root_c.name
         root_c.properties.update(
             Property(
-                name=PropertyName.PackageExtra.value,
+                name=PropertyName.PythonPackageExtra.value,
                 value=extra
             ) for extra in use_extras
         )
@@ -344,7 +344,7 @@ class PoetryBB(BomBuilder):
             use_extras = frozenset(map(normalize_packagename, use_extras))
             lock_entry.component.properties.update(
                 Property(
-                    name=PropertyName.PackageExtra.value,
+                    name=PropertyName.PythonPackageExtra.value,
                     value=extra
                 ) for extra in use_extras
             )
@@ -403,20 +403,30 @@ class PoetryBB(BomBuilder):
             description=package.get('description'),
             scope=ComponentScope.OPTIONAL if package.get('optional') else None,
             external_references=self.__extrefs4lock(package),
-            properties=filter(lambda p: p and p.value, [  # type: ignore[arg-type]
+            properties=filter(lambda p: p and p.value, (  # type: ignore[arg-type]
+                Property(
+                    name=PropertyName.PythonPackageSourceVcsRequestedRevision.value,
+                    value=source['reference']
+                ) if is_vcs and 'reference' in source else None,
+                Property(
+                    name=PropertyName.PythonPackageSourceVcsCommitId.value,
+                    value=source['resolved_reference']
+                ) if is_vcs and 'resolved_reference' in source else None,
                 Property(  # for backwards compatibility: category -> group
                     name=PropertyName.PoetryGroup.value,
                     value=package['category']
                 ) if 'category' in package else None,
+                # region deprecated
                 Property(
-                    name=PropertyName.PoetryPackageSourceReference.value,
+                    name=PropertyName.PoetryPackageSourceReference_misspelled.value,  # deprecated
                     value=source['reference']
                 ) if is_vcs and 'reference' in source else None,
                 Property(
-                    name=PropertyName.PoetryPackageSourceResolvedReference.value,
+                    name=PropertyName.PoetryPackageSourceResolvedReference.value,  # deprecated
                     value=source['resolved_reference']
                 ) if is_vcs and 'resolved_reference' in source else None,
-            ]),
+                # endregion deprecated
+            )),
             purl=PackageURL(
                 type=PurlTypePypi,
                 name=package['name'],

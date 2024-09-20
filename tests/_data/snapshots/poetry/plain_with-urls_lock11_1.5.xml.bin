@@ -65,6 +65,8 @@
         <property name="cdx:poetry:group">main</property>
         <property name="cdx:poetry:package:source:resolved_reference">da59ad000d1405eaecd557175e29083a87d19f7c</property>
         <property name="cdx:poetry:source:package:reference">10.1.0</property>
+        <property name="cdx:python:package:source:vcs:commit_id">da59ad000d1405eaecd557175e29083a87d19f7c</property>
+        <property name="cdx:python:package:source:vcs:requested_revision">10.1.0</property>
       </properties>
     </component>
     <component type="library" bom-ref="numpy@1.24.4">
@@ -97,6 +99,8 @@
         <property name="cdx:poetry:group">main</property>
         <property name="cdx:poetry:package:source:resolved_reference">65486e4383f9f411da95937451205d3c7b61b9e1</property>
         <property name="cdx:poetry:source:package:reference">1.16.0</property>
+        <property name="cdx:python:package:source:vcs:commit_id">65486e4383f9f411da95937451205d3c7b61b9e1</property>
+        <property name="cdx:python:package:source:vcs:requested_revision">1.16.0</property>
       </properties>
     </component>
     <component type="library" bom-ref="wxPython@4.2.2a1.dev5618+1f82021f">

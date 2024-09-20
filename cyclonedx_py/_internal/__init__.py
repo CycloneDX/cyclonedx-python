@@ -45,29 +45,39 @@ class BomBuilder(ABC):
         ...
 
 
-class PropertyName(Enum):
+class PropertyValue(Enum):
     # region general
     # see https://github.com/CycloneDX/cyclonedx-property-taxonomy/blob/main/cdx.md
     BooleanTrue = 'true'
     BooleanFalse = 'false'
+    # endregion general
 
+
+class PropertyName(Enum):
+    # region general
+    # see https://github.com/CycloneDX/cyclonedx-property-taxonomy/blob/main/cdx.md
     Reproducible = 'cdx:reproducible'
     # endregion general
 
     # region python
     # see https://github.com/CycloneDX/cyclonedx-property-taxonomy/blob/main/cdx/python.md
-    PackageExtra = 'cdx:python:package:required-extra'
-    PackageSourceSubdirectory = 'cdx:python:package:source:subdirectory'
-    PackageSourceVcsRequestedRevision = 'cdx:poetry:package:source:vcs:requested_revision'
-    PackageSourceVcsCommitId = 'cdx:poetry:package:source:vcs:commit_id'
-    PackageSourceLocalEditable = 'cdx:python:package:source:local:editable'
+    PythonPackageExtra = 'cdx:python:package:required-extra'
+    PythonPackageSourceSubdirectory = 'cdx:python:package:source:subdirectory'
+    PythonPackageSourceVcsRequestedRevision = 'cdx:python:package:source:vcs:requested_revision'
+    PythonPackageSourceVcsCommitId = 'cdx:python:package:source:vcs:commit_id'
+    PythonPackageSourceLocalEditable = 'cdx:python:package:source:local:editable'
     # endregion python
 
     # region poetry
     # see https://github.com/CycloneDX/cyclonedx-property-taxonomy/blob/main/cdx/poetry.md
     PoetryGroup = 'cdx:poetry:group'
-    PoetryPackageSourceReference = 'cdx:poetry:source:package:reference'
+    # region poetry-deprecated
+    # the following property names are deprecated
+    PoetryPackageSourceReference_misspelled = 'cdx:poetry:source:package:reference'
     PoetryPackageSourceResolvedReference = 'cdx:poetry:package:source:resolved_reference'
+    PoetryPackageSourceVcsRequestedRevision = 'cdx:poetry:package:source:vcs:requested_revision'
+    PoetryPackageSourceVcsCommitId = 'cdx:poetry:package:source:vcs:commit_id'
+    # endregion poetry-deprecated
     # endregion poetry
 
     # region pipenv

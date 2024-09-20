@@ -19,6 +19,10 @@
         {
           "name": "cdx:poetry:source:package:reference",
           "value": "da59ad000d1405eaecd557175e29083a87d19f7c"
+        },
+        {
+          "name": "cdx:python:package:source:vcs:requested_revision",
+          "value": "da59ad000d1405eaecd557175e29083a87d19f7c"
         }
       ],
       "purl": "pkg:pypi/pillow@10.1.0?vcs_url=git%2Bhttps://github.com/python-pillow/Pillow.git%40da59ad000d1405eaecd557175e29083a87d19f7c",
@@ -64,6 +68,10 @@
         },
         {
           "name": "cdx:poetry:source:package:reference",
+          "value": "65486e4383f9f411da95937451205d3c7b61b9e1"
+        },
+        {
+          "name": "cdx:python:package:source:vcs:requested_revision",
           "value": "65486e4383f9f411da95937451205d3c7b61b9e1"
         }
       ],

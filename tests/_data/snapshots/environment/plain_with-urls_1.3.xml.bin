@@ -53,6 +53,8 @@
       <properties>
         <property name="cdx:poetry:package:source:vcs:commit_id">b3a5d7d68991c040615d5345bb55f61de53ba176</property>
         <property name="cdx:poetry:package:source:vcs:requested_revision">23.2</property>
+        <property name="cdx:python:package:source:vcs:commit_id">b3a5d7d68991c040615d5345bb55f61de53ba176</property>
+        <property name="cdx:python:package:source:vcs:requested_revision">23.2</property>
       </properties>
     </component>
     <component type="library" bom-ref="six==1.16.0">
