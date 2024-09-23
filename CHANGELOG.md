@@ -2,6 +2,15 @@
 
 
 
+## v4.6.1-alpha.1 (2024-09-23)
+
+### Chore
+
+* chore: trusted publishing
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`07b5e83`](https://github.com/CycloneDX/cyclonedx-python/commit/07b5e83c18fd3c02f917bca1faa00d42e6665647))
+
+
 ## v4.6.0 (2024-09-20)
 
 ### Documentation
