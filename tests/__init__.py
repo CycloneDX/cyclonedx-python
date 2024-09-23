@@ -222,9 +222,7 @@ def make_comparable(bom: str, of: OutputFormat) -> str:
 def load_pyproject() -> Dict[str, Any]:
     if sys.version_info >= (3, 11):
         from tomllib import load as toml_load
-        with open(path.join(path.dirname(__file__), '..', 'pyproject.toml'), 'rb') as f:
-            return toml_load(f)
     else:
-        from toml import load as toml_load
-        with open(path.join(path.dirname(__file__), '..', 'pyproject.toml'), 'rt') as f:
-            return toml_load(f)
+        from tomli import load as toml_load
+    with open(path.join(path.dirname(__file__), '..', 'pyproject.toml'), 'rb') as f:
+        return toml_load(f)
