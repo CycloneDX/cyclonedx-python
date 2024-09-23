@@ -94,14 +94,35 @@ _root_file_uri_json = json_dumps(_root_file_uri)[1:-1]
 def make_xml_comparable(bom: str) -> str:
     bom = bom.replace(_root_file_uri_xml, 'file://.../')
     bom = bom.replace(_root_file_uri_xml_attr, 'file://.../')
-    bom = bom.replace(  # replace metadata.tools.version
+    bom = bom.replace(  # replace this version in metadata.tools.components
+        '          <group>CycloneDX</group>\n'
+        '          <name>cyclonedx-bom</name>\n'
+        f'          <version>{__this_version}</version>',
+        '          <group>CycloneDX</group>\n'
+        '          <name>cyclonedx-bom</name>\n'
+        '          <version>thisVersion-testing</version>')
+    bom = bom.replace(  # replace this version in metadata.tools
         '        <vendor>CycloneDX</vendor>\n'
         '        <name>cyclonedx-bom</name>\n'
         f'        <version>{__this_version}</version>',
         '        <vendor>CycloneDX</vendor>\n'
         '        <name>cyclonedx-bom</name>\n'
         '        <version>thisVersion-testing</version>')
-    bom = re_sub(  # replace metadata.tools.version
+    bom = re_sub(  # replace lib-dynamics in metadata.tools.components
+ '          <group>CycloneDX</group>\n'
+        '          <name>cyclonedx-python-lib</name>\n'
+        '          <version>.*?</version>\n'
+        '          <description>.*?</description>\n'
+        r'          <licenses>[\s\S]*?</licenses>''\n'
+        r'          <externalReferences>[\s\S]*?</externalReferences>',
+        '          <group>CycloneDX</group>\n'
+        '          <name>cyclonedx-python-lib</name>\n'
+        '          <version>libVersion-testing</version>\n'
+        '          <description><!-- stripped --></description>\n'
+        '          <licenses><!-- stripped --></licenses>\n'
+        '          <externalReferences><!-- stripped --></externalReferences>',
+        bom)
+    bom = re_sub(  # replace lib-dynamics version in metadata.tools[]
         '        <vendor>CycloneDX</vendor>\n'
         '        <name>cyclonedx-python-lib</name>\n'
         '        <version>.*?</version>',
@@ -109,10 +130,10 @@ def make_xml_comparable(bom: str) -> str:
         '        <name>cyclonedx-python-lib</name>\n'
         '        <version>libVersion-testing</version>',
         bom)
-    bom = re_sub(  # replace metadata.tools.externalReferences
+    bom = re_sub(  # replace lib-dynamics externalReferences in metadata.tools[]
         '        <vendor>CycloneDX</vendor>\n'
         '        <name>cyclonedx-python-lib</name>\n'
-        r'        <version>(.*?)</version>\n'
+        '        <version>(.*?)</version>\n'
         r'        <externalReferences>[\s\S]*?</externalReferences>',
         '        <vendor>CycloneDX</vendor>\n'
         '        <name>cyclonedx-python-lib</name>\n'
@@ -124,14 +145,35 @@ def make_xml_comparable(bom: str) -> str:
 
 def make_json_comparable(bom: str) -> str:
     bom = bom.replace(_root_file_uri_json, 'file://.../')
-    bom = bom.replace(  # replace metadata.tools.version
+    bom = bom.replace(  # replace this version in metadata.tools.components[]
+        '          "name": "cyclonedx-bom",\n'
+        '          "type": "application",\n'
+        f'          "version": {json_dumps(__this_version)}',
+        '          "name": "cyclonedx-bom",\n'
+        '          "type": "application",\n'
+        '          "version": "thisVersion-testing"')
+    bom = bom.replace(  # replace this version in metadata.tools[]
         '        "name": "cyclonedx-bom",\n'
         '        "vendor": "CycloneDX",\n'
         f'        "version": {json_dumps(__this_version)}',
         '        "name": "cyclonedx-bom",\n'
         '        "vendor": "CycloneDX",\n'
         '        "version": "thisVersion-testing"')
-    bom = re_sub(  # replace metadata.tools.version
+    bom = re_sub(  # replace lib-dynamics in metadata.tools.components[]
+        r'          "externalReferences": \[[\s\S]*?\],\n'
+        '          "group": "CycloneDX",\n'
+        r'          "licenses": \[[\s\S]*?\],\n'
+        '          "name": "cyclonedx-python-lib",\n'
+        '          "type": "library",\n'
+        '          "version": ".*?"',
+        '          "externalReferences": [   ],\n'
+        '          "group": "CycloneDX",\n'
+        '          "licenses": [   ],\n'
+        '          "name": "cyclonedx-python-lib",\n'
+        '          "type": "library",\n'
+        '          "version": "libVersion-testing"',
+        bom)
+    bom = re_sub(  # replace lib-dynamics version in metadata.tools[]
         '        "name": "cyclonedx-python-lib",\n'
         '        "vendor": "CycloneDX",\n'
         '        "version": ".*?"',
@@ -139,13 +181,13 @@ def make_json_comparable(bom: str) -> str:
         '        "vendor": "CycloneDX",\n'
         '        "version": "libVersion-testing"',
         bom)
-    bom = re_sub(  # replace metadata.tools.externalReferences
+    bom = re_sub(  # replace lib-dynamics externalReferences in metadata.tools[]
         r'        "externalReferences": \[[\s\S]*?\],\n'
         '        "name": "cyclonedx-python-lib",\n'
-        '        "vendor": "CycloneDX"',
+        '        "vendor": "CycloneDX",\n',
         '        "externalReferences": [   ],\n'
         '        "name": "cyclonedx-python-lib",\n'
-        '        "vendor": "CycloneDX"',
+        '        "vendor": "CycloneDX",\n',
         bom)
     return bom
 
