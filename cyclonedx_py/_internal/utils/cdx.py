@@ -27,7 +27,7 @@ from cyclonedx.builder.this import this_component as lib_component
 from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
 from cyclonedx.model.bom import Bom
 from cyclonedx.model.component import Component, ComponentType
-from cyclonedx.model.license import License, LicenseExpression, DisjunctiveLicense, LicenseAcknowledgement
+from cyclonedx.model.license import DisjunctiveLicense, License, LicenseAcknowledgement, LicenseExpression
 
 from ... import __version__ as __THIS_VERSION  # noqa:N812
 

@@ -16,16 +16,15 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
-from typing import Union, Iterable, Any, Dict, Tuple
+from typing import Any, Dict, Iterable, Tuple, Union
 from unittest import TestCase
 
-from cyclonedx.model import ExternalReferenceType, ExternalReference
-from cyclonedx.model.component import ComponentType, Component
+from cyclonedx.model import ExternalReference, ExternalReferenceType
+from cyclonedx.model.component import Component, ComponentType
 from cyclonedx.model.license import License, LicenseAcknowledgement
 
-from tests import load_pyproject
-
 from cyclonedx_py._internal.utils.cdx import make_bom
+from tests import load_pyproject
 
 
 class ExtRefsTestMixin:

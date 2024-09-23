@@ -109,7 +109,7 @@ def make_xml_comparable(bom: str) -> str:
         '        <name>cyclonedx-bom</name>\n'
         '        <version>thisVersion-testing</version>')
     bom = re_sub(  # replace lib-dynamics in metadata.tools.components
- '          <group>CycloneDX</group>\n'
+        '          <group>CycloneDX</group>\n'
         '          <name>cyclonedx-python-lib</name>\n'
         '          <version>.*?</version>\n'
         '          <description>.*?</description>\n'
@@ -214,6 +214,7 @@ def make_comparable(bom: str, of: OutputFormat) -> str:
     raise NotImplementedError(f'unknown OutputFormat: {of!r}')
 
 # endregion reproducible test results
+
 
 def load_pyproject() -> Dict[str, Any]:
     if sys.version_info >= (3, 11):
