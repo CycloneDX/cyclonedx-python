@@ -91,7 +91,8 @@ _root_file_uri_xml_attr = xml_quoteattr(_root_file_uri)[1:-1]
 _root_file_uri_json = json_dumps(_root_file_uri)[1:-1]
 
 # package is called 'cyclonedx-bom', but the tool is called 'cyclonedx-py'
-EXPECTED_TOOL_NAME='cyclonedx-py'
+EXPECTED_TOOL_NAME = 'cyclonedx-py'
+
 
 def make_xml_comparable(bom: str) -> str:
     bom = bom.replace(_root_file_uri_xml, 'file://.../')
