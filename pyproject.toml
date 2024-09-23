@@ -5,7 +5,6 @@ build-backend = "poetry.core.masonry.api"
 
 
 [tool.poetry]
-# keep in sync with `cyclonedx_py/_internal/utils/cdx.py`
 name = "cyclonedx-bom"
 version = "4.6.1-alpha.1"
 description = "CycloneDX Software Bill of Materials (SBOM) generator for Python projects and environments"
@@ -92,6 +91,7 @@ isort = "5.13.2"
 autopep8 = "2.3.1"
 mypy = "1.11.2"
 bandit = "1.7.9"
+tomli = { version = "2.0.1", python = "<3.11" }
 tox = "4.20.0"
 # min version required to be able to install some dependencies
 # see https://github.com/MichaelKim0407/flake8-use-fstring/issues/33
