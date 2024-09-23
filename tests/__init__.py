@@ -15,14 +15,12 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-
+import sys
 from json import dumps as json_dumps
-from os import getenv
-from os.path import dirname, join
+from os import getenv, path
 from pathlib import Path
 from re import sub as re_sub
-from sys import stderr
-from typing import Union
+from typing import Any, Dict, Union
 from unittest import TestCase
 from xml.sax.saxutils import escape as xml_escape, quoteattr as xml_quoteattr  # nosec:B406
 
@@ -32,16 +30,16 @@ from cyclonedx_py import __version__ as __this_version
 
 RECREATE_SNAPSHOTS = '1' == getenv('CDX_TEST_RECREATE_SNAPSHOTS')
 if RECREATE_SNAPSHOTS:
-    print('!!! WILL RECREATE ALL SNAPSHOTS !!!', file=stderr)
+    print('!!! WILL RECREATE ALL SNAPSHOTS !!!', file=sys.stderr)
 
 INIT_TESTBEDS = '1' != getenv('CDX_TEST_SKIP_INIT_TESTBEDS')
 if INIT_TESTBEDS:
-    print('!!! WILL INIT TESTBEDS !!!', file=stderr)
+    print('!!! WILL INIT TESTBEDS !!!', file=sys.stderr)
 
-_TESTDATA_DIRECTORY = join(dirname(__file__), '_data')
+_TESTDATA_DIRECTORY = path.join(path.dirname(__file__), '_data')
 
-INFILES_DIRECTORY = join(_TESTDATA_DIRECTORY, 'infiles')
-SNAPSHOTS_DIRECTORY = join(_TESTDATA_DIRECTORY, 'snapshots')
+INFILES_DIRECTORY = path.join(_TESTDATA_DIRECTORY, 'infiles')
+SNAPSHOTS_DIRECTORY = path.join(_TESTDATA_DIRECTORY, 'snapshots')
 
 UNSUPPORTED_OF_SV = (
     (OutputFormat.JSON, SchemaVersion.V1_1),
@@ -60,7 +58,7 @@ class SnapshotMixin:
 
     @staticmethod
     def getSnapshotFile(snapshot_name: str) -> str:  # noqa: N802
-        return join(SNAPSHOTS_DIRECTORY, f'{snapshot_name}.bin')
+        return path.join(SNAPSHOTS_DIRECTORY, f'{snapshot_name}.bin')
 
     @classmethod
     def writeSnapshot(cls, snapshot_name: str, data: str) -> None:  # noqa: N802
@@ -160,3 +158,13 @@ def make_comparable(bom: str, of: OutputFormat) -> str:
     raise NotImplementedError(f'unknown OutputFormat: {of!r}')
 
 # endregion reproducible test results
+
+def load_pyproject() -> Dict[str, Any]:
+    if sys.version_info >= (3, 11):
+        from tomllib import load as toml_load
+        with open(path.join(path.dirname(__file__), '..', 'pyproject.toml'), 'rb') as f:
+            return toml_load(f)
+    else:
+        from toml import load as toml_load
+        with open(path.join(path.dirname(__file__), '..', 'pyproject.toml'), 'rt') as f:
+            return toml_load(f)
