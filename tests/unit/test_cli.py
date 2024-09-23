@@ -61,7 +61,9 @@ class TestCli(TestCase, SnapshotMixin):
         ))
         bom.serial_number = None
         bom.metadata.timestamp = None
-        bom.metadata.tools.clear()
+        bom.metadata.tools.components.clear()
+        bom.metadata.tools.services.clear()
+        bom.metadata.tools.tools.clear()
 
         class MyBBC(BomBuilder):
             def __new__(cls, *args: Any, **kwargs: Any) -> BomBuilder:
