@@ -98,10 +98,10 @@ def make_xml_comparable(bom: str) -> str:
     bom = bom.replace(_root_file_uri_xml_attr, 'file://.../')
     bom = bom.replace(  # replace metadata.tools.version
         '        <vendor>CycloneDX</vendor>\n'
-        '        <name>cyclonedx-bom</name>\n'
+        '        <name>cyclonedx-py</name>\n'
         f'        <version>{__this_version}</version>',
         '        <vendor>CycloneDX</vendor>\n'
-        '        <name>cyclonedx-bom</name>\n'
+        '        <name>cyclonedx-py</name>\n'
         '        <version>thisVersion-testing</version>')
     bom = re_sub(  # replace metadata.tools.version
         '        <vendor>CycloneDX</vendor>\n'
@@ -127,10 +127,10 @@ def make_xml_comparable(bom: str) -> str:
 def make_json_comparable(bom: str) -> str:
     bom = bom.replace(_root_file_uri_json, 'file://.../')
     bom = bom.replace(  # replace metadata.tools.version
-        '        "name": "cyclonedx-bom",\n'
+        '        "name": "cyclonedx-py",\n'
         '        "vendor": "CycloneDX",\n'
         f'        "version": {json_dumps(__this_version)}',
-        '        "name": "cyclonedx-bom",\n'
+        '        "name": "cyclonedx-py",\n'
         '        "vendor": "CycloneDX",\n'
         '        "version": "thisVersion-testing"')
     bom = re_sub(  # replace metadata.tools.version

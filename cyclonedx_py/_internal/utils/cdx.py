@@ -35,7 +35,7 @@ def make_bom(**kwargs: Any) -> Bom:
     bom.metadata.tools.add(Tool(
         # keep in sync with `../../../pyproject.toml`
         vendor='CycloneDX',
-        name='cyclonedx-bom',
+        name='cyclonedx-py',
         version=__version__,
         external_references=[
             ExternalReference(

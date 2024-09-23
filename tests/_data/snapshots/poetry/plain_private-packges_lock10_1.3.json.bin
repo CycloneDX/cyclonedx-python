@@ -133,7 +133,7 @@
     ],
     "tools": [
       {
-        "name": "cyclonedx-bom",
+        "name": "cyclonedx-py",
         "vendor": "CycloneDX",
         "version": "thisVersion-testing"
       },
