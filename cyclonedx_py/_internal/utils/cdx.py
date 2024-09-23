@@ -39,7 +39,8 @@ def make_bom(**kwargs: Any) -> Bom:
         Component(
             type=ComponentType.APPLICATION,
             group='CycloneDX',
-            name='cyclonedx-bom',
+            # package is called 'cyclonedx-bom', but the tool is called 'cyclonedx-py'
+            name='cyclonedx-py',
             version=__THIS_VERSION,
             description='CycloneDX Software Bill of Materials (SBOM) generator for Python projects and environments',
             licenses=(DisjunctiveLicense(id='Apache-2.0',

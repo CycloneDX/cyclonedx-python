@@ -719,7 +719,7 @@
               }
             }
           ],
-          "name": "cyclonedx-bom",
+          "name": "cyclonedx-py",
           "type": "application",
           "version": "thisVersion-testing"
         },

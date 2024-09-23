@@ -42,7 +42,7 @@
             "url": "https://github.com/CycloneDX/cyclonedx-python/#readme"
           }
         ],
-        "name": "cyclonedx-bom",
+        "name": "cyclonedx-py",
         "vendor": "CycloneDX",
         "version": "thisVersion-testing"
       },

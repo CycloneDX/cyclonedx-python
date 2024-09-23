@@ -24,7 +24,7 @@ from cyclonedx.model.component import Component, ComponentType
 from cyclonedx.model.license import License, LicenseAcknowledgement
 
 from cyclonedx_py._internal.utils.cdx import make_bom
-from tests import load_pyproject
+from tests import EXPECTED_TOOL_NAME, load_pyproject
 
 
 class ExtRefsTestMixin:
@@ -56,16 +56,16 @@ class TestThisComponentInMetadataTools(TestCase, ExtRefsTestMixin):
 
     def test_basics(self) -> None:
         p = load_pyproject()
-        c = self.__get_c_by_name(p['tool']['poetry']['name'])
+        c = self.__get_c_by_name(EXPECTED_TOOL_NAME)
         self.assertIs(ComponentType.APPLICATION, c.type)
         self.assertEqual('CycloneDX', c.group)
-        self.assertEqual(p['tool']['poetry']['name'], c.name)
+        self.assertEqual(EXPECTED_TOOL_NAME, c.name)
         self.assertEqual(p['tool']['poetry']['version'], c.version)
         self.assertEqual(p['tool']['poetry']['description'], c.description)
 
     def test_license(self) -> None:
         p = load_pyproject()
-        c = self.__get_c_by_name(p['tool']['poetry']['name'])
+        c = self.__get_c_by_name(EXPECTED_TOOL_NAME)
         ls: Tuple[License, ...] = tuple(c.licenses)
         self.assertEqual(1, len(ls))
         l = ls[0]  # noqa:E741
@@ -75,6 +75,6 @@ class TestThisComponentInMetadataTools(TestCase, ExtRefsTestMixin):
 
     def test_extrefs(self) -> None:
         p = load_pyproject()
-        c = self.__get_c_by_name(p['tool']['poetry']['name'])
+        c = self.__get_c_by_name(EXPECTED_TOOL_NAME)
         ers: Tuple[ExternalReference, ...] = tuple(c.external_references)
         self.assertExtRefs(p, ers)

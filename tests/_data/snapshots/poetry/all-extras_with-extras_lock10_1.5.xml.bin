@@ -5,7 +5,7 @@
       <components>
         <component type="application">
           <group>CycloneDX</group>
-          <name>cyclonedx-bom</name>
+          <name>cyclonedx-py</name>
           <version>thisVersion-testing</version>
           <description>CycloneDX Software Bill of Materials (SBOM) generator for Python projects and environments</description>
           <licenses>

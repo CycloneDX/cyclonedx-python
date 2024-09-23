@@ -90,23 +90,25 @@ _root_file_uri_xml = xml_escape(_root_file_uri)
 _root_file_uri_xml_attr = xml_quoteattr(_root_file_uri)[1:-1]
 _root_file_uri_json = json_dumps(_root_file_uri)[1:-1]
 
+# package is called 'cyclonedx-bom', but the tool is called 'cyclonedx-py'
+EXPECTED_TOOL_NAME='cyclonedx-py'
 
 def make_xml_comparable(bom: str) -> str:
     bom = bom.replace(_root_file_uri_xml, 'file://.../')
     bom = bom.replace(_root_file_uri_xml_attr, 'file://.../')
     bom = bom.replace(  # replace this version in metadata.tools.components
         '          <group>CycloneDX</group>\n'
-        '          <name>cyclonedx-bom</name>\n'
+        f'          <name>{EXPECTED_TOOL_NAME}</name>\n'
         f'          <version>{__this_version}</version>',
         '          <group>CycloneDX</group>\n'
-        '          <name>cyclonedx-bom</name>\n'
+        f'          <name>{EXPECTED_TOOL_NAME}</name>\n'
         '          <version>thisVersion-testing</version>')
     bom = bom.replace(  # replace this version in metadata.tools
         '        <vendor>CycloneDX</vendor>\n'
-        '        <name>cyclonedx-bom</name>\n'
+        f'        <name>{EXPECTED_TOOL_NAME}</name>\n'
         f'        <version>{__this_version}</version>',
         '        <vendor>CycloneDX</vendor>\n'
-        '        <name>cyclonedx-bom</name>\n'
+        f'        <name>{EXPECTED_TOOL_NAME}</name>\n'
         '        <version>thisVersion-testing</version>')
     bom = re_sub(  # replace lib-dynamics in metadata.tools.components
         '          <group>CycloneDX</group>\n'
@@ -152,17 +154,17 @@ def make_xml_comparable(bom: str) -> str:
 def make_json_comparable(bom: str) -> str:
     bom = bom.replace(_root_file_uri_json, 'file://.../')
     bom = bom.replace(  # replace this version in metadata.tools.components[]
-        '          "name": "cyclonedx-bom",\n'
+        f'          "name": {json_dumps(EXPECTED_TOOL_NAME)},\n'
         '          "type": "application",\n'
         f'          "version": {json_dumps(__this_version)}',
-        '          "name": "cyclonedx-bom",\n'
+        f'          "name": {json_dumps(EXPECTED_TOOL_NAME)},\n'
         '          "type": "application",\n'
         '          "version": "thisVersion-testing"')
     bom = bom.replace(  # replace this version in metadata.tools[]
-        '        "name": "cyclonedx-bom",\n'
+        f'        "name": {json_dumps(EXPECTED_TOOL_NAME)},\n'
         '        "vendor": "CycloneDX",\n'
         f'        "version": {json_dumps(__this_version)}',
-        '        "name": "cyclonedx-bom",\n'
+        f'        "name": {json_dumps(EXPECTED_TOOL_NAME)},\n'
         '        "vendor": "CycloneDX",\n'
         '        "version": "thisVersion-testing"')
     bom = re_sub(  # replace lib-dynamics in metadata.tools.components[]
