@@ -16,9 +16,7 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 import random
-from contextlib import redirect_stderr, redirect_stdout
 from glob import glob
-from io import StringIO
 from os import name as os_name
 from os.path import basename, dirname, join
 from subprocess import run  # nosec:B404
@@ -29,8 +27,8 @@ from unittest import TestCase, skipIf
 from cyclonedx.schema import OutputFormat, SchemaVersion
 from ddt import ddt, named_data
 
-from cyclonedx_py._internal.cli import run as run_cli
 from tests import INFILES_DIRECTORY, INIT_TESTBEDS, SUPPORTED_OF_SV, SnapshotMixin, make_comparable
+from tests.integration import run_cli
 
 initfiles = glob(join(INFILES_DIRECTORY, 'environment', '*', 'init.py'))
 test_data = tuple(
@@ -46,6 +44,10 @@ def test_data_file_filter(s: str) -> Generator[Any, None, None]:
 
 @ddt
 class TestCliEnvironment(TestCase, SnapshotMixin):
+
+    def test_help(self) -> None:
+        res, out, err = run_cli('environment', '--help')
+        self.assertEqual(0, res, '\n'.join((out, err)))
 
     @classmethod
     def __setup_testbeds_init(cls) -> None:
@@ -68,19 +70,13 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
     )
     def test_fails_with_python_not_found(self, wrong_python: str, expected_error: str) -> None:
         _, _, sv, of = random.choice(test_data)  # nosec B311
-        with StringIO() as err, StringIO() as out:
-            err.name = '<fakeerr>'
-            out.name = '<fakeout>'
-            with redirect_stderr(err), redirect_stdout(out):
-                res = run_cli(argv=[
-                    'environment',
-                    '-vvv',
-                    f'--sv={sv.to_version()}',
-                    f'--of={of.name}',
-                    '--outfile=-',
-                    wrong_python])
-            err = err.getvalue()
-            out = out.getvalue()
+        res, out, err = run_cli(
+            'environment',
+            '-vvv',
+            f'--sv={sv.to_version()}',
+            f'--of={of.name}',
+            '--outfile=-',
+            wrong_python)
         self.assertNotEqual(0, res, err)
         self.assertIn(expected_error, err)
 
@@ -91,76 +87,52 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
     @skipIf(os_name == 'nt', 'cannot run on win')
     def test_fails_with_python_unexpected(self, wrong_python: str, expected_error: str) -> None:
         _, _, sv, of = random.choice(test_data)  # nosec B311
-        with StringIO() as err, StringIO() as out:
-            err.name = '<fakeerr>'
-            out.name = '<fakeout>'
-            with redirect_stderr(err), redirect_stdout(out):
-                res = run_cli(argv=[
-                    'environment',
-                    '-vvv',
-                    f'--sv={sv.to_version()}',
-                    f'--of={of.name}',
-                    '--outfile=-',
-                    wrong_python])
-            err = err.getvalue()
-            out = out.getvalue()
+        res, out, err = run_cli(
+            'environment',
+            '-vvv',
+            f'--sv={sv.to_version()}',
+            f'--of={of.name}',
+            '--outfile=-',
+            wrong_python)
         self.assertNotEqual(0, res, err)
         self.assertIn(expected_error, err)
 
     def test_with_pyproject_not_found(self) -> None:
         _, projectdir, sv, of = random.choice(test_data)  # nosec B311
-        with StringIO() as err, StringIO() as out:
-            err.name = '<fakeerr>'
-            out.name = '<fakeout>'
-            with redirect_stderr(err), redirect_stdout(out):
-                res = run_cli(argv=[
-                    'environment',
-                    '-vvv',
-                    '--sv', sv.to_version(),
-                    '--of', of.name,
-                    '--outfile=-',
-                    '--pyproject=something-that-must-not-exist.testing',
-                    projectdir
-                ])
-            err = err.getvalue()
-            out = out.getvalue()
+        res, out, err = run_cli(
+            'environment',
+            '-vvv',
+            '--sv', sv.to_version(),
+            '--of', of.name,
+            '--outfile=-',
+            '--pyproject=something-that-must-not-exist.testing',
+            projectdir
+        )
         self.assertNotEqual(0, res, err)
         self.assertIn('Could not open pyproject file: something-that-must-not-exist.testing', err)
 
     def test_with_current_python(self) -> None:
         sv = SchemaVersion.V1_6
         of = random.choice((OutputFormat.XML, OutputFormat.JSON))  # nosec B311
-        with StringIO() as err, StringIO() as out:
-            err.name = '<fakeerr>'
-            out.name = '<fakeout>'
-            with redirect_stderr(err), redirect_stdout(out):
-                res = run_cli(argv=[
-                    'environment',
-                    '-vvv',
-                    '--sv', sv.to_version(),
-                    '--of', of.name,
-                    '--output-reproducible',
-                    '--outfile=-',
-                    # no project dir -> search in current python
-                ])
-                err = err.getvalue()
-                sbom1 = out.getvalue()
+        res, sbom1, err = run_cli(
+            'environment',
+            '-vvv',
+            '--sv', sv.to_version(),
+            '--of', of.name,
+            '--output-reproducible',
+            '--outfile=-',
+            # no project dir -> search in current python
+        )
         self.assertEqual(0, res, err)
-        with StringIO() as err, StringIO() as out:
-            err.name = '<fakeerr>'
-            out.name = '<fakeout>'
-            with redirect_stderr(err), redirect_stdout(out):
-                res = run_cli(argv=[
-                    'environment',
-                    '-vvv',
-                    '--sv', sv.to_version(),
-                    '--of', of.name,
-                    '--output-reproducible',
-                    '--outfile=-',
-                    executable  # explicitly current python
-                ])
-            err = err.getvalue()
-            sbom2 = out.getvalue()
+        res, sbom2, err = run_cli(
+            'environment',
+            '-vvv',
+            '--sv', sv.to_version(),
+            '--of', of.name,
+            '--output-reproducible',
+            '--outfile=-',
+            executable  # explicitly current python
+        )
         self.assertEqual(0, res, err)
         self.assertEqual(
             make_comparable(sbom1, of),
@@ -169,85 +141,61 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
 
     @named_data(*test_data)
     def test_plain_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
-        with StringIO() as err, StringIO() as out:
-            err.name = '<fakeerr>'
-            out.name = '<fakeout>'
-            with redirect_stderr(err), redirect_stdout(out):
-                res = run_cli(argv=[
-                    'environment',
-                    '-vvv',
-                    '--sv', sv.to_version(),
-                    '--of', of.name,
-                    '--output-reproducible',
-                    '--outfile=-',
-                    '--pyproject', join(projectdir, 'pyproject.toml'),
-                    join(projectdir, '.venv')])
-            err = err.getvalue()
-            out = out.getvalue()
+        res, out, err = run_cli(
+            'environment',
+            '-vvv',
+            '--sv', sv.to_version(),
+            '--of', of.name,
+            '--output-reproducible',
+            '--outfile=-',
+            '--pyproject', join(projectdir, 'pyproject.toml'),
+            join(projectdir, '.venv'))
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'plain', projectdir, sv, of)
 
     @named_data(*test_data_file_filter('pep639'))
     def test_pep639_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
-        with StringIO() as err, StringIO() as out:
-            err.name = '<fakeerr>'
-            out.name = '<fakeout>'
-            with redirect_stderr(err), redirect_stdout(out):
-                res = run_cli(argv=[
-                    'environment',
-                    '-vvv',
-                    '--sv', sv.to_version(),
-                    '--of', of.name,
-                    '--output-reproducible',
-                    '--outfile=-',
-                    '--pyproject', join(projectdir, 'pyproject.toml'),
-                    '--PEP-639',
-                    join(projectdir, '.venv')])
-            err = err.getvalue()
-            out = out.getvalue()
+        res, out, err = run_cli(
+            'environment',
+            '-vvv',
+            '--sv', sv.to_version(),
+            '--of', of.name,
+            '--output-reproducible',
+            '--outfile=-',
+            '--pyproject', join(projectdir, 'pyproject.toml'),
+            '--PEP-639',
+            join(projectdir, '.venv'))
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'pep639', projectdir, sv, of)
 
     @named_data(*test_data_file_filter('pep639'))
     def test_pep639_texts_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
-        with StringIO() as err, StringIO() as out:
-            err.name = '<fakeerr>'
-            out.name = '<fakeout>'
-            with redirect_stderr(err), redirect_stdout(out):
-                res = run_cli(argv=[
-                    'environment',
-                    '-vvv',
-                    '--sv', sv.to_version(),
-                    '--of', of.name,
-                    '--output-reproducible',
-                    '--outfile=-',
-                    '--pyproject', join(projectdir, 'pyproject.toml'),
-                    '--PEP-639',
-                    '--gather-license-texts',
-                    join(projectdir, '.venv')])
-            err = err.getvalue()
-            out = out.getvalue()
+        res, out, err = run_cli(
+            'environment',
+            '-vvv',
+            '--sv', sv.to_version(),
+            '--of', of.name,
+            '--output-reproducible',
+            '--outfile=-',
+            '--pyproject', join(projectdir, 'pyproject.toml'),
+            '--PEP-639',
+            '--gather-license-texts',
+            join(projectdir, '.venv'))
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'pep639-texts', projectdir, sv, of)
 
     @named_data(*test_data_file_filter('pep639'))
     def test_texts_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
-        with StringIO() as err, StringIO() as out:
-            err.name = '<fakeerr>'
-            out.name = '<fakeout>'
-            with redirect_stderr(err), redirect_stdout(out):
-                res = run_cli(argv=[
-                    'environment',
-                    '-vvv',
-                    '--sv', sv.to_version(),
-                    '--of', of.name,
-                    '--output-reproducible',
-                    '--outfile=-',
-                    '--pyproject', join(projectdir, 'pyproject.toml'),
-                    '--gather-license-texts',
-                    join(projectdir, '.venv')])
-            err = err.getvalue()
-            out = out.getvalue()
+        res, out, err = run_cli(
+            'environment',
+            '-vvv',
+            '--sv', sv.to_version(),
+            '--of', of.name,
+            '--output-reproducible',
+            '--outfile=-',
+            '--pyproject', join(projectdir, 'pyproject.toml'),
+            '--gather-license-texts',
+            join(projectdir, '.venv'))
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'texts', projectdir, sv, of)
 

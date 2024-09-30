@@ -107,7 +107,7 @@ However, the CLI is stable - you might call it programmatically. See the documen
 ## Contributing
 
 Feel free to open issues, bugreports or pull requests.  
-See the [CONTRIBUTING][contributing_file] file for details.
+See the [CONTRIBUTING][contributing_file] file for details, and how to run/setup locally.
 
 ## Copyright & License
 
