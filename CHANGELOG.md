@@ -2,13 +2,43 @@
 
 
 
-## v4.6.1-alpha.1 (2024-09-23)
+## v4.6.1 (2024-09-30)
 
 ### Chore
 
-* chore: trusted publishing
+* chore: trusted publishing (#795)
 
-Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`07b5e83`](https://github.com/CycloneDX/cyclonedx-python/commit/07b5e83c18fd3c02f917bca1faa00d42e6665647))
+fixes #794
+
+---------
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt;
+Signed-off-by: semantic-release &lt;semantic-release@bot.local&gt;
+Co-authored-by: semantic-release &lt;semantic-release@bot.local&gt; ([`721f12d`](https://github.com/CycloneDX/cyclonedx-python/commit/721f12d1a5799e9766fd4da79f54fd11c5776824))
+
+### Documentation
+
+* docs: contrib and setup hint
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`2ae46ff`](https://github.com/CycloneDX/cyclonedx-python/commit/2ae46ff222067724d4f1e5e23335cd342f6775a6))
+
+### Fix
+
+* fix: help page for sub command &#34;environment&#34; on windows (#805)
+
+fixes #804
+
+---------
+
+Signed-off-by: Steve (Gadget) Barnes &lt;gadgetsteve@hotmail.com&gt;
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt;
+Co-authored-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`9e8a5d7`](https://github.com/CycloneDX/cyclonedx-python/commit/9e8a5d72045b3477e5523ed891493c29a584f35f))
+
+### Unknown
+
+* tests: consolidate cli runner (#806)
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`c7b5b1a`](https://github.com/CycloneDX/cyclonedx-python/commit/c7b5b1a37332b3991f3066d306cb179d6004fe5a))
 
 
 ## v4.6.0 (2024-09-20)
