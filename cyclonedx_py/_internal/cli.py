@@ -19,7 +19,7 @@ import logging
 import sys
 from argparse import ArgumentParser, FileType, RawDescriptionHelpFormatter
 from itertools import chain
-from typing import TYPE_CHECKING, Any, Dict, List, Optional, TextIO, Type
+from typing import TYPE_CHECKING, Any, Dict, NoReturn, Optional, Sequence, TextIO, Type, Union
 
 from cyclonedx.model import Property
 from cyclonedx.output import make_outputter
@@ -256,7 +256,7 @@ class Command:
         self._write(output, outfile)
 
 
-def run(*, argv: Optional[List[str]] = None, **kwargs: Any) -> int:
+def run(*, argv: Optional[Sequence[str]] = None, **kwargs: Any) -> Union[int, NoReturn]:
     arg_co = ArgumentParser(add_help=False)
     arg_co.add_argument('-v', '--verbose',
                         help='Increase the verbosity of messages'
@@ -267,12 +267,12 @@ def run(*, argv: Optional[List[str]] = None, **kwargs: Any) -> int:
                         default=0)
     arg_parser = Command.make_argument_parser(**kwargs, sco=arg_co)
     del arg_co, kwargs
-    args = vars(arg_parser.parse_args(argv))
+    args = vars(arg_parser.parse_args(argv))  # may exit -> raise `SystemExit`
     if args['command'] is None:
         # print the "help" page on error, instead of printing "usage" page
         # this is done to have a better user experience.
         arg_parser.print_help()
-        return 1
+        sys.exit(1)
     del arg_parser, argv
 
     ll = (logging.WARNING, logging.INFO, logging.DEBUG)[min(2, args.pop('verbosity'))]

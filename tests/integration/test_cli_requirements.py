@@ -18,19 +18,16 @@
 
 import os
 import random
-from contextlib import redirect_stderr, redirect_stdout
 from glob import glob
-from io import StringIO, TextIOWrapper
 from os.path import basename, join, splitext
 from typing import Any, Generator, Tuple
 from unittest import TestCase
-from unittest.mock import patch
 
 from cyclonedx.schema import OutputFormat, SchemaVersion
 from ddt import ddt, named_data
 
-from cyclonedx_py._internal.cli import run as run_cli
 from tests import INFILES_DIRECTORY, SUPPORTED_OF_SV, SnapshotMixin, make_comparable
+from tests.integration import run_cli
 
 infiles = glob(join(INFILES_DIRECTORY, 'requirements', '*.txt*'))
 
@@ -59,105 +56,80 @@ else:
 @ddt
 class TestCliRequirements(TestCase, SnapshotMixin):
 
+    def test_help(self) -> None:
+        res, out, err = run_cli('requirements', '--help')
+        self.assertEqual(0, res, '\n'.join((out, err)))
+
     def test_with_file_not_found(self) -> None:
         _, infile, sv, of = random.choice(test_data)  # nosec B311
-        with StringIO() as err, StringIO() as out:
-            err.name = '<fakeerr>'
-            out.name = '<fakeout>'
-            with redirect_stderr(err), redirect_stdout(out):
-                res = run_cli(argv=[
-                    'requirements',
-                    '-vvv',
-                    '--sv', sv.to_version(),
-                    '--of', of.name,
-                    '--outfile=-',
-                    'something-that-must-not-exist.testing'])
-            err = err.getvalue()
-            out = out.getvalue()
+        res, out, err = run_cli(
+            'requirements',
+            '-vvv',
+            '--sv', sv.to_version(),
+            '--of', of.name,
+            '--outfile=-',
+            'something-that-must-not-exist.testing')
         self.assertNotEqual(0, res, err)
         self.assertIn('Could not open requirements file: something-that-must-not-exist.testing', err)
 
     def test_with_pyproject_not_found(self) -> None:
         _, infile, sv, of = random.choice(test_data)  # nosec B311
-        with StringIO() as err, StringIO() as out:
-            err.name = '<fakeerr>'
-            out.name = '<fakeout>'
-            with redirect_stderr(err), redirect_stdout(out):
-                res = run_cli(argv=[
-                    'requirements',
-                    '-vvv',
-                    '--sv', sv.to_version(),
-                    '--of', of.name,
-                    '--outfile=-',
-                    '--pyproject=something-that-must-not-exist.testing',
-                    infile
-                ])
-            err = err.getvalue()
-            out = out.getvalue()
+        res, out, err = run_cli(
+            'requirements',
+            '-vvv',
+            '--sv', sv.to_version(),
+            '--of', of.name,
+            '--outfile=-',
+            '--pyproject=something-that-must-not-exist.testing',
+            infile
+        )
         self.assertNotEqual(0, res, err)
         self.assertIn('Could not open pyproject file: something-that-must-not-exist.testing', err)
 
     @named_data(*filter(test_data_os_filter, test_data))
     def test_with_file_as_expected(self, infile: str, sv: SchemaVersion, of: OutputFormat) -> None:
-        with StringIO() as err, StringIO() as out:
-            err.name = '<fakeerr>'
-            out.name = '<fakeout>'
-            with redirect_stderr(err), redirect_stdout(out):
-                res = run_cli(argv=[
-                    'requirements',
-                    '-vvv',
-                    '--sv', sv.to_version(),
-                    '--of', of.name,
-                    '--output-reproducible',
-                    '--outfile=-',
-                    '--pyproject', pyproject_file,
-                    infile])
-            err = err.getvalue()
-            out = out.getvalue()
+        res, out, err = run_cli(
+            'requirements',
+            '-vvv',
+            '--sv', sv.to_version(),
+            '--of', of.name,
+            '--output-reproducible',
+            '--outfile=-',
+            '--pyproject', pyproject_file,
+            infile)
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'file', infile, sv, of)
 
     @named_data(*test_data)
     def test_with_stream_as_expected(self, infile: str, sv: SchemaVersion, of: OutputFormat) -> None:
-        with StringIO() as err, StringIO() as out, open(infile, 'rb') as inp:
-            err.name = '<fakeerr>'
-            out.name = '<fakeout>'
-            with redirect_stderr(err), redirect_stdout(out):
-                with patch('sys.stdin', TextIOWrapper(inp)):
-                    res = run_cli(argv=[
-                        'requirements',
-                        '-vvv',
-                        '--sv', sv.to_version(),
-                        '--of', of.name,
-                        '--output-reproducible',
-                        '--outfile=-',
-                        # no pyproject for this case
-                        '-'])
-            err = err.getvalue()
-            out = out.getvalue()
+        with open(infile, 'rb') as inp:
+            res, out, err = run_cli(
+                'requirements',
+                '-vvv',
+                '--sv', sv.to_version(),
+                '--of', of.name,
+                '--output-reproducible',
+                '--outfile=-',
+                # no pyproject for this case
+                '-',
+                inp=inp)
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'stream', infile, sv, of)
 
     @named_data(*test_data_file_filter('frozen'))
     def test_with_index_auth(self, infile: str, sv: SchemaVersion, of: OutputFormat) -> None:
-        with StringIO() as err, StringIO() as out:
-            err.name = '<fakeerr>'
-            out.name = '<fakeout>'
-            with redirect_stderr(err), redirect_stdout(out):
-                res = run_cli(argv=[
-                    'requirements',
-                    '-vvv',
-                    '--index-url', 'https://user:password@pypackages.acme.org/simple/',
-                    '--extra-index-url', 'https://user:password@legacy1.pypackages.acme.org/simple/',
-                    '--extra-index-url', 'https://user:password@legacy2.pypackages.acme.org/simple/',
-                    '--sv', sv.to_version(),
-                    '--of', of.name,
-                    '--output-reproducible',
-                    '--outfile=-',
-                    '--pyproject', pyproject_file,
-                    infile])
-            err = err.getvalue()
-            out = out.getvalue()
+        res, out, err = run_cli(
+            'requirements',
+            '-vvv',
+            '--index-url', 'https://user:password@pypackages.acme.org/simple/',
+            '--extra-index-url', 'https://user:password@legacy1.pypackages.acme.org/simple/',
+            '--extra-index-url', 'https://user:password@legacy2.pypackages.acme.org/simple/',
+            '--sv', sv.to_version(),
+            '--of', of.name,
+            '--output-reproducible',
+            '--outfile=-',
+            '--pyproject', pyproject_file,
+            infile)
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'index_auth', infile, sv, of)
 
