@@ -39,3 +39,7 @@ class TestCli(TestCase):
         res, out, err = run_cli('--version')
         self.assertEqual(0, res, '\n'.join((out, err)))
         self.assertIn(__version__, out)
+
+    def test_help(self) -> None:
+        res, out, err = run_cli('--help')
+        self.assertEqual(0, res, '\n'.join((out, err)))

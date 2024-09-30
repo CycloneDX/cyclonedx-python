@@ -45,6 +45,10 @@ def test_data_file_filter(s: str) -> Generator[Any, None, None]:
 @ddt
 class TestCliPoetry(TestCase, SnapshotMixin):
 
+    def test_help(self) -> None:
+        res, out, err = run_cli('poetry', '--help')
+        self.assertEqual(0, res, '\n'.join((out, err)))
+
     def test_fails_with_dir_not_found(self) -> None:
         _, projectdir, sv, of = random.choice(test_data)  # nosec B311
         res, out, err = run_cli(

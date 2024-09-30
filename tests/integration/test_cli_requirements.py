@@ -56,6 +56,10 @@ else:
 @ddt
 class TestCliRequirements(TestCase, SnapshotMixin):
 
+    def test_help(self) -> None:
+        res, out, err = run_cli('requirements', '--help')
+        self.assertEqual(0, res, '\n'.join((out, err)))
+
     def test_with_file_not_found(self) -> None:
         _, infile, sv, of = random.choice(test_data)  # nosec B311
         res, out, err = run_cli(

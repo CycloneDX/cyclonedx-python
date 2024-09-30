@@ -45,6 +45,10 @@ def test_data_file_filter(s: str) -> Generator[Any, None, None]:
 @ddt
 class TestCliEnvironment(TestCase, SnapshotMixin):
 
+    def test_help(self) -> None:
+        res, out, err = run_cli('environment', '--help')
+        self.assertEqual(0, res, '\n'.join((out, err)))
+
     @classmethod
     def __setup_testbeds_init(cls) -> None:
         for initfile in initfiles:
