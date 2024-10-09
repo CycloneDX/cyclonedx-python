@@ -17,10 +17,6 @@
           "value": "main"
         },
         {
-          "name": "cdx:poetry:source:package:reference",
-          "value": "da59ad000d1405eaecd557175e29083a87d19f7c"
-        },
-        {
           "name": "cdx:python:package:source:vcs:requested_revision",
           "value": "da59ad000d1405eaecd557175e29083a87d19f7c"
         }
@@ -65,10 +61,6 @@
         {
           "name": "cdx:poetry:group",
           "value": "main"
-        },
-        {
-          "name": "cdx:poetry:source:package:reference",
-          "value": "65486e4383f9f411da95937451205d3c7b61b9e1"
         },
         {
           "name": "cdx:python:package:source:vcs:requested_revision",
@@ -145,7 +137,7 @@
     ],
     "tools": [
       {
-        "name": "cyclonedx-bom",
+        "name": "cyclonedx-py",
         "vendor": "CycloneDX",
         "version": "thisVersion-testing"
       },

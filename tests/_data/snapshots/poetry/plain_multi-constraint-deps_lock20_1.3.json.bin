@@ -17,14 +17,6 @@
           "value": "main"
         },
         {
-          "name": "cdx:poetry:package:source:resolved_reference",
-          "value": "5a6a88db3cc1d08dbc86fbe15edfb69fb5f5a3d6"
-        },
-        {
-          "name": "cdx:poetry:source:package:reference",
-          "value": "2.3.5"
-        },
-        {
           "name": "cdx:python:package:source:vcs:commit_id",
           "value": "5a6a88db3cc1d08dbc86fbe15edfb69fb5f5a3d6"
         },
@@ -414,7 +406,7 @@
     ],
     "tools": [
       {
-        "name": "cyclonedx-bom",
+        "name": "cyclonedx-py",
         "vendor": "CycloneDX",
         "version": "thisVersion-testing"
       },

@@ -35,14 +35,6 @@
       "name": "packaging",
       "properties": [
         {
-          "name": "cdx:poetry:package:source:vcs:commit_id",
-          "value": "b3a5d7d68991c040615d5345bb55f61de53ba176"
-        },
-        {
-          "name": "cdx:poetry:package:source:vcs:requested_revision",
-          "value": "23.2"
-        },
-        {
           "name": "cdx:python:package:source:vcs:commit_id",
           "value": "b3a5d7d68991c040615d5345bb55f61de53ba176"
         },
@@ -211,7 +203,7 @@
     ],
     "tools": [
       {
-        "name": "cyclonedx-bom",
+        "name": "cyclonedx-py",
         "vendor": "CycloneDX",
         "version": "thisVersion-testing"
       },

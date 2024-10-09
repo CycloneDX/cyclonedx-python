@@ -4,7 +4,7 @@
     <tools>
       <tool>
         <vendor>CycloneDX</vendor>
-        <name>cyclonedx-bom</name>
+        <name>cyclonedx-py</name>
         <version>thisVersion-testing</version>
         <externalReferences>
           <reference type="build-system">
@@ -63,7 +63,6 @@
       </externalReferences>
       <properties>
         <property name="cdx:poetry:group">main</property>
-        <property name="cdx:poetry:source:package:reference">da59ad000d1405eaecd557175e29083a87d19f7c</property>
         <property name="cdx:python:package:source:vcs:requested_revision">da59ad000d1405eaecd557175e29083a87d19f7c</property>
       </properties>
     </component>
@@ -95,7 +94,6 @@
       </externalReferences>
       <properties>
         <property name="cdx:poetry:group">main</property>
-        <property name="cdx:poetry:source:package:reference">65486e4383f9f411da95937451205d3c7b61b9e1</property>
         <property name="cdx:python:package:source:vcs:requested_revision">65486e4383f9f411da95937451205d3c7b61b9e1</property>
       </properties>
     </component>

@@ -245,15 +245,9 @@ class EnvironmentBB(BomBuilder):
                 component.properties.add(Property(
                     name=PropertyName.PythonPackageSourceVcsCommitId.value,
                     value=packagesource.commit_id))
-                component.properties.add(Property(
-                    name=PropertyName.PoetryPackageSourceVcsCommitId.value,  # deprecated
-                    value=packagesource.commit_id))
                 if packagesource.requested_revision:
                     component.properties.add(Property(
                         name=PropertyName.PythonPackageSourceVcsRequestedRevision.value,
-                        value=packagesource.requested_revision))
-                    component.properties.add(Property(
-                        name=PropertyName.PoetryPackageSourceVcsRequestedRevision.value,  # deprecated
                         value=packagesource.requested_revision))
             elif isinstance(packagesource, PackageSourceArchive):
                 if '://files.pythonhosted.org/' not in packagesource.url:

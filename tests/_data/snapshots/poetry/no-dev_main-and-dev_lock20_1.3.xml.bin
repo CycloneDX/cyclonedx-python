@@ -4,7 +4,7 @@
     <tools>
       <tool>
         <vendor>CycloneDX</vendor>
-        <name>cyclonedx-bom</name>
+        <name>cyclonedx-py</name>
         <version>thisVersion-testing</version>
       </tool>
       <tool>
