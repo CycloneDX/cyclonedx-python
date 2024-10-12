@@ -124,9 +124,12 @@ upload_to_vcs_release = true
 [tool.semantic_release.changelog]
 changelog_file = "CHANGELOG.md"
 exclude_commit_patterns = [
-  "chore\\(release\\):",
-  "chore\\(deps\\):",
-  "chore\\(deps-dev\\):",
+  '''chore(?:\([^)]*?\))?: .+''',
+  '''ci(?:\([^)]*?\))?: .+''',
+  '''refactor(?:\([^)]*?\))?: .+''',
+  '''style(?:\([^)]*?\))?: .+''',
+  '''tests?(?:\([^)]*?\))?: .+''',
+  '''build\((?!deps\): .+)''',
 ]
 
 [tool.semantic_release.branches.main]
@@ -134,7 +137,7 @@ match = "(main|master)"
 prerelease = false
 
 [tool.semantic_release.branches."step"]
-match = "(build|chore|ci|docs|feat|fix|perf|style|refactor|test)"
+match = "(build|chore|ci|docs|feat|fix|perf|style|refactor|tests?)"
 prerelease = true
 prerelease_token = "alpha"
 
