@@ -21,11 +21,12 @@ from sys import executable
 from unittest import TestCase
 
 from cyclonedx_py import __version__
+from tests.integration import run_cli
 
 
-class TestPipenv(TestCase):
+class TestCli(TestCase):
 
-    def test_call_as_module(self) -> None:
+    def test_version_as_module(self) -> None:
         # show that this thing is callable as a module
         # show that the version is the one expected
         res = run(  # nosec:B603
@@ -33,3 +34,12 @@ class TestPipenv(TestCase):
             capture_output=True, encoding='utf8', shell=False)
         self.assertEqual(0, res.returncode, '\n'.join((res.stdout, res.stderr)))
         self.assertIn(__version__, res.stdout)
+
+    def test_version(self) -> None:
+        res, out, err = run_cli('--version')
+        self.assertEqual(0, res, '\n'.join((out, err)))
+        self.assertIn(__version__, out)
+
+    def test_help(self) -> None:
+        res, out, err = run_cli('--help')
+        self.assertEqual(0, res, '\n'.join((out, err)))
