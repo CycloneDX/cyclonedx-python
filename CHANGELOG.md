@@ -1,14 +1,40 @@
 # CHANGELOG
 
 
-## Unreleased
+
+## v5.0.0 (2024-10-15)
+
+### Breaking
+
+* feat!: v5.0.0 (#797)
+
+### BREAKING Changes
+
+* Emitted metadata tool name is `cyclonedx-py`, was `cyclonedx-bom`.
+* Emitted metadata tools are up to non-deprecated CycloneDX specification.
+* No longer emit deprecated or undocumented properties in namespace [`cdx:poetry`](https://github.com/CycloneDX/cyclonedx-property-taxonomy/blob/main/cdx/poetry.md) (see previous release 4.6.0 for official replacements).
+    - `cdx:poetry:source:package:reference`
+    - `cdx:poetry:package:source:resolved_reference`
+    - `cdx:poetry:package:source:vcs:requested_revision`
+    - `cdx:poetry:package:source:vcs:commit_id`
+
+The mentioned changes are considered &#34;breaking&#34; for processes that relied on the respective data structures. 
+Migration paths are self-explanatory.
+
+### Dependencies
+
+* Requires `cyclonedx-python-lib&gt;=8.0.0,&lt;9 ` now, was `&gt;=7.3.0,&lt;8.0.0,!=7.3.1`.
+
+
+---------
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`34cf6e3`](https://github.com/CycloneDX/cyclonedx-python/commit/34cf6e316f5f065b00cdebbed0791662500e6c4c))
 
 ### Documentation
 
-* docs(chaneglog): omit chore/ci/refactor/style/test/build
+* docs(chaneglog): omit chore/ci/refactor/style/test/build (#813)
 
-Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`824dc28`](https://github.com/CycloneDX/cyclonedx-python/commit/824dc2898cb21f14841f835b8b2703301e87f0f8))
-
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`6707959`](https://github.com/CycloneDX/cyclonedx-python/commit/67079598b520fc7319f1c83ff562584f4acdd09c))
 
 
 ## v4.6.1 (2024-09-30)
