@@ -17,14 +17,6 @@
           "value": "main"
         },
         {
-          "name": "cdx:poetry:package:source:resolved_reference",
-          "value": "da59ad000d1405eaecd557175e29083a87d19f7c"
-        },
-        {
-          "name": "cdx:poetry:source:package:reference",
-          "value": "10.1.0"
-        },
-        {
           "name": "cdx:python:package:source:vcs:commit_id",
           "value": "da59ad000d1405eaecd557175e29083a87d19f7c"
         },
@@ -79,14 +71,6 @@
         {
           "name": "cdx:poetry:group",
           "value": "main"
-        },
-        {
-          "name": "cdx:poetry:package:source:resolved_reference",
-          "value": "65486e4383f9f411da95937451205d3c7b61b9e1"
-        },
-        {
-          "name": "cdx:poetry:source:package:reference",
-          "value": "1.16.0"
         },
         {
           "name": "cdx:python:package:source:vcs:commit_id",
@@ -171,14 +155,68 @@
         "value": "true"
       }
     ],
-    "tools": [
-      {
-        "externalReferences": [   ],
-        "name": "cyclonedx-python-lib",
-        "vendor": "CycloneDX",
-        "version": "libVersion-testing"
-      }
-    ]
+    "tools": {
+      "components": [
+        {
+          "description": "CycloneDX Software Bill of Materials (SBOM) generator for Python projects and environments",
+          "externalReferences": [
+            {
+              "type": "build-system",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/actions"
+            },
+            {
+              "type": "distribution",
+              "url": "https://pypi.org/project/cyclonedx-bom/"
+            },
+            {
+              "type": "documentation",
+              "url": "https://cyclonedx-bom-tool.readthedocs.io/"
+            },
+            {
+              "type": "issue-tracker",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/issues"
+            },
+            {
+              "type": "license",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE"
+            },
+            {
+              "type": "release-notes",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/blob/main/CHANGELOG.md"
+            },
+            {
+              "type": "vcs",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/"
+            },
+            {
+              "type": "website",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/#readme"
+            }
+          ],
+          "group": "CycloneDX",
+          "licenses": [
+            {
+              "license": {
+                "acknowledgement": "declared",
+                "id": "Apache-2.0"
+              }
+            }
+          ],
+          "name": "cyclonedx-py",
+          "type": "application",
+          "version": "thisVersion-testing"
+        },
+        {
+          "description": "stripped",
+          "externalReferences": [   ],
+          "group": "CycloneDX",
+          "licenses": [   ],
+          "name": "cyclonedx-python-lib",
+          "type": "library",
+          "version": "libVersion-testing"
+        }
+      ]
+    }
   },
   "version": 1,
   "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",

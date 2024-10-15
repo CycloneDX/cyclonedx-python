@@ -23,54 +23,67 @@ CycloneDX related helpers and utils.
 from re import compile as re_compile
 from typing import Any, Dict, Iterable
 
-from cyclonedx.model import ExternalReference, ExternalReferenceType, Tool, XsUri
+from cyclonedx.builder.this import this_component as lib_component
+from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
 from cyclonedx.model.bom import Bom
-from cyclonedx.model.license import License, LicenseExpression
+from cyclonedx.model.component import Component, ComponentType
+from cyclonedx.model.license import DisjunctiveLicense, License, LicenseAcknowledgement, LicenseExpression
 
-from cyclonedx_py import __version__
+from ... import __version__ as __THIS_VERSION  # noqa:N812
 
 
 def make_bom(**kwargs: Any) -> Bom:
     bom = Bom(**kwargs)
-    bom.metadata.tools.add(Tool(
-        # keep in sync with `../../../pyproject.toml`
-        vendor='CycloneDX',
-        name='cyclonedx-bom',
-        version=__version__,
-        external_references=[
-            ExternalReference(
-                type=ExternalReferenceType.BUILD_SYSTEM,
-                url=XsUri('https://github.com/CycloneDX/cyclonedx-python/actions')
+    bom.metadata.tools.components.update((
+        lib_component(),
+        Component(
+            type=ComponentType.APPLICATION,
+            group='CycloneDX',
+            # package is called 'cyclonedx-bom', but the tool is called 'cyclonedx-py'
+            name='cyclonedx-py',
+            version=__THIS_VERSION,
+            description='CycloneDX Software Bill of Materials (SBOM) generator for Python projects and environments',
+            licenses=(DisjunctiveLicense(id='Apache-2.0',
+                                         acknowledgement=LicenseAcknowledgement.DECLARED),),
+            external_references=(
+                # let's assume this is not a fork
+                ExternalReference(
+                    type=ExternalReferenceType.WEBSITE,
+                    url=XsUri('https://github.com/CycloneDX/cyclonedx-python/#readme')
+                ),
+                ExternalReference(
+                    type=ExternalReferenceType.DOCUMENTATION,
+                    url=XsUri('https://cyclonedx-bom-tool.readthedocs.io/')
+                ),
+                ExternalReference(
+                    type=ExternalReferenceType.VCS,
+                    url=XsUri('https://github.com/CycloneDX/cyclonedx-python/')
+                ),
+                ExternalReference(
+                    type=ExternalReferenceType.BUILD_SYSTEM,
+                    url=XsUri('https://github.com/CycloneDX/cyclonedx-python/actions')
+                ),
+                ExternalReference(
+                    type=ExternalReferenceType.ISSUE_TRACKER,
+                    url=XsUri('https://github.com/CycloneDX/cyclonedx-python/issues')
+                ),
+                ExternalReference(
+                    type=ExternalReferenceType.LICENSE,
+                    url=XsUri('https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE')
+                ),
+                ExternalReference(
+                    type=ExternalReferenceType.RELEASE_NOTES,
+                    url=XsUri('https://github.com/CycloneDX/cyclonedx-python/blob/main/CHANGELOG.md')
+                ),
+                # we cannot assert where the lib was fetched from, but we can give a hint
+                ExternalReference(
+                    type=ExternalReferenceType.DISTRIBUTION,
+                    url=XsUri('https://pypi.org/project/cyclonedx-bom/')
+                ),
             ),
-            ExternalReference(
-                type=ExternalReferenceType.DISTRIBUTION,
-                url=XsUri('https://pypi.org/project/cyclonedx-bom/')
-            ),
-            ExternalReference(
-                type=ExternalReferenceType.DOCUMENTATION,
-                url=XsUri('https://cyclonedx-bom-tool.readthedocs.io/')
-            ),
-            ExternalReference(
-                type=ExternalReferenceType.ISSUE_TRACKER,
-                url=XsUri('https://github.com/CycloneDX/cyclonedx-python/issues')
-            ),
-            ExternalReference(
-                type=ExternalReferenceType.LICENSE,
-                url=XsUri('https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE')
-            ),
-            ExternalReference(
-                type=ExternalReferenceType.RELEASE_NOTES,
-                url=XsUri('https://github.com/CycloneDX/cyclonedx-python/blob/main/CHANGELOG.md')
-            ),
-            ExternalReference(
-                type=ExternalReferenceType.VCS,
-                url=XsUri('https://github.com/CycloneDX/cyclonedx-python/')
-            ),
-            ExternalReference(
-                type=ExternalReferenceType.WEBSITE,
-                url=XsUri('https://github.com/CycloneDX/cyclonedx-python/#readme')
-            )
-        ]))
+            # to be extended...
+        ),
+    ))
     return bom
 
 
