@@ -50,6 +50,8 @@ make html
 poetry run tox run
 ```
 
+See also: [python test snapshots docs](tests/_data/snapshots/README.md)
+
 ## Sign off your commits
 
 Please sign off your commits, to show that you agree to publish your changes under the current terms and licenses of the project
