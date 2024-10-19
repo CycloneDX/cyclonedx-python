@@ -9,6 +9,8 @@ git+https://github.com/path/to/package-two@master#egg=package-two
 git+https://github.com/path/to/package-three@0.1#egg=package-three
 ### release tag
 git+https://github.com/path/to/package-four@releases/tag/v3.7.1#egg=package-four
+### node id
+git+https://github.com/containerbuildsystem/osbs-client@2bd03f4e0e5edc474b6236c5c128620d988f79a3#egg=package-five
 
 
 ## http build dist

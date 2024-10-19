@@ -45,6 +45,17 @@
     </properties>
   </metadata>
   <components>
+    <component type="library" bom-ref="requirements-L13">
+      <name>package-five</name>
+      <description>requirements line 13: git+https://github.com/containerbuildsystem/osbs-client@2bd03f4e0e5edc474b6236c5c128620d988f79a3#egg=package-five</description>
+      <purl>pkg:pypi/package-five?vcs_url=git%2Bhttps://github.com/containerbuildsystem/osbs-client%402bd03f4e0e5edc474b6236c5c128620d988f79a3%23egg%3Dpackage-five</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>git+https://github.com/containerbuildsystem/osbs-client@2bd03f4e0e5edc474b6236c5c128620d988f79a3#egg=package-five</url>
+          <comment>explicit dist url</comment>
+        </reference>
+      </externalReferences>
+    </component>
     <component type="library" bom-ref="requirements-L11">
       <name>package-four</name>
       <description>requirements line 11: git+https://github.com/path/to/package-four@releases/tag/v3.7.1#egg=package-four</description>
@@ -89,9 +100,9 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="requirements-L19">
+    <component type="library" bom-ref="requirements-L21">
       <name>unknown</name>
-      <description>requirements line 19: https://files.pythonhosted.org/packages/78/23/f78fd8311e0f710fe1d065d50b92ce0057fe877b8ed7fd41b28ad6865bfc/numpy-1.26.1.tar.gz</description>
+      <description>requirements line 21: https://files.pythonhosted.org/packages/78/23/f78fd8311e0f710fe1d065d50b92ce0057fe877b8ed7fd41b28ad6865bfc/numpy-1.26.1.tar.gz</description>
       <externalReferences>
         <reference type="distribution">
           <url>https://files.pythonhosted.org/packages/78/23/f78fd8311e0f710fe1d065d50b92ce0057fe877b8ed7fd41b28ad6865bfc/numpy-1.26.1.tar.gz</url>
@@ -99,9 +110,9 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="requirements-L23">
+    <component type="library" bom-ref="requirements-L25">
       <name>urllib3</name>
-      <description>requirements line 23: urllib3 @ https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip</description>
+      <description>requirements line 25: urllib3 @ https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip</description>
       <purl>pkg:pypi/urllib3?download_url=https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip</purl>
       <externalReferences>
         <reference type="distribution">
@@ -110,10 +121,10 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="requirements-L15">
+    <component type="library" bom-ref="requirements-L17">
       <name>wxPython-Phoenix</name>
       <version>3.0.3.dev1820+49a8884</version>
-      <description>requirements line 15: http://wxpython.org/Phoenix/snapshot-builds/wxPython_Phoenix-3.0.3.dev1820+49a8884-cp34-none-win_amd64.whl</description>
+      <description>requirements line 17: http://wxpython.org/Phoenix/snapshot-builds/wxPython_Phoenix-3.0.3.dev1820+49a8884-cp34-none-win_amd64.whl</description>
       <purl>pkg:pypi/wxpython-phoenix@3.0.3.dev1820%2B49a8884?download_url=http://wxpython.org/Phoenix/snapshot-builds/wxPython_Phoenix-3.0.3.dev1820%2B49a8884-cp34-none-win_amd64.whl</purl>
       <externalReferences>
         <reference type="distribution">
@@ -125,9 +136,10 @@
   </components>
   <dependencies>
     <dependency ref="requirements-L11"/>
-    <dependency ref="requirements-L15"/>
-    <dependency ref="requirements-L19"/>
-    <dependency ref="requirements-L23"/>
+    <dependency ref="requirements-L13"/>
+    <dependency ref="requirements-L17"/>
+    <dependency ref="requirements-L21"/>
+    <dependency ref="requirements-L25"/>
     <dependency ref="requirements-L5"/>
     <dependency ref="requirements-L7"/>
     <dependency ref="requirements-L9"/>

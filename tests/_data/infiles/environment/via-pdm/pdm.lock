@@ -4,8 +4,11 @@
 [metadata]
 groups = ["default", "dev"]
 strategy = ["cross_platform", "inherit_metadata"]
-lock_version = "4.4.1"
-content_hash = "sha256:ff16a20acc2ca2e9aa40f03286a59c8ad435913a75fc6002d1295bf735cd6cb0"
+lock_version = "4.5.0"
+content_hash = "sha256:adaefe9c99e680ca2643b70e0edef5b69b10e0859e2a863b5c0b81f9cd946230"
+
+[[metadata.targets]]
+requires_python = ">=3.8"
 
 [[package]]
 name = "ddt"
