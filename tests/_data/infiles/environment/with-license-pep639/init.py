@@ -69,7 +69,7 @@ def main() -> None:
         'boolean.py',
         'jsonpointer',
         'license_expression',
-        # 'lxml', << caused issues on py3.12
+        'lxml',
     )
 
 
