@@ -71,10 +71,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - python-version: '3.12'
+          - python-version: '3.13'  # latest
             os: ubuntu-latest
             toxenv-factors: '-current'
-          - python-version: '3.8'
+          - python-version: '3.8'   # lowest
             os: ubuntu-latest
             toxenv-factors: '-lowest'
     steps:
@@ -162,7 +162,8 @@ jobs:
           - macos-13  # macos-latest might be incompatible to py38 - see https://github.com/CycloneDX/cyclonedx-python-lib/pull/599#issuecomment-2077462142
           - windows-latest
         python-version:
-          - "3.12" # highest supported
+          - "3.13" # highest supported
+          - "3.12"
           - "3.11"
           - "3.10"
           - "3.9"
