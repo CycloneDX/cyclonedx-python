@@ -30,8 +30,7 @@ include = [
   { path="docs", format=["sdist"] },
 ]
 exclude = [
-  # exclude dotfiles and dotfolders
-  "**/.*",
+  "**/.*", # exclude dotfiles and dotfolders
   "docs/_build", "docs/processes",
 ]
 keywords = [

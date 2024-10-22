@@ -67,7 +67,7 @@ def main() -> None:
         # additionals for reproducibility foo
         'importlib-resources>=1.4.0',
         'pkgutil-resolve-name>=1.3.10',
-        'zipp>=3.1.0',
+        # 'zipp>=3.1.0', << caused issues on py3.12
     )
 
 
