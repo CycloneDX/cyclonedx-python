@@ -55,29 +55,6 @@
       "version": "0.18.5"
     },
     {
-      "bom-ref": "ruamel.yaml.clib==0.2.8",
-      "description": "C version of reader, parser and emitter for ruamel.yaml derived from libyaml",
-      "externalReferences": [
-        {
-          "comment": "from packaging metadata: Home-page",
-          "type": "website",
-          "url": "https://sourceforge.net/p/ruamel-yaml-clib/code/ci/default/tree"
-        }
-      ],
-      "licenses": [
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "id": "MIT"
-          }
-        }
-      ],
-      "name": "ruamel.yaml.clib",
-      "purl": "pkg:pypi/ruamel.yaml.clib@0.2.8",
-      "type": "library",
-      "version": "0.2.8"
-    },
-    {
       "bom-ref": "ruamel.yaml.jinja2==0.2.7",
       "description": "jinja2 pre and post-processor to update with YAML",
       "externalReferences": [
@@ -109,9 +86,6 @@
       "ref": "root-component"
     },
     {
-      "ref": "ruamel.yaml.clib==0.2.8"
-    },
-    {
       "dependsOn": [
         "ruamel.yaml==0.18.5"
       ],
@@ -119,7 +93,6 @@
     },
     {
       "dependsOn": [
-        "ruamel.yaml.clib==0.2.8",
         "ruamel.yaml.jinja2==0.2.7"
       ],
       "ref": "ruamel.yaml==0.18.5"

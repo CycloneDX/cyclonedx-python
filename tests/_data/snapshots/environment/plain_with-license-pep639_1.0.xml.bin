@@ -29,12 +29,5 @@
       <purl>pkg:pypi/license-expression@30.3.0</purl>
       <modified>false</modified>
     </component>
-    <component type="library">
-      <name>lxml</name>
-      <version>5.2.2</version>
-      <description>Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API.</description>
-      <purl>pkg:pypi/lxml@5.2.2</purl>
-      <modified>false</modified>
-    </component>
   </components>
 </bom>

@@ -4022,7 +4022,7 @@
     <component type="library" bom-ref="platformdirs@4.2.0">
       <name>platformdirs</name>
       <version>4.2.0</version>
-      <description>A small Python package for determining appropriate platform-specific dirs, e.g. a &quot;user data dir&quot;.</description>
+      <description>A small Python package for determining appropriate platform-specific dirs, e.g. a "user data dir".</description>
       <purl>pkg:pypi/platformdirs@4.2.0</purl>
       <externalReferences>
         <reference type="distribution">

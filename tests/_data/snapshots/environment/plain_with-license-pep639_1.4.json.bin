@@ -116,38 +116,6 @@
       "purl": "pkg:pypi/license-expression@30.3.0",
       "type": "library",
       "version": "30.3.0"
-    },
-    {
-      "bom-ref": "lxml==5.2.2",
-      "description": "Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API.",
-      "externalReferences": [
-        {
-          "comment": "from packaging metadata Project-URL: Source",
-          "type": "other",
-          "url": "https://github.com/lxml/lxml"
-        },
-        {
-          "comment": "from packaging metadata: Home-page",
-          "type": "website",
-          "url": "https://lxml.de/"
-        }
-      ],
-      "licenses": [
-        {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
-        },
-        {
-          "license": {
-            "name": "License :: OSI Approved :: BSD License"
-          }
-        }
-      ],
-      "name": "lxml",
-      "purl": "pkg:pypi/lxml@5.2.2",
-      "type": "library",
-      "version": "5.2.2"
     }
   ],
   "dependencies": [
@@ -167,15 +135,11 @@
       "ref": "license-expression==30.3.0"
     },
     {
-      "ref": "lxml==5.2.2"
-    },
-    {
       "dependsOn": [
         "attrs==23.2.0",
         "boolean.py==4.0",
         "jsonpointer==2.4",
-        "license-expression==30.3.0",
-        "lxml==5.2.2"
+        "license-expression==30.3.0"
       ],
       "ref": "root-component"
     }
