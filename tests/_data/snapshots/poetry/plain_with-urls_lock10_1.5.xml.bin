@@ -110,7 +110,7 @@
     <component type="library" bom-ref="wxPython@4.2.2a1.dev5618+1f82021f">
       <name>wxPython</name>
       <version>4.2.2a1.dev5618+1f82021f</version>
-      <description>Cross platform GUI toolkit for Python, &quot;Phoenix&quot; version</description>
+      <description>Cross platform GUI toolkit for Python, "Phoenix" version</description>
       <purl>pkg:pypi/wxpython@4.2.2a1.dev5618%2B1f82021f?download_url=https://wxpython.org/Phoenix/snapshot-builds/wxPython-4.2.2a1.dev5618%2B1f82021f-cp38-cp38-win32.whl</purl>
       <externalReferences>
         <reference type="distribution">

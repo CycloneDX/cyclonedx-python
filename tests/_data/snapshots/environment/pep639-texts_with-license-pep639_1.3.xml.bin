@@ -38,7 +38,7 @@
 Copyright (c) 2015 Hynek Schlawack and the attrs contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the &quot;Software&quot;), to deal
+of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
@@ -47,7 +47,7 @@ furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
@@ -146,7 +146,7 @@ next
 * API changes
 
  * Add new sort argument to simplify() to optionally not sort when simplifying
-   expressions (e.g. not applying &quot;commutativity&quot;). Thank you to Steven Esser
+   expressions (e.g. not applying "commutativity"). Thank you to Steven Esser
    @majurg for this
  * Add new argument to tokenizer to optionally accept extra characters in symbol
    tokens. Thank you to @carpie for this
@@ -194,11 +194,11 @@ next
 
  * #40 and #50 Expression.subs() now takes 'default' thanks to @kronuz
  * #45 simplify=False is now the default for parse and related functions or methods.
- * #40 Use &quot;&amp;&quot; and &quot;|&quot; as default operators
+ * #40 Use "&amp;" and "|" as default operators
 
 * Bug fixes
 
- * #60 Fix bug for &quot;a or b c&quot; which is not a valid expression
+ * #60 Fix bug for "a or b c" which is not a valid expression
  * #58 Fix math formula display in docs
  * Improve handling of parse errors
 
@@ -237,7 +237,7 @@ list of conditions and the following disclaimer.
 this list of conditions and the following disclaimer in the documentation and/or
 other materials provided with the distribution.
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
 DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
@@ -254,7 +254,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
           <text content-type="text/prs.fallenstein.rst">boolean.py
 ==========
 
-&quot;boolean.py&quot; is a small library implementing a boolean algebra. It
+"boolean.py" is a small library implementing a boolean algebra. It
 defines two base elements, TRUE and FALSE, and a Symbol class that can
 take on one of these two values. Calculations are done in terms of AND,
 OR and NOT - other compositions like XOR and NAND are not implemented
@@ -678,14 +678,14 @@ https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
 # Visit https://aboutcode.org and https://github.com/nexB/license-expression
 # for support and download.
 #
-# Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+# Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
 #     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+# distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
@@ -702,38 +702,38 @@ https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
 
    1. Definitions.
 
-      &quot;License&quot; shall mean the terms and conditions for use, reproduction,
+      "License" shall mean the terms and conditions for use, reproduction,
       and distribution as defined by Sections 1 through 9 of this document.
 
-      &quot;Licensor&quot; shall mean the copyright owner or entity authorized by
+      "Licensor" shall mean the copyright owner or entity authorized by
       the copyright owner that is granting the License.
 
-      &quot;Legal Entity&quot; shall mean the union of the acting entity and all
+      "Legal Entity" shall mean the union of the acting entity and all
       other entities that control, are controlled by, or are under common
       control with that entity. For the purposes of this definition,
-      &quot;control&quot; means (i) the power, direct or indirect, to cause the
+      "control" means (i) the power, direct or indirect, to cause the
       direction or management of such entity, whether by contract or
       otherwise, or (ii) ownership of fifty percent (50%) or more of the
       outstanding shares, or (iii) beneficial ownership of such entity.
 
-      &quot;You&quot; (or &quot;Your&quot;) shall mean an individual or Legal Entity
+      "You" (or "Your") shall mean an individual or Legal Entity
       exercising permissions granted by this License.
 
-      &quot;Source&quot; form shall mean the preferred form for making modifications,
+      "Source" form shall mean the preferred form for making modifications,
       including but not limited to software source code, documentation
       source, and configuration files.
 
-      &quot;Object&quot; form shall mean any form resulting from mechanical
+      "Object" form shall mean any form resulting from mechanical
       transformation or translation of a Source form, including but
       not limited to compiled object code, generated documentation,
       and conversions to other media types.
 
-      &quot;Work&quot; shall mean the work of authorship, whether in Source or
+      "Work" shall mean the work of authorship, whether in Source or
       Object form, made available under the License, as indicated by a
       copyright notice that is included in or attached to the work
       (an example is provided in the Appendix below).
 
-      &quot;Derivative Works&quot; shall mean any work, whether in Source or Object
+      "Derivative Works" shall mean any work, whether in Source or Object
       form, that is based on (or derived from) the Work and for which the
       editorial revisions, annotations, elaborations, or other modifications
       represent, as a whole, an original work of authorship. For the purposes
@@ -741,21 +741,21 @@ https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
       separable from, or merely link (or bind by name) to the interfaces of,
       the Work and Derivative Works thereof.
 
-      &quot;Contribution&quot; shall mean any work of authorship, including
+      "Contribution" shall mean any work of authorship, including
       the original version of the Work and any modifications or additions
       to that Work or Derivative Works thereof, that is intentionally
       submitted to Licensor for inclusion in the Work by the copyright owner
       or by an individual or Legal Entity authorized to submit on behalf of
-      the copyright owner. For the purposes of this definition, &quot;submitted&quot;
+      the copyright owner. For the purposes of this definition, "submitted"
       means any form of electronic, verbal, or written communication sent
       to the Licensor or its representatives, including but not limited to
       communication on electronic mailing lists, source code control systems,
       and issue tracking systems that are managed by, or on behalf of, the
       Licensor for the purpose of discussing and improving the Work, but
       excluding communication that is conspicuously marked or otherwise
-      designated in writing by the copyright owner as &quot;Not a Contribution.&quot;
+      designated in writing by the copyright owner as "Not a Contribution."
 
-      &quot;Contributor&quot; shall mean Licensor and any individual or Legal Entity
+      "Contributor" shall mean Licensor and any individual or Legal Entity
       on behalf of whom a Contribution has been received by Licensor and
       subsequently incorporated within the Work.
 
@@ -799,7 +799,7 @@ https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
           excluding those notices that do not pertain to any part of
           the Derivative Works; and
 
-      (d) If the Work includes a &quot;NOTICE&quot; text file as part of its
+      (d) If the Work includes a "NOTICE" text file as part of its
           distribution, then any Derivative Works that You distribute must
           include a readable copy of the attribution notices contained
           within such NOTICE file, excluding those notices that do not
@@ -838,7 +838,7 @@ https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
 
    7. Disclaimer of Warranty. Unless required by applicable law or
       agreed to in writing, Licensor provides the Work (and each
-      Contributor provides its Contributions) on an &quot;AS IS&quot; BASIS,
+      Contributor provides its Contributions) on an "AS IS" BASIS,
       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
       implied, including, without limitation, any warranties or conditions
       of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
@@ -874,24 +874,24 @@ https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
    APPENDIX: How to apply the Apache License to your work.
 
       To apply the Apache License to your work, attach the following
-      boilerplate notice, with the fields enclosed by brackets &quot;[]&quot;
+      boilerplate notice, with the fields enclosed by brackets "[]"
       replaced with your own identifying information. (Don't include
       the brackets!)  The text should be enclosed in the appropriate
       comment syntax for the file format. We also recommend that a
       file or class name and description of purpose be included on the
-      same &quot;printed page&quot; as the copyright notice for easier
+      same "printed page" as the copyright notice for easier
       identification within third-party archives.
 
    Copyright [yyyy] [name of copyright owner]
 
-   Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+   Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
    You may obtain a copy of the License at
 
        http://www.apache.org/licenses/LICENSE-2.0
 
    Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+   distributed under the License is distributed on an "AS IS" BASIS,
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
@@ -906,9 +906,9 @@ https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="lxml==5.2.2">
+    <component type="library" bom-ref="lxml==5.3.0">
       <name>lxml</name>
-      <version>5.2.2</version>
+      <version>5.3.0</version>
       <description>Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API.</description>
       <licenses>
         <license>
@@ -938,7 +938,7 @@ met:
      without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-&quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
 A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL INFRAE OR
 CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
@@ -965,7 +965,7 @@ under the BSD license (see doc/licenses/BSD.txt).
 test.py, the test-runner script, is GPL and copyright Shuttleworth
 Foundation. See doc/licenses/GPL.txt. It is believed the unchanged
 inclusion of test.py to run the unit test suite falls under the
-&quot;aggregation&quot; clause of the GPL and thus does not affect the license
+"aggregation" clause of the GPL and thus does not affect the license
 of the rest of the package.
 
 The isoschematron implementation uses several XSL and RelaxNG resources:
@@ -984,7 +984,7 @@ The isoschematron implementation uses several XSL and RelaxNG resources:
 </text>
         </license>
       </licenses>
-      <purl>pkg:pypi/lxml@5.2.2</purl>
+      <purl>pkg:pypi/lxml@5.3.0</purl>
       <externalReferences>
         <reference type="other">
           <url>https://github.com/lxml/lxml</url>
@@ -1004,13 +1004,13 @@ The isoschematron implementation uses several XSL and RelaxNG resources:
     <dependency ref="license-expression==30.3.0">
       <dependency ref="boolean.py==4.0"/>
     </dependency>
-    <dependency ref="lxml==5.2.2"/>
+    <dependency ref="lxml==5.3.0"/>
     <dependency ref="root-component">
       <dependency ref="attrs==23.2.0"/>
       <dependency ref="boolean.py==4.0"/>
       <dependency ref="jsonpointer==2.4"/>
       <dependency ref="license-expression==30.3.0"/>
-      <dependency ref="lxml==5.2.2"/>
+      <dependency ref="lxml==5.3.0"/>
     </dependency>
   </dependencies>
 </bom>

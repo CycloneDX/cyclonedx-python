@@ -89,9 +89,9 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="lxml==5.2.2">
+    <component type="library" bom-ref="lxml==5.3.0">
       <name>lxml</name>
-      <version>5.2.2</version>
+      <version>5.3.0</version>
       <description>Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API.</description>
       <licenses>
         <license>
@@ -101,7 +101,7 @@
           <name>License :: OSI Approved :: BSD License</name>
         </license>
       </licenses>
-      <purl>pkg:pypi/lxml@5.2.2</purl>
+      <purl>pkg:pypi/lxml@5.3.0</purl>
       <externalReferences>
         <reference type="other">
           <url>https://github.com/lxml/lxml</url>

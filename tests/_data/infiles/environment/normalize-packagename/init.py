@@ -63,8 +63,10 @@ def main() -> None:
     ).create(env_dir)
 
     pip_install(
+        '--no-deps',  # the clib dep cannot be installed consistently...
         # https://packaging.python.org/en/latest/specifications/name-normalization/#name-normalization
         'ruamel-YAML[jinja2]',  # actually "ruamel.yaml", normalizes to "ruamel-yaml"
+        'ruamel-Yaml.Jinja2',   # actually "ruamel.yaml.jinja2", normalizes to "ruamel-yaml-jinja2"
     )
 
 
