@@ -150,7 +150,7 @@ def make_xml_comparable(bom: str) -> str:
         '        <externalReferences><!-- stripped --></externalReferences>',
         bom)
     if sys.version_info < (3, 13):
-        # py3.13 finally fixed a bug in the XML writer:
+        # py3.13 finally fixed a bug in the XML writer: https://github.com/python/cpython/issues/81555
         # no longer escape double-quotes(") in text/non-attribute.
         # here is a backwards-compat mode, so we have consistent tests.
         bom = re_sub(
