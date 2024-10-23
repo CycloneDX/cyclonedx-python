@@ -2,6 +2,15 @@
 
 
 
+## v5.1.0 (2024-10-23)
+
+### Feature
+
+* feat: add Python 3.13 support (#818)
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`f4eb79e`](https://github.com/CycloneDX/cyclonedx-python/commit/f4eb79e50bd5a1462c47ad259d632937d951bf96))
+
+
 ## v5.0.0 (2024-10-15)
 
 ### Breaking
