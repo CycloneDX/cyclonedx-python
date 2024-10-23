@@ -24,4 +24,5 @@ _URL_AUTH_REPLACE = ''  # drop auth - in accordance with PEP 610
 def redact_auth_from_url(s: str) -> str:
     # is intended to work on any string that contains an url.
     return _URL_AUTH_MATCHER.sub(_URL_AUTH_REPLACE, s) \
-        if '@' in s else s
+        if '@' in s \
+        else s

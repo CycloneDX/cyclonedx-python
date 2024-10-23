@@ -97,4 +97,7 @@ def normalize_packagename(name: str) -> str:
 
     see https://packaging.python.org/en/latest/specifications/name-normalization/#name-normalization
     """
-    return _NORMALIZE_PN_MATCHER.sub(_NORMALIZE_PN_REPLACE, name).lower()
+    return _NORMALIZE_PN_MATCHER.sub(
+        _NORMALIZE_PN_REPLACE,
+        name.lower()
+    )
