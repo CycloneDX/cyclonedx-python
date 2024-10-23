@@ -21,13 +21,14 @@ This module is internal - it is not public API.
 All in here may have breaking change without notice.
 """
 
+
 from typing import Optional
 
-__LICENSE_TROVE_PREFIX = 'License :: '
+_LICENSE_TROVE_PREFIX = 'License :: '
 
 
 def is_license_trove(classifier: str) -> bool:
-    return classifier.startswith(__LICENSE_TROVE_PREFIX)
+    return classifier.startswith(_LICENSE_TROVE_PREFIX)
 
 
 """
@@ -44,7 +45,7 @@ SPDX license IDs: https://spdx.org/licenses/
 
 See also: https://peps.python.org/pep-0639/#mapping-license-classifiers-to-spdx-identifiers
 """
-__TO_SPDX_MAP = {
+_MAP_TO_SPDX = {
 
     # region not  OSI Approved
 
@@ -168,4 +169,4 @@ __TO_SPDX_MAP = {
 
 def license_trove2spdx(classifier: str) -> Optional[str]:
     """return the SPDX id or expression for a given license trove classifier"""
-    return __TO_SPDX_MAP.get(classifier)
+    return _MAP_TO_SPDX.get(classifier)

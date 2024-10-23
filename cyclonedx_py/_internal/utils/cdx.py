@@ -29,7 +29,7 @@ from cyclonedx.model.bom import Bom
 from cyclonedx.model.component import Component, ComponentType
 from cyclonedx.model.license import DisjunctiveLicense, License, LicenseAcknowledgement, LicenseExpression
 
-from ... import __version__ as __THIS_VERSION  # noqa:N812
+from ... import __version__ as _THIS_VERSION  # noqa:N812
 
 
 def make_bom(**kwargs: Any) -> Bom:
@@ -41,7 +41,7 @@ def make_bom(**kwargs: Any) -> Bom:
             group='CycloneDX',
             # package is called 'cyclonedx-bom', but the tool is called 'cyclonedx-py'
             name='cyclonedx-py',
-            version=__THIS_VERSION,
+            version=_THIS_VERSION,
             description='CycloneDX Software Bill of Materials (SBOM) generator for Python projects and environments',
             licenses=(DisjunctiveLicense(id='Apache-2.0',
                                          acknowledgement=LicenseAcknowledgement.DECLARED),),
@@ -95,7 +95,7 @@ def licenses_fixup(licenses: Iterable['License']) -> Iterable['License']:
     return licenses
 
 
-__known_ulr_labels: Dict[str, ExternalReferenceType] = {
+_MAP_KNOWN_URL_LABELS: Dict[str, ExternalReferenceType] = {
     # see https://peps.python.org/pep-0345/#project-url-multiple-use
     # see https://github.com/pypi/warehouse/issues/5947#issuecomment-699660629
     'bugtracker': ExternalReferenceType.ISSUE_TRACKER,
@@ -116,10 +116,11 @@ __known_ulr_labels: Dict[str, ExternalReferenceType] = {
     'chat': ExternalReferenceType.CHAT,
 }
 
-__re_nochar = re_compile('[^a-z]')
+_NOCHAR_MATCHER = re_compile('[^a-z]')
 
 
 def url_label_to_ert(value: str) -> ExternalReferenceType:
-    return __known_ulr_labels.get(
-        __re_nochar.sub('', str(value).lower()),
-        ExternalReferenceType.OTHER)
+    return _MAP_KNOWN_URL_LABELS.get(
+        _NOCHAR_MATCHER.sub('', str(value).lower()),
+        ExternalReferenceType.OTHER
+    )
