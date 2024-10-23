@@ -350,16 +350,16 @@
         <property name="cdx:python:package:required-extra">format</property>
       </properties>
     </component>
-    <component type="library" bom-ref="jsonschema-specifications==2024.10.1">
+    <component type="library" bom-ref="jsonschema-specifications==2023.3.6">
       <name>jsonschema-specifications</name>
-      <version>2024.10.1</version>
+      <version>2023.3.6</version>
       <description>The JSON Schema meta-schemas and vocabularies, exposed as a Registry</description>
       <licenses>
         <license>
           <id>MIT</id>
         </license>
       </licenses>
-      <purl>pkg:pypi/jsonschema-specifications@2024.10.1</purl>
+      <purl>pkg:pypi/jsonschema-specifications@2023.3.6</purl>
       <externalReferences>
         <reference type="documentation">
           <url>https://jsonschema-specifications.readthedocs.io/</url>
@@ -376,10 +376,6 @@
         <reference type="other">
           <url>https://github.com/sponsors/Julian</url>
           <comment>from packaging metadata Project-URL: Funding</comment>
-        </reference>
-        <reference type="other">
-          <url>https://tidelift.com/subscription/pkg/pypi-jsonschema-specifications?utm_source=pypi-jsonschema-specifications&amp;utm_medium=referral&amp;utm_campaign=pypi-link</url>
-          <comment>from packaging metadata Project-URL: Tidelift</comment>
         </reference>
         <reference type="website">
           <url>https://github.com/python-jsonschema/jsonschema-specifications</url>
@@ -812,7 +808,8 @@
       <dependency ref="arrow==1.3.0"/>
     </dependency>
     <dependency ref="jsonpointer==3.0.0"/>
-    <dependency ref="jsonschema-specifications==2024.10.1">
+    <dependency ref="jsonschema-specifications==2023.3.6">
+      <dependency ref="importlib_resources==6.4.5"/>
       <dependency ref="referencing==0.35.1"/>
     </dependency>
     <dependency ref="jsonschema==4.23.0">
@@ -822,7 +819,7 @@
       <dependency ref="importlib_resources==6.4.5"/>
       <dependency ref="isoduration==20.11.0"/>
       <dependency ref="jsonpointer==3.0.0"/>
-      <dependency ref="jsonschema-specifications==2024.10.1"/>
+      <dependency ref="jsonschema-specifications==2023.3.6"/>
       <dependency ref="pkgutil_resolve_name==1.3.10"/>
       <dependency ref="referencing==0.35.1"/>
       <dependency ref="rfc3339-validator==0.1.4"/>

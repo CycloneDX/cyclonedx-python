@@ -80,9 +80,9 @@
     </component>
     <component type="library">
       <name>jsonschema-specifications</name>
-      <version>2024.10.1</version>
+      <version>2023.3.6</version>
       <description>The JSON Schema meta-schemas and vocabularies, exposed as a Registry</description>
-      <purl>pkg:pypi/jsonschema-specifications@2024.10.1</purl>
+      <purl>pkg:pypi/jsonschema-specifications@2023.3.6</purl>
       <modified>false</modified>
     </component>
     <component type="library">
