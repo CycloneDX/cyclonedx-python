@@ -65,6 +65,8 @@ def main() -> None:
     pip_install(
         # https://packaging.python.org/en/latest/specifications/name-normalization/#name-normalization
         'ruamel-YAML[jinja2]',  # actually "ruamel.yaml", normalizes to "ruamel-yaml"
+        # additionals for reproducibility foo
+        'ruamel.yaml.clib'
     )
 
 
