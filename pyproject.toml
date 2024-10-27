@@ -82,6 +82,7 @@ ddt = "1.7.2"
 flake8 = { version = "7.1.1", python = ">=3.8.1" }
 flake8-annotations = { version = "3.1.1", python = ">=3.8.1" }
 flake8-bugbear = { version = "24.8.19", python = ">=3.8.1" }
+flake8-copyright-validator = "^0.0.1"
 flake8-isort = "6.1.1"
 flake8-quotes = "3.4.0"
 flake8-use-fstring = "1.4"
@@ -101,7 +102,7 @@ pip = ">=23.0"
 pipenv = ">=2023.11.5"
 poetry = "^1.7"
 pdm = "^2.11"
-flake8-copyright-validator = "^0.0.1"
+
 
 
 
