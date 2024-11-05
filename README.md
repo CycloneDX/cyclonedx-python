@@ -67,7 +67,7 @@ cyclonedx-py             # call script
 python3 -m cyclonedx_py  # call python module CLI
 ```
 
-## Basic usage
+### Basic usage
 
 ```shellSession
 $ cyclonedx-py --help
