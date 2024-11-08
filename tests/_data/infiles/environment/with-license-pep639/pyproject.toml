@@ -12,4 +12,5 @@ dependencies = [
   "jsonpointer",
   "license_expression",
   "lxml",
+  "cryptography"
 ]
