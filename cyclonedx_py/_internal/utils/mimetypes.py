@@ -52,6 +52,8 @@ def guess_type(file_name: str) -> Optional[str]:
     """
     file_name_l = file_name.lower()
     base, ext = splitext(file_name_l)
+    if ext == '':
+        return None
     if base in _LICENSE_FNAME_BASE and ext in _LICENSE_FNAME_EXT:
         return _MIME_TEXT_PLAIN
     return _MAP_EXT_MIME.get(ext) \
