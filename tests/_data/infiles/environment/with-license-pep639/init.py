@@ -70,8 +70,8 @@ def main() -> None:
         'jsonpointer',
         'license_expression',
         'lxml',
-        # with expression as License AND License-File
-        'cryptography==43.0.1',  # see https://github.com/CycloneDX/cyclonedx-python/issues/826
+        # with expression-like License AND License-File
+        'cryptography==43.0.1',
     )
 
 

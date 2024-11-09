@@ -12,5 +12,6 @@ dependencies = [
   "jsonpointer",
   "license_expression",
   "lxml",
-  "cryptography"
+  # with expression-like License AND License-File
+  "cryptography",
 ]
