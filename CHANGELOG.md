@@ -2,6 +2,25 @@
 
 
 
+## v5.1.1 (2024-11-09)
+
+### Documentation
+
+* docs: fix headline structure in readme
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`74f07e1`](https://github.com/CycloneDX/cyclonedx-python/commit/74f07e16871b9ee5f9f7581edffa3af76b2b7ba6))
+
+### Fix
+
+* fix: schema-invalid CycloneDX when running PEP639 analysis (#828)
+
+fixes #826
+
+---------
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`b2595cf`](https://github.com/CycloneDX/cyclonedx-python/commit/b2595cf829f57c0712394ae5f159af395b59c43e))
+
+
 ## v5.1.0 (2024-10-23)
 
 ### Feature
