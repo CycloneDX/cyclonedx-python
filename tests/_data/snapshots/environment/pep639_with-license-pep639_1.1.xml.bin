@@ -51,6 +51,37 @@
         </reference>
       </externalReferences>
     </component>
+    <component type="library" bom-ref="cryptography==43.0.1">
+      <name>cryptography</name>
+      <version>43.0.1</version>
+      <description>cryptography is a package which provides cryptographic recipes and primitives to Python developers.</description>
+      <licenses>
+        <expression>Apache-2.0 OR BSD-3-Clause</expression>
+      </licenses>
+      <purl>pkg:pypi/cryptography@43.0.1</purl>
+      <externalReferences>
+        <reference type="documentation">
+          <url>https://cryptography.io/</url>
+          <comment>from packaging metadata Project-URL: documentation</comment>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/pyca/cryptography/issues</url>
+          <comment>from packaging metadata Project-URL: issues</comment>
+        </reference>
+        <reference type="other">
+          <url>https://github.com/pyca/cryptography/</url>
+          <comment>from packaging metadata Project-URL: source</comment>
+        </reference>
+        <reference type="other">
+          <url>https://cryptography.io/en/latest/changelog/</url>
+          <comment>from packaging metadata Project-URL: changelog</comment>
+        </reference>
+        <reference type="website">
+          <url>https://github.com/pyca/cryptography</url>
+          <comment>from packaging metadata Project-URL: homepage</comment>
+        </reference>
+      </externalReferences>
+    </component>
     <component type="library" bom-ref="jsonpointer==2.4">
       <name>jsonpointer</name>
       <version>2.4</version>

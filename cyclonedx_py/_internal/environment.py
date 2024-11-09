@@ -27,13 +27,13 @@ from textwrap import dedent
 from typing import TYPE_CHECKING, Any, Dict, Iterable, List, Optional, Tuple
 
 from cyclonedx.model import Property
-from cyclonedx.model.component import Component, ComponentType
+from cyclonedx.model.component import Component, ComponentEvidence, ComponentType
 from packageurl import PackageURL
 from packaging.requirements import Requirement
 
 from . import BomBuilder, PropertyName, PurlTypePypi
 from .cli_common import add_argument_mc_type, add_argument_pyproject
-from .utils.cdx import licenses_fixup, make_bom
+from .utils.cdx import find_LicenseExpression, licenses_fixup, make_bom
 from .utils.packaging import metadata2extrefs, metadata2licenses, normalize_packagename
 from .utils.pep610 import PackageSourceArchive, PackageSourceVcs, packagesource2extref, packagesource4dist
 from .utils.pep639 import dist2licenses as dist2licenses_pep639
@@ -183,10 +183,21 @@ class EnvironmentBB(BomBuilder):
                 # path of dist-package on disc? naaa... a package may have multiple files/folders on disc
             )
             if self._pep639:
-                component.licenses.update(
-                    dist2licenses_pep639(dist,
-                                         self._gather_license_texts,
-                                         self._logger))
+                pep639_licenses = list(dist2licenses_pep639(dist, self._gather_license_texts, self._logger))
+                pep639_lexp = find_LicenseExpression(pep639_licenses)
+                if pep639_lexp is not None:
+                    component.licenses = (pep639_lexp,)  # type:ignore[assignment]
+                    pep639_licenses.remove(pep639_lexp)
+                if len(pep639_licenses) > 0:
+                    if find_LicenseExpression(component.licenses) is None:
+                        component.licenses.update(pep639_licenses)
+                    else:
+                        # hack for preventing expressions AND named licenses.
+                        # see https://github.com/CycloneDX/cyclonedx-python/issues/826
+                        # see https://github.com/CycloneDX/specification/issues/454
+                        component.evidence = ComponentEvidence(licenses=pep639_licenses)
+                del pep639_lexp, pep639_licenses
+
             del dist_meta, dist_name, dist_version
             self.__component_add_extref_and_purl(component, packagesource4dist(dist))
             all_components[normalize_packagename(component.name)] = (

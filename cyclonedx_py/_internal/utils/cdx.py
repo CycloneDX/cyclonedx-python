@@ -21,7 +21,7 @@ CycloneDX related helpers and utils.
 """
 
 from re import compile as re_compile
-from typing import Any, Dict, Iterable
+from typing import Any, Dict, Iterable, Optional
 
 from cyclonedx.builder.this import this_component as lib_component
 from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
@@ -87,11 +87,17 @@ def make_bom(**kwargs: Any) -> Bom:
     return bom
 
 
-def licenses_fixup(licenses: Iterable['License']) -> Iterable['License']:
-    licenses = set(licenses)
+def find_LicenseExpression(licenses: Iterable['License']) -> Optional[LicenseExpression]:  # noqa: N802
     for license in licenses:
         if isinstance(license, LicenseExpression):
-            return (license,)
+            return license
+    return None
+
+
+def licenses_fixup(licenses: Iterable['License']) -> Iterable['License']:
+    licenses = set(licenses)
+    if (lexp := find_LicenseExpression(licenses)) is not None:
+        return (lexp,)
     return licenses
 
 

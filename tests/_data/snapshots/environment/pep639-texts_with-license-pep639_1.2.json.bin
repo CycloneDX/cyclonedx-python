@@ -101,6 +101,46 @@
       "version": "4.0"
     },
     {
+      "bom-ref": "cryptography==43.0.1",
+      "description": "cryptography is a package which provides cryptographic recipes and primitives to Python developers.",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: documentation",
+          "type": "documentation",
+          "url": "https://cryptography.io/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: issues",
+          "type": "issue-tracker",
+          "url": "https://github.com/pyca/cryptography/issues"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: source",
+          "type": "other",
+          "url": "https://github.com/pyca/cryptography/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: changelog",
+          "type": "other",
+          "url": "https://cryptography.io/en/latest/changelog/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: homepage",
+          "type": "website",
+          "url": "https://github.com/pyca/cryptography"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR BSD-3-Clause"
+        }
+      ],
+      "name": "cryptography",
+      "purl": "pkg:pypi/cryptography@43.0.1",
+      "type": "library",
+      "version": "43.0.1"
+    },
+    {
       "bom-ref": "jsonpointer==2.4",
       "description": "Identify specific nodes in a JSON document (RFC 6901) ",
       "externalReferences": [
@@ -275,6 +315,9 @@
       "ref": "boolean.py==4.0"
     },
     {
+      "ref": "cryptography==43.0.1"
+    },
+    {
       "ref": "jsonpointer==2.4"
     },
     {
@@ -290,6 +333,7 @@
       "dependsOn": [
         "attrs==23.2.0",
         "boolean.py==4.0",
+        "cryptography==43.0.1",
         "jsonpointer==2.4",
         "license-expression==30.3.0",
         "lxml==5.3.0"
