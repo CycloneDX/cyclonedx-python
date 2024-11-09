@@ -65,6 +65,98 @@
       "version": "4.0"
     },
     {
+      "bom-ref": "cffi==1.17.1",
+      "description": "Foreign Function Interface for Python calling C code.",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "http://cffi.readthedocs.org/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Issue Tracker",
+          "type": "issue-tracker",
+          "url": "https://github.com/python-cffi/cffi/issues"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Source Code",
+          "type": "other",
+          "url": "https://github.com/python-cffi/cffi"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Downloads",
+          "type": "other",
+          "url": "https://github.com/python-cffi/cffi/releases"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Contact",
+          "type": "other",
+          "url": "https://groups.google.com/forum/#!forum/python-cffi"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Changelog",
+          "type": "other",
+          "url": "https://cffi.readthedocs.io/en/latest/whatsnew.html"
+        },
+        {
+          "comment": "from packaging metadata: Home-page",
+          "type": "website",
+          "url": "http://cffi.readthedocs.org"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "cffi",
+      "purl": "pkg:pypi/cffi@1.17.1",
+      "type": "library",
+      "version": "1.17.1"
+    },
+    {
+      "bom-ref": "cryptography==43.0.1",
+      "description": "cryptography is a package which provides cryptographic recipes and primitives to Python developers.",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: documentation",
+          "type": "documentation",
+          "url": "https://cryptography.io/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: issues",
+          "type": "issue-tracker",
+          "url": "https://github.com/pyca/cryptography/issues"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: source",
+          "type": "other",
+          "url": "https://github.com/pyca/cryptography/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: changelog",
+          "type": "other",
+          "url": "https://cryptography.io/en/latest/changelog/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: homepage",
+          "type": "website",
+          "url": "https://github.com/pyca/cryptography"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR BSD-3-Clause"
+        }
+      ],
+      "name": "cryptography",
+      "purl": "pkg:pypi/cryptography@43.0.1",
+      "type": "library",
+      "version": "43.0.1"
+    },
+    {
       "bom-ref": "jsonpointer==2.4",
       "description": "Identify specific nodes in a JSON document (RFC 6901) ",
       "externalReferences": [
@@ -148,6 +240,33 @@
       "purl": "pkg:pypi/lxml@5.3.0",
       "type": "library",
       "version": "5.3.0"
+    },
+    {
+      "bom-ref": "pycparser==2.22",
+      "description": "C parser in Python",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata: Home-page",
+          "type": "website",
+          "url": "https://github.com/eliben/pycparser"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-3-Clause"
+          }
+        },
+        {
+          "license": {
+            "name": "License :: OSI Approved :: BSD License"
+          }
+        }
+      ],
+      "name": "pycparser",
+      "purl": "pkg:pypi/pycparser@2.22",
+      "type": "library",
+      "version": "2.22"
     }
   ],
   "dependencies": [
@@ -156,6 +275,18 @@
     },
     {
       "ref": "boolean.py==4.0"
+    },
+    {
+      "dependsOn": [
+        "pycparser==2.22"
+      ],
+      "ref": "cffi==1.17.1"
+    },
+    {
+      "dependsOn": [
+        "cffi==1.17.1"
+      ],
+      "ref": "cryptography==43.0.1"
     },
     {
       "ref": "jsonpointer==2.4"
@@ -170,9 +301,13 @@
       "ref": "lxml==5.3.0"
     },
     {
+      "ref": "pycparser==2.22"
+    },
+    {
       "dependsOn": [
         "attrs==23.2.0",
         "boolean.py==4.0",
+        "cryptography==43.0.1",
         "jsonpointer==2.4",
         "license-expression==30.3.0",
         "lxml==5.3.0"

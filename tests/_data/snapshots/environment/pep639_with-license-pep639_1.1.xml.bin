@@ -51,6 +51,78 @@
         </reference>
       </externalReferences>
     </component>
+    <component type="library" bom-ref="cffi==1.17.1">
+      <name>cffi</name>
+      <version>1.17.1</version>
+      <description>Foreign Function Interface for Python calling C code.</description>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+      <purl>pkg:pypi/cffi@1.17.1</purl>
+      <externalReferences>
+        <reference type="documentation">
+          <url>http://cffi.readthedocs.org/</url>
+          <comment>from packaging metadata Project-URL: Documentation</comment>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/python-cffi/cffi/issues</url>
+          <comment>from packaging metadata Project-URL: Issue Tracker</comment>
+        </reference>
+        <reference type="other">
+          <url>https://github.com/python-cffi/cffi</url>
+          <comment>from packaging metadata Project-URL: Source Code</comment>
+        </reference>
+        <reference type="other">
+          <url>https://github.com/python-cffi/cffi/releases</url>
+          <comment>from packaging metadata Project-URL: Downloads</comment>
+        </reference>
+        <reference type="other">
+          <url>https://groups.google.com/forum/#!forum/python-cffi</url>
+          <comment>from packaging metadata Project-URL: Contact</comment>
+        </reference>
+        <reference type="other">
+          <url>https://cffi.readthedocs.io/en/latest/whatsnew.html</url>
+          <comment>from packaging metadata Project-URL: Changelog</comment>
+        </reference>
+        <reference type="website">
+          <url>http://cffi.readthedocs.org</url>
+          <comment>from packaging metadata: Home-page</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="cryptography==43.0.1">
+      <name>cryptography</name>
+      <version>43.0.1</version>
+      <description>cryptography is a package which provides cryptographic recipes and primitives to Python developers.</description>
+      <licenses>
+        <expression>Apache-2.0 OR BSD-3-Clause</expression>
+      </licenses>
+      <purl>pkg:pypi/cryptography@43.0.1</purl>
+      <externalReferences>
+        <reference type="documentation">
+          <url>https://cryptography.io/</url>
+          <comment>from packaging metadata Project-URL: documentation</comment>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/pyca/cryptography/issues</url>
+          <comment>from packaging metadata Project-URL: issues</comment>
+        </reference>
+        <reference type="other">
+          <url>https://github.com/pyca/cryptography/</url>
+          <comment>from packaging metadata Project-URL: source</comment>
+        </reference>
+        <reference type="other">
+          <url>https://cryptography.io/en/latest/changelog/</url>
+          <comment>from packaging metadata Project-URL: changelog</comment>
+        </reference>
+        <reference type="website">
+          <url>https://github.com/pyca/cryptography</url>
+          <comment>from packaging metadata Project-URL: homepage</comment>
+        </reference>
+      </externalReferences>
+    </component>
     <component type="library" bom-ref="jsonpointer==2.4">
       <name>jsonpointer</name>
       <version>2.4</version>
@@ -109,6 +181,26 @@
         </reference>
         <reference type="website">
           <url>https://lxml.de/</url>
+          <comment>from packaging metadata: Home-page</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pycparser==2.22">
+      <name>pycparser</name>
+      <version>2.22</version>
+      <description>C parser in Python</description>
+      <licenses>
+        <license>
+          <id>BSD-3-Clause</id>
+        </license>
+        <license>
+          <name>License :: OSI Approved :: BSD License</name>
+        </license>
+      </licenses>
+      <purl>pkg:pypi/pycparser@2.22</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>https://github.com/eliben/pycparser</url>
           <comment>from packaging metadata: Home-page</comment>
         </reference>
       </externalReferences>

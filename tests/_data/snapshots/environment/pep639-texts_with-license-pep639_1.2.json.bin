@@ -101,6 +101,107 @@
       "version": "4.0"
     },
     {
+      "bom-ref": "cffi==1.17.1",
+      "description": "Foreign Function Interface for Python calling C code.",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "http://cffi.readthedocs.org/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Issue Tracker",
+          "type": "issue-tracker",
+          "url": "https://github.com/python-cffi/cffi/issues"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Source Code",
+          "type": "other",
+          "url": "https://github.com/python-cffi/cffi"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Downloads",
+          "type": "other",
+          "url": "https://github.com/python-cffi/cffi/releases"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Contact",
+          "type": "other",
+          "url": "https://groups.google.com/forum/#!forum/python-cffi"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Changelog",
+          "type": "other",
+          "url": "https://cffi.readthedocs.io/en/latest/whatsnew.html"
+        },
+        {
+          "comment": "from packaging metadata: Home-page",
+          "type": "website",
+          "url": "http://cffi.readthedocs.org"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        },
+        {
+          "license": {
+            "name": "declared license file: LICENSE",
+            "text": {
+              "content": "\nExcept when otherwise stated (look for LICENSE files in directories or\ninformation at the beginning of each file) all software and\ndocumentation is licensed as follows: \n\n    The MIT License\n\n    Permission is hereby granted, free of charge, to any person \n    obtaining a copy of this software and associated documentation \n    files (the \"Software\"), to deal in the Software without \n    restriction, including without limitation the rights to use, \n    copy, modify, merge, publish, distribute, sublicense, and/or \n    sell copies of the Software, and to permit persons to whom the \n    Software is furnished to do so, subject to the following conditions:\n\n    The above copyright notice and this permission notice shall be included \n    in all copies or substantial portions of the Software.\n\n    THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS \n    OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, \n    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL \n    THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING \n    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER \n    DEALINGS IN THE SOFTWARE.\n\n",
+              "contentType": "text/plain"
+            }
+          }
+        }
+      ],
+      "name": "cffi",
+      "purl": "pkg:pypi/cffi@1.17.1",
+      "type": "library",
+      "version": "1.17.1"
+    },
+    {
+      "bom-ref": "cryptography==43.0.1",
+      "description": "cryptography is a package which provides cryptographic recipes and primitives to Python developers.",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: documentation",
+          "type": "documentation",
+          "url": "https://cryptography.io/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: issues",
+          "type": "issue-tracker",
+          "url": "https://github.com/pyca/cryptography/issues"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: source",
+          "type": "other",
+          "url": "https://github.com/pyca/cryptography/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: changelog",
+          "type": "other",
+          "url": "https://cryptography.io/en/latest/changelog/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: homepage",
+          "type": "website",
+          "url": "https://github.com/pyca/cryptography"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR BSD-3-Clause"
+        }
+      ],
+      "name": "cryptography",
+      "purl": "pkg:pypi/cryptography@43.0.1",
+      "type": "library",
+      "version": "43.0.1"
+    },
+    {
       "bom-ref": "jsonpointer==2.4",
       "description": "Identify specific nodes in a JSON document (RFC 6901) ",
       "externalReferences": [
@@ -265,6 +366,42 @@
       "purl": "pkg:pypi/lxml@5.3.0",
       "type": "library",
       "version": "5.3.0"
+    },
+    {
+      "bom-ref": "pycparser==2.22",
+      "description": "C parser in Python",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata: Home-page",
+          "type": "website",
+          "url": "https://github.com/eliben/pycparser"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-3-Clause"
+          }
+        },
+        {
+          "license": {
+            "name": "License :: OSI Approved :: BSD License"
+          }
+        },
+        {
+          "license": {
+            "name": "declared license file: LICENSE",
+            "text": {
+              "content": "pycparser -- A C parser in Python\n\nCopyright (c) 2008-2022, Eli Bendersky\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without modification,\nare permitted provided that the following conditions are met:\n\n* Redistributions of source code must retain the above copyright notice, this \n  list of conditions and the following disclaimer.\n* Redistributions in binary form must reproduce the above copyright notice, \n  this list of conditions and the following disclaimer in the documentation \n  and/or other materials provided with the distribution.\n* Neither the name of the copyright holder nor the names of its contributors may \n  be used to endorse or promote products derived from this software without \n  specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND \nANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED \nWARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE \nDISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE \nLIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR \nCONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE \nGOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) \nHOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT \nLIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT \nOF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n",
+              "contentType": "text/plain"
+            }
+          }
+        }
+      ],
+      "name": "pycparser",
+      "purl": "pkg:pypi/pycparser@2.22",
+      "type": "library",
+      "version": "2.22"
     }
   ],
   "dependencies": [
@@ -273,6 +410,18 @@
     },
     {
       "ref": "boolean.py==4.0"
+    },
+    {
+      "dependsOn": [
+        "pycparser==2.22"
+      ],
+      "ref": "cffi==1.17.1"
+    },
+    {
+      "dependsOn": [
+        "cffi==1.17.1"
+      ],
+      "ref": "cryptography==43.0.1"
     },
     {
       "ref": "jsonpointer==2.4"
@@ -287,9 +436,13 @@
       "ref": "lxml==5.3.0"
     },
     {
+      "ref": "pycparser==2.22"
+    },
+    {
       "dependsOn": [
         "attrs==23.2.0",
         "boolean.py==4.0",
+        "cryptography==43.0.1",
         "jsonpointer==2.4",
         "license-expression==30.3.0",
         "lxml==5.3.0"
