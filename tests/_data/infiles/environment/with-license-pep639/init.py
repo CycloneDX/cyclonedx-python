@@ -63,6 +63,7 @@ def main() -> None:
     ).create(env_dir)
 
     pip_install(
+        '--no-dependencies',
         # with License-Expression
         'attrs',
         # with License-File
@@ -71,7 +72,7 @@ def main() -> None:
         'license_expression',
         'lxml',
         # with expression-like License AND License-File
-        'cryptography==43.0.1',
+        'cryptography==43.0.1',  # https://github.com/CycloneDX/cyclonedx-python/issues/826
     )
 
 

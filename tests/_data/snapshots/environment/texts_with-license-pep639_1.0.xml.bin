@@ -16,13 +16,6 @@
       <modified>false</modified>
     </component>
     <component type="library">
-      <name>cffi</name>
-      <version>1.17.1</version>
-      <description>Foreign Function Interface for Python calling C code.</description>
-      <purl>pkg:pypi/cffi@1.17.1</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
       <name>cryptography</name>
       <version>43.0.1</version>
       <description>cryptography is a package which provides cryptographic recipes and primitives to Python developers.</description>
@@ -48,13 +41,6 @@
       <version>5.3.0</version>
       <description>Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API.</description>
       <purl>pkg:pypi/lxml@5.3.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>pycparser</name>
-      <version>2.22</version>
-      <description>C parser in Python</description>
-      <purl>pkg:pypi/pycparser@2.22</purl>
       <modified>false</modified>
     </component>
   </components>

@@ -354,77 +354,6 @@ SPDX-License-Identifier: BSD-2-Clause
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="cffi==1.17.1">
-      <name>cffi</name>
-      <version>1.17.1</version>
-      <description>Foreign Function Interface for Python calling C code.</description>
-      <licenses>
-        <license>
-          <id>MIT</id>
-        </license>
-        <license>
-          <name>declared license file: LICENSE</name>
-          <text content-type="text/plain">
-Except when otherwise stated (look for LICENSE files in directories or
-information at the beginning of each file) all software and
-documentation is licensed as follows: 
-
-    The MIT License
-
-    Permission is hereby granted, free of charge, to any person 
-    obtaining a copy of this software and associated documentation 
-    files (the "Software"), to deal in the Software without 
-    restriction, including without limitation the rights to use, 
-    copy, modify, merge, publish, distribute, sublicense, and/or 
-    sell copies of the Software, and to permit persons to whom the 
-    Software is furnished to do so, subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included 
-    in all copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS 
-    OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
-    THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
-    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
-    DEALINGS IN THE SOFTWARE.
-
-</text>
-        </license>
-      </licenses>
-      <purl>pkg:pypi/cffi@1.17.1</purl>
-      <externalReferences>
-        <reference type="documentation">
-          <url>http://cffi.readthedocs.org/</url>
-          <comment>from packaging metadata Project-URL: Documentation</comment>
-        </reference>
-        <reference type="issue-tracker">
-          <url>https://github.com/python-cffi/cffi/issues</url>
-          <comment>from packaging metadata Project-URL: Issue Tracker</comment>
-        </reference>
-        <reference type="other">
-          <url>https://github.com/python-cffi/cffi</url>
-          <comment>from packaging metadata Project-URL: Source Code</comment>
-        </reference>
-        <reference type="other">
-          <url>https://github.com/python-cffi/cffi/releases</url>
-          <comment>from packaging metadata Project-URL: Downloads</comment>
-        </reference>
-        <reference type="other">
-          <url>https://groups.google.com/forum/#!forum/python-cffi</url>
-          <comment>from packaging metadata Project-URL: Contact</comment>
-        </reference>
-        <reference type="other">
-          <url>https://cffi.readthedocs.io/en/latest/whatsnew.html</url>
-          <comment>from packaging metadata Project-URL: Changelog</comment>
-        </reference>
-        <reference type="website">
-          <url>http://cffi.readthedocs.org</url>
-          <comment>from packaging metadata: Home-page</comment>
-        </reference>
-      </externalReferences>
-    </component>
     <component type="library" bom-ref="cryptography==43.0.1">
       <name>cryptography</name>
       <version>43.0.1</version>
@@ -1072,57 +1001,6 @@ The isoschematron implementation uses several XSL and RelaxNG resources:
         </reference>
         <reference type="website">
           <url>https://lxml.de/</url>
-          <comment>from packaging metadata: Home-page</comment>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="pycparser==2.22">
-      <name>pycparser</name>
-      <version>2.22</version>
-      <description>C parser in Python</description>
-      <licenses>
-        <license>
-          <id>BSD-3-Clause</id>
-        </license>
-        <license>
-          <name>License :: OSI Approved :: BSD License</name>
-        </license>
-        <license>
-          <name>declared license file: LICENSE</name>
-          <text content-type="text/plain">pycparser -- A C parser in Python
-
-Copyright (c) 2008-2022, Eli Bendersky
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without modification,
-are permitted provided that the following conditions are met:
-
-* Redistributions of source code must retain the above copyright notice, this 
-  list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice, 
-  this list of conditions and the following disclaimer in the documentation 
-  and/or other materials provided with the distribution.
-* Neither the name of the copyright holder nor the names of its contributors may 
-  be used to endorse or promote products derived from this software without 
-  specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE 
-LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
-CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE 
-GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
-HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
-LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT 
-OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-</text>
-        </license>
-      </licenses>
-      <purl>pkg:pypi/pycparser@2.22</purl>
-      <externalReferences>
-        <reference type="website">
-          <url>https://github.com/eliben/pycparser</url>
           <comment>from packaging metadata: Home-page</comment>
         </reference>
       </externalReferences>
