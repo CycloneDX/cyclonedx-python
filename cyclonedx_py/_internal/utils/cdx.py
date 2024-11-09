@@ -87,7 +87,7 @@ def make_bom(**kwargs: Any) -> Bom:
     return bom
 
 
-def find_LicenseExpression(licenses: Iterable['License']) -> Optional[LicenseExpression]:
+def find_LicenseExpression(licenses: Iterable['License']) -> Optional[LicenseExpression]:  # noqa: N802
     for license in licenses:
         if isinstance(license, LicenseExpression):
             return license
