@@ -43,6 +43,7 @@ classifiers = [
   # Trove classifiers - https://packaging.python.org/specifications/core-metadata/#metadata-classifier
   # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
   "Development Status :: 5 - Production/Stable",
+  "Environment :: Console",
   "Intended Audience :: Developers",
   "Intended Audience :: Information Technology",
   "Intended Audience :: Legal Industry",
