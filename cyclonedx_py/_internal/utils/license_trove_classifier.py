@@ -76,7 +76,7 @@ _MAP_TO_SPDX = {
 
     # region OSI Approved
 
-    # !! reminder: the following are OSI approved, sp map only to the SPDX that ar marked as so
+    # !! reminder: the following are OSI approved, so map only to the SPDX that are marked as such
     # !! see the ideas and cases of https://peps.python.org/pep-0639/#mapping-license-classifiers-to-spdx-identifiers
     # 'License :: OSI Approved :: Academic Free License (AFL)': which one?
     #   -  AFL-1.1
