@@ -27,5 +27,5 @@ Add any other context or screenshots about the feature request here.
 ## Contribution 
 
 <!-- pleasechooseone by putting an x in the box [ ] -->
-- [ ] I am willing to provide a pubfix
-- [ ] I will wait until somebody else fixes it
+- [ ] I am willing to provide an implementation
+- [ ] I will wait until somebody else implements it
