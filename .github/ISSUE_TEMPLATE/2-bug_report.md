@@ -35,6 +35,6 @@ Add any other context about the problem here.
 
 ## Contribution 
 
-<!-- pleasechooseone by putting an x in the box [ ] -->
+<!-- please choos eone by putting an `x` in the box `[ ]` -->
 - [ ] I am willing to provide a fix
 - [ ] I will wait until somebody else fixes it
