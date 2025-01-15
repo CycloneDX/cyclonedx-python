@@ -23,6 +23,10 @@ A clear and concise description of what you expected to happen.
 
 If applicable, add screenshots or past the output to help explain your problem.
 
+## Participation 
+
+- [ ] I am willing to provide a pubfix
+- [ ] I will wait until somebody else fixes it
 ## Environment
 
 - _cyclonedx-py_ version: <!-- e.g. `v3.2.0`. get via `cyclonedx-py --version` -->
