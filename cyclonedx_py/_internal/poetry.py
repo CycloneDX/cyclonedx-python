@@ -292,9 +292,13 @@ class PoetryBB(BomBuilder):
         use_extras_dep_names = frozenset(map(normalize_packagename,
                                              chain.from_iterable(po_cfg['extras'][e] for e in use_extras)))
         for group_name in use_groups:
-            for dep_name, dep_spec in po_cfg['group'][group_name].get('dependencies', {}).items():
+            for dep_name, dep_specs in po_cfg['group'][group_name].get('dependencies', {}).items():
                 dep_name = normalize_packagename(dep_name)
-                dep_spec = dep_spec if isinstance(dep_spec, dict) else {'version': dep_spec}
+                if not isinstance(dep_specs, list):
+                    if isinstance(dep_specs, dict):
+                        dep_specs = [dep_specs]
+                    else:
+                        dep_specs = [{'version': dep_specs}]
                 self._logger.debug('root-component depends on %s', dep_name)
                 if dep_name == 'python':
                     continue  # skip python constraint
@@ -302,7 +306,7 @@ class PoetryBB(BomBuilder):
                 if lock_entries is None:
                     self._logger.warning('skip unlocked dependency: %s', dep_name)
                     continue
-                if dep_spec.get('optional') and dep_name not in use_extras_dep_names:
+                if all(ds.get('optional') for ds in dep_specs) and dep_name not in use_extras_dep_names:
                     self._logger.debug('skip optional unused dependency: %s', dep_name)
                     continue
                 for lock_entry in lock_entries:
@@ -311,7 +315,10 @@ class PoetryBB(BomBuilder):
                         value=group_name
                     ))
                     root_d.dependencies.add(Dependency(lock_entry.component.bom_ref))
-                    self.__add_dep(bom, lock_entry, dep_spec.get('extras', ()), lock_data)
+                    self.__add_dep(
+                        bom, lock_entry,
+                        chain.from_iterable(ds.get('extras', ()) for ds in dep_specs),
+                        lock_data)
 
         return bom
 

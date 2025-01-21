@@ -19,49 +19,7 @@
       <description>depenndencies with optionlas and no exgtras</description>
     </component>
   </metadata>
-  <components>
-    <component type="library" bom-ref="defusedxml@0.7.1">
-      <name>defusedxml</name>
-      <version>0.7.1</version>
-      <description>XML bomb protection for Python stdlib modules</description>
-      <scope>optional</scope>
-      <purl>pkg:pypi/defusedxml@0.7.1</purl>
-      <externalReferences>
-        <reference type="distribution">
-          <url>https://pypi.org/simple/defusedxml/#defusedxml-0.7.1-py2.py3-none-any.whl</url>
-          <comment>from legacy-api</comment>
-        </reference>
-        <reference type="distribution">
-          <url>https://pypi.org/simple/defusedxml/#defusedxml-0.7.1.tar.gz</url>
-          <comment>from legacy-api</comment>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="py-serializable@1.1.2">
-      <name>py-serializable</name>
-      <version>1.1.2</version>
-      <description>Library for serializing and deserializing Python Objects to and from JSON and XML.</description>
-      <scope>optional</scope>
-      <purl>pkg:pypi/py-serializable@1.1.2</purl>
-      <externalReferences>
-        <reference type="distribution">
-          <url>https://pypi.org/simple/py-serializable/#py_serializable-1.1.2-py3-none-any.whl</url>
-          <comment>from legacy-api</comment>
-        </reference>
-        <reference type="distribution">
-          <url>https://pypi.org/simple/py-serializable/#py_serializable-1.1.2.tar.gz</url>
-          <comment>from legacy-api</comment>
-        </reference>
-      </externalReferences>
-    </component>
-  </components>
   <dependencies>
-    <dependency ref="defusedxml@0.7.1"/>
-    <dependency ref="py-serializable@1.1.2">
-      <dependency ref="defusedxml@0.7.1"/>
-    </dependency>
-    <dependency ref="with-optionals-no-extra">
-      <dependency ref="py-serializable@1.1.2"/>
-    </dependency>
+    <dependency ref="with-optionals-no-extra"/>
   </dependencies>
 </bom>

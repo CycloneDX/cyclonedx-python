@@ -59,64 +59,7 @@
       <property name="cdx:reproducible">true</property>
     </properties>
   </metadata>
-  <components>
-    <component type="library" bom-ref="defusedxml@0.7.1">
-      <name>defusedxml</name>
-      <version>0.7.1</version>
-      <description>XML bomb protection for Python stdlib modules</description>
-      <scope>optional</scope>
-      <purl>pkg:pypi/defusedxml@0.7.1</purl>
-      <externalReferences>
-        <reference type="distribution">
-          <url>https://pypi.org/simple/defusedxml/#defusedxml-0.7.1-py2.py3-none-any.whl</url>
-          <comment>from legacy-api</comment>
-          <hashes>
-            <hash alg="SHA-256">a352e7e428770286cc899e2542b6cdaedb2b4953ff269a210103ec58f6198a61</hash>
-          </hashes>
-        </reference>
-        <reference type="distribution">
-          <url>https://pypi.org/simple/defusedxml/#defusedxml-0.7.1.tar.gz</url>
-          <comment>from legacy-api</comment>
-          <hashes>
-            <hash alg="SHA-256">1bb3032db185915b62d7c6209c5a8792be6a32ab2fedacc84e01b52c51aa3e69</hash>
-          </hashes>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="py-serializable@1.1.2">
-      <name>py-serializable</name>
-      <version>1.1.2</version>
-      <description>Library for serializing and deserializing Python Objects to and from JSON and XML.</description>
-      <scope>optional</scope>
-      <purl>pkg:pypi/py-serializable@1.1.2</purl>
-      <externalReferences>
-        <reference type="distribution">
-          <url>https://pypi.org/simple/py-serializable/#py_serializable-1.1.2-py3-none-any.whl</url>
-          <comment>from legacy-api</comment>
-          <hashes>
-            <hash alg="SHA-256">801be61b0a1ba64c3861f7c624f1de5cfbbabf8b458acc9cdda91e8f7e5effa1</hash>
-          </hashes>
-        </reference>
-        <reference type="distribution">
-          <url>https://pypi.org/simple/py-serializable/#py_serializable-1.1.2.tar.gz</url>
-          <comment>from legacy-api</comment>
-          <hashes>
-            <hash alg="SHA-256">89af30bc319047d4aa0d8708af412f6ce73835e18bacf1a080028bb9e2f42bdb</hash>
-          </hashes>
-        </reference>
-      </externalReferences>
-      <properties>
-        <property name="cdx:poetry:group">main</property>
-      </properties>
-    </component>
-  </components>
   <dependencies>
-    <dependency ref="defusedxml@0.7.1"/>
-    <dependency ref="py-serializable@1.1.2">
-      <dependency ref="defusedxml@0.7.1"/>
-    </dependency>
-    <dependency ref="with-optionals-no-extra">
-      <dependency ref="py-serializable@1.1.2"/>
-    </dependency>
+    <dependency ref="with-optionals-no-extra"/>
   </dependencies>
 </bom>

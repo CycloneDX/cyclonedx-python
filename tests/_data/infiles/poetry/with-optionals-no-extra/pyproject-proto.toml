@@ -9,11 +9,12 @@ authors = ["Your Name <you@example.com>"]
 python  = "^3.8"
 cyclonedx-python-lib = {version = ">=8,<9", optional = true}
 py-serializable = [
+  # see https://github.com/CycloneDX/cyclonedx-python/issues/840
   {version = "*", optional = true}
 ]
 
 [tool.poetry.extras]
-# no extras - see https://github.com/CycloneDX/cyclonedx-python/issues/840
+# no extras!
 
 
 [build-system]

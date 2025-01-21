@@ -1,21 +1,4 @@
 <?xml version="1.0" ?>
 <bom xmlns="http://cyclonedx.org/schema/bom/1.0" version="1">
-  <components>
-    <component type="library">
-      <name>defusedxml</name>
-      <version>0.7.1</version>
-      <description>XML bomb protection for Python stdlib modules</description>
-      <scope>optional</scope>
-      <purl>pkg:pypi/defusedxml@0.7.1</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>py-serializable</name>
-      <version>1.1.2</version>
-      <description>Library for serializing and deserializing Python Objects to and from JSON and XML.</description>
-      <scope>optional</scope>
-      <purl>pkg:pypi/py-serializable@1.1.2</purl>
-      <modified>false</modified>
-    </component>
-  </components>
+  <components/>
 </bom>

@@ -1,50 +1,6 @@
 {
-  "components": [
-    {
-      "bom-ref": "defusedxml@0.7.1",
-      "description": "XML bomb protection for Python stdlib modules",
-      "name": "defusedxml",
-      "properties": [
-        {
-          "name": "cdx:poetry:group",
-          "value": "main"
-        }
-      ],
-      "purl": "pkg:pypi/defusedxml@0.7.1",
-      "scope": "optional",
-      "type": "library",
-      "version": "0.7.1"
-    },
-    {
-      "bom-ref": "py-serializable@1.1.2",
-      "description": "Library for serializing and deserializing Python Objects to and from JSON and XML.",
-      "name": "py-serializable",
-      "properties": [
-        {
-          "name": "cdx:poetry:group",
-          "value": "main"
-        }
-      ],
-      "purl": "pkg:pypi/py-serializable@1.1.2",
-      "scope": "optional",
-      "type": "library",
-      "version": "1.1.2"
-    }
-  ],
   "dependencies": [
     {
-      "ref": "defusedxml@0.7.1"
-    },
-    {
-      "dependsOn": [
-        "defusedxml@0.7.1"
-      ],
-      "ref": "py-serializable@1.1.2"
-    },
-    {
-      "dependsOn": [
-        "py-serializable@1.1.2"
-      ],
       "ref": "with-optionals-no-extra"
     }
   ],
