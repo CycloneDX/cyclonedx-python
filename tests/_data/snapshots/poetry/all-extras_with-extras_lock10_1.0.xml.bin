@@ -57,5 +57,13 @@
       <purl>pkg:pypi/sortedcontainers@2.4.0</purl>
       <modified>false</modified>
     </component>
+    <component type="library">
+      <name>tomli</name>
+      <version>2.2.1</version>
+      <description>A lil' TOML parser</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/tomli@2.2.1</purl>
+      <modified>false</modified>
+    </component>
   </components>
 </bom>

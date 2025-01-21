@@ -50,5 +50,12 @@
       <scope>optional</scope>
       <purl>pkg:pypi/sortedcontainers@2.4.0</purl>
     </component>
+    <component type="library" bom-ref="tomli@2.2.1">
+      <name>tomli</name>
+      <version>2.2.1</version>
+      <description>A lil' TOML parser</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/tomli@2.2.1</purl>
+    </component>
   </components>
 </bom>

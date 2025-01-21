@@ -62,6 +62,15 @@
       "scope": "optional",
       "type": "library",
       "version": "2.4.0"
+    },
+    {
+      "bom-ref": "tomli@2.2.1",
+      "description": "A lil' TOML parser",
+      "name": "tomli",
+      "purl": "pkg:pypi/tomli@2.2.1",
+      "scope": "optional",
+      "type": "library",
+      "version": "2.2.1"
     }
   ],
   "dependencies": [
@@ -99,8 +108,12 @@
       "ref": "sortedcontainers@2.4.0"
     },
     {
+      "ref": "tomli@2.2.1"
+    },
+    {
       "dependsOn": [
-        "cyclonedx-python-lib@5.1.1"
+        "cyclonedx-python-lib@5.1.1",
+        "tomli@2.2.1"
       ],
       "ref": "with-extras"
     }

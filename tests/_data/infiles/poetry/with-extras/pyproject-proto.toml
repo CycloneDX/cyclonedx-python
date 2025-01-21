@@ -16,7 +16,8 @@ tomli = [
 
 [tool.poetry.extras]
 my-extra = ["cyclonedx-python-lib"]
-tomli = ["toml"]
+toml = ["tomli"]
+foo = ["extra-with-unknown-deps"]
 
 
 [build-system]

@@ -95,11 +95,12 @@ python-versions = ">=3.8"
 version = "2.2.1"
 
 [extras]
+foo = []
 my-extra = ["cyclonedx-python-lib"]
-tomli = []
+toml = ["tomli"]
 
 [metadata]
-content-hash = "20c966656d5330a0c9939c69c63105cf4bae0e02db46f4e56fcaec0bf3a702ac"
+content-hash = "e78039e005bd5e9e0bf793d1140dd5702e51e95bfbc5732eb4e3ea825238741f"
 lock-version = "1.0"
 python-versions = "^3.8"
 
