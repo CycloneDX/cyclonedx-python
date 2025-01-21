@@ -2,6 +2,59 @@
 
 
 
+## v5.1.2 (2025-01-21)
+
+### Documentation
+
+* docs: fix typos in comments
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`8228cbb`](https://github.com/CycloneDX/cyclonedx-python/commit/8228cbb65070008279859579b6149e6f6e6f0404))
+
+* docs: add console classifier
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`75f640c`](https://github.com/CycloneDX/cyclonedx-python/commit/75f640cdede42676c0d9e96a359b111582596ff9))
+
+### Fix
+
+* fix(poetry): properly handle multi-declaration (optional) dependencies (#842)
+
+fixes [#840](https://github.com/CycloneDX/cyclonedx-python/issues/840)
+
+---------
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`18c5f0e`](https://github.com/CycloneDX/cyclonedx-python/commit/18c5f0ec8e4418aeaf7d6ee2e36b40133f9d0e5a))
+
+### Unknown
+
+* Update 2-bug_report.md
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`3a50f8d`](https://github.com/CycloneDX/cyclonedx-python/commit/3a50f8d2e17ebbcb399f6fe88b974c166147119f))
+
+* Update 1-feature_request.md
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`e14572e`](https://github.com/CycloneDX/cyclonedx-python/commit/e14572e31f10e971b99917c3b51fc03c5436d003))
+
+* Update 1-feature_request.md
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`657a990`](https://github.com/CycloneDX/cyclonedx-python/commit/657a99099524e4c2ce6d73308ac27eec8d7aec2a))
+
+* Update 2-bug_report.md
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`7a88f64`](https://github.com/CycloneDX/cyclonedx-python/commit/7a88f64af25e875ad6951710c4556f2bb848d30b))
+
+* Update 1-feature_request.md
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`1fe8fbf`](https://github.com/CycloneDX/cyclonedx-python/commit/1fe8fbffcece008ace15cb7870113fe1faba0105))
+
+* Update 2-bug_report.md
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`38cdf79`](https://github.com/CycloneDX/cyclonedx-python/commit/38cdf7973810ef9f069f457d903922b96ba96bbf))
+
+* Update 2-bug_report.md
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`1090bf9`](https://github.com/CycloneDX/cyclonedx-python/commit/1090bf9a1cde4f07e038fa30b09d38c3809e5c20))
+
+
 ## v5.1.1 (2024-11-09)
 
 ### Documentation
