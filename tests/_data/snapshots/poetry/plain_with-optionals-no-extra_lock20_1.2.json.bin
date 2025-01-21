@@ -1,0 +1,32 @@
+{
+  "dependencies": [
+    {
+      "ref": "with-optionals-no-extra"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "with-optionals-no-extra",
+      "description": "depenndencies with optionlas and no exgtras",
+      "name": "with-optionals-no-extra",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "tools": [
+      {
+        "name": "cyclonedx-py",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.2b.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.2"
+}

@@ -1440,6 +1440,177 @@
       "version": "2.4.0"
     },
     {
+      "bom-ref": "tomli@2.2.1",
+      "description": "A lil' TOML parser",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp311-cp311-macosx_10_9_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp311-cp311-macosx_11_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp311-cp311-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp311-cp311-musllinux_1_2_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp311-cp311-musllinux_1_2_i686.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp311-cp311-musllinux_1_2_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp311-cp311-win32.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp311-cp311-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp312-cp312-macosx_10_13_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp312-cp312-macosx_11_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp312-cp312-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp312-cp312-musllinux_1_2_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp312-cp312-musllinux_1_2_i686.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp312-cp312-musllinux_1_2_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp312-cp312-win32.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp312-cp312-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp313-cp313-macosx_10_13_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp313-cp313-macosx_11_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp313-cp313-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp313-cp313-musllinux_1_2_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp313-cp313-musllinux_1_2_i686.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp313-cp313-musllinux_1_2_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp313-cp313-win32.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-cp313-cp313-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1-py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/tomli/#tomli-2.2.1.tar.gz"
+        }
+      ],
+      "name": "tomli",
+      "purl": "pkg:pypi/tomli@2.2.1",
+      "scope": "optional",
+      "type": "library",
+      "version": "2.2.1"
+    },
+    {
       "bom-ref": "types-python-dateutil@2.8.19.14",
       "description": "Typing stubs for python-dateutil",
       "externalReferences": [
@@ -1652,6 +1823,9 @@
       "ref": "sortedcontainers@2.4.0"
     },
     {
+      "ref": "tomli@2.2.1"
+    },
+    {
       "ref": "types-python-dateutil@2.8.19.14"
     },
     {
@@ -1662,7 +1836,8 @@
     },
     {
       "dependsOn": [
-        "cyclonedx-python-lib@5.1.1"
+        "cyclonedx-python-lib@5.1.1",
+        "tomli@2.2.1"
       ],
       "ref": "with-extras"
     },

@@ -6,11 +6,18 @@ authors = ["Your Name <you@example.com>"]
 
 
 [tool.poetry.dependencies]
-python  = "^3.8"
-cyclonedx-python-lib = {version = "5.1.1", extras = ["json-validation", "xml-Validation"], optional = true}
+python = "^3.8"
+cyclonedx-python-lib = { version = "5.1.1", extras = ["json-validation", "xml-Validation"], optional = true }
+tomli = [
+  # see https://github.com/CycloneDX/cyclonedx-python/issues/840
+  { version = "^2", optional = true }
+]
+
 
 [tool.poetry.extras]
 my-extra = ["cyclonedx-python-lib"]
+toml = ["tomli"]
+foo = ["extra-with-unknown-deps"]
 
 
 [build-system]

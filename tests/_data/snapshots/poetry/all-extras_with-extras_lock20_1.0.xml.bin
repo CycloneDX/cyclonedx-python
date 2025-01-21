@@ -194,6 +194,14 @@
       <modified>false</modified>
     </component>
     <component type="library">
+      <name>tomli</name>
+      <version>2.2.1</version>
+      <description>A lil' TOML parser</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/tomli@2.2.1</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
       <name>types-python-dateutil</name>
       <version>2.8.19.14</version>
       <description>Typing stubs for python-dateutil</description>

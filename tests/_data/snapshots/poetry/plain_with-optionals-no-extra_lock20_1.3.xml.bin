@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.3" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-py</name>
+        <version>thisVersion-testing</version>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="with-optionals-no-extra">
+      <name>with-optionals-no-extra</name>
+      <version>0.1.0</version>
+      <description>depenndencies with optionlas and no exgtras</description>
+    </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
+  </metadata>
+  <dependencies>
+    <dependency ref="with-optionals-no-extra"/>
+  </dependencies>
+</bom>

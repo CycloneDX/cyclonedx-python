@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "with-optionals-no-extra"
+version = "0.1.0"
+description = "depenndencies with optionlas and no exgtras"
+authors = ["Your Name <you@example.com>"]
+
+
+[tool.poetry.dependencies]
+python  = "^3.8"
+cyclonedx-python-lib = {version = ">=8,<9", optional = true}
+py-serializable = [
+  # see https://github.com/CycloneDX/cyclonedx-python/issues/840
+  {version = "*", optional = true}
+]
+
+[tool.poetry.extras]
+# no extras!
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
