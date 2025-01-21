@@ -1,0 +1,88 @@
+{
+  "components": [
+    {
+      "bom-ref": "defusedxml@0.7.1",
+      "description": "XML bomb protection for Python stdlib modules",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/defusedxml/#defusedxml-0.7.1-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/defusedxml/#defusedxml-0.7.1.tar.gz"
+        }
+      ],
+      "name": "defusedxml",
+      "purl": "pkg:pypi/defusedxml@0.7.1",
+      "scope": "optional",
+      "type": "library",
+      "version": "0.7.1"
+    },
+    {
+      "bom-ref": "py-serializable@1.1.2",
+      "description": "Library for serializing and deserializing Python Objects to and from JSON and XML.",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/py-serializable/#py_serializable-1.1.2-py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://pypi.org/simple/py-serializable/#py_serializable-1.1.2.tar.gz"
+        }
+      ],
+      "name": "py-serializable",
+      "purl": "pkg:pypi/py-serializable@1.1.2",
+      "scope": "optional",
+      "type": "library",
+      "version": "1.1.2"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "defusedxml@0.7.1"
+    },
+    {
+      "dependsOn": [
+        "defusedxml@0.7.1"
+      ],
+      "ref": "py-serializable@1.1.2"
+    },
+    {
+      "dependsOn": [
+        "py-serializable@1.1.2"
+      ],
+      "ref": "with-optionals-no-extra"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "with-optionals-no-extra",
+      "description": "depenndencies with optionlas and no exgtras",
+      "name": "with-optionals-no-extra",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "tools": [
+      {
+        "name": "cyclonedx-py",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.2b.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.2"
+}
