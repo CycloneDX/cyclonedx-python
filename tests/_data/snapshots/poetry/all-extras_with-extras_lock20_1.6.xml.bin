@@ -56,6 +56,7 @@
       <description>depenndencies with extras</description>
       <properties>
         <property name="cdx:python:package:required-extra">my-extra</property>
+        <property name="cdx:python:package:required-extra">tomli</property>
       </properties>
     </component>
     <properties>

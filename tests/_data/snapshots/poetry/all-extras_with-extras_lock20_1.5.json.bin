@@ -3157,6 +3157,10 @@
         {
           "name": "cdx:python:package:required-extra",
           "value": "my-extra"
+        },
+        {
+          "name": "cdx:python:package:required-extra",
+          "value": "tomli"
         }
       ],
       "type": "application",
