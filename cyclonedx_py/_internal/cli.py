@@ -19,7 +19,7 @@ import logging
 import sys
 from argparse import ArgumentParser, FileType, RawDescriptionHelpFormatter
 from itertools import chain
-from typing import TYPE_CHECKING, Any, Dict, NoReturn, Optional, Sequence, TextIO, Type, Union
+from typing import TYPE_CHECKING, Any, Dict, List, NoReturn, Optional, Sequence, TextIO, Type, Union
 
 from cyclonedx.model import Property
 from cyclonedx.output import make_outputter
@@ -53,6 +53,7 @@ else:
 class Command:
     @classmethod
     def make_argument_parser(cls, sco: ArgumentParser, **kwargs: Any) -> ArgumentParser:
+        # region Command
         p = ArgumentParser(
             description='Creates CycloneDX Software Bill of Materials (SBOM) from Python projects and environments.',
             formatter_class=RawDescriptionHelpFormatter,
@@ -62,7 +63,9 @@ class Command:
         sp = p.add_subparsers(metavar='<command>', dest='command',
                               # not required. if omitted: show help and exit
                               required=False)
+        # region Command
 
+        # region SubCOmmand
         op = ArgumentParser(add_help=False)
         op.add_argument('--short-PURLs',
                         help='Omit all qualifiers from PackageURLs.\n'
@@ -124,14 +127,16 @@ class Command:
                             action='store_false')
 
         scbbc: Type['BomBuilder']
-        for sct, scbbc in (
-            ('environment', EnvironmentBB),
-            ('requirements', RequirementsBB),
-            ('pipenv', PipenvBB),
-            ('poetry', PoetryBB),
+        sct: str
+        scta: List[str]
+        for scbbc, sct, *scta in (
+            (EnvironmentBB, 'environment', 'env', 'venv'),
+            (RequirementsBB, 'requirements'),
+            (PipenvBB, 'pipenv'),
+            (PoetryBB, 'poetry'),
         ):
             spp = scbbc.make_argument_parser(add_help=False)
-            sp.add_parser(sct,
+            sp.add_parser(sct, aliases=scta,
                           help=(spp.description or '').split('\n')[0].strip('. '),
                           description=spp.description,
                           epilog=spp.epilog,
@@ -139,6 +144,7 @@ class Command:
                           formatter_class=p.formatter_class,
                           allow_abbrev=p.allow_abbrev,
                           ).set_defaults(_bbc=scbbc)
+        # endregion SubCommand
 
         return p
 

@@ -71,20 +71,21 @@ python3 -m cyclonedx_py  # call python module CLI
 
 ```shellSession
 $ cyclonedx-py --help
-usage: cyclonedx-py [-h] [--version] command ...
+usage: cyclonedx-py [-h] [--version] <command> ...
 
 Creates CycloneDX Software Bill of Materials (SBOM) from Python projects and environments.
 
 positional arguments:
-  command
-    environment   Build an SBOM from Python (virtual) environment
-    requirements  Build an SBOM from Pip requirements
-    pipenv        Build an SBOM from Pipenv manifest
-    poetry        Build an SBOM from Poetry project
+  <command>
+    environment (env, venv)
+                        Build an SBOM from Python (virtual) environment
+    requirements        Build an SBOM from Pip requirements
+    pipenv              Build an SBOM from Pipenv manifest
+    poetry              Build an SBOM from Poetry project
 
 options:
-  -h, --help      show this help message and exit
-  --version       show program's version number and exit
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
 ```
 
 ### Advanced usage and details

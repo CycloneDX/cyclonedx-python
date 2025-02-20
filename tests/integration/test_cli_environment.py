@@ -25,7 +25,7 @@ from typing import Any, Generator
 from unittest import TestCase, skipIf
 
 from cyclonedx.schema import OutputFormat, SchemaVersion
-from ddt import ddt, named_data
+from ddt import data, ddt, named_data
 
 from tests import INFILES_DIRECTORY, INIT_TESTBEDS, SUPPORTED_OF_SV, SnapshotMixin, make_comparable
 from tests.integration import run_cli
@@ -45,8 +45,12 @@ def test_data_file_filter(s: str) -> Generator[Any, None, None]:
 @ddt
 class TestCliEnvironment(TestCase, SnapshotMixin):
 
-    def test_help(self) -> None:
-        res, out, err = run_cli('environment', '--help')
+    @data(
+        'environment',
+        'env', 'venv'  # aliases
+    )
+    def test_help(self, subcommand: str) -> None:
+        res, out, err = run_cli(subcommand, '--help')
         self.assertEqual(0, res, '\n'.join((out, err)))
 
     @classmethod

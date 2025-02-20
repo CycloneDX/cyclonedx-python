@@ -20,14 +20,16 @@ The full documentation can be issued by running with ``--help``:
 
     positional arguments:
       <command>
-        environment   Build an SBOM from Python (virtual) environment
-        requirements  Build an SBOM from Pip requirements
-        pipenv        Build an SBOM from Pipenv manifest
-        poetry        Build an SBOM from Poetry project
+        environment (env, venv)
+                            Build an SBOM from Python (virtual) environment
+        requirements        Build an SBOM from Pip requirements
+        pipenv              Build an SBOM from Pipenv manifest
+        poetry              Build an SBOM from Poetry project
 
     options:
-      -h, --help      show this help message and exit
-      --version       show program's version number and exit
+      -h, --help            show this help message and exit
+      --version             show program's version number and exit
+
 
 Example usage: save SBOM in CycloneDX 1.6 XML format, generated from current python environment
 
@@ -41,10 +43,12 @@ For Python (virtual) environment
 
 **subcommand:** ``environment``
 
+**aliases:** ``env``, ``venv``
+
 .. TODO: describe what an environment is...
 
-This will produce the most accurate and complete CycloneDX BOM as it analyses the actually installed packages.
-It will include metadata, licenses, dependency graph, and more in the generated CycloneDX SBOM.
+By analyzing the actually installed packages, this will produce the most accurate and complete CycloneDX BOM.
+The generated CycloneDX SBOM will include metadata, licenses, dependency graph, and more.
 
 The full documentation can be issued by running with ``environment --help``:
 
