@@ -444,7 +444,7 @@ class PoetryBB(BomBuilder):
             # > For version-controlled files, the VCS location syntax is similar to a URL and has the:
             # > `<vcs_tool>+<transport>://<host_name>[/<path_to_repository>][@<revision_tag_or_branch>][#<sub_path>]`
             qs['vcs_url'] = f'{source_type}+{redact_auth_from_url(source["url"])}@' + \
-                            source.get('resolved_reference', source.get('reference', ''))
+                source.get('resolved_reference', source.get('reference', ''))
         elif source_type == 'url':
             if '://files.pythonhosted.org/' not in source['url']:
                 # skip PURL bloat, do not add implicit information
