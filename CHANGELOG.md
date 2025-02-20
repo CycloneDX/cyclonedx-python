@@ -2,6 +2,23 @@
 
 
 
+## v5.2.0 (2025-02-20)
+
+### Documentation
+
+* docs: showcase `uv` as installation option (#847)
+
+Signed-off-by: lightningRalf &lt;lightningRalf@proton.me&gt; ([`12cc59b`](https://github.com/CycloneDX/cyclonedx-python/commit/12cc59bb0c38ae2ce72bc9e54c46762dafe399fc))
+
+### Feature
+
+* feat: subcommand `environment` got aliases `env`, `venv` (#850)
+
+fixes #845
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`aaed12a`](https://github.com/CycloneDX/cyclonedx-python/commit/aaed12a74d68fe8d8eb2fadc7b8d226968f335cf))
+
+
 ## v5.1.2 (2025-01-21)
 
 ### Documentation
