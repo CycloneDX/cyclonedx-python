@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.1" version="1">
+  <components>
+    <component type="library" bom-ref="Pillow@10.1.0">
+      <name>Pillow</name>
+      <version>10.1.0</version>
+      <description>Python Imaging Library (Fork)</description>
+      <purl>pkg:pypi/pillow@10.1.0?vcs_url=git%2Bhttps://github.com/python-pillow/Pillow.git%40da59ad000d1405eaecd557175e29083a87d19f7c</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>git+https://github.com/python-pillow/Pillow.git#da59ad000d1405eaecd557175e29083a87d19f7c</url>
+          <comment>from VCS</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="numpy@1.24.4">
+      <name>numpy</name>
+      <version>1.24.4</version>
+      <description>Fundamental package for array computing in Python</description>
+      <purl>pkg:pypi/numpy@1.24.4</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://files.pythonhosted.org/packages/a4/9b/027bec52c633f6556dba6b722d9a0befb40498b9ceddd29cbe67a45a127c/numpy-1.24.4.tar.gz</url>
+          <comment>from url</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="six@1.16.0">
+      <name>six</name>
+      <version>1.16.0</version>
+      <description>Python 2 and 3 compatibility utilities</description>
+      <purl>pkg:pypi/six@1.16.0?vcs_url=git%2Bssh://git%40github.com/benjaminp/six.git%4065486e4383f9f411da95937451205d3c7b61b9e1</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>git+ssh://git@github.com/benjaminp/six.git#65486e4383f9f411da95937451205d3c7b61b9e1</url>
+          <comment>from VCS</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="wxPython@4.2.2">
+      <name>wxPython</name>
+      <version>4.2.2</version>
+      <description>Cross platform GUI toolkit for Python, "Phoenix" version</description>
+      <purl>pkg:pypi/wxpython@4.2.2?download_url=https://wxpython.org/Phoenix/snapshot-builds/wxPython-4.2.2-cp38-cp38-win32.whl</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://wxpython.org/Phoenix/snapshot-builds/wxPython-4.2.2-cp38-cp38-win32.whl</url>
+          <comment>from url</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+</bom>

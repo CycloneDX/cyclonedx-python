@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.6" version="1">
+  <metadata>
+    <tools>
+      <components>
+        <component type="application">
+          <group>CycloneDX</group>
+          <name>cyclonedx-py</name>
+          <version>thisVersion-testing</version>
+          <description>CycloneDX Software Bill of Materials (SBOM) generator for Python projects and environments</description>
+          <licenses>
+            <license acknowledgement="declared">
+              <id>Apache-2.0</id>
+            </license>
+          </licenses>
+          <externalReferences>
+            <reference type="build-system">
+              <url>https://github.com/CycloneDX/cyclonedx-python/actions</url>
+            </reference>
+            <reference type="distribution">
+              <url>https://pypi.org/project/cyclonedx-bom/</url>
+            </reference>
+            <reference type="documentation">
+              <url>https://cyclonedx-bom-tool.readthedocs.io/</url>
+            </reference>
+            <reference type="issue-tracker">
+              <url>https://github.com/CycloneDX/cyclonedx-python/issues</url>
+            </reference>
+            <reference type="license">
+              <url>https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE</url>
+            </reference>
+            <reference type="release-notes">
+              <url>https://github.com/CycloneDX/cyclonedx-python/blob/main/CHANGELOG.md</url>
+            </reference>
+            <reference type="vcs">
+              <url>https://github.com/CycloneDX/cyclonedx-python/</url>
+            </reference>
+            <reference type="website">
+              <url>https://github.com/CycloneDX/cyclonedx-python/#readme</url>
+            </reference>
+          </externalReferences>
+        </component>
+        <component type="library">
+          <group>CycloneDX</group>
+          <name>cyclonedx-python-lib</name>
+          <version>libVersion-testing</version>
+          <description><!-- stripped --></description>
+          <licenses><!-- stripped --></licenses>
+          <externalReferences><!-- stripped --></externalReferences>
+        </component>
+      </components>
+    </tools>
+    <component type="application" bom-ref="with-extras">
+      <name>with-extras</name>
+      <version>0.1.0</version>
+      <description>depenndencies with extras</description>
+    </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
+  </metadata>
+  <dependencies>
+    <dependency ref="with-extras"/>
+  </dependencies>
+</bom>

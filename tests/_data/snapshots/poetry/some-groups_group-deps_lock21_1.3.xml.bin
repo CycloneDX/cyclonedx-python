@@ -1,0 +1,211 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.3" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-py</name>
+        <version>thisVersion-testing</version>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="group-deps">
+      <name>group-deps</name>
+      <version>0.1.0</version>
+      <description>dependencies organized in groups</description>
+    </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="arrow@1.3.0">
+      <name>arrow</name>
+      <version>1.3.0</version>
+      <description>Better dates &amp; times for Python</description>
+      <purl>pkg:pypi/arrow@1.3.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/arrow/#arrow-1.3.0-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">c728b120ebc00eb84e01882a6f5e7927a53960aa990ce7dd2b10f39005a67f80</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/arrow/#arrow-1.3.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">d4540617648cb5f895730f1ad8c82a65f2dad0166f57b75f3ca54759c4d67a85</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="colorama@0.4.6">
+      <name>colorama</name>
+      <version>0.4.6</version>
+      <description>Cross-platform colored terminal text.</description>
+      <purl>pkg:pypi/colorama@0.4.6</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/colorama/#colorama-0.4.6-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/colorama/#colorama-0.4.6.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:poetry:group">groupA</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="isoduration@20.11.0">
+      <name>isoduration</name>
+      <version>20.11.0</version>
+      <description>Operations with ISO 8601 durations</description>
+      <purl>pkg:pypi/isoduration@20.11.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/isoduration/#isoduration-20.11.0-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">b2904c2a4228c3d44f409c8ae8e2370eb21a26f7ac2ec5446df141dde3452042</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/isoduration/#isoduration-20.11.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">ac2f9015137935279eac671f94f89eb00584f940f5dc49462a0c4ee692ba1bd9</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:poetry:group">groupA</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="python-dateutil@2.9.0.post0">
+      <name>python-dateutil</name>
+      <version>2.9.0.post0</version>
+      <description>Extensions to the standard Python datetime module</description>
+      <purl>pkg:pypi/python-dateutil@2.9.0.post0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/python-dateutil/#python-dateutil-2.9.0.post0.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/python-dateutil/#python_dateutil-2.9.0.post0-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="six@1.17.0">
+      <name>six</name>
+      <version>1.17.0</version>
+      <description>Python 2 and 3 compatibility utilities</description>
+      <purl>pkg:pypi/six@1.17.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/#six-1.17.0-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/#six-1.17.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="toml@0.10.2">
+      <name>toml</name>
+      <version>0.10.2</version>
+      <description>Python Library for Tom's Obvious, Minimal Language</description>
+      <purl>pkg:pypi/toml@0.10.2</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/toml/#toml-0.10.2-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/toml/#toml-0.10.2.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:poetry:group">main</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="types-python-dateutil@2.9.0.20241206">
+      <name>types-python-dateutil</name>
+      <version>2.9.0.20241206</version>
+      <description>Typing stubs for python-dateutil</description>
+      <purl>pkg:pypi/types-python-dateutil@2.9.0.20241206</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/types-python-dateutil/#types_python_dateutil-2.9.0.20241206-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">e248a4bc70a486d3e3ec84d0dc30eec3a5f979d6e7ee4123ae043eedbb987f53</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/types-python-dateutil/#types_python_dateutil-2.9.0.20241206.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">18f493414c26ffba692a72369fea7a154c502646301ebfe3d56a04b3767284cb</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="arrow@1.3.0">
+      <dependency ref="python-dateutil@2.9.0.post0"/>
+      <dependency ref="types-python-dateutil@2.9.0.20241206"/>
+    </dependency>
+    <dependency ref="colorama@0.4.6"/>
+    <dependency ref="group-deps">
+      <dependency ref="colorama@0.4.6"/>
+      <dependency ref="isoduration@20.11.0"/>
+      <dependency ref="toml@0.10.2"/>
+    </dependency>
+    <dependency ref="isoduration@20.11.0">
+      <dependency ref="arrow@1.3.0"/>
+    </dependency>
+    <dependency ref="python-dateutil@2.9.0.post0">
+      <dependency ref="six@1.17.0"/>
+    </dependency>
+    <dependency ref="six@1.17.0"/>
+    <dependency ref="toml@0.10.2"/>
+    <dependency ref="types-python-dateutil@2.9.0.20241206"/>
+  </dependencies>
+</bom>

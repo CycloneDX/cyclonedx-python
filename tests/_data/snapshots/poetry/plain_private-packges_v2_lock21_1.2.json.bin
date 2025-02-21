@@ -1,0 +1,1260 @@
+{
+  "components": [
+    {
+      "bom-ref": "colorama@0.4.6",
+      "description": "Cross-platform colored terminal text.",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/colorama/#colorama-0.4.6-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/colorama/#colorama-0.4.6.tar.gz"
+        }
+      ],
+      "name": "colorama",
+      "purl": "pkg:pypi/colorama@0.4.6?repository_url=http://pysrc1.example.local:8080/simple",
+      "type": "library",
+      "version": "0.4.6"
+    },
+    {
+      "bom-ref": "importlib-metadata@8.6.1",
+      "description": "Read metadata from Python packages",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/importlib-metadata/#importlib_metadata-8.6.1-py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/importlib-metadata/#importlib_metadata-8.6.1.tar.gz"
+        }
+      ],
+      "name": "importlib-metadata",
+      "purl": "pkg:pypi/importlib-metadata@8.6.1?repository_url=http://pysrc1.example.local:8080/simple",
+      "type": "library",
+      "version": "8.6.1"
+    },
+    {
+      "bom-ref": "jax@0.4.20",
+      "description": "Differentiate, compile, and transform Numpy code.",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://storage.googleapis.com/jax-releases/jax_releases.html/jax/#jax-0.4.20-py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "https://storage.googleapis.com/jax-releases/jax_releases.html/jax/#jax-0.4.20.tar.gz"
+        }
+      ],
+      "name": "jax",
+      "purl": "pkg:pypi/jax@0.4.20?repository_url=https://storage.googleapis.com/jax-releases/jax_releases.html",
+      "type": "library",
+      "version": "0.4.20"
+    },
+    {
+      "bom-ref": "ml-dtypes@0.5.1",
+      "description": "",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp310-cp310-macosx_10_9_universal2.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp310-cp310-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp311-cp311-macosx_10_9_universal2.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp311-cp311-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp312-cp312-macosx_10_9_universal2.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp312-cp312-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp313-cp313-macosx_10_13_universal2.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp313-cp313-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp313-cp313t-macosx_10_13_universal2.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp313-cp313t-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp313-cp313t-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp39-cp39-macosx_10_9_universal2.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp39-cp39-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1.tar.gz"
+        }
+      ],
+      "name": "ml-dtypes",
+      "purl": "pkg:pypi/ml-dtypes@0.5.1?repository_url=http://pysrc1.example.local:8080/simple",
+      "type": "library",
+      "version": "0.5.1"
+    },
+    {
+      "bom-ref": "numpy@2.0.2",
+      "description": "Fundamental package for array computing in Python",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp310-cp310-macosx_10_9_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp310-cp310-macosx_11_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp310-cp310-macosx_14_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp310-cp310-macosx_14_0_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp310-cp310-musllinux_1_1_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp310-cp310-musllinux_1_2_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp310-cp310-win32.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp310-cp310-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp311-cp311-macosx_10_9_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp311-cp311-macosx_11_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp311-cp311-macosx_14_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp311-cp311-macosx_14_0_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp311-cp311-musllinux_1_1_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp311-cp311-musllinux_1_2_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp311-cp311-win32.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp311-cp311-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp312-cp312-macosx_10_9_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp312-cp312-macosx_11_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp312-cp312-macosx_14_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp312-cp312-macosx_14_0_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp312-cp312-musllinux_1_1_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp312-cp312-musllinux_1_2_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp312-cp312-win32.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp312-cp312-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp39-cp39-macosx_10_9_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp39-cp39-macosx_11_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp39-cp39-macosx_14_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp39-cp39-macosx_14_0_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp39-cp39-musllinux_1_1_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp39-cp39-musllinux_1_2_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp39-cp39-win32.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp39-cp39-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-pp39-pypy39_pp73-macosx_10_9_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-pp39-pypy39_pp73-macosx_14_0_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-pp39-pypy39_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-pp39-pypy39_pp73-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2.tar.gz"
+        }
+      ],
+      "name": "numpy",
+      "purl": "pkg:pypi/numpy@2.0.2?repository_url=http://pysrc1.example.local:8080/simple",
+      "type": "library",
+      "version": "2.0.2"
+    },
+    {
+      "bom-ref": "numpy@2.2.3#1",
+      "description": "Fundamental package for array computing in Python",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp310-cp310-macosx_10_9_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp310-cp310-macosx_11_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp310-cp310-macosx_14_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp310-cp310-macosx_14_0_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp310-cp310-musllinux_1_2_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp310-cp310-musllinux_1_2_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp310-cp310-win32.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp310-cp310-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp311-cp311-macosx_10_9_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp311-cp311-macosx_11_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp311-cp311-macosx_14_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp311-cp311-macosx_14_0_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp311-cp311-musllinux_1_2_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp311-cp311-musllinux_1_2_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp311-cp311-win32.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp311-cp311-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp312-cp312-macosx_10_13_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp312-cp312-macosx_11_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp312-cp312-macosx_14_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp312-cp312-macosx_14_0_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp312-cp312-musllinux_1_2_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp312-cp312-musllinux_1_2_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp312-cp312-win32.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp312-cp312-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313-macosx_10_13_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313-macosx_11_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313-macosx_14_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313-macosx_14_0_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313-musllinux_1_2_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313-musllinux_1_2_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313-win32.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313t-macosx_10_13_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313t-macosx_11_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313t-macosx_14_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313t-macosx_14_0_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313t-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313t-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313t-musllinux_1_2_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313t-musllinux_1_2_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313t-win32.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313t-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-pp310-pypy310_pp73-macosx_10_15_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-pp310-pypy310_pp73-macosx_14_0_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-pp310-pypy310_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-pp310-pypy310_pp73-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3.tar.gz"
+        }
+      ],
+      "name": "numpy",
+      "purl": "pkg:pypi/numpy@2.2.3?repository_url=http://pysrc1.example.local:8080/simple",
+      "type": "library",
+      "version": "2.2.3"
+    },
+    {
+      "bom-ref": "opt-einsum@3.4.0",
+      "description": "Path optimization of einsum functions.",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/opt-einsum/#opt_einsum-3.4.0-py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/opt-einsum/#opt_einsum-3.4.0.tar.gz"
+        }
+      ],
+      "name": "opt-einsum",
+      "purl": "pkg:pypi/opt-einsum@3.4.0?repository_url=http://pysrc1.example.local:8080/simple",
+      "type": "library",
+      "version": "3.4.0"
+    },
+    {
+      "bom-ref": "scipy@1.13.1",
+      "description": "Fundamental algorithms for scientific computing in Python",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp310-cp310-macosx_10_9_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp310-cp310-macosx_12_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp310-cp310-musllinux_1_1_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp310-cp310-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp311-cp311-macosx_10_9_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp311-cp311-macosx_12_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp311-cp311-musllinux_1_1_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp311-cp311-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp312-cp312-macosx_10_9_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp312-cp312-macosx_12_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp312-cp312-musllinux_1_1_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp312-cp312-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp39-cp39-macosx_10_9_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp39-cp39-macosx_12_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp39-cp39-musllinux_1_1_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp39-cp39-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1.tar.gz"
+        }
+      ],
+      "name": "scipy",
+      "purl": "pkg:pypi/scipy@1.13.1?repository_url=http://pysrc1.example.local:8080/simple",
+      "type": "library",
+      "version": "1.13.1"
+    },
+    {
+      "bom-ref": "scipy@1.15.2#1",
+      "description": "Fundamental algorithms for scientific computing in Python",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp310-cp310-macosx_10_13_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp310-cp310-macosx_12_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp310-cp310-macosx_14_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp310-cp310-macosx_14_0_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp310-cp310-musllinux_1_2_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp310-cp310-musllinux_1_2_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp310-cp310-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp311-cp311-macosx_10_13_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp311-cp311-macosx_12_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp311-cp311-macosx_14_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp311-cp311-macosx_14_0_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp311-cp311-musllinux_1_2_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp311-cp311-musllinux_1_2_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp311-cp311-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp312-cp312-macosx_10_13_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp312-cp312-macosx_12_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp312-cp312-macosx_14_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp312-cp312-macosx_14_0_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp312-cp312-musllinux_1_2_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp312-cp312-musllinux_1_2_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp312-cp312-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313-macosx_10_13_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313-macosx_12_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313-macosx_14_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313-macosx_14_0_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313-musllinux_1_2_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313-musllinux_1_2_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313t-macosx_10_13_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313t-macosx_12_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313t-macosx_14_0_arm64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313t-macosx_14_0_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313t-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313t-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313t-musllinux_1_2_aarch64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313t-musllinux_1_2_x86_64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313t-win_amd64.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2.tar.gz"
+        }
+      ],
+      "name": "scipy",
+      "purl": "pkg:pypi/scipy@1.15.2?repository_url=http://pysrc1.example.local:8080/simple",
+      "type": "library",
+      "version": "1.15.2"
+    },
+    {
+      "bom-ref": "six@1.16.0",
+      "description": "Python 2 and 3 compatibility utilities",
+      "externalReferences": [
+        {
+          "comment": "from url",
+          "type": "distribution",
+          "url": "https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl"
+        }
+      ],
+      "name": "six",
+      "purl": "pkg:pypi/six@1.16.0?download_url=https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl",
+      "type": "library",
+      "version": "1.16.0"
+    },
+    {
+      "bom-ref": "toml@0.10.2",
+      "description": "Python Library for Tom's Obvious, Minimal Language",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc2.example.local:8080/simple/toml/#toml-0.10.2-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc2.example.local:8080/simple/toml/#toml-0.10.2.tar.gz"
+        }
+      ],
+      "name": "toml",
+      "purl": "pkg:pypi/toml@0.10.2?repository_url=http://pysrc2.example.local:8080/simple",
+      "type": "library",
+      "version": "0.10.2"
+    },
+    {
+      "bom-ref": "zipp@3.21.0",
+      "description": "Backport of pathlib-compatible object wrapper for zip files",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/zipp/#zipp-3.21.0-py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "type": "distribution",
+          "url": "http://pysrc1.example.local:8080/simple/zipp/#zipp-3.21.0.tar.gz"
+        }
+      ],
+      "name": "zipp",
+      "purl": "pkg:pypi/zipp@3.21.0?repository_url=http://pysrc1.example.local:8080/simple",
+      "type": "library",
+      "version": "3.21.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "colorama@0.4.6"
+    },
+    {
+      "dependsOn": [
+        "zipp@3.21.0"
+      ],
+      "ref": "importlib-metadata@8.6.1"
+    },
+    {
+      "dependsOn": [
+        "importlib-metadata@8.6.1",
+        "ml-dtypes@0.5.1",
+        "numpy@2.0.2",
+        "numpy@2.2.3#1",
+        "opt-einsum@3.4.0",
+        "scipy@1.13.1",
+        "scipy@1.15.2#1"
+      ],
+      "ref": "jax@0.4.20"
+    },
+    {
+      "dependsOn": [
+        "numpy@2.0.2",
+        "numpy@2.2.3#1"
+      ],
+      "ref": "ml-dtypes@0.5.1"
+    },
+    {
+      "ref": "numpy@2.0.2"
+    },
+    {
+      "ref": "numpy@2.2.3#1"
+    },
+    {
+      "ref": "opt-einsum@3.4.0"
+    },
+    {
+      "dependsOn": [
+        "colorama@0.4.6",
+        "jax@0.4.20",
+        "six@1.16.0",
+        "toml@0.10.2"
+      ],
+      "ref": "private-packges_v2"
+    },
+    {
+      "dependsOn": [
+        "numpy@2.0.2",
+        "numpy@2.2.3#1"
+      ],
+      "ref": "scipy@1.13.1"
+    },
+    {
+      "dependsOn": [
+        "numpy@2.0.2",
+        "numpy@2.2.3#1"
+      ],
+      "ref": "scipy@1.15.2#1"
+    },
+    {
+      "ref": "six@1.16.0"
+    },
+    {
+      "ref": "toml@0.10.2"
+    },
+    {
+      "ref": "zipp@3.21.0"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "private-packges_v2",
+      "description": "packages from aternative package repositories",
+      "name": "private-packges_v2",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "tools": [
+      {
+        "name": "cyclonedx-py",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.2b.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.2"
+}

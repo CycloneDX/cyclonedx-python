@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.0" version="1">
+  <components>
+    <component type="library">
+      <name>pyhumps</name>
+      <version>3.7.1</version>
+      <description>🐫  Convert strings (and dictionary keys) between snake case, camel case and pascal case in Python. Inspired by Humps for Node</description>
+      <purl>pkg:pypi/pyhumps@3.7.1</purl>
+      <modified>false</modified>
+    </component>
+  </components>
+</bom>

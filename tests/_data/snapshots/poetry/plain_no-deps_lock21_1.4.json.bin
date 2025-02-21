@@ -1,0 +1,110 @@
+{
+  "dependencies": [
+    {
+      "ref": "no-deps"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "no-deps",
+      "description": "packages with all meta, but no deps",
+      "externalReferences": [
+        {
+          "comment": "from poetry: documentation",
+          "type": "documentation",
+          "url": "https://oss.acme.org/my-project/docs/"
+        },
+        {
+          "comment": "from poetry url: Bug Tracker",
+          "type": "issue-tracker",
+          "url": "https://oss.acme.org/my-project/bugs/"
+        },
+        {
+          "comment": "from poetry url: Funding",
+          "type": "other",
+          "url": "https://oss.acme.org/my-project/funding/"
+        },
+        {
+          "comment": "from poetry url: Change log",
+          "type": "release-notes",
+          "url": "https://oss.acme.org/my-project/changelog/"
+        },
+        {
+          "comment": "from poetry: repository",
+          "type": "vcs",
+          "url": "https://oss.acme.org/my-project.git"
+        },
+        {
+          "comment": "from poetry: homepage",
+          "type": "website",
+          "url": "https://oss.acme.org/my-project/"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR MIT"
+        }
+      ],
+      "name": "no-deps",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": [
+      {
+        "externalReferences": [
+          {
+            "type": "build-system",
+            "url": "https://github.com/CycloneDX/cyclonedx-python/actions"
+          },
+          {
+            "type": "distribution",
+            "url": "https://pypi.org/project/cyclonedx-bom/"
+          },
+          {
+            "type": "documentation",
+            "url": "https://cyclonedx-bom-tool.readthedocs.io/"
+          },
+          {
+            "type": "issue-tracker",
+            "url": "https://github.com/CycloneDX/cyclonedx-python/issues"
+          },
+          {
+            "type": "license",
+            "url": "https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE"
+          },
+          {
+            "type": "release-notes",
+            "url": "https://github.com/CycloneDX/cyclonedx-python/blob/main/CHANGELOG.md"
+          },
+          {
+            "type": "vcs",
+            "url": "https://github.com/CycloneDX/cyclonedx-python/"
+          },
+          {
+            "type": "website",
+            "url": "https://github.com/CycloneDX/cyclonedx-python/#readme"
+          }
+        ],
+        "name": "cyclonedx-py",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "externalReferences": [   ],
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.4.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.4"
+}

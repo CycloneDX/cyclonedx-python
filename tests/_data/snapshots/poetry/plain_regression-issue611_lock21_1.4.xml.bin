@@ -1,0 +1,85 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.4" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-py</name>
+        <version>thisVersion-testing</version>
+        <externalReferences>
+          <reference type="build-system">
+            <url>https://github.com/CycloneDX/cyclonedx-python/actions</url>
+          </reference>
+          <reference type="distribution">
+            <url>https://pypi.org/project/cyclonedx-bom/</url>
+          </reference>
+          <reference type="documentation">
+            <url>https://cyclonedx-bom-tool.readthedocs.io/</url>
+          </reference>
+          <reference type="issue-tracker">
+            <url>https://github.com/CycloneDX/cyclonedx-python/issues</url>
+          </reference>
+          <reference type="license">
+            <url>https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE</url>
+          </reference>
+          <reference type="release-notes">
+            <url>https://github.com/CycloneDX/cyclonedx-python/blob/main/CHANGELOG.md</url>
+          </reference>
+          <reference type="vcs">
+            <url>https://github.com/CycloneDX/cyclonedx-python/</url>
+          </reference>
+          <reference type="website">
+            <url>https://github.com/CycloneDX/cyclonedx-python/#readme</url>
+          </reference>
+        </externalReferences>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+        <externalReferences><!-- stripped --></externalReferences>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="regression-issue611">
+      <name>regression-issue611</name>
+      <version>0.1.0</version>
+      <description>regression for issue #611</description>
+    </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="pyhumps@3.7.1">
+      <name>pyhumps</name>
+      <version>3.7.1</version>
+      <description>🐫  Convert strings (and dictionary keys) between snake case, camel case and pascal case in Python. Inspired by Humps for Node</description>
+      <purl>pkg:pypi/pyhumps@3.7.1</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pyhumps/#pyhumps-3.7.1-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">c6f2d833f2c7afae039d71b7dc0aba5412ae5b8c8c33d4a208c1d412de17229e</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pyhumps/#pyhumps-3.7.1.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">5616f0afdbc73ef479fa9999f4abdcb336a0232707ff1a0b86e29fc9339e18da</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:poetry:group">main</property>
+      </properties>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="pyhumps@3.7.1"/>
+    <dependency ref="regression-issue611">
+      <dependency ref="pyhumps@3.7.1"/>
+    </dependency>
+  </dependencies>
+</bom>

@@ -1,0 +1,175 @@
+{
+  "components": [
+    {
+      "bom-ref": "package-a@23.42",
+      "description": "some package A",
+      "externalReferences": [
+        {
+          "comment": "from file",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "d4daa89aeb1f217c47be920111b1533f8b8cebba10a19791bed48577129e2b5f"
+            }
+          ],
+          "type": "distribution",
+          "url": "../../../_helpers/local_pckages/a/dist/package-a-23.42.tar.gz"
+        }
+      ],
+      "name": "package-a",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        }
+      ],
+      "type": "library",
+      "version": "23.42"
+    },
+    {
+      "bom-ref": "package-b@23.42",
+      "description": "some package B",
+      "externalReferences": [
+        {
+          "comment": "from file",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "583f7cb9db5c26194e8004ac82a90d7b46664da8da674919d3e2189c332a1f78"
+            }
+          ],
+          "type": "distribution",
+          "url": "../../../_helpers/local_pckages/b/dist/package_b-23.42-py3-none-any.whl"
+        }
+      ],
+      "name": "package-b",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        }
+      ],
+      "type": "library",
+      "version": "23.42"
+    },
+    {
+      "bom-ref": "package-c@23.42",
+      "description": "some package C",
+      "externalReferences": [
+        {
+          "comment": "from directory",
+          "type": "distribution",
+          "url": "../../../_helpers/local_pckages/c"
+        }
+      ],
+      "name": "package-c",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        }
+      ],
+      "type": "library",
+      "version": "23.42"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "package-a@23.42",
+        "package-b@23.42",
+        "package-c@23.42"
+      ],
+      "ref": "local"
+    },
+    {
+      "ref": "package-a@23.42"
+    },
+    {
+      "ref": "package-b@23.42"
+    },
+    {
+      "ref": "package-c@23.42"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "local",
+      "description": "packages from local paths",
+      "name": "local",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": {
+      "components": [
+        {
+          "description": "CycloneDX Software Bill of Materials (SBOM) generator for Python projects and environments",
+          "externalReferences": [
+            {
+              "type": "build-system",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/actions"
+            },
+            {
+              "type": "distribution",
+              "url": "https://pypi.org/project/cyclonedx-bom/"
+            },
+            {
+              "type": "documentation",
+              "url": "https://cyclonedx-bom-tool.readthedocs.io/"
+            },
+            {
+              "type": "issue-tracker",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/issues"
+            },
+            {
+              "type": "license",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE"
+            },
+            {
+              "type": "release-notes",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/blob/main/CHANGELOG.md"
+            },
+            {
+              "type": "vcs",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/"
+            },
+            {
+              "type": "website",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/#readme"
+            }
+          ],
+          "group": "CycloneDX",
+          "licenses": [
+            {
+              "license": {
+                "id": "Apache-2.0"
+              }
+            }
+          ],
+          "name": "cyclonedx-py",
+          "type": "application",
+          "version": "thisVersion-testing"
+        },
+        {
+          "description": "stripped",
+          "externalReferences": [   ],
+          "group": "CycloneDX",
+          "licenses": [   ],
+          "name": "cyclonedx-python-lib",
+          "type": "library",
+          "version": "libVersion-testing"
+        }
+      ]
+    }
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5"
+}
