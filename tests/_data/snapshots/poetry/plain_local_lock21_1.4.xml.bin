@@ -1,0 +1,112 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.4" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-py</name>
+        <version>thisVersion-testing</version>
+        <externalReferences>
+          <reference type="build-system">
+            <url>https://github.com/CycloneDX/cyclonedx-python/actions</url>
+          </reference>
+          <reference type="distribution">
+            <url>https://pypi.org/project/cyclonedx-bom/</url>
+          </reference>
+          <reference type="documentation">
+            <url>https://cyclonedx-bom-tool.readthedocs.io/</url>
+          </reference>
+          <reference type="issue-tracker">
+            <url>https://github.com/CycloneDX/cyclonedx-python/issues</url>
+          </reference>
+          <reference type="license">
+            <url>https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE</url>
+          </reference>
+          <reference type="release-notes">
+            <url>https://github.com/CycloneDX/cyclonedx-python/blob/main/CHANGELOG.md</url>
+          </reference>
+          <reference type="vcs">
+            <url>https://github.com/CycloneDX/cyclonedx-python/</url>
+          </reference>
+          <reference type="website">
+            <url>https://github.com/CycloneDX/cyclonedx-python/#readme</url>
+          </reference>
+        </externalReferences>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+        <externalReferences><!-- stripped --></externalReferences>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="local">
+      <name>local</name>
+      <version>0.1.0</version>
+      <description>packages from local paths</description>
+    </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="package-a@23.42">
+      <name>package-a</name>
+      <version>23.42</version>
+      <description>some package A</description>
+      <externalReferences>
+        <reference type="distribution">
+          <url>../../../_helpers/local_pckages/a/dist/package-a-23.42.tar.gz</url>
+          <comment>from file</comment>
+          <hashes>
+            <hash alg="SHA-256">d4daa89aeb1f217c47be920111b1533f8b8cebba10a19791bed48577129e2b5f</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:poetry:group">main</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="package-b@23.42">
+      <name>package-b</name>
+      <version>23.42</version>
+      <description>some package B</description>
+      <externalReferences>
+        <reference type="distribution">
+          <url>../../../_helpers/local_pckages/b/dist/package_b-23.42-py3-none-any.whl</url>
+          <comment>from file</comment>
+          <hashes>
+            <hash alg="SHA-256">583f7cb9db5c26194e8004ac82a90d7b46664da8da674919d3e2189c332a1f78</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:poetry:group">main</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="package-c@23.42">
+      <name>package-c</name>
+      <version>23.42</version>
+      <description>some package C</description>
+      <externalReferences>
+        <reference type="distribution">
+          <url>../../../_helpers/local_pckages/c</url>
+          <comment>from directory</comment>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:poetry:group">main</property>
+      </properties>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="local">
+      <dependency ref="package-a@23.42"/>
+      <dependency ref="package-b@23.42"/>
+      <dependency ref="package-c@23.42"/>
+    </dependency>
+    <dependency ref="package-a@23.42"/>
+    <dependency ref="package-b@23.42"/>
+    <dependency ref="package-c@23.42"/>
+  </dependencies>
+</bom>

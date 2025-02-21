@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.2" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-py</name>
+        <version>thisVersion-testing</version>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="with-extras">
+      <name>with-extras</name>
+      <version>0.1.0</version>
+      <description>depenndencies with extras</description>
+    </component>
+  </metadata>
+  <dependencies>
+    <dependency ref="with-extras"/>
+  </dependencies>
+</bom>

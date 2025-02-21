@@ -1,0 +1,138 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.2" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-py</name>
+        <version>thisVersion-testing</version>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="main-and-dev">
+      <name>main-and-dev</name>
+      <version>0.1.0</version>
+      <description>main and dev depenndencies</description>
+    </component>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="arrow@1.3.0">
+      <name>arrow</name>
+      <version>1.3.0</version>
+      <description>Better dates &amp; times for Python</description>
+      <purl>pkg:pypi/arrow@1.3.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/arrow/#arrow-1.3.0-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/arrow/#arrow-1.3.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="colorama@0.4.6">
+      <name>colorama</name>
+      <version>0.4.6</version>
+      <description>Cross-platform colored terminal text.</description>
+      <purl>pkg:pypi/colorama@0.4.6</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/colorama/#colorama-0.4.6-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/colorama/#colorama-0.4.6.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="python-dateutil@2.9.0.post0">
+      <name>python-dateutil</name>
+      <version>2.9.0.post0</version>
+      <description>Extensions to the standard Python datetime module</description>
+      <purl>pkg:pypi/python-dateutil@2.9.0.post0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/python-dateutil/#python-dateutil-2.9.0.post0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/python-dateutil/#python_dateutil-2.9.0.post0-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="six@1.17.0">
+      <name>six</name>
+      <version>1.17.0</version>
+      <description>Python 2 and 3 compatibility utilities</description>
+      <purl>pkg:pypi/six@1.17.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/#six-1.17.0-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/#six-1.17.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="toml@0.10.2">
+      <name>toml</name>
+      <version>0.10.2</version>
+      <description>Python Library for Tom's Obvious, Minimal Language</description>
+      <purl>pkg:pypi/toml@0.10.2</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/toml/#toml-0.10.2-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/toml/#toml-0.10.2.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="types-python-dateutil@2.9.0.20241206">
+      <name>types-python-dateutil</name>
+      <version>2.9.0.20241206</version>
+      <description>Typing stubs for python-dateutil</description>
+      <purl>pkg:pypi/types-python-dateutil@2.9.0.20241206</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/types-python-dateutil/#types_python_dateutil-2.9.0.20241206-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/types-python-dateutil/#types_python_dateutil-2.9.0.20241206.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="arrow@1.3.0">
+      <dependency ref="python-dateutil@2.9.0.post0"/>
+      <dependency ref="types-python-dateutil@2.9.0.20241206"/>
+    </dependency>
+    <dependency ref="colorama@0.4.6"/>
+    <dependency ref="main-and-dev">
+      <dependency ref="arrow@1.3.0"/>
+      <dependency ref="colorama@0.4.6"/>
+      <dependency ref="toml@0.10.2"/>
+    </dependency>
+    <dependency ref="python-dateutil@2.9.0.post0">
+      <dependency ref="six@1.17.0"/>
+    </dependency>
+    <dependency ref="six@1.17.0"/>
+    <dependency ref="toml@0.10.2"/>
+    <dependency ref="types-python-dateutil@2.9.0.20241206"/>
+  </dependencies>
+</bom>

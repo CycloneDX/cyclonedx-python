@@ -1,0 +1,1630 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.3" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-py</name>
+        <version>thisVersion-testing</version>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="private-packges_v2">
+      <name>private-packges_v2</name>
+      <version>0.1.0</version>
+      <description>packages from aternative package repositories</description>
+    </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="colorama@0.4.6">
+      <name>colorama</name>
+      <version>0.4.6</version>
+      <description>Cross-platform colored terminal text.</description>
+      <purl>pkg:pypi/colorama@0.4.6?repository_url=http://pysrc1.example.local:8080/simple</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/colorama/#colorama-0.4.6-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/colorama/#colorama-0.4.6.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:poetry:group">main</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="importlib-metadata@8.6.1">
+      <name>importlib-metadata</name>
+      <version>8.6.1</version>
+      <description>Read metadata from Python packages</description>
+      <purl>pkg:pypi/importlib-metadata@8.6.1?repository_url=http://pysrc1.example.local:8080/simple</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/importlib-metadata/#importlib_metadata-8.6.1-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">02a89390c1e15fdfdc0d7c6b25cb3e62650d0494005c97d6f148bf5b9787525e</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/importlib-metadata/#importlib_metadata-8.6.1.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">310b41d755445d74569f993ccfc22838295d9fe005425094fad953d7f15c8580</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="jax@0.4.20">
+      <name>jax</name>
+      <version>0.4.20</version>
+      <description>Differentiate, compile, and transform Numpy code.</description>
+      <purl>pkg:pypi/jax@0.4.20?repository_url=https://storage.googleapis.com/jax-releases/jax_releases.html</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://storage.googleapis.com/jax-releases/jax_releases.html/jax/#jax-0.4.20-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">3d5952197adca548d99310f1c326bf00548f1cc8652b89edb369166482c2aec2</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>https://storage.googleapis.com/jax-releases/jax_releases.html/jax/#jax-0.4.20.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">ea96a763a8b1a9374639d1159ab4de163461d01cd022f67c34c09581b71ed2ac</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:poetry:group">main</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="ml-dtypes@0.5.1">
+      <name>ml-dtypes</name>
+      <version>0.5.1</version>
+      <description/>
+      <purl>pkg:pypi/ml-dtypes@0.5.1?repository_url=http://pysrc1.example.local:8080/simple</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp310-cp310-macosx_10_9_universal2.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">bd73f51957949069573ff783563486339a9285d72e2f36c18e0c1aa9ca7eb190</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">810512e2eccdfc3b41eefa3a27402371a3411453a1efc7e9c000318196140fed</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">141b2ea2f20bb10802ddca55d91fe21231ef49715cfc971998e8f2a9838f3dbe</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp310-cp310-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">26ebcc69d7b779c8f129393e99732961b5cc33fcff84090451f448c89b0e01b4</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp311-cp311-macosx_10_9_universal2.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">023ce2f502efd4d6c1e0472cc58ce3640d051d40e71e27386bed33901e201327</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">7000b6e4d8ef07542c05044ec5d8bbae1df083b3f56822c3da63993a113e716f</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">c09526488c3a9e8b7a23a388d4974b670a9a3dd40c5c8a61db5593ce9b725bab</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp311-cp311-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">15ad0f3b0323ce96c24637a88a6f44f6713c64032f27277b069f285c3cf66478</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp312-cp312-macosx_10_9_universal2.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">6f462f5eca22fb66d7ff9c4744a3db4463af06c49816c4b6ac89b16bfcdc592e</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">6f76232163b5b9c34291b54621ee60417601e2e4802a188a0ea7157cd9b323f4</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">ad4953c5eb9c25a56d11a913c2011d7e580a435ef5145f804d98efa14477d390</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp312-cp312-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">9626d0bca1fb387d5791ca36bacbba298c5ef554747b7ebeafefb4564fc83566</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp313-cp313-macosx_10_13_universal2.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">12651420130ee7cc13059fc56dac6ad300c3af3848b802d475148c9defd27c23</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">c9945669d3dadf8acb40ec2e57d38c985d8c285ea73af57fc5b09872c516106d</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">bf9975bda82a99dc935f2ae4c83846d86df8fd6ba179614acac8e686910851da</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp313-cp313-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">fd918d4e6a4e0c110e2e05be7a7814d10dc1b95872accbf6512b80a109b71ae1</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp313-cp313t-macosx_10_13_universal2.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">05f23447a1c20ddf4dc7c2c661aa9ed93fcb2658f1017c204d1e758714dc28a8</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp313-cp313t-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">1b7fbe5571fdf28fd3aaab3ef4aafc847de9ebf263be959958c1ca58ec8eadf5</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp313-cp313t-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">d13755f8e8445b3870114e5b6240facaa7cb0c3361e54beba3e07fa912a6e12b</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp39-cp39-macosx_10_9_universal2.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">b8a9d46b4df5ae2135a8e8e72b465448ebbc1559997f4f9304a9ecc3413efb5b</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">afb2009ac98da274e893e03162f6269398b2b00d947e7057ee2469a921d58135</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">aefedc579ece2f8fb38f876aa7698204ee4c372d0e54f1c1ffa8ca580b54cc60</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1-cp39-cp39-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">8f2c028954f16ede77902b223a8da2d9cbb3892375b85809a5c3cfb1587960c4</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/ml-dtypes/#ml_dtypes-0.5.1.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">ac5b58559bb84a95848ed6984eb8013249f90b6bab62aa5acbad876e256002c9</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="numpy@2.0.2">
+      <name>numpy</name>
+      <version>2.0.2</version>
+      <description>Fundamental package for array computing in Python</description>
+      <purl>pkg:pypi/numpy@2.0.2?repository_url=http://pysrc1.example.local:8080/simple</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp310-cp310-macosx_10_9_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">51129a29dbe56f9ca83438b706e2e69a39892b5eda6cedcb6b0c9fdc9b0d3ece</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp310-cp310-macosx_11_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">f15975dfec0cf2239224d80e32c3170b1d168335eaedee69da84fbe9f1f9cd04</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp310-cp310-macosx_14_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">8c5713284ce4e282544c68d1c3b2c7161d38c256d2eefc93c1d683cf47683e66</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp310-cp310-macosx_14_0_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">becfae3ddd30736fe1889a37f1f580e245ba79a5855bff5f2a29cb3ccc22dd7b</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">2da5960c3cf0df7eafefd806d4e612c5e19358de82cb3c343631188991566ccd</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">496f71341824ed9f3d2fd36cf3ac57ae2e0165c143b55c3a035ee219413f3318</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp310-cp310-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">a61ec659f68ae254e4d237816e33171497e978140353c0c2038d46e63282d0c8</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp310-cp310-musllinux_1_2_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">d731a1c6116ba289c1e9ee714b08a8ff882944d4ad631fd411106a30f083c326</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp310-cp310-win32.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">984d96121c9f9616cd33fbd0618b7f08e0cfc9600a7ee1d6fd9b239186d19d97</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp310-cp310-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">c7b0be4ef08607dd04da4092faee0b86607f111d5ae68036f16cc787e250a131</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp311-cp311-macosx_10_9_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">49ca4decb342d66018b01932139c0961a8f9ddc7589611158cb3c27cbcf76448</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp311-cp311-macosx_11_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">11a76c372d1d37437857280aa142086476136a8c0f373b2e648ab2c8f18fb195</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp311-cp311-macosx_14_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">807ec44583fd708a21d4a11d94aedf2f4f3c3719035c76a2bbe1fe8e217bdc57</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp311-cp311-macosx_14_0_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">8cafab480740e22f8d833acefed5cc87ce276f4ece12fdaa2e8903db2f82897a</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">a15f476a45e6e5a3a79d8a14e62161d27ad897381fecfa4a09ed5322f2085669</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">13e689d772146140a252c3a28501da66dfecd77490b498b168b501835041f951</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp311-cp311-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">9ea91dfb7c3d1c56a0e55657c0afb38cf1eeae4544c208dc465c3c9f3a7c09f9</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp311-cp311-musllinux_1_2_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">c1c9307701fec8f3f7a1e6711f9089c06e6284b3afbbcd259f7791282d660a15</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp311-cp311-win32.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">a392a68bd329eafac5817e5aefeb39038c48b671afd242710b451e76090e81f4</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp311-cp311-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">286cd40ce2b7d652a6f22efdfc6d1edf879440e53e76a75955bc0c826c7e64dc</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp312-cp312-macosx_10_9_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">df55d490dea7934f330006d0f81e8551ba6010a5bf035a249ef61a94f21c500b</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp312-cp312-macosx_11_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">8df823f570d9adf0978347d1f926b2a867d5608f434a7cff7f7908c6570dcf5e</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp312-cp312-macosx_14_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">9a92ae5c14811e390f3767053ff54eaee3bf84576d99a2456391401323f4ec2c</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp312-cp312-macosx_14_0_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">a842d573724391493a97a62ebbb8e731f8a5dcc5d285dfc99141ca15a3302d0c</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">c05e238064fc0610c840d1cf6a13bf63d7e391717d247f1bf0318172e759e692</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">0123ffdaa88fa4ab64835dcbde75dcdf89c453c922f18dced6e27c90d1d0ec5a</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp312-cp312-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">96a55f64139912d61de9137f11bf39a55ec8faec288c75a54f93dfd39f7eb40c</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp312-cp312-musllinux_1_2_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">ec9852fb39354b5a45a80bdab5ac02dd02b15f44b3804e9f00c556bf24b4bded</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp312-cp312-win32.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">671bec6496f83202ed2d3c8fdc486a8fc86942f2e69ff0e986140339a63bcbe5</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp312-cp312-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">cfd41e13fdc257aa5778496b8caa5e856dc4896d4ccf01841daee1d96465467a</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp39-cp39-macosx_10_9_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">9059e10581ce4093f735ed23f3b9d283b9d517ff46009ddd485f1747eb22653c</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp39-cp39-macosx_11_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">423e89b23490805d2a5a96fe40ec507407b8ee786d66f7328be214f9679df6dd</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp39-cp39-macosx_14_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">2b2955fa6f11907cf7a70dab0d0755159bca87755e831e47932367fc8f2f2d0b</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp39-cp39-macosx_14_0_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">97032a27bd9d8988b9a97a8c4d2c9f2c15a81f61e2f21404d7e8ef00cb5be729</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">1e795a8be3ddbac43274f18588329c72939870a16cae810c2b73461c40718ab1</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">f26b258c385842546006213344c50655ff1555a9338e2e5e02a0756dc3e803dd</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp39-cp39-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">5fec9451a7789926bcf7c2b8d187292c9f93ea30284802a0ab3f5be8ab36865d</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp39-cp39-musllinux_1_2_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">9189427407d88ff25ecf8f12469d4d39d35bee1db5d39fc5c168c6f088a6956d</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp39-cp39-win32.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">905d16e0c60200656500c95b6b8dca5d109e23cb24abc701d41c02d74c6b3afa</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-cp39-cp39-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">a3f4ab0caa7f053f6797fcd4e1e25caee367db3112ef2b6ef82d749530768c73</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-pp39-pypy39_pp73-macosx_10_9_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">7f0a0c6f12e07fa94133c8a67404322845220c06a9e80e85999afe727f7438b8</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-pp39-pypy39_pp73-macosx_14_0_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">312950fdd060354350ed123c0e25a71327d3711584beaef30cdaa93320c392d4</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-pp39-pypy39_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">26df23238872200f63518dd2aa984cfca675d82469535dc7162dc2ee52d9dd5c</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2-pp39-pypy39_pp73-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">a46288ec55ebbd58947d31d72be2c63cbf839f0a63b49cb755022310792a3385</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.0.2.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">883c987dee1880e2a864ab0dc9892292582510604156762362d9326444636e78</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="numpy@2.2.3#1">
+      <name>numpy</name>
+      <version>2.2.3</version>
+      <description>Fundamental package for array computing in Python</description>
+      <purl>pkg:pypi/numpy@2.2.3?repository_url=http://pysrc1.example.local:8080/simple</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp310-cp310-macosx_10_9_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">cbc6472e01952d3d1b2772b720428f8b90e2deea8344e854df22b0618e9cce71</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp310-cp310-macosx_11_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">cdfe0c22692a30cd830c0755746473ae66c4a8f2e7bd508b35fb3b6a0813d787</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp310-cp310-macosx_14_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">e37242f5324ffd9f7ba5acf96d774f9276aa62a966c0bad8dae692deebec7716</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp310-cp310-macosx_14_0_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">95172a21038c9b423e68be78fd0be6e1b97674cde269b76fe269a5dfa6fadf0b</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">d5b47c440210c5d1d67e1cf434124e0b5c395eee1f5806fdd89b553ed1acd0a3</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">0391ea3622f5c51a2e29708877d56e3d276827ac5447d7f45e9bc4ade8923c52</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp310-cp310-musllinux_1_2_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">f6b3dfc7661f8842babd8ea07e9897fe3d9b69a1d7e5fbb743e4160f9387833b</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp310-cp310-musllinux_1_2_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">1ad78ce7f18ce4e7df1b2ea4019b5817a2f6a8a16e34ff2775f646adce0a5027</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp310-cp310-win32.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">5ebeb7ef54a7be11044c33a17b2624abe4307a75893c001a4800857956b41094</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp310-cp310-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">596140185c7fa113563c67c2e894eabe0daea18cf8e33851738c19f70ce86aeb</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp311-cp311-macosx_10_9_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">16372619ee728ed67a2a606a614f56d3eabc5b86f8b615c79d01957062826ca8</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp311-cp311-macosx_11_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">5521a06a3148686d9269c53b09f7d399a5725c47bbb5b35747e1cb76326b714b</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp311-cp311-macosx_14_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">7c8dde0ca2f77828815fd1aedfdf52e59071a5bae30dac3b4da2a335c672149a</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp311-cp311-macosx_14_0_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">77974aba6c1bc26e3c205c2214f0d5b4305bdc719268b93e768ddb17e3fdd636</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">d42f9c36d06440e34226e8bd65ff065ca0963aeecada587b937011efa02cdc9d</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">f2712c5179f40af9ddc8f6727f2bd910ea0eb50206daea75f58ddd9fa3f715bb</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp311-cp311-musllinux_1_2_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">c8b0451d2ec95010d1db8ca733afc41f659f425b7f608af569711097fd6014e2</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp311-cp311-musllinux_1_2_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">d9b4a8148c57ecac25a16b0e11798cbe88edf5237b0df99973687dd866f05e1b</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp311-cp311-win32.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">1f45315b2dc58d8a3e7754fe4e38b6fce132dab284a92851e41b2b344f6441c5</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp311-cp311-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">9f48ba6f6c13e5e49f3d3efb1b51c8193215c42ac82610a04624906a9270be6f</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp312-cp312-macosx_10_13_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">12c045f43b1d2915eca6b880a7f4a256f59d62df4f044788c8ba67709412128d</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp312-cp312-macosx_11_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">87eed225fd415bbae787f93a457af7f5990b92a334e346f72070bf569b9c9c95</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp312-cp312-macosx_14_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">712a64103d97c404e87d4d7c47fb0c7ff9acccc625ca2002848e0d53288b90ea</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp312-cp312-macosx_14_0_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">a5ae282abe60a2db0fd407072aff4599c279bcd6e9a2475500fc35b00a57c532</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">5266de33d4c3420973cf9ae3b98b54a2a6d53a559310e3236c4b2b06b9c07d4e</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">3b787adbf04b0db1967798dba8da1af07e387908ed1553a0d6e74c084d1ceafe</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp312-cp312-musllinux_1_2_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">34c1b7e83f94f3b564b35f480f5652a47007dd91f7c839f404d03279cc8dd021</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp312-cp312-musllinux_1_2_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">4d8335b5f1b6e2bce120d55fb17064b0262ff29b459e8493d1785c18ae2553b8</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp312-cp312-win32.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">4d9828d25fb246bedd31e04c9e75714a4087211ac348cb39c8c5f99dbb6683fe</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp312-cp312-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">83807d445817326b4bcdaaaf8e8e9f1753da04341eceec705c001ff342002e5d</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313-macosx_10_13_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">7bfdb06b395385ea9b91bf55c1adf1b297c9fdb531552845ff1d3ea6e40d5aba</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313-macosx_11_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">23c9f4edbf4c065fddb10a4f6e8b6a244342d95966a48820c614891e5059bb50</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313-macosx_14_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">a0c03b6be48aaf92525cccf393265e02773be8fd9551a2f9adbe7db1fa2b60f1</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313-macosx_14_0_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">2376e317111daa0a6739e50f7ee2a6353f768489102308b0d98fcf4a04f7f3b5</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">8fb62fe3d206d72fe1cfe31c4a1106ad2b136fcc1606093aeab314f02930fdf2</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">52659ad2534427dffcc36aac76bebdd02b67e3b7a619ac67543bc9bfe6b7cdb1</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313-musllinux_1_2_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">1b416af7d0ed3271cad0f0a0d0bee0911ed7eba23e66f8424d9f3dfcdcae1304</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313-musllinux_1_2_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">1402da8e0f435991983d0a9708b779f95a8c98c6b18a171b9f1be09005e64d9d</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313-win32.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">136553f123ee2951bfcfbc264acd34a2fc2f29d7cdf610ce7daf672b6fbaa693</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">5b732c8beef1d7bc2d9e476dbba20aaff6167bf205ad9aa8d30913859e82884b</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313t-macosx_10_13_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">435e7a933b9fda8126130b046975a968cc2d833b505475e588339e09f7672890</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313t-macosx_11_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">7678556eeb0152cbd1522b684dcd215250885993dd00adb93679ec3c0e6e091c</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313t-macosx_14_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">2e8da03bd561504d9b20e7a12340870dfc206c64ea59b4cfee9fceb95070ee94</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313t-macosx_14_0_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">c9aa4496fd0e17e3843399f533d62857cef5900facf93e735ef65aa4bbc90ef0</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313t-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">f4ca91d61a4bf61b0f2228f24bbfa6a9facd5f8af03759fe2a655c50ae2c6610</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313t-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">deaa09cd492e24fd9b15296844c0ad1b3c976da7907e1c1ed3a0ad21dded6f76</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313t-musllinux_1_2_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">246535e2f7496b7ac85deffe932896a3577be7af8fb7eebe7146444680297e9a</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313t-musllinux_1_2_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">daf43a3d1ea699402c5a850e5313680ac355b4adc9770cd5cfc2940e7861f1bf</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313t-win32.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">cf802eef1f0134afb81fef94020351be4fe1d6681aadf9c5e862af6602af64ef</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-cp313-cp313t-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">aee2512827ceb6d7f517c8b85aa5d3923afe8fc7a57d028cffcd522f1c6fd082</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-pp310-pypy310_pp73-macosx_10_15_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">3c2ec8a0f51d60f1e9c0c5ab116b7fc104b165ada3f6c58abf881cb2eb16044d</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-pp310-pypy310_pp73-macosx_14_0_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">ed2cf9ed4e8ebc3b754d398cba12f24359f018b416c380f577bbae112ca52fc9</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-pp310-pypy310_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">39261798d208c3095ae4f7bc8eaeb3481ea8c6e03dc48028057d3cbdbdb8937e</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3-pp310-pypy310_pp73-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">783145835458e60fa97afac25d511d00a1eca94d4a8f3ace9fe2043003c678e4</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/numpy/#numpy-2.2.3.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">dbdc15f0c81611925f382dfa97b3bd0bc2c1ce19d4fe50482cb0ddc12ba30020</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="opt-einsum@3.4.0">
+      <name>opt-einsum</name>
+      <version>3.4.0</version>
+      <description>Path optimization of einsum functions.</description>
+      <purl>pkg:pypi/opt-einsum@3.4.0?repository_url=http://pysrc1.example.local:8080/simple</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/opt-einsum/#opt_einsum-3.4.0-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">69bb92469f86a1565195ece4ac0323943e83477171b91d24c35afe028a90d7cd</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/opt-einsum/#opt_einsum-3.4.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">96ca72f1b886d148241348783498194c577fa30a8faac108586b14f1ba4473ac</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="scipy@1.13.1">
+      <name>scipy</name>
+      <version>1.13.1</version>
+      <description>Fundamental algorithms for scientific computing in Python</description>
+      <purl>pkg:pypi/scipy@1.13.1?repository_url=http://pysrc1.example.local:8080/simple</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp310-cp310-macosx_10_9_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">20335853b85e9a49ff7572ab453794298bcf0354d8068c5f6775a0eabf350aca</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp310-cp310-macosx_12_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">d605e9c23906d1994f55ace80e0125c587f96c020037ea6aa98d01b4bd2e222f</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">cfa31f1def5c819b19ecc3a8b52d28ffdcc7ed52bb20c9a7589669dd3c250989</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">f26264b282b9da0952a024ae34710c2aff7d27480ee91a2e82b7b7073c24722f</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp310-cp310-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">eccfa1906eacc02de42d70ef4aecea45415f5be17e72b61bafcfd329bdc52e94</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp310-cp310-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">2831f0dc9c5ea9edd6e51e6e769b655f08ec6db6e2e10f86ef39bd32eb11da54</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp311-cp311-macosx_10_9_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">27e52b09c0d3a1d5b63e1105f24177e544a222b43611aaf5bc44d4a0979e32f9</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp311-cp311-macosx_12_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">54f430b00f0133e2224c3ba42b805bfd0086fe488835effa33fa291561932326</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">e89369d27f9e7b0884ae559a3a956e77c02114cc60a6058b4e5011572eea9299</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">a78b4b3345f1b6f68a763c6e25c0c9a23a9fd0f39f5f3d200efe8feda560a5fa</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp311-cp311-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">45484bee6d65633752c490404513b9ef02475b4284c4cfab0ef946def50b3f59</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp311-cp311-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">5713f62f781eebd8d597eb3f88b8bf9274e79eeabf63afb4a737abc6c84ad37b</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp312-cp312-macosx_10_9_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">5d72782f39716b2b3509cd7c33cdc08c96f2f4d2b06d51e52fb45a19ca0c86a1</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp312-cp312-macosx_12_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">017367484ce5498445aade74b1d5ab377acdc65e27095155e448c88497755a5d</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">949ae67db5fa78a86e8fa644b9a6b07252f449dcf74247108c50e1d20d2b4627</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">de3ade0e53bc1f21358aa74ff4830235d716211d7d077e340c7349bc3542e884</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp312-cp312-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">2ac65fb503dad64218c228e2dc2d0a0193f7904747db43014645ae139c8fad16</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp312-cp312-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">cdd7dacfb95fea358916410ec61bbc20440f7860333aee6d882bb8046264e949</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp39-cp39-macosx_10_9_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">436bbb42a94a8aeef855d755ce5a465479c721e9d684de76bf61a62e7c2b81d5</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp39-cp39-macosx_12_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">8335549ebbca860c52bf3d02f80784e91a004b71b059e3eea9678ba994796a24</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">d533654b7d221a6a97304ab63c41c96473ff04459e404b83275b60aa8f4b7004</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">637e98dcf185ba7f8e663e122ebf908c4702420477ae52a04f9908707456ba4d</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp39-cp39-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">a014c2b3697bde71724244f63de2476925596c24285c7a637364761f8710891c</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1-cp39-cp39-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">392e4ec766654852c25ebad4f64e4e584cf19820b980bc04960bca0b0cd6eaa2</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.13.1.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">095a87a0312b08dfd6a6155cbbd310a8c51800fc931b8c0b84003014b874ed3c</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="scipy@1.15.2#1">
+      <name>scipy</name>
+      <version>1.15.2</version>
+      <description>Fundamental algorithms for scientific computing in Python</description>
+      <purl>pkg:pypi/scipy@1.15.2?repository_url=http://pysrc1.example.local:8080/simple</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp310-cp310-macosx_10_13_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">a2ec871edaa863e8213ea5df811cd600734f6400b4af272e1c011e69401218e9</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp310-cp310-macosx_12_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">6f223753c6ea76983af380787611ae1291e3ceb23917393079dcc746ba60cfb5</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp310-cp310-macosx_14_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">ecf797d2d798cf7c838c6d98321061eb3e72a74710e6c40540f0e8087e3b499e</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp310-cp310-macosx_14_0_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">9b18aa747da280664642997e65aab1dd19d0c3d17068a04b3fe34e2559196cb9</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">87994da02e73549dfecaed9e09a4f9d58a045a053865679aeb8d6d43747d4df3</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">69ea6e56d00977f355c0f84eba69877b6df084516c602d93a33812aa04d90a3d</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp310-cp310-musllinux_1_2_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">888307125ea0c4466287191e5606a2c910963405ce9671448ff9c81c53f85f58</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp310-cp310-musllinux_1_2_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">9412f5e408b397ff5641080ed1e798623dbe1ec0d78e72c9eca8992976fa65aa</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp310-cp310-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">b5e025e903b4f166ea03b109bb241355b9c42c279ea694d8864d033727205e65</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp311-cp311-macosx_10_13_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">92233b2df6938147be6fa8824b8136f29a18f016ecde986666be5f4d686a91a4</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp311-cp311-macosx_12_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">62ca1ff3eb513e09ed17a5736929429189adf16d2d740f44e53270cc800ecff1</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp311-cp311-macosx_14_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">4c6676490ad76d1c2894d77f976144b41bd1a4052107902238047fb6a473e971</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp311-cp311-macosx_14_0_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">a8bf5cb4a25046ac61d38f8d3c3426ec11ebc350246a4642f2f315fe95bda655</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">6a8e34cf4c188b6dd004654f88586d78f95639e48a25dfae9c5e34a6dc34547e</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">28a0d2c2075946346e4408b211240764759e0fabaeb08d871639b5f3b1aca8a0</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp311-cp311-musllinux_1_2_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">42dabaaa798e987c425ed76062794e93a243be8f0f20fff6e7a89f4d61cb3d40</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp311-cp311-musllinux_1_2_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">6f5e296ec63c5da6ba6fa0343ea73fd51b8b3e1a300b0a8cae3ed4b1122c7462</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp311-cp311-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">597a0c7008b21c035831c39927406c6181bcf8f60a73f36219b69d010aa04737</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp312-cp312-macosx_10_13_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">c4697a10da8f8765bb7c83e24a470da5797e37041edfd77fd95ba3811a47c4fd</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp312-cp312-macosx_12_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">869269b767d5ee7ea6991ed7e22b3ca1f22de73ab9a49c44bad338b725603301</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp312-cp312-macosx_14_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">bad78d580270a4d32470563ea86c6590b465cb98f83d760ff5b0990cb5518a93</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp312-cp312-macosx_14_0_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">b09ae80010f52efddb15551025f9016c910296cf70adbf03ce2a8704f3a5ad20</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">5a6fd6eac1ce74a9f77a7fc724080d507c5812d61e72bd5e4c489b042455865e</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">2b871df1fe1a3ba85d90e22742b93584f8d2b8e6124f8372ab15c71b73e428b8</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp312-cp312-musllinux_1_2_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">03205d57a28e18dfd39f0377d5002725bf1f19a46f444108c29bdb246b6c8a11</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp312-cp312-musllinux_1_2_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">601881dfb761311045b03114c5fe718a12634e5608c3b403737ae463c9885d53</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp312-cp312-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">e7c68b6a43259ba0aab737237876e5c2c549a031ddb7abc28c7b47f22e202ded</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313-macosx_10_13_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">01edfac9f0798ad6b46d9c4c9ca0e0ad23dbf0b1eb70e96adb9fa7f525eff0bf</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313-macosx_12_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">08b57a9336b8e79b305a143c3655cc5bdbe6d5ece3378578888d2afbb51c4e37</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313-macosx_14_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">54c462098484e7466362a9f1672d20888f724911a74c22ae35b61f9c5919183d</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313-macosx_14_0_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">cf72ff559a53a6a6d77bd8eefd12a17995ffa44ad86c77a5df96f533d4e6c6bb</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">9de9d1416b3d9e7df9923ab23cd2fe714244af10b763975bea9e4f2e81cebd27</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">fb530e4794fc8ea76a4a21ccb67dea33e5e0e60f07fc38a49e821e1eae3b71a0</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313-musllinux_1_2_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">5ea7ed46d437fc52350b028b1d44e002646e28f3e8ddc714011aaf87330f2f32</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313-musllinux_1_2_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">11e7ad32cf184b74380f43d3c0a706f49358b904fa7d5345f16ddf993609184d</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">a5080a79dfb9b78b768cebf3c9dcbc7b665c5875793569f48bf0e2b1d7f68f6f</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313t-macosx_10_13_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">447ce30cee6a9d5d1379087c9e474628dab3db4a67484be1b7dc3196bfb2fac9</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313t-macosx_12_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">c90ebe8aaa4397eaefa8455a8182b164a6cc1d59ad53f79943f266d99f68687f</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313t-macosx_14_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">def751dd08243934c884a3221156d63e15234a3155cf25978b0a668409d45eb6</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313t-macosx_14_0_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">302093e7dfb120e55515936cb55618ee0b895f8bcaf18ff81eca086c17bd80af</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313t-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">7cd5b77413e1855351cdde594eca99c1f4a588c2d63711388b6a1f1c01f62274</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313t-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">6d0194c37037707b2afa7a2f2a924cf7bac3dc292d51b6a925e5fcb89bc5c776</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313t-musllinux_1_2_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">bae43364d600fdc3ac327db99659dcb79e6e7ecd279a75fe1266669d9a652828</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313t-musllinux_1_2_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">f031846580d9acccd0044efd1a90e6f4df3a6e12b4b6bd694a7bc03a89892b28</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2-cp313-cp313t-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">fe8a9eb875d430d81755472c5ba75e84acc980e4a8f6204d402849234d3017db</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/scipy/#scipy-1.15.2.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">cd58a314d92838f7e6f755c8a2167ead4f27e1fd5c1251fd54289569ef3495ec</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="six@1.16.0">
+      <name>six</name>
+      <version>1.16.0</version>
+      <description>Python 2 and 3 compatibility utilities</description>
+      <purl>pkg:pypi/six@1.16.0?download_url=https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl</url>
+          <comment>from url</comment>
+          <hashes>
+            <hash alg="SHA-256">8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:poetry:group">main</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="toml@0.10.2">
+      <name>toml</name>
+      <version>0.10.2</version>
+      <description>Python Library for Tom's Obvious, Minimal Language</description>
+      <purl>pkg:pypi/toml@0.10.2?repository_url=http://pysrc2.example.local:8080/simple</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>http://pysrc2.example.local:8080/simple/toml/#toml-0.10.2-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc2.example.local:8080/simple/toml/#toml-0.10.2.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:poetry:group">main</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="zipp@3.21.0">
+      <name>zipp</name>
+      <version>3.21.0</version>
+      <description>Backport of pathlib-compatible object wrapper for zip files</description>
+      <purl>pkg:pypi/zipp@3.21.0?repository_url=http://pysrc1.example.local:8080/simple</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/zipp/#zipp-3.21.0-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">ac1bbe05fd2991f160ebce24ffbac5f6d11d83dc90891255885223d42b3cd931</hash>
+          </hashes>
+        </reference>
+        <reference type="distribution">
+          <url>http://pysrc1.example.local:8080/simple/zipp/#zipp-3.21.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+          <hashes>
+            <hash alg="SHA-256">2c9958f6430a2040341a52eb608ed6dd93ef4392e02ffe219417c1b28b5dd1f4</hash>
+          </hashes>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="colorama@0.4.6"/>
+    <dependency ref="importlib-metadata@8.6.1">
+      <dependency ref="zipp@3.21.0"/>
+    </dependency>
+    <dependency ref="jax@0.4.20">
+      <dependency ref="importlib-metadata@8.6.1"/>
+      <dependency ref="ml-dtypes@0.5.1"/>
+      <dependency ref="numpy@2.0.2"/>
+      <dependency ref="numpy@2.2.3#1"/>
+      <dependency ref="opt-einsum@3.4.0"/>
+      <dependency ref="scipy@1.13.1"/>
+      <dependency ref="scipy@1.15.2#1"/>
+    </dependency>
+    <dependency ref="ml-dtypes@0.5.1">
+      <dependency ref="numpy@2.0.2"/>
+      <dependency ref="numpy@2.2.3#1"/>
+    </dependency>
+    <dependency ref="numpy@2.0.2"/>
+    <dependency ref="numpy@2.2.3#1"/>
+    <dependency ref="opt-einsum@3.4.0"/>
+    <dependency ref="private-packges_v2">
+      <dependency ref="colorama@0.4.6"/>
+      <dependency ref="jax@0.4.20"/>
+      <dependency ref="six@1.16.0"/>
+      <dependency ref="toml@0.10.2"/>
+    </dependency>
+    <dependency ref="scipy@1.13.1">
+      <dependency ref="numpy@2.0.2"/>
+      <dependency ref="numpy@2.2.3#1"/>
+    </dependency>
+    <dependency ref="scipy@1.15.2#1">
+      <dependency ref="numpy@2.0.2"/>
+      <dependency ref="numpy@2.2.3#1"/>
+    </dependency>
+    <dependency ref="six@1.16.0"/>
+    <dependency ref="toml@0.10.2"/>
+    <dependency ref="zipp@3.21.0"/>
+  </dependencies>
+</bom>

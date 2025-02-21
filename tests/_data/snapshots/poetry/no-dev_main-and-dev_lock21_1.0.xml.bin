@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.0" version="1">
+  <components>
+    <component type="library">
+      <name>arrow</name>
+      <version>1.3.0</version>
+      <description>Better dates &amp; times for Python</description>
+      <purl>pkg:pypi/arrow@1.3.0</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>colorama</name>
+      <version>0.4.6</version>
+      <description>Cross-platform colored terminal text.</description>
+      <purl>pkg:pypi/colorama@0.4.6</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>python-dateutil</name>
+      <version>2.9.0.post0</version>
+      <description>Extensions to the standard Python datetime module</description>
+      <purl>pkg:pypi/python-dateutil@2.9.0.post0</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>six</name>
+      <version>1.17.0</version>
+      <description>Python 2 and 3 compatibility utilities</description>
+      <purl>pkg:pypi/six@1.17.0</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>toml</name>
+      <version>0.10.2</version>
+      <description>Python Library for Tom's Obvious, Minimal Language</description>
+      <purl>pkg:pypi/toml@0.10.2</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>types-python-dateutil</name>
+      <version>2.9.0.20241206</version>
+      <description>Typing stubs for python-dateutil</description>
+      <purl>pkg:pypi/types-python-dateutil@2.9.0.20241206</purl>
+      <modified>false</modified>
+    </component>
+  </components>
+</bom>

@@ -1,0 +1,1386 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.1" version="1">
+  <components>
+    <component type="library" bom-ref="arrow@1.3.0">
+      <name>arrow</name>
+      <version>1.3.0</version>
+      <description>Better dates &amp; times for Python</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/arrow@1.3.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/arrow/#arrow-1.3.0-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/arrow/#arrow-1.3.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="attrs@25.1.0">
+      <name>attrs</name>
+      <version>25.1.0</version>
+      <description>Classes Without Boilerplate</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/attrs@25.1.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/attrs/#attrs-25.1.0-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/attrs/#attrs-25.1.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="boolean-py@4.0">
+      <name>boolean-py</name>
+      <version>4.0</version>
+      <description>Define boolean algebras, create and parse boolean expressions and create custom boolean DSL.</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/boolean-py@4.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/boolean-py/#boolean.py-4.0-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/boolean-py/#boolean.py-4.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="cyclonedx-python-lib@5.1.1">
+      <name>cyclonedx-python-lib</name>
+      <version>5.1.1</version>
+      <description>Python library for CycloneDX</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/cyclonedx-python-lib@5.1.1</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/cyclonedx-python-lib/#cyclonedx_python_lib-5.1.1-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/cyclonedx-python-lib/#cyclonedx_python_lib-5.1.1.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="defusedxml@0.7.1">
+      <name>defusedxml</name>
+      <version>0.7.1</version>
+      <description>XML bomb protection for Python stdlib modules</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/defusedxml@0.7.1</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/defusedxml/#defusedxml-0.7.1-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/defusedxml/#defusedxml-0.7.1.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="fqdn@1.5.1">
+      <name>fqdn</name>
+      <version>1.5.1</version>
+      <description>Validates fully-qualified domain names against RFC 1123, so that they are acceptable to modern bowsers</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/fqdn@1.5.1</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/fqdn/#fqdn-1.5.1-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/fqdn/#fqdn-1.5.1.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="idna@3.10">
+      <name>idna</name>
+      <version>3.10</version>
+      <description>Internationalized Domain Names in Applications (IDNA)</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/idna@3.10</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/idna/#idna-3.10-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/idna/#idna-3.10.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="importlib-resources@6.4.5">
+      <name>importlib-resources</name>
+      <version>6.4.5</version>
+      <description>Read resources from Python packages</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/importlib-resources@6.4.5</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/importlib-resources/#importlib_resources-6.4.5-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/importlib-resources/#importlib_resources-6.4.5.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="isoduration@20.11.0">
+      <name>isoduration</name>
+      <version>20.11.0</version>
+      <description>Operations with ISO 8601 durations</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/isoduration@20.11.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/isoduration/#isoduration-20.11.0-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/isoduration/#isoduration-20.11.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="jsonpointer@3.0.0">
+      <name>jsonpointer</name>
+      <version>3.0.0</version>
+      <description>Identify specific nodes in a JSON document (RFC 6901)</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/jsonpointer@3.0.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/jsonpointer/#jsonpointer-3.0.0-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/jsonpointer/#jsonpointer-3.0.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="jsonschema@4.23.0">
+      <name>jsonschema</name>
+      <version>4.23.0</version>
+      <description>An implementation of JSON Schema validation for Python</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/jsonschema@4.23.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/jsonschema/#jsonschema-4.23.0-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/jsonschema/#jsonschema-4.23.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="jsonschema-specifications@2023.12.1">
+      <name>jsonschema-specifications</name>
+      <version>2023.12.1</version>
+      <description>The JSON Schema meta-schemas and vocabularies, exposed as a Registry</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/jsonschema-specifications@2023.12.1</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/jsonschema-specifications/#jsonschema_specifications-2023.12.1-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/jsonschema-specifications/#jsonschema_specifications-2023.12.1.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="license-expression@30.3.1">
+      <name>license-expression</name>
+      <version>30.3.1</version>
+      <description>license-expression is a comprehensive utility library to parse, compare, simplify and normalize license expressions (such as SPDX license expressions) using boolean logic.</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/license-expression@30.3.1</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/license-expression/#license_expression-30.3.1-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/license-expression/#license_expression-30.3.1.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="lxml@4.9.4">
+      <name>lxml</name>
+      <version>4.9.4</version>
+      <description>Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API.</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/lxml@4.9.4</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp27-cp27m-manylinux_2_5_i686.manylinux1_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp27-cp27m-manylinux_2_5_x86_64.manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp27-cp27m-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp27-cp27m-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp27-cp27mu-manylinux_2_5_i686.manylinux1_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp27-cp27mu-manylinux_2_5_x86_64.manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp310-cp310-macosx_11_0_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp310-cp310-manylinux_2_12_i686.manylinux2010_i686.manylinux_2_24_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.manylinux_2_24_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp310-cp310-manylinux_2_28_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp310-cp310-musllinux_1_1_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp310-cp310-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp310-cp310-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp310-cp310-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp311-cp311-macosx_11_0_universal2.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp311-cp311-manylinux_2_12_i686.manylinux2010_i686.manylinux_2_24_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.manylinux_2_24_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp311-cp311-manylinux_2_28_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp311-cp311-manylinux_2_28_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp311-cp311-musllinux_1_1_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp311-cp311-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp311-cp311-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp311-cp311-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp312-cp312-macosx_11_0_universal2.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp312-cp312-manylinux_2_28_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp312-cp312-manylinux_2_28_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp312-cp312-musllinux_1_1_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp312-cp312-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp312-cp312-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp312-cp312-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp35-cp35m-manylinux_2_5_i686.manylinux1_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp35-cp35m-manylinux_2_5_x86_64.manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp36-cp36m-macosx_11_0_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp36-cp36m-manylinux_2_12_i686.manylinux2010_i686.manylinux_2_24_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp36-cp36m-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp36-cp36m-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp36-cp36m-manylinux_2_28_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp36-cp36m-manylinux_2_5_i686.manylinux1_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp36-cp36m-manylinux_2_5_x86_64.manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp36-cp36m-musllinux_1_1_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp36-cp36m-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp36-cp36m-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp36-cp36m-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp37-cp37m-manylinux_2_12_i686.manylinux2010_i686.manylinux_2_24_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp37-cp37m-manylinux_2_17_aarch64.manylinux2014_aarch64.manylinux_2_24_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp37-cp37m-manylinux_2_28_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp37-cp37m-manylinux_2_5_i686.manylinux1_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp37-cp37m-musllinux_1_1_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp37-cp37m-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp37-cp37m-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp37-cp37m-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp38-cp38-manylinux_2_12_i686.manylinux2010_i686.manylinux_2_24_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.manylinux_2_24_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp38-cp38-manylinux_2_28_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp38-cp38-manylinux_2_5_i686.manylinux1_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp38-cp38-manylinux_2_5_x86_64.manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp38-cp38-musllinux_1_1_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp38-cp38-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp38-cp38-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp38-cp38-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp39-cp39-macosx_11_0_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp39-cp39-manylinux_2_12_i686.manylinux2010_i686.manylinux_2_24_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.manylinux_2_24_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp39-cp39-manylinux_2_28_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp39-cp39-manylinux_2_5_i686.manylinux1_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp39-cp39-musllinux_1_1_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp39-cp39-musllinux_1_1_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp39-cp39-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-cp39-cp39-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-pp310-pypy310_pp73-macosx_11_0_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-pp310-pypy310_pp73-manylinux_2_28_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-pp310-pypy310_pp73-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-pp37-pypy37_pp73-manylinux_2_12_i686.manylinux2010_i686.manylinux_2_24_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-pp37-pypy37_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-pp37-pypy37_pp73-manylinux_2_28_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-pp38-pypy38_pp73-macosx_11_0_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-pp38-pypy38_pp73-manylinux_2_12_i686.manylinux2010_i686.manylinux_2_24_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-pp38-pypy38_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-pp38-pypy38_pp73-manylinux_2_28_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-pp38-pypy38_pp73-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-pp39-pypy39_pp73-macosx_11_0_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-pp39-pypy39_pp73-manylinux_2_12_i686.manylinux2010_i686.manylinux_2_24_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-pp39-pypy39_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-pp39-pypy39_pp73-manylinux_2_28_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4-pp39-pypy39_pp73-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/lxml/#lxml-4.9.4.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="packageurl-python@0.16.0">
+      <name>packageurl-python</name>
+      <version>0.16.0</version>
+      <description>A purl aka. Package URL parser and builder</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/packageurl-python@0.16.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/packageurl-python/#packageurl_python-0.16.0-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/packageurl-python/#packageurl_python-0.16.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkgutil-resolve-name@1.3.10">
+      <name>pkgutil-resolve-name</name>
+      <version>1.3.10</version>
+      <description>Resolve a name to an object.</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/pkgutil-resolve-name@1.3.10</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pkgutil-resolve-name/#pkgutil_resolve_name-1.3.10-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/pkgutil-resolve-name/#pkgutil_resolve_name-1.3.10.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="py-serializable@0.15.0">
+      <name>py-serializable</name>
+      <version>0.15.0</version>
+      <description>Library for serializing and deserializing Python Objects to and from JSON and XML.</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/py-serializable@0.15.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/py-serializable/#py-serializable-0.15.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/py-serializable/#py_serializable-0.15.0-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="python-dateutil@2.9.0.post0">
+      <name>python-dateutil</name>
+      <version>2.9.0.post0</version>
+      <description>Extensions to the standard Python datetime module</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/python-dateutil@2.9.0.post0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/python-dateutil/#python-dateutil-2.9.0.post0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/python-dateutil/#python_dateutil-2.9.0.post0-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="referencing@0.35.1">
+      <name>referencing</name>
+      <version>0.35.1</version>
+      <description>JSON Referencing + Python</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/referencing@0.35.1</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/referencing/#referencing-0.35.1-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/referencing/#referencing-0.35.1.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="rfc3339-validator@0.1.4">
+      <name>rfc3339-validator</name>
+      <version>0.1.4</version>
+      <description>A pure python RFC3339 validator</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/rfc3339-validator@0.1.4</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rfc3339-validator/#rfc3339_validator-0.1.4-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rfc3339-validator/#rfc3339_validator-0.1.4.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="rfc3987@1.3.8">
+      <name>rfc3987</name>
+      <version>1.3.8</version>
+      <description>Parsing and validation of URIs (RFC 3986) and IRIs (RFC 3987)</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/rfc3987@1.3.8</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rfc3987/#rfc3987-1.3.8-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rfc3987/#rfc3987-1.3.8.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="rpds-py@0.20.1">
+      <name>rpds-py</name>
+      <version>0.20.1</version>
+      <description>Python bindings to Rust's persistent data structures (rpds)</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/rpds-py@0.20.1</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp310-cp310-macosx_10_12_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp310-cp310-macosx_11_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp310-cp310-manylinux_2_17_armv7l.manylinux2014_armv7l.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp310-cp310-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp310-cp310-manylinux_2_17_s390x.manylinux2014_s390x.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp310-cp310-manylinux_2_5_i686.manylinux1_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp310-cp310-musllinux_1_2_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp310-cp310-musllinux_1_2_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp310-cp310-musllinux_1_2_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp310-none-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp310-none-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp311-cp311-macosx_10_12_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp311-cp311-macosx_11_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp311-cp311-manylinux_2_17_armv7l.manylinux2014_armv7l.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp311-cp311-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp311-cp311-manylinux_2_17_s390x.manylinux2014_s390x.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp311-cp311-manylinux_2_5_i686.manylinux1_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp311-cp311-musllinux_1_2_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp311-cp311-musllinux_1_2_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp311-cp311-musllinux_1_2_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp311-none-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp311-none-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp312-cp312-macosx_10_12_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp312-cp312-macosx_11_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp312-cp312-manylinux_2_17_armv7l.manylinux2014_armv7l.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp312-cp312-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp312-cp312-manylinux_2_17_s390x.manylinux2014_s390x.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp312-cp312-manylinux_2_5_i686.manylinux1_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp312-cp312-musllinux_1_2_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp312-cp312-musllinux_1_2_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp312-cp312-musllinux_1_2_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp312-none-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp312-none-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp313-cp313-macosx_10_12_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp313-cp313-macosx_11_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp313-cp313-manylinux_2_17_armv7l.manylinux2014_armv7l.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp313-cp313-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp313-cp313-manylinux_2_17_s390x.manylinux2014_s390x.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp313-cp313-manylinux_2_5_i686.manylinux1_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp313-cp313-musllinux_1_2_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp313-cp313-musllinux_1_2_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp313-cp313-musllinux_1_2_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp313-none-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp313-none-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp38-cp38-macosx_10_12_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp38-cp38-macosx_11_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp38-cp38-manylinux_2_17_armv7l.manylinux2014_armv7l.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp38-cp38-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp38-cp38-manylinux_2_17_s390x.manylinux2014_s390x.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp38-cp38-manylinux_2_5_i686.manylinux1_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp38-cp38-musllinux_1_2_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp38-cp38-musllinux_1_2_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp38-cp38-musllinux_1_2_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp38-none-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp38-none-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp39-cp39-macosx_10_12_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp39-cp39-macosx_11_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp39-cp39-manylinux_2_17_armv7l.manylinux2014_armv7l.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp39-cp39-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp39-cp39-manylinux_2_17_s390x.manylinux2014_s390x.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp39-cp39-manylinux_2_5_i686.manylinux1_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp39-cp39-musllinux_1_2_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp39-cp39-musllinux_1_2_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp39-cp39-musllinux_1_2_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp39-none-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-cp39-none-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-pp310-pypy310_pp73-macosx_10_12_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-pp310-pypy310_pp73-macosx_11_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-pp310-pypy310_pp73-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-pp310-pypy310_pp73-manylinux_2_17_armv7l.manylinux2014_armv7l.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-pp310-pypy310_pp73-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-pp310-pypy310_pp73-manylinux_2_17_s390x.manylinux2014_s390x.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-pp310-pypy310_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-pp310-pypy310_pp73-manylinux_2_5_i686.manylinux1_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-pp310-pypy310_pp73-musllinux_1_2_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-pp310-pypy310_pp73-musllinux_1_2_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-pp310-pypy310_pp73-musllinux_1_2_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-pp310-pypy310_pp73-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-pp39-pypy39_pp73-macosx_10_12_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-pp39-pypy39_pp73-macosx_11_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-pp39-pypy39_pp73-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-pp39-pypy39_pp73-manylinux_2_17_armv7l.manylinux2014_armv7l.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-pp39-pypy39_pp73-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-pp39-pypy39_pp73-manylinux_2_17_s390x.manylinux2014_s390x.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-pp39-pypy39_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-pp39-pypy39_pp73-manylinux_2_5_i686.manylinux1_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-pp39-pypy39_pp73-musllinux_1_2_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-pp39-pypy39_pp73-musllinux_1_2_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-pp39-pypy39_pp73-musllinux_1_2_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1-pp39-pypy39_pp73-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/rpds-py/#rpds_py-0.20.1.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="six@1.17.0">
+      <name>six</name>
+      <version>1.17.0</version>
+      <description>Python 2 and 3 compatibility utilities</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/six@1.17.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/#six-1.17.0-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/six/#six-1.17.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="sortedcontainers@2.4.0">
+      <name>sortedcontainers</name>
+      <version>2.4.0</version>
+      <description>Sorted Containers -- Sorted List, Sorted Dict, Sorted Set</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/sortedcontainers@2.4.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/sortedcontainers/#sortedcontainers-2.4.0-py2.py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/sortedcontainers/#sortedcontainers-2.4.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="tomli@2.2.1">
+      <name>tomli</name>
+      <version>2.2.1</version>
+      <description>A lil' TOML parser</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/tomli@2.2.1</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp311-cp311-macosx_10_9_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp311-cp311-macosx_11_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp311-cp311-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp311-cp311-musllinux_1_2_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp311-cp311-musllinux_1_2_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp311-cp311-musllinux_1_2_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp311-cp311-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp311-cp311-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp312-cp312-macosx_10_13_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp312-cp312-macosx_11_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp312-cp312-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp312-cp312-musllinux_1_2_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp312-cp312-musllinux_1_2_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp312-cp312-musllinux_1_2_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp312-cp312-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp312-cp312-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp313-cp313-macosx_10_13_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp313-cp313-macosx_11_0_arm64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp313-cp313-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp313-cp313-musllinux_1_2_aarch64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp313-cp313-musllinux_1_2_i686.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp313-cp313-musllinux_1_2_x86_64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp313-cp313-win32.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-cp313-cp313-win_amd64.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/tomli/#tomli-2.2.1.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="types-python-dateutil@2.9.0.20241206">
+      <name>types-python-dateutil</name>
+      <version>2.9.0.20241206</version>
+      <description>Typing stubs for python-dateutil</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/types-python-dateutil@2.9.0.20241206</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/types-python-dateutil/#types_python_dateutil-2.9.0.20241206-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/types-python-dateutil/#types_python_dateutil-2.9.0.20241206.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="uri-template@1.3.0">
+      <name>uri-template</name>
+      <version>1.3.0</version>
+      <description>RFC 6570 URI Template Processor</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/uri-template@1.3.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/uri-template/#uri-template-1.3.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/uri-template/#uri_template-1.3.0-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="webcolors@24.8.0">
+      <name>webcolors</name>
+      <version>24.8.0</version>
+      <description>A library for working with the color formats defined by HTML and CSS.</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/webcolors@24.8.0</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/webcolors/#webcolors-24.8.0-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/webcolors/#webcolors-24.8.0.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="zipp@3.20.2">
+      <name>zipp</name>
+      <version>3.20.2</version>
+      <description>Backport of pathlib-compatible object wrapper for zip files</description>
+      <scope>optional</scope>
+      <purl>pkg:pypi/zipp@3.20.2</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/zipp/#zipp-3.20.2-py3-none-any.whl</url>
+          <comment>from legacy-api</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://pypi.org/simple/zipp/#zipp-3.20.2.tar.gz</url>
+          <comment>from legacy-api</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+</bom>

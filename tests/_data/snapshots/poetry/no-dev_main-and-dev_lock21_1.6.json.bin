@@ -1,0 +1,330 @@
+{
+  "components": [
+    {
+      "bom-ref": "arrow@1.3.0",
+      "description": "Better dates & times for Python",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "c728b120ebc00eb84e01882a6f5e7927a53960aa990ce7dd2b10f39005a67f80"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/arrow/#arrow-1.3.0-py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "d4540617648cb5f895730f1ad8c82a65f2dad0166f57b75f3ca54759c4d67a85"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/arrow/#arrow-1.3.0.tar.gz"
+        }
+      ],
+      "name": "arrow",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        }
+      ],
+      "purl": "pkg:pypi/arrow@1.3.0",
+      "type": "library",
+      "version": "1.3.0"
+    },
+    {
+      "bom-ref": "colorama@0.4.6",
+      "description": "Cross-platform colored terminal text.",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/colorama/#colorama-0.4.6-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/colorama/#colorama-0.4.6.tar.gz"
+        }
+      ],
+      "name": "colorama",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        }
+      ],
+      "purl": "pkg:pypi/colorama@0.4.6",
+      "type": "library",
+      "version": "0.4.6"
+    },
+    {
+      "bom-ref": "python-dateutil@2.9.0.post0",
+      "description": "Extensions to the standard Python datetime module",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/python-dateutil/#python-dateutil-2.9.0.post0.tar.gz"
+        },
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/python-dateutil/#python_dateutil-2.9.0.post0-py2.py3-none-any.whl"
+        }
+      ],
+      "name": "python-dateutil",
+      "purl": "pkg:pypi/python-dateutil@2.9.0.post0",
+      "type": "library",
+      "version": "2.9.0.post0"
+    },
+    {
+      "bom-ref": "six@1.17.0",
+      "description": "Python 2 and 3 compatibility utilities",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/six/#six-1.17.0-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/six/#six-1.17.0.tar.gz"
+        }
+      ],
+      "name": "six",
+      "purl": "pkg:pypi/six@1.17.0",
+      "type": "library",
+      "version": "1.17.0"
+    },
+    {
+      "bom-ref": "toml@0.10.2",
+      "description": "Python Library for Tom's Obvious, Minimal Language",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/toml/#toml-0.10.2-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/toml/#toml-0.10.2.tar.gz"
+        }
+      ],
+      "name": "toml",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        }
+      ],
+      "purl": "pkg:pypi/toml@0.10.2",
+      "type": "library",
+      "version": "0.10.2"
+    },
+    {
+      "bom-ref": "types-python-dateutil@2.9.0.20241206",
+      "description": "Typing stubs for python-dateutil",
+      "externalReferences": [
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "e248a4bc70a486d3e3ec84d0dc30eec3a5f979d6e7ee4123ae043eedbb987f53"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/types-python-dateutil/#types_python_dateutil-2.9.0.20241206-py3-none-any.whl"
+        },
+        {
+          "comment": "from legacy-api",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "18f493414c26ffba692a72369fea7a154c502646301ebfe3d56a04b3767284cb"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://pypi.org/simple/types-python-dateutil/#types_python_dateutil-2.9.0.20241206.tar.gz"
+        }
+      ],
+      "name": "types-python-dateutil",
+      "purl": "pkg:pypi/types-python-dateutil@2.9.0.20241206",
+      "type": "library",
+      "version": "2.9.0.20241206"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "python-dateutil@2.9.0.post0",
+        "types-python-dateutil@2.9.0.20241206"
+      ],
+      "ref": "arrow@1.3.0"
+    },
+    {
+      "ref": "colorama@0.4.6"
+    },
+    {
+      "dependsOn": [
+        "arrow@1.3.0",
+        "colorama@0.4.6",
+        "toml@0.10.2"
+      ],
+      "ref": "main-and-dev"
+    },
+    {
+      "dependsOn": [
+        "six@1.17.0"
+      ],
+      "ref": "python-dateutil@2.9.0.post0"
+    },
+    {
+      "ref": "six@1.17.0"
+    },
+    {
+      "ref": "toml@0.10.2"
+    },
+    {
+      "ref": "types-python-dateutil@2.9.0.20241206"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "main-and-dev",
+      "description": "main and dev depenndencies",
+      "name": "main-and-dev",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": {
+      "components": [
+        {
+          "description": "CycloneDX Software Bill of Materials (SBOM) generator for Python projects and environments",
+          "externalReferences": [
+            {
+              "type": "build-system",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/actions"
+            },
+            {
+              "type": "distribution",
+              "url": "https://pypi.org/project/cyclonedx-bom/"
+            },
+            {
+              "type": "documentation",
+              "url": "https://cyclonedx-bom-tool.readthedocs.io/"
+            },
+            {
+              "type": "issue-tracker",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/issues"
+            },
+            {
+              "type": "license",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE"
+            },
+            {
+              "type": "release-notes",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/blob/main/CHANGELOG.md"
+            },
+            {
+              "type": "vcs",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/"
+            },
+            {
+              "type": "website",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/#readme"
+            }
+          ],
+          "group": "CycloneDX",
+          "licenses": [
+            {
+              "license": {
+                "acknowledgement": "declared",
+                "id": "Apache-2.0"
+              }
+            }
+          ],
+          "name": "cyclonedx-py",
+          "type": "application",
+          "version": "thisVersion-testing"
+        },
+        {
+          "description": "stripped",
+          "externalReferences": [   ],
+          "group": "CycloneDX",
+          "licenses": [   ],
+          "name": "cyclonedx-python-lib",
+          "type": "library",
+          "version": "libVersion-testing"
+        }
+      ]
+    }
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6"
+}

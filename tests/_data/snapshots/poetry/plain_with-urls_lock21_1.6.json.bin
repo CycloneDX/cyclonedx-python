@@ -1,0 +1,224 @@
+{
+  "components": [
+    {
+      "bom-ref": "Pillow@10.1.0",
+      "description": "Python Imaging Library (Fork)",
+      "externalReferences": [
+        {
+          "comment": "from VCS",
+          "type": "vcs",
+          "url": "git+https://github.com/python-pillow/Pillow.git#da59ad000d1405eaecd557175e29083a87d19f7c"
+        }
+      ],
+      "name": "Pillow",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        },
+        {
+          "name": "cdx:python:package:source:vcs:commit_id",
+          "value": "da59ad000d1405eaecd557175e29083a87d19f7c"
+        },
+        {
+          "name": "cdx:python:package:source:vcs:requested_revision",
+          "value": "10.1.0"
+        }
+      ],
+      "purl": "pkg:pypi/pillow@10.1.0?vcs_url=git%2Bhttps://github.com/python-pillow/Pillow.git%40da59ad000d1405eaecd557175e29083a87d19f7c",
+      "type": "library",
+      "version": "10.1.0"
+    },
+    {
+      "bom-ref": "numpy@1.24.4",
+      "description": "Fundamental package for array computing in Python",
+      "externalReferences": [
+        {
+          "comment": "from url",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "80f5e3a4e498641401868df4208b74581206afbee7cf7b8329daae82676d9463"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://files.pythonhosted.org/packages/a4/9b/027bec52c633f6556dba6b722d9a0befb40498b9ceddd29cbe67a45a127c/numpy-1.24.4.tar.gz"
+        }
+      ],
+      "name": "numpy",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        }
+      ],
+      "purl": "pkg:pypi/numpy@1.24.4",
+      "type": "library",
+      "version": "1.24.4"
+    },
+    {
+      "bom-ref": "six@1.16.0",
+      "description": "Python 2 and 3 compatibility utilities",
+      "externalReferences": [
+        {
+          "comment": "from VCS",
+          "type": "vcs",
+          "url": "git+ssh://git@github.com/benjaminp/six.git#65486e4383f9f411da95937451205d3c7b61b9e1"
+        }
+      ],
+      "name": "six",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        },
+        {
+          "name": "cdx:python:package:source:vcs:commit_id",
+          "value": "65486e4383f9f411da95937451205d3c7b61b9e1"
+        },
+        {
+          "name": "cdx:python:package:source:vcs:requested_revision",
+          "value": "1.16.0"
+        }
+      ],
+      "purl": "pkg:pypi/six@1.16.0?vcs_url=git%2Bssh://git%40github.com/benjaminp/six.git%4065486e4383f9f411da95937451205d3c7b61b9e1",
+      "type": "library",
+      "version": "1.16.0"
+    },
+    {
+      "bom-ref": "wxPython@4.2.2",
+      "description": "Cross platform GUI toolkit for Python, \"Phoenix\" version",
+      "externalReferences": [
+        {
+          "comment": "from url",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "a391eacd10d0ba16333a186819307641803b0dc7a066d5fe4bd1c13f1cd2f44e"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://wxpython.org/Phoenix/snapshot-builds/wxPython-4.2.2-cp38-cp38-win32.whl"
+        }
+      ],
+      "name": "wxPython",
+      "properties": [
+        {
+          "name": "cdx:poetry:group",
+          "value": "main"
+        }
+      ],
+      "purl": "pkg:pypi/wxpython@4.2.2?download_url=https://wxpython.org/Phoenix/snapshot-builds/wxPython-4.2.2-cp38-cp38-win32.whl",
+      "type": "library",
+      "version": "4.2.2"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "Pillow@10.1.0"
+    },
+    {
+      "ref": "numpy@1.24.4"
+    },
+    {
+      "ref": "six@1.16.0"
+    },
+    {
+      "dependsOn": [
+        "Pillow@10.1.0",
+        "numpy@1.24.4",
+        "six@1.16.0",
+        "wxPython@4.2.2"
+      ],
+      "ref": "with-urls"
+    },
+    {
+      "dependsOn": [
+        "numpy@1.24.4",
+        "six@1.16.0"
+      ],
+      "ref": "wxPython@4.2.2"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "with-urls",
+      "description": "packages from direct urls",
+      "name": "with-urls",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": {
+      "components": [
+        {
+          "description": "CycloneDX Software Bill of Materials (SBOM) generator for Python projects and environments",
+          "externalReferences": [
+            {
+              "type": "build-system",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/actions"
+            },
+            {
+              "type": "distribution",
+              "url": "https://pypi.org/project/cyclonedx-bom/"
+            },
+            {
+              "type": "documentation",
+              "url": "https://cyclonedx-bom-tool.readthedocs.io/"
+            },
+            {
+              "type": "issue-tracker",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/issues"
+            },
+            {
+              "type": "license",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE"
+            },
+            {
+              "type": "release-notes",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/blob/main/CHANGELOG.md"
+            },
+            {
+              "type": "vcs",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/"
+            },
+            {
+              "type": "website",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/#readme"
+            }
+          ],
+          "group": "CycloneDX",
+          "licenses": [
+            {
+              "license": {
+                "acknowledgement": "declared",
+                "id": "Apache-2.0"
+              }
+            }
+          ],
+          "name": "cyclonedx-py",
+          "type": "application",
+          "version": "thisVersion-testing"
+        },
+        {
+          "description": "stripped",
+          "externalReferences": [   ],
+          "group": "CycloneDX",
+          "licenses": [   ],
+          "name": "cyclonedx-python-lib",
+          "type": "library",
+          "version": "libVersion-testing"
+        }
+      ]
+    }
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6"
+}
