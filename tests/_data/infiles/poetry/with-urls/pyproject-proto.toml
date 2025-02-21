@@ -18,7 +18,7 @@ authors = ["Your Name <you@example.com>"]
 [tool.poetry.dependencies]
 python = "^3.8"
 # direct url - https://python-poetry.org/docs/dependency-specification/#url-dependencies
-wxpython = {url = "https://wxpython.org/Phoenix/snapshot-builds/wxPython-4.2.2a1.dev5618+1f82021f-cp38-cp38-win32.whl"}
+wxpython = {url = "https://wxpython.org/Phoenix/snapshot-builds/wxPython-4.2.2-cp38-cp38-win32.whl"}
 numpy = {url = "https://files.pythonhosted.org/packages/a4/9b/027bec52c633f6556dba6b722d9a0befb40498b9ceddd29cbe67a45a127c/numpy-1.24.4.tar.gz"}
 # git dependency - https://python-poetry.org/docs/dependency-specification/#git-dependencies
 pillow = {git = "https://github.com/python-pillow/Pillow.git", tag = "10.1.0"}
