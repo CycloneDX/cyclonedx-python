@@ -80,7 +80,7 @@ chardet = "^5.1"
 # pin to exact versions, if the tool/lib/plugin is process-relevant
 coverage = "7.6.1"
 ddt = "1.7.2"
-flake8 = { version = "7.1.1", python = ">=3.8.1" }
+flake8 = { version = "7.1.2", python = ">=3.8.1" }
 flake8-annotations = { version = "3.1.1", python = ">=3.8.1" }
 flake8-bugbear = { version = "24.12.12", python = ">=3.8.1" }
 flake8-copyright-validator = "^0.0.1"
