@@ -2,6 +2,19 @@
 
 
 
+## v5.3.0 (2025-02-26)
+
+### Feature
+
+* feat: add support for `cyclonedx-python-lib&gt;=9.0&lt;10` (#854)
+
+
+
+---------
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`45ae96e`](https://github.com/CycloneDX/cyclonedx-python/commit/45ae96eca790d68fc8262e70307110aab36c29c2))
+
+
 ## v5.2.0 (2025-02-20)
 
 ### Documentation
