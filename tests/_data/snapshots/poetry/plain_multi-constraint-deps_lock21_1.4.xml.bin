@@ -50,23 +50,6 @@
     </properties>
   </metadata>
   <components>
-    <component type="library" bom-ref="pathlib2@2.3.5#1">
-      <name>pathlib2</name>
-      <version>2.3.5</version>
-      <description>Object-oriented filesystem paths</description>
-      <purl>pkg:pypi/pathlib2@2.3.5?vcs_url=git%2Bhttps://github.com/jazzband/pathlib2.git%405a6a88db3cc1d08dbc86fbe15edfb69fb5f5a3d6</purl>
-      <externalReferences>
-        <reference type="vcs">
-          <url>git+https://github.com/jazzband/pathlib2.git#5a6a88db3cc1d08dbc86fbe15edfb69fb5f5a3d6</url>
-          <comment>from VCS</comment>
-        </reference>
-      </externalReferences>
-      <properties>
-        <property name="cdx:poetry:group">main</property>
-        <property name="cdx:python:package:source:vcs:commit_id">5a6a88db3cc1d08dbc86fbe15edfb69fb5f5a3d6</property>
-        <property name="cdx:python:package:source:vcs:requested_revision">2.3.5</property>
-      </properties>
-    </component>
     <component type="library" bom-ref="pathlib2@2.3.5">
       <name>pathlib2</name>
       <version>2.3.5</version>
@@ -90,6 +73,23 @@
       </externalReferences>
       <properties>
         <property name="cdx:poetry:group">main</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="pathlib2@2.3.5#1">
+      <name>pathlib2</name>
+      <version>2.3.5</version>
+      <description>Object-oriented filesystem paths</description>
+      <purl>pkg:pypi/pathlib2@2.3.5?vcs_url=git%2Bhttps://github.com/jazzband/pathlib2.git%405a6a88db3cc1d08dbc86fbe15edfb69fb5f5a3d6</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>git+https://github.com/jazzband/pathlib2.git#5a6a88db3cc1d08dbc86fbe15edfb69fb5f5a3d6</url>
+          <comment>from VCS</comment>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:poetry:group">main</property>
+        <property name="cdx:python:package:source:vcs:commit_id">5a6a88db3cc1d08dbc86fbe15edfb69fb5f5a3d6</property>
+        <property name="cdx:python:package:source:vcs:requested_revision">2.3.5</property>
       </properties>
     </component>
     <component type="library" bom-ref="pathlib2@2.3.6#2">
