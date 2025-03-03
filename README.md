@@ -55,6 +55,7 @@ install via one of commands:
 python -m pip install cyclonedx-bom   # install via pip
 pipx install cyclonedx-bom            # install via pipx
 poetry add cyclonedx-bom              # install via poetry
+uv tool install cyclonedx-bom         # install via uv
 # ... you get the hang
 ```
 
