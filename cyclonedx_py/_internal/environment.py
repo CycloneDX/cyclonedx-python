@@ -81,6 +81,9 @@ class EnvironmentBB(BomBuilder):
                  • Build an SBOM from PDM environment:
                        > pdm.exe info --python
                        > %(prog)s "%%path-to-pdm-python%%"
+                 • Build an SBOM from uv environment:
+                       > uv.exe python find
+                       > %(prog)s "%%path-to-uv-python%%"
                """)
         else:  # if os_name == 'posix':
             p.epilog = dedent("""\
@@ -102,6 +105,8 @@ class EnvironmentBB(BomBuilder):
                        $ %(prog)s "$(poetry env info --executable)"
                  • Build an SBOM from PDM environment:
                        $ %(prog)s "$(pdm info --python)"
+                 • Build an SBOM from uv environment:
+                       $ %(prog)s "$(uv python find)"
                """)
         p.add_argument('--PEP-639',
                        action='store_true',
