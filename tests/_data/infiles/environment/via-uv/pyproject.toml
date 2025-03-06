@@ -40,3 +40,7 @@ documentation = "https://oss.acme.org/my-project/docs/"
 "Bug Tracker" = "https://oss.acme.org/my-project/bugs/"
 "Funding" = "https://oss.acme.org/my-project/funding/"
 "Change log" = "https://oss.acme.org/my-project/changelog/"
+
+
+[tool.uv]
+# https://docs.astral.sh/uv/reference/settings/
