@@ -1,0 +1,46 @@
+[project]
+# https://packaging.python.org/en/latest/specifications/declaring-project-metadata/#declaring-project-metadata
+name = "via-uv"
+version = "0.1.0"
+description = "environment via uv"
+license = { text = "Apache-2.0 OR MIT" }
+readme = "README.md"
+requires-python = ">=3.8"
+
+#  dynamic = [] # TODO
+
+authors = ["Your Name <you@example.com>", "My Name"]
+maintainers = [
+  "John Smith <johnsmith@example.org>",
+  "Jane Smith <janesmith@example.org>",
+]
+
+keywords = ["packaging", "pipenv", "test"]
+classifiers = [
+  "License :: OSI Approved :: Apache Software License",
+  "License :: OSI Approved :: MIT License",
+  "Classifier: Development Status :: 4 - Beta",
+  "Intended Audience :: Developers"
+]
+
+dependencies = [
+  'toml'
+]
+optional-dependencies = { 'foo' = ['ddt'] }
+
+# entry-point = {} # TODO
+
+# gui-scripts = {} # TODO
+# scripts = {} # TODO
+
+[project.urls]
+homepage = "https://oss.acme.org/my-project/"
+repository = "https://oss.acme.org/my-project.git"
+documentation = "https://oss.acme.org/my-project/docs/"
+"Bug Tracker" = "https://oss.acme.org/my-project/bugs/"
+"Funding" = "https://oss.acme.org/my-project/funding/"
+"Change log" = "https://oss.acme.org/my-project/changelog/"
+
+
+[tool.uv]
+# https://docs.astral.sh/uv/reference/settings/

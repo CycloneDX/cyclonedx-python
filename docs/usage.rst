@@ -145,6 +145,11 @@ Examples for macOS/Linux and alike
 
    $ cyclonedx-py environment "$(pdm info --python)"
 
+.. code-block:: shell-session
+   :caption: Build an SBOM from uv environment
+
+   $ cyclonedx-py environment "$(uv python find)"
+
 Examples for Windows
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -183,7 +188,7 @@ Examples for Windows
 .. code-block:: doscon
    :caption: Build an SBOM from Poetry environment
 
-   > poetry.exe env info  --executable
+   > poetry.exe env info --executable
    > cyclonedx-py environment "%path-to-poetry-python%"
 
 .. code-block:: doscon
@@ -191,6 +196,12 @@ Examples for Windows
 
    > pdm.exe info --python
    > cyclonedx-py environment "%path-to-pdm-python%"
+
+.. code-block:: doscon
+   :caption: Build an SBOM from uv environment
+
+   > uv.exe python find
+   > cyclonedx-py environment "%path-to-uv-python%"
 
 
 For Pipenv
@@ -462,6 +473,22 @@ However, since PDM utilizes Python virtual environments under the hood,
 it is possible to use the functionality for Python (virtual) environments as described above.
 
 .. _PDM: https://pdm-project.org/
+
+
+
+*****
+
+
+
+For uv
+-------
+
+Support for `uv`_ manifest and lockfile is not explicitly implemented, yet.
+
+However, since uv utilizes Python virtual environments under the hood,
+it is possible to use the functionality for Python (virtual) environments as described above.
+
+.. _uv: https://docs.astral.sh/uv/
 
 
 

@@ -95,14 +95,18 @@ mypy = "1.14.1"
 bandit = "1.7.10"
 tomli = { version = "^2.0.1", python = "<3.11" }
 tox = "4.24.1"
+
 # min version required to be able to install some dependencies
 # see https://github.com/MichaelKim0407/flake8-use-fstring/issues/33
 setuptools = ">= 47.0.0"
-# install` needed for setup/init of testbeds for `environment` purpose
+
+# some package managers needed for setup/init of testbeds for `environment` purpose.
+# we do not relaly care for exact versions, as long as they have a stable CLI and craft usable virtual-environments
 pip = ">=23.0"
 pipenv = ">=2023.11.5"
 poetry = "^1.7"
 pdm = "^2.11"
+uv = "0.6.4"  # keep pinned to exact version, until a v1.0.0 is released
 
 
 
