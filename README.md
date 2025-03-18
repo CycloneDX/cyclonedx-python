@@ -15,8 +15,9 @@
 ----
 
 This tool generates Software Bill of material (SBOM) documents in OWASP [CycloneDX](https://cyclonedx.org/) format.  
+This is probably the most accurate, complete SBOM generator for any python-related projects.
+ 
 Supported data sources are:
-
 * Python (virtual) environment
 * `Poetry` manifest and lockfile
 * `Pipenv` manifest and lockfile
