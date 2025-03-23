@@ -162,7 +162,7 @@ jobs:
       matrix:
         os:
           - ubuntu-latest
-          - macos-13  # macos-latest might be incompatible to py38 - see https://github.com/CycloneDX/cyclonedx-python-lib/pull/599#issuecomment-2077462142
+          - macos-latest
           - windows-latest
         python-version:
           - "3.13" # highest supported
@@ -171,6 +171,13 @@ jobs:
           - "3.10"
           - "3.9"
           - "3.8"  # lowest supported -- handled in include
+        exclude:
+          - # macos-latest might be incompatible to py38 - see https://github.com/CycloneDX/cyclonedx-python-lib/pull/599#issuecomment-2077462142
+            os: macos-latest
+            python-version: "3.8"
+        include:
+          - os: macos-13
+            python-version: "3.8"
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
