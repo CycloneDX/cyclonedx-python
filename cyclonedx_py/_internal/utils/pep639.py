@@ -57,9 +57,13 @@ def dist2licenses(
 
             # per spec > license files are stored in the `.dist-info/licenses/` subdirectory of the produced wheel.
             # but in practice, other locations are used, too.
-            content = dist.read_text(join('licenses', mlfile)) \
-                or dist.read_text(join('license_files', mlfile)) \
-                or dist.read_text(mlfile)
+            try:
+                content = dist.read_text(join('licenses', mlfile)) \
+                    or dist.read_text(join('license_files', mlfile)) \
+                    or dist.read_text(mlfile)
+            except UnicodeDecodeError:
+                content = None
+
             if content is None:  # pragma: no cover
                 logger.debug('Error: failed to read license file %r for dist %r',
                              mlfile, metadata['Name'])
