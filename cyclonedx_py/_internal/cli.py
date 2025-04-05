@@ -84,7 +84,7 @@ class Command:
                         default='-')
         op.add_argument('--schema-version',  # DEPRECATED
                         metavar='<version>',
-                        help='DEPRECATED alias for "--spec-version"',
+                        help='DEPRECATED alias for option "--spec-version".',
                         dest='spec_version',
                         choices=SchemaVersion,
                         type=SchemaVersion.from_version,

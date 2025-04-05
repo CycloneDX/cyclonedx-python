@@ -35,7 +35,7 @@ Example usage: save SBOM in CycloneDX 1.6 XML format, generated from current pyt
 
 .. code-block:: shell
 
-   cyclonedx-py environment --outfile my-sbom.xml --schema-version 1.6 --output-format XML
+   cyclonedx-py environment --outfile my-sbom.xml --spec-version 1.6 --output-format XML
 
 
 For Python (virtual) environment
@@ -85,7 +85,9 @@ The full documentation can be issued by running with ``environment --help``:
                             Output file path for your SBOM
                             (set to "-" to output to STDOUT)
                             (default: -)
-      --sv <version>, --schema-version <version>
+      --schema-version <version>
+                            DEPRECATED alias for "--spec-version"
+      --sv <version>, --spec-version <version>
                             The CycloneDX schema version for your SBOM
                             {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
                             (default: 1.5)
@@ -256,7 +258,9 @@ The full documentation can be issued by running with ``pipenv --help``:
                             Output file path for your SBOM
                             (set to "-" to output to <stdout>)
                             (default: -)
-      --sv <version>, --schema-version <version>
+      --schema-version <version>
+                            DEPRECATED alias for "--spec-version"
+      --sv <version>, --spec-version <version>
                             The CycloneDX schema version for your SBOM
                             {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
                             (default: 1.5)
@@ -331,7 +335,9 @@ The full documentation can be issued by running with ``poetry --help``:
                             Output file path for your SBOM
                             (set to "-" to output to <stdout>)
                             (default: -)
-      --sv <version>, --schema-version <version>
+      --schema-version <version>
+                            DEPRECATED alias for "--spec-version"
+      --sv <version>, --spec-version <version>
                             The CycloneDX schema version for your SBOM
                             {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
                             (default: 1.5)
@@ -402,7 +408,9 @@ The full documentation can be issued by running with ``requirements --help``:
                             Output file path for your SBOM
                             (set to "-" to output to <stdout>)
                             (default: -)
-      --sv <version>, --schema-version <version>
+      --schema-version <version>
+                            DEPRECATED alias for "--spec-version"
+      --sv <version>, --spec-version <version>
                             The CycloneDX schema version for your SBOM
                             {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
                             (default: 1.5)
