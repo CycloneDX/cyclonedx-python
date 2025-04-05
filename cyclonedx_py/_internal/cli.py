@@ -17,7 +17,7 @@
 
 import logging
 import sys
-from argparse import ArgumentParser, FileType, RawDescriptionHelpFormatter
+from argparse import ArgumentParser, FileType, RawDescriptionHelpFormatter, SUPPRESS as ARG_SUPPRESS
 from itertools import chain
 from typing import TYPE_CHECKING, Any, Dict, List, NoReturn, Optional, Sequence, TextIO, Type, Union
 
@@ -82,12 +82,19 @@ class Command:
                         type=FileType('wt', encoding='utf8'),
                         dest='outfile',
                         default='-')
-        op.add_argument('--sv', '--schema-version',
+        op.add_argument('--schema-version',  # DEPRECATED
                         metavar='<version>',
-                        help='The CycloneDX schema version for your SBOM'
+                        help='DEPRECATED alias for "--spec-version"',
+                        dest='spec_version',
+                        choices=SchemaVersion,
+                        type=SchemaVersion.from_version,
+                        default=SchemaVersion.V1_5.to_version())
+        op.add_argument('--sv', '--spec-version',
+                        metavar='<version>',
+                        help='The CycloneDX spec version for your SBOM'
                              f' {{choices: {", ".join(sorted((v.to_version() for v in SchemaVersion), reverse=True))}}}'
                              ' (default: %(default)s)',
-                        dest='schema_version',
+                        dest='spec_version',
                         choices=SchemaVersion,
                         type=SchemaVersion.from_version,
                         default=SchemaVersion.V1_5.to_version())
@@ -150,7 +157,7 @@ class Command:
 
     __OWN_ARGS = {
         # the arg keywords from __init__()
-        'logger', 'short_purls', 'output_format', 'schema_version', 'output_reproducible', 'should_validate',
+        'logger', 'short_purls', 'output_format', 'spec_version', 'output_reproducible', 'should_validate',
         # the arg keywords from __call__()
         'outfile'
     }
@@ -163,7 +170,7 @@ class Command:
                  logger: logging.Logger,
                  short_purls: bool,
                  output_format: OutputFormat,
-                 schema_version: SchemaVersion,
+                 spec_version: SchemaVersion,
                  output_reproducible: bool,
                  should_validate: bool,
                  _bbc: Type['BomBuilder'],
@@ -171,7 +178,7 @@ class Command:
         self._logger = logger
         self._short_purls = short_purls
         self._output_format = output_format
-        self._schema_version = schema_version
+        self._spec_version = spec_version
         self._output_reproducible = output_reproducible
         self._should_validate = should_validate
         self._bbc = _bbc(**self._clean_kwargs(kwargs),
@@ -206,23 +213,23 @@ class Command:
             self._logger.warning('Validation skipped.')
             return False
 
-        self._logger.info('Validating result to schema: %s/%s',
-                          self._schema_version.to_version(), self._output_format.name)
+        self._logger.info('Validating result to spec: %s/%s',
+                          self._spec_version.to_version(), self._output_format.name)
 
         validation_error = make_schemabased_validator(
             self._output_format,
-            self._schema_version
+            self._spec_version
         ).validate_str(output)
         if validation_error:
             self._logger.debug('Validation Errors: %r', validation_error.data)
-            self._logger.error('The result is invalid to schema '
-                               f'{self._schema_version.to_version()}/{self._output_format.name}')
+            self._logger.error('The result is invalid to spec '
+                               f'{self._spec_version.to_version()}/{self._output_format.name}')
             self._logger.warning('Please report the issue and provide all input data to: '
                                  'https://github.com/CycloneDX/cyclonedx-python/issues/new?'
                                  'template=ValidationError-report.md&'
                                  'labels=ValidationError&title=%5BValidationError%5D')
-            raise ValueError('result is schema-invalid')
-        self._logger.debug('result is schema-valid')
+            raise ValueError('result is spec-invalid')
+        self._logger.debug('result is spec-valid')
         return True
 
     def _write(self, output: str, outfile: TextIO) -> int:
@@ -232,7 +239,7 @@ class Command:
         return written
 
     def _make_output(self, bom: 'Bom') -> str:
-        self._logger.info('Serializing SBOM: %s/%s', self._schema_version.to_version(), self._output_format.name)
+        self._logger.info('Serializing SBOM: %s/%s', self._spec_version.to_version(), self._output_format.name)
 
         if self._output_reproducible:
             bom.metadata.properties.add(Property(name=PropertyName.Reproducible.value,
@@ -244,7 +251,7 @@ class Command:
         return make_outputter(
             bom,
             self._output_format,
-            self._schema_version
+            self._spec_version
         ).output_as_string(indent=2)
 
     def _make_bom(self, **kwargs: Any) -> 'Bom':
