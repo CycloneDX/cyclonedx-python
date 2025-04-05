@@ -76,7 +76,7 @@ The full documentation can be issued by running with ``environment --help``:
                             Enable license text gathering.
       --pyproject <file>    Path to the root component's `pyproject.toml` file.
                             This should point to a file compliant with PEP 621 (storing project metadata).
-      --mc-type <type>      Type of the main component
+      --mc-type <type>      Type of the main component.
                             {choices: application, firmware, library}
                             (default: application)
       --short-PURLs         Omit all qualifiers from PackageURLs.
@@ -84,23 +84,23 @@ The full documentation can be issued by running with ``environment --help``:
       --schema-version <version>
                             DEPRECATED alias for "--spec-version"
       --sv <version>, --spec-version <version>
-                            The CycloneDX schema version for your SBOM
+                            Which version of CycloneDX to use.
                             {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
                             (default: 1.5)
       --output-reproducible
                             Whether to go the extra mile and make the output reproducible.
                             This might result in loss of time- and random-based-values.
       --of <format>, --output-format <format>
-                            The output format for your SBOM
+                            Which output format to use.
                             {choices: JSON, XML}
                             (default: JSON)
       --outfile <file>      DEPRECATED alias for "--output-file".
       -o <file>, --output-file <file>
-                            Output file path for your SBOM
+                            Path to the output file.
                             (set to "-" to output to STDOUT)
                             (default: -)
       --validate, --no-validate
-                            Whether validate the result before outputting
+                            Whether to validate resulting BOM before outputting.
                             (default: True)
       -v, --verbose         Increase the verbosity of messages
                             (multiple for more effect)
@@ -250,7 +250,7 @@ The full documentation can be issued by running with ``pipenv --help``:
                             [env var: PIPENV_PYPI_MIRROR]
       --pyproject <file>    Path to the root component's `pyproject.toml` file.
                             This should point to a file compliant with PEP 621 (storing project metadata).
-      --mc-type <type>      Type of the main component
+      --mc-type <type>      Type of the main component.
                             {choices: application, firmware, library}
                             (default: application)
       --short-PURLs         Omit all qualifiers from PackageURLs.
@@ -258,23 +258,23 @@ The full documentation can be issued by running with ``pipenv --help``:
       --schema-version <version>
                             DEPRECATED alias for "--spec-version"
       --sv <version>, --spec-version <version>
-                            The CycloneDX schema version for your SBOM
+                            Which version of CycloneDX to use.
                             {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
                             (default: 1.5)
       --output-reproducible
                             Whether to go the extra mile and make the output reproducible.
                             This might result in loss of time- and random-based-values.
       --of <format>, --output-format <format>
-                            The output format for your SBOM
+                            Which output format to use.
                             {choices: JSON, XML}
                             (default: JSON)
       --outfile <file>      DEPRECATED alias for "--output-file".
       -o <file>, --output-file <file>
-                            Output file path for your SBOM
+                            Path to the output file.
                             (set to "-" to output to STDOUT)
                             (default: -)
       --validate, --no-validate
-                            Whether validate the result before outputting
+                            Whether to validate resulting BOM before outputting.
                             (default: True)
       -v, --verbose         Increase the verbosity of messages
                             (multiple for more effect)
@@ -328,7 +328,7 @@ The full documentation can be issued by running with ``poetry --help``:
                             (multiple values allowed)
       --all-extras          Include all extra dependencies
                             (default: False)
-      --mc-type <type>      Type of the main component
+      --mc-type <type>      Type of the main component.
                             {choices: application, firmware, library}
                             (default: application)
       --short-PURLs         Omit all qualifiers from PackageURLs.
@@ -336,23 +336,23 @@ The full documentation can be issued by running with ``poetry --help``:
       --schema-version <version>
                             DEPRECATED alias for "--spec-version"
       --sv <version>, --spec-version <version>
-                            The CycloneDX schema version for your SBOM
+                            Which version of CycloneDX to use.
                             {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
                             (default: 1.5)
       --output-reproducible
                             Whether to go the extra mile and make the output reproducible.
                             This might result in loss of time- and random-based-values.
       --of <format>, --output-format <format>
-                            The output format for your SBOM
+                            Which output format to use.
                             {choices: JSON, XML}
                             (default: JSON)
       --outfile <file>      DEPRECATED alias for "--output-file".
       -o <file>, --output-file <file>
-                            Output file path for your SBOM
+                            Path to the output file.
                             (set to "-" to output to STDOUT)
                             (default: -)
       --validate, --no-validate
-                            Whether validate the result before outputting
+                            Whether to validate resulting BOM before outputting.
                             (default: True)
       -v, --verbose         Increase the verbosity of messages
                             (multiple for more effect)
@@ -402,7 +402,7 @@ The full documentation can be issued by running with ``requirements --help``:
                             Should follow the same rules as --index-url
       --pyproject <file>    Path to the root component's `pyproject.toml` file.
                             This should point to a file compliant with PEP 621 (storing project metadata).
-      --mc-type <type>      Type of the main component
+      --mc-type <type>      Type of the main component.
                             {choices: application, firmware, library}
                             (default: application)
       --short-PURLs         Omit all qualifiers from PackageURLs.
@@ -410,23 +410,23 @@ The full documentation can be issued by running with ``requirements --help``:
       --schema-version <version>
                             DEPRECATED alias for "--spec-version"
       --sv <version>, --spec-version <version>
-                            The CycloneDX schema version for your SBOM
+                            Which version of CycloneDX to use.
                             {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
                             (default: 1.5)
       --output-reproducible
                             Whether to go the extra mile and make the output reproducible.
                             This might result in loss of time- and random-based-values.
       --of <format>, --output-format <format>
-                            The output format for your SBOM
+                            Which output format to use.
                             {choices: JSON, XML}
                             (default: JSON)
       --outfile <file>      DEPRECATED alias for "--output-file".
       -o <file>, --output-file <file>
-                            Output file path for your SBOM
+                            Path to the output file.
                             (set to "-" to output to STDOUT)
                             (default: -)
       --validate, --no-validate
-                            Whether validate the result before outputting
+                            Whether to validate resulting BOM before outputting.
                             (default: True)
       -v, --verbose         Increase the verbosity of messages
                             (multiple for more effect)

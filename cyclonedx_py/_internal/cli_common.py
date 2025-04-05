@@ -42,7 +42,7 @@ def add_argument_mc_type(p: 'ArgumentParser') -> 'Action':
                ComponentType.LIBRARY]
     return p.add_argument('--mc-type',
                           metavar='<type>',
-                          help='Type of the main component'
+                          help='Type of the main component.'
                                f' {{choices: {", ".join(t.value for t in choices)}}}'
                                ' (default: %(default)s)',
                           dest='mc_type',
