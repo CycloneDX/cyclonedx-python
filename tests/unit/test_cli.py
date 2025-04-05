@@ -76,7 +76,7 @@ class TestCli(TestCase, SnapshotMixin):
             command = Command(
                 logger=self.__make_fresh_logger(logs),
                 short_purls=short_purls,
-                schema_version=SchemaVersion.V1_4,
+                spec_version=SchemaVersion.V1_4,
                 output_format=OutputFormat.JSON,
                 should_validate=True,
                 output_reproducible=True,
@@ -100,7 +100,7 @@ class TestCli(TestCase, SnapshotMixin):
             command = Command(
                 logger=self.__make_fresh_logger(logs),
                 short_purls=False,
-                schema_version=SchemaVersion.V1_4,
+                spec_version=SchemaVersion.V1_4,
                 output_format=OutputFormat.JSON,
                 output_reproducible=False,
                 should_validate=True,
@@ -123,7 +123,7 @@ class TestCli(TestCase, SnapshotMixin):
             command = Command(
                 logger=self.__make_fresh_logger(logs, logging.WARNING),
                 short_purls=False,
-                schema_version=SchemaVersion.V1_4,
+                spec_version=SchemaVersion.V1_4,
                 output_format=OutputFormat.JSON,
                 should_validate=False,
                 output_reproducible=False,
