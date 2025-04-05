@@ -49,7 +49,8 @@ if sys.version_info >= (3, 9):
 else:
     BooleanOptionalAction = None
 
-OPTION_OUTPUT_STDOUT='-'
+OPTION_OUTPUT_STDOUT = '-'
+
 
 class Command:
     @classmethod
