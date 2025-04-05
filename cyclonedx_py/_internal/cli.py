@@ -222,14 +222,14 @@ class Command:
         ).validate_str(output)
         if validation_error:
             self._logger.debug('Validation Errors: %r', validation_error.data)
-            self._logger.error('The result is invalid to spec '
+            self._logger.error('The result is invalid to schema '
                                f'{self._spec_version.to_version()}/{self._output_format.name}')
             self._logger.warning('Please report the issue and provide all input data to: '
                                  'https://github.com/CycloneDX/cyclonedx-python/issues/new?'
                                  'template=ValidationError-report.md&'
                                  'labels=ValidationError&title=%5BValidationError%5D')
-            raise ValueError('result is spec-invalid')
-        self._logger.debug('result is spec-valid')
+            raise ValueError('result is schema-invalid')
+        self._logger.debug('result is schema-valid')
         return True
 
     def _write(self, output: str, outfile: TextIO) -> int:
