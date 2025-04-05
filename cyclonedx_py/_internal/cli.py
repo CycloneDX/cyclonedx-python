@@ -85,7 +85,7 @@ class Command:
                         default=SchemaVersion.V1_5.to_version())
         op.add_argument('--sv', '--spec-version',
                         metavar='<version>',
-                        help='The CycloneDX spec version for your SBOM'
+                        help='Which version of CycloneDX to use.'
                         f' {{choices: {", ".join(sorted((v.to_version() for v in SchemaVersion), reverse=True))}}}'
                         ' (default: %(default)s)',
                         dest='spec_version',
@@ -94,13 +94,13 @@ class Command:
                         default=SchemaVersion.V1_5.to_version())
         op.add_argument('--output-reproducible',
                         help='Whether to go the extra mile and make the output reproducible.\n'
-                        'This might result in loss of time- and random-based-values.',
+                        'This might result in loss of time- and random-based values.',
                         action='store_true',
                         dest='output_reproducible',
                         default=False)
         op.add_argument('--of', '--output-format',
                         metavar='<format>',
-                        help='The output format for your SBOM'
+                        help='Which output format to use.'
                         f' {choices4enum(OutputFormat)}'
                         ' (default: %(default)s)',
                         dest='output_format',
@@ -115,7 +115,7 @@ class Command:
                         default=OPTION_OUTPUT_STDOUT)
         op.add_argument('-o', '--output-file',
                         metavar='<file>',
-                        help='Output file path for your SBOM'
+                        help='Path to the output file.'
                         f' (set to "{OPTION_OUTPUT_STDOUT}" to output to <stdout>)'
                         ' (default: %(default)s)',
                         type=FileType('wt', encoding='utf8'),
@@ -123,7 +123,7 @@ class Command:
                         default=OPTION_OUTPUT_STDOUT)
         if BooleanOptionalAction:
             op.add_argument('--validate',
-                            help='Whether validate the result before outputting'
+                            help='Whether to validate resulting BOM before outputting.'
                                  ' (default: %(default)s)',
                             action=BooleanOptionalAction,
                             dest='should_validate',
@@ -131,13 +131,13 @@ class Command:
         else:
             vg = op.add_mutually_exclusive_group()
             vg.add_argument('--validate',
-                            help='Validate the result before outputting'
+                            help='Validate resulting BOM before outputting.'
                                  ' (default: %(default)s)',
                             action='store_true',
                             dest='should_validate',
                             default=True)
             vg.add_argument('--no-validate',
-                            help='Do not validate the result before outputting',
+                            help='Disable validation of resulting BOM.',
                             dest='should_validate',
                             action='store_false')
 
