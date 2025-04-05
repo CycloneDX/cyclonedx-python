@@ -17,7 +17,7 @@
 
 import logging
 import sys
-from argparse import ArgumentParser, FileType, RawDescriptionHelpFormatter, SUPPRESS as ARG_SUPPRESS
+from argparse import ArgumentParser, FileType, RawDescriptionHelpFormatter
 from itertools import chain
 from typing import TYPE_CHECKING, Any, Dict, List, NoReturn, Optional, Sequence, TextIO, Type, Union
 
