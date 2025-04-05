@@ -82,7 +82,7 @@ class TestCli(TestCase, SnapshotMixin):
                 output_reproducible=True,
                 _bbc=MyBBC
             )
-            command(outfile=outs)
+            command(output_file=outs)
 
             out = outs.getvalue()
 
@@ -109,7 +109,7 @@ class TestCli(TestCase, SnapshotMixin):
             command._make_output = Mock(return_value=r'["invalid to CDX schema"]')
 
             with self.assertRaisesRegex(ValueError, 'is schema-invalid'):
-                command(outfile=outs)
+                command(output_file=outs)
 
     def test_validation_skip_with_invalid(self) -> None:
         class MyBBC(BomBuilder):
@@ -131,7 +131,7 @@ class TestCli(TestCase, SnapshotMixin):
             )
             command._make_output = Mock(return_value=r'["invalid to CDX schema"]')
 
-            command(outfile=outs)
+            command(output_file=outs)
 
             log = logs.getvalue()
             out = outs.getvalue()

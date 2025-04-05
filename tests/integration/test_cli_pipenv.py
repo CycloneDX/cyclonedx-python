@@ -56,7 +56,7 @@ class TestCliPipenv(TestCase, SnapshotMixin):
             '-vvv',
             '--sv', sv.to_version(),
             '--of', of.name,
-            '--outfile=-',
+            '-o=-',
             'something-that-must-not-exist.testing')
         self.assertNotEqual(0, res, err)
         self.assertIn('Could not open lock file: something-that-must-not-exist.testing', err)
@@ -68,7 +68,7 @@ class TestCliPipenv(TestCase, SnapshotMixin):
             '-vvv',
             '--sv', sv.to_version(),
             '--of', of.name,
-            '--outfile=-',
+            '-o=-',
             '--pyproject=something-that-must-not-exist.testing',
             projectdir)
         self.assertNotEqual(0, res, err)
@@ -82,7 +82,7 @@ class TestCliPipenv(TestCase, SnapshotMixin):
             '--sv', sv.to_version(),
             '--of', of.name,
             '--output-reproducible',
-            '--outfile=-',
+            '-o=-',
             '--pyproject', join(projectdir, 'pyproject.toml'),
             projectdir)
         self.assertEqual(0, res, err)
@@ -96,7 +96,7 @@ class TestCliPipenv(TestCase, SnapshotMixin):
             '--sv', sv.to_version(),
             '--of', of.name,
             '--output-reproducible',
-            '--outfile=-',
+            '-o=-',
             '--categories', 'categoryB,groupA packages,dev-packages',
             projectdir)
         self.assertEqual(0, res, err)
@@ -110,7 +110,7 @@ class TestCliPipenv(TestCase, SnapshotMixin):
             '--sv', sv.to_version(),
             '--of', of.name,
             '--output-reproducible',
-            '--outfile=-',
+            '-o=-',
             '--dev',
             projectdir)
         self.assertEqual(0, res, err)
@@ -124,7 +124,7 @@ class TestCliPipenv(TestCase, SnapshotMixin):
             '--sv', sv.to_version(),
             '--of', of.name,
             '--output-reproducible',
-            '--outfile=-',
+            '-o=-',
             '--pypi-mirror', 'https://user:password@pypy-mirror.testing.acme.org/simple/',
             projectdir)
         self.assertEqual(0, res, err)

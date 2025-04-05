@@ -56,7 +56,7 @@ class TestCliPoetry(TestCase, SnapshotMixin):
             '-vvv',
             '--sv', sv.to_version(),
             '--of', of.name,
-            '--outfile=-',
+            '-o=-',
             'something-that-must-not-exist.testing')
         self.assertNotEqual(0, res, err)
         self.assertIn('Could not open pyproject file: something-that-must-not-exist.testing', err)
@@ -109,7 +109,7 @@ class TestCliPoetry(TestCase, SnapshotMixin):
             '--sv', sv.to_version(),
             '--of', of.name,
             '--output-reproducible',
-            '--outfile=-',
+            '-o=-',
             projectdir)
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'plain', projectdir, sv, of)
@@ -124,7 +124,7 @@ class TestCliPoetry(TestCase, SnapshotMixin):
             '--sv', sv.to_version(),
             '--of', of.name,
             '--output-reproducible',
-            '--outfile=-',
+            '-o=-',
             projectdir)
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'some-groups', projectdir, sv, of)
@@ -138,7 +138,7 @@ class TestCliPoetry(TestCase, SnapshotMixin):
             '--sv', sv.to_version(),
             '--of', of.name,
             '--output-reproducible',
-            '--outfile=-',
+            '-o=-',
             projectdir)
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'only-groups', projectdir, sv, of)
@@ -153,7 +153,7 @@ class TestCliPoetry(TestCase, SnapshotMixin):
             '--sv', sv.to_version(),
             '--of', of.name,
             '--output-reproducible',
-            '--outfile=-',
+            '-o=-',
             projectdir)
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'no-dev', projectdir, sv, of)
@@ -167,7 +167,7 @@ class TestCliPoetry(TestCase, SnapshotMixin):
             '--sv', sv.to_version(),
             '--of', of.name,
             '--output-reproducible',
-            '--outfile=-',
+            '-o=-',
             projectdir)
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'some-extras', projectdir, sv, of)
@@ -181,7 +181,7 @@ class TestCliPoetry(TestCase, SnapshotMixin):
             '--sv', sv.to_version(),
             '--of', of.name,
             '--output-reproducible',
-            '--outfile=-',
+            '-o=-',
             projectdir)
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'all-extras', projectdir, sv, of)

@@ -35,7 +35,7 @@ Example usage: save SBOM in CycloneDX 1.6 XML format, generated from current pyt
 
 .. code-block:: shell
 
-   cyclonedx-py environment --outfile my-sbom.xml --spec-version 1.6 --output-format XML
+   cyclonedx-py environment --spec-version 1.6 --output-format XML --output-file my-sbom.xml
 
 
 For Python (virtual) environment
@@ -81,7 +81,8 @@ The full documentation can be issued by running with ``environment --help``:
                             (default: application)
       --short-PURLs         Omit all qualifiers from PackageURLs.
                             This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
-      -o <file>, --outfile <file>
+      --outfile <file>      DEPRECATED alias for "--output-file".
+      -o <file>, --output-file <file>
                             Output file path for your SBOM
                             (set to "-" to output to STDOUT)
                             (default: -)
@@ -254,7 +255,8 @@ The full documentation can be issued by running with ``pipenv --help``:
                             (default: application)
       --short-PURLs         Omit all qualifiers from PackageURLs.
                             This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
-      -o <file>, --outfile <file>
+      --outfile <file>      DEPRECATED alias for "--output-file".
+      -o <file>, --output-file <file>
                             Output file path for your SBOM
                             (set to "-" to output to <stdout>)
                             (default: -)
@@ -331,7 +333,8 @@ The full documentation can be issued by running with ``poetry --help``:
                             (default: application)
       --short-PURLs         Omit all qualifiers from PackageURLs.
                             This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
-      -o <file>, --outfile <file>
+      --outfile <file>      DEPRECATED alias for "--output-file".
+      -o <file>, --output-file <file>
                             Output file path for your SBOM
                             (set to "-" to output to <stdout>)
                             (default: -)
@@ -404,7 +407,8 @@ The full documentation can be issued by running with ``requirements --help``:
                             (default: application)
       --short-PURLs         Omit all qualifiers from PackageURLs.
                             This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
-      -o <file>, --outfile <file>
+      --outfile <file>      DEPRECATED alias for "--output-file".
+      -o <file>, --output-file <file>
                             Output file path for your SBOM
                             (set to "-" to output to <stdout>)
                             (default: -)
