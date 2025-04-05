@@ -49,6 +49,8 @@ if sys.version_info >= (3, 9):
 else:
     BooleanOptionalAction = None
 
+OPTION_OUTPUT_STDOUT = '-'
+
 
 class Command:
     @classmethod
@@ -74,14 +76,20 @@ class Command:
                         action='store_true',
                         dest='short_purls',
                         default=False)
-        op.add_argument('-o', '--outfile',
+        op.add_argument('--outfile',  # DEPRECATED
+                        metavar='<file>',
+                        help='DEPRECATED alias for "--output-file".',
+                        type=FileType('wt', encoding='utf8'),
+                        dest='output_file',
+                        default=OPTION_OUTPUT_STDOUT)
+        op.add_argument('-o', '--output-file',
                         metavar='<file>',
                         help='Output file path for your SBOM'
-                             ' (set to "-" to output to <stdout>)'
+                             f' (set to "{OPTION_OUTPUT_STDOUT}" to output to <stdout>)'
                              ' (default: %(default)s)',
                         type=FileType('wt', encoding='utf8'),
-                        dest='outfile',
-                        default='-')
+                        dest='output_file',
+                        default=OPTION_OUTPUT_STDOUT)
         op.add_argument('--schema-version',  # DEPRECATED
                         metavar='<version>',
                         help='DEPRECATED alias for option "--spec-version".',
@@ -159,7 +167,7 @@ class Command:
         # the arg keywords from __init__()
         'logger', 'short_purls', 'output_format', 'spec_version', 'output_reproducible', 'should_validate',
         # the arg keywords from __call__()
-        'outfile'
+        'output_file'
     }
 
     @classmethod
@@ -232,10 +240,10 @@ class Command:
         self._logger.debug('result is schema-valid')
         return True
 
-    def _write(self, output: str, outfile: TextIO) -> int:
-        self._logger.info('Writing to: %s', outfile.name)
-        written = outfile.write(output)
-        self._logger.debug('Wrote %i bytes to %s', written, outfile.name)
+    def _write(self, output: str, output_file: TextIO) -> int:
+        self._logger.info('Writing to: %s', output_file.name)
+        written = output_file.write(output)
+        self._logger.debug('Wrote %i bytes to %s', written, output_file.name)
         return written
 
     def _make_output(self, bom: 'Bom') -> str:
@@ -259,14 +267,14 @@ class Command:
         return self._bbc(**self._clean_kwargs(kwargs))
 
     def __call__(self,
-                 outfile: TextIO,
+                 output_file: TextIO,
                  **kwargs: Any) -> None:
         bom = self._make_bom(**kwargs)
         self._shorten_purls(bom)
         output = self._make_output(bom)
         del bom
         self._validate(output)
-        self._write(output, outfile)
+        self._write(output, output_file)
 
 
 def run(*, argv: Optional[Sequence[str]] = None, **kwargs: Any) -> Union[int, NoReturn]:

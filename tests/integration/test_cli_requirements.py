@@ -67,7 +67,7 @@ class TestCliRequirements(TestCase, SnapshotMixin):
             '-vvv',
             '--sv', sv.to_version(),
             '--of', of.name,
-            '--outfile=-',
+            '-o=-',
             'something-that-must-not-exist.testing')
         self.assertNotEqual(0, res, err)
         self.assertIn('Could not open requirements file: something-that-must-not-exist.testing', err)
@@ -79,7 +79,7 @@ class TestCliRequirements(TestCase, SnapshotMixin):
             '-vvv',
             '--sv', sv.to_version(),
             '--of', of.name,
-            '--outfile=-',
+            '-o=-',
             '--pyproject=something-that-must-not-exist.testing',
             infile
         )
@@ -94,7 +94,7 @@ class TestCliRequirements(TestCase, SnapshotMixin):
             '--sv', sv.to_version(),
             '--of', of.name,
             '--output-reproducible',
-            '--outfile=-',
+            '-o=-',
             '--pyproject', pyproject_file,
             infile)
         self.assertEqual(0, res, err)
@@ -109,7 +109,7 @@ class TestCliRequirements(TestCase, SnapshotMixin):
                 '--sv', sv.to_version(),
                 '--of', of.name,
                 '--output-reproducible',
-                '--outfile=-',
+                '-o=-',
                 # no pyproject for this case
                 '-',
                 inp=inp)
@@ -127,7 +127,7 @@ class TestCliRequirements(TestCase, SnapshotMixin):
             '--sv', sv.to_version(),
             '--of', of.name,
             '--output-reproducible',
-            '--outfile=-',
+            '-o=-',
             '--pyproject', pyproject_file,
             infile)
         self.assertEqual(0, res, err)
