@@ -76,20 +76,6 @@ class Command:
                         action='store_true',
                         dest='short_purls',
                         default=False)
-        op.add_argument('--outfile',  # DEPRECATED
-                        metavar='<file>',
-                        help='DEPRECATED alias for "--output-file".',
-                        type=FileType('wt', encoding='utf8'),
-                        dest='output_file',
-                        default=OPTION_OUTPUT_STDOUT)
-        op.add_argument('-o', '--output-file',
-                        metavar='<file>',
-                        help='Output file path for your SBOM'
-                             f' (set to "{OPTION_OUTPUT_STDOUT}" to output to <stdout>)'
-                             ' (default: %(default)s)',
-                        type=FileType('wt', encoding='utf8'),
-                        dest='output_file',
-                        default=OPTION_OUTPUT_STDOUT)
         op.add_argument('--schema-version',  # DEPRECATED
                         metavar='<version>',
                         help='DEPRECATED alias for option "--spec-version".',
@@ -100,27 +86,41 @@ class Command:
         op.add_argument('--sv', '--spec-version',
                         metavar='<version>',
                         help='The CycloneDX spec version for your SBOM'
-                             f' {{choices: {", ".join(sorted((v.to_version() for v in SchemaVersion), reverse=True))}}}'
-                             ' (default: %(default)s)',
+                        f' {{choices: {", ".join(sorted((v.to_version() for v in SchemaVersion), reverse=True))}}}'
+                        ' (default: %(default)s)',
                         dest='spec_version',
                         choices=SchemaVersion,
                         type=SchemaVersion.from_version,
                         default=SchemaVersion.V1_5.to_version())
+        op.add_argument('--output-reproducible',
+                        help='Whether to go the extra mile and make the output reproducible.\n'
+                        'This might result in loss of time- and random-based-values.',
+                        action='store_true',
+                        dest='output_reproducible',
+                        default=False)
         op.add_argument('--of', '--output-format',
                         metavar='<format>',
                         help='The output format for your SBOM'
-                             f' {choices4enum(OutputFormat)}'
-                             ' (default: %(default)s)',
+                        f' {choices4enum(OutputFormat)}'
+                        ' (default: %(default)s)',
                         dest='output_format',
                         choices=OutputFormat,
                         type=argparse_type4enum(OutputFormat),
                         default=OutputFormat.JSON.name)
-        op.add_argument('--output-reproducible',
-                        help='Whether to go the extra mile and make the output reproducible.\n'
-                             'This might result in loss of time- and random-based-values.',
-                        action='store_true',
-                        dest='output_reproducible',
-                        default=False)
+        op.add_argument('--outfile',  # DEPRECATED
+                        metavar='<file>',
+                        help='DEPRECATED alias for "--output-file".',
+                        type=FileType('wt', encoding='utf8'),
+                        dest='output_file',
+                        default=OPTION_OUTPUT_STDOUT)
+        op.add_argument('-o', '--output-file',
+                        metavar='<file>',
+                        help='Output file path for your SBOM'
+                        f' (set to "{OPTION_OUTPUT_STDOUT}" to output to <stdout>)'
+                        ' (default: %(default)s)',
+                        type=FileType('wt', encoding='utf8'),
+                        dest='output_file',
+                        default=OPTION_OUTPUT_STDOUT)
         if BooleanOptionalAction:
             op.add_argument('--validate',
                             help='Whether validate the result before outputting'

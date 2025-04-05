@@ -81,24 +81,24 @@ The full documentation can be issued by running with ``environment --help``:
                             (default: application)
       --short-PURLs         Omit all qualifiers from PackageURLs.
                             This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
-      --outfile <file>      DEPRECATED alias for "--output-file".
-      -o <file>, --output-file <file>
-                            Output file path for your SBOM
-                            (set to "-" to output to STDOUT)
-                            (default: -)
       --schema-version <version>
                             DEPRECATED alias for "--spec-version"
       --sv <version>, --spec-version <version>
                             The CycloneDX schema version for your SBOM
                             {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
                             (default: 1.5)
+      --output-reproducible
+                            Whether to go the extra mile and make the output reproducible.
+                            This might result in loss of time- and random-based-values.
       --of <format>, --output-format <format>
                             The output format for your SBOM
                             {choices: JSON, XML}
                             (default: JSON)
-      --output-reproducible
-                            Whether to go the extra mile and make the output reproducible.
-                            This might result in loss of time- and random-based-values.
+      --outfile <file>      DEPRECATED alias for "--output-file".
+      -o <file>, --output-file <file>
+                            Output file path for your SBOM
+                            (set to "-" to output to STDOUT)
+                            (default: -)
       --validate, --no-validate
                             Whether validate the result before outputting
                             (default: True)
@@ -255,24 +255,24 @@ The full documentation can be issued by running with ``pipenv --help``:
                             (default: application)
       --short-PURLs         Omit all qualifiers from PackageURLs.
                             This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
-      --outfile <file>      DEPRECATED alias for "--output-file".
-      -o <file>, --output-file <file>
-                            Output file path for your SBOM
-                            (set to "-" to output to <stdout>)
-                            (default: -)
       --schema-version <version>
                             DEPRECATED alias for "--spec-version"
       --sv <version>, --spec-version <version>
                             The CycloneDX schema version for your SBOM
                             {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
                             (default: 1.5)
+      --output-reproducible
+                            Whether to go the extra mile and make the output reproducible.
+                            This might result in loss of time- and random-based-values.
       --of <format>, --output-format <format>
                             The output format for your SBOM
                             {choices: JSON, XML}
                             (default: JSON)
-      --output-reproducible
-                            Whether to go the extra mile and make the output reproducible.
-                            This might result in loss of time- and random-based-values.
+      --outfile <file>      DEPRECATED alias for "--output-file".
+      -o <file>, --output-file <file>
+                            Output file path for your SBOM
+                            (set to "-" to output to STDOUT)
+                            (default: -)
       --validate, --no-validate
                             Whether validate the result before outputting
                             (default: True)
@@ -333,24 +333,24 @@ The full documentation can be issued by running with ``poetry --help``:
                             (default: application)
       --short-PURLs         Omit all qualifiers from PackageURLs.
                             This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
-      --outfile <file>      DEPRECATED alias for "--output-file".
-      -o <file>, --output-file <file>
-                            Output file path for your SBOM
-                            (set to "-" to output to <stdout>)
-                            (default: -)
       --schema-version <version>
                             DEPRECATED alias for "--spec-version"
       --sv <version>, --spec-version <version>
                             The CycloneDX schema version for your SBOM
                             {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
                             (default: 1.5)
+      --output-reproducible
+                            Whether to go the extra mile and make the output reproducible.
+                            This might result in loss of time- and random-based-values.
       --of <format>, --output-format <format>
                             The output format for your SBOM
                             {choices: JSON, XML}
                             (default: JSON)
-      --output-reproducible
-                            Whether to go the extra mile and make the output reproducible.
-                            This might result in loss of time- and random-based-values.
+      --outfile <file>      DEPRECATED alias for "--output-file".
+      -o <file>, --output-file <file>
+                            Output file path for your SBOM
+                            (set to "-" to output to STDOUT)
+                            (default: -)
       --validate, --no-validate
                             Whether validate the result before outputting
                             (default: True)
@@ -407,24 +407,24 @@ The full documentation can be issued by running with ``requirements --help``:
                             (default: application)
       --short-PURLs         Omit all qualifiers from PackageURLs.
                             This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
-      --outfile <file>      DEPRECATED alias for "--output-file".
-      -o <file>, --output-file <file>
-                            Output file path for your SBOM
-                            (set to "-" to output to <stdout>)
-                            (default: -)
       --schema-version <version>
                             DEPRECATED alias for "--spec-version"
       --sv <version>, --spec-version <version>
                             The CycloneDX schema version for your SBOM
                             {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
                             (default: 1.5)
+      --output-reproducible
+                            Whether to go the extra mile and make the output reproducible.
+                            This might result in loss of time- and random-based-values.
       --of <format>, --output-format <format>
                             The output format for your SBOM
                             {choices: JSON, XML}
                             (default: JSON)
-      --output-reproducible
-                            Whether to go the extra mile and make the output reproducible.
-                            This might result in loss of time- and random-based-values.
+      --outfile <file>      DEPRECATED alias for "--output-file".
+      -o <file>, --output-file <file>
+                            Output file path for your SBOM
+                            (set to "-" to output to STDOUT)
+                            (default: -)
       --validate, --no-validate
                             Whether validate the result before outputting
                             (default: True)
