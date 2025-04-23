@@ -1,0 +1,9 @@
+[build-system]
+# Known broken version
+requires = ["setuptools == 78.1.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "badlic"
+version = "0.1"
+dependencies = ["badlicdepends"]

@@ -1,0 +1,58 @@
+{
+  "components": [
+    {
+      "bom-ref": "badlicdepends==0.1",
+      "externalReferences": [
+        {
+          "comment": "PackageSource: Local",
+          "type": "distribution",
+          "url": "file://.../tests/_data/infiles/environment/with-license-bad-file-recoverable/badlicdepends"
+        }
+      ],
+      "name": "badlicdepends",
+      "type": "library",
+      "version": "0.1"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "badlicdepends==0.1"
+    },
+    {
+      "dependsOn": [
+        "badlicdepends==0.1"
+      ],
+      "ref": "root-component"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "root-component",
+      "name": "badlic",
+      "type": "application",
+      "version": "0.1"
+    },
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": [
+      {
+        "name": "cyclonedx-py",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.3a.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.3"
+}
