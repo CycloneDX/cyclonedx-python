@@ -2,6 +2,15 @@
 
 
 
+## v5.5.0 (2025-04-23)
+
+### Feature
+
+* feat: support runtime-dependency `packaging ^25` (#882)
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`4fa5a35`](https://github.com/CycloneDX/cyclonedx-python/commit/4fa5a35ad8419f352c2436f86efd070b8729c5af))
+
+
 ## v5.4.0 (2025-04-23)
 
 ### Documentation
