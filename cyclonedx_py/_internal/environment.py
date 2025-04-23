@@ -17,6 +17,7 @@
 
 
 from argparse import OPTIONAL, ArgumentParser
+from collections.abc import Iterable
 from importlib.metadata import distributions
 from json import loads
 from os import getcwd, name as os_name
@@ -24,7 +25,7 @@ from os.path import exists, isdir, join
 from subprocess import run  # nosec
 from sys import path as sys_path
 from textwrap import dedent
-from typing import TYPE_CHECKING, Any, Dict, Iterable, List, Optional, Tuple
+from typing import TYPE_CHECKING, Any, Optional
 
 from cyclonedx.model import Property
 from cyclonedx.model.component import Component, ComponentEvidence, ComponentType
@@ -46,7 +47,7 @@ if TYPE_CHECKING:  # pragma: no cover
 
     from .utils.pep610 import PackageSource
 
-    T_AllComponents = Dict[str, Tuple['Component', Iterable[Requirement]]]
+    T_AllComponents = dict[str, tuple['Component', Iterable[Requirement]]]
 
 
 class EnvironmentBB(BomBuilder):
@@ -155,7 +156,7 @@ class EnvironmentBB(BomBuilder):
             root_d = tuple(pyproject2dependencies(pyproject))
             rc = (root_c, root_d)
 
-        path: List[str]
+        path: list[str]
         if python:
             path = self.__path4python(python)
         else:
@@ -168,7 +169,7 @@ class EnvironmentBB(BomBuilder):
         return bom
 
     def __add_components(self, bom: 'Bom',
-                         rc: Optional[Tuple['Component', Iterable['Requirement']]],
+                         rc: Optional[tuple['Component', Iterable['Requirement']]],
                          **kwargs: Any) -> None:
         all_components: 'T_AllComponents' = {}
         self._logger.debug('distribution context args: %r', kwargs)
@@ -229,7 +230,7 @@ class EnvironmentBB(BomBuilder):
 
     def __finalize_dependencies(self, bom: 'Bom', all_components: 'T_AllComponents') -> None:
         for component, requires in all_components.values():
-            component_deps: List[Component] = []
+            component_deps: list[Component] = []
             for req in requires:
                 req_component: Optional[Component] = all_components.get(normalize_packagename(req.name), (None,))[0]
                 if req_component is None:
@@ -297,7 +298,7 @@ class EnvironmentBB(BomBuilder):
             raise ValueError(f'Failed to find python in directory: {value}')
         return value
 
-    def __path4python(self, python: str) -> List[str]:
+    def __path4python(self, python: str) -> list[str]:
         cmd = self.__py_interpreter(python), '-c', 'import json,sys;json.dump(sys.path,sys.stdout)'
         self._logger.debug('fetch `path` from python interpreter cmd: %r', cmd)
         res = run(cmd, capture_output=True, encoding='utf8', shell=False)  # nosec

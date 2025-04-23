@@ -15,8 +15,9 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
+from collections.abc import Generator
 from re import compile as re_compile
-from typing import TYPE_CHECKING, Generator, List
+from typing import TYPE_CHECKING
 
 from cyclonedx.exception.model import InvalidUriException
 from cyclonedx.factory.license import LicenseFactory

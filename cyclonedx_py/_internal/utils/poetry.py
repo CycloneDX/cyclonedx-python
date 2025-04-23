@@ -21,8 +21,9 @@ Functionality related to poetry manifest.
 See https://python-poetry.org/docs/pyproject/
 """
 
+from collections.abc import Generator
 from itertools import chain
-from typing import TYPE_CHECKING, Any, Dict, Generator, List
+from typing import TYPE_CHECKING, Any
 
 from cyclonedx.exception.model import InvalidUriException
 from cyclonedx.factory.license import LicenseFactory
@@ -39,7 +40,7 @@ if TYPE_CHECKING:
     from cyclonedx.model.license import License
 
 
-def poetry2extrefs(poetry: Dict[str, Any]) -> Generator['ExternalReference', None, None]:
+def poetry2extrefs(poetry: dict[str, Any]) -> Generator['ExternalReference', None, None]:
     for ers, ert in (
         ('homepage', ExternalReferenceType.WEBSITE),
         ('repository', ExternalReferenceType.VCS),
@@ -62,8 +63,8 @@ def poetry2extrefs(poetry: Dict[str, Any]) -> Generator['ExternalReference', Non
             pass
 
 
-def poetry2component(poetry: Dict[str, Any], *, ctype: 'ComponentType') -> 'Component':
-    licenses: List['License'] = []
+def poetry2component(poetry: dict[str, Any], *, ctype: 'ComponentType') -> 'Component':
+    licenses: list['License'] = []
     lfac = LicenseFactory()
     lack = LicenseAcknowledgement.DECLARED
     if 'classifiers' in poetry:
@@ -85,7 +86,7 @@ def poetry2component(poetry: Dict[str, Any], *, ctype: 'ComponentType') -> 'Comp
     )
 
 
-def poetry2dependencies(poetry: Dict[str, Any]) -> Generator['Requirement', None, None]:
+def poetry2dependencies(poetry: dict[str, Any]) -> Generator['Requirement', None, None]:
 
     for name, spec in chain(
         poetry.get('dependencies', {}).items(),

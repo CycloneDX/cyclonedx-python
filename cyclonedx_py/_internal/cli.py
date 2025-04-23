@@ -18,8 +18,9 @@
 import logging
 import sys
 from argparse import ArgumentParser, BooleanOptionalAction, FileType, RawDescriptionHelpFormatter
+from collections.abc import Sequence
 from itertools import chain
-from typing import TYPE_CHECKING, Any, Dict, List, NoReturn, Optional, Sequence, TextIO, Type, Union
+from typing import TYPE_CHECKING, Any, NoReturn, Optional, TextIO, Union
 
 from cyclonedx.model import Property
 from cyclonedx.output import make_outputter
@@ -119,9 +120,9 @@ class Command:
                         dest='should_validate',
                         default=True)
 
-        scbbc: Type['BomBuilder']
+        scbbc: type['BomBuilder']
         sct: str
-        scta: List[str]
+        scta: list[str]
         for scbbc, sct, *scta in (
             (EnvironmentBB, 'environment', 'env', 'venv'),
             (RequirementsBB, 'requirements'),
@@ -149,7 +150,7 @@ class Command:
     }
 
     @classmethod
-    def _clean_kwargs(cls, kwargs: Dict[str, Any]) -> Dict[str, Any]:
+    def _clean_kwargs(cls, kwargs: dict[str, Any]) -> dict[str, Any]:
         return {k: kwargs[k] for k in kwargs if k not in cls.__OWN_ARGS}
 
     def __init__(self, *,
@@ -159,7 +160,7 @@ class Command:
                  spec_version: SchemaVersion,
                  output_reproducible: bool,
                  should_validate: bool,
-                 _bbc: Type['BomBuilder'],
+                 _bbc: type['BomBuilder'],
                  **kwargs: Any) -> None:
         self._logger = logger
         self._short_purls = short_purls

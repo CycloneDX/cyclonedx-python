@@ -17,13 +17,14 @@
 
 
 from argparse import ArgumentTypeError
+from collections.abc import Callable
 from enum import Enum
-from typing import Callable, List, Type, TypeVar
+from typing import TypeVar
 
 _E = TypeVar('_E', bound=Enum)
 
 
-def argparse_type4enum(enum: Type[_E]) -> Callable[[str], _E]:
+def argparse_type4enum(enum: type[_E]) -> Callable[[str], _E]:
     def str2case(value: str) -> _E:
         try:
             return enum[value.upper()]
@@ -33,12 +34,12 @@ def argparse_type4enum(enum: Type[_E]) -> Callable[[str], _E]:
     return str2case
 
 
-def choices4enum(enum: Type[Enum]) -> str:
+def choices4enum(enum: type[Enum]) -> str:
     return f'{{choices: {", ".join(sorted(c.name for c in enum))}}}'
 
 
-def arparse_split(*seps: str) -> Callable[[str], List[str]]:
-    def str_split(value: str) -> List[str]:
+def arparse_split(*seps: str) -> Callable[[str], list[str]]:
+    def str_split(value: str) -> list[str]:
         sep = seps[0]
         for s in seps[1:]:
             value = value.replace(s, sep)
