@@ -43,7 +43,7 @@ def metadata2licenses(metadata: 'PackageMetadata') -> Generator['License', None,
     lack = LicenseAcknowledgement.DECLARED
     if 'Classifier' in metadata:
         # see spec: https://packaging.python.org/en/latest/specifications/core-metadata/#classifier-multiple-use
-        classifiers: List[str] = metadata.get_all('Classifier')  # type:ignore[assignment]
+        classifiers: list[str] = metadata.get_all('Classifier')  # type:ignore[assignment]
         yield from classifiers2licenses(classifiers, lfac, lack)
     for mlicense in set(metadata.get_all('License', ())):
         # see spec: https://packaging.python.org/en/latest/specifications/core-metadata/#license
