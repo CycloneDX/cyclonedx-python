@@ -23,12 +23,13 @@ See https://peps.python.org/pep-0639/
 
 from base64 import b64encode
 from os.path import join
-from typing import TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING, Generator, Set, Union
 
 from cyclonedx.factory.license import LicenseFactory
 from cyclonedx.model import AttachedText, Encoding
 from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
 
+from .io import io2str
 from .mimetypes import guess_type
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -38,43 +39,110 @@ if TYPE_CHECKING:  # pragma: no cover
     from cyclonedx.model.license import License
 
 
+def handle_bad_license_file_encoding(
+    dist: 'Distribution',
+    lfile: str,
+    logger: 'Logger'
+) -> Union[str, None]:
+
+    def try_load(dist: 'Distribution', metadir: str, filename: str) -> Union[str, None]:
+        # Might raise NotImplementedError in theory
+        # but nothing we can do in that case.
+        try:
+            candidate = dist.locate_file(join(metadir, filename))
+        except NotImplementedError:
+            return None
+
+        if not candidate:
+            return None
+
+        try:
+            with open(str(candidate), 'rb') as fin:
+                return io2str(fin)
+        except FileNotFoundError:
+            pass
+        return None
+
+    # Distribution has no method to find the actual metadata dir,
+    # e.g. dist-info or egg-info.
+    # So we mimic the logic in PathDistribution and check both subdirs
+    content: Union[str, None] = None
+    for metadir in ('.dist-info', '.egg-info'):
+        content = try_load(dist, metadir, lfile)
+        if content:
+            break
+
+    if content is None:
+        logger.debug('Error: license file %r for dist %r is not UTF-8 encoded',
+                     lfile, dist.metadata['Name'])
+    return content
+
+
+def gather_license_texts(
+    dist: 'Distribution',
+    lfiles: Set[str],
+    logger: 'Logger'
+) -> Generator['License', None, None]:
+    lack = LicenseAcknowledgement.DECLARED
+    for mlfile in lfiles:
+        # see spec: https://peps.python.org/pep-0639/#add-license-file-field
+        # latest spec rev: https://discuss.python.org/t/pep-639-round-3-improving-license-clarity-with-better-package-metadata/53020  # noqa: E501
+
+        # per spec > license files are stored in the `.dist-info/licenses/` subdirectory of the produced wheel.
+        # but in practice, other locations are used, too.
+        # loop over the candidate location and pick the first one found.
+        locations = ('licenses', 'license_files', '.')
+        malformed = None
+        content = None
+        for loc in locations:
+            try:
+                path = join(loc, mlfile)
+                content = dist.read_text(path)
+            except UnicodeDecodeError:
+                # Malformed, stop looking
+                malformed = path
+                break
+
+            if content is not None:
+                break
+
+        if content is None and malformed:  # pragma: no cover
+            # Try a little harder
+            content = handle_bad_license_file_encoding(dist, malformed, logger)
+
+        if content is None:  # pragme: no cover
+            logger.debug('Error: failed to read license file %r for dist %r',
+                         mlfile, dist.metadata['Name'])
+            continue
+
+        encoding = None
+        content_type = guess_type(mlfile) or AttachedText.DEFAULT_CONTENT_TYPE
+        # per default, license files are human-readable texts.
+        if not content_type.startswith('text/'):
+            encoding = Encoding.BASE_64
+            content = b64encode(content.encode('utf-8')).decode('ascii')
+        yield DisjunctiveLicense(
+            name=f'declared license file: {mlfile}',
+            acknowledgement=lack,
+            text=AttachedText(
+                content=content,
+                encoding=encoding,
+                content_type=content_type
+            ))
+
+
 def dist2licenses(
     dist: 'Distribution',
     gather_text: bool,
     logger: 'Logger'
 ) -> Generator['License', None, None]:
-    lfac = LicenseFactory()
-    lack = LicenseAcknowledgement.DECLARED
     metadata = dist.metadata  # see https://packaging.python.org/en/latest/specifications/core-metadata/
     if (lexp := metadata['License-Expression']) is not None:
+        lfac = LicenseFactory()
+        lack = LicenseAcknowledgement.DECLARED
         # see spec: https://peps.python.org/pep-0639/#add-license-expression-field
         yield lfac.make_from_string(lexp,
                                     license_acknowledgement=lack)
-    if gather_text:
-        for mlfile in set(metadata.get_all('License-File', ())):
-            # see spec: https://peps.python.org/pep-0639/#add-license-file-field
-            # latest spec rev: https://discuss.python.org/t/pep-639-round-3-improving-license-clarity-with-better-package-metadata/53020  # noqa: E501
-
-            # per spec > license files are stored in the `.dist-info/licenses/` subdirectory of the produced wheel.
-            # but in practice, other locations are used, too.
-            content = dist.read_text(join('licenses', mlfile)) \
-                or dist.read_text(join('license_files', mlfile)) \
-                or dist.read_text(mlfile)
-            if content is None:  # pragma: no cover
-                logger.debug('Error: failed to read license file %r for dist %r',
-                             mlfile, metadata['Name'])
-                continue
-            encoding = None
-            content_type = guess_type(mlfile) or AttachedText.DEFAULT_CONTENT_TYPE
-            # per default, license files are human-readable texts.
-            if not content_type.startswith('text/'):
-                encoding = Encoding.BASE_64
-                content = b64encode(content.encode('utf-8')).decode('ascii')
-            yield DisjunctiveLicense(
-                name=f'declared license file: {mlfile}',
-                acknowledgement=lack,
-                text=AttachedText(
-                    content=content,
-                    encoding=encoding,
-                    content_type=content_type
-                ))
+    if gather_text and (lfiles := set(str(fn) for fn in metadata.get_all('License-File', ()))):
+        for lic in gather_license_texts(dist, lfiles, logger):
+            yield lic
