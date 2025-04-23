@@ -17,7 +17,7 @@
 
 import logging
 import sys
-from argparse import ArgumentParser, FileType, RawDescriptionHelpFormatter
+from argparse import ArgumentParser, BooleanOptionalAction, FileType, RawDescriptionHelpFormatter
 from itertools import chain
 from typing import TYPE_CHECKING, Any, Dict, List, NoReturn, Optional, Sequence, TextIO, Type, Union
 
@@ -35,19 +35,10 @@ from .requirements import RequirementsBB
 from .utils.args import argparse_type4enum, choices4enum
 
 if TYPE_CHECKING:  # pragma: no cover
-    from argparse import Action
-
     from cyclonedx.model.bom import Bom
     from cyclonedx.model.component import Component
 
     from . import BomBuilder
-
-    BooleanOptionalAction: Optional[Type[Action]]
-
-if sys.version_info >= (3, 9):
-    from argparse import BooleanOptionalAction
-else:
-    BooleanOptionalAction = None
 
 OPTION_OUTPUT_STDOUT = '-'
 
@@ -121,25 +112,12 @@ class Command:
                         type=FileType('wt', encoding='utf8'),
                         dest='output_file',
                         default=OPTION_OUTPUT_STDOUT)
-        if BooleanOptionalAction:
-            op.add_argument('--validate',
-                            help='Whether to validate resulting BOM before outputting.'
-                                 ' (default: %(default)s)',
-                            action=BooleanOptionalAction,
-                            dest='should_validate',
-                            default=True)
-        else:
-            vg = op.add_mutually_exclusive_group()
-            vg.add_argument('--validate',
-                            help='Validate resulting BOM before outputting.'
-                                 ' (default: %(default)s)',
-                            action='store_true',
-                            dest='should_validate',
-                            default=True)
-            vg.add_argument('--no-validate',
-                            help='Disable validation of resulting BOM.',
-                            dest='should_validate',
-                            action='store_false')
+        op.add_argument('--validate',
+                        help='Whether to validate resulting BOM before outputting.'
+                             ' (default: %(default)s)',
+                        action=BooleanOptionalAction,
+                        dest='should_validate',
+                        default=True)
 
         scbbc: Type['BomBuilder']
         sct: str
