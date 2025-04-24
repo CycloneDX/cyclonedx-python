@@ -74,7 +74,8 @@ def main() -> None:
         # with expression-like License AND License-File
         'cryptography==43.0.1',  # https://github.com/CycloneDX/cyclonedx-python/issues/826
         # with possibly unexpected license files
-        "../../_helpers/local_pckages/with-license-pep639_regression-issue868",  # https://github.com/CycloneDX/cyclonedx-python/issues/868
+        # https://github.com/CycloneDX/cyclonedx-python/issues/868
+        "../../_helpers/local_pckages/with-license-pep639_regression-issue868",
     )
 
 

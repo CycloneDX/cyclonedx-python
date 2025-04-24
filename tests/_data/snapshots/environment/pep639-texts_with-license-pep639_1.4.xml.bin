@@ -1311,6 +1311,22 @@ The isoschematron implementation uses several XSL and RelaxNG resources:
           <text content-type="application/rtf" encoding="base64">e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcbm91aWNvbXBhdFxkZWZsYW5nMTAzMXtcZm9udHRibHtcZjBcZm5pbFxmY2hhcnNldDAgQ2FsaWJyaTt9fQp7XCpcZ2VuZXJhdG9yIFJpY2hlZDIwIDEwLjAuMTkwNDF9XHZpZXdraW5kNFx1YzEgClxwYXJkXHNhMjAwXHNsMjc2XHNsbXVsdDFcZjBcZnMyMlxsYW5nNyBSVEYgTGljZW5zZSBGaWxlXHBhcgp9CgA=</text>
         </license>
         <license>
+          <name>declared license file: my_licenses/utf-16be_withBOM.txt</name>
+          <text content-type="text/plain">this file is
+utf-16be encoded
+with BOM
+😃
+</text>
+        </license>
+        <license>
+          <name>declared license file: my_licenses/utf-16le_withBOM.txt</name>
+          <text content-type="text/plain">this file is
+utf-16le encoded
+with BOM
+😃
+</text>
+        </license>
+        <license>
           <name>declared license file: my_licenses/utf-8_noBOM.txt</name>
           <text content-type="text/plain">this file is
 utf-8 encoded
