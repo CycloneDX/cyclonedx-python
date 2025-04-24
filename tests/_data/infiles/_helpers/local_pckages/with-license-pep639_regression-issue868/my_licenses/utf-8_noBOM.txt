@@ -1,0 +1,4 @@
+this file is
+utf-8 encoded
+without BOM
+😃

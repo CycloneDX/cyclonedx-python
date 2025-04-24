@@ -30,6 +30,7 @@ from cyclonedx.factory.license import LicenseFactory
 from cyclonedx.model import AttachedText, Encoding
 from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
 
+from .bytes import bytes2str
 from .mimetypes import guess_type
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -37,6 +38,10 @@ if TYPE_CHECKING:  # pragma: no cover
     from logging import Logger
 
     from cyclonedx.model.license import License
+
+# per spec > license files are stored in the `.dist-info/licenses/` subdirectory of the produced wheel.
+# but in practice, other locations are used, too.
+_LICENSE_LOCATIONS = ('licenses', 'license_files', '')
 
 
 def dist2licenses(
@@ -55,12 +60,20 @@ def dist2licenses(
         for mlfile in set(metadata.get_all('License-File', ())):
             # see spec: https://peps.python.org/pep-0639/#add-license-file-field
             # latest spec rev: https://discuss.python.org/t/pep-639-round-3-improving-license-clarity-with-better-package-metadata/53020  # noqa: E501
-
-            # per spec > license files are stored in the `.dist-info/licenses/` subdirectory of the produced wheel.
-            # but in practice, other locations are used, too.
-            content = dist.read_text(join('licenses', mlfile)) \
-                or dist.read_text(join('license_files', mlfile)) \
-                or dist.read_text(mlfile)
+            content = None
+            for mlpath in _LICENSE_LOCATIONS:
+                try:
+                    content = dist.read_text(join(mlpath, mlfile))
+                except UnicodeDecodeError as err:
+                    try:
+                        content = bytes2str(err.object)
+                    except UnicodeDecodeError:
+                        pass
+                    else:
+                        break  # for-loop
+                else:
+                    if content is not None:
+                        break  # for-loop
             if content is None:  # pragma: no cover
                 logger.debug('Error: failed to read license file %r for dist %r',
                              mlfile, metadata['Name'])

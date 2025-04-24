@@ -1,0 +1,16 @@
+[build-system]
+# Known broken version
+requires = ["setuptools == 78.1.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "regression-issue868"
+version = "0.1"
+license-files = ["my_licenses/*"]
+readme = "README.md"
+
+[tool.setuptools]
+include-package-data = false
+exclude-package-data = { "*" = ["*", "**"] }
+[tool.setuptools.package-data]
+# do not want any content installed
