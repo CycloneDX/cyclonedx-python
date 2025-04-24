@@ -34,6 +34,7 @@ _MAP_EXT_MIME = {
     '.license': _MIME_TEXT_PLAIN,
     '.licence': _MIME_TEXT_PLAIN,
     # add more mime types. pull-requests welcome!
+    '.rtf': 'application/rtf',  # `text/rtf` could be used, but application fits better
 }
 
 _LICENSE_FNAME_BASE = ('licence', 'license')
