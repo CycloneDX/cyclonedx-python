@@ -74,7 +74,7 @@ class Command:
                         dest='spec_version',
                         choices=SchemaVersion,
                         type=SchemaVersion.from_version,
-                        default=SchemaVersion.V1_5.to_version())
+                        default=SchemaVersion.V1_6.to_version())
         op.add_argument('--sv', '--spec-version',
                         metavar='<version>',
                         help='Which version of CycloneDX to use.'
@@ -83,7 +83,7 @@ class Command:
                         dest='spec_version',
                         choices=SchemaVersion,
                         type=SchemaVersion.from_version,
-                        default=SchemaVersion.V1_5.to_version())
+                        default=SchemaVersion.V1_6.to_version())
         op.add_argument('--output-reproducible',
                         help='Whether to go the extra mile and make the output reproducible.\n'
                         'This might result in loss of time- and random-based values.',
