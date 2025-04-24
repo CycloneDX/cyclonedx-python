@@ -35,7 +35,7 @@ Example usage: save SBOM in CycloneDX 1.6 XML format, generated from current pyt
 
 .. code-block:: shell
 
-   cyclonedx-py environment --outfile my-sbom.xml --schema-version 1.6 --output-format XML
+   cyclonedx-py environment --spec-version 1.6 --output-format XML --output-file my-sbom.xml
 
 
 For Python (virtual) environment
@@ -76,28 +76,31 @@ The full documentation can be issued by running with ``environment --help``:
                             Enable license text gathering.
       --pyproject <file>    Path to the root component's `pyproject.toml` file.
                             This should point to a file compliant with PEP 621 (storing project metadata).
-      --mc-type <type>      Type of the main component
+      --mc-type <type>      Type of the main component.
                             {choices: application, firmware, library}
                             (default: application)
       --short-PURLs         Omit all qualifiers from PackageURLs.
                             This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
-      -o <file>, --outfile <file>
-                            Output file path for your SBOM
-                            (set to "-" to output to STDOUT)
-                            (default: -)
-      --sv <version>, --schema-version <version>
-                            The CycloneDX schema version for your SBOM
+      --schema-version <version>
+                            DEPRECATED alias for "--spec-version"
+      --sv <version>, --spec-version <version>
+                            Which version of CycloneDX to use.
                             {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
                             (default: 1.5)
-      --of <format>, --output-format <format>
-                            The output format for your SBOM
-                            {choices: JSON, XML}
-                            (default: JSON)
       --output-reproducible
                             Whether to go the extra mile and make the output reproducible.
                             This might result in loss of time- and random-based-values.
+      --of <format>, --output-format <format>
+                            Which output format to use.
+                            {choices: JSON, XML}
+                            (default: JSON)
+      --outfile <file>      DEPRECATED alias for "--output-file".
+      -o <file>, --output-file <file>
+                            Path to the output file.
+                            (set to "-" to output to STDOUT)
+                            (default: -)
       --validate, --no-validate
-                            Whether validate the result before outputting
+                            Whether to validate resulting BOM before outputting.
                             (default: True)
       -v, --verbose         Increase the verbosity of messages
                             (multiple for more effect)
@@ -247,28 +250,31 @@ The full documentation can be issued by running with ``pipenv --help``:
                             [env var: PIPENV_PYPI_MIRROR]
       --pyproject <file>    Path to the root component's `pyproject.toml` file.
                             This should point to a file compliant with PEP 621 (storing project metadata).
-      --mc-type <type>      Type of the main component
+      --mc-type <type>      Type of the main component.
                             {choices: application, firmware, library}
                             (default: application)
       --short-PURLs         Omit all qualifiers from PackageURLs.
                             This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
-      -o <file>, --outfile <file>
-                            Output file path for your SBOM
-                            (set to "-" to output to <stdout>)
-                            (default: -)
-      --sv <version>, --schema-version <version>
-                            The CycloneDX schema version for your SBOM
+      --schema-version <version>
+                            DEPRECATED alias for "--spec-version"
+      --sv <version>, --spec-version <version>
+                            Which version of CycloneDX to use.
                             {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
                             (default: 1.5)
-      --of <format>, --output-format <format>
-                            The output format for your SBOM
-                            {choices: JSON, XML}
-                            (default: JSON)
       --output-reproducible
                             Whether to go the extra mile and make the output reproducible.
                             This might result in loss of time- and random-based-values.
+      --of <format>, --output-format <format>
+                            Which output format to use.
+                            {choices: JSON, XML}
+                            (default: JSON)
+      --outfile <file>      DEPRECATED alias for "--output-file".
+      -o <file>, --output-file <file>
+                            Path to the output file.
+                            (set to "-" to output to STDOUT)
+                            (default: -)
       --validate, --no-validate
-                            Whether validate the result before outputting
+                            Whether to validate resulting BOM before outputting.
                             (default: True)
       -v, --verbose         Increase the verbosity of messages
                             (multiple for more effect)
@@ -322,28 +328,31 @@ The full documentation can be issued by running with ``poetry --help``:
                             (multiple values allowed)
       --all-extras          Include all extra dependencies
                             (default: False)
-      --mc-type <type>      Type of the main component
+      --mc-type <type>      Type of the main component.
                             {choices: application, firmware, library}
                             (default: application)
       --short-PURLs         Omit all qualifiers from PackageURLs.
                             This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
-      -o <file>, --outfile <file>
-                            Output file path for your SBOM
-                            (set to "-" to output to <stdout>)
-                            (default: -)
-      --sv <version>, --schema-version <version>
-                            The CycloneDX schema version for your SBOM
+      --schema-version <version>
+                            DEPRECATED alias for "--spec-version"
+      --sv <version>, --spec-version <version>
+                            Which version of CycloneDX to use.
                             {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
                             (default: 1.5)
-      --of <format>, --output-format <format>
-                            The output format for your SBOM
-                            {choices: JSON, XML}
-                            (default: JSON)
       --output-reproducible
                             Whether to go the extra mile and make the output reproducible.
                             This might result in loss of time- and random-based-values.
+      --of <format>, --output-format <format>
+                            Which output format to use.
+                            {choices: JSON, XML}
+                            (default: JSON)
+      --outfile <file>      DEPRECATED alias for "--output-file".
+      -o <file>, --output-file <file>
+                            Path to the output file.
+                            (set to "-" to output to STDOUT)
+                            (default: -)
       --validate, --no-validate
-                            Whether validate the result before outputting
+                            Whether to validate resulting BOM before outputting.
                             (default: True)
       -v, --verbose         Increase the verbosity of messages
                             (multiple for more effect)
@@ -393,28 +402,31 @@ The full documentation can be issued by running with ``requirements --help``:
                             Should follow the same rules as --index-url
       --pyproject <file>    Path to the root component's `pyproject.toml` file.
                             This should point to a file compliant with PEP 621 (storing project metadata).
-      --mc-type <type>      Type of the main component
+      --mc-type <type>      Type of the main component.
                             {choices: application, firmware, library}
                             (default: application)
       --short-PURLs         Omit all qualifiers from PackageURLs.
                             This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
-      -o <file>, --outfile <file>
-                            Output file path for your SBOM
-                            (set to "-" to output to <stdout>)
-                            (default: -)
-      --sv <version>, --schema-version <version>
-                            The CycloneDX schema version for your SBOM
+      --schema-version <version>
+                            DEPRECATED alias for "--spec-version"
+      --sv <version>, --spec-version <version>
+                            Which version of CycloneDX to use.
                             {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
                             (default: 1.5)
-      --of <format>, --output-format <format>
-                            The output format for your SBOM
-                            {choices: JSON, XML}
-                            (default: JSON)
       --output-reproducible
                             Whether to go the extra mile and make the output reproducible.
                             This might result in loss of time- and random-based-values.
+      --of <format>, --output-format <format>
+                            Which output format to use.
+                            {choices: JSON, XML}
+                            (default: JSON)
+      --outfile <file>      DEPRECATED alias for "--output-file".
+      -o <file>, --output-file <file>
+                            Path to the output file.
+                            (set to "-" to output to STDOUT)
+                            (default: -)
       --validate, --no-validate
-                            Whether validate the result before outputting
+                            Whether to validate resulting BOM before outputting.
                             (default: True)
       -v, --verbose         Increase the verbosity of messages
                             (multiple for more effect)

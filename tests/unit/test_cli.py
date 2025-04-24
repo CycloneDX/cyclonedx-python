@@ -76,13 +76,13 @@ class TestCli(TestCase, SnapshotMixin):
             command = Command(
                 logger=self.__make_fresh_logger(logs),
                 short_purls=short_purls,
-                schema_version=SchemaVersion.V1_4,
+                spec_version=SchemaVersion.V1_4,
                 output_format=OutputFormat.JSON,
                 should_validate=True,
                 output_reproducible=True,
                 _bbc=MyBBC
             )
-            command(outfile=outs)
+            command(output_file=outs)
 
             out = outs.getvalue()
 
@@ -100,7 +100,7 @@ class TestCli(TestCase, SnapshotMixin):
             command = Command(
                 logger=self.__make_fresh_logger(logs),
                 short_purls=False,
-                schema_version=SchemaVersion.V1_4,
+                spec_version=SchemaVersion.V1_4,
                 output_format=OutputFormat.JSON,
                 output_reproducible=False,
                 should_validate=True,
@@ -109,7 +109,7 @@ class TestCli(TestCase, SnapshotMixin):
             command._make_output = Mock(return_value=r'["invalid to CDX schema"]')
 
             with self.assertRaisesRegex(ValueError, 'is schema-invalid'):
-                command(outfile=outs)
+                command(output_file=outs)
 
     def test_validation_skip_with_invalid(self) -> None:
         class MyBBC(BomBuilder):
@@ -123,7 +123,7 @@ class TestCli(TestCase, SnapshotMixin):
             command = Command(
                 logger=self.__make_fresh_logger(logs, logging.WARNING),
                 short_purls=False,
-                schema_version=SchemaVersion.V1_4,
+                spec_version=SchemaVersion.V1_4,
                 output_format=OutputFormat.JSON,
                 should_validate=False,
                 output_reproducible=False,
@@ -131,7 +131,7 @@ class TestCli(TestCase, SnapshotMixin):
             )
             command._make_output = Mock(return_value=r'["invalid to CDX schema"]')
 
-            command(outfile=outs)
+            command(output_file=outs)
 
             log = logs.getvalue()
             out = outs.getvalue()

@@ -4,6 +4,7 @@
 exclude_dirs:
   - docs
   - .venv
+  - .tox
 
 skips:
   - B101

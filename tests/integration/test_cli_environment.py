@@ -16,12 +16,13 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 import random
+from collections.abc import Generator
 from glob import glob
 from os import name as os_name
 from os.path import basename, dirname, join
 from subprocess import run  # nosec:B404
 from sys import executable, stderr
-from typing import Any, Generator
+from typing import Any
 from unittest import TestCase, skipIf
 
 from cyclonedx.schema import OutputFormat, SchemaVersion
@@ -79,7 +80,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
             '-vvv',
             f'--sv={sv.to_version()}',
             f'--of={of.name}',
-            '--outfile=-',
+            '-o=-',
             wrong_python)
         self.assertNotEqual(0, res, err)
         self.assertIn(expected_error, err)
@@ -96,7 +97,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
             '-vvv',
             f'--sv={sv.to_version()}',
             f'--of={of.name}',
-            '--outfile=-',
+            '-o=-',
             wrong_python)
         self.assertNotEqual(0, res, err)
         self.assertIn(expected_error, err)
@@ -108,7 +109,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
             '-vvv',
             '--sv', sv.to_version(),
             '--of', of.name,
-            '--outfile=-',
+            '-o=-',
             '--pyproject=something-that-must-not-exist.testing',
             projectdir
         )
@@ -124,7 +125,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
             '--sv', sv.to_version(),
             '--of', of.name,
             '--output-reproducible',
-            '--outfile=-',
+            '-o=-',
             # no project dir -> search in current python
         )
         self.assertEqual(0, res, err)
@@ -134,7 +135,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
             '--sv', sv.to_version(),
             '--of', of.name,
             '--output-reproducible',
-            '--outfile=-',
+            '-o=-',
             executable  # explicitly current python
         )
         self.assertEqual(0, res, err)
@@ -151,7 +152,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
             '--sv', sv.to_version(),
             '--of', of.name,
             '--output-reproducible',
-            '--outfile=-',
+            '-o=-',
             '--pyproject', join(projectdir, 'pyproject.toml'),
             join(projectdir, '.venv'))
         self.assertEqual(0, res, err)
@@ -165,7 +166,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
             '--sv', sv.to_version(),
             '--of', of.name,
             '--output-reproducible',
-            '--outfile=-',
+            '-o=-',
             '--pyproject', join(projectdir, 'pyproject.toml'),
             '--PEP-639',
             join(projectdir, '.venv'))
@@ -180,7 +181,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
             '--sv', sv.to_version(),
             '--of', of.name,
             '--output-reproducible',
-            '--outfile=-',
+            '-o=-',
             '--pyproject', join(projectdir, 'pyproject.toml'),
             '--PEP-639',
             '--gather-license-texts',
@@ -196,7 +197,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
             '--sv', sv.to_version(),
             '--of', of.name,
             '--output-reproducible',
-            '--outfile=-',
+            '-o=-',
             '--pyproject', join(projectdir, 'pyproject.toml'),
             '--gather-license-texts',
             join(projectdir, '.venv'))

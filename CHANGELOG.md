@@ -2,6 +2,59 @@
 
 
 
+## v5.5.0 (2025-04-23)
+
+### Feature
+
+* feat: support runtime-dependency `packaging ^25` (#882)
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`4fa5a35`](https://github.com/CycloneDX/cyclonedx-python/commit/4fa5a35ad8419f352c2436f86efd070b8729c5af))
+
+
+## v5.4.0 (2025-04-23)
+
+### Documentation
+
+* docs: reword common CLI switches (#877)
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`3c86517`](https://github.com/CycloneDX/cyclonedx-python/commit/3c86517a9e9986270cf7d2c51a2d62957fbdb712))
+
+* docs: showcase usage with `uv` (#858)
+
+
+
+---------
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`efd45b1`](https://github.com/CycloneDX/cyclonedx-python/commit/efd45b1f6f4aaebf70a9d645636626636145de26))
+
+* docs: install instructions for `uv`
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`07d9bcc`](https://github.com/CycloneDX/cyclonedx-python/commit/07d9bccea8bd5cefa34dec0cb930da719a7dac97))
+
+### Feature
+
+* feat: support `cyclonedx-python-lib ^10` (#880)
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`545dde0`](https://github.com/CycloneDX/cyclonedx-python/commit/545dde0cfd380748f711e159ecb2a7c4fb9cf81b))
+
+* feat: deprecate CLI switch `--outfile`; use new `--output-file` instead (#875)
+
+
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`fb30ee0`](https://github.com/CycloneDX/cyclonedx-python/commit/fb30ee098f10ba805212bb6463ec7933676592c1))
+
+* feat: deprecate CLI switch `--schema-version`; use new `--spec-version` instead (#871)
+
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`bbae05f`](https://github.com/CycloneDX/cyclonedx-python/commit/bbae05f3130c79c442f67f3ee544a7e4701d5a86))
+
+### Unknown
+
+* docs
+
+Signed-off-by: Jan Kowalleck &lt;jan.kowalleck@gmail.com&gt; ([`4837c99`](https://github.com/CycloneDX/cyclonedx-python/commit/4837c990c82a5ec0901ef1a23508d4be92537805))
+
+
 ## v5.3.0 (2025-02-26)
 
 ### Feature

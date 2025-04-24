@@ -23,9 +23,10 @@ See https://peps.python.org/pep-0621/
 """
 
 from base64 import b64encode
+from collections.abc import Generator, Iterable, Iterator
 from itertools import chain
 from os.path import dirname, join
-from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, Iterator
+from typing import TYPE_CHECKING, Any
 
 from cyclonedx.exception.model import InvalidUriException
 from cyclonedx.factory.license import LicenseFactory
@@ -51,7 +52,7 @@ def classifiers2licenses(classifiers: Iterable[str], lfac: 'LicenseFactory',
                                         license_acknowledgement=lack)
 
 
-def project2licenses(project: Dict[str, Any], lfac: 'LicenseFactory', *,
+def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory', *,
                      fpath: str) -> Generator['License', None, None]:
     lack = LicenseAcknowledgement.DECLARED
     if classifiers := project.get('classifiers'):
@@ -88,7 +89,7 @@ def project2licenses(project: Dict[str, Any], lfac: 'LicenseFactory', *,
                 yield license
 
 
-def project2extrefs(project: Dict[str, Any]) -> Generator['ExternalReference', None, None]:
+def project2extrefs(project: dict[str, Any]) -> Generator['ExternalReference', None, None]:
     # see https://packaging.python.org/en/latest/specifications/pyproject-toml/#urls
     for label, url in project.get('urls', {}).items():
         try:
@@ -100,7 +101,7 @@ def project2extrefs(project: Dict[str, Any]) -> Generator['ExternalReference', N
             pass
 
 
-def project2component(project: Dict[str, Any], *,
+def project2component(project: dict[str, Any], *,
                       ctype: 'ComponentType', fpath: str) -> 'Component':
     dynamic = project.get('dynamic', ())
     return Component(
@@ -114,7 +115,7 @@ def project2component(project: Dict[str, Any], *,
     )
 
 
-def project2dependencies(project: Dict[str, Any]) -> Iterator['Requirement']:
+def project2dependencies(project: dict[str, Any]) -> Iterator['Requirement']:
     return (
         Requirement(dep)
         for dep in chain(

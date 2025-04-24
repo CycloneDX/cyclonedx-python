@@ -17,9 +17,10 @@
 
 import logging
 import sys
-from argparse import ArgumentParser, FileType, RawDescriptionHelpFormatter
+from argparse import ArgumentParser, BooleanOptionalAction, FileType, RawDescriptionHelpFormatter
+from collections.abc import Sequence
 from itertools import chain
-from typing import TYPE_CHECKING, Any, Dict, List, NoReturn, Optional, Sequence, TextIO, Type, Union
+from typing import TYPE_CHECKING, Any, NoReturn, Optional, TextIO, Union
 
 from cyclonedx.model import Property
 from cyclonedx.output import make_outputter
@@ -35,19 +36,12 @@ from .requirements import RequirementsBB
 from .utils.args import argparse_type4enum, choices4enum
 
 if TYPE_CHECKING:  # pragma: no cover
-    from argparse import Action
-
     from cyclonedx.model.bom import Bom
     from cyclonedx.model.component import Component
 
     from . import BomBuilder
 
-    BooleanOptionalAction: Optional[Type[Action]]
-
-if sys.version_info >= (3, 9):
-    from argparse import BooleanOptionalAction
-else:
-    BooleanOptionalAction = None
+OPTION_OUTPUT_STDOUT = '-'
 
 
 class Command:
@@ -74,61 +68,61 @@ class Command:
                         action='store_true',
                         dest='short_purls',
                         default=False)
-        op.add_argument('-o', '--outfile',
-                        metavar='<file>',
-                        help='Output file path for your SBOM'
-                             ' (set to "-" to output to <stdout>)'
-                             ' (default: %(default)s)',
-                        type=FileType('wt', encoding='utf8'),
-                        dest='outfile',
-                        default='-')
-        op.add_argument('--sv', '--schema-version',
+        op.add_argument('--schema-version',  # DEPRECATED
                         metavar='<version>',
-                        help='The CycloneDX schema version for your SBOM'
-                             f' {{choices: {", ".join(sorted((v.to_version() for v in SchemaVersion), reverse=True))}}}'
-                             ' (default: %(default)s)',
-                        dest='schema_version',
+                        help='DEPRECATED alias for option "--spec-version".',
+                        dest='spec_version',
                         choices=SchemaVersion,
                         type=SchemaVersion.from_version,
                         default=SchemaVersion.V1_5.to_version())
+        op.add_argument('--sv', '--spec-version',
+                        metavar='<version>',
+                        help='Which version of CycloneDX to use.'
+                        f' {{choices: {", ".join(sorted((v.to_version() for v in SchemaVersion), reverse=True))}}}'
+                        ' (default: %(default)s)',
+                        dest='spec_version',
+                        choices=SchemaVersion,
+                        type=SchemaVersion.from_version,
+                        default=SchemaVersion.V1_5.to_version())
+        op.add_argument('--output-reproducible',
+                        help='Whether to go the extra mile and make the output reproducible.\n'
+                        'This might result in loss of time- and random-based values.',
+                        action='store_true',
+                        dest='output_reproducible',
+                        default=False)
         op.add_argument('--of', '--output-format',
                         metavar='<format>',
-                        help='The output format for your SBOM'
-                             f' {choices4enum(OutputFormat)}'
-                             ' (default: %(default)s)',
+                        help='Which output format to use.'
+                        f' {choices4enum(OutputFormat)}'
+                        ' (default: %(default)s)',
                         dest='output_format',
                         choices=OutputFormat,
                         type=argparse_type4enum(OutputFormat),
                         default=OutputFormat.JSON.name)
-        op.add_argument('--output-reproducible',
-                        help='Whether to go the extra mile and make the output reproducible.\n'
-                             'This might result in loss of time- and random-based-values.',
-                        action='store_true',
-                        dest='output_reproducible',
-                        default=False)
-        if BooleanOptionalAction:
-            op.add_argument('--validate',
-                            help='Whether validate the result before outputting'
-                                 ' (default: %(default)s)',
-                            action=BooleanOptionalAction,
-                            dest='should_validate',
-                            default=True)
-        else:
-            vg = op.add_mutually_exclusive_group()
-            vg.add_argument('--validate',
-                            help='Validate the result before outputting'
-                                 ' (default: %(default)s)',
-                            action='store_true',
-                            dest='should_validate',
-                            default=True)
-            vg.add_argument('--no-validate',
-                            help='Do not validate the result before outputting',
-                            dest='should_validate',
-                            action='store_false')
+        op.add_argument('--outfile',  # DEPRECATED
+                        metavar='<file>',
+                        help='DEPRECATED alias for "--output-file".',
+                        type=FileType('wt', encoding='utf8'),
+                        dest='output_file',
+                        default=OPTION_OUTPUT_STDOUT)
+        op.add_argument('-o', '--output-file',
+                        metavar='<file>',
+                        help='Path to the output file.'
+                        f' (set to "{OPTION_OUTPUT_STDOUT}" to output to <stdout>)'
+                        ' (default: %(default)s)',
+                        type=FileType('wt', encoding='utf8'),
+                        dest='output_file',
+                        default=OPTION_OUTPUT_STDOUT)
+        op.add_argument('--validate',
+                        help='Whether to validate resulting BOM before outputting.'
+                             ' (default: %(default)s)',
+                        action=BooleanOptionalAction,
+                        dest='should_validate',
+                        default=True)
 
-        scbbc: Type['BomBuilder']
+        scbbc: type['BomBuilder']
         sct: str
-        scta: List[str]
+        scta: list[str]
         for scbbc, sct, *scta in (
             (EnvironmentBB, 'environment', 'env', 'venv'),
             (RequirementsBB, 'requirements'),
@@ -150,28 +144,28 @@ class Command:
 
     __OWN_ARGS = {
         # the arg keywords from __init__()
-        'logger', 'short_purls', 'output_format', 'schema_version', 'output_reproducible', 'should_validate',
+        'logger', 'short_purls', 'output_format', 'spec_version', 'output_reproducible', 'should_validate',
         # the arg keywords from __call__()
-        'outfile'
+        'output_file'
     }
 
     @classmethod
-    def _clean_kwargs(cls, kwargs: Dict[str, Any]) -> Dict[str, Any]:
+    def _clean_kwargs(cls, kwargs: dict[str, Any]) -> dict[str, Any]:
         return {k: kwargs[k] for k in kwargs if k not in cls.__OWN_ARGS}
 
     def __init__(self, *,
                  logger: logging.Logger,
                  short_purls: bool,
                  output_format: OutputFormat,
-                 schema_version: SchemaVersion,
+                 spec_version: SchemaVersion,
                  output_reproducible: bool,
                  should_validate: bool,
-                 _bbc: Type['BomBuilder'],
+                 _bbc: type['BomBuilder'],
                  **kwargs: Any) -> None:
         self._logger = logger
         self._short_purls = short_purls
         self._output_format = output_format
-        self._schema_version = schema_version
+        self._spec_version = spec_version
         self._output_reproducible = output_reproducible
         self._should_validate = should_validate
         self._bbc = _bbc(**self._clean_kwargs(kwargs),
@@ -206,17 +200,17 @@ class Command:
             self._logger.warning('Validation skipped.')
             return False
 
-        self._logger.info('Validating result to schema: %s/%s',
-                          self._schema_version.to_version(), self._output_format.name)
+        self._logger.info('Validating result to spec: %s/%s',
+                          self._spec_version.to_version(), self._output_format.name)
 
         validation_error = make_schemabased_validator(
             self._output_format,
-            self._schema_version
+            self._spec_version
         ).validate_str(output)
         if validation_error:
             self._logger.debug('Validation Errors: %r', validation_error.data)
             self._logger.error('The result is invalid to schema '
-                               f'{self._schema_version.to_version()}/{self._output_format.name}')
+                               f'{self._spec_version.to_version()}/{self._output_format.name}')
             self._logger.warning('Please report the issue and provide all input data to: '
                                  'https://github.com/CycloneDX/cyclonedx-python/issues/new?'
                                  'template=ValidationError-report.md&'
@@ -225,14 +219,14 @@ class Command:
         self._logger.debug('result is schema-valid')
         return True
 
-    def _write(self, output: str, outfile: TextIO) -> int:
-        self._logger.info('Writing to: %s', outfile.name)
-        written = outfile.write(output)
-        self._logger.debug('Wrote %i bytes to %s', written, outfile.name)
+    def _write(self, output: str, output_file: TextIO) -> int:
+        self._logger.info('Writing to: %s', output_file.name)
+        written = output_file.write(output)
+        self._logger.debug('Wrote %i bytes to %s', written, output_file.name)
         return written
 
     def _make_output(self, bom: 'Bom') -> str:
-        self._logger.info('Serializing SBOM: %s/%s', self._schema_version.to_version(), self._output_format.name)
+        self._logger.info('Serializing SBOM: %s/%s', self._spec_version.to_version(), self._output_format.name)
 
         if self._output_reproducible:
             bom.metadata.properties.add(Property(name=PropertyName.Reproducible.value,
@@ -244,7 +238,7 @@ class Command:
         return make_outputter(
             bom,
             self._output_format,
-            self._schema_version
+            self._spec_version
         ).output_as_string(indent=2)
 
     def _make_bom(self, **kwargs: Any) -> 'Bom':
@@ -252,14 +246,14 @@ class Command:
         return self._bbc(**self._clean_kwargs(kwargs))
 
     def __call__(self,
-                 outfile: TextIO,
+                 output_file: TextIO,
                  **kwargs: Any) -> None:
         bom = self._make_bom(**kwargs)
         self._shorten_purls(bom)
         output = self._make_output(bom)
         del bom
         self._validate(output)
-        self._write(output, outfile)
+        self._write(output, output_file)
 
 
 def run(*, argv: Optional[Sequence[str]] = None, **kwargs: Any) -> Union[int, NoReturn]:

@@ -18,9 +18,10 @@
 
 import os
 import random
+from collections.abc import Generator
 from glob import glob
 from os.path import basename, join, splitext
-from typing import Any, Generator, Tuple
+from typing import Any
 from unittest import TestCase
 
 from cyclonedx.schema import OutputFormat, SchemaVersion
@@ -48,7 +49,7 @@ if os.name == 'nt':
     def test_data_os_filter(data: Any) -> bool:
         return True
 else:
-    def test_data_os_filter(data: Tuple[Any, str, Any, Any]) -> bool:
+    def test_data_os_filter(data: tuple[Any, str, Any, Any]) -> bool:
         # skip windows encoded files on non-windows
         return '.cp125' not in data[1]
 
@@ -67,7 +68,7 @@ class TestCliRequirements(TestCase, SnapshotMixin):
             '-vvv',
             '--sv', sv.to_version(),
             '--of', of.name,
-            '--outfile=-',
+            '-o=-',
             'something-that-must-not-exist.testing')
         self.assertNotEqual(0, res, err)
         self.assertIn('Could not open requirements file: something-that-must-not-exist.testing', err)
@@ -79,7 +80,7 @@ class TestCliRequirements(TestCase, SnapshotMixin):
             '-vvv',
             '--sv', sv.to_version(),
             '--of', of.name,
-            '--outfile=-',
+            '-o=-',
             '--pyproject=something-that-must-not-exist.testing',
             infile
         )
@@ -94,7 +95,7 @@ class TestCliRequirements(TestCase, SnapshotMixin):
             '--sv', sv.to_version(),
             '--of', of.name,
             '--output-reproducible',
-            '--outfile=-',
+            '-o=-',
             '--pyproject', pyproject_file,
             infile)
         self.assertEqual(0, res, err)
@@ -109,7 +110,7 @@ class TestCliRequirements(TestCase, SnapshotMixin):
                 '--sv', sv.to_version(),
                 '--of', of.name,
                 '--output-reproducible',
-                '--outfile=-',
+                '-o=-',
                 # no pyproject for this case
                 '-',
                 inp=inp)
@@ -127,7 +128,7 @@ class TestCliRequirements(TestCase, SnapshotMixin):
             '--sv', sv.to_version(),
             '--of', of.name,
             '--output-reproducible',
-            '--outfile=-',
+            '-o=-',
             '--pyproject', pyproject_file,
             infile)
         self.assertEqual(0, res, err)
