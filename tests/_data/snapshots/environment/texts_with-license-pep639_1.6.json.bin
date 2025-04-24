@@ -196,6 +196,19 @@
       "purl": "pkg:pypi/lxml@5.3.0",
       "type": "library",
       "version": "5.3.0"
+    },
+    {
+      "bom-ref": "regression-issue868==0.1",
+      "externalReferences": [
+        {
+          "comment": "PackageSource: Local",
+          "type": "distribution",
+          "url": "file://.../tests/_data/infiles/_helpers/local_pckages/with-license-pep639_regression-issue868"
+        }
+      ],
+      "name": "regression-issue868",
+      "type": "library",
+      "version": "0.1"
     }
   ],
   "dependencies": [
@@ -221,13 +234,17 @@
       "ref": "lxml==5.3.0"
     },
     {
+      "ref": "regression-issue868==0.1"
+    },
+    {
       "dependsOn": [
         "attrs==23.2.0",
         "boolean.py==4.0",
         "cryptography==43.0.1",
         "jsonpointer==2.4",
         "license-expression==30.3.0",
-        "lxml==5.3.0"
+        "lxml==5.3.0",
+        "regression-issue868==0.1"
       ],
       "ref": "root-component"
     }

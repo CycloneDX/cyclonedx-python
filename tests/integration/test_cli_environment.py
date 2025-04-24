@@ -203,22 +203,6 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'texts', projectdir, sv, of)
 
-    @named_data(*test_data_file_filter('with-license-bad-file-recoverable'))
-    def test_bad_license_file_recover_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
-        res, out, err = run_cli(
-            'environment',
-            '-vvv',
-            '--sv', sv.to_version(),
-            '--of', of.name,
-            '--output-reproducible',
-            '--outfile=-',
-            '--PEP-639',
-            '--pyproject', join(projectdir, 'pyproject.toml'),
-            '--gather-license-texts',
-            join(projectdir, '.venv'))
-        self.assertEqual(0, res, err)
-        self.assertEqualSnapshot(out, 'badlic-texts', projectdir, sv, of)
-
     def assertEqualSnapshot(  # noqa:N802
         self, actual: str,
         purpose: str,

@@ -144,5 +144,15 @@
         </reference>
       </externalReferences>
     </component>
+    <component type="library" bom-ref="regression-issue868==0.1">
+      <name>regression-issue868</name>
+      <version>0.1</version>
+      <externalReferences>
+        <reference type="distribution">
+          <url>file://.../tests/_data/infiles/_helpers/local_pckages/with-license-pep639_regression-issue868</url>
+          <comment>PackageSource: Local</comment>
+        </reference>
+      </externalReferences>
+    </component>
   </components>
 </bom>

@@ -43,5 +43,10 @@
       <purl>pkg:pypi/lxml@5.3.0</purl>
       <modified>false</modified>
     </component>
+    <component type="library">
+      <name>regression-issue868</name>
+      <version>0.1</version>
+      <modified>false</modified>
+    </component>
   </components>
 </bom>
