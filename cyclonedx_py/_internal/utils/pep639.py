@@ -98,7 +98,7 @@ def gather_license_texts(
                 content = dist.read_text(path)
             except UnicodeDecodeError:
                 # Malformed, try harder
-                content = handle_bad_license_file_encoding(dist, mlfile, logger)
+                content = handle_bad_license_file_encoding(dist, path, logger)
 
             if content is not None:
                 break
