@@ -1317,11 +1317,11 @@ The isoschematron implementation uses several XSL and RelaxNG resources:
       <version>0.1</version>
       <licenses>
         <license acknowledgement="declared">
-          <name>declared license file: licenses/richtext.rtf</name>
+          <name>declared license file: my_licenses/richtext.rtf</name>
           <text content-type="application/rtf" encoding="base64">e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcbm91aWNvbXBhdFxkZWZsYW5nMTAzMXtcZm9udHRibHtcZjBcZm5pbFxmY2hhcnNldDAgQ2FsaWJyaTt9fQp7XCpcZ2VuZXJhdG9yIFJpY2hlZDIwIDEwLjAuMTkwNDF9XHZpZXdraW5kNFx1YzEgClxwYXJkXHNhMjAwXHNsMjc2XHNsbXVsdDFcZjBcZnMyMlxsYW5nNyBSVEYgTGljZW5zZSBGaWxlXHBhcgp9CgA=</text>
         </license>
         <license acknowledgement="declared">
-          <name>declared license file: licenses/utf-8_noBOM.txt</name>
+          <name>declared license file: my_licenses/utf-8_noBOM.txt</name>
           <text content-type="text/plain">this file is
 utf-8 encoded
 without BOM
@@ -1329,7 +1329,7 @@ without BOM
 </text>
         </license>
         <license acknowledgement="declared">
-          <name>declared license file: licenses/utf-8_withBOM.txt</name>
+          <name>declared license file: my_licenses/utf-8_withBOM.txt</name>
           <text content-type="text/plain">﻿this file is
 utf-8 encoded
 with BOM

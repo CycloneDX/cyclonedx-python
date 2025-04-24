@@ -318,7 +318,7 @@
       "licenses": [
         {
           "license": {
-            "name": "declared license file: licenses/richtext.rtf",
+            "name": "declared license file: my_licenses/richtext.rtf",
             "text": {
               "content": "e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcbm91aWNvbXBhdFxkZWZsYW5nMTAzMXtcZm9udHRibHtcZjBcZm5pbFxmY2hhcnNldDAgQ2FsaWJyaTt9fQp7XCpcZ2VuZXJhdG9yIFJpY2hlZDIwIDEwLjAuMTkwNDF9XHZpZXdraW5kNFx1YzEgClxwYXJkXHNhMjAwXHNsMjc2XHNsbXVsdDFcZjBcZnMyMlxsYW5nNyBSVEYgTGljZW5zZSBGaWxlXHBhcgp9CgA=",
               "contentType": "application/rtf",
@@ -328,7 +328,7 @@
         },
         {
           "license": {
-            "name": "declared license file: licenses/utf-8_noBOM.txt",
+            "name": "declared license file: my_licenses/utf-8_noBOM.txt",
             "text": {
               "content": "this file is\nutf-8 encoded\nwithout BOM\n\ud83d\ude03\n",
               "contentType": "text/plain"
@@ -337,7 +337,7 @@
         },
         {
           "license": {
-            "name": "declared license file: licenses/utf-8_withBOM.txt",
+            "name": "declared license file: my_licenses/utf-8_withBOM.txt",
             "text": {
               "content": "\ufeffthis file is\nutf-8 encoded\nwith BOM\n\ud83d\ude03\n",
               "contentType": "text/plain"
