@@ -91,25 +91,18 @@ def gather_license_texts(
         # per spec > license files are stored in the `.dist-info/licenses/` subdirectory of the produced wheel.
         # but in practice, other locations are used, too.
         # loop over the candidate location and pick the first one found.
-        malformed = None
         content = None
         for loc in ('licenses', 'license_files', '.'):
             path = join(loc, mlfile)
             try:
                 content = dist.read_text(path)
             except UnicodeDecodeError:
-                # Malformed, stop looking
-                malformed = path
-                break
+                # Malformed, try harder
+                content = handle_bad_license_file_encoding(dist, mlfile, logger)
 
             if content is not None:
                 break
-
-        if content is None and malformed:
-            # Try a little harder
-            content = handle_bad_license_file_encoding(dist, malformed, logger)
-
-        if content is None:
+        else:
             logger.debug('Error: failed to read license file %r for dist %r',
                          mlfile, dist.metadata['Name'])
             continue
