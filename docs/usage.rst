@@ -86,7 +86,7 @@ The full documentation can be issued by running with ``environment --help``:
       --sv <version>, --spec-version <version>
                             Which version of CycloneDX to use.
                             {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
-                            (default: 1.5)
+                            (default: 1.6)
       --output-reproducible
                             Whether to go the extra mile and make the output reproducible.
                             This might result in loss of time- and random-based-values.
@@ -260,7 +260,7 @@ The full documentation can be issued by running with ``pipenv --help``:
       --sv <version>, --spec-version <version>
                             Which version of CycloneDX to use.
                             {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
-                            (default: 1.5)
+                            (default: 1.6)
       --output-reproducible
                             Whether to go the extra mile and make the output reproducible.
                             This might result in loss of time- and random-based-values.
@@ -338,7 +338,7 @@ The full documentation can be issued by running with ``poetry --help``:
       --sv <version>, --spec-version <version>
                             Which version of CycloneDX to use.
                             {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
-                            (default: 1.5)
+                            (default: 1.6)
       --output-reproducible
                             Whether to go the extra mile and make the output reproducible.
                             This might result in loss of time- and random-based-values.
@@ -412,7 +412,7 @@ The full documentation can be issued by running with ``requirements --help``:
       --sv <version>, --spec-version <version>
                             Which version of CycloneDX to use.
                             {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
-                            (default: 1.5)
+                            (default: 1.6)
       --output-reproducible
                             Whether to go the extra mile and make the output reproducible.
                             This might result in loss of time- and random-based-values.
