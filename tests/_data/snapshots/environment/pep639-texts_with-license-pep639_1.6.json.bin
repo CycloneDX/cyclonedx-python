@@ -385,6 +385,26 @@
         {
           "license": {
             "acknowledgement": "declared",
+            "name": "declared license file: my_licenses/utf-16be_withBOM.txt",
+            "text": {
+              "content": "this file is\r\nutf-16be encoded\r\nwith BOM\r\n\ud83d\ude03\r\n",
+              "contentType": "text/plain"
+            }
+          }
+        },
+        {
+          "license": {
+            "acknowledgement": "declared",
+            "name": "declared license file: my_licenses/utf-16le_withBOM.txt",
+            "text": {
+              "content": "this file is\nutf-16le encoded\nwith BOM\n\ud83d\ude03\n",
+              "contentType": "text/plain"
+            }
+          }
+        },
+        {
+          "license": {
+            "acknowledgement": "declared",
             "name": "declared license file: my_licenses/utf-8_noBOM.txt",
             "text": {
               "content": "this file is\nutf-8 encoded\nwithout BOM\n\ud83d\ude03\n",

@@ -15,20 +15,14 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-from sys import getdefaultencoding
 from tempfile import NamedTemporaryFile
 from typing import BinaryIO
 
-from chardet import detect as chardetect
+from .bytes import bytes2str
 
 
 def io2str(io: BinaryIO, *, errors: str = 'strict') -> str:
-    data = io.read()
-    # see https://docs.python.org/3/library/codecs.html#standard-encodings
-    encoding = (chardetect(data)['encoding'] or getdefaultencoding()).replace(
-        # replace Windows-encoding with code-page
-        'Windows-', 'cp')
-    return data.decode(encoding, errors)
+    return bytes2str(io.read(), errors=errors)
 
 
 def io2file(io: BinaryIO, *, errors: str = 'strict') -> str:
