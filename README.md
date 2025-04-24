@@ -43,7 +43,7 @@ Read the full [documentation][link_rtfd] for more details.
 
 ## Requirements
 
-* Python `>=3.8,<4`
+* Python `>=3.9,<4`
 
 However, there are older versions of this tool available, which
 support Python `>=2.7`.

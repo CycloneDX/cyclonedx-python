@@ -19,7 +19,8 @@
 # use pyproject from pep621
 # use pyproject from poetry implementation
 
-from typing import TYPE_CHECKING, Any, Dict, Iterator
+from collections.abc import Iterator
+from typing import TYPE_CHECKING, Any
 
 from .pep621 import project2component, project2dependencies
 from .poetry import poetry2component, poetry2dependencies
@@ -30,7 +31,7 @@ if TYPE_CHECKING:  # pragma: no cover
     from packaging.requirements import Requirement
 
 
-def pyproject2component(data: Dict[str, Any], *,
+def pyproject2component(data: dict[str, Any], *,
                         ctype: 'ComponentType', fpath: str) -> 'Component':
     tool = data.get('tool', {})
     if poetry := tool.get('poetry'):
@@ -40,7 +41,7 @@ def pyproject2component(data: Dict[str, Any], *,
     raise ValueError('Unable to build component from pyproject')
 
 
-def pyproject_load(pyproject_file: str) -> Dict[str, Any]:
+def pyproject_load(pyproject_file: str) -> dict[str, Any]:
     try:
         pyproject_fh = open(pyproject_file, 'rt', encoding='utf8', errors='replace')
     except OSError as err:
@@ -57,7 +58,7 @@ def pyproject_file2component(pyproject_file: str, *,
     )
 
 
-def pyproject2dependencies(data: Dict[str, Any]) -> Iterator['Requirement']:
+def pyproject2dependencies(data: dict[str, Any]) -> Iterator['Requirement']:
     tool = data.get('tool', {})
     if 'poetry' in tool:
         return poetry2dependencies(tool['poetry'])

@@ -77,7 +77,7 @@ jobs:
           - python-version: '3.13'  # latest
             os: ubuntu-latest
             toxenv-factors: '-current'
-          - python-version: '3.8'   # lowest
+          - python-version: '3.9'   # lowest
             os: ubuntu-latest
             toxenv-factors: '-lowest'
     steps:
@@ -169,8 +169,7 @@ jobs:
           - "3.12"
           - "3.11"
           - "3.10"
-          - "3.9"
-          - "3.8"  # lowest supported -- handled in include
+          - "3.9"  # lowest supported -- handled in include
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout

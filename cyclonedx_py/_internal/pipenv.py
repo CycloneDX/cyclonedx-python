@@ -17,11 +17,12 @@
 
 
 from argparse import OPTIONAL, ArgumentParser
+from collections.abc import Generator
 from json import loads as json_loads
 from os import getenv
 from os.path import join
 from textwrap import dedent
-from typing import TYPE_CHECKING, Any, Dict, FrozenSet, Generator, List, Optional, Set, Tuple
+from typing import TYPE_CHECKING, Any, Optional
 
 from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
@@ -41,7 +42,7 @@ if TYPE_CHECKING:  # pragma: no cover
 
     from cyclonedx.model.bom import Bom
 
-    NameDict = Dict[str, Any]
+    NameDict = dict[str, Any]
 
 
 class PipenvBB(BomBuilder):
@@ -96,7 +97,7 @@ class PipenvBB(BomBuilder):
 
     def __call__(self, *,  # type:ignore[override]
                  project_directory: str,
-                 categories: List[str],
+                 categories: list[str],
                  dev: bool,
                  pyproject_file: Optional[str],
                  mc_type: 'ComponentType',
@@ -104,7 +105,7 @@ class PipenvBB(BomBuilder):
 
         # the group-args shall mimic the ones from Pipenv, which uses (comma and/or space)-separated lists
         # values be like: 'foo bar,bazz' -> ['foo', 'bar', 'bazz']
-        lock_groups: Set[str] = set()
+        lock_groups: set[str] = set()
         if len(categories) == 0:
             lock_groups.add('default')
             if dev:
@@ -138,7 +139,7 @@ class PipenvBB(BomBuilder):
                                   frozenset(lock_groups))
 
     def _make_bom(self, root_c: Optional['Component'],
-                  locker: 'NameDict', use_groups: FrozenSet[str]) -> 'Bom':
+                  locker: 'NameDict', use_groups: frozenset[str]) -> 'Bom':
         self._logger.debug('use_groups: %r', use_groups)
 
         bom = make_bom()
@@ -146,14 +147,14 @@ class PipenvBB(BomBuilder):
         self._logger.debug('root-component: %r', root_c)
 
         meta: NameDict = locker[self.__LOCKFILE_META]
-        source_urls: Dict[str, str] = {
+        source_urls: dict[str, str] = {
             source['name']: redact_auth_from_url(source['url']).rstrip('/')
             for source in meta.get('sources', ())
         }
         if self._pypi_url is not None:
             source_urls['pypi'] = redact_auth_from_url(self._pypi_url).rstrip('/')
 
-        all_components: Dict[str, Component] = {}
+        all_components: dict[str, Component] = {}
         if root_c:
             # root for possible self-installs
             all_components[normalize_packagename(root_c.name)] = root_c
@@ -218,7 +219,7 @@ class PipenvBB(BomBuilder):
         see https://pip.pypa.io/en/latest/topics/vcs-support/#vcs-support
     """
 
-    def __package_vcs(self, data: 'NameDict') -> Optional[Tuple[str, str]]:
+    def __package_vcs(self, data: 'NameDict') -> Optional[tuple[str, str]]:
         for vct in self.__VCS_TYPES:
             if vct in data:
                 url: str = data[vct]
@@ -227,7 +228,7 @@ class PipenvBB(BomBuilder):
                 return vct, url[:hash_pos] if hash_pos >= 0 else url
         return None
 
-    def __make_extrefs(self, name: str, data: 'NameDict', source_urls: Dict[str, str]
+    def __make_extrefs(self, name: str, data: 'NameDict', source_urls: dict[str, str]
                        ) -> Generator['ExternalReference', None, None]:
         hashes = (HashType.from_composite_str(package_hash)
                   for package_hash
@@ -267,7 +268,7 @@ class PipenvBB(BomBuilder):
         except (InvalidUriException, UnknownHashTypeException, KeyError) as error:  # pragma: nocover
             self._logger.debug('skipped dist-extRef for: %r', name, exc_info=error)
 
-    def __purl_qualifiers4lock(self, data: 'NameDict', sourcees: Dict[str, str]) -> 'NameDict':
+    def __purl_qualifiers4lock(self, data: 'NameDict', sourcees: dict[str, str]) -> 'NameDict':
         # see https://github.com/package-url/purl-spec/blob/master/PURL-SPECIFICATION.rst
         qs = {}
         vcs_source = self.__package_vcs(data)
