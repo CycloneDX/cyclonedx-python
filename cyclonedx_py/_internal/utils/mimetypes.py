@@ -29,6 +29,7 @@ _MAP_EXT_MIME = {
     '.md': 'text/markdown',
     '.txt': 'text/plain',
     '.rst': 'text/prs.fallenstein.rst',
+    '.rtf': 'application/rtf',
     '.xml': 'text/xml',  # not `application/xml` -- our scope is text!
     # license-specific files
     '.license': _MIME_TEXT_PLAIN,
