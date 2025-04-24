@@ -25,7 +25,7 @@ See https://peps.python.org/pep-0610/
 
 from abc import ABC, abstractmethod
 from json import JSONDecodeError, loads as json_loads
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING, Any, Optional
 
 from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, XsUri
@@ -53,7 +53,7 @@ class PackageSourceVcs(PackageSource):
 
     @classmethod
     def from_data(cls, url: str, subdirectory: Optional[str],
-                  info: Dict[str, Any]) -> 'PackageSourceVcs':
+                  info: dict[str, Any]) -> 'PackageSourceVcs':
         return cls(url, subdirectory,
                    info['vcs'], info.get('requested_revision'), info['commit_id'])
 
@@ -62,13 +62,13 @@ class PackageSourceArchive(PackageSource):
     # see https://packaging.python.org/en/latest/specifications/direct-url-data-structure/#archive-urls
 
     def __init__(self, url: str, subdirectory: Optional[str],
-                 hashes: Dict[str, str]) -> None:
+                 hashes: dict[str, str]) -> None:
         super().__init__(url, subdirectory)
         self.hashes = hashes
 
     @classmethod
     def from_data(cls, url: str, subdirectory: Optional[str],
-                  info: Dict[str, Any]) -> 'PackageSourceArchive':
+                  info: dict[str, Any]) -> 'PackageSourceArchive':
         hashes = {}
         if 'hashes' in info:
             hashes = info['hashes']
@@ -94,7 +94,7 @@ class PackageSourceLocal(PackageSource):
 
     @classmethod
     def from_data(cls, url: str, subdirectory: Optional[str],
-                  info: Dict[str, Any]) -> 'PackageSourceLocal':
+                  info: dict[str, Any]) -> 'PackageSourceLocal':
         return cls(url, subdirectory, info.get('editable', False))
 
 

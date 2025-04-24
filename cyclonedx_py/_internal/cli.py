@@ -17,9 +17,10 @@
 
 import logging
 import sys
-from argparse import ArgumentParser, FileType, RawDescriptionHelpFormatter
+from argparse import ArgumentParser, BooleanOptionalAction, FileType, RawDescriptionHelpFormatter
+from collections.abc import Sequence
 from itertools import chain
-from typing import TYPE_CHECKING, Any, Dict, List, NoReturn, Optional, Sequence, TextIO, Type, Union
+from typing import TYPE_CHECKING, Any, NoReturn, Optional, TextIO, Union
 
 from cyclonedx.model import Property
 from cyclonedx.output import make_outputter
@@ -35,19 +36,10 @@ from .requirements import RequirementsBB
 from .utils.args import argparse_type4enum, choices4enum
 
 if TYPE_CHECKING:  # pragma: no cover
-    from argparse import Action
-
     from cyclonedx.model.bom import Bom
     from cyclonedx.model.component import Component
 
     from . import BomBuilder
-
-    BooleanOptionalAction: Optional[Type[Action]]
-
-if sys.version_info >= (3, 9):
-    from argparse import BooleanOptionalAction
-else:
-    BooleanOptionalAction = None
 
 OPTION_OUTPUT_STDOUT = '-'
 
@@ -121,29 +113,16 @@ class Command:
                         type=FileType('wt', encoding='utf8'),
                         dest='output_file',
                         default=OPTION_OUTPUT_STDOUT)
-        if BooleanOptionalAction:
-            op.add_argument('--validate',
-                            help='Whether to validate resulting BOM before outputting.'
-                                 ' (default: %(default)s)',
-                            action=BooleanOptionalAction,
-                            dest='should_validate',
-                            default=True)
-        else:
-            vg = op.add_mutually_exclusive_group()
-            vg.add_argument('--validate',
-                            help='Validate resulting BOM before outputting.'
-                                 ' (default: %(default)s)',
-                            action='store_true',
-                            dest='should_validate',
-                            default=True)
-            vg.add_argument('--no-validate',
-                            help='Disable validation of resulting BOM.',
-                            dest='should_validate',
-                            action='store_false')
+        op.add_argument('--validate',
+                        help='Whether to validate resulting BOM before outputting.'
+                             ' (default: %(default)s)',
+                        action=BooleanOptionalAction,
+                        dest='should_validate',
+                        default=True)
 
-        scbbc: Type['BomBuilder']
+        scbbc: type['BomBuilder']
         sct: str
-        scta: List[str]
+        scta: list[str]
         for scbbc, sct, *scta in (
             (EnvironmentBB, 'environment', 'env', 'venv'),
             (RequirementsBB, 'requirements'),
@@ -171,7 +150,7 @@ class Command:
     }
 
     @classmethod
-    def _clean_kwargs(cls, kwargs: Dict[str, Any]) -> Dict[str, Any]:
+    def _clean_kwargs(cls, kwargs: dict[str, Any]) -> dict[str, Any]:
         return {k: kwargs[k] for k in kwargs if k not in cls.__OWN_ARGS}
 
     def __init__(self, *,
@@ -181,7 +160,7 @@ class Command:
                  spec_version: SchemaVersion,
                  output_reproducible: bool,
                  should_validate: bool,
-                 _bbc: Type['BomBuilder'],
+                 _bbc: type['BomBuilder'],
                  **kwargs: Any) -> None:
         self._logger = logger
         self._short_purls = short_purls

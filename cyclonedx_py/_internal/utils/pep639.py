@@ -22,8 +22,9 @@ See https://peps.python.org/pep-0639/
 """
 
 from base64 import b64encode
+from collections.abc import Generator
 from os.path import join
-from typing import TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING
 
 from cyclonedx.factory.license import LicenseFactory
 from cyclonedx.model import AttachedText, Encoding

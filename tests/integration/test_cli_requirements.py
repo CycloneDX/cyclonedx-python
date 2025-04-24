@@ -18,9 +18,10 @@
 
 import os
 import random
+from collections.abc import Generator
 from glob import glob
 from os.path import basename, join, splitext
-from typing import Any, Generator, Tuple
+from typing import Any
 from unittest import TestCase
 
 from cyclonedx.schema import OutputFormat, SchemaVersion
@@ -48,7 +49,7 @@ if os.name == 'nt':
     def test_data_os_filter(data: Any) -> bool:
         return True
 else:
-    def test_data_os_filter(data: Tuple[Any, str, Any, Any]) -> bool:
+    def test_data_os_filter(data: tuple[Any, str, Any, Any]) -> bool:
         # skip windows encoded files on non-windows
         return '.cp125' not in data[1]
 

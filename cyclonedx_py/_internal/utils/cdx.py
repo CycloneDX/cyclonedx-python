@@ -20,8 +20,9 @@
 CycloneDX related helpers and utils.
 """
 
+from collections.abc import Iterable
 from re import compile as re_compile
-from typing import Any, Dict, Iterable, Optional
+from typing import Any, Optional
 
 from cyclonedx.builder.this import this_component as lib_component
 from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
@@ -101,7 +102,7 @@ def licenses_fixup(licenses: Iterable['License']) -> Iterable['License']:
     return licenses
 
 
-_MAP_KNOWN_URL_LABELS: Dict[str, ExternalReferenceType] = {
+_MAP_KNOWN_URL_LABELS: dict[str, ExternalReferenceType] = {
     # see https://peps.python.org/pep-0345/#project-url-multiple-use
     # see https://github.com/pypi/warehouse/issues/5947#issuecomment-699660629
     'bugtracker': ExternalReferenceType.ISSUE_TRACKER,

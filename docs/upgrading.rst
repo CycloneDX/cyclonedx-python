@@ -10,7 +10,7 @@ This document is not a full :doc:`change log <changelog>`, but a migration path.
 Python support
 --------------
 
-* This tool requires Python 3.8 or later.
+* This tool requires Python 3.9 or later.
   It is tested with CPython, support for PyPy is best effort.
 
 

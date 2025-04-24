@@ -17,9 +17,10 @@
 
 
 import random
+from collections.abc import Generator
 from glob import glob
 from os.path import basename, dirname, join
-from typing import Any, Generator
+from typing import Any
 from unittest import TestCase
 
 from cyclonedx.schema import OutputFormat, SchemaVersion

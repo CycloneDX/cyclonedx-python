@@ -16,12 +16,13 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 import random
+from collections.abc import Generator
 from glob import glob
 from os import name as os_name
 from os.path import basename, dirname, join
 from subprocess import run  # nosec:B404
 from sys import executable, stderr
-from typing import Any, Generator
+from typing import Any
 from unittest import TestCase, skipIf
 
 from cyclonedx.schema import OutputFormat, SchemaVersion

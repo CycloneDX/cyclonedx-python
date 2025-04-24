@@ -17,11 +17,12 @@
 
 
 from argparse import OPTIONAL, ArgumentParser
+from collections.abc import Generator, Iterable
 from functools import reduce
 from itertools import chain
 from os import unlink
 from textwrap import dedent
-from typing import TYPE_CHECKING, Any, FrozenSet, Generator, Iterable, Optional
+from typing import TYPE_CHECKING, Any, Optional
 
 from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
@@ -168,7 +169,7 @@ class RequirementsBB(BomBuilder):
                 del error
 
     def _make_component(self, req: 'InstallRequirement',
-                        index_url: str, extra_index_urls: FrozenSet[str]) -> 'Component':
+                        index_url: str, extra_index_urls: frozenset[str]) -> 'Component':
         name = req.name
         version = req.get_pinned_version or None
         hashes = list(self.__hashes4req(req))

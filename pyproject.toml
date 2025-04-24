@@ -52,7 +52,6 @@ classifiers = [
   "Topic :: Software Development",
   "Topic :: System :: Software Distribution",
   "License :: OSI Approved :: Apache Software License",
-  "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
@@ -68,7 +67,7 @@ classifiers = [
 cyclonedx-py = "cyclonedx_py._internal.cli:run"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.9"
 cyclonedx-python-lib = { version = "^8.0 || ^9.0 || ^10", extras = ["validation"] }
 packageurl-python = ">=0.11, <2"  # keep in sync with same dep in `cyclonedx-python-lib`
 pip-requirements-parser = "^32.0"
@@ -78,21 +77,21 @@ chardet = "^5.1"
 
 [tool.poetry.group.dev.dependencies]
 # pin to exact versions, if the tool/lib/plugin is process-relevant
-coverage = "7.6.1"
+coverage = "7.8.0"
 ddt = "1.7.2"
-flake8 = { version = "7.1.2", python = ">=3.8.1" }
-flake8-annotations = { version = "3.1.1", python = ">=3.8.1" }
-flake8-bugbear = { version = "24.12.12", python = ">=3.8.1" }
+flake8 = "7.2.0"
+flake8-annotations = "3.1.1"
+flake8-bugbear = "24.12.12"
 flake8-copyright-validator = "^0.0.1"
-flake8-isort = "6.1.1"
+flake8-isort = "6.1.2"
 flake8-quotes = "3.4.0"
 flake8-use-fstring = "1.4"
 pep8-naming = "0.14.1"
 flake8-logging = "1.6.0"
-isort = "5.13.2"
-autopep8 = "2.3.1"
-mypy = "1.14.1"
-bandit = "1.7.10"
+isort = "6.0.1"
+autopep8 = "2.3.2"
+mypy = "1.15.0"
+bandit = "1.8.3"
 tomli = { version = "^2.0.1", python = "<3.11" }
 tox = "4.25.0"
 

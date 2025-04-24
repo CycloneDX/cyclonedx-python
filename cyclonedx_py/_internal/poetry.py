@@ -17,12 +17,13 @@
 
 
 from argparse import OPTIONAL, ArgumentParser
+from collections.abc import Generator, Iterable
 from dataclasses import dataclass
 from itertools import chain
 from os.path import join
 from re import compile as re_compile
 from textwrap import dedent
-from typing import TYPE_CHECKING, Any, Dict, FrozenSet, Generator, Iterable, List, Set, Tuple
+from typing import TYPE_CHECKING, Any
 
 from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
@@ -40,21 +41,20 @@ from .utils.toml import toml_loads
 
 if TYPE_CHECKING:  # pragma: no cover
     from logging import Logger
-    from typing import Type
 
     from cyclonedx.model.bom import Bom
     from cyclonedx.model.component import ComponentType
 
-    T_NameDict = Dict[str, Any]
-    T_LockData = Dict[str, List['_LockEntry']]
+    T_NameDict = dict[str, Any]
+    T_LockData = dict[str, list['_LockEntry']]
 
 
 @dataclass
 class _LockEntry:
     name: str
     component: Component
-    dependencies: Dict[str, 'T_NameDict']  # keys MUST go through `normalize_packagename()`
-    extras: Dict[str, List[str]]  # keys MUST go through `normalize_packagename()`
+    dependencies: dict[str, 'T_NameDict']  # keys MUST go through `normalize_packagename()`
+    extras: dict[str, list[str]]  # keys MUST go through `normalize_packagename()`
     added2bom: bool
 
 
@@ -77,13 +77,13 @@ class ExtrasNotFoundError(ValueError):
 @dataclass(frozen=True)
 class _PoetryPackageRequirement:
     name: str
-    extras: Set[str]
+    extras: set[str]
 
     # the pattern is good enough for the job
     __lock_pattern = re_compile(r'^([a-zA-Z0-9._-]+)(?:\[(.+?)\])?')
 
     @classmethod
-    def from_poetry_lock(cls: 'Type[_PoetryPackageRequirement]', r: str) -> '_PoetryPackageRequirement':
+    def from_poetry_lock(cls: type['_PoetryPackageRequirement'], r: str) -> '_PoetryPackageRequirement':
         matches = cls.__lock_pattern.match(r)
         if matches is None:
             raise ValueError(f'cannot parse: {r}')
@@ -163,9 +163,9 @@ class PoetryBB(BomBuilder):
 
     def __call__(self, *,  # type:ignore[override]
                  project_directory: str,
-                 groups_without: List[str], groups_with: List[str], groups_only: List[str],
+                 groups_without: list[str], groups_with: list[str], groups_only: list[str],
                  no_dev: bool,
-                 extras: List[str], all_extras: bool,
+                 extras: list[str], all_extras: bool,
                  mc_type: 'ComponentType',
                  **__: Any) -> 'Bom':
         pyproject_file = join(project_directory, 'pyproject.toml')
@@ -248,7 +248,7 @@ class PoetryBB(BomBuilder):
             )
 
     def _make_bom(self, project: 'T_NameDict', locker: 'T_NameDict',
-                  use_groups: FrozenSet[str], use_extras: FrozenSet[str],
+                  use_groups: frozenset[str], use_extras: frozenset[str],
                   mc_type: 'ComponentType') -> 'Bom':
         self._logger.debug('use_groups: %r', use_groups)
         self._logger.debug('use_extras: %r', use_extras)
@@ -371,7 +371,7 @@ class PoetryBB(BomBuilder):
                     self.__add_dep(bom, dep_lock_entry, req.extras, lock_data)
 
     @staticmethod
-    def _get_lockfile_version(locker: 'T_NameDict') -> Tuple[int, ...]:
+    def _get_lockfile_version(locker: 'T_NameDict') -> tuple[int, ...]:
         return tuple(map(int, locker['metadata'].get('lock-version', '1.0').split('.')))
 
     def _parse_lock(self, locker: 'T_NameDict') -> Generator[_LockEntry, None, None]:
