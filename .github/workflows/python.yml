@@ -41,6 +41,8 @@ env:
   TESTS_REPORTS_ARTIFACT: tests-reports
   PIPENV_VENV_IN_PROJECT: 1
 
+permissions: {}
+
 jobs:
   coding-standards:
     name: Linting & Coding Standards
