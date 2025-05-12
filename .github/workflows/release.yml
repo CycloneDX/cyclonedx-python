@@ -162,6 +162,8 @@ jobs:
       needs.release-PyPI.outputs.version &&
       needs.release-PyPI.outputs.tag
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
     env:
       VERSION: ${{ needs.release-PyPI.outputs.version }}
       ARTIFACT_DOCKER_SBOM: 'docker-image-bom'
