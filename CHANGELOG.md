@@ -1,6 +1,34 @@
 # CHANGELOG
 
 
+## v6.1.0-alpha.1 (2025-05-12)
+
+### Documentation
+
+- Fix default value for `--spec-version `
+  ([`2f2982b`](https://github.com/CycloneDX/cyclonedx-python/commit/2f2982b35c5d4a520b75fe51b85796b8163335e0))
+
+Signed-off-by: Jan Kowalleck <jan.kowalleck@gmail.com>
+
+### Features
+
+- Rootless docker container ([#893](https://github.com/CycloneDX/cyclonedx-python/pull/893),
+  [`a0cd44b`](https://github.com/CycloneDX/cyclonedx-python/commit/a0cd44ba2e9c49f621e10b70f5efde306c9906ac))
+
+As per [OWASP's Docker Security Cheat
+  Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html), it is
+  recommended to set a user instead of running the container as root.
+
+```bash virgo@lenovo:~$ docker ps -a CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES
+  ee568549229f cyclonedx-py:latest "/bin/bash" About a minute ago Up About a minute nifty_swirles
+  virgo@lenovo:~$ docker exec -it ee568549229f sh -c "id" uid=1000(cyclonedx) gid=1000(cyclonedx)
+  groups=1000(cyclonedx) ```
+
+:arrow_up: Now the container is running as a standard user.
+
+Signed-off-by: virgo-o <virgoj@protonmail.com>
+
+
 ## v6.0.0 (2025-04-24)
 
 ### Features
