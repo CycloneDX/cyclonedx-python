@@ -1,6 +1,16 @@
 # CHANGELOG
 
 
+## v6.1.1 (2025-05-12)
+
+### Bug Fixes
+
+- Maintenance
+  ([`e3c168b`](https://github.com/CycloneDX/cyclonedx-python/commit/e3c168b34fd33c38dd23847d2d065b7216c6c256))
+
+Signed-off-by: Jan Kowalleck <jan.kowalleck@gmail.com>
+
+
 ## v6.1.0 (2025-05-12)
 
 ### Documentation
