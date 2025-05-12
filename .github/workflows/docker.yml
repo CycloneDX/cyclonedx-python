@@ -18,6 +18,8 @@ env:
   PYTHON_VERSION: "3.12"
   POETRY_VERSION: "1.8.1"
 
+permissions: {}
+
 jobs:
   test:
     name: Build and test docker image
