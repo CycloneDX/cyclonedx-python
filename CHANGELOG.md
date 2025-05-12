@@ -1,6 +1,9 @@
 # CHANGELOG
 
 
+## v6.1.0-rc.1 (2025-05-12)
+
+
 ## v6.1.0-alpha.1 (2025-05-12)
 
 ### Documentation
