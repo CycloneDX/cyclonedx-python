@@ -68,13 +68,6 @@ class Command:
                         action='store_true',
                         dest='short_purls',
                         default=False)
-        op.add_argument('--schema-version',  # DEPRECATED
-                        metavar='<version>',
-                        help='DEPRECATED alias for option "--spec-version".',
-                        dest='spec_version',
-                        choices=SchemaVersion,
-                        type=SchemaVersion.from_version,
-                        default=SchemaVersion.V1_6.to_version())
         op.add_argument('--sv', '--spec-version',
                         metavar='<version>',
                         help='Which version of CycloneDX to use.'
@@ -99,12 +92,6 @@ class Command:
                         choices=OutputFormat,
                         type=argparse_type4enum(OutputFormat),
                         default=OutputFormat.JSON.name)
-        op.add_argument('--outfile',  # DEPRECATED
-                        metavar='<file>',
-                        help='DEPRECATED alias for "--output-file".',
-                        type=FileType('wt', encoding='utf8'),
-                        dest='output_file',
-                        default=OPTION_OUTPUT_STDOUT)
         op.add_argument('-o', '--output-file',
                         metavar='<file>',
                         help='Path to the output file.'
