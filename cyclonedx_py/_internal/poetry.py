@@ -171,11 +171,11 @@ class PoetryBB(BomBuilder):
         pyproject_file = join(project_directory, 'pyproject.toml')
         lock_file = join(project_directory, 'poetry.lock')
         try:
-            pyproject = open(pyproject_file, 'rt', encoding='utf8', errors='replace')
+            pyproject = open(pyproject_file, encoding='utf8', errors='replace')
         except OSError as err:
             raise ValueError(f'Could not open pyproject file: {pyproject_file}') from err
         try:
-            lock = open(lock_file, 'rt', encoding='utf8', errors='replace')
+            lock = open(lock_file, encoding='utf8', errors='replace')
         except OSError as err:
             pyproject.close()
             raise ValueError(f'Could not open lock file: {lock_file}') from err

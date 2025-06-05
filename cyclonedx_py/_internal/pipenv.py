@@ -124,7 +124,7 @@ class PipenvBB(BomBuilder):
 
         lock_file = join(project_directory, 'Pipfile.lock')
         try:
-            lock = open(lock_file, 'rt', encoding='utf8', errors='replace')
+            lock = open(lock_file, encoding='utf8', errors='replace')
         except OSError as err:
             raise ValueError(f'Could not open lock file: {lock_file}') from err
         with lock:
