@@ -20,7 +20,7 @@ from json import dumps as json_dumps
 from os import getenv, path
 from pathlib import Path
 from re import sub as re_sub
-from typing import Any, Dict, Union
+from typing import Any, Union
 from unittest import TestCase
 from xml.sax.saxutils import escape as xml_escape, quoteattr as xml_quoteattr  # nosec:B406
 
@@ -62,12 +62,12 @@ class SnapshotMixin:
 
     @classmethod
     def writeSnapshot(cls, snapshot_name: str, data: str) -> None:  # noqa: N802
-        with open(cls.getSnapshotFile(snapshot_name), 'wt', encoding='utf8', newline='\n') as sf:
+        with open(cls.getSnapshotFile(snapshot_name), 'w', encoding='utf8', newline='\n') as sf:
             sf.write(data)
 
     @classmethod
     def readSnapshot(cls, snapshot_name: str) -> str:  # noqa: N802
-        with open(cls.getSnapshotFile(snapshot_name), 'rt', encoding='utf8', newline='\n') as sf:
+        with open(cls.getSnapshotFile(snapshot_name), encoding='utf8', newline='\n') as sf:
             return sf.read()
 
     def assertEqualSnapshot(self: Union[TestCase, 'SnapshotMixin'],  # noqa: N802
@@ -227,7 +227,7 @@ def make_comparable(bom: str, of: OutputFormat) -> str:
 # endregion reproducible test results
 
 
-def load_pyproject() -> Dict[str, Any]:
+def load_pyproject() -> dict[str, Any]:
     if sys.version_info >= (3, 11):
         from tomllib import load as toml_load
     else:

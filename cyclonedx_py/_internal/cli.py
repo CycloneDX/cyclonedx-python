@@ -186,10 +186,10 @@ class Command:
             if component.purl is not None:
                 purl = component.purl
                 component.purl = type(purl)(
-                    type=purl.type,  # type:ignore[arg-type]
-                    namespace=purl.namespace,  # type:ignore[arg-type]
-                    name=purl.name,  # type:ignore[arg-type]
-                    version=purl.version  # type:ignore[arg-type]
+                    type=purl.type,
+                    namespace=purl.namespace,
+                    name=purl.name,
+                    version=purl.version
                     # omit qualifiers
                     # omit subdirectory
                 )

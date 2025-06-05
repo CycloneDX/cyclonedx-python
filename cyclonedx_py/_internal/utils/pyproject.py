@@ -43,7 +43,7 @@ def pyproject2component(data: dict[str, Any], *,
 
 def pyproject_load(pyproject_file: str) -> dict[str, Any]:
     try:
-        pyproject_fh = open(pyproject_file, 'rt', encoding='utf8', errors='replace')
+        pyproject_fh = open(pyproject_file, encoding='utf8', errors='replace')
     except OSError as err:
         raise ValueError(f'Could not open pyproject file: {pyproject_file}') from err
     with pyproject_fh:
