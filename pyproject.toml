@@ -94,6 +94,7 @@ mypy = "1.16.0"
 bandit = "1.8.3"
 tomli = { version = "^2.0.1", python = "<3.11" }
 tox = "4.26.0"
+pyupgrade = "3.20.0"
 
 # min version required to be able to install some dependencies
 # see https://github.com/MichaelKim0407/flake8-use-fstring/issues/33
