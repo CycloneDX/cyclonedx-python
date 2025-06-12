@@ -22,19 +22,19 @@ from typing import Optional
 _MIME_TEXT_PLAIN = 'text/plain'
 
 _MAP_EXT_MIME = {
-    # https://www.iana.org/assignments/media-types/media-types.xhtml
+    # https://www.iana.org/assignments/media-types/media-types.xhtml#text
     '.csv': 'text/csv',
     '.htm': 'text/html',
     '.html': 'text/html',
     '.md': 'text/markdown',
     '.txt': 'text/plain',
     '.rst': 'text/prs.fallenstein.rst',
-    '.rtf': 'application/rtf',
+    '.rtf': 'text/rtf',  # not `application/rtf` -- our scope is text!
     '.xml': 'text/xml',  # not `application/xml` -- our scope is text!
+    # add more mime types above this line. pull-requests welcome!
     # license-specific files
     '.license': _MIME_TEXT_PLAIN,
     '.licence': _MIME_TEXT_PLAIN,
-    # add more mime types. pull-requests welcome!
 }
 
 _LICENSE_FNAME_BASE = ('licence', 'license')
