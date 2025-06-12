@@ -22,14 +22,14 @@ from typing import Optional
 _MIME_TEXT_PLAIN = 'text/plain'
 
 _MAP_EXT_MIME = {
-    # https://www.iana.org/assignments/media-types/media-types.xhtml#text
+    # https://www.iana.org/assignments/media-types/media-types.xhtml
     '.csv': 'text/csv',
     '.htm': 'text/html',
     '.html': 'text/html',
     '.md': 'text/markdown',
     '.txt': 'text/plain',
     '.rst': 'text/prs.fallenstein.rst',
-    '.rtf': 'text/rtf',  # not `application/rtf` -- our scope is text!
+    '.rtf': 'application/rtf',  # our scope is text, yes, but RTF is binary - so we should base64 encode it ...
     '.xml': 'text/xml',  # not `application/xml` -- our scope is text!
     # add more mime types above this line. pull-requests welcome!
     # license-specific files
