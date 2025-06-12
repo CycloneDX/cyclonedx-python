@@ -28,7 +28,11 @@ from textwrap import dedent
 from typing import TYPE_CHECKING, Any, Optional
 
 from cyclonedx.model import Property
-from cyclonedx.model.component import Component, ComponentEvidence, ComponentType
+from cyclonedx.model.component import (  # type:ignore[attr-defined]  # ComponentEvidence was moved, but is still importable - ignore/wont-fix for backwards compatibility # noqa:E501
+    Component,
+    ComponentEvidence,
+    ComponentType,
+)
 from packageurl import PackageURL
 from packaging.requirements import Requirement
 
