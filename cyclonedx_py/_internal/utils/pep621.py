@@ -61,9 +61,13 @@ def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory', *,
         # https://packaging.python.org/en/latest/specifications/core-metadata/#classifier-multiple-use
         yield from classifiers2licenses(classifiers, lfac, lack)
     if isinstance(plicense := project.get('license'), dict):
+        # https://packaging.python.org/en/latest/specifications/pyproject-toml/#license
         if 'file' in plicense and 'text' in plicense:
             raise ValueError('`license.file` and `license.text` are mutually exclusive,')
         if 'file' in plicense:
+            # per spec:
+            # > [...] a string value that is a relative file path [...].
+            # > Tools MUST assume the file’s encoding is UTF-8.
             with open(join(dirname(fpath), plicense['file']), 'rb') as plicense_fileh:
                 yield DisjunctiveLicense(name=f"declared license of '{project['name']}'",
                                          acknowledgement=lack,
@@ -73,6 +77,7 @@ def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory', *,
             license = lfac.make_from_string(plicense_text,
                                             license_acknowledgement=lack)
             if isinstance(license, DisjunctiveLicense) and license.id is None:
+                # per spec, `License` is either a SPDX ID/Expression, or a license text(not name!)
                 yield DisjunctiveLicense(name=f"declared license of '{project['name']}'",
                                          acknowledgement=lack,
                                          text=AttachedText(content=plicense_text))
