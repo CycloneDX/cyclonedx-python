@@ -93,7 +93,7 @@ autopep8 = "2.3.2"
 mypy = "1.16.0"
 bandit = "1.8.5"
 tomli = { version = "^2.0.1", python = "<3.11" }
-tox = "4.26.0"
+tox = "4.27.0"
 pyupgrade = "3.20.0"
 
 # min version required to be able to install some dependencies
