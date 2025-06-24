@@ -60,27 +60,25 @@ def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory', *,
         # https://peps.python.org/pep-0621/#classifiers
         # https://packaging.python.org/en/latest/specifications/core-metadata/#classifier-multiple-use
         yield from classifiers2licenses(classifiers, lfac, lack)
-    if plicense := project.get('license'):
-        # Only handle PEP 621 (dict) license formats
-        if isinstance(plicense, dict):
-            if 'file' in plicense and 'text' in plicense:
-                raise ValueError('`license.file` and `license.text` are mutually exclusive,')
-            if 'file' in plicense:
-                with open(join(dirname(fpath), plicense['file']), 'rb') as plicense_fileh:
-                    yield DisjunctiveLicense(name=f"declared license of '{project['name']}'",
-                                             acknowledgement=lack,
-                                             text=AttachedText(encoding=Encoding.BASE_64,
-                                                               content=b64encode(plicense_fileh.read()).decode()))
-            elif len(plicense_text := plicense.get('text', '')) > 0:
-                license = lfac.make_from_string(plicense_text,
-                                                license_acknowledgement=lack)
-                if isinstance(license, DisjunctiveLicense) and license.id is None:
-                    yield DisjunctiveLicense(name=f"declared license of '{project['name']}'",
-                                             acknowledgement=lack,
-                                             text=AttachedText(content=plicense_text))
-                else:
-                    yield license
-        # Silently skip any other types (including string/PEP 639)
+    if isinstance(plicense := project.get('license'), dict):
+        if 'file' in plicense and 'text' in plicense:
+            raise ValueError('`license.file` and `license.text` are mutually exclusive,')
+        if 'file' in plicense:
+            with open(join(dirname(fpath), plicense['file']), 'rb') as plicense_fileh:
+                yield DisjunctiveLicense(name=f"declared license of '{project['name']}'",
+                                         acknowledgement=lack,
+                                         text=AttachedText(encoding=Encoding.BASE_64,
+                                                           content=b64encode(plicense_fileh.read()).decode()))
+        elif len(plicense_text := plicense.get('text', '')) > 0:
+            license = lfac.make_from_string(plicense_text,
+                                            license_acknowledgement=lack)
+            if isinstance(license, DisjunctiveLicense) and license.id is None:
+                yield DisjunctiveLicense(name=f"declared license of '{project['name']}'",
+                                         acknowledgement=lack,
+                                         text=AttachedText(content=plicense_text))
+            else:
+                yield license
+    # Silently skip any other types (including string/PEP 639)
 
 
 def project2extrefs(project: dict[str, Any]) -> Generator['ExternalReference', None, None]:
