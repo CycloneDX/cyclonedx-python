@@ -4,7 +4,7 @@
 
 import os
 import tempfile
-from unittest import TestCase
+import unittest
 
 from cyclonedx.factory.license import LicenseFactory
 from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
@@ -12,29 +12,10 @@ from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
 from cyclonedx_py._internal.utils.pep621 import project2licenses
 
 
-class TestProject2Licenses(TestCase):
+class TestPEP621(unittest.TestCase):
     def setUp(self):
         self.lfac = LicenseFactory()
         self.fpath = tempfile.mktemp()
-
-    def test_license_string_pep639(self):
-        project = {
-            'name': 'testpkg',
-            'license': 'LicenseRef-Platform-Software-General-1.0',
-        }
-        licenses = list(project2licenses(project, self.lfac, fpath=self.fpath))
-        self.assertEqual(len(licenses), 1)
-        lic = licenses[0]
-        self.assertIsInstance(lic, DisjunctiveLicense)
-        self.assertEqual(lic.acknowledgement, LicenseAcknowledgement.DECLARED)
-        if lic.id is not None:
-            self.assertEqual(lic.id, 'LicenseRef-Platform-Software-General-1.0')
-        elif lic.text is not None:
-            self.assertEqual(lic.text.content, 'LicenseRef-Platform-Software-General-1.0')
-        else:
-            # Acceptable fallback: both id and text are None for unknown license references
-            self.assertIsNone(lic.id)
-            self.assertIsNone(lic.text)
 
     def test_license_dict_text_pep621(self):
         project = {

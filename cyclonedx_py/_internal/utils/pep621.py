@@ -61,7 +61,7 @@ def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory', *,
         # https://packaging.python.org/en/latest/specifications/core-metadata/#classifier-multiple-use
         yield from classifiers2licenses(classifiers, lfac, lack)
     if plicense := project.get('license'):
-        # Handle both PEP 621 (dict) and PEP 639 (str) license formats
+        # Only handle PEP 621 (dict) license formats
         if isinstance(plicense, dict):
             if 'file' in plicense and 'text' in plicense:
                 raise ValueError('`license.file` and `license.text` are mutually exclusive,')
@@ -80,12 +80,7 @@ def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory', *,
                                              text=AttachedText(content=plicense_text))
                 else:
                     yield license
-        elif isinstance(plicense, str):
-            # PEP 639: license is a string (SPDX expression or license reference)
-            license = lfac.make_from_string(plicense, license_acknowledgement=lack)
-            yield license
-        else:
-            raise TypeError(f"Unexpected type for 'license': {type(plicense)}")
+        # Silently skip any other types (including string/PEP 639)
 
 
 def project2extrefs(project: dict[str, Any]) -> Generator['ExternalReference', None, None]:
