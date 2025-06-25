@@ -66,8 +66,7 @@ def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory', *,
         # https://packaging.python.org/en/latest/specifications/core-metadata/#license
         if 'file' in plicense and 'text' in plicense:
             # per spec:
-            # > If both a file and text are provided, tools MUST raise an error.
-            # > Tools MUST NOT assume that the file and text are the same.
+            # > These keys are mutually exclusive, so a tool MUST raise an error if the metadata specifies both keys.
             raise ValueError('`license.file` and `license.text` are mutually exclusive,')
         if 'file' in plicense:
             # per spec:
