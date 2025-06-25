@@ -62,7 +62,12 @@ def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory', *,
         yield from classifiers2licenses(classifiers, lfac, lack)
     if isinstance(plicense := project.get('license'), dict):
         # https://packaging.python.org/en/latest/specifications/pyproject-toml/#license
+        # https://peps.python.org/pep-0621/#license
+        # https://packaging.python.org/en/latest/specifications/core-metadata/#license
         if 'file' in plicense and 'text' in plicense:
+            # per spec:
+            # > If both a file and text are provided, tools MUST raise an error.
+            # > Tools MUST NOT assume that the file and text are the same.
             raise ValueError('`license.file` and `license.text` are mutually exclusive,')
         if 'file' in plicense:
             # per spec:
