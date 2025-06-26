@@ -29,7 +29,7 @@ from cyclonedx_py._internal.utils.pep621 import project2licenses
 @ddt()
 class TestUtilsPEP621(TestCase):
 
-    def test_license_dict_text_pep621(self) -> None:
+    def test_license_dict_text(self) -> None:
         project = {
             'name': 'testpkg',
             'license': {'text': 'This is the license text.'},
@@ -44,7 +44,7 @@ class TestUtilsPEP621(TestCase):
         self.assertEqual(lic.text.content, 'This is the license text.')
         self.assertEqual(lic.acknowledgement, LicenseAcknowledgement.DECLARED)
 
-    def test_license_dict_file_pep621(self) -> None:
+    def test_license_dict_file(self) -> None:
         project = {
             'name': 'testpkg',
             'license': {'file': 'license.txt'},
@@ -65,7 +65,7 @@ class TestUtilsPEP621(TestCase):
         ('string', 'MIT'),
         ('list', ['MIT', 'Apache-2.0'])
     )
-    def test_license_non_dict_pep621(self, license: any) -> None:
+    def test_license_non_dict(self, license: any) -> None:
         project = {
             'name': 'testpkg',
             'license': license,
