@@ -20,6 +20,7 @@ from tempfile import TemporaryDirectory
 from unittest import TestCase
 
 from cyclonedx.factory.license import LicenseFactory
+from cyclonedx.model import Encoding
 from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
 from ddt import ddt, named_data
 
@@ -41,6 +42,7 @@ class TestUtilsPEP621(TestCase):
         lic = licenses[0]
         self.assertIsInstance(lic, DisjunctiveLicense)
         self.assertIsNone(lic.id)
+        self.assertIsNone(lic.text.encoding)
         self.assertEqual(lic.text.content, 'This is the license text.')
         self.assertEqual(lic.acknowledgement, LicenseAcknowledgement.DECLARED)
 
@@ -57,7 +59,8 @@ class TestUtilsPEP621(TestCase):
         self.assertEqual(len(licenses), 1)
         lic = licenses[0]
         self.assertIsInstance(lic, DisjunctiveLicense)
-        self.assertIsNotNone(lic.text.content)
+        self.assertIs(lic.text.encoding, Encoding.BASE_64)
+        self.assertEqual(lic.text.content, 'RmlsZSBsaWNlbnNlIHRleHQ=')
         self.assertEqual(lic.acknowledgement, LicenseAcknowledgement.DECLARED)
 
     @named_data(
