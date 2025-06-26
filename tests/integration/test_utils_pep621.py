@@ -15,75 +15,62 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-import os
-import tempfile
-import unittest
+from os.path import join
+from tempfile import TemporaryDirectory
+from unittest import TestCase
 
 from cyclonedx.factory.license import LicenseFactory
 from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
+from ddt import ddt, named_data
 
 from cyclonedx_py._internal.utils.pep621 import project2licenses
 
 
-class TestUtilsPEP621(unittest.TestCase):
+@ddt()
+class TestUtilsPEP621(TestCase):
 
     def test_license_dict_text_pep621(self) -> None:
+        project = {
+            'name': 'testpkg',
+            'license': {'text': 'This is the license text.'},
+        }
         lfac = LicenseFactory()
-        with tempfile.TemporaryDirectory() as tmpdir:
-            fpath = tmpdir  # Use the temp directory as the base for any temp files
-            project = {
-                'name': 'testpkg',
-                'license': {'text': 'This is the license text.'},
-            }
-            licenses = list(project2licenses(project, lfac, fpath=fpath))
-            self.assertEqual(len(licenses), 1)
-            lic = licenses[0]
-            self.assertIsInstance(lic, DisjunctiveLicense)
-            self.assertIsNone(lic.id)
-            self.assertEqual(lic.text.content, 'This is the license text.')
-            self.assertEqual(lic.acknowledgement, LicenseAcknowledgement.DECLARED)
+        with TemporaryDirectory() as tmpdir:
+            licenses = list(project2licenses(project, lfac, fpath=join(tmpdir, 'pyproject.toml')))
+        self.assertEqual(len(licenses), 1)
+        lic = licenses[0]
+        self.assertIsInstance(lic, DisjunctiveLicense)
+        self.assertIsNone(lic.id)
+        self.assertEqual(lic.text.content, 'This is the license text.')
+        self.assertEqual(lic.acknowledgement, LicenseAcknowledgement.DECLARED)
 
     def test_license_dict_file_pep621(self) -> None:
+        project = {
+            'name': 'testpkg',
+            'license': {'file': 'license.txt'},
+        }
         lfac = LicenseFactory()
-        with tempfile.TemporaryDirectory() as tmpdir:
-            file_path = os.path.join(tmpdir, 'license.txt')
-            with open(file_path, 'w') as tf:
+        with TemporaryDirectory() as tmpdir:
+            with open(join(tmpdir, project['license']['file']), 'w') as tf:
                 tf.write('File license text')
-            project = {
-                'name': 'testpkg',
-                'license': {'file': 'license.txt'},
-            }
-            licenses = list(project2licenses(project, lfac, fpath=file_path))
-            self.assertEqual(len(licenses), 1)
-            lic = licenses[0]
-            self.assertIsInstance(lic, DisjunctiveLicense)
-            self.assertIsNotNone(lic.text.content)
-            self.assertEqual(lic.acknowledgement, LicenseAcknowledgement.DECLARED)
+            licenses = list(project2licenses(project, lfac, fpath=join(tmpdir, 'pyproject.toml')))
+        self.assertEqual(len(licenses), 1)
+        lic = licenses[0]
+        self.assertIsInstance(lic, DisjunctiveLicense)
+        self.assertIsNotNone(lic.text.content)
+        self.assertEqual(lic.acknowledgement, LicenseAcknowledgement.DECLARED)
 
-    def test_license_non_dict_pep621(self) -> None:
+    @named_data(
+        ('none', None),
+        ('string', 'MIT'),
+        ('list', ['MIT', 'Apache-2.0'])
+    )
+    def test_license_non_dict_pep621(self, license: any) -> None:
+        project = {
+            'name': 'testpkg',
+            'license': license,
+        }
         lfac = LicenseFactory()
-        fpath = tempfile.mktemp()
-
-        # Test with string license (should be silently skipped)
-        project = {
-            'name': 'testpkg',
-            'license': 'MIT',
-        }
-        licenses = list(project2licenses(project, lfac, fpath=fpath))
-        self.assertEqual(len(licenses), 0)
-
-        # Test with None license (should be silently skipped)
-        project = {
-            'name': 'testpkg',
-            'license': None,
-        }
-        licenses = list(project2licenses(project, lfac, fpath=fpath))
-        self.assertEqual(len(licenses), 0)
-
-        # Test with list license (should be silently skipped)
-        project = {
-            'name': 'testpkg',
-            'license': ['MIT', 'Apache-2.0'],
-        }
-        licenses = list(project2licenses(project, lfac, fpath=fpath))
+        with TemporaryDirectory() as tmpdir:
+            licenses = list(project2licenses(project, lfac, fpath=join(tmpdir, 'pyproject.toml')))
         self.assertEqual(len(licenses), 0)
