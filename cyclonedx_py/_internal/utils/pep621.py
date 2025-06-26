@@ -60,7 +60,7 @@ def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory', *,
         # https://peps.python.org/pep-0621/#classifiers
         # https://packaging.python.org/en/latest/specifications/core-metadata/#classifier-multiple-use
         yield from classifiers2licenses(classifiers, lfac, lack)
-    if plicense := project.get('license'):
+    if isinstance(plicense := project.get('license'), dict):
         # https://packaging.python.org/en/latest/specifications/pyproject-toml/#license
         # https://peps.python.org/pep-0621/#license
         # https://packaging.python.org/en/latest/specifications/core-metadata/#license
@@ -87,6 +87,7 @@ def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory', *,
                                          text=AttachedText(content=plicense_text))
             else:
                 yield license
+    # Silently skip any other types (including string/PEP 639)
 
 
 def project2extrefs(project: dict[str, Any]) -> Generator['ExternalReference', None, None]:
