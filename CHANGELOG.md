@@ -2,6 +2,24 @@
 
 <!-- version list -->
 
+## v6.1.2 (2025-06-26)
+
+### Bug Fixes
+
+- Make pep621 license detections type-aware
+  ([#920](https://github.com/CycloneDX/cyclonedx-python/pull/920),
+  [`0c9aeac`](https://github.com/CycloneDX/cyclonedx-python/commit/0c9aeaca0d5dce56fe50df77f2d9384194f8276f))
+
+### Documentation
+
+- Formatting and reorder of code style instructions.
+  ([`15ac2cd`](https://github.com/CycloneDX/cyclonedx-python/commit/15ac2cd7b9d3e76163d894cb064a6bc401b46f80))
+
+- License file `*.rst` are NOT type `text` - they are binary
+  ([#911](https://github.com/CycloneDX/cyclonedx-python/pull/911),
+  [`168f81d`](https://github.com/CycloneDX/cyclonedx-python/commit/168f81d2c951e4fd7c3ceefe3586cc7d70fbb76a))
+
+
 ## v6.1.1 (2025-05-12)
 
 ### Bug Fixes
