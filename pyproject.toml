@@ -106,7 +106,7 @@ pip = ">=23.0"
 pipenv = ">=2023.11.5"
 poetry = "^1.7"
 pdm = "^2.11"
-uv = "0.7.13"  # keep pinned to exact version, until a v1.0.0 is released
+uv = "0.7.16"  # keep pinned to exact version, until a v1.0.0 is released
 
 
 
