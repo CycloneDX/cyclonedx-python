@@ -49,29 +49,30 @@ class RequirementsBB(BomBuilder):
 
     @staticmethod
     def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':
-        p = ArgumentParser(description=dedent("""\
-                           Build an SBOM from Pip requirements.
+        p = ArgumentParser(
+            description=dedent("""\
+                Build an SBOM from Pip requirements.
 
-                           The options and switches mimic the respective ones from Pip CLI.
-                           """),
-                           epilog=dedent("""\
-                           Example Usage:
-                             • Build an SBOM from a requirements file:
-                                   $ %(prog)s requirements-prod.txt
-                             • Merge multiple files and build an SBOM from it:
-                                   $ cat requirements/*.txt | %(prog)s -
-                             • Build an inventory for all installed packages:
-                                   $ python -m pip freeze --all | %(prog)s -
-                             • Build an inventory for all installed packages in a conda environment:
-                                   $ conda run python -m pip freeze --all | %(prog)s -
-                             • Build an inventory for installed packages in a Python (virtual) environment:
-                                   $ .../.venv/bin/python -m pip freeze --all --local --require-virtualenv |\\
-                                     %(prog)s -
-                             • Build an inventory from an unfrozen manifest:
-                                   $ python -m pip install -r dependencies.txt &&\\
-                                     python -m pip freeze | %(prog)s -
-                           """),
-                           **kwargs)
+                The options and switches mimic the respective ones from Pip CLI.
+                """),
+            epilog=dedent("""\
+                Example Usage:
+                  • Build an SBOM from a requirements file:
+                      $ %(prog)s requirements-prod.txt
+                  • Merge multiple files and build an SBOM from it:
+                      $ cat requirements/*.txt | %(prog)s -
+                  • Build an inventory for all installed packages:
+                      $ python -m pip freeze --all | %(prog)s -
+                  • Build an inventory for all installed packages in a conda environment:
+                      $ conda run python -m pip freeze --all | %(prog)s -
+                  • Build an inventory for installed packages in a Python (virtual) environment:
+                      $ .../.venv/bin/python -m pip freeze --all --local --require-virtualenv | \\
+                        %(prog)s -
+                  • Build an inventory from an unfrozen manifest:
+                      $ python -m pip install -r dependencies.txt && \\
+                        python -m pip freeze | %(prog)s -
+               """),
+            **kwargs)
         # the options and switches SHALL mimic the ones from Pip
         p.add_argument('-i', '--index-url',
                        metavar='<url>',

@@ -98,12 +98,13 @@ class PoetryBB(BomBuilder):
 
     @staticmethod
     def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':
-        p = ArgumentParser(description=dedent("""\
-                           Build an SBOM from Poetry project.
+        p = ArgumentParser(
+            description=dedent("""\
+                Build an SBOM from Poetry project.
 
-                           The options and switches mimic the respective ones from Poetry CLI.
-                           """),
-                           **kwargs)
+                The options and switches mimic the respective ones from Poetry CLI.
+                """),
+            **kwargs)
         # the options and switches SHALL mimic the ones from Poetry, which uses comma-separated lists and multi-use
         p.add_argument('--without',
                        metavar='<groups>',
