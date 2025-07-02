@@ -383,7 +383,9 @@ The full documentation can be issued by running with ``requirements --help``:
 
     Build an SBOM from Pip requirements.
 
-    The options and switches mimic the respective ones from Pip CLI.
+    It is encouraged to use the feature with the 'pip-compile' tool.
+
+    The options and switches mimic the respective ones from 'pip' CLI.
 
     positional arguments:
       <requirements-file>   Path to requirements file.
