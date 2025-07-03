@@ -460,13 +460,13 @@ Example Usage
 .. code-block:: shell-session
    :caption: Build an inventory for installed packages in a Python (virtual) environment
 
-    $ .../.venv/bin/python -m pip freeze --all --local --require-virtualenv |\
+    $ .../.venv/bin/python -m pip freeze --all --local --require-virtualenv | \
       cyclonedx-py requirements -
 
 .. code-block:: shell-session
    :caption: Build an inventory from an unfrozen manifest
 
-    $ python -m pip install -r dependencies.txt &&\
+    $ python -m pip install -r dependencies.txt && \
       python -m pip freeze | cyclonedx-py requirements -
 
 

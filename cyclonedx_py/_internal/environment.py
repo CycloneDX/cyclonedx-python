@@ -58,60 +58,61 @@ class EnvironmentBB(BomBuilder):
 
     @staticmethod
     def make_argument_parser(**kwargs: Any) -> 'ArgumentParser':
-        p = ArgumentParser(description='Build an SBOM from Python (virtual) environment',
-                           **kwargs)
+        p = ArgumentParser(
+            description='Build an SBOM from Python (virtual) environment',
+            **kwargs)
         if os_name == 'nt':
             p.epilog = dedent("""\
                Example Usage:
                  • Build an SBOM from python environment:
-                       > %(prog)s
+                     > %(prog)s
                  • Build an SBOM from a Python (virtual) environment:
-                       > %(prog)s "...\\some\\path\\bin\\python.exe"
-                       > %(prog)s "...\\some\\path\\.venv"
-                       > %(prog)s "$env:VIRTUAL_ENV"
-                       > %(prog)s %%VIRTUAL_ENV%%
+                     > %(prog)s "...\\some\\path\\bin\\python.exe"
+                     > %(prog)s "...\\some\\path\\.venv"
+                     > %(prog)s "$env:VIRTUAL_ENV"
+                     > %(prog)s %%VIRTUAL_ENV%%
                  • Build an SBOM from specific Python environment:
-                       > where.exe python3.9.exe
-                       > %(prog)s "%%path-to-specific-python%%"
+                     > where.exe python3.9.exe
+                     > %(prog)s "%%path-to-specific-python%%"
                  • Build an SBOM from conda Python environment:
-                       > conda.exe run where.exe python
-                       > %(prog)s "%%path-to-conda-python%%"
+                     > conda.exe run where.exe python
+                     > %(prog)s "%%path-to-conda-python%%"
                  • Build an SBOM from Pipenv environment:
-                       > pipenv.exe --py
-                       > pipenv.exe --venv
-                       > %(prog)s "%%path-to-pipenv-python%%"
+                     > pipenv.exe --py
+                     > pipenv.exe --venv
+                     > %(prog)s "%%path-to-pipenv-python%%"
                  • Build an SBOM from Poetry environment:
-                       > poetry.exe env info --executable
-                       > %(prog)s "%%path-to-poetry-python%%"
+                     > poetry.exe env info --executable
+                     > %(prog)s "%%path-to-poetry-python%%"
                  • Build an SBOM from PDM environment:
-                       > pdm.exe info --python
-                       > %(prog)s "%%path-to-pdm-python%%"
+                     > pdm.exe info --python
+                     > %(prog)s "%%path-to-pdm-python%%"
                  • Build an SBOM from uv environment:
-                       > uv.exe python find
-                       > %(prog)s "%%path-to-uv-python%%"
+                     > uv.exe python find
+                     > %(prog)s "%%path-to-uv-python%%"
                """)
         else:  # if os_name == 'posix':
             p.epilog = dedent("""\
                Example Usage:
                  • Build an SBOM from python environment:
-                       $ %(prog)s
+                     $ %(prog)s
                  • Build an SBOM from a Python (virtual) environment:
-                       $ %(prog)s '.../some/path/bin/python'
-                       $ %(prog)s '.../some/path/.venv'
-                       $ %(prog)s "$VIRTUAL_ENV"
+                     $ %(prog)s '.../some/path/bin/python'
+                     $ %(prog)s '.../some/path/.venv'
+                     $ %(prog)s "$VIRTUAL_ENV"
                  • Build an SBOM from specific Python environment:
-                       $ %(prog)s "$(which python3.9)"
+                     $ %(prog)s "$(which python3.9)"
                  • Build an SBOM from conda Python environment:
-                       $ %(prog)s "$(conda run which python)"
+                     $ %(prog)s "$(conda run which python)"
                  • Build an SBOM from Pipenv environment:
-                       $ %(prog)s "$(pipenv --py)"
-                       $ %(prog)s "$(pipenv --venv)"
+                     $ %(prog)s "$(pipenv --py)"
+                     $ %(prog)s "$(pipenv --venv)"
                  • Build an SBOM from Poetry environment:
-                       $ %(prog)s "$(poetry env info --executable)"
+                     $ %(prog)s "$(poetry env info --executable)"
                  • Build an SBOM from PDM environment:
-                       $ %(prog)s "$(pdm info --python)"
+                     $ %(prog)s "$(pdm info --python)"
                  • Build an SBOM from uv environment:
-                       $ %(prog)s "$(uv python find)"
+                     $ %(prog)s "$(uv python find)"
                """)
         p.add_argument('--PEP-639',
                        action='store_true',
