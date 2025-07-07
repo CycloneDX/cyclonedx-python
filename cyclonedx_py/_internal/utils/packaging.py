@@ -20,7 +20,6 @@ from re import compile as re_compile
 from typing import TYPE_CHECKING
 
 from cyclonedx.exception.model import InvalidUriException
-from cyclonedx.factory.license import LicenseFactory
 from cyclonedx.model import AttachedText, ExternalReference, ExternalReferenceType, XsUri
 from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
 
@@ -30,6 +29,7 @@ from .pep621 import classifiers2licenses
 if TYPE_CHECKING:  # pragma: no cover
     import sys
 
+    from cyclonedx.factory.license import LicenseFactory
     from cyclonedx.model.license import License
 
     if sys.version_info >= (3, 10):
@@ -38,8 +38,7 @@ if TYPE_CHECKING:  # pragma: no cover
         from email.message import Message as PackageMetadata
 
 
-def metadata2licenses(metadata: 'PackageMetadata') -> Generator['License', None, None]:
-    lfac = LicenseFactory()
+def metadata2licenses(metadata: 'PackageMetadata', lfac: 'LicenseFactory') -> Generator['License', None, None]:
     lack = LicenseAcknowledgement.DECLARED
     if 'Classifier' in metadata:
         # see spec: https://packaging.python.org/en/latest/specifications/core-metadata/#classifier-multiple-use

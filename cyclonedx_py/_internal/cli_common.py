@@ -30,8 +30,7 @@ def add_argument_pyproject(p: 'ArgumentParser') -> 'Action':
     return p.add_argument('--pyproject',
                           metavar='<file>',
                           help="Path to the root component's `pyproject.toml` file. "
-                               'This should point to a file compliant with PEP 621 '
-                               '(storing project metadata).',
+                               'This should point to a file compliant with PEP 621 (storing project metadata).',
                           dest='pyproject_file',
                           default=None)
 
