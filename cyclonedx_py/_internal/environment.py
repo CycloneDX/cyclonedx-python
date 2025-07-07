@@ -131,11 +131,9 @@ class EnvironmentBB(BomBuilder):
 
     def __init__(self, *,
                  logger: 'Logger',
-                 pep639: bool,
                  gather_license_texts: bool,
                  **__: Any) -> None:
         self._logger = logger
-        self._pep639 = pep639
         self._gather_license_texts = gather_license_texts
 
     def __call__(self, *,  # type:ignore[override]
