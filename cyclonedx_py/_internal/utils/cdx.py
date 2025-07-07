@@ -104,6 +104,9 @@ def licenses_fixup(component: 'Component') -> None:
     Per CycloneDX spec, there must be EITHER one license expression OR multiple license id/name.
     If there is an expression, it is used and everything else is moved to evidences, so it is not lost.
     """
+    # hack for preventing expressions AND named licenses.
+    # see https://github.com/CycloneDX/cyclonedx-python/issues/826
+    # see https://github.com/CycloneDX/specification/issues/454
     licenses = list(component.licenses)
     lexp = find_LicenseExpression(licenses)
     if lexp is None:
