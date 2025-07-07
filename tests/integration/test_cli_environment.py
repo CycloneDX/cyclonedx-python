@@ -168,7 +168,6 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
             '--output-reproducible',
             '-o=-',
             '--pyproject', join(projectdir, 'pyproject.toml'),
-            '--PEP-639',
             join(projectdir, '.venv'))
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'pep639', projectdir, sv, of)
@@ -183,7 +182,6 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
             '--output-reproducible',
             '-o=-',
             '--pyproject', join(projectdir, 'pyproject.toml'),
-            '--PEP-639',
             '--gather-license-texts',
             join(projectdir, '.venv'))
         self.assertEqual(0, res, err)

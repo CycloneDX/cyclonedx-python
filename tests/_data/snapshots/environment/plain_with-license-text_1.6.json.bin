@@ -69,6 +69,22 @@
     {
       "bom-ref": "package-c==23.42",
       "description": "some package C",
+      "evidence": {
+        "licenses": [
+          {
+            "license": {
+              "acknowledgement": "declared",
+              "id": "MIT"
+            }
+          },
+          {
+            "license": {
+              "acknowledgement": "declared",
+              "name": "License :: OSI Approved :: Apache Software License"
+            }
+          }
+        ]
+      },
       "externalReferences": [
         {
           "comment": "PackageSource: Archive",
@@ -115,11 +131,7 @@
         {
           "license": {
             "acknowledgement": "declared",
-            "name": "declared license of 'with-license-text'",
-            "text": {
-              "content": "This is the license text of this component.\nIt is expected to be available in a SBOM.",
-              "contentType": "text/plain"
-            }
+            "name": "This is the license text of this component.\nIt is expected to be available in a SBOM."
           }
         }
       ],

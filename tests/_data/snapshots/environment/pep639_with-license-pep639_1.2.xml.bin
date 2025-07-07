@@ -17,6 +17,9 @@
       <name>with-extras</name>
       <version>0.1.0</version>
       <description>depenndencies with license declaration accoring to PEP 639</description>
+      <licenses>
+        <expression>MIT OR GPL-2.0-or-later OR (FSFUL AND BSD-2-Clause)</expression>
+      </licenses>
     </component>
   </metadata>
   <components>

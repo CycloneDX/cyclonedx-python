@@ -19,9 +19,7 @@
       <description>with licenses as text, instead of SPDX ID/Expression</description>
       <licenses>
         <license>
-          <name>declared license of 'with-license-text'</name>
-          <text content-type="text/plain">This is the license text of this component.
-It is expected to be available in a SBOM.</text>
+          <name>This is the license text of this component. It is expected to be available in a SBOM.</name>
         </license>
       </licenses>
     </component>
@@ -88,6 +86,16 @@ It is expected to be available in a SBOM.</text>
           </hashes>
         </reference>
       </externalReferences>
+      <evidence>
+        <licenses>
+          <license>
+            <id>MIT</id>
+          </license>
+          <license>
+            <name>License :: OSI Approved :: Apache Software License</name>
+          </license>
+        </licenses>
+      </evidence>
     </component>
   </components>
   <dependencies>

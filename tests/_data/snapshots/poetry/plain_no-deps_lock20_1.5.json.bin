@@ -8,6 +8,20 @@
     "component": {
       "bom-ref": "no-deps",
       "description": "packages with all meta, but no deps",
+      "evidence": {
+        "licenses": [
+          {
+            "license": {
+              "id": "MIT"
+            }
+          },
+          {
+            "license": {
+              "name": "License :: OSI Approved :: Apache Software License"
+            }
+          }
+        ]
+      },
       "externalReferences": [
         {
           "comment": "from poetry: documentation",

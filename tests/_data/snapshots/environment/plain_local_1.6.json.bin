@@ -69,6 +69,22 @@
     {
       "bom-ref": "package-c==23.42",
       "description": "some package C",
+      "evidence": {
+        "licenses": [
+          {
+            "license": {
+              "acknowledgement": "declared",
+              "id": "MIT"
+            }
+          },
+          {
+            "license": {
+              "acknowledgement": "declared",
+              "name": "License :: OSI Approved :: Apache Software License"
+            }
+          }
+        ]
+      },
       "externalReferences": [
         {
           "comment": "PackageSource: Local",

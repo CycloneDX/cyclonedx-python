@@ -17,6 +17,10 @@
       <name>with-extras</name>
       <version>0.1.0</version>
       <description>depenndencies with license declaration accoring to PEP 639</description>
+      <licenses>
+        <expression>MIT OR GPL-2.0-or-later OR (FSFUL AND BSD-2-Clause)</expression>
+      </licenses>
+      <evidence/>
     </component>
     <properties>
       <property name="cdx:reproducible">true</property>
@@ -103,6 +107,16 @@
           <comment>from packaging metadata Project-URL: homepage</comment>
         </reference>
       </externalReferences>
+      <evidence>
+        <licenses>
+          <license>
+            <name>License :: OSI Approved :: Apache Software License</name>
+          </license>
+          <license>
+            <name>License :: OSI Approved :: BSD License</name>
+          </license>
+        </licenses>
+      </evidence>
     </component>
     <component type="library" bom-ref="jsonpointer==2.4">
       <name>jsonpointer</name>
