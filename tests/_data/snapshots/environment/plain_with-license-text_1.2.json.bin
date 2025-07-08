@@ -92,11 +92,7 @@
       "licenses": [
         {
           "license": {
-            "name": "declared license of 'with-license-text'",
-            "text": {
-              "content": "This is the license text of this component.\nIt is expected to be available in a SBOM.",
-              "contentType": "text/plain"
-            }
+            "name": "This is the license text of this component.\nIt is expected to be available in a SBOM."
           }
         }
       ],

@@ -29,9 +29,9 @@ from typing import TYPE_CHECKING, Any
 from cyclonedx.model import AttachedText, Encoding
 from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
 
+from ..py_interop.glob import glob
 from .bytes import bytes2str
 from .mimetypes import guess_type
-from .py_interop.glob import glob
 
 if TYPE_CHECKING:  # pragma: no cover
     from importlib.metadata import Distribution
