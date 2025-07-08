@@ -20,7 +20,7 @@ __all__ = ['glob']
 import sys
 from glob import glob as _glob
 
-if sys.version_info > (3, 10):
+if sys.version_info >= (3, 10):
     glob = _glob
 else:
     from os.path import join, sep
