@@ -40,6 +40,8 @@ if TYPE_CHECKING:  # pragma: no cover
     from cyclonedx.factory.license import LicenseFactory
     from cyclonedx.model.license import License
 
+    from ..py_interop.packagemetadata import PackageMetadata
+
 
 def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory',
                      gather_texts: bool, *,
@@ -72,50 +74,44 @@ def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory',
 _LICENSE_LOCATIONS = ('licenses', 'license_files', '')
 
 
-def dist2licenses(
+def dist2licenses_from_files(
     dist: 'Distribution', lfac: 'LicenseFactory',
-    gather_texts: bool,
     logger: 'Logger'
 ) -> Generator['License', None, None]:
     lack = LicenseAcknowledgement.DECLARED
-    metadata = dist.metadata  # see https://packaging.python.org/en/latest/specifications/core-metadata/
-    if (lexp := metadata['License-Expression']) is not None:
-        # see spec: https://peps.python.org/pep-0639/#add-license-expression-field
-        yield lfac.make_from_string(lexp,
-                                    license_acknowledgement=lack)
-    if gather_texts:
-        for mlfile in set(metadata.get_all('License-File', ())):
-            # see spec: https://peps.python.org/pep-0639/#add-license-file-field
-            # latest spec rev: https://discuss.python.org/t/pep-639-round-3-improving-license-clarity-with-better-package-metadata/53020  # noqa: E501
-            content = None
-            for mlpath in _LICENSE_LOCATIONS:
+    metadata: 'PackageMetadata' = dist.metadata  # see https://packaging.python.org/en/latest/specifications/core-metadata/
+    for mlfile in set(metadata.get_all('License-File', ())):
+        # see spec: https://peps.python.org/pep-0639/#add-license-file-field
+        # latest spec rev: https://discuss.python.org/t/pep-639-round-3-improving-license-clarity-with-better-package-metadata/53020  # noqa: E501
+        content = None
+        for mlpath in _LICENSE_LOCATIONS:
+            try:
+                content = dist.read_text(join(mlpath, mlfile))
+            except UnicodeDecodeError as err:
                 try:
-                    content = dist.read_text(join(mlpath, mlfile))
-                except UnicodeDecodeError as err:
-                    try:
-                        content = bytes2str(err.object)
-                    except UnicodeDecodeError:
-                        pass
-                    else:
-                        break  # for-loop
+                    content = bytes2str(err.object)
+                except UnicodeDecodeError:
+                    pass
                 else:
-                    if content is not None:
-                        break  # for-loop
-            if content is None:  # pragma: no cover
-                logger.debug('Error: failed to read license file %r for dist %r',
-                             mlfile, metadata['Name'])
-                continue
-            encoding = None
-            content_type = guess_type(mlfile) or AttachedText.DEFAULT_CONTENT_TYPE
-            # per default, license files are human-readable texts.
-            if not content_type.startswith('text/'):
-                encoding = Encoding.BASE_64
-                content = b64encode(content.encode('utf-8')).decode('ascii')
-            yield DisjunctiveLicense(
-                name=f'declared license file: {mlfile}',
-                acknowledgement=lack,
-                text=AttachedText(
-                    content=content,
-                    encoding=encoding,
-                    content_type=content_type
-                ))
+                    break  # for-loop
+            else:
+                if content is not None:
+                    break  # for-loop
+        if content is None:  # pragma: no cover
+            logger.debug('Error: failed to read license file %r for dist %r',
+                         mlfile, metadata['Name'])
+            continue
+        encoding = None
+        content_type = guess_type(mlfile) or AttachedText.DEFAULT_CONTENT_TYPE
+        # per default, license files are human-readable texts.
+        if not content_type.startswith('text/'):
+            encoding = Encoding.BASE_64
+            content = b64encode(content.encode('utf-8')).decode('ascii')
+        yield DisjunctiveLicense(
+            name=f'declared license file: {mlfile}',
+            acknowledgement=lack,
+            text=AttachedText(
+                content=content,
+                encoding=encoding,
+                content_type=content_type
+            ))

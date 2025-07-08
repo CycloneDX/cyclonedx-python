@@ -139,10 +139,6 @@
         <license>
           <id>Python-2.0</id>
         </license>
-        <license>
-          <name>declared license of 'defusedxml'</name>
-          <text content-type="text/plain">PSFL</text>
-        </license>
       </licenses>
       <purl>pkg:pypi/defusedxml@0.7.1</purl>
       <externalReferences>
@@ -163,10 +159,6 @@
       <licenses>
         <license>
           <name>License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)</name>
-        </license>
-        <license>
-          <name>declared license of 'fqdn'</name>
-          <text content-type="text/plain">MPL 2.0</text>
         </license>
       </licenses>
       <purl>pkg:pypi/fqdn@1.5.1</purl>
@@ -227,10 +219,6 @@
         <license>
           <id>ISC</id>
         </license>
-        <license>
-          <name>declared license of 'isoduration'</name>
-          <text content-type="text/plain">UNKNOWN</text>
-        </license>
       </licenses>
       <purl>pkg:pypi/isoduration@20.11.0</purl>
       <externalReferences>
@@ -259,10 +247,6 @@
       <licenses>
         <license>
           <name>License :: OSI Approved :: BSD License</name>
-        </license>
-        <license>
-          <name>declared license of 'jsonpointer'</name>
-          <text content-type="text/plain">Modified BSD License</text>
         </license>
       </licenses>
       <purl>pkg:pypi/jsonpointer@3.0.0</purl>
@@ -465,10 +449,6 @@
         <license>
           <name>License :: OSI Approved :: BSD License</name>
         </license>
-        <license>
-          <name>declared license of 'python-dateutil'</name>
-          <text content-type="text/plain">Dual License</text>
-        </license>
       </licenses>
       <purl>pkg:pypi/python-dateutil@2.9.0.post0</purl>
       <externalReferences>
@@ -535,10 +515,6 @@
         <license>
           <id>MIT</id>
         </license>
-        <license>
-          <name>declared license of 'rfc3339-validator'</name>
-          <text content-type="text/plain">MIT license</text>
-        </license>
       </licenses>
       <purl>pkg:pypi/rfc3339-validator@0.1.4</purl>
       <externalReferences>
@@ -555,10 +531,6 @@
       <licenses>
         <license>
           <id>GPL-3.0-or-later</id>
-        </license>
-        <license>
-          <name>declared license of 'rfc3987'</name>
-          <text content-type="text/plain">GNU GPLv3+</text>
         </license>
       </licenses>
       <purl>pkg:pypi/rfc3987@1.3.8</purl>
@@ -635,10 +607,6 @@
         <license>
           <name>License :: OSI Approved :: Apache Software License</name>
         </license>
-        <license>
-          <name>declared license of 'sortedcontainers'</name>
-          <text content-type="text/plain">Apache 2.0</text>
-        </license>
       </licenses>
       <purl>pkg:pypi/sortedcontainers@2.4.0</purl>
       <externalReferences>
@@ -691,10 +659,6 @@
       <licenses>
         <license>
           <id>MIT</id>
-        </license>
-        <license>
-          <name>declared license of 'uri-template'</name>
-          <text content-type="text/plain">MIT License</text>
         </license>
       </licenses>
       <purl>pkg:pypi/uri-template@1.3.0</purl>

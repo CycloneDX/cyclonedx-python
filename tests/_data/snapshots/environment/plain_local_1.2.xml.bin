@@ -24,12 +24,6 @@
       <name>package-a</name>
       <version>23.42</version>
       <description>some package A</description>
-      <licenses>
-        <license>
-          <name>declared license of 'package-a'</name>
-          <text content-type="text/plain">some license text</text>
-        </license>
-      </licenses>
       <externalReferences>
         <reference type="distribution">
           <url>file://.../tests/_data/infiles/_helpers/local_pckages/a/dist/package_a-23.42-py3-none-any.whl</url>

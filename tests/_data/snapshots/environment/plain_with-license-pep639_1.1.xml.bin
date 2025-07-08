@@ -90,10 +90,6 @@
         <license>
           <name>License :: OSI Approved :: BSD License</name>
         </license>
-        <license>
-          <name>declared license of 'jsonpointer'</name>
-          <text content-type="text/plain">Modified BSD License</text>
-        </license>
       </licenses>
       <purl>pkg:pypi/jsonpointer@2.4</purl>
       <externalReferences>

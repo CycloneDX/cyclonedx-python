@@ -119,15 +119,6 @@
           "license": {
             "name": "License :: OSI Approved :: BSD License"
           }
-        },
-        {
-          "license": {
-            "name": "declared license of 'jsonpointer'",
-            "text": {
-              "content": "Modified BSD License",
-              "contentType": "text/plain"
-            }
-          }
         }
       ],
       "name": "jsonpointer",

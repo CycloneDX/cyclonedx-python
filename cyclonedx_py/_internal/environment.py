@@ -38,7 +38,7 @@ from .cli_common import add_argument_mc_type, add_argument_pyproject
 from .utils.cdx import licenses_fixup, make_bom
 from .utils.packaging import metadata2extrefs, metadata2licenses, normalize_packagename
 from .utils.pep610 import PackageSourceArchive, PackageSourceVcs, packagesource2extref, packagesource4dist
-from .utils.pep639 import dist2licenses as pep639_dist2licenses
+from .utils.pep639 import dist2licenses_from_files as pep639_dist2licenses_from_files
 from .utils.pyproject import pyproject2component, pyproject2dependencies, pyproject_load
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -184,13 +184,12 @@ class EnvironmentBB(BomBuilder):
 
             # region licenses
             lfac = LicenseFactory()
-            component.licenses.update(pep639_dist2licenses(dist, lfac, self._gather_license_texts, self._logger))
-            if len(component.licenses) == 0:
-                # According to PEP 639 spec, if licenses are declared in the "new" style,
-                # all other license declarations MUST be ignored.
-                # https://peps.python.org/pep-0639/#converting-legacy-metadata
-                component.licenses.update(metadata2licenses(dist_meta, lfac))
+            component.licenses.update(metadata2licenses(dist_meta, lfac,
+                                                        gather_texts=self._gather_license_texts))
+            if self._gather_license_texts:
+                component.licenses.update(pep639_dist2licenses_from_files(dist, lfac, logger=self._logger))
             licenses_fixup(component)
+            del lfac
             # endregion licenses
 
             del dist_meta, dist_name, dist_version
