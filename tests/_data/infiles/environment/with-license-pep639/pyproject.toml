@@ -10,7 +10,7 @@ license = "MIT OR GPL-2.0-or-later OR (FSFUL AND BSD-2-Clause)"
 license-files = [
   "LICEN[CS]E*", "AUTHORS*", "NOTICE",
   "licenses_a/LICENSE.MIT", "licenses_a/*.CC0",
-   "licenses_b/**",
+  "licenses_b/**",
   "nonexisting_file", "nonexisting_dir/foo",
 ]
 
