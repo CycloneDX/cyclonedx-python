@@ -20,6 +20,42 @@
       <licenses>
         <expression>MIT OR GPL-2.0-or-later OR (FSFUL AND BSD-2-Clause)</expression>
       </licenses>
+      <evidence>
+        <licenses>
+          <license>
+            <name>declared license file: AUTHORS.example</name>
+            <text content-type="text/plain" encoding="base64">dGhpcyBpcyBBVVRIT1JTLmV4YW1wbGUgY29udGVudAo=</text>
+          </license>
+          <license>
+            <name>declared license file: LICENCE.dummy</name>
+            <text content-type="text/plain" encoding="base64">dGhpcyBpcyBMSUNFTkNFLmR1bW15IGNvbnRlbnQK</text>
+          </license>
+          <license>
+            <name>declared license file: LICENSE.txt</name>
+            <text content-type="text/plain" encoding="base64">dGhpcyBpcyBMSUNFTlNFLnR4dCBjb250ZW50Cg==</text>
+          </license>
+          <license>
+            <name>declared license file: NOTICE</name>
+            <text content-type="text/plain" encoding="base64">dGhpc2lzIHRoZSBjb250ZW50IG9mIHRoZSBOT1RJQ0UgZmlsZS4K</text>
+          </license>
+          <license>
+            <name>declared license file: licenses_a/LICENSE.CC0</name>
+            <text content-type="text/plain" encoding="base64">dGhpcyBpcyBsaWNlbnNlc19hL0xJQ0VOU0UuQ0MwIGNvbnRlbnQK</text>
+          </license>
+          <license>
+            <name>declared license file: licenses_a/LICENSE.MIT</name>
+            <text content-type="text/plain" encoding="base64">dGhpcyBpcyBsaWNlbnNlc19hL0xJQ0VOU0UuTUlUIGNvbnRlbnQK</text>
+          </license>
+          <license>
+            <name>declared license file: licenses_b/LICENSE.md</name>
+            <text content-type="text/plain" encoding="base64">dGhpcyBpcyBsaWNlbnNlc19iL0xJQ0VOU0UubWQgY29udGVudAo=</text>
+          </license>
+          <license>
+            <name>declared license file: licenses_b/legal/NOTICE.txt</name>
+            <text content-type="text/plain" encoding="base64">dGhpcyBpcyB0aGUgY29udGVudCBvZiBsaWNlbnNlc19iL2xlZ2FsL05PVElDRS50eHQgZmlsZS4gaXQgaXMgZXhwZWN0ZWQgdG8gYmUgZGV0ZWN0ZWQuCg==</text>
+          </license>
+        </licenses>
+      </evidence>
     </component>
     <properties>
       <property name="cdx:reproducible">true</property>

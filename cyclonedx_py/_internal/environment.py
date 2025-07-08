@@ -145,7 +145,10 @@ class EnvironmentBB(BomBuilder):
             rc = None
         else:
             pyproject = pyproject_load(pyproject_file)
-            root_c = pyproject2component(pyproject, ctype=mc_type, fpath=pyproject_file, gather_license_texts=False)
+            root_c = pyproject2component(pyproject, ctype=mc_type,
+                                         fpath=pyproject_file,
+                                         gather_license_texts=self._gather_license_texts,
+                                         logger=self._logger)
             root_c.bom_ref.value = 'root-component'
             root_d = tuple(pyproject2dependencies(pyproject))
             rc = (root_c, root_d)

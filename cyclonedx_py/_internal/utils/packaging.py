@@ -25,12 +25,8 @@ from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
 
 from .cdx import url_label_to_ert
 from .pep621 import classifiers2licenses as pep621_classifiers2licenses
-from .pep639 import dist2licenses_from_files as pep639_dist2licenses_from_files
 
 if TYPE_CHECKING:  # pragma: no cover
-    import sys
-    from logging import Logger
-
     from cyclonedx.factory.license import LicenseFactory
     from cyclonedx.model.license import License
 

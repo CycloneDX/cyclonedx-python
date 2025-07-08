@@ -8,9 +8,9 @@ description = "depenndencies with license declaration accoring to PEP 639"
 license = "MIT OR GPL-2.0-or-later OR (FSFUL AND BSD-2-Clause)"
 # https://peps.python.org/pep-0639/#add-license-files-key
 license-files = [
-  "LICEN[CS]E*", "AUTHORS*",
+  "LICEN[CS]E*", "AUTHORS*", "NOTICE",
   "licenses_a/LICENSE.MIT", "licenses_a/*.CC0",
-  "LICENSE.txt", "licenses_b/**",
+   "licenses_b/**",
   "nonexisting_file", "nonexisting_dir/foo",
 ]
 

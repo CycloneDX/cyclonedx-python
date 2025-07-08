@@ -40,12 +40,11 @@ if TYPE_CHECKING:  # pragma: no cover
     from cyclonedx.factory.license import LicenseFactory
     from cyclonedx.model.license import License
 
-    from ..py_interop.packagemetadata import PackageMetadata
-
 
 def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory',
                      gather_texts: bool, *,
-                     fpath: str) -> Generator['License', None, None]:
+                     fpath: str,
+                     logger: 'Logger') -> Generator['License', None, None]:
     lack = LicenseAcknowledgement.DECLARED
     if isinstance(plicense := project.get('license'), str) \
             and len(plicense) > 0:
@@ -60,7 +59,14 @@ def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory',
                 # per spec:
                 # > Tools MUST assume that license file content is valid UTF-8 encoded text
                 # anyway, we don't trust this and assume binary
-                with open(join(plfiles_root, plfile), 'rb') as plicense_fileh:
+                try:
+                    plicense_fileh = open(join(plfiles_root, plfile), 'rb')
+                except Exception as err:  # pragma: nocover
+                    logger.debug('Error: failed to read license file %r for project %r: %r',
+                                 plfile, project.get('name', '<unnamed>'), err)
+                    del err
+                    continue
+                with plicense_fileh:
                     yield DisjunctiveLicense(name=f'declared license file: {plfile}',
                                              acknowledgement=lack,
                                              text=AttachedText(encoding=Encoding.BASE_64,
@@ -79,7 +85,7 @@ def dist2licenses_from_files(
     logger: 'Logger'
 ) -> Generator['License', None, None]:
     lack = LicenseAcknowledgement.DECLARED
-    metadata: 'PackageMetadata' = dist.metadata  # see https://packaging.python.org/en/latest/specifications/core-metadata/
+    metadata = dist.metadata  # see https://packaging.python.org/en/latest/specifications/core-metadata/
     for mlfile in set(metadata.get_all('License-File', ())):
         # see spec: https://peps.python.org/pep-0639/#add-license-file-field
         # latest spec rev: https://discuss.python.org/t/pep-639-round-3-improving-license-clarity-with-better-package-metadata/53020  # noqa: E501

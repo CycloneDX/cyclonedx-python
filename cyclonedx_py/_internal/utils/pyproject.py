@@ -35,6 +35,8 @@ from .poetry import poetry2component, poetry2dependencies
 from .toml import toml_loads
 
 if TYPE_CHECKING:  # pragma: no cover
+    from logging import Logger
+
     from cyclonedx.model.component import Component, ComponentType
     from packaging.requirements import Requirement
 
@@ -42,7 +44,8 @@ if TYPE_CHECKING:  # pragma: no cover
 def pyproject2component(data: dict[str, Any], *,
                         ctype: 'ComponentType',
                         fpath: str,
-                        gather_license_texts: bool
+                        gather_license_texts: bool,
+                        logger: 'Logger'
                         ) -> 'Component':
     tool = data.get('tool', {})
     if poetry := tool.get('poetry'):
@@ -51,7 +54,8 @@ def pyproject2component(data: dict[str, Any], *,
         component = pep621_project2component(project, ctype=ctype)
         # region licenses
         lfac = LicenseFactory()
-        component.licenses.update(pep639_project2licenses(project, lfac, gather_license_texts, fpath=fpath))
+        component.licenses.update(pep639_project2licenses(project, lfac, gather_license_texts,
+                                                          fpath=fpath, logger=logger))
         if len(component.licenses) == 0:
             # According to PEP 639 spec, if licenses are declared in the "new" style,
             # all other license declarations MUST be ignored.
@@ -74,12 +78,14 @@ def pyproject_load(pyproject_file: str) -> dict[str, Any]:
 
 def pyproject_file2component(pyproject_file: str, *,
                              ctype: 'ComponentType',
-                             gather_license_texts: bool
+                             gather_license_texts: bool,
+                             logger: 'Logger'
                              ) -> 'Component':
     return pyproject2component(
         pyproject_load(pyproject_file),
         ctype=ctype, fpath=pyproject_file,
-        gather_license_texts=gather_license_texts
+        gather_license_texts=gather_license_texts,
+        logger=logger
     )
 
 
