@@ -67,6 +67,30 @@ jobs:
       - name: Run tox
         run: poetry run tox run -e py -s false
 
+  deptry:
+    name: test dependencies
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        # see https://github.com/actions/checkout
+        uses: actions/checkout@v4
+      - name: Setup Python Environment
+        # see https://github.com/actions/setup-python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION_DEFAULT }}
+          architecture: 'x64'
+      - name: Install poetry
+        # see https://github.com/marketplace/actions/setup-poetry
+        uses: Gr1N/setup-poetry@v9
+        with:
+          poetry-version: ${{ env.POETRY_VERSION }}
+      - name: Install dependencies
+        run: poetry install --no-root
+      - name: Run tox
+        run: poetry run tox run -e deptry -s false
+
   release-PyPI:
     outputs:
       released: ${{ steps.release.outputs.released }}   # "true" if a release was made, "false" otherwise
@@ -74,6 +98,7 @@ jobs:
       tag:      ${{ steps.release.outputs.tag      }}   # The Git tag corresponding to the version output
     needs:
       - quicktest
+      - deptry
     # https://github.community/t/how-do-i-specify-job-dependency-running-in-another-workflow/16482
     # limit this to being run on regular commits, not the commits that semantic-release will create
     # but also allow manual workflow dispatch

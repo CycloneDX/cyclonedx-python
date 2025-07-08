@@ -68,6 +68,30 @@ jobs:
       - name: Run tox
         run: poetry run tox run -e pyupgrade -s false
 
+  deptry:
+    name: test dependencies
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        # see https://github.com/actions/checkout
+        uses: actions/checkout@v4
+      - name: Setup Python Environment
+        # see https://github.com/actions/setup-python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION_DEFAULT }}
+          architecture: 'x64'
+      - name: Install poetry
+        # see https://github.com/marketplace/actions/setup-poetry
+        uses: Gr1N/setup-poetry@v9
+        with:
+          poetry-version: ${{ env.POETRY_VERSION }}
+      - name: Install dependencies
+        run: poetry install --no-root
+      - name: Run tox
+        run: poetry run tox run -e deptry -s false
+
   coding-standards:
     name: Linting & Coding Standards
     runs-on: ubuntu-latest
