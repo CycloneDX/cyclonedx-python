@@ -26,6 +26,7 @@ from base64 import b64encode
 from collections.abc import Generator, Iterable, Iterator
 from itertools import chain
 from os.path import dirname, join
+from pathlib import PurePosixPath
 from typing import TYPE_CHECKING, Any
 
 from cyclonedx.exception.model import InvalidUriException
@@ -72,7 +73,7 @@ def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory', *,
             # per spec:
             # > [...] a string value that is a relative file path [...].
             # > Tools MUST assume the file’s encoding is UTF-8.
-            with open(join(dirname(fpath), plicense['file']), 'rb') as plicense_fileh:
+            with open(join(dirname(fpath), *PurePosixPath(plicense['file']).parts), 'rb') as plicense_fileh:
                 yield DisjunctiveLicense(name=f"declared license of '{project['name']}'",
                                          acknowledgement=lack,
                                          text=AttachedText(encoding=Encoding.BASE_64,
