@@ -455,73 +455,81 @@
         "licenses": [
           {
             "license": {
-              "name": "declared license file: AUTHORS.example",
+              "name": "declared license file: AUTHORS.example.bin",
               "text": {
-                "content": "this is AUTHORS.example content\n",
-                "contentType": "text/plain"
+                "content": "dGhpcyBpcyBBVVRIT1JTLmV4YW1wbGUuYmluIGNvbnRlbnQK",
+                "contentType": "application/octet-stream",
+                "encoding": "base64"
               }
             }
           },
           {
             "license": {
-              "name": "declared license file: LICENCE.dummy",
+              "name": "declared license file: LICENCE.dummy.bin",
               "text": {
-                "content": "this is LICENCE.dummy content\n",
-                "contentType": "text/plain"
+                "content": "dGhpcyBpcyBMSUNFTkNFLmR1bW15LmJpbiBjb250ZW50Cg==",
+                "contentType": "application/octet-stream",
+                "encoding": "base64"
               }
             }
           },
           {
             "license": {
-              "name": "declared license file: LICENSE.txt",
+              "name": "declared license file: LICENSE.txt.bin",
               "text": {
-                "content": "this is LICENSE.txt content\n",
-                "contentType": "text/plain"
+                "content": "dGhpcyBpcyBMSUNFTlNFLnR4dC5iaW4gY29udGVudAo=",
+                "contentType": "application/octet-stream",
+                "encoding": "base64"
               }
             }
           },
           {
             "license": {
-              "name": "declared license file: NOTICE",
+              "name": "declared license file: NOTICE.bin",
               "text": {
-                "content": "thisis the content of the NOTICE file.\n",
-                "contentType": "text/plain"
+                "content": "dGhpc2lzIHRoZSBjb250ZW50IG9mIHRoZSBOT1RJQ0UuYmluIGZpbGUuCg==",
+                "contentType": "application/octet-stream",
+                "encoding": "base64"
               }
             }
           },
           {
             "license": {
-              "name": "declared license file: licenses_a/LICENSE.CC0",
+              "name": "declared license file: licenses_a/LICENSE.CC0.bin",
               "text": {
-                "content": "this is licenses_a/LICENSE.CC0 content\n",
-                "contentType": "text/plain"
+                "content": "dGhpcyBpcyBsaWNlbnNlc19hL0xJQ0VOU0UuQ0MwLmJpbiBjb250ZW50Cg==",
+                "contentType": "application/octet-stream",
+                "encoding": "base64"
               }
             }
           },
           {
             "license": {
-              "name": "declared license file: licenses_a/LICENSE.MIT",
+              "name": "declared license file: licenses_a/LICENSE.MIT.bin",
               "text": {
-                "content": "this is licenses_a/LICENSE.MIT content\n",
-                "contentType": "text/plain"
+                "content": "dGhpcyBpcyBsaWNlbnNlc19hL0xJQ0VOU0UuTUlULmJpbiBjb250ZW50Cg==",
+                "contentType": "application/octet-stream",
+                "encoding": "base64"
               }
             }
           },
           {
             "license": {
-              "name": "declared license file: licenses_b/LICENSE.md",
+              "name": "declared license file: licenses_b/LICENSE.md.bin",
               "text": {
-                "content": "this is licenses_b/LICENSE.md content\n",
-                "contentType": "text/markdown"
+                "content": "dGhpcyBpcyBsaWNlbnNlc19iL0xJQ0VOU0UubWQuYmluIGNvbnRlbnQK",
+                "contentType": "application/octet-stream",
+                "encoding": "base64"
               }
             }
           },
           {
             "license": {
-              "name": "declared license file: licenses_b/legal/NOTICE.txt",
+              "name": "declared license file: licenses_b/legal/NOTICE.txt.bin",
               "text": {
-                "content": "this is the content of licenses_b/legal/NOTICE.txt file. it is expected to be detected.\n",
-                "contentType": "text/plain"
+                "content": "dGhpcyBpcyB0aGUgY29udGVudCBvZiBsaWNlbnNlc19iL2xlZ2FsL05PVElDRS50eHQuYmluIGZpbGUuIGl0IGlzIGV4cGVjdGVkIHRvIGJlIGRldGVjdGVkLgo=",
+                "contentType": "application/octet-stream",
+                "encoding": "base64"
               }
             }
           }

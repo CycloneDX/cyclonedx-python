@@ -60,44 +60,36 @@
       <evidence>
         <licenses>
           <license>
-            <name>declared license file: AUTHORS.example</name>
-            <text content-type="text/plain">this is AUTHORS.example content
-</text>
+            <name>declared license file: AUTHORS.example.bin</name>
+            <text content-type="application/octet-stream" encoding="base64">dGhpcyBpcyBBVVRIT1JTLmV4YW1wbGUuYmluIGNvbnRlbnQK</text>
           </license>
           <license>
-            <name>declared license file: LICENCE.dummy</name>
-            <text content-type="text/plain">this is LICENCE.dummy content
-</text>
+            <name>declared license file: LICENCE.dummy.bin</name>
+            <text content-type="application/octet-stream" encoding="base64">dGhpcyBpcyBMSUNFTkNFLmR1bW15LmJpbiBjb250ZW50Cg==</text>
           </license>
           <license>
-            <name>declared license file: LICENSE.txt</name>
-            <text content-type="text/plain">this is LICENSE.txt content
-</text>
+            <name>declared license file: LICENSE.txt.bin</name>
+            <text content-type="application/octet-stream" encoding="base64">dGhpcyBpcyBMSUNFTlNFLnR4dC5iaW4gY29udGVudAo=</text>
           </license>
           <license>
-            <name>declared license file: NOTICE</name>
-            <text content-type="text/plain">thisis the content of the NOTICE file.
-</text>
+            <name>declared license file: NOTICE.bin</name>
+            <text content-type="application/octet-stream" encoding="base64">dGhpc2lzIHRoZSBjb250ZW50IG9mIHRoZSBOT1RJQ0UuYmluIGZpbGUuCg==</text>
           </license>
           <license>
-            <name>declared license file: licenses_a/LICENSE.CC0</name>
-            <text content-type="text/plain">this is licenses_a/LICENSE.CC0 content
-</text>
+            <name>declared license file: licenses_a/LICENSE.CC0.bin</name>
+            <text content-type="application/octet-stream" encoding="base64">dGhpcyBpcyBsaWNlbnNlc19hL0xJQ0VOU0UuQ0MwLmJpbiBjb250ZW50Cg==</text>
           </license>
           <license>
-            <name>declared license file: licenses_a/LICENSE.MIT</name>
-            <text content-type="text/plain">this is licenses_a/LICENSE.MIT content
-</text>
+            <name>declared license file: licenses_a/LICENSE.MIT.bin</name>
+            <text content-type="application/octet-stream" encoding="base64">dGhpcyBpcyBsaWNlbnNlc19hL0xJQ0VOU0UuTUlULmJpbiBjb250ZW50Cg==</text>
           </license>
           <license>
-            <name>declared license file: licenses_b/LICENSE.md</name>
-            <text content-type="text/markdown">this is licenses_b/LICENSE.md content
-</text>
+            <name>declared license file: licenses_b/LICENSE.md.bin</name>
+            <text content-type="application/octet-stream" encoding="base64">dGhpcyBpcyBsaWNlbnNlc19iL0xJQ0VOU0UubWQuYmluIGNvbnRlbnQK</text>
           </license>
           <license>
-            <name>declared license file: licenses_b/legal/NOTICE.txt</name>
-            <text content-type="text/plain">this is the content of licenses_b/legal/NOTICE.txt file. it is expected to be detected.
-</text>
+            <name>declared license file: licenses_b/legal/NOTICE.txt.bin</name>
+            <text content-type="application/octet-stream" encoding="base64">dGhpcyBpcyB0aGUgY29udGVudCBvZiBsaWNlbnNlc19iL2xlZ2FsL05PVElDRS50eHQuYmluIGZpbGUuIGl0IGlzIGV4cGVjdGVkIHRvIGJlIGRldGVjdGVkLgo=</text>
           </license>
         </licenses>
       </evidence>

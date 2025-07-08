@@ -125,7 +125,7 @@ def _make_license_from_content(file_name: str, content: AnyStr, lack: 'LicenseAc
             else content.encode('utf-8')
         ).decode('ascii')
     return DisjunctiveLicense(
-        name=f'{lack.value} license file: {'/'.join(Path(file_name).parts)}',
+        name=f'{lack.value} license file: {"/".join(Path(file_name).parts)}',
         acknowledgement=lack,
         text=AttachedText(
             content=content_s,
