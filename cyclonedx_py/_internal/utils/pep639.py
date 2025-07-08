@@ -23,7 +23,6 @@ See https://peps.python.org/pep-0639/
 
 from base64 import b64encode
 from collections.abc import Generator
-from glob import glob
 from os.path import dirname, join
 from typing import TYPE_CHECKING, Any
 
@@ -32,6 +31,7 @@ from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
 
 from .bytes import bytes2str
 from .mimetypes import guess_type
+from .py_interop import glob
 
 if TYPE_CHECKING:  # pragma: no cover
     from importlib.metadata import Distribution
@@ -54,7 +54,7 @@ def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory',
         # https://peps.python.org/pep-0639/#add-license-files-key
         plfiles_root = dirname(fpath)
         for plfile_glob in plfiles:
-            for plfile in glob(plfile_glob, root_dir=plfiles_root):
+            for plfile in glob(plfile_glob, root_dir=plfiles_root, recursive=True):
                 # per spec:
                 # > Tools MUST assume that license file content is valid UTF-8 encoded text
                 # anyway, we don't trust this and assume binary
