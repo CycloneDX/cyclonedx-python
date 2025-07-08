@@ -29,7 +29,7 @@ else:
     def glob(pathname: str, *, root_dir: Optional[str] = None, recursive: bool = False) -> list[str]:
         if root_dir is not None:
             pathname = join(root_dir, pathname)
-        files = glob(pathname, recursive=recursive)
+        files = _glob(pathname, recursive=recursive)
         if root_dir is not None:
             if not root_dir.endswith(sep):
                 root_dir += sep
