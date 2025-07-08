@@ -24,8 +24,8 @@ See https://peps.python.org/pep-0639/
 from base64 import b64encode
 from collections.abc import Generator
 from os.path import dirname, join
+from pathlib import Path, PurePosixPath
 from typing import TYPE_CHECKING, Any, AnyStr
-from pathlib import PurePosixPath, Path
 
 from cyclonedx.model import AttachedText, Encoding
 from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
@@ -69,7 +69,7 @@ def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory',
                     continue
                 with plicense_fileh:
                     content = plicense_fileh.read()
-                yield _make_license_from_content('/'.join(Path(plfile).parts), content, lack)
+                yield _make_license_from_content(plfile, content, lack)
     # Silently skip any other types (including string/PEP 621)
     return None
 
@@ -125,7 +125,7 @@ def _make_license_from_content(file_name: str, content: AnyStr, lack: 'LicenseAc
             else content.encode('utf-8')
         ).decode('ascii')
     return DisjunctiveLicense(
-        name=f'{lack.value} license file: {file_name}',
+        name=f'{lack.value} license file: {'/'.join(Path(file_name).parts)}',
         acknowledgement=lack,
         text=AttachedText(
             content=content_s,
