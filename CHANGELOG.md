@@ -2,6 +2,15 @@
 
 <!-- version list -->
 
+## v6.1.3 (2025-07-08)
+
+### Bug Fixes
+
+- License file detection according to PEP621
+  ([#929](https://github.com/CycloneDX/cyclonedx-python/pull/929),
+  [`28dcbf7`](https://github.com/CycloneDX/cyclonedx-python/commit/28dcbf7949b8f0cfa51f217c6e3939ce9d9926c2))
+
+
 ## v6.1.2 (2025-06-26)
 
 ### Bug Fixes
