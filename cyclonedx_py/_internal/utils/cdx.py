@@ -113,9 +113,10 @@ def licenses_fixup(component: 'Component') -> None:
         return
     component.licenses = (lexp,)
     licenses.remove(lexp)
-    if component.evidence is None:
-        component.evidence = ComponentEvidence()
-    component.evidence.licenses.update(licenses)
+    if len(licenses) > 0:
+        if component.evidence is None:
+            component.evidence = ComponentEvidence()
+        component.evidence.licenses.update(licenses)
 
 
 _MAP_KNOWN_URL_LABELS: dict[str, ExternalReferenceType] = {

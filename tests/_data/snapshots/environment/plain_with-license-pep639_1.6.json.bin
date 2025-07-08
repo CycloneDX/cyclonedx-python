@@ -259,7 +259,6 @@
     "component": {
       "bom-ref": "root-component",
       "description": "depenndencies with license declaration accoring to PEP 639",
-      "evidence": {},
       "licenses": [
         {
           "acknowledgement": "declared",
