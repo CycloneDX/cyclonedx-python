@@ -24,7 +24,7 @@ See https://peps.python.org/pep-0639/
 from base64 import b64encode
 from collections.abc import Generator
 from os.path import dirname, join
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, AnyStr
 
 from cyclonedx.model import AttachedText, Encoding
 from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
@@ -67,10 +67,8 @@ def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory',
                     del err
                     continue
                 with plicense_fileh:
-                    yield DisjunctiveLicense(name=f'declared license file: {plfile}',
-                                             acknowledgement=lack,
-                                             text=AttachedText(encoding=Encoding.BASE_64,
-                                                               content=b64encode(plicense_fileh.read()).decode()))
+                    content = plicense_fileh.read()
+                yield _make_license_from_content(plfile, content, lack)
     # Silently skip any other types (including string/PEP 621)
     return None
 
@@ -107,17 +105,29 @@ def dist2licenses_from_files(
             logger.debug('Error: failed to read license file %r for dist %r',
                          mlfile, metadata['Name'])
             continue
-        encoding = None
-        content_type = guess_type(mlfile) or AttachedText.DEFAULT_CONTENT_TYPE
-        # per default, license files are human-readable texts.
-        if not content_type.startswith('text/'):
-            encoding = Encoding.BASE_64
-            content = b64encode(content.encode('utf-8')).decode('ascii')
-        yield DisjunctiveLicense(
-            name=f'declared license file: {mlfile}',
-            acknowledgement=lack,
-            text=AttachedText(
-                content=content,
-                encoding=encoding,
-                content_type=content_type
-            ))
+        yield _make_license_from_content(mlfile, content, lack)
+
+
+def _make_license_from_content(file_name: str, content: AnyStr, lack: 'LicenseAcknowledgement') -> DisjunctiveLicense:
+    encoding = None
+    content_type = guess_type(file_name) or AttachedText.DEFAULT_CONTENT_TYPE
+    # per default, license files are human-readable texts.
+    if content_type.startswith('text/'):
+        content_s = bytes2str(content) \
+            if isinstance(content, bytes) \
+            else content
+    else:
+        encoding = Encoding.BASE_64
+        content_s = b64encode(
+            content
+            if isinstance(content, bytes)
+            else content.encode('utf-8')
+        ).decode('ascii')
+    return DisjunctiveLicense(
+        name=f'{lack.value} license file: {file_name}',
+        acknowledgement=lack,
+        text=AttachedText(
+            content=content_s,
+            encoding=encoding,
+            content_type=content_type
+        ))

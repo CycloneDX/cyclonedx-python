@@ -489,9 +489,8 @@
               "acknowledgement": "declared",
               "name": "declared license file: AUTHORS.example",
               "text": {
-                "content": "dGhpcyBpcyBBVVRIT1JTLmV4YW1wbGUgY29udGVudAo=",
-                "contentType": "text/plain",
-                "encoding": "base64"
+                "content": "this is AUTHORS.example content\n",
+                "contentType": "text/plain"
               }
             }
           },
@@ -500,9 +499,8 @@
               "acknowledgement": "declared",
               "name": "declared license file: LICENCE.dummy",
               "text": {
-                "content": "dGhpcyBpcyBMSUNFTkNFLmR1bW15IGNvbnRlbnQK",
-                "contentType": "text/plain",
-                "encoding": "base64"
+                "content": "this is LICENCE.dummy content\n",
+                "contentType": "text/plain"
               }
             }
           },
@@ -511,9 +509,8 @@
               "acknowledgement": "declared",
               "name": "declared license file: LICENSE.txt",
               "text": {
-                "content": "dGhpcyBpcyBMSUNFTlNFLnR4dCBjb250ZW50Cg==",
-                "contentType": "text/plain",
-                "encoding": "base64"
+                "content": "this is LICENSE.txt content\n",
+                "contentType": "text/plain"
               }
             }
           },
@@ -522,9 +519,8 @@
               "acknowledgement": "declared",
               "name": "declared license file: NOTICE",
               "text": {
-                "content": "dGhpc2lzIHRoZSBjb250ZW50IG9mIHRoZSBOT1RJQ0UgZmlsZS4K",
-                "contentType": "text/plain",
-                "encoding": "base64"
+                "content": "thisis the content of the NOTICE file.\n",
+                "contentType": "text/plain"
               }
             }
           },
@@ -533,9 +529,8 @@
               "acknowledgement": "declared",
               "name": "declared license file: licenses_a/LICENSE.CC0",
               "text": {
-                "content": "dGhpcyBpcyBsaWNlbnNlc19hL0xJQ0VOU0UuQ0MwIGNvbnRlbnQK",
-                "contentType": "text/plain",
-                "encoding": "base64"
+                "content": "this is licenses_a/LICENSE.CC0 content\n",
+                "contentType": "text/plain"
               }
             }
           },
@@ -544,9 +539,8 @@
               "acknowledgement": "declared",
               "name": "declared license file: licenses_a/LICENSE.MIT",
               "text": {
-                "content": "dGhpcyBpcyBsaWNlbnNlc19hL0xJQ0VOU0UuTUlUIGNvbnRlbnQK",
-                "contentType": "text/plain",
-                "encoding": "base64"
+                "content": "this is licenses_a/LICENSE.MIT content\n",
+                "contentType": "text/plain"
               }
             }
           },
@@ -555,9 +549,8 @@
               "acknowledgement": "declared",
               "name": "declared license file: licenses_b/LICENSE.md",
               "text": {
-                "content": "dGhpcyBpcyBsaWNlbnNlc19iL0xJQ0VOU0UubWQgY29udGVudAo=",
-                "contentType": "text/plain",
-                "encoding": "base64"
+                "content": "this is licenses_b/LICENSE.md content\n",
+                "contentType": "text/markdown"
               }
             }
           },
@@ -566,9 +559,8 @@
               "acknowledgement": "declared",
               "name": "declared license file: licenses_b/legal/NOTICE.txt",
               "text": {
-                "content": "dGhpcyBpcyB0aGUgY29udGVudCBvZiBsaWNlbnNlc19iL2xlZ2FsL05PVElDRS50eHQgZmlsZS4gaXQgaXMgZXhwZWN0ZWQgdG8gYmUgZGV0ZWN0ZWQuCg==",
-                "contentType": "text/plain",
-                "encoding": "base64"
+                "content": "this is the content of licenses_b/legal/NOTICE.txt file. it is expected to be detected.\n",
+                "contentType": "text/plain"
               }
             }
           }
