@@ -31,7 +31,7 @@ from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
 
 from .bytes import bytes2str
 from .mimetypes import guess_type
-from .py_interop import glob
+from .py_interop.glob import glob
 
 if TYPE_CHECKING:  # pragma: no cover
     from importlib.metadata import Distribution
