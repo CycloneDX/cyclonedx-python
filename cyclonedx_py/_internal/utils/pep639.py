@@ -25,6 +25,7 @@ from base64 import b64encode
 from collections.abc import Generator
 from os.path import dirname, join
 from typing import TYPE_CHECKING, Any, AnyStr
+from pathlib import PurePosixPath, Path
 
 from cyclonedx.model import AttachedText, Encoding
 from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
@@ -55,7 +56,7 @@ def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory',
         # https://peps.python.org/pep-0639/#add-license-files-key
         plfiles_root = dirname(fpath)
         for plfile_glob in plfiles:
-            for plfile in glob(plfile_glob, root_dir=plfiles_root, recursive=True):
+            for plfile in glob(join(*PurePosixPath(plfile_glob).parts), root_dir=plfiles_root, recursive=True):
                 # per spec:
                 # > Tools MUST assume that license file content is valid UTF-8 encoded text
                 # anyway, we don't trust this and assume binary
@@ -68,7 +69,7 @@ def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory',
                     continue
                 with plicense_fileh:
                     content = plicense_fileh.read()
-                yield _make_license_from_content(plfile, content, lack)
+                yield _make_license_from_content('/'.join(Path(plfile).parts), content, lack)
     # Silently skip any other types (including string/PEP 621)
     return None
 
