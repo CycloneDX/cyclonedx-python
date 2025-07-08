@@ -15,6 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
+from os import mkdir
 from os.path import join
 from tempfile import TemporaryDirectory
 from unittest import TestCase
@@ -53,7 +54,25 @@ class TestUtilsPEP621(TestCase):
         }
         lfac = LicenseFactory()
         with TemporaryDirectory() as tmpdir:
-            with open(join(tmpdir, project['license']['file']), 'w') as tf:
+            with open(join(tmpdir, 'license.txt'), 'w') as tf:
+                tf.write('File license text')
+            licenses = list(project2licenses(project, lfac, fpath=join(tmpdir, 'pyproject.toml')))
+        self.assertEqual(len(licenses), 1)
+        lic = licenses[0]
+        self.assertIsInstance(lic, DisjunctiveLicense)
+        self.assertIs(lic.text.encoding, Encoding.BASE_64)
+        self.assertEqual(lic.text.content, 'RmlsZSBsaWNlbnNlIHRleHQ=')
+        self.assertEqual(lic.acknowledgement, LicenseAcknowledgement.DECLARED)
+
+    def test_project2licenses_license_dict_file_in_subfolder(self) -> None:
+        project = {
+            'name': 'testpkg',
+            'license': {'file': 'foo/license.txt'},
+        }
+        lfac = LicenseFactory()
+        with TemporaryDirectory() as tmpdir:
+            mkdir(join(tmpdir, 'foo'))
+            with open(join(tmpdir, 'foo', 'license.txt'), 'w') as tf:
                 tf.write('File license text')
             licenses = list(project2licenses(project, lfac, fpath=join(tmpdir, 'pyproject.toml')))
         self.assertEqual(len(licenses), 1)
