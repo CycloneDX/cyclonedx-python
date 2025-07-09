@@ -249,7 +249,7 @@
   "metadata": {
     "component": {
       "bom-ref": "root-component",
-      "description": "depenndencies with license declaration accoring to PEP 639",
+      "description": "dependencies with license declaration according to PEP 639",
       "licenses": [
         {
           "expression": "MIT OR GPL-2.0-or-later OR (FSFUL AND BSD-2-Clause)"
