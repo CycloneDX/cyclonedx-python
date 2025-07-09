@@ -67,7 +67,6 @@ def main() -> None:
         # https://packaging.python.org/en/latest/specifications/name-normalization/#name-normalization
         'ruamel-YAML[jinja2]',  # actually "ruamel.yaml", normalizes to "ruamel-yaml"
         'ruamel-Yaml.Jinja2',   # actually "ruamel.yaml.jinja2", normalizes to "ruamel-yaml-jinja2"
-        'ruamel_yaml-Clib',     # actually "ruamel.yaml.clib", normalized to "ruamel-yaml-clib"
     )
 
 
