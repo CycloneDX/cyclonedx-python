@@ -83,11 +83,12 @@ def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory',
         elif len(plicense_text := plicense.get('text', '')) > 0:
             license = lfac.make_from_string(plicense_text,
                                             license_acknowledgement=lack)
-            if isinstance(license, DisjunctiveLicense) and license.id is None and gather_text:
-                # per spec, `License` is either a SPDX ID/Expression, or a license text(not name!)
-                yield DisjunctiveLicense(name=f"declared license of '{project['name']}'",
-                                         acknowledgement=lack,
-                                         text=AttachedText(content=plicense_text))
+            if isinstance(license, DisjunctiveLicense) and license.id is None:
+                if gather_text:
+                    # per spec, `License` is either a SPDX ID/Expression, or a license text(not name!)
+                    yield DisjunctiveLicense(name=f"declared license of '{project['name']}'",
+                                             acknowledgement=lack,
+                                             text=AttachedText(content=plicense_text))
             else:
                 yield license
     # Silently skip any other types (including string/PEP 639)

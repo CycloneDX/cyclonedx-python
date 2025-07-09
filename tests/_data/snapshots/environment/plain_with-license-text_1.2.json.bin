@@ -78,13 +78,6 @@
     "component": {
       "bom-ref": "root-component",
       "description": "with licenses as text, instead of SPDX ID/Expression",
-      "licenses": [
-        {
-          "license": {
-            "name": "This is the license text of this component.\nIt is expected to be available in a SBOM."
-          }
-        }
-      ],
       "name": "with-license-text",
       "type": "application",
       "version": "0.1.0"

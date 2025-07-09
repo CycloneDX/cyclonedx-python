@@ -54,11 +54,6 @@
       <name>with-license-text</name>
       <version>0.1.0</version>
       <description>with licenses as text, instead of SPDX ID/Expression</description>
-      <licenses>
-        <license>
-          <name>This is the license text of this component. It is expected to be available in a SBOM.</name>
-        </license>
-      </licenses>
     </component>
     <properties>
       <property name="cdx:reproducible">true</property>
