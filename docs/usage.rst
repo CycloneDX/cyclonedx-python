@@ -56,7 +56,7 @@ The full documentation can be issued by running with ``environment --help``:
 
     $ cyclonedx-py environment --help
     usage: cyclonedx-py environment [-h] [-v]
-                                    [--PEP-639] [--gather-license-texts]
+                                    [--gather-license-texts]
                                     [--short-PURLs] [--output-reproducible]
                                     [--validate | --no-validate]
                                     [-o <file>] [--sv <version>] [--of <format>]
@@ -70,12 +70,10 @@ The full documentation can be issued by running with ``environment --help``:
 
     options:
       -h, --help            show this help message and exit
-      --PEP-639             Enable license gathering according to PEP 639 (improving license clarity with better package metadata).
-                            The behavior may change during the draft development of the PEP.
       --gather-license-texts
                             Enable license text gathering.
       --pyproject <file>    Path to the root component's `pyproject.toml` file.
-                            This should point to a file compliant with PEP 621 (storing project metadata).
+                            This should point to a file compliant with PEP 621 (Storing project metadata in pyproject.toml). Supports PEP 639 (Improving License Clarity with Better Package Metadata).
       --mc-type <type>      Type of the main component.
                             {choices: application, firmware, library}
                             (default: application)
