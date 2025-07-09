@@ -17,9 +17,12 @@
 
 __all__ = ['PackageMetadata']
 
-import sys
+from typing import TYPE_CHECKING
 
-if sys.version_info >= (3, 10):
-    from importlib.metadata import PackageMetadata
-else:
-    from email.message import Message as PackageMetadata
+if TYPE_CHECKING:
+    import sys
+
+    if sys.version_info >= (3, 10):
+        from importlib.metadata import PackageMetadata
+    else:
+        from email.message import Message as PackageMetadata
