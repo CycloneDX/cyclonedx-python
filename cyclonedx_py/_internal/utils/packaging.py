@@ -50,8 +50,7 @@ def metadata2licenses(metadata: 'PackageMetadata', lfac: 'LicenseFactory',
             # see spec: https://packaging.python.org/en/latest/specifications/core-metadata/#license
             if len(mlicense) <= 0:
                 continue
-            license = lfac.make_from_string(mlicense,
-                                            license_acknowledgement=lack)
+            license = lfac.make_from_string(mlicense, license_acknowledgement=lack)
             if isinstance(license, DisjunctiveLicense) and license.id is None:
                 if gather_texts:
                     # per spec, `License` is either a SPDX ID/Expression, or a license text(not name!)

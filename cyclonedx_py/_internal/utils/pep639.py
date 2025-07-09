@@ -108,16 +108,16 @@ def dist2licenses_from_files(
 def _make_license_from_content(file_name: str, content: Union[str, bytes],
                                lack: 'LicenseAcknowledgement') -> DisjunctiveLicense:
     content_type = guess_type(file_name) or AttachedText.DEFAULT_CONTENT_TYPE
-    # Per PEP 639 spec, license files are human-readable texts.
-    # But in reality, we found non-printable bytes in some files!
-    encoding = Encoding.BASE_64
-    content_s = b64encode(
-        content
-        if isinstance(content, bytes)
-        else content.encode('utf-8')
-    ).decode('ascii')
-    return DisjunctiveLicense(name=f'{lack.value} license file: {"/".join(Path(file_name).parts)}',
-                              acknowledgement=lack,
-                              text=AttachedText(content=content_s,
-                                                encoding=encoding,
-                                                content_type=content_type))
+    return DisjunctiveLicense(
+        name=f'{lack.value} license file: {"/".join(Path(file_name).parts)}',
+        acknowledgement=lack,
+        text=AttachedText(
+            content_type=content_type,
+            encoding=Encoding.BASE_64,
+            # Per PEP 639 spec, license files are human-readable texts.
+            # But in reality, we found non-printable bytes in some files!
+            content=b64encode(
+                content
+                if isinstance(content, bytes)
+                else content.encode('utf-8')
+            ).decode('ascii')))
