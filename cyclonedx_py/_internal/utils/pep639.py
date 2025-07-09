@@ -109,7 +109,7 @@ def _make_license_from_content(file_name: str, content: Union[str, bytes],
                                lack: 'LicenseAcknowledgement') -> DisjunctiveLicense:
     # In the past, we did best-effort decoding to string,
     # see https://github.com/CycloneDX/cyclonedx-python/blob/b7a8f64ae212c5a5fd6b7cf8c83851ba692df256/cyclonedx_py/_internal/utils/pep639.py#L67-L71  # noqa:E501
-    # But this was dropped, in favour of base64 encoding; CycloneDXis for machines, not humans!
+    # But this was dropped, in favour of base64 encoding; CycloneDX is for machines, not humans!
     content_type = guess_type(file_name) or AttachedText.DEFAULT_CONTENT_TYPE
     return DisjunctiveLicense(
         name=f'{lack.value} license file: {"/".join(Path(file_name).parts)}',
