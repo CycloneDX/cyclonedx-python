@@ -71,26 +71,25 @@ def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory',
             # per spec:
             # > These keys are mutually exclusive, so a tool MUST raise an error if the metadata specifies both keys.
             raise ValueError('`license.file` and `license.text` are mutually exclusive,')
-        if gather_text and 'file' in plicense:
-            # Per PEP 621 spec:
-            # > [...] a string value that is a relative file path [...].
-            with open(join(dirname(fpath), *PurePosixPath(plicense['file']).parts), 'rb') as plicense_fileh:
-                content_type = guess_type(plicense_fileh.name) or AttachedText.DEFAULT_CONTENT_TYPE
-                yield DisjunctiveLicense(
-                    name=f"declared license of '{project['name']}'",
-                    acknowledgement=lack,
-                    text=AttachedText(
-                        content_type=content_type,
-                        encoding=Encoding.BASE_64,
-                        # Per PEP 621 spec:
-                        # > Tools MUST assume the file’s encoding is UTF-8.
-                        # But in reality, we found non-printable bytes in some files!
-                        content=b64encode(
-                            plicense_fileh.read()
-                        ).decode('ascii')))
+        if len(plicense_file := plicense.get('file', '')) > 0:
+            if gather_text:
+                # Per PEP 621 spec:
+                # > [...] a string value that is a relative file path [...].
+                # > Tools MUST assume the file’s encoding is UTF-8.
+                # But in reality, we found non-printable bytes in some files!
+                with open(join(dirname(fpath), *PurePosixPath(plicense_file).parts), 'rb') as plicense_fileh:
+                    content_type = guess_type(plicense_file) or AttachedText.DEFAULT_CONTENT_TYPE
+                    yield DisjunctiveLicense(
+                        name=f"declared license of '{project['name']}'",
+                        acknowledgement=lack,
+                        text=AttachedText(
+                            content_type=content_type,
+                            encoding=Encoding.BASE_64,
+                            content=b64encode(
+                                plicense_fileh.read()
+                            ).decode('ascii')))
         elif len(plicense_text := plicense.get('text', '')) > 0:
-            license = lfac.make_from_string(plicense_text,
-                                            license_acknowledgement=lack)
+            license = lfac.make_from_string(plicense_text, license_acknowledgement=lack)
             if isinstance(license, DisjunctiveLicense) and license.id is None:
                 if gather_text:
                     # per spec, `License` is either a SPDX ID/Expression, or a license text(not name!)
