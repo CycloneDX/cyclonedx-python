@@ -186,13 +186,11 @@ class EnvironmentBB(BomBuilder):
             )
 
             # region licenses
-            lfac = LicenseFactory()
-            component.licenses.update(metadata2licenses(dist_meta, lfac,
+            component.licenses.update(metadata2licenses(dist_meta, LicenseFactory(),
                                                         gather_texts=self._gather_license_texts))
             if self._gather_license_texts:
                 component.licenses.update(pep639_dist2licenses_from_files(dist, logger=self._logger))
             licenses_fixup(component)
-            del lfac
             # endregion licenses
 
             del dist_meta, dist_name, dist_version
