@@ -25,13 +25,12 @@ from base64 import b64encode
 from collections.abc import Generator
 from os.path import dirname, join
 from pathlib import Path, PurePosixPath
-from typing import TYPE_CHECKING, Any, AnyStr
+from typing import TYPE_CHECKING, Any, Union
 
 from cyclonedx.model import AttachedText, Encoding
 from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
 
 from ..py_interop.glob import glob
-from .bytes import bytes2str
 from .mimetypes import guess_type
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -74,13 +73,14 @@ def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory',
     return None
 
 
-# per spec > license files are stored in the `.dist-info/licenses/` subdirectory of the produced wheel.
-# but in practice, other locations are used, too.
-_LICENSE_LOCATIONS = ('licenses', 'license_files', '')
+# Per PEP 639 spec, license files are stored in the `.dist-info/` directory of the produced wheel.
+# see https://peps.python.org/pep-0639/#add-license-file-field
+# Put in reality, other locations are used, too...
+_LICENSE_LOCATIONS = ('', 'licenses', 'license_files')
 
 
 def dist2licenses_from_files(
-    dist: 'Distribution', lfac: 'LicenseFactory',
+    dist: 'Distribution',
     logger: 'Logger'
 ) -> Generator['License', None, None]:
     lack = LicenseAcknowledgement.DECLARED
@@ -88,47 +88,36 @@ def dist2licenses_from_files(
     for mlfile in set(metadata.get_all('License-File', ())):
         # see spec: https://peps.python.org/pep-0639/#add-license-file-field
         # latest spec rev: https://discuss.python.org/t/pep-639-round-3-improving-license-clarity-with-better-package-metadata/53020  # noqa: E501
-        content = None
+        content: Union[None, str, bytes] = None
         for mlpath in _LICENSE_LOCATIONS:
             try:
                 content = dist.read_text(join(mlpath, mlfile))
+                break  # for-loop
             except UnicodeDecodeError as err:
-                try:
-                    content = bytes2str(err.object)
-                except UnicodeDecodeError:
-                    pass
-                else:
-                    break  # for-loop
-            else:
-                if content is not None:
-                    break  # for-loop
+                content = err.object
+                break  # for-loop
+            except Exception:
+                continue  # for-loop
         if content is None:  # pragma: no cover
             logger.debug('Error: failed to read license file %r for dist %r',
                          mlfile, metadata['Name'])
-            continue
+            continue  # for-loop
         yield _make_license_from_content(mlfile, content, lack)
 
 
-def _make_license_from_content(file_name: str, content: AnyStr, lack: 'LicenseAcknowledgement') -> DisjunctiveLicense:
-    encoding = None
+def _make_license_from_content(file_name: str, content: Union[str, bytes],
+                               lack: 'LicenseAcknowledgement') -> DisjunctiveLicense:
     content_type = guess_type(file_name) or AttachedText.DEFAULT_CONTENT_TYPE
-    # per default, license files are human-readable texts.
-    if content_type.startswith('text/'):
-        content_s = bytes2str(content) \
-            if isinstance(content, bytes) \
-            else content
-    else:
-        encoding = Encoding.BASE_64
-        content_s = b64encode(
-            content
-            if isinstance(content, bytes)
-            else content.encode('utf-8')
-        ).decode('ascii')
-    return DisjunctiveLicense(
-        name=f'{lack.value} license file: {"/".join(Path(file_name).parts)}',
-        acknowledgement=lack,
-        text=AttachedText(
-            content=content_s,
-            encoding=encoding,
-            content_type=content_type
-        ))
+    # Per PEP 639 spec, license files are human-readable texts.
+    # But in reality, we found non-printable bytes in some files!
+    encoding = Encoding.BASE_64
+    content_s = b64encode(
+        content
+        if isinstance(content, bytes)
+        else content.encode('utf-8')
+    ).decode('ascii')
+    return DisjunctiveLicense(name=f'{lack.value} license file: {"/".join(Path(file_name).parts)}',
+                              acknowledgement=lack,
+                              text=AttachedText(content=content_s,
+                                                encoding=encoding,
+                                                content_type=content_type))

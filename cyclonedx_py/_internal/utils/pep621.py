@@ -71,10 +71,10 @@ def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory',
             # > These keys are mutually exclusive, so a tool MUST raise an error if the metadata specifies both keys.
             raise ValueError('`license.file` and `license.text` are mutually exclusive,')
         if gather_text and 'file' in plicense:
-            # per spec:
+            # Per PEP 621 spec:
             # > [...] a string value that is a relative file path [...].
             # > Tools MUST assume the file’s encoding is UTF-8.
-            # anyway, we don't trust this and assume binary
+            # But in reality, we found non-printable bytes in some files!
             with open(join(dirname(fpath), *PurePosixPath(plicense['file']).parts), 'rb') as plicense_fileh:
                 yield DisjunctiveLicense(name=f"declared license of '{project['name']}'",
                                          acknowledgement=lack,
