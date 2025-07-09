@@ -97,7 +97,7 @@ def dist2licenses_from_files(
                 content = err.object
                 break  # for-loop
             except Exception:
-                continue  # for-loop
+                pass  # nosec B110
         if content is None:  # pragma: no cover
             logger.debug('Error: failed to read license file %r for dist %r',
                          mlfile, metadata['Name'])
