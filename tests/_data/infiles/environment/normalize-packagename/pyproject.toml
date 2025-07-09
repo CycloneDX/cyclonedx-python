@@ -7,6 +7,5 @@ description = "packages with non-normalized names"
 # see https://packaging.python.org/en/latest/specifications/name-normalization/#name-normalization
 
 dependencies = [
-  "ruamel-YAML[jinja2]",   # actually "ruamel.yaml", normalizes to "ruamel-yaml"
-  "ruamel_yaml-Clib"       # actually "ruamel.yaml.clib" -- installed for interop
+  "ruamel-YAML[jinja2]"   # actually "ruamel.yaml", normalizes to "ruamel-yaml"
 ]
