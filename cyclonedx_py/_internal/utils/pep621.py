@@ -39,7 +39,7 @@ from .cdx import url_label_to_ert
 from .license_trove_classifier import is_license_trove, license_trove2spdx
 from .mimetypes import guess_type
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: nocover
     from cyclonedx.factory.license import LicenseFactory
     from cyclonedx.model.component import ComponentType
     from cyclonedx.model.license import License

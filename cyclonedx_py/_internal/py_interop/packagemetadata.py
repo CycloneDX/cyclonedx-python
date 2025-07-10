@@ -19,7 +19,7 @@ __all__ = ['PackageMetadata']
 
 from typing import TYPE_CHECKING
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: nocover
     import sys
 
     if sys.version_info >= (3, 10):
