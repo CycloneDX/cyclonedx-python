@@ -41,7 +41,8 @@ def metadata2licenses(metadata: 'PackageMetadata', lfac: 'LicenseFactory',
         # see https://packaging.python.org/en/latest/specifications/license-expression/
         # see spec: https://peps.python.org/pep-0639/#add-license-expression-field
         # Use `make_from_string` to have simple SPDX expressions that are just one disjunctive license
-        # to be simplified to a CycloneDX license it.
+        # to be simplified to a CycloneDX license ID. And we get error resilence for free, as invalid
+        # expressions are converted to CycloneDX named licenses.
         yield lfac.make_from_string(lexp,
                                     license_acknowledgement=lack)
     # Per PEP 639: if License-Expression exists, the deprecated declarations MUST be ignored
