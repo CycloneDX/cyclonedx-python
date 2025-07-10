@@ -107,6 +107,8 @@ def dist2licenses_from_files(
 
 def _make_license_from_content(file_name: str, content: Union[str, bytes],
                                lack: 'LicenseAcknowledgement') -> DisjunctiveLicense:
+    # Per PEP 639 spec, license files are human-readable texts.
+    # But in reality, we found non-printable bytes in some files!
     # In the past, we did best-effort decoding to string,
     # see https://github.com/CycloneDX/cyclonedx-python/blob/b7a8f64ae212c5a5fd6b7cf8c83851ba692df256/cyclonedx_py/_internal/utils/pep639.py#L67-L71  # noqa:E501
     # But this was dropped, in favour of base64 encoding; CycloneDX is for machines, not humans!
@@ -117,8 +119,6 @@ def _make_license_from_content(file_name: str, content: Union[str, bytes],
         text=AttachedText(
             content_type=content_type,
             encoding=Encoding.BASE_64,
-            # Per PEP 639 spec, license files are human-readable texts.
-            # But in reality, we found non-printable bytes in some files!
             content=b64encode(
                 content
                 if isinstance(content, bytes)
