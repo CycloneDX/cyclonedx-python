@@ -38,10 +38,12 @@ def metadata2licenses(metadata: 'PackageMetadata', lfac: 'LicenseFactory',
                       ) -> Generator['License', None, None]:
     lack = LicenseAcknowledgement.DECLARED
     if (lexp := metadata.get('License-Expression')) is not None:
+        # see https://packaging.python.org/en/latest/specifications/license-expression/
         # see spec: https://peps.python.org/pep-0639/#add-license-expression-field
         yield lfac.make_from_string(lexp,
                                     license_acknowledgement=lack)
-    else:  # per PEP630, if License-Expression exists, the deprecated declarations MUST be ignored
+    # Per PEP 639: if License-Expression exists, the deprecated declarations MUST be ignored
+    else:
         if 'Classifier' in metadata:
             # see spec: https://packaging.python.org/en/latest/specifications/core-metadata/#classifier-multiple-use
             classifiers: list[str] = metadata.get_all('Classifier')    # type:ignore[assignment]
