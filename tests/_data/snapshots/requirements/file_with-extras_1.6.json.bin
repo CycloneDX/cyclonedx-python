@@ -38,6 +38,22 @@
     "component": {
       "bom-ref": "root-component",
       "description": "some `reuqirements.txt` a root-component with all metadata",
+      "evidence": {
+        "licenses": [
+          {
+            "license": {
+              "acknowledgement": "declared",
+              "id": "MIT"
+            }
+          },
+          {
+            "license": {
+              "acknowledgement": "declared",
+              "name": "License :: OSI Approved :: Apache Software License"
+            }
+          }
+        ]
+      },
       "externalReferences": [
         {
           "comment": "from pyproject urls: documentation",

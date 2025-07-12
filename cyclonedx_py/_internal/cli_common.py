@@ -29,9 +29,10 @@ if TYPE_CHECKING:  # pragma: no cover
 def add_argument_pyproject(p: 'ArgumentParser') -> 'Action':
     return p.add_argument('--pyproject',
                           metavar='<file>',
-                          help="Path to the root component's `pyproject.toml` file. "
+                          help="Path to the root component's `pyproject.toml` file.\n"
                                'This should point to a file compliant with PEP 621 '
-                               '(storing project metadata).',
+                               '(Storing project metadata in pyproject.toml). '
+                               'Supports PEP 639 (Improving License Clarity with Better Package Metadata). ',
                           dest='pyproject_file',
                           default=None)
 

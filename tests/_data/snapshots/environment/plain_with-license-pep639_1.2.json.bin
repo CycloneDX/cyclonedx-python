@@ -65,6 +65,43 @@
       "version": "4.0"
     },
     {
+      "bom-ref": "chardet==5.2.0",
+      "description": "Universal encoding detector for Python 3",
+      "externalReferences": [
+        {
+          "comment": "from packaging metadata Project-URL: Documentation",
+          "type": "documentation",
+          "url": "https://chardet.readthedocs.io/"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: Issue Tracker",
+          "type": "issue-tracker",
+          "url": "https://github.com/chardet/chardet/issues"
+        },
+        {
+          "comment": "from packaging metadata Project-URL: GitHub Project",
+          "type": "other",
+          "url": "https://github.com/chardet/chardet"
+        },
+        {
+          "comment": "from packaging metadata: Home-page",
+          "type": "website",
+          "url": "https://github.com/chardet/chardet"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "name": "License :: OSI Approved :: GNU Lesser General Public License v2 or later (LGPLv2+)"
+          }
+        }
+      ],
+      "name": "chardet",
+      "purl": "pkg:pypi/chardet@5.2.0",
+      "type": "library",
+      "version": "5.2.0"
+    },
+    {
       "bom-ref": "cryptography==43.0.1",
       "description": "cryptography is a package which provides cryptographic recipes and primitives to Python developers.",
       "externalReferences": [
@@ -118,15 +155,6 @@
         {
           "license": {
             "name": "License :: OSI Approved :: BSD License"
-          }
-        },
-        {
-          "license": {
-            "name": "declared license of 'jsonpointer'",
-            "text": {
-              "content": "Modified BSD License",
-              "contentType": "text/plain"
-            }
           }
         }
       ],
@@ -211,6 +239,9 @@
       "ref": "boolean.py==4.0"
     },
     {
+      "ref": "chardet==5.2.0"
+    },
+    {
       "ref": "cryptography==43.0.1"
     },
     {
@@ -244,7 +275,12 @@
   "metadata": {
     "component": {
       "bom-ref": "root-component",
-      "description": "depenndencies with license declaration accoring to PEP 639",
+      "description": "dependencies with license declaration according to PEP 639",
+      "licenses": [
+        {
+          "expression": "MIT OR GPL-2.0-or-later OR (FSFUL AND BSD-2-Clause)"
+        }
+      ],
       "name": "with-extras",
       "type": "application",
       "version": "0.1.0"

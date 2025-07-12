@@ -16,18 +16,6 @@
           "url": "file://.../tests/_data/infiles/_helpers/local_pckages/a/dist/package_a-23.42-py3-none-any.whl"
         }
       ],
-      "licenses": [
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "declared license of 'package-a'",
-            "text": {
-              "content": "some license text",
-              "contentType": "text/plain"
-            }
-          }
-        }
-      ],
       "name": "package-a",
       "type": "library",
       "version": "23.42"
@@ -69,6 +57,22 @@
     {
       "bom-ref": "package-c==23.42",
       "description": "some package C",
+      "evidence": {
+        "licenses": [
+          {
+            "license": {
+              "acknowledgement": "declared",
+              "id": "MIT"
+            }
+          },
+          {
+            "license": {
+              "acknowledgement": "declared",
+              "name": "License :: OSI Approved :: Apache Software License"
+            }
+          }
+        ]
+      },
       "externalReferences": [
         {
           "comment": "PackageSource: Local",

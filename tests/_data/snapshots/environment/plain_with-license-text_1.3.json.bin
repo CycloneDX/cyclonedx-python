@@ -16,17 +16,6 @@
           "url": "file://.../tests/_data/infiles/_helpers/local_pckages/a/dist/package_a-23.42-py3-none-any.whl"
         }
       ],
-      "licenses": [
-        {
-          "license": {
-            "name": "declared license of 'package-a'",
-            "text": {
-              "content": "some license text",
-              "contentType": "text/plain"
-            }
-          }
-        }
-      ],
       "name": "package-a",
       "type": "library",
       "version": "23.42"
@@ -66,6 +55,20 @@
     {
       "bom-ref": "package-c==23.42",
       "description": "some package C",
+      "evidence": {
+        "licenses": [
+          {
+            "license": {
+              "id": "MIT"
+            }
+          },
+          {
+            "license": {
+              "name": "License :: OSI Approved :: Apache Software License"
+            }
+          }
+        ]
+      },
       "externalReferences": [
         {
           "comment": "PackageSource: Archive",
@@ -107,17 +110,6 @@
     "component": {
       "bom-ref": "root-component",
       "description": "with licenses as text, instead of SPDX ID/Expression",
-      "licenses": [
-        {
-          "license": {
-            "name": "declared license of 'with-license-text'",
-            "text": {
-              "content": "This is the license text of this component.\nIt is expected to be available in a SBOM.",
-              "contentType": "text/plain"
-            }
-          }
-        }
-      ],
       "name": "with-license-text",
       "type": "application",
       "version": "0.1.0"

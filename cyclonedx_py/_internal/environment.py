@@ -27,21 +27,18 @@ from sys import path as sys_path
 from textwrap import dedent
 from typing import TYPE_CHECKING, Any, Optional
 
+from cyclonedx.factory.license import LicenseFactory
 from cyclonedx.model import Property
-from cyclonedx.model.component import (  # type:ignore[attr-defined]  # ComponentEvidence was moved, but is still importable - ignore/wont-fix for backwards compatibility # noqa:E501
-    Component,
-    ComponentEvidence,
-    ComponentType,
-)
+from cyclonedx.model.component import Component, ComponentType
 from packageurl import PackageURL
 from packaging.requirements import Requirement
 
 from . import BomBuilder, PropertyName, PurlTypePypi
 from .cli_common import add_argument_mc_type, add_argument_pyproject
-from .utils.cdx import find_LicenseExpression, licenses_fixup, make_bom
+from .utils.cdx import licenses_fixup, make_bom
 from .utils.packaging import metadata2extrefs, metadata2licenses, normalize_packagename
 from .utils.pep610 import PackageSourceArchive, PackageSourceVcs, packagesource2extref, packagesource4dist
-from .utils.pep639 import dist2licenses as dist2licenses_pep639
+from .utils.pep639 import dist2licenses_from_files as pep639_dist2licenses_from_files
 from .utils.pyproject import pyproject2component, pyproject2dependencies, pyproject_load
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -114,12 +111,6 @@ class EnvironmentBB(BomBuilder):
                  • Build an SBOM from uv environment:
                      $ %(prog)s "$(uv python find)"
                """)
-        p.add_argument('--PEP-639',
-                       action='store_true',
-                       dest='pep639',
-                       help='Enable license gathering according to PEP 639 '
-                            '(improving license clarity with better package metadata).\n'
-                            'The behavior may change during the draft development of the PEP.')
         p.add_argument('--gather-license-texts',
                        action='store_true',
                        dest='gather_license_texts',
@@ -140,11 +131,9 @@ class EnvironmentBB(BomBuilder):
 
     def __init__(self, *,
                  logger: 'Logger',
-                 pep639: bool,
                  gather_license_texts: bool,
                  **__: Any) -> None:
         self._logger = logger
-        self._pep639 = pep639
         self._gather_license_texts = gather_license_texts
 
     def __call__(self, *,  # type:ignore[override]
@@ -156,7 +145,10 @@ class EnvironmentBB(BomBuilder):
             rc = None
         else:
             pyproject = pyproject_load(pyproject_file)
-            root_c = pyproject2component(pyproject, ctype=mc_type, fpath=pyproject_file)
+            root_c = pyproject2component(pyproject, ctype=mc_type,
+                                         fpath=pyproject_file,
+                                         gather_license_texts=self._gather_license_texts,
+                                         logger=self._logger)
             root_c.bom_ref.value = 'root-component'
             root_d = tuple(pyproject2dependencies(pyproject))
             rc = (root_c, root_d)
@@ -189,25 +181,17 @@ class EnvironmentBB(BomBuilder):
                 name=dist_name,
                 version=dist_version,
                 description=dist_meta['Summary'] if 'Summary' in dist_meta else None,
-                licenses=licenses_fixup(metadata2licenses(dist_meta)),
                 external_references=metadata2extrefs(dist_meta),
                 # path of dist-package on disc? naaa... a package may have multiple files/folders on disc
             )
-            if self._pep639:
-                pep639_licenses = list(dist2licenses_pep639(dist, self._gather_license_texts, self._logger))
-                pep639_lexp = find_LicenseExpression(pep639_licenses)
-                if pep639_lexp is not None:
-                    component.licenses = (pep639_lexp,)
-                    pep639_licenses.remove(pep639_lexp)
-                if len(pep639_licenses) > 0:
-                    if find_LicenseExpression(component.licenses) is None:
-                        component.licenses.update(pep639_licenses)
-                    else:
-                        # hack for preventing expressions AND named licenses.
-                        # see https://github.com/CycloneDX/cyclonedx-python/issues/826
-                        # see https://github.com/CycloneDX/specification/issues/454
-                        component.evidence = ComponentEvidence(licenses=pep639_licenses)
-                del pep639_lexp, pep639_licenses
+
+            # region licenses
+            component.licenses.update(metadata2licenses(dist_meta, LicenseFactory(),
+                                                        gather_texts=self._gather_license_texts))
+            if self._gather_license_texts:
+                component.licenses.update(pep639_dist2licenses_from_files(dist, logger=self._logger))
+            licenses_fixup(component)
+            # endregion licenses
 
             del dist_meta, dist_name, dist_version
             self.__component_add_extref_and_purl(component, packagesource4dist(dist))

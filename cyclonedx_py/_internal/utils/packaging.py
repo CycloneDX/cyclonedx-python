@@ -20,44 +20,50 @@ from re import compile as re_compile
 from typing import TYPE_CHECKING
 
 from cyclonedx.exception.model import InvalidUriException
-from cyclonedx.factory.license import LicenseFactory
 from cyclonedx.model import AttachedText, ExternalReference, ExternalReferenceType, XsUri
 from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
 
 from .cdx import url_label_to_ert
-from .pep621 import classifiers2licenses
+from .pep621 import classifiers2licenses as pep621_classifiers2licenses
 
 if TYPE_CHECKING:  # pragma: no cover
-    import sys
-
+    from cyclonedx.factory.license import LicenseFactory
     from cyclonedx.model.license import License
 
-    if sys.version_info >= (3, 10):
-        from importlib.metadata import PackageMetadata
-    else:
-        from email.message import Message as PackageMetadata
+    from ..py_interop.packagemetadata import PackageMetadata
 
 
-def metadata2licenses(metadata: 'PackageMetadata') -> Generator['License', None, None]:
-    lfac = LicenseFactory()
+def metadata2licenses(metadata: 'PackageMetadata', lfac: 'LicenseFactory',
+                      gather_texts: bool
+                      ) -> Generator['License', None, None]:
     lack = LicenseAcknowledgement.DECLARED
-    if 'Classifier' in metadata:
-        # see spec: https://packaging.python.org/en/latest/specifications/core-metadata/#classifier-multiple-use
-        classifiers: list[str] = metadata.get_all('Classifier')  # type:ignore[assignment]
-        yield from classifiers2licenses(classifiers, lfac, lack)
-    for mlicense in set(metadata.get_all('License', ())):
-        # see spec: https://packaging.python.org/en/latest/specifications/core-metadata/#license
-        if len(mlicense) <= 0:
-            continue
-        license = lfac.make_from_string(mlicense,
-                                        license_acknowledgement=lack)
-        if isinstance(license, DisjunctiveLicense) and license.id is None:
-            # per spec, `License` is either a SPDX ID/Expression, or a license text(not name!)
-            yield DisjunctiveLicense(name=f"declared license of '{metadata['Name']}'",
-                                     acknowledgement=lack,
-                                     text=AttachedText(content=mlicense))
-        else:
-            yield license
+    if (lexp := metadata.get('License-Expression')) is not None:
+        # see https://packaging.python.org/en/latest/specifications/license-expression/
+        # see spec: https://peps.python.org/pep-0639/#add-license-expression-field
+        # Use `make_from_string` to have simple SPDX expressions that are just one disjunctive license
+        # to be simplified to a CycloneDX license ID. And we get error resilence for free, as invalid
+        # expressions are converted to CycloneDX named licenses.
+        yield lfac.make_from_string(lexp,
+                                    license_acknowledgement=lack)
+    # Per PEP 639: if License-Expression exists, the deprecated declarations MUST be ignored
+    else:
+        if 'Classifier' in metadata:
+            # see spec: https://packaging.python.org/en/latest/specifications/core-metadata/#classifier-multiple-use
+            classifiers: list[str] = metadata.get_all('Classifier')    # type:ignore[assignment]
+            yield from pep621_classifiers2licenses(classifiers, lfac, lack)
+        for mlicense in set(metadata.get_all('License', ())):
+            # see spec: https://packaging.python.org/en/latest/specifications/core-metadata/#license
+            if len(mlicense) <= 0:
+                continue
+            license = lfac.make_from_string(mlicense, license_acknowledgement=lack)
+            if isinstance(license, DisjunctiveLicense) and license.id is None:
+                if gather_texts:
+                    # per spec, `License` is either a SPDX ID/Expression, or a license text(not name!)
+                    yield DisjunctiveLicense(name=f"declared license of '{metadata['Name']}'",
+                                             acknowledgement=lack,
+                                             text=AttachedText(content=mlicense))
+            else:
+                yield license
 
 
 def metadata2extrefs(metadata: 'PackageMetadata') -> Generator['ExternalReference', None, None]:

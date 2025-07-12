@@ -175,16 +175,6 @@
             "acknowledgement": "declared",
             "id": "Python-2.0"
           }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "declared license of 'defusedxml'",
-            "text": {
-              "content": "PSFL",
-              "contentType": "text/plain"
-            }
-          }
         }
       ],
       "name": "defusedxml",
@@ -207,16 +197,6 @@
           "license": {
             "acknowledgement": "declared",
             "name": "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "declared license of 'fqdn'",
-            "text": {
-              "content": "MPL 2.0",
-              "contentType": "text/plain"
-            }
           }
         }
       ],
@@ -312,16 +292,6 @@
             "acknowledgement": "declared",
             "id": "ISC"
           }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "declared license of 'isoduration'",
-            "text": {
-              "content": "UNKNOWN",
-              "contentType": "text/plain"
-            }
-          }
         }
       ],
       "name": "isoduration",
@@ -344,16 +314,6 @@
           "license": {
             "acknowledgement": "declared",
             "name": "License :: OSI Approved :: BSD License"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "declared license of 'jsonpointer'",
-            "text": {
-              "content": "Modified BSD License",
-              "contentType": "text/plain"
-            }
           }
         }
       ],
@@ -643,16 +603,6 @@
             "acknowledgement": "declared",
             "name": "License :: OSI Approved :: BSD License"
           }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "declared license of 'python-dateutil'",
-            "text": {
-              "content": "Dual License",
-              "contentType": "text/plain"
-            }
-          }
         }
       ],
       "name": "python-dateutil",
@@ -729,16 +679,6 @@
             "acknowledgement": "declared",
             "id": "MIT"
           }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "declared license of 'rfc3339-validator'",
-            "text": {
-              "content": "MIT license",
-              "contentType": "text/plain"
-            }
-          }
         }
       ],
       "name": "rfc3339-validator",
@@ -766,16 +706,6 @@
           "license": {
             "acknowledgement": "declared",
             "id": "GPL-3.0-or-later"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "declared license of 'rfc3987'",
-            "text": {
-              "content": "GNU GPLv3+",
-              "contentType": "text/plain"
-            }
           }
         }
       ],
@@ -871,16 +801,6 @@
             "acknowledgement": "declared",
             "name": "License :: OSI Approved :: Apache Software License"
           }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "declared license of 'sortedcontainers'",
-            "text": {
-              "content": "Apache 2.0",
-              "contentType": "text/plain"
-            }
-          }
         }
       ],
       "name": "sortedcontainers",
@@ -952,16 +872,6 @@
           "license": {
             "acknowledgement": "declared",
             "id": "MIT"
-          }
-        },
-        {
-          "license": {
-            "acknowledgement": "declared",
-            "name": "declared license of 'uri-template'",
-            "text": {
-              "content": "MIT License",
-              "contentType": "text/plain"
-            }
           }
         }
       ],

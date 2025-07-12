@@ -38,6 +38,20 @@
     "component": {
       "bom-ref": "root-component",
       "description": "environment via Pipenv",
+      "evidence": {
+        "licenses": [
+          {
+            "license": {
+              "id": "MIT"
+            }
+          },
+          {
+            "license": {
+              "name": "License :: OSI Approved :: Apache Software License"
+            }
+          }
+        ]
+      },
       "externalReferences": [
         {
           "comment": "from pyproject urls: documentation",

@@ -30,16 +30,17 @@ from pathlib import PurePosixPath
 from typing import TYPE_CHECKING, Any
 
 from cyclonedx.exception.model import InvalidUriException
-from cyclonedx.factory.license import LicenseFactory
 from cyclonedx.model import AttachedText, Encoding, ExternalReference, XsUri
 from cyclonedx.model.component import Component
 from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
 from packaging.requirements import Requirement
 
-from .cdx import licenses_fixup, url_label_to_ert
+from .cdx import url_label_to_ert
 from .license_trove_classifier import is_license_trove, license_trove2spdx
+from .mimetypes import guess_type
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: nocover
+    from cyclonedx.factory.license import LicenseFactory
     from cyclonedx.model.component import ComponentType
     from cyclonedx.model.license import License
 
@@ -53,7 +54,8 @@ def classifiers2licenses(classifiers: Iterable[str], lfac: 'LicenseFactory',
                                         license_acknowledgement=lack)
 
 
-def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory', *,
+def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory',
+                     gather_text: bool, *,
                      fpath: str) -> Generator['License', None, None]:
     lack = LicenseAcknowledgement.DECLARED
     if classifiers := project.get('classifiers'):
@@ -69,23 +71,32 @@ def project2licenses(project: dict[str, Any], lfac: 'LicenseFactory', *,
             # per spec:
             # > These keys are mutually exclusive, so a tool MUST raise an error if the metadata specifies both keys.
             raise ValueError('`license.file` and `license.text` are mutually exclusive,')
-        if 'file' in plicense:
-            # per spec:
-            # > [...] a string value that is a relative file path [...].
-            # > Tools MUST assume the file’s encoding is UTF-8.
-            with open(join(dirname(fpath), *PurePosixPath(plicense['file']).parts), 'rb') as plicense_fileh:
-                yield DisjunctiveLicense(name=f"declared license of '{project['name']}'",
-                                         acknowledgement=lack,
-                                         text=AttachedText(encoding=Encoding.BASE_64,
-                                                           content=b64encode(plicense_fileh.read()).decode()))
+        if len(plicense_file := plicense.get('file', '')) > 0:
+            if gather_text:
+                # Per PEP 621 spec:
+                # > [...] a string value that is a relative file path [...].
+                # > Tools MUST assume the file’s encoding is UTF-8.
+                # But in reality, we found non-printable bytes in some files!
+                with open(join(dirname(fpath), *PurePosixPath(plicense_file).parts), 'rb') as plicense_fileh:
+                    content_type = guess_type(plicense_file) or AttachedText.DEFAULT_CONTENT_TYPE
+                    yield DisjunctiveLicense(
+                        name=f"declared license of '{project['name']}'",
+                        acknowledgement=lack,
+                        text=AttachedText(
+                            content_type=content_type,
+                            encoding=Encoding.BASE_64,
+                            content=b64encode(
+                                plicense_fileh.read()
+                            ).decode('ascii')))
         elif len(plicense_text := plicense.get('text', '')) > 0:
-            license = lfac.make_from_string(plicense_text,
-                                            license_acknowledgement=lack)
+            license = lfac.make_from_string(plicense_text, license_acknowledgement=lack)
             if isinstance(license, DisjunctiveLicense) and license.id is None:
-                # per spec, `License` is either a SPDX ID/Expression, or a license text(not name!)
-                yield DisjunctiveLicense(name=f"declared license of '{project['name']}'",
-                                         acknowledgement=lack,
-                                         text=AttachedText(content=plicense_text))
+                if gather_text:
+                    # per spec, `License` is either a SPDX ID/Expression, or a license text(not name!)
+                    yield DisjunctiveLicense(
+                        name=f"declared license of '{project['name']}'",
+                        acknowledgement=lack,
+                        text=AttachedText(content=plicense_text))
             else:
                 yield license
     # Silently skip any other types (including string/PEP 639)
@@ -104,15 +115,15 @@ def project2extrefs(project: dict[str, Any]) -> Generator['ExternalReference', N
 
 
 def project2component(project: dict[str, Any], *,
-                      ctype: 'ComponentType', fpath: str) -> 'Component':
+                      ctype: 'ComponentType') -> 'Component':
     dynamic = project.get('dynamic', ())
     return Component(
         type=ctype,
         name=project['name'],
         version=project.get('version', None) if 'version' not in dynamic else None,
         description=project.get('description', None) if 'description' not in dynamic else None,
-        licenses=licenses_fixup(project2licenses(project, LicenseFactory(), fpath=fpath)),
         external_references=project2extrefs(project),
+        # licenses are not gathered here per default, they may be sourced otherwise
         # TODO add more properties according to spec
     )
 

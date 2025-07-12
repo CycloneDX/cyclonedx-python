@@ -6,14 +6,15 @@ on:
       release_force:
         # see https://python-semantic-release.readthedocs.io/en/latest/github-action.html#command-line-options
         description: |
-          Force release be one of: [major | minor | patch]
+          Force release be one of: [major | minor | patch | prerelease]
           Leave empty for auto-detect based on commit messages.
         type: choice
         options:
-          - "" # auto - no force
-          - major # force major
-          - minor # force minor
-          - patch # force patch
+          - ""         # auto - no force
+          - major      # force major
+          - minor      # force minor
+          - patch      # force patch
+          - prerelease # force prerelease
         default: ""
         required: false
       prerelease_token:

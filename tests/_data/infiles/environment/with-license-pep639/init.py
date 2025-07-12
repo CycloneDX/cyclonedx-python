@@ -71,6 +71,7 @@ def main() -> None:
         'jsonpointer',
         'license_expression',
         'lxml',
+        'chardet==5.2.0',  # https://github.com/CycloneDX/cyclonedx-python/issues/931
         # with expression-like License AND License-File
         'cryptography==43.0.1',  # https://github.com/CycloneDX/cyclonedx-python/issues/826
         # with possibly unexpected license files

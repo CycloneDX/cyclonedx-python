@@ -16,6 +16,13 @@
       <modified>false</modified>
     </component>
     <component type="library">
+      <name>chardet</name>
+      <version>5.2.0</version>
+      <description>Universal encoding detector for Python 3</description>
+      <purl>pkg:pypi/chardet@5.2.0</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
       <name>cryptography</name>
       <version>43.0.1</version>
       <description>cryptography is a package which provides cryptographic recipes and primitives to Python developers.</description>
