@@ -158,38 +158,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'plain', projectdir, sv, of)
 
-    @named_data(*test_data_file_filter('pep639'))
-    def test_pep639_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
-        res, out, err = run_cli(
-            'environment',
-            '-vvv',
-            '--sv', sv.to_version(),
-            '--of', of.name,
-            '--output-reproducible',
-            '-o=-',
-            '--pyproject', join(projectdir, 'pyproject.toml'),
-            '--PEP-639',
-            join(projectdir, '.venv'))
-        self.assertEqual(0, res, err)
-        self.assertEqualSnapshot(out, 'pep639', projectdir, sv, of)
-
-    @named_data(*test_data_file_filter('pep639'))
-    def test_pep639_texts_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
-        res, out, err = run_cli(
-            'environment',
-            '-vvv',
-            '--sv', sv.to_version(),
-            '--of', of.name,
-            '--output-reproducible',
-            '-o=-',
-            '--pyproject', join(projectdir, 'pyproject.toml'),
-            '--PEP-639',
-            '--gather-license-texts',
-            join(projectdir, '.venv'))
-        self.assertEqual(0, res, err)
-        self.assertEqualSnapshot(out, 'pep639-texts', projectdir, sv, of)
-
-    @named_data(*test_data_file_filter('pep639'))
+    @named_data(*test_data_file_filter('with-license-'))
     def test_texts_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
         res, out, err = run_cli(
             'environment',

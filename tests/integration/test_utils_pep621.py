@@ -38,7 +38,7 @@ class TestUtilsPEP621(TestCase):
         }
         lfac = LicenseFactory()
         with TemporaryDirectory() as tmpdir:
-            licenses = list(project2licenses(project, lfac, fpath=join(tmpdir, 'pyproject.toml')))
+            licenses = list(project2licenses(project, lfac, True, fpath=join(tmpdir, 'pyproject.toml')))
         self.assertEqual(len(licenses), 1)
         lic = licenses[0]
         self.assertIsInstance(lic, DisjunctiveLicense)
@@ -56,7 +56,7 @@ class TestUtilsPEP621(TestCase):
         with TemporaryDirectory() as tmpdir:
             with open(join(tmpdir, 'license.txt'), 'w') as tf:
                 tf.write('File license text')
-            licenses = list(project2licenses(project, lfac, fpath=join(tmpdir, 'pyproject.toml')))
+            licenses = list(project2licenses(project, lfac, True, fpath=join(tmpdir, 'pyproject.toml')))
         self.assertEqual(len(licenses), 1)
         lic = licenses[0]
         self.assertIsInstance(lic, DisjunctiveLicense)
@@ -74,7 +74,7 @@ class TestUtilsPEP621(TestCase):
             mkdir(join(tmpdir, 'foo'))
             with open(join(tmpdir, 'foo', 'license.txt'), 'w') as tf:
                 tf.write('File license text')
-            licenses = list(project2licenses(project, lfac, fpath=join(tmpdir, 'pyproject.toml')))
+            licenses = list(project2licenses(project, lfac, True, fpath=join(tmpdir, 'pyproject.toml')))
         self.assertEqual(len(licenses), 1)
         lic = licenses[0]
         self.assertIsInstance(lic, DisjunctiveLicense)
@@ -94,5 +94,5 @@ class TestUtilsPEP621(TestCase):
         }
         lfac = LicenseFactory()
         with TemporaryDirectory() as tmpdir:
-            licenses = list(project2licenses(project, lfac, fpath=join(tmpdir, 'pyproject.toml')))
+            licenses = list(project2licenses(project, lfac, True, fpath=join(tmpdir, 'pyproject.toml')))
         self.assertEqual(len(licenses), 0)

@@ -116,7 +116,8 @@ class RequirementsBB(BomBuilder):
         if pyproject_file is None:
             rc = None
         else:
-            rc = pyproject_file2component(pyproject_file, ctype=mc_type)
+            rc = pyproject_file2component(pyproject_file, ctype=mc_type,
+                                          gather_license_texts=False, logger=self._logger)
             rc.bom_ref.value = 'root-component'
 
         if requirements_file == '-':

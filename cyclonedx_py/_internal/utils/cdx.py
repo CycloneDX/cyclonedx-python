@@ -27,7 +27,11 @@ from typing import Any, Optional
 from cyclonedx.builder.this import this_component as lib_component
 from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
 from cyclonedx.model.bom import Bom
-from cyclonedx.model.component import Component, ComponentType
+from cyclonedx.model.component import (  # type:ignore[attr-defined]  # ComponentEvidence was moved, but is still importable - ignore/wont-fix for backwards compatibility  # noqa:E501
+    Component,
+    ComponentEvidence,
+    ComponentType,
+)
 from cyclonedx.model.license import DisjunctiveLicense, License, LicenseAcknowledgement, LicenseExpression
 
 from ... import __version__ as _THIS_VERSION  # noqa:N812
@@ -95,11 +99,24 @@ def find_LicenseExpression(licenses: Iterable['License']) -> Optional[LicenseExp
     return None
 
 
-def licenses_fixup(licenses: Iterable['License']) -> Iterable['License']:
-    licenses = set(licenses)
-    if (lexp := find_LicenseExpression(licenses)) is not None:
-        return (lexp,)
-    return licenses
+def licenses_fixup(component: 'Component') -> None:
+    """
+    Per CycloneDX spec, there must be EITHER one license expression OR multiple license id/name.
+    If there is an expression, it is used and everything else is moved to evidences, so it is not lost.
+    """
+    # hack for preventing expressions AND named licenses.
+    # see https://github.com/CycloneDX/cyclonedx-python/issues/826
+    # see https://github.com/CycloneDX/specification/issues/454
+    licenses = list(component.licenses)
+    lexp = find_LicenseExpression(licenses)
+    if lexp is None:
+        return
+    component.licenses = (lexp,)
+    licenses.remove(lexp)
+    if len(licenses) > 0:
+        if component.evidence is None:
+            component.evidence = ComponentEvidence()
+        component.evidence.licenses.update(licenses)
 
 
 _MAP_KNOWN_URL_LABELS: dict[str, ExternalReferenceType] = {

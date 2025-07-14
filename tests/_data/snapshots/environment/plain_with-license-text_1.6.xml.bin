@@ -54,13 +54,6 @@
       <name>with-license-text</name>
       <version>0.1.0</version>
       <description>with licenses as text, instead of SPDX ID/Expression</description>
-      <licenses>
-        <license acknowledgement="declared">
-          <name>declared license of 'with-license-text'</name>
-          <text content-type="text/plain">This is the license text of this component.
-It is expected to be available in a SBOM.</text>
-        </license>
-      </licenses>
     </component>
     <properties>
       <property name="cdx:reproducible">true</property>
@@ -71,12 +64,6 @@ It is expected to be available in a SBOM.</text>
       <name>package-a</name>
       <version>23.42</version>
       <description>some package A</description>
-      <licenses>
-        <license acknowledgement="declared">
-          <name>declared license of 'package-a'</name>
-          <text content-type="text/plain">some license text</text>
-        </license>
-      </licenses>
       <externalReferences>
         <reference type="distribution">
           <url>file://.../tests/_data/infiles/_helpers/local_pckages/a/dist/package_a-23.42-py3-none-any.whl</url>
@@ -125,6 +112,16 @@ It is expected to be available in a SBOM.</text>
           </hashes>
         </reference>
       </externalReferences>
+      <evidence>
+        <licenses>
+          <license acknowledgement="declared">
+            <id>MIT</id>
+          </license>
+          <license acknowledgement="declared">
+            <name>License :: OSI Approved :: Apache Software License</name>
+          </license>
+        </licenses>
+      </evidence>
     </component>
   </components>
   <dependencies>

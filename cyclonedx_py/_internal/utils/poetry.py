@@ -37,7 +37,6 @@ from .pep621 import classifiers2licenses
 
 if TYPE_CHECKING:
     from cyclonedx.model.component import ComponentType
-    from cyclonedx.model.license import License
 
 
 def poetry2extrefs(poetry: dict[str, Any]) -> Generator['ExternalReference', None, None]:
@@ -64,26 +63,27 @@ def poetry2extrefs(poetry: dict[str, Any]) -> Generator['ExternalReference', Non
 
 
 def poetry2component(poetry: dict[str, Any], *, ctype: 'ComponentType') -> 'Component':
-    licenses: list['License'] = []
-    lfac = LicenseFactory()
-    lack = LicenseAcknowledgement.DECLARED
-    if 'classifiers' in poetry:
-        licenses.extend(classifiers2licenses(poetry['classifiers'], lfac, lack))
-    if 'license' in poetry:
-        # per spec(https://python-poetry.org/docs/pyproject#license):
-        # the `license` is intended to be the name of a license, not the license text itself.
-        licenses.append(lfac.make_from_string(poetry['license'],
-                                              license_acknowledgement=lack))
-
-    return Component(
+    component = Component(
         type=ctype,
         name=poetry['name'],
         version=poetry.get('version'),
         description=poetry.get('description'),
-        licenses=licenses_fixup(licenses),
         external_references=poetry2extrefs(poetry),
         # TODO add more properties according to spec
     )
+    # region licenses
+    lfac = LicenseFactory()
+    lack = LicenseAcknowledgement.DECLARED
+    if 'classifiers' in poetry:
+        component.licenses.update(classifiers2licenses(poetry['classifiers'], lfac, lack))
+    if 'license' in poetry:
+        # per spec(https://python-poetry.org/docs/pyproject#license):
+        # the `license` is intended to be the name of a license, not the license text itself.
+        component.licenses.add(lfac.make_from_string(poetry['license'],
+                                                     license_acknowledgement=lack))
+    licenses_fixup(component)
+    # endregion licenses
+    return component
 
 
 def poetry2dependencies(poetry: dict[str, Any]) -> Generator['Requirement', None, None]:

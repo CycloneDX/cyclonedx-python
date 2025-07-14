@@ -169,15 +169,6 @@
           "license": {
             "id": "Python-2.0"
           }
-        },
-        {
-          "license": {
-            "name": "declared license of 'defusedxml'",
-            "text": {
-              "content": "PSFL",
-              "contentType": "text/plain"
-            }
-          }
         }
       ],
       "name": "defusedxml",
@@ -199,15 +190,6 @@
         {
           "license": {
             "name": "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)"
-          }
-        },
-        {
-          "license": {
-            "name": "declared license of 'fqdn'",
-            "text": {
-              "content": "MPL 2.0",
-              "contentType": "text/plain"
-            }
           }
         }
       ],
@@ -300,15 +282,6 @@
           "license": {
             "id": "ISC"
           }
-        },
-        {
-          "license": {
-            "name": "declared license of 'isoduration'",
-            "text": {
-              "content": "UNKNOWN",
-              "contentType": "text/plain"
-            }
-          }
         }
       ],
       "name": "isoduration",
@@ -330,15 +303,6 @@
         {
           "license": {
             "name": "License :: OSI Approved :: BSD License"
-          }
-        },
-        {
-          "license": {
-            "name": "declared license of 'jsonpointer'",
-            "text": {
-              "content": "Modified BSD License",
-              "contentType": "text/plain"
-            }
           }
         }
       ],
@@ -617,15 +581,6 @@
           "license": {
             "name": "License :: OSI Approved :: BSD License"
           }
-        },
-        {
-          "license": {
-            "name": "declared license of 'python-dateutil'",
-            "text": {
-              "content": "Dual License",
-              "contentType": "text/plain"
-            }
-          }
         }
       ],
       "name": "python-dateutil",
@@ -700,15 +655,6 @@
           "license": {
             "id": "MIT"
           }
-        },
-        {
-          "license": {
-            "name": "declared license of 'rfc3339-validator'",
-            "text": {
-              "content": "MIT license",
-              "contentType": "text/plain"
-            }
-          }
         }
       ],
       "name": "rfc3339-validator",
@@ -735,15 +681,6 @@
         {
           "license": {
             "id": "GPL-3.0-or-later"
-          }
-        },
-        {
-          "license": {
-            "name": "declared license of 'rfc3987'",
-            "text": {
-              "content": "GNU GPLv3+",
-              "contentType": "text/plain"
-            }
           }
         }
       ],
@@ -836,15 +773,6 @@
           "license": {
             "name": "License :: OSI Approved :: Apache Software License"
           }
-        },
-        {
-          "license": {
-            "name": "declared license of 'sortedcontainers'",
-            "text": {
-              "content": "Apache 2.0",
-              "contentType": "text/plain"
-            }
-          }
         }
       ],
       "name": "sortedcontainers",
@@ -913,15 +841,6 @@
         {
           "license": {
             "id": "MIT"
-          }
-        },
-        {
-          "license": {
-            "name": "declared license of 'uri-template'",
-            "text": {
-              "content": "MIT License",
-              "contentType": "text/plain"
-            }
           }
         }
       ],

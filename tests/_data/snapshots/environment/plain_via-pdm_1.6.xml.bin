@@ -57,6 +57,16 @@
       <licenses>
         <expression acknowledgement="declared">Apache-2.0 OR MIT</expression>
       </licenses>
+      <evidence>
+        <licenses>
+          <license acknowledgement="declared">
+            <id>MIT</id>
+          </license>
+          <license acknowledgement="declared">
+            <name>License :: OSI Approved :: Apache Software License</name>
+          </license>
+        </licenses>
+      </evidence>
     </component>
     <properties>
       <property name="cdx:reproducible">true</property>

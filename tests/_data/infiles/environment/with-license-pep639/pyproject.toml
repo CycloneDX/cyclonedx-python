@@ -2,7 +2,25 @@
 # https://packaging.python.org/en/latest/specifications/declaring-project-metadata/#declaring-project-metadata
 name = "with-extras"
 version = "0.1.0"
-description = "depenndencies with license declaration accoring to PEP 639"
+description = "dependencies with license declaration according to PEP 639"
+
+# https://peps.python.org/pep-0639/#add-string-value-to-license-key
+license = "MIT OR GPL-2.0-or-later OR (FSFUL AND BSD-2-Clause)"
+# https://peps.python.org/pep-0639/#add-license-files-key
+license-files = [
+  "LICEN[CS]E*", "AUTHORS*", "NOTICE.bin",
+  "licenses_a/LICENSE.MIT.bin", "licenses_a/*.CC0.bin",
+  "licenses_b/**",
+  "nonexisting_file", "nonexisting_dir/foo",
+]
+
+classifiers = [
+  "Classifier: Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  # Per PEP 639, license classifiers MUST be ignored.
+  "License :: OSI Approved :: Apache Software License",
+  "License :: OSI Approved :: MIT License"
+]
 
 [project.dependencies]
 # with License-Expression
