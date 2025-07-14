@@ -2,6 +2,19 @@
 
 <!-- version list -->
 
+## v7.0.0 (2025-07-14)
+
+### Features
+
+- Finalize PEP639, auto-enable it, remove CLI switch `environment --PEP-639`
+  ([#928](https://github.com/CycloneDX/cyclonedx-python/pull/928),
+  [`6b81028`](https://github.com/CycloneDX/cyclonedx-python/commit/6b81028062a936937de17003b3ff18c6e17c9b5e))
+
+- Remove deprecated CLI switches `--schema-version` and `--outfile`, use `--spec-version` and
+  `--output-file` instead ([#892](https://github.com/CycloneDX/cyclonedx-python/pull/892),
+  [`2be98e5`](https://github.com/CycloneDX/cyclonedx-python/commit/2be98e507b87fb83b883dc96c07b5783ce3b4dbc))
+
+
 ## v6.1.3 (2025-07-08)
 
 ### Bug Fixes
