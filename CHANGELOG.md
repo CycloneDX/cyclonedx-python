@@ -4,7 +4,7 @@
 
 ## v7.0.0 (2025-07-14)
 
-### Features
+### BREAKING Changes
 
 - Finalize PEP639, auto-enable it, remove CLI switch `environment --PEP-639`
   ([#928](https://github.com/CycloneDX/cyclonedx-python/pull/928),
