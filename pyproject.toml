@@ -90,7 +90,7 @@ pep8-naming = "0.15.1"
 flake8-logging = "1.7.0"
 isort = "6.0.1"
 autopep8 = "2.3.2"
-mypy = "1.16.1"
+mypy = "1.17.0"
 bandit = "1.8.6"
 tomli = { version = "^2.0.1", python = "<3.11" }
 tox = "4.27.0"
