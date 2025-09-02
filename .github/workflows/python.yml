@@ -246,7 +246,7 @@ jobs:
           if sys.version_info >= (3, 12):
             PY_UT_ARGS.append('--durations=0')
           with open(os.environ['GITHUB_ENV'], 'a') as env_file:
-            env_file.write(f'PY_UT_ARGS=${" ".join(PY_UT_ARGS)}\n')
+            env_file.write(f'PY_UT_ARGS={" ".join(PY_UT_ARGS)}\n')
       - name: Install poetry
         # see https://github.com/marketplace/actions/setup-poetry
         uses: Gr1N/setup-poetry@v9
