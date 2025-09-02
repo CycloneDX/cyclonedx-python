@@ -2,6 +2,20 @@
 
 <!-- version list -->
 
+## v7.1.0 (2025-09-02)
+
+### Documentation
+
+- Fix changelog
+  ([`1e6574f`](https://github.com/CycloneDX/cyclonedx-python/commit/1e6574fa4dd4db3a60303d87b221bb6ff0baf4bd))
+
+### Features
+
+- Support runtime-dependency `cyclonedx-python-lib` v11
+  ([#938](https://github.com/CycloneDX/cyclonedx-python/pull/938),
+  [`7818754`](https://github.com/CycloneDX/cyclonedx-python/commit/781875478534af08a7dccc21ae0aef1c42c9ccbe))
+
+
 ## v7.0.0 (2025-07-14)
 
 ### BREAKING Changes
