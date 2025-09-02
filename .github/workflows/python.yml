@@ -223,8 +223,10 @@ jobs:
         include:
           - os: macos-13
             python-version: "3.10"
+            unittest-args: []
           - os: macos-13
             python-version: "3.9"
+            unittest-args: []
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
@@ -236,6 +238,15 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+      - name: craft PY_UT_ARGS
+        shell: python
+        run: |-
+          import sys
+          PY_UT_ARGS=[]
+          if sys.version_info >= (3, 12):
+            PY_UT_ARGS.append('--durations=0')
+          with open(os.environ['GITHUB_ENV'], 'a') as env_file:
+            env_file.write(f'PY_UT_ARGS=${" ".join(PY_UT_ARGS)}\n')
       - name: Install poetry
         # see https://github.com/marketplace/actions/setup-poetry
         uses: Gr1N/setup-poetry@v9
@@ -246,7 +257,7 @@ jobs:
       - name: Ensure build successful
         run: poetry build
       - name: Run tox
-        run: poetry run tox r -e py -s false
+        run: poetry run -- tox r -e py -s false -- $PY_UT_ARGS
       - name: Generate coverage reports
         if: ${{ failure() || success() }}
         shell: bash
