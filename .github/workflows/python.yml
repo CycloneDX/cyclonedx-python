@@ -201,7 +201,7 @@ jobs:
   build-and-test:
     name: Test (${{ matrix.os }} py${{ matrix.python-version }})
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 180
+    timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:
