@@ -241,7 +241,7 @@ jobs:
       - name: craft PY_UT_ARGS
         shell: python
         run: |-
-          import sys
+          import sys, os
           PY_UT_ARGS=[]
           if sys.version_info >= (3, 12):
             PY_UT_ARGS.append('--durations=0')
