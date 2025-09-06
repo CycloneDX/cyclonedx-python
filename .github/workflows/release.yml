@@ -74,7 +74,7 @@ jobs:
         uses: actions/checkout@v5
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ env.PYTHON_VERSION_DEFAULT }}
       - name: Install poetry
@@ -97,7 +97,7 @@ jobs:
         uses: actions/checkout@v5
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ env.PYTHON_VERSION_DEFAULT }}
       - name: Install poetry
@@ -137,7 +137,7 @@ jobs:
           fetch-depth: 0
       - name: Setup python
         # see https://github.com/actions/setup-python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ env.PYTHON_VERSION_DEFAULT }}
       - name: Install and configure Poetry
