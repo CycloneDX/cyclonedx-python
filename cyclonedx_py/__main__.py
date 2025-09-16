@@ -15,7 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-__all__ = [  # type:ignore[var-annotated]
+__all__ = [
     # There is no stable/public API.
     # However, you might call the stable CLI instead, like so:
     #   from sys import executable
