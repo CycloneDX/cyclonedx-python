@@ -148,3 +148,5 @@ def url_label_to_ert(value: str) -> ExternalReferenceType:
         _NOCHAR_MATCHER.sub('', str(value).lower()),
         ExternalReferenceType.OTHER
     )
+def greet_hacktoberfest():
+    print("Hello Hacktoberfest! Vishnu contributed!")
