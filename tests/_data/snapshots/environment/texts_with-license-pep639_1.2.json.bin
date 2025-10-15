@@ -314,58 +314,6 @@
       "version": "30.3.0"
     },
     {
-      "bom-ref": "lxml==5.3.0",
-      "description": "Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API.",
-      "externalReferences": [
-        {
-          "comment": "from packaging metadata Project-URL: Source",
-          "type": "other",
-          "url": "https://github.com/lxml/lxml"
-        },
-        {
-          "comment": "from packaging metadata: Home-page",
-          "type": "website",
-          "url": "https://lxml.de/"
-        }
-      ],
-      "licenses": [
-        {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
-        },
-        {
-          "license": {
-            "name": "License :: OSI Approved :: BSD License"
-          }
-        },
-        {
-          "license": {
-            "name": "declared license file: LICENSE.txt",
-            "text": {
-              "content": "Q29weXJpZ2h0IChjKSAyMDA0IEluZnJhZS4gQWxsIHJpZ2h0cyByZXNlcnZlZC4KClJlZGlzdHJpYnV0aW9uIGFuZCB1c2UgaW4gc291cmNlIGFuZCBiaW5hcnkgZm9ybXMsIHdpdGggb3Igd2l0aG91dAptb2RpZmljYXRpb24sIGFyZSBwZXJtaXR0ZWQgcHJvdmlkZWQgdGhhdCB0aGUgZm9sbG93aW5nIGNvbmRpdGlvbnMgYXJlCm1ldDoKCiAgMS4gUmVkaXN0cmlidXRpb25zIG9mIHNvdXJjZSBjb2RlIG11c3QgcmV0YWluIHRoZSBhYm92ZSBjb3B5cmlnaHQKICAgICBub3RpY2UsIHRoaXMgbGlzdCBvZiBjb25kaXRpb25zIGFuZCB0aGUgZm9sbG93aW5nIGRpc2NsYWltZXIuCiAgIAogIDIuIFJlZGlzdHJpYnV0aW9ucyBpbiBiaW5hcnkgZm9ybSBtdXN0IHJlcHJvZHVjZSB0aGUgYWJvdmUgY29weXJpZ2h0CiAgICAgbm90aWNlLCB0aGlzIGxpc3Qgb2YgY29uZGl0aW9ucyBhbmQgdGhlIGZvbGxvd2luZyBkaXNjbGFpbWVyIGluCiAgICAgdGhlIGRvY3VtZW50YXRpb24gYW5kL29yIG90aGVyIG1hdGVyaWFscyBwcm92aWRlZCB3aXRoIHRoZQogICAgIGRpc3RyaWJ1dGlvbi4KCiAgMy4gTmVpdGhlciB0aGUgbmFtZSBvZiBJbmZyYWUgbm9yIHRoZSBuYW1lcyBvZiBpdHMgY29udHJpYnV0b3JzIG1heQogICAgIGJlIHVzZWQgdG8gZW5kb3JzZSBvciBwcm9tb3RlIHByb2R1Y3RzIGRlcml2ZWQgZnJvbSB0aGlzIHNvZnR3YXJlCiAgICAgd2l0aG91dCBzcGVjaWZpYyBwcmlvciB3cml0dGVuIHBlcm1pc3Npb24uCgpUSElTIFNPRlRXQVJFIElTIFBST1ZJREVEIEJZIFRIRSBDT1BZUklHSFQgSE9MREVSUyBBTkQgQ09OVFJJQlVUT1JTCiJBUyBJUyIgQU5EIEFOWSBFWFBSRVNTIE9SIElNUExJRUQgV0FSUkFOVElFUywgSU5DTFVESU5HLCBCVVQgTk9UCkxJTUlURUQgVE8sIFRIRSBJTVBMSUVEIFdBUlJBTlRJRVMgT0YgTUVSQ0hBTlRBQklMSVRZIEFORCBGSVRORVNTIEZPUgpBIFBBUlRJQ1VMQVIgUFVSUE9TRSBBUkUgRElTQ0xBSU1FRC4gSU4gTk8gRVZFTlQgU0hBTEwgSU5GUkFFIE9SCkNPTlRSSUJVVE9SUyBCRSBMSUFCTEUgRk9SIEFOWSBESVJFQ1QsIElORElSRUNULCBJTkNJREVOVEFMLCBTUEVDSUFMLApFWEVNUExBUlksIE9SIENPTlNFUVVFTlRJQUwgREFNQUdFUyAoSU5DTFVESU5HLCBCVVQgTk9UIExJTUlURUQgVE8sClBST0NVUkVNRU5UIE9GIFNVQlNUSVRVVEUgR09PRFMgT1IgU0VSVklDRVM7IExPU1MgT0YgVVNFLCBEQVRBLCBPUgpQUk9GSVRTOyBPUiBCVVNJTkVTUyBJTlRFUlJVUFRJT04pIEhPV0VWRVIgQ0FVU0VEIEFORCBPTiBBTlkgVEhFT1JZIE9GCkxJQUJJTElUWSwgV0hFVEhFUiBJTiBDT05UUkFDVCwgU1RSSUNUIExJQUJJTElUWSwgT1IgVE9SVCAoSU5DTFVESU5HCk5FR0xJR0VOQ0UgT1IgT1RIRVJXSVNFKSBBUklTSU5HIElOIEFOWSBXQVkgT1VUIE9GIFRIRSBVU0UgT0YgVEhJUwpTT0ZUV0FSRSwgRVZFTiBJRiBBRFZJU0VEIE9GIFRIRSBQT1NTSUJJTElUWSBPRiBTVUNIIERBTUFHRS4K",
-              "contentType": "text/plain",
-              "encoding": "base64"
-            }
-          }
-        },
-        {
-          "license": {
-            "name": "declared license file: LICENSES.txt",
-            "text": {
-              "content": "bHhtbCBpcyBjb3B5cmlnaHQgSW5mcmFlIGFuZCBkaXN0cmlidXRlZCB1bmRlciB0aGUgQlNEIGxpY2Vuc2UgKHNlZQpkb2MvbGljZW5zZXMvQlNELnR4dCksIHdpdGggdGhlIGZvbGxvd2luZyBleGNlcHRpb25zOgoKU29tZSBjb2RlLCBzdWNoIGEgc2VsZnRlc3QucHksIHNlbGZ0ZXN0Mi5weSBhbmQKc3JjL2x4bWwvX2VsZW1lbnRwYXRoLnB5IGFyZSBkZXJpdmVkIGZyb20gRWxlbWVudFRyZWUgYW5kCmNFbGVtZW50VHJlZS4gU2VlIGRvYy9saWNlbnNlcy9lbGVtZW50dHJlZS50eHQgZm9yIHRoZSBsaWNlbnNlIHRleHQuCgpseG1sLmNzc3NlbGVjdCBhbmQgbHhtbC5odG1sIGFyZSBjb3B5cmlnaHQgSWFuIEJpY2tpbmcgYW5kIGRpc3RyaWJ1dGVkCnVuZGVyIHRoZSBCU0QgbGljZW5zZSAoc2VlIGRvYy9saWNlbnNlcy9CU0QudHh0KS4KCnRlc3QucHksIHRoZSB0ZXN0LXJ1bm5lciBzY3JpcHQsIGlzIEdQTCBhbmQgY29weXJpZ2h0IFNodXR0bGV3b3J0aApGb3VuZGF0aW9uLiBTZWUgZG9jL2xpY2Vuc2VzL0dQTC50eHQuIEl0IGlzIGJlbGlldmVkIHRoZSB1bmNoYW5nZWQKaW5jbHVzaW9uIG9mIHRlc3QucHkgdG8gcnVuIHRoZSB1bml0IHRlc3Qgc3VpdGUgZmFsbHMgdW5kZXIgdGhlCiJhZ2dyZWdhdGlvbiIgY2xhdXNlIG9mIHRoZSBHUEwgYW5kIHRodXMgZG9lcyBub3QgYWZmZWN0IHRoZSBsaWNlbnNlCm9mIHRoZSByZXN0IG9mIHRoZSBwYWNrYWdlLgoKVGhlIGlzb3NjaGVtYXRyb24gaW1wbGVtZW50YXRpb24gdXNlcyBzZXZlcmFsIFhTTCBhbmQgUmVsYXhORyByZXNvdXJjZXM6CiAqIFRoZSAoWE1MIHN5bnRheCkgUmVsYXhORyBzY2hlbWEgZm9yIHNjaGVtYXRyb24sIGNvcHlyaWdodCBJbnRlcm5hdGlvbmFsCiAgIE9yZ2FuaXphdGlvbiBmb3IgU3RhbmRhcmRpemF0aW9uIChzZWUgCiAgIHNyYy9seG1sL2lzb3NjaGVtYXRyb24vcmVzb3VyY2VzL3JuZy9pc28tc2NoZW1hdHJvbi5ybmcgZm9yIHRoZSBsaWNlbnNlCiAgIHRleHQpCiAqIFRoZSBza2VsZXRvbiBpc28tc2NoZW1hdHJvbi14bHQxIHB1cmUteHNsdCBzY2hlbWF0cm9uIGltcGxlbWVudGF0aW9uCiAgIHhzbCBzdHlsZXNoZWV0cywgY29weXJpZ2h0IFJpY2sgSmVsbGlmZmUgYW5kIEFjYWRlbWlhIFNpbmljYSBDb21wdXRpbmcKICAgQ2VudGVyLCBUYWl3YW4gKHNlZSB0aGUgeHNsIGZpbGVzIGhlcmUgZm9yIHRoZSBsaWNlbnNlIHRleHQ6IAogICBzcmMvbHhtbC9pc29zY2hlbWF0cm9uL3Jlc291cmNlcy94c2wvaXNvLXNjaGVtYXRyb24teHNsdDEvKQogKiBUaGUgeHNkL3JuZyBzY2hlbWEgc2NoZW1hdHJvbiBleHRyYWN0aW9uIHhzbCB0cmFuc2Zvcm1hdGlvbnMgYXJlIHVubGljZW5zZWQKICAgYW5kIGNvcHlyaWdodCB0aGUgcmVzcGVjdGl2ZSBhdXRob3JzIGFzIG5vdGVkIChzZWUgCiAgIHNyYy9seG1sL2lzb3NjaGVtYXRyb24vcmVzb3VyY2VzL3hzbC9STkcyU2NodHJuLnhzbCBhbmQKICAgc3JjL2x4bWwvaXNvc2NoZW1hdHJvbi9yZXNvdXJjZXMveHNsL1hTRDJTY2h0cm4ueHNsKQo=",
-              "contentType": "text/plain",
-              "encoding": "base64"
-            }
-          }
-        }
-      ],
-      "name": "lxml",
-      "purl": "pkg:pypi/lxml@5.3.0",
-      "type": "library",
-      "version": "5.3.0"
-    },
-    {
       "bom-ref": "regression-issue868==0.1",
       "externalReferences": [
         {
@@ -402,9 +350,6 @@
       "ref": "license-expression==30.3.0"
     },
     {
-      "ref": "lxml==5.3.0"
-    },
-    {
       "ref": "regression-issue868==0.1"
     },
     {
@@ -414,7 +359,6 @@
         "cryptography==43.0.1",
         "jsonpointer==2.4",
         "license-expression==30.3.0",
-        "lxml==5.3.0",
         "regression-issue868==0.1"
       ],
       "ref": "root-component"
