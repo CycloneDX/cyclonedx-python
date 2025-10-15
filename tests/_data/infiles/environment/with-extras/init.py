@@ -63,7 +63,7 @@ def main() -> None:
     ).create(env_dir)
 
     pip_install(
-        'cyclonedx-python-lib[xml-validation,json-validation]',
+        'cyclonedx-python-lib[xml-validation,json-validation]==11.2',
         # additionals for reproducibility foo
         'importlib-resources>=1.4.0',
         'pkgutil-resolve-name>=1.3.10',
