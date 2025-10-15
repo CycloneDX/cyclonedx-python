@@ -28,11 +28,11 @@ from cyclonedx.schema import OutputFormat, SchemaVersion
 
 from cyclonedx_py import __version__ as __this_version
 
-RECREATE_SNAPSHOTS = True # '1' == getenv('CDX_TEST_RECREATE_SNAPSHOTS')
+RECREATE_SNAPSHOTS = '1' == getenv('CDX_TEST_RECREATE_SNAPSHOTS')
 if RECREATE_SNAPSHOTS:
     print('!!! WILL RECREATE ALL SNAPSHOTS !!!', file=sys.stderr)
 
-INIT_TESTBEDS = True # '1' != getenv('CDX_TEST_SKIP_INIT_TESTBEDS')
+INIT_TESTBEDS = '1' != getenv('CDX_TEST_SKIP_INIT_TESTBEDS')
 if INIT_TESTBEDS:
     print('!!! WILL INIT TESTBEDS !!!', file=sys.stderr)
 
