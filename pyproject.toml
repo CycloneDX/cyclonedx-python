@@ -60,6 +60,7 @@ classifiers = [
   "Typing :: Typed"
 ]
 [tool.poetry.urls]
+"Changelog" = "https://github.com/CycloneDX/cyclonedx-python/releases"
 "Bug Tracker" = "https://github.com/CycloneDX/cyclonedx-python/issues"
 "Funding" = "https://owasp.org/donate/?reponame=www-project-cyclonedx&title=OWASP+CycloneDX"
 
