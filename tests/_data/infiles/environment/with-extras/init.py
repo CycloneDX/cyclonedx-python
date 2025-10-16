@@ -55,7 +55,7 @@ def pip_install(*args: str, site_packages_dir: str) -> None:
         'install', '--require-virtualenv', '--no-input', '--progress-bar=off', '--no-color',
         '--python-version=3.14',  # needed for compatibility/reproducibility
         '--only-binary=:all:',
-        '--target', side_packages_dir,
+        '--target', site_packages_dir,
         '-c', constraint_file,  # needed for reproducibility
         *args,
     )
