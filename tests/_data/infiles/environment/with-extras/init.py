@@ -20,7 +20,7 @@ initialize this testbed.
 """
 
 from os import name as os_name
-from os.path import dirname, join
+from os.path import dirname, isdir, join
 from subprocess import PIPE, CompletedProcess, run  # nosec:B404
 from sys import argv, executable, version_info
 from typing import Any
@@ -44,29 +44,37 @@ def pip_run(*args: str, **kwargs: Any) -> CompletedProcess:
     res = run(call, **kwargs, cwd=this_dir, shell=False)  # nosec:B603
     if res.returncode != 0:
         raise RuntimeError('process failed')
+
     return res
 
 
-def pip_install(*args: str) -> None:
-    t = join(env_dir, 'Lib', 'site-packages') \
-      if os_name == 'nt' \
-      else join(env_dir, 'lib', f'python{version_info[0]}.{version_info[1]}', 'site-packages')
+def pip_install(*args: str, side_packages_dir: str) -> None:
+    if side_packages_dir is None:
+        raise RuntimeError()
     pip_run(
         'install', '--require-virtualenv', '--no-input', '--progress-bar=off', '--no-color',
         '--python-version=3.14',  # needed for compatibility/reproducibility
         '--only-binary=:all:',
-        '-t', t,
+        '--target', side_packages_dir,
         '-c', constraint_file,  # needed for reproducibility
         *args,
     )
 
 
 def main() -> None:
-    EnvBuilder(
+    eb = EnvBuilder(
         system_site_packages=False,
         symlinks=os_name != 'nt',
         with_pip=False,
     ).create(env_dir)
+
+    try:
+        spd = next(filter(isdir, (
+            join(env_dir, 'lib', f'python{version_info[0]}.{version_info[1]}', 'site-packages'),
+            join(env_dir, 'Lib', 'site-packages')  # windows ?
+        )))
+    except StopIteration:
+        raise RuntimeError('site-packages not found')
 
     pip_install(
         'cyclonedx-python-lib[xml-validation,json-validation]==11.2',
@@ -75,7 +83,8 @@ def main() -> None:
         'pkgutil-resolve-name>=1.3.10',
         'zipp>=3.1.0',
         'jsonschema-specifications>=2023.03.6',
-        'typing_extensions>=4'
+        'typing_extensions>=4',
+        side_packages_dir=spd
     )
 
 
