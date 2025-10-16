@@ -685,6 +685,43 @@
         </reference>
       </externalReferences>
     </component>
+    <component type="library" bom-ref="typing_extensions==4.15.0">
+      <name>typing_extensions</name>
+      <version>4.15.0</version>
+      <description>Backported and Experimental Type Hints for Python 3.9+</description>
+      <licenses>
+        <license>
+          <id>PSF-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:pypi/typing-extensions@4.15.0</purl>
+      <externalReferences>
+        <reference type="documentation">
+          <url>https://typing-extensions.readthedocs.io/</url>
+          <comment>from packaging metadata Project-URL: Documentation</comment>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/python/typing_extensions/issues</url>
+          <comment>from packaging metadata Project-URL: Bug Tracker</comment>
+        </reference>
+        <reference type="other">
+          <url>https://github.com/python/typing/discussions</url>
+          <comment>from packaging metadata Project-URL: Q &amp; A</comment>
+        </reference>
+        <reference type="other">
+          <url>https://github.com/python/typing_extensions/blob/main/CHANGELOG.md</url>
+          <comment>from packaging metadata Project-URL: Changes</comment>
+        </reference>
+        <reference type="vcs">
+          <url>https://github.com/python/typing_extensions</url>
+          <comment>from packaging metadata Project-URL: Repository</comment>
+        </reference>
+        <reference type="website">
+          <url>https://github.com/python/typing_extensions</url>
+          <comment>from packaging metadata Project-URL: Home</comment>
+        </reference>
+      </externalReferences>
+    </component>
     <component type="library" bom-ref="uri-template==1.3.0">
       <name>uri-template</name>
       <version>1.3.0</version>
