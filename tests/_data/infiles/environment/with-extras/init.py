@@ -48,7 +48,7 @@ def pip_run(*args: str, **kwargs: Any) -> CompletedProcess:
     return res
 
 
-def pip_install(*args: str, side_packages_dir: str) -> None:
+def pip_install(*args: str, site_packages_dir: str) -> None:
     if side_packages_dir is None:
         raise RuntimeError()
     pip_run(
@@ -84,7 +84,7 @@ def main() -> None:
         'zipp>=3.1.0',
         'jsonschema-specifications>=2023.03.6',
         'typing_extensions>=4',
-        side_packages_dir=spd
+        site_packages_dir=spd
     )
 
 
