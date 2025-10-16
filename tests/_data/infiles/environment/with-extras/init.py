@@ -22,7 +22,7 @@ initialize this testbed.
 from os import name as os_name
 from os.path import dirname, join
 from subprocess import PIPE, CompletedProcess, run  # nosec:B404
-from sys import argv, executable
+from sys import argv, executable, version_info
 from typing import Any
 from venv import EnvBuilder
 
@@ -48,10 +48,14 @@ def pip_run(*args: str, **kwargs: Any) -> CompletedProcess:
 
 
 def pip_install(*args: str) -> None:
+    site = None
     pip_run(
         'install', '--require-virtualenv', '--no-input', '--progress-bar=off', '--no-color',
+        '--python-version=3.14',  # needed for compatibility
+        '--only-binary=:all:',
+        '-t', join(env_dir, 'lib', f'python{version_info[0]}.{version_info[1]}', 'site-packages'),
         '-c', constraint_file,  # needed for reproducibility
-        *args
+        *args,
     )
 
 
