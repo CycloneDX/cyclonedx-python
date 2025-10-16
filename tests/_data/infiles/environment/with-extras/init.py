@@ -71,7 +71,8 @@ def main() -> None:
         'importlib-resources>=1.4.0',
         'pkgutil-resolve-name>=1.3.10',
         'zipp>=3.1.0',
-        'jsonschema-specifications==2023.03.6',
+        'jsonschema-specifications>=2023.03.6',
+        'typing_extensions>=4'
     )
 
 
