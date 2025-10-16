@@ -62,7 +62,7 @@ def pip_install(*args: str, side_packages_dir: str) -> None:
 
 
 def main() -> None:
-    eb = EnvBuilder(
+    EnvBuilder(
         system_site_packages=False,
         symlinks=os_name != 'nt',
         with_pip=False,
