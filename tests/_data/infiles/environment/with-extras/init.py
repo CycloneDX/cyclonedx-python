@@ -50,7 +50,7 @@ def pip_run(*args: str, **kwargs: Any) -> CompletedProcess:
 def pip_install(*args: str) -> None:
     pip_run(
         'install', '--require-virtualenv', '--no-input', '--progress-bar=off', '--no-color',
-        '--python-version=3.14',  # needed for compatibility
+        '--python-version=3.14',  # needed for compatibility/reproducibility
         '--only-binary=:all:',
         '-t', join(env_dir, 'lib', f'python{version_info[0]}.{version_info[1]}', 'site-packages'),
         '-c', constraint_file,  # needed for reproducibility
