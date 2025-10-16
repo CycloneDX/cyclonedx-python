@@ -65,12 +65,11 @@ def main() -> None:
     pip_install(
         '--no-dependencies',
         # with License-Expression
-        'attrs',
+        'attrs==23.2.0',
         # with License-File
-        'boolean.py',
-        'jsonpointer',
-        'license_expression',
-        'lxml',
+        'boolean.py==4.0',
+        'jsonpointer==2.4',
+        'license_expression==30.3.0',
         'chardet==5.2.0',  # https://github.com/CycloneDX/cyclonedx-python/issues/931
         # with expression-like License AND License-File
         'cryptography==43.0.1',  # https://github.com/CycloneDX/cyclonedx-python/issues/826

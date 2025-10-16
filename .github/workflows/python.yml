@@ -36,7 +36,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  PYTHON_VERSION_DEFAULT: "3.12"
+  PYTHON_VERSION_DEFAULT: "3.14"
   POETRY_VERSION: "1.8.1"
   REPORTS_DIR: CI_reports
   TESTS_REPORTS_ARTIFACT: tests-reports
@@ -122,7 +122,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - python-version: '3.13'  # latest
+          - python-version: '3.14'  # latest
             os: ubuntu-latest
             toxenv-factors: '-current'
           - python-version: '3.9'   # lowest
@@ -210,7 +210,8 @@ jobs:
           - macos-latest
           - windows-latest
         python-version:
-          - "3.13" # highest supported
+          - "3.14" # highest supported
+          - "3.13"
           - "3.12"
           - "3.11"
           - "3.10"
