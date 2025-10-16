@@ -49,8 +49,6 @@ def pip_run(*args: str, **kwargs: Any) -> CompletedProcess:
 
 
 def pip_install(*args: str, site_packages_dir: str) -> None:
-    if side_packages_dir is None:
-        raise RuntimeError()
     pip_run(
         'install', '--require-virtualenv', '--no-input', '--progress-bar=off', '--no-color',
         '--python-version=3.14',  # needed for compatibility/reproducibility
