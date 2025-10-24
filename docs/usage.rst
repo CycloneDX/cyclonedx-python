@@ -81,7 +81,7 @@ The full documentation can be issued by running with ``environment --help``:
                             This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
       --sv <version>, --spec-version <version>
                             Which version of CycloneDX to use.
-                            {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
+                            {choices: 1.7, 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
                             (default: 1.6)
       --output-reproducible
                             Whether to go the extra mile and make the output reproducible.
@@ -252,7 +252,7 @@ The full documentation can be issued by running with ``pipenv --help``:
                             This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
       --sv <version>, --spec-version <version>
                             Which version of CycloneDX to use.
-                            {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
+                            {choices: 1.7, 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
                             (default: 1.6)
       --output-reproducible
                             Whether to go the extra mile and make the output reproducible.
@@ -327,7 +327,7 @@ The full documentation can be issued by running with ``poetry --help``:
                             This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
       --sv <version>, --spec-version <version>
                             Which version of CycloneDX to use.
-                            {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
+                            {choices: 1.7, 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
                             (default: 1.6)
       --output-reproducible
                             Whether to go the extra mile and make the output reproducible.
@@ -398,7 +398,7 @@ The full documentation can be issued by running with ``requirements --help``:
                             This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
       --sv <version>, --spec-version <version>
                             Which version of CycloneDX to use.
-                            {choices: 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
+                            {choices: 1.7, 1.6, 1.5, 1.4, 1.3, 1.2, 1.1, 1.0}
                             (default: 1.6)
       --output-reproducible
                             Whether to go the extra mile and make the output reproducible.
