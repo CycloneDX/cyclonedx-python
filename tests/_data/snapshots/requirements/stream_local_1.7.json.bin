@@ -1,0 +1,183 @@
+{
+  "components": [
+    {
+      "bom-ref": "requirements-L11",
+      "description": "requirements line 11: foo @ file://../foo",
+      "externalReferences": [
+        {
+          "comment": "explicit local path",
+          "type": "other",
+          "url": "file://../foo"
+        }
+      ],
+      "name": "foo",
+      "type": "library"
+    },
+    {
+      "bom-ref": "requirements-L14",
+      "description": "requirements line 14: ./downloads/numpy-1.9.2-cp34-none-win32.whl",
+      "externalReferences": [
+        {
+          "comment": "explicit local path",
+          "type": "other",
+          "url": "./downloads/numpy-1.9.2-cp34-none-win32.whl"
+        }
+      ],
+      "name": "numpy",
+      "type": "library",
+      "version": "1.9.2"
+    },
+    {
+      "bom-ref": "requirements-L17",
+      "description": "requirements line 17: ./downloads/numpy-1.26.1.tar.gz",
+      "externalReferences": [
+        {
+          "comment": "explicit local path",
+          "type": "other",
+          "url": "./downloads/numpy-1.26.1.tar.gz"
+        }
+      ],
+      "name": "unknown",
+      "type": "library"
+    },
+    {
+      "bom-ref": "requirements-L2",
+      "description": "requirements line 2: ./myproject/chardet",
+      "externalReferences": [
+        {
+          "comment": "explicit local path",
+          "type": "other",
+          "url": "./myproject/chardet"
+        }
+      ],
+      "name": "unknown",
+      "type": "library"
+    },
+    {
+      "bom-ref": "requirements-L5",
+      "description": "requirements line 5: ./myproject/requests --hash=sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804",
+      "externalReferences": [
+        {
+          "comment": "explicit local path",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804"
+            }
+          ],
+          "type": "other",
+          "url": "./myproject/requests"
+        }
+      ],
+      "name": "unknown",
+      "type": "library"
+    },
+    {
+      "bom-ref": "requirements-L8",
+      "description": "requirements line 8: -e ./myproject/idna.whl",
+      "externalReferences": [
+        {
+          "comment": "explicit local path",
+          "type": "other",
+          "url": "./myproject/idna.whl"
+        }
+      ],
+      "name": "unknown",
+      "type": "library"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "requirements-L11"
+    },
+    {
+      "ref": "requirements-L14"
+    },
+    {
+      "ref": "requirements-L17"
+    },
+    {
+      "ref": "requirements-L2"
+    },
+    {
+      "ref": "requirements-L5"
+    },
+    {
+      "ref": "requirements-L8"
+    }
+  ],
+  "metadata": {
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": {
+      "components": [
+        {
+          "description": "CycloneDX Software Bill of Materials (SBOM) generator for Python projects and environments",
+          "externalReferences": [
+            {
+              "type": "build-system",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/actions"
+            },
+            {
+              "type": "distribution",
+              "url": "https://pypi.org/project/cyclonedx-bom/"
+            },
+            {
+              "type": "documentation",
+              "url": "https://cyclonedx-bom-tool.readthedocs.io/"
+            },
+            {
+              "type": "issue-tracker",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/issues"
+            },
+            {
+              "type": "license",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE"
+            },
+            {
+              "type": "release-notes",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/blob/main/CHANGELOG.md"
+            },
+            {
+              "type": "vcs",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/"
+            },
+            {
+              "type": "website",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/#readme"
+            }
+          ],
+          "group": "CycloneDX",
+          "licenses": [
+            {
+              "license": {
+                "acknowledgement": "declared",
+                "id": "Apache-2.0"
+              }
+            }
+          ],
+          "name": "cyclonedx-py",
+          "type": "application",
+          "version": "thisVersion-testing"
+        },
+        {
+          "description": "stripped",
+          "externalReferences": [   ],
+          "group": "CycloneDX",
+          "licenses": [   ],
+          "name": "cyclonedx-python-lib",
+          "type": "library",
+          "version": "libVersion-testing"
+        }
+      ]
+    }
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.7.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.7"
+}
