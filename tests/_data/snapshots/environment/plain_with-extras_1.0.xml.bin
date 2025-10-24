@@ -2,47 +2,6 @@
 <bom xmlns="http://cyclonedx.org/schema/bom/1.0" version="1">
   <components>
     <component type="library">
-      <name>CacheControl</name>
-      <version>0.14.3</version>
-      <description>httplib2 caching for requests</description>
-      <purl>pkg:pypi/cachecontrol@0.14.3</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>PyYAML</name>
-      <version>6.0.3</version>
-      <description>YAML parser and emitter for Python</description>
-      <purl>pkg:pypi/pyyaml@6.0.3</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>Pygments</name>
-      <version>2.19.2</version>
-      <description>Pygments is a syntax highlighting package written in Python.</description>
-      <purl>pkg:pypi/pygments@2.19.2</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>RapidFuzz</name>
-      <version>3.13.0</version>
-      <description>rapid fuzzy string matching</description>
-      <purl>pkg:pypi/rapidfuzz@3.13.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>anyio</name>
-      <version>4.11.0</version>
-      <description>High-level concurrency and networking framework on top of asyncio or Trio</description>
-      <purl>pkg:pypi/anyio@4.11.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>anysqlite</name>
-      <version>0.0.5</version>
-      <purl>pkg:pypi/anysqlite@0.0.5</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
       <name>arrow</name>
       <version>1.3.0</version>
       <description>Better dates &amp; times for Python</description>
@@ -57,107 +16,10 @@
       <modified>false</modified>
     </component>
     <component type="library">
-      <name>autopep8</name>
-      <version>2.3.2</version>
-      <description>A tool that automatically formats Python code to conform to the PEP 8 style guide</description>
-      <purl>pkg:pypi/autopep8@2.3.2</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>bandit</name>
-      <version>1.8.6</version>
-      <description>Security oriented static analyser for python code.</description>
-      <purl>pkg:pypi/bandit@1.8.6</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>blinker</name>
-      <version>1.9.0</version>
-      <description>Fast, simple object-to-object and broadcast signaling</description>
-      <purl>pkg:pypi/blinker@1.9.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
       <name>boolean.py</name>
       <version>5.0</version>
       <description>Define boolean algebras, create and parse boolean expressions and create custom boolean DSL.</description>
       <purl>pkg:pypi/boolean.py@5.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>build</name>
-      <version>1.3.0</version>
-      <description>A simple, correct Python build frontend</description>
-      <purl>pkg:pypi/build@1.3.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>cachetools</name>
-      <version>6.2.1</version>
-      <description>Extensible memoizing collections and decorators</description>
-      <purl>pkg:pypi/cachetools@6.2.1</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>certifi</name>
-      <version>2025.10.5</version>
-      <description>Python package for providing Mozilla's CA Bundle.</description>
-      <purl>pkg:pypi/certifi@2025.10.5</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>chardet</name>
-      <version>5.2.0</version>
-      <description>Universal encoding detector for Python 3</description>
-      <purl>pkg:pypi/chardet@5.2.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>charset-normalizer</name>
-      <version>3.4.4</version>
-      <description>The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet.</description>
-      <purl>pkg:pypi/charset-normalizer@3.4.4</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>cleo</name>
-      <version>2.1.0</version>
-      <description>Cleo allows you to create beautiful and testable command-line interfaces.</description>
-      <purl>pkg:pypi/cleo@2.1.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>click</name>
-      <version>8.1.8</version>
-      <description>Composable command line interface toolkit</description>
-      <purl>pkg:pypi/click@8.1.8</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>colorama</name>
-      <version>0.4.6</version>
-      <description>Cross-platform colored terminal text.</description>
-      <purl>pkg:pypi/colorama@0.4.6</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>coverage</name>
-      <version>7.10.7</version>
-      <description>Code coverage measurement for Python</description>
-      <purl>pkg:pypi/coverage@7.10.7</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>crashtest</name>
-      <version>0.4.1</version>
-      <description>Manage Python errors with ease</description>
-      <purl>pkg:pypi/crashtest@0.4.1</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>cyclonedx-bom</name>
-      <version>7.1.0</version>
-      <description>CycloneDX Software Bill of Materials (SBOM) generator for Python projects and environments</description>
       <modified>false</modified>
     </component>
     <component type="library">
@@ -168,122 +30,10 @@
       <modified>false</modified>
     </component>
     <component type="library">
-      <name>ddt</name>
-      <version>1.7.2</version>
-      <description>Data-Driven/Decorated Tests</description>
-      <purl>pkg:pypi/ddt@1.7.2</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
       <name>defusedxml</name>
       <version>0.7.1</version>
       <description>XML bomb protection for Python stdlib modules</description>
       <purl>pkg:pypi/defusedxml@0.7.1</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>dep-logic</name>
-      <version>0.5.2</version>
-      <description>Python dependency specifications supporting logical operations</description>
-      <purl>pkg:pypi/dep-logic@0.5.2</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>deptry</name>
-      <version>0.23.1</version>
-      <description>A command line utility to check for unused, missing and transitive dependencies in a Python project.</description>
-      <purl>pkg:pypi/deptry@0.23.1</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>distlib</name>
-      <version>0.4.0</version>
-      <description>Distribution utilities</description>
-      <purl>pkg:pypi/distlib@0.4.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>dulwich</name>
-      <version>0.21.7</version>
-      <description>Python Git Library</description>
-      <purl>pkg:pypi/dulwich@0.21.7</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>fastjsonschema</name>
-      <version>2.21.2</version>
-      <description>Fastest Python implementation of JSON schema</description>
-      <purl>pkg:pypi/fastjsonschema@2.21.2</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>filelock</name>
-      <version>3.19.1</version>
-      <description>A platform independent file lock.</description>
-      <purl>pkg:pypi/filelock@3.19.1</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>findpython</name>
-      <version>0.7.0</version>
-      <description>A utility to find python versions on your system</description>
-      <purl>pkg:pypi/findpython@0.7.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>flake8</name>
-      <version>7.3.0</version>
-      <description>the modular source code checker: pep8 pyflakes and co</description>
-      <purl>pkg:pypi/flake8@7.3.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>flake8-annotations</name>
-      <version>3.1.1</version>
-      <description>Flake8 Type Annotation Checks</description>
-      <purl>pkg:pypi/flake8-annotations@3.1.1</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>flake8-bugbear</name>
-      <version>24.12.12</version>
-      <description>A plugin for flake8 finding likely bugs and design problems in your program. Contains warnings that don't belong in pyflakes and pycodestyle.</description>
-      <purl>pkg:pypi/flake8-bugbear@24.12.12</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>flake8-copyright-validator</name>
-      <version>0.0.1</version>
-      <description>Check if python file contain copyright text</description>
-      <purl>pkg:pypi/flake8-copyright-validator@0.0.1</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>flake8-isort</name>
-      <version>6.1.2</version>
-      <description>flake8 plugin that integrates isort</description>
-      <purl>pkg:pypi/flake8-isort@6.1.2</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>flake8-logging</name>
-      <version>1.8.0</version>
-      <description>A Flake8 plugin that checks for issues using the standard library logging module.</description>
-      <purl>pkg:pypi/flake8-logging@1.8.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>flake8-quotes</name>
-      <version>3.4.0</version>
-      <description>Flake8 lint for quotes.</description>
-      <purl>pkg:pypi/flake8-quotes@3.4.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>flake8-use-fstring</name>
-      <version>1.4</version>
-      <description>Flake8 plugin for string formatting style.</description>
-      <purl>pkg:pypi/flake8-use-fstring@1.4</purl>
       <modified>false</modified>
     </component>
     <component type="library">
@@ -294,52 +44,10 @@
       <modified>false</modified>
     </component>
     <component type="library">
-      <name>h11</name>
-      <version>0.16.0</version>
-      <description>A pure-Python, bring-your-own-I/O implementation of HTTP/1.1</description>
-      <purl>pkg:pypi/h11@0.16.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>hishel</name>
-      <version>0.1.4</version>
-      <description>Persistent cache implementation for httpx and httpcore</description>
-      <purl>pkg:pypi/hishel@0.1.4</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>httpcore</name>
-      <version>1.0.9</version>
-      <description>A minimal low-level HTTP client.</description>
-      <purl>pkg:pypi/httpcore@1.0.9</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>httpx</name>
-      <version>0.28.1</version>
-      <description>The next generation HTTP client.</description>
-      <purl>pkg:pypi/httpx@0.28.1</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>id</name>
-      <version>1.5.0</version>
-      <description>A tool for generating OIDC identities</description>
-      <purl>pkg:pypi/id@1.5.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
       <name>idna</name>
       <version>3.11</version>
       <description>Internationalized Domain Names in Applications (IDNA)</description>
       <purl>pkg:pypi/idna@3.11</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>importlib_metadata</name>
-      <version>8.7.0</version>
-      <description>Read metadata from Python packages</description>
-      <purl>pkg:pypi/importlib-metadata@8.7.0</purl>
       <modified>false</modified>
     </component>
     <component type="library">
@@ -350,31 +58,10 @@
       <modified>false</modified>
     </component>
     <component type="library">
-      <name>installer</name>
-      <version>0.7.0</version>
-      <description>A library for installing Python wheels.</description>
-      <purl>pkg:pypi/installer@0.7.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
       <name>isoduration</name>
       <version>20.11.0</version>
       <description>Operations with ISO 8601 durations</description>
       <purl>pkg:pypi/isoduration@20.11.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>isort</name>
-      <version>6.1.0</version>
-      <description>A Python utility / library to sort Python imports.</description>
-      <purl>pkg:pypi/isort@6.1.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>jaraco.classes</name>
-      <version>3.4.0</version>
-      <description>Utility functions for Python class constructs</description>
-      <purl>pkg:pypi/jaraco.classes@3.4.0</purl>
       <modified>false</modified>
     </component>
     <component type="library">
@@ -399,20 +86,6 @@
       <modified>false</modified>
     </component>
     <component type="library">
-      <name>jsonschema-specifications</name>
-      <version>2025.9.1</version>
-      <description>The JSON Schema meta-schemas and vocabularies, exposed as a Registry</description>
-      <purl>pkg:pypi/jsonschema-specifications@2025.9.1</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>keyring</name>
-      <version>24.3.1</version>
-      <description>Store and access your passwords safely.</description>
-      <purl>pkg:pypi/keyring@24.3.1</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
       <name>lark</name>
       <version>1.3.0</version>
       <description>a modern parsing library</description>
@@ -434,129 +107,10 @@
       <modified>false</modified>
     </component>
     <component type="library">
-      <name>markdown-it-py</name>
-      <version>3.0.0</version>
-      <description>Python port of markdown-it. Markdown parsing, done right!</description>
-      <purl>pkg:pypi/markdown-it-py@3.0.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>mccabe</name>
-      <version>0.7.0</version>
-      <description>McCabe checker, plugin for flake8</description>
-      <purl>pkg:pypi/mccabe@0.7.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>mdurl</name>
-      <version>0.1.2</version>
-      <description>Markdown URL utilities</description>
-      <purl>pkg:pypi/mdurl@0.1.2</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>more-itertools</name>
-      <version>10.8.0</version>
-      <description>More routines for operating on iterables, beyond itertools</description>
-      <purl>pkg:pypi/more-itertools@10.8.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>msgpack</name>
-      <version>1.1.2</version>
-      <description>MessagePack serializer</description>
-      <purl>pkg:pypi/msgpack@1.1.2</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>mypy</name>
-      <version>1.18.2</version>
-      <description>Optional static typing for Python</description>
-      <purl>pkg:pypi/mypy@1.18.2</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>mypy_extensions</name>
-      <version>1.1.0</version>
-      <description>Type system extensions for programs checked with the mypy type checker.</description>
-      <purl>pkg:pypi/mypy-extensions@1.1.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
       <name>packageurl-python</name>
       <version>0.17.5</version>
       <description>A purl aka. Package URL parser and builder</description>
       <purl>pkg:pypi/packageurl-python@0.17.5</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>packaging</name>
-      <version>25.0</version>
-      <description>Core utilities for Python packages</description>
-      <purl>pkg:pypi/packaging@25.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>pathspec</name>
-      <version>0.12.1</version>
-      <description>Utility library for gitignore style pattern matching of file paths.</description>
-      <purl>pkg:pypi/pathspec@0.12.1</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>pbs-installer</name>
-      <version>2025.10.14</version>
-      <description>Installer for Python Build Standalone</description>
-      <purl>pkg:pypi/pbs-installer@2025.10.14</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>pdm</name>
-      <version>2.26.0</version>
-      <description>A modern Python package and dependency manager supporting the latest PEP standards</description>
-      <purl>pkg:pypi/pdm@2.26.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>pep8-naming</name>
-      <version>0.15.1</version>
-      <description>Check PEP-8 naming conventions, plugin for flake8</description>
-      <purl>pkg:pypi/pep8-naming@0.15.1</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>pexpect</name>
-      <version>4.9.0</version>
-      <description>Pexpect allows easy control of interactive console applications.</description>
-      <purl>pkg:pypi/pexpect@4.9.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>pip</name>
-      <version>25.2</version>
-      <description>The PyPA recommended tool for installing Python packages.</description>
-      <purl>pkg:pypi/pip@25.2</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>pip-requirements-parser</name>
-      <version>32.0.1</version>
-      <description>pip requirements parser - a mostly correct pip requirements parsing library because it uses pip's own code.</description>
-      <purl>pkg:pypi/pip-requirements-parser@32.0.1</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>pipenv</name>
-      <version>2025.0.4</version>
-      <description>Python Development Workflow for Humans.</description>
-      <purl>pkg:pypi/pipenv@2025.0.4</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>pkginfo</name>
-      <version>1.12.1.2</version>
-      <description>Query metadata from sdists / bdists / installed packages.</description>
-      <purl>pkg:pypi/pkginfo@1.12.1.2</purl>
       <modified>false</modified>
     </component>
     <component type="library">
@@ -567,87 +121,10 @@
       <modified>false</modified>
     </component>
     <component type="library">
-      <name>platformdirs</name>
-      <version>4.4.0</version>
-      <description>A small Python package for determining appropriate platform-specific dirs, e.g. a `user data dir`.</description>
-      <purl>pkg:pypi/platformdirs@4.4.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>pluggy</name>
-      <version>1.6.0</version>
-      <description>plugin and hook calling mechanisms for python</description>
-      <purl>pkg:pypi/pluggy@1.6.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>poetry</name>
-      <version>1.8.5</version>
-      <description>Python dependency management and packaging made easy.</description>
-      <purl>pkg:pypi/poetry@1.8.5</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>poetry-core</name>
-      <version>1.9.1</version>
-      <description>Poetry PEP 517 Build Backend</description>
-      <purl>pkg:pypi/poetry-core@1.9.1</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>poetry-plugin-export</name>
-      <version>1.8.0</version>
-      <description>Poetry plugin to export the dependencies to various formats</description>
-      <purl>pkg:pypi/poetry-plugin-export@1.8.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>ptyprocess</name>
-      <version>0.7.0</version>
-      <description>Run a subprocess in a pseudo terminal</description>
-      <purl>pkg:pypi/ptyprocess@0.7.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
       <name>py-serializable</name>
       <version>2.1.0</version>
       <description>Library for serializing and deserializing Python Objects to and from JSON and XML.</description>
       <purl>pkg:pypi/py-serializable@2.1.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>pycodestyle</name>
-      <version>2.14.0</version>
-      <description>Python style guide checker</description>
-      <purl>pkg:pypi/pycodestyle@2.14.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>pyflakes</name>
-      <version>3.4.0</version>
-      <description>passive checker of Python programs</description>
-      <purl>pkg:pypi/pyflakes@3.4.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>pyparsing</name>
-      <version>3.2.5</version>
-      <description>pyparsing - Classes and methods to define and execute parsing grammars</description>
-      <purl>pkg:pypi/pyparsing@3.2.5</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>pyproject-api</name>
-      <version>1.9.1</version>
-      <description>API to interact with the python pyproject.toml based projects</description>
-      <purl>pkg:pypi/pyproject-api@1.9.1</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>pyproject_hooks</name>
-      <version>1.2.0</version>
-      <description>Wrappers to call pyproject.toml-based build backend hooks.</description>
-      <purl>pkg:pypi/pyproject-hooks@1.2.0</purl>
       <modified>false</modified>
     </component>
     <component type="library">
@@ -658,66 +135,10 @@
       <modified>false</modified>
     </component>
     <component type="library">
-      <name>python-dotenv</name>
-      <version>1.1.1</version>
-      <description>Read key-value pairs from a .env file and set them as environment variables</description>
-      <purl>pkg:pypi/python-dotenv@1.1.1</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>pyupgrade</name>
-      <version>3.21.0</version>
-      <description>A tool to automatically upgrade syntax for newer versions.</description>
-      <purl>pkg:pypi/pyupgrade@3.21.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>pywin32-ctypes</name>
-      <version>0.2.3</version>
-      <description>A (partial) reimplementation of pywin32 using ctypes/cffi</description>
-      <purl>pkg:pypi/pywin32-ctypes@0.2.3</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>referencing</name>
-      <version>0.36.2</version>
-      <description>JSON Referencing + Python</description>
-      <purl>pkg:pypi/referencing@0.36.2</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
       <name>referencing</name>
       <version>0.37.0</version>
       <description>JSON Referencing + Python</description>
       <purl>pkg:pypi/referencing@0.37.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>requests</name>
-      <version>2.32.5</version>
-      <description>Python HTTP for Humans.</description>
-      <purl>pkg:pypi/requests@2.32.5</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>requests-toolbelt</name>
-      <version>1.0.0</version>
-      <description>A utility belt for advanced users of python-requests</description>
-      <purl>pkg:pypi/requests-toolbelt@1.0.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>requirements-parser</name>
-      <version>0.13.0</version>
-      <description>This is a small Python module for parsing Pip requirement files.</description>
-      <purl>pkg:pypi/requirements-parser@0.13.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>resolvelib</name>
-      <version>1.2.1</version>
-      <description>Resolve abstract dependencies into concrete ones</description>
-      <purl>pkg:pypi/resolvelib@1.2.1</purl>
       <modified>false</modified>
     </component>
     <component type="library">
@@ -735,24 +156,10 @@
       <modified>false</modified>
     </component>
     <component type="library">
-      <name>rfc3987</name>
-      <version>1.3.8</version>
-      <description>Parsing and validation of URIs (RFC 3986) and IRIs (RFC 3987)</description>
-      <purl>pkg:pypi/rfc3987@1.3.8</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
       <name>rfc3987-syntax</name>
       <version>1.1.0</version>
       <description>Helper functions to syntactically validate strings according to RFC 3987.</description>
       <purl>pkg:pypi/rfc3987-syntax@1.1.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>rich</name>
-      <version>14.2.0</version>
-      <description>Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal</description>
-      <purl>pkg:pypi/rich@14.2.0</purl>
       <modified>false</modified>
     </component>
     <component type="library">
@@ -763,20 +170,6 @@
       <modified>false</modified>
     </component>
     <component type="library">
-      <name>setuptools</name>
-      <version>80.9.0</version>
-      <description>Easily download, build, install, upgrade, and uninstall Python packages</description>
-      <purl>pkg:pypi/setuptools@80.9.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>shellingham</name>
-      <version>1.5.4</version>
-      <description>Tool to Detect Surrounding Shell</description>
-      <purl>pkg:pypi/shellingham@1.5.4</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
       <name>six</name>
       <version>1.17.0</version>
       <description>Python 2 and 3 compatibility utilities</description>
@@ -784,66 +177,10 @@
       <modified>false</modified>
     </component>
     <component type="library">
-      <name>sniffio</name>
-      <version>1.3.1</version>
-      <description>Sniff out which async library your code is running under</description>
-      <purl>pkg:pypi/sniffio@1.3.1</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>socksio</name>
-      <version>1.0.0</version>
-      <description>Sans-I/O implementation of SOCKS4, SOCKS4A, and SOCKS5.</description>
-      <purl>pkg:pypi/socksio@1.0.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
       <name>sortedcontainers</name>
       <version>2.4.0</version>
       <description>Sorted Containers -- Sorted List, Sorted Dict, Sorted Set</description>
       <purl>pkg:pypi/sortedcontainers@2.4.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>stevedore</name>
-      <version>5.5.0</version>
-      <description>Manage dynamic plugins for Python applications</description>
-      <purl>pkg:pypi/stevedore@5.5.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>tokenize_rt</name>
-      <version>6.2.0</version>
-      <description>A wrapper around the stdlib `tokenize` which roundtrips.</description>
-      <purl>pkg:pypi/tokenize-rt@6.2.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>tomlkit</name>
-      <version>0.13.3</version>
-      <description>Style preserving TOML library</description>
-      <purl>pkg:pypi/tomlkit@0.13.3</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>tox</name>
-      <version>4.30.3</version>
-      <description>tox is a generic virtualenv management and test command line tool</description>
-      <purl>pkg:pypi/tox@4.30.3</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>trove-classifiers</name>
-      <version>2025.9.11.17</version>
-      <description>Canonical source for classifiers on PyPI (pypi.org).</description>
-      <purl>pkg:pypi/trove-classifiers@2025.9.11.17</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>truststore</name>
-      <version>0.10.4</version>
-      <description>Verify certificates using native system trust stores</description>
-      <purl>pkg:pypi/truststore@0.10.4</purl>
       <modified>false</modified>
     </component>
     <component type="library">
@@ -861,38 +198,10 @@
       <modified>false</modified>
     </component>
     <component type="library">
-      <name>unearth</name>
-      <version>0.18.1</version>
-      <description>A utility to fetch and download python packages</description>
-      <purl>pkg:pypi/unearth@0.18.1</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
       <name>uri-template</name>
       <version>1.3.0</version>
       <description>RFC 6570 URI Template Processor</description>
       <purl>pkg:pypi/uri-template@1.3.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>urllib3</name>
-      <version>2.5.0</version>
-      <description>HTTP library with thread-safe connection pooling, file post, and more.</description>
-      <purl>pkg:pypi/urllib3@2.5.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>uv</name>
-      <version>0.9.2</version>
-      <description>An extremely fast Python package and project manager, written in Rust.</description>
-      <purl>pkg:pypi/uv@0.9.2</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>virtualenv</name>
-      <version>20.35.3</version>
-      <description>Virtual Python Environment builder</description>
-      <purl>pkg:pypi/virtualenv@20.35.3</purl>
       <modified>false</modified>
     </component>
     <component type="library">
@@ -907,13 +216,6 @@
       <version>3.20.2</version>
       <description>Backport of pathlib-compatible object wrapper for zip files</description>
       <purl>pkg:pypi/zipp@3.20.2</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
-      <name>zipp</name>
-      <version>3.23.0</version>
-      <description>Backport of pathlib-compatible object wrapper for zip files</description>
-      <purl>pkg:pypi/zipp@3.23.0</purl>
       <modified>false</modified>
     </component>
   </components>
