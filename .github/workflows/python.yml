@@ -283,7 +283,7 @@ jobs:
     steps:
       - name: fetch test artifacts
         # see https://github.com/actions/download-artifact
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           pattern: '${{ env.TESTS_REPORTS_ARTIFACT }}_bnt_*'
           merge-multiple: true
