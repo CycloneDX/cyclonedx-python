@@ -47,12 +47,10 @@ del __proxy_spec, __proxy_module
 
 def pip_run(*args: str) -> CompletedProcess:
     # pip is not API, but a CLI -- call it like that!
-    call = (
-        executable, '-m', 'pip',
-        '--python', env_dir,
-        *args
-    )
-    print('+ ', *call)
+    call = (executable, '-m', 'pip',
+            '--python', env_dir,
+            *args)
+    print('+ ', *call, file=stderr)
     res = run(call, cwd=this_dir, shell=False)  # nosec:B603
     if res.returncode != 0:
         raise RuntimeError('process failed')
