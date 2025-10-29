@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v7.2.1 (2025-10-29)
+
+### Documentation
+
+- Basic support for CycloneDX 1.7 ([#984](https://github.com/CycloneDX/cyclonedx-python/pull/984),
+  [`6477a3f`](https://github.com/CycloneDX/cyclonedx-python/commit/6477a3ff5634f7f11b2a711e68b442c6539d91b4))
+
+
 ## v7.2.0 (2025-10-16)
 
 ### Documentation

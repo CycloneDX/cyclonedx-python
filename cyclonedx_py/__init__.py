@@ -17,7 +17,7 @@
 
 # !! version is managed by `semantic_release`
 # do not use typing here, or else `semantic_release` might have issues finding the variable
-__version__ = "7.2.0"  # noqa:Q000
+__version__ = "7.2.1"  # noqa:Q000
 
 # There is no stable/public API.
 # However, you might call the stable CLI instead, like so:
