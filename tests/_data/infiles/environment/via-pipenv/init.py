@@ -23,7 +23,7 @@ from os import environ
 from os.path import dirname, join
 from shutil import rmtree
 from subprocess import CompletedProcess, run  # nosec:B404
-from sys import executable
+from sys import executable, stderr
 from typing import Any
 
 __all__ = ['main']
@@ -40,11 +40,9 @@ pipenv_env['PIPENV_NOSPIN'] = '1'
 
 def pipenv_run(*args: str) -> CompletedProcess:
     # pipenv is not API, but a CLI -- call it like that!
-    call = (
-        executable, '-m', 'pipenv',
-        *args
-    )
-    print('+ ', *call)
+    call = (executable, '-m', 'pipenv',
+            *args)
+    print('+ ', *call, file=stderr)
     res = run(call, cwd=this_dir, env=pipenv_env, shell=False)  # nosec:B603
     if res.returncode != 0:
         raise RuntimeError('process failed')

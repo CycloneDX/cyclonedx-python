@@ -22,7 +22,7 @@ initialize this testbed.
 from os import name as os_name
 from os.path import dirname, isdir, join
 from subprocess import PIPE, CompletedProcess, run  # nosec:B404
-from sys import argv, executable, version_info
+from sys import argv, executable, stderr, version_info
 from typing import Any
 from venv import EnvBuilder
 
@@ -35,12 +35,10 @@ constraint_file = join(this_dir, 'pinning.txt')
 
 def pip_run(*args: str, **kwargs: Any) -> CompletedProcess:
     # pip is not API, but a CLI -- call it like that!
-    call = (
-        executable, '-m', 'pip',
-        '--python', env_dir,
-        *args
-    )
-    print('+ ', *call)
+    call = (executable, '-m', 'pip',
+            '--python', env_dir,
+            *args)
+    print('+ ', *call, file=stderr)
     res = run(call, **kwargs, cwd=this_dir, shell=False)  # nosec:B603
     if res.returncode != 0:
         raise RuntimeError('process failed')

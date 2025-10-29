@@ -23,7 +23,7 @@ from os import environ
 from os.path import dirname, join
 from shutil import rmtree
 from subprocess import CompletedProcess, run  # nosec:B404
-from sys import executable
+from sys import executable, stderr
 
 __all__ = ['main']
 
@@ -37,11 +37,9 @@ pdm_env.pop('PDM_IGNORE_SAVED_PYTHON', None)
 
 def pdm_run(*args: str) -> CompletedProcess:
     # PDM is not API, but a CLI -- call it like that!
-    call = (
-        executable, '-m', 'pdm',
-        *args
-    )
-    print('+ ', *call)
+    call = (executable, '-m', 'pdm',
+            *args)
+    print('+ ', *call, file=stderr)
     res = run(call, cwd=this_dir, env=pdm_env, shell=False)  # nosec:B603
     if res.returncode != 0:
         raise RuntimeError('process failed')

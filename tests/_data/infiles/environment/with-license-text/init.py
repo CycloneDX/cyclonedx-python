@@ -22,7 +22,7 @@ initialize this testbed.
 from os import name as os_name
 from os.path import abspath, dirname, join
 from subprocess import CompletedProcess, run  # nosec:B404
-from sys import executable
+from sys import executable, stderr
 from typing import Any
 from venv import EnvBuilder
 
@@ -37,12 +37,10 @@ localpackages_dir = abspath(join(dirname(__file__), '..', '..', '_helpers', 'loc
 
 def pip_run(*args: str, **kwargs: Any) -> CompletedProcess:
     # pip is not API, but a CLI -- call it like that!
-    call = (
-        executable, '-m', 'pip',
-        '--python', env_dir,
-        *args
-    )
-    print('+ ', *call)
+    call = (executable, '-m', 'pip',
+            '--python', env_dir,
+            *args)
+    print('+ ', *call, file=stderr)
     res = run(call, **kwargs, cwd=this_dir, shell=False)  # nosec:B603
     if res.returncode != 0:
         raise RuntimeError('process failed')
