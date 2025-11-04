@@ -16,6 +16,7 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
+import re
 from argparse import OPTIONAL, ArgumentParser
 from collections.abc import Generator
 from json import loads as json_loads
@@ -36,6 +37,19 @@ from .utils.cdx import make_bom
 from .utils.packaging import normalize_packagename
 from .utils.pyproject import pyproject_file2component
 from .utils.secret import redact_auth_from_url
+
+_TAG_SPLIT = re.compile(r'[;,]\s*|\s+')
+
+
+def _to_tags(raw):
+    if raw is None:
+        return []
+    if isinstance(raw, str):
+        return [t for t in (s.strip() for s in _TAG_SPLIT.split(raw)) if t]
+    if isinstance(raw, (list, tuple, set)):
+        return [t for t in (str(s).strip() for s in raw) if t]
+    return []
+
 
 if TYPE_CHECKING:  # pragma: no cover
     from logging import Logger
@@ -175,6 +189,10 @@ class PipenvBB(BomBuilder):
                         version=package_data['version'][2:] if 'version' in package_data else None,
                         external_references=self.__make_extrefs(package_name, package_data, source_urls),
                     )
+                    raw_keywords = package_data.get('keywords')
+                    if hasattr(component, "tags"):
+                        component.tags = _to_tags(raw_keywords)
+
                     component.purl = PackageURL(
                         type=PurlTypePypi,
                         name=component.name,

@@ -16,6 +16,7 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
+import re
 from argparse import OPTIONAL, ArgumentParser
 from collections.abc import Generator, Iterable
 from dataclasses import dataclass
@@ -38,6 +39,19 @@ from .utils.packaging import normalize_packagename
 from .utils.poetry import poetry2component
 from .utils.secret import redact_auth_from_url
 from .utils.toml import toml_loads
+
+_TAG_SPLIT = re.compile(r'[;,]\s*|\s+')
+
+
+def _to_tags(raw):
+    if raw is None:
+        return []
+    if isinstance(raw, str):
+        return [t for t in (s.strip() for s in _TAG_SPLIT.split(raw)) if t]
+    if isinstance(raw, (list, tuple, set)):
+        return [t for t in (str(s).strip() for s in raw) if t]
+    return []
+
 
 if TYPE_CHECKING:  # pragma: no cover
     from logging import Logger
@@ -404,7 +418,7 @@ class PoetryBB(BomBuilder):
         is_vcs = source.get('type') in self.__PACKAGE_SRC_VCS
         is_local = source.get('type') in self.__PACKAGE_SRC_LOCAL
 
-        return Component(
+        component = Component(
             bom_ref=f'{package["name"]}@{package["version"]}',
             name=package['name'],
             version=package.get('version'),
@@ -432,6 +446,12 @@ class PoetryBB(BomBuilder):
                 qualifiers=self.__purl_qualifiers4lock(package)
             ) if not is_local else None
         )
+
+        raw_keywords = package.get('keywords')
+        if hasattr(component, "tags"):
+            component.tags = _to_tags(raw_keywords)
+
+        return component
 
     def __purl_qualifiers4lock(self, package: 'T_NameDict') -> 'T_NameDict':
         # see https://github.com/package-url/purl-spec/blob/master/PURL-SPECIFICATION.rst

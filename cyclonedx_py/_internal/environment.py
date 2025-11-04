@@ -16,6 +16,7 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 
+import re
 from argparse import OPTIONAL, ArgumentParser
 from collections.abc import Iterable
 from importlib.metadata import distributions
@@ -40,6 +41,19 @@ from .utils.packaging import metadata2extrefs, metadata2licenses, normalize_pack
 from .utils.pep610 import PackageSourceArchive, PackageSourceVcs, packagesource2extref, packagesource4dist
 from .utils.pep639 import dist2licenses_from_files as pep639_dist2licenses_from_files
 from .utils.pyproject import pyproject2component, pyproject2dependencies, pyproject_load
+
+_TAG_SPLIT = re.compile(r'[;,]\s*|\s+')
+
+
+def _to_tags(raw):
+    if raw is None:
+        return []
+    if isinstance(raw, str):
+        return [t for t in (s.strip() for s in _TAG_SPLIT.split(raw)) if t]
+    if isinstance(raw, (list, tuple, set)):
+        return [t for t in (str(s).strip() for s in raw) if t]
+    return []
+
 
 if TYPE_CHECKING:  # pragma: no cover
     from logging import Logger
@@ -184,6 +198,10 @@ class EnvironmentBB(BomBuilder):
                 external_references=metadata2extrefs(dist_meta),
                 # path of dist-package on disc? naaa... a package may have multiple files/folders on disc
             )
+
+            raw = dist.metadata.get('Keywords')
+            if hasattr(component, "tags"):
+                component.tags = _to_tags(raw)
 
             # region licenses
             component.licenses.update(metadata2licenses(dist_meta, LicenseFactory(),
