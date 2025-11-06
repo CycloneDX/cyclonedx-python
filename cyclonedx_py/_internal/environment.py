@@ -36,7 +36,7 @@ from packaging.requirements import Requirement
 from . import BomBuilder, PropertyName, PurlTypePypi
 from .cli_common import add_argument_mc_type, add_argument_pyproject
 from .utils.cdx import licenses_fixup, make_bom
-from .utils.packaging import metadata2extrefs, metadata2licenses, normalize_packagename
+from .utils.packaging import metadata2extrefs, metadata2licenses, metadata2tags, normalize_packagename
 from .utils.pep610 import PackageSourceArchive, PackageSourceVcs, packagesource2extref, packagesource4dist
 from .utils.pep639 import dist2licenses_from_files as pep639_dist2licenses_from_files
 from .utils.pyproject import pyproject2component, pyproject2dependencies, pyproject_load
@@ -184,6 +184,9 @@ class EnvironmentBB(BomBuilder):
                 external_references=metadata2extrefs(dist_meta),
                 # path of dist-package on disc? naaa... a package may have multiple files/folders on disc
             )
+
+            if hasattr(component, 'tags'):
+                component.tags.update(metadata2tags(dist_meta))
 
             # region licenses
             component.licenses.update(metadata2licenses(dist_meta, LicenseFactory(),
