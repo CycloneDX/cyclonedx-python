@@ -13,9 +13,8 @@ def attach_schema(comp: Component, version: SchemaVersion):
     comp._bom = bom
 
 
-# -------------------------------
-# Legacy behavior (< 1.7)
-# -------------------------------
+
+
 
 def test_legacy_single_expression_no_change():
     comp = Component(name="c", licenses=(LicenseExpression("MIT"),))
@@ -64,9 +63,7 @@ def test_legacy_empty_licenses_no_change():
     assert comp.evidence is None
 
 
-# -------------------------------
-# Modern behavior (>= 1.7)
-# -------------------------------
+
 
 def test_modern_no_fixup_mixed_is_untouched():
     comp = Component(
