@@ -23,6 +23,7 @@ from collections.abc import Iterable
 from re import compile as re_compile
 from typing import Any, Optional
 
+from cyclonedx.schema import SchemaVersion 
 from cyclonedx.builder.this import this_component as lib_component
 from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
 from cyclonedx.model.bom import Bom
@@ -95,29 +96,33 @@ def find_LicenseExpression(licenses: Iterable['License']) -> Optional[LicenseExp
     return None
 
 
-def licenses_fixup(component: 'Component') -> None:
+def licenses_fixup(component: Component) -> None:
     """
-    CycloneDX 1.7 compliant license handling.
+    Skip license fixup for CycloneDX 1.7 and newer.
 
-    Rules:
-    - A component may have:
-        1. One license expression
-        2. One or more named licenses
-        3. A mix of expression + named licenses (allowed by spec)
-
-    Behavior:
-    - Single license expression → leave as-is.
-    - Only named licenses → leave as-is.
-    - Mixed expression + named → leave as-is (spec allows this).
-    - No licenses are moved to evidence unless explicitly desired.
+    In CycloneDX 1.7+, license expressions and named licenses
+    may coexist. Older versions still require normalization.
     """
+    # Detect schema version via internal BOM reference
+    bom = getattr(component, "_bom", None)
+    if bom is not None:
+        schema_version = getattr(bom.metadata, "schema_version", None)
+        if schema_version is not None and schema_version >= SchemaVersion.V1_7:
+            return
+
+    # ---- Legacy behavior (< 1.7) ----
     licenses = list(component.licenses)
-    if not licenses:
+    lexp = find_LicenseExpression(licenses)
+    if lexp is None:
         return
 
-    # No forced "fixing" for mixed license states
-    return
+    component.licenses = (lexp,)
+    licenses.remove(lexp)
 
+    if licenses:
+        if component.evidence is None:
+            component.evidence = ComponentEvidence()
+        component.evidence.licenses.update(licenses)
 
 _MAP_KNOWN_URL_LABELS: dict[str, ExternalReferenceType] = {
     'bugtracker': ExternalReferenceType.ISSUE_TRACKER,
