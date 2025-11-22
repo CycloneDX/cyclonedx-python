@@ -71,7 +71,7 @@ jobs:
     steps:
       - name: Checkout code
         # see https://github.com/actions/checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v6
@@ -94,7 +94,7 @@ jobs:
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v6
@@ -132,7 +132,7 @@ jobs:
     steps:
       - name: Checkout code
         # see https://github.com/actions/checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Setup python
@@ -220,7 +220,7 @@ jobs:
           echo "GHCR_REPO=${GHCR_REPO@L}" >> "${GITHUB_ENV}"
       - name: Checkout code (${{ env.TAG }})
         # see https://github.com/actions/checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: ${{ needs.release-PyPI.outputs.tag }}
       - name: setup dirs
