@@ -52,7 +52,7 @@ jobs:
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v6
@@ -75,7 +75,7 @@ jobs:
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v6
@@ -98,7 +98,7 @@ jobs:
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v6
@@ -131,7 +131,7 @@ jobs:
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v6
@@ -154,7 +154,7 @@ jobs:
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v6
@@ -187,7 +187,7 @@ jobs:
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v6
@@ -231,7 +231,7 @@ jobs:
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Create reports directory
         run: mkdir ${{ env.REPORTS_DIR }}
       - name: Setup Python Environment
