@@ -36,7 +36,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  PYTHON_VERSION_DEFAULT: "3.12"
+  PYTHON_VERSION_DEFAULT: "3.14"
   POETRY_VERSION: "1.8.1"
   REPORTS_DIR: CI_reports
   TESTS_REPORTS_ARTIFACT: tests-reports
@@ -52,7 +52,7 @@ jobs:
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v6
@@ -75,7 +75,7 @@ jobs:
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v6
@@ -98,7 +98,7 @@ jobs:
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v6
@@ -122,7 +122,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - python-version: '3.13'  # latest
+          - python-version: '3.14'  # latest
             os: ubuntu-latest
             toxenv-factors: '-current'
           - python-version: '3.9'   # lowest
@@ -131,7 +131,7 @@ jobs:
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v6
@@ -154,7 +154,7 @@ jobs:
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v6
@@ -187,7 +187,7 @@ jobs:
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v6
@@ -210,27 +210,21 @@ jobs:
           - macos-latest
           - windows-latest
         python-version:
-          - "3.13" # highest supported
+          - "3.14" # highest supported
+          - "3.13"
           - "3.12"
           - "3.11"
           - "3.10"
           - "3.9"  # lowest supported -- handled in include
         exclude:
-          - os: macos-latest
+          - os: macos-latest  # macos-latest is incompatible with some PY versions
             python-version: "3.10"
-          - os: macos-latest
+          - os: macos-latest  # macos-latest is incompatible with some PY versions
             python-version: "3.9"
-        include:
-          - os: macos-13
-            python-version: "3.10"
-            unittest-args: []
-          - os: macos-13
-            python-version: "3.9"
-            unittest-args: []
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Create reports directory
         run: mkdir ${{ env.REPORTS_DIR }}
       - name: Setup Python Environment
@@ -268,7 +262,7 @@ jobs:
       - name: Artifact reports
         if: ${{ ! cancelled() }}
         # see https://github.com/actions/upload-artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: '${{ env.TESTS_REPORTS_ARTIFACT }}_bnt_${{ matrix.os }}_py${{ matrix.python-version }}'
           path: ${{ env.REPORTS_DIR }}
@@ -282,7 +276,7 @@ jobs:
     steps:
       - name: fetch test artifacts
         # see https://github.com/actions/download-artifact
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v7
         with:
           pattern: '${{ env.TESTS_REPORTS_ARTIFACT }}_bnt_*'
           merge-multiple: true

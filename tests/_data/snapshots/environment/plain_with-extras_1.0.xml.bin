@@ -10,23 +10,23 @@
     </component>
     <component type="library">
       <name>attrs</name>
-      <version>24.2.0</version>
+      <version>25.4.0</version>
       <description>Classes Without Boilerplate</description>
-      <purl>pkg:pypi/attrs@24.2.0</purl>
+      <purl>pkg:pypi/attrs@25.4.0</purl>
       <modified>false</modified>
     </component>
     <component type="library">
       <name>boolean.py</name>
-      <version>4.0</version>
+      <version>5.0</version>
       <description>Define boolean algebras, create and parse boolean expressions and create custom boolean DSL.</description>
-      <purl>pkg:pypi/boolean.py@4.0</purl>
+      <purl>pkg:pypi/boolean.py@5.0</purl>
       <modified>false</modified>
     </component>
     <component type="library">
       <name>cyclonedx-python-lib</name>
-      <version>8.2.0</version>
+      <version>11.2.0</version>
       <description>Python library for CycloneDX</description>
-      <purl>pkg:pypi/cyclonedx-python-lib@8.2.0</purl>
+      <purl>pkg:pypi/cyclonedx-python-lib@11.2.0</purl>
       <modified>false</modified>
     </component>
     <component type="library">
@@ -45,9 +45,9 @@
     </component>
     <component type="library">
       <name>idna</name>
-      <version>3.10</version>
+      <version>3.11</version>
       <description>Internationalized Domain Names in Applications (IDNA)</description>
-      <purl>pkg:pypi/idna@3.10</purl>
+      <purl>pkg:pypi/idna@3.11</purl>
       <modified>false</modified>
     </component>
     <component type="library">
@@ -73,9 +73,9 @@
     </component>
     <component type="library">
       <name>jsonschema</name>
-      <version>4.23.0</version>
+      <version>4.25.1</version>
       <description>An implementation of JSON Schema validation for Python</description>
-      <purl>pkg:pypi/jsonschema@4.23.0</purl>
+      <purl>pkg:pypi/jsonschema@4.25.1</purl>
       <modified>false</modified>
     </component>
     <component type="library">
@@ -86,24 +86,31 @@
       <modified>false</modified>
     </component>
     <component type="library">
+      <name>lark</name>
+      <version>1.3.0</version>
+      <description>a modern parsing library</description>
+      <purl>pkg:pypi/lark@1.3.0</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
       <name>license-expression</name>
-      <version>30.3.1</version>
+      <version>30.4.4</version>
       <description>license-expression is a comprehensive utility library to parse, compare, simplify and normalize license expressions (such as SPDX license expressions) using boolean logic.</description>
-      <purl>pkg:pypi/license-expression@30.3.1</purl>
+      <purl>pkg:pypi/license-expression@30.4.4</purl>
       <modified>false</modified>
     </component>
     <component type="library">
       <name>lxml</name>
-      <version>5.3.0</version>
+      <version>6.0.2</version>
       <description>Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API.</description>
-      <purl>pkg:pypi/lxml@5.3.0</purl>
+      <purl>pkg:pypi/lxml@6.0.2</purl>
       <modified>false</modified>
     </component>
     <component type="library">
       <name>packageurl-python</name>
-      <version>0.16.0</version>
+      <version>0.17.5</version>
       <description>A purl aka. Package URL parser and builder</description>
-      <purl>pkg:pypi/packageurl-python@0.16.0</purl>
+      <purl>pkg:pypi/packageurl-python@0.17.5</purl>
       <modified>false</modified>
     </component>
     <component type="library">
@@ -115,9 +122,9 @@
     </component>
     <component type="library">
       <name>py-serializable</name>
-      <version>1.1.2</version>
+      <version>2.1.0</version>
       <description>Library for serializing and deserializing Python Objects to and from JSON and XML.</description>
-      <purl>pkg:pypi/py-serializable@1.1.2</purl>
+      <purl>pkg:pypi/py-serializable@2.1.0</purl>
       <modified>false</modified>
     </component>
     <component type="library">
@@ -129,9 +136,9 @@
     </component>
     <component type="library">
       <name>referencing</name>
-      <version>0.35.1</version>
+      <version>0.37.0</version>
       <description>JSON Referencing + Python</description>
-      <purl>pkg:pypi/referencing@0.35.1</purl>
+      <purl>pkg:pypi/referencing@0.37.0</purl>
       <modified>false</modified>
     </component>
     <component type="library">
@@ -142,24 +149,31 @@
       <modified>false</modified>
     </component>
     <component type="library">
-      <name>rfc3987</name>
-      <version>1.3.8</version>
-      <description>Parsing and validation of URIs (RFC 3986) and IRIs (RFC 3987)</description>
-      <purl>pkg:pypi/rfc3987@1.3.8</purl>
+      <name>rfc3986-validator</name>
+      <version>0.1.1</version>
+      <description>Pure python rfc3986 validator</description>
+      <purl>pkg:pypi/rfc3986-validator@0.1.1</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>rfc3987-syntax</name>
+      <version>1.1.0</version>
+      <description>Helper functions to syntactically validate strings according to RFC 3987.</description>
+      <purl>pkg:pypi/rfc3987-syntax@1.1.0</purl>
       <modified>false</modified>
     </component>
     <component type="library">
       <name>rpds-py</name>
-      <version>0.20.0</version>
+      <version>0.27.1</version>
       <description>Python bindings to Rust's persistent data structures (rpds)</description>
-      <purl>pkg:pypi/rpds-py@0.20.0</purl>
+      <purl>pkg:pypi/rpds-py@0.27.1</purl>
       <modified>false</modified>
     </component>
     <component type="library">
       <name>six</name>
-      <version>1.16.0</version>
+      <version>1.17.0</version>
       <description>Python 2 and 3 compatibility utilities</description>
-      <purl>pkg:pypi/six@1.16.0</purl>
+      <purl>pkg:pypi/six@1.17.0</purl>
       <modified>false</modified>
     </component>
     <component type="library">
@@ -171,9 +185,16 @@
     </component>
     <component type="library">
       <name>types-python-dateutil</name>
-      <version>2.9.0.20241003</version>
+      <version>2.9.0.20251008</version>
       <description>Typing stubs for python-dateutil</description>
-      <purl>pkg:pypi/types-python-dateutil@2.9.0.20241003</purl>
+      <purl>pkg:pypi/types-python-dateutil@2.9.0.20251008</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>typing_extensions</name>
+      <version>4.15.0</version>
+      <description>Backported and Experimental Type Hints for Python 3.9+</description>
+      <purl>pkg:pypi/typing-extensions@4.15.0</purl>
       <modified>false</modified>
     </component>
     <component type="library">
@@ -185,9 +206,9 @@
     </component>
     <component type="library">
       <name>webcolors</name>
-      <version>24.8.0</version>
+      <version>24.11.1</version>
       <description>A library for working with the color formats defined by HTML and CSS.</description>
-      <purl>pkg:pypi/webcolors@24.8.0</purl>
+      <purl>pkg:pypi/webcolors@24.11.1</purl>
       <modified>false</modified>
     </component>
     <component type="library">

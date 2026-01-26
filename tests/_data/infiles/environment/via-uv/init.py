@@ -23,7 +23,7 @@ from os import environ
 from os.path import dirname, join
 from shutil import rmtree
 from subprocess import CompletedProcess, run  # nosec:B404
-from sys import executable
+from sys import executable, stderr
 
 __all__ = ['main']
 
@@ -37,11 +37,9 @@ uv_env['UV_PROJECT_ENVIRONMENT'] = env_dir
 
 def uv_run(*args: str) -> CompletedProcess:
     # uv is not API, but a CLI -- call it like that!
-    call = (
-        executable, '-m', 'uv',
-        *args
-    )
-    print('+ ', *call)
+    call = (executable, '-m', 'uv',
+            *args)
+    print('+ ', *call, file=stderr)
     res = run(call, cwd=this_dir, env=uv_env, shell=False)  # nosec:B603
     if res.returncode != 0:
         raise RuntimeError('process failed')

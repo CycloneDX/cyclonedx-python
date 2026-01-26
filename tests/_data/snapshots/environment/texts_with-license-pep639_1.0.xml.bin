@@ -44,13 +44,6 @@
       <modified>false</modified>
     </component>
     <component type="library">
-      <name>lxml</name>
-      <version>5.3.0</version>
-      <description>Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API.</description>
-      <purl>pkg:pypi/lxml@5.3.0</purl>
-      <modified>false</modified>
-    </component>
-    <component type="library">
       <name>regression-issue868</name>
       <version>0.1</version>
       <modified>false</modified>

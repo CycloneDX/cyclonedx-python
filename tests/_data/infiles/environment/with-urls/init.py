@@ -22,7 +22,7 @@ initialize this testbed.
 from os import name as os_name
 from os.path import dirname, join
 from subprocess import CompletedProcess, run  # nosec:B404
-from sys import executable
+from sys import executable, stderr
 from venv import EnvBuilder
 
 __all__ = ['main']
@@ -33,12 +33,10 @@ env_dir = join(this_dir, '.venv')
 
 def pip_run(*args: str) -> CompletedProcess:
     # pip is not API, but a CLI -- call it like that!
-    call = (
-        executable, '-m', 'pip',
-        '--python', env_dir,
-        *args
-    )
-    print('+ ', *call)
+    call = (executable, '-m', 'pip',
+            '--python', env_dir,
+            *args)
+    print('+ ', *call, file=stderr)
     res = run(call, cwd=this_dir, shell=False)  # nosec:B603
     if res.returncode != 0:
         raise RuntimeError('process failed')

@@ -207,30 +207,6 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="lxml==5.3.0">
-      <name>lxml</name>
-      <version>5.3.0</version>
-      <description>Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API.</description>
-      <licenses>
-        <license>
-          <id>BSD-3-Clause</id>
-        </license>
-        <license>
-          <name>License :: OSI Approved :: BSD License</name>
-        </license>
-      </licenses>
-      <purl>pkg:pypi/lxml@5.3.0</purl>
-      <externalReferences>
-        <reference type="other">
-          <url>https://github.com/lxml/lxml</url>
-          <comment>from packaging metadata Project-URL: Source</comment>
-        </reference>
-        <reference type="website">
-          <url>https://lxml.de/</url>
-          <comment>from packaging metadata: Home-page</comment>
-        </reference>
-      </externalReferences>
-    </component>
     <component type="library" bom-ref="regression-issue868==0.1">
       <name>regression-issue868</name>
       <version>0.1</version>
@@ -251,7 +227,6 @@
     <dependency ref="license-expression==30.3.0">
       <dependency ref="boolean.py==4.0"/>
     </dependency>
-    <dependency ref="lxml==5.3.0"/>
     <dependency ref="regression-issue868==0.1"/>
     <dependency ref="root-component">
       <dependency ref="attrs==23.2.0"/>
@@ -259,7 +234,6 @@
       <dependency ref="cryptography==43.0.1"/>
       <dependency ref="jsonpointer==2.4"/>
       <dependency ref="license-expression==30.3.0"/>
-      <dependency ref="lxml==5.3.0"/>
       <dependency ref="regression-issue868==0.1"/>
     </dependency>
   </dependencies>
