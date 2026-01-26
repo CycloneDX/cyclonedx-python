@@ -60,7 +60,7 @@ env:
   REPORTS_DIR: CI_reports
   DIST_DIR: dist
   DIST_ARTIFACT: python-dist
-  PYTHON_VERSION_DEFAULT: "3.12"
+  PYTHON_VERSION_DEFAULT: "3.14"
   POETRY_VERSION: "1.8.1"
 
 permissions: {}
