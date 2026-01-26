@@ -60,7 +60,7 @@ env:
   REPORTS_DIR: CI_reports
   DIST_DIR: dist
   DIST_ARTIFACT: python-dist
-  PYTHON_VERSION_DEFAULT: "3.12"
+  PYTHON_VERSION_DEFAULT: "3.14"
   POETRY_VERSION: "1.8.1"
 
 permissions: {}
@@ -71,7 +71,7 @@ jobs:
     steps:
       - name: Checkout code
         # see https://github.com/actions/checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v6
@@ -94,7 +94,7 @@ jobs:
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@v6
@@ -132,7 +132,7 @@ jobs:
     steps:
       - name: Checkout code
         # see https://github.com/actions/checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Setup python
@@ -184,7 +184,7 @@ jobs:
           !failure() && !cancelled() &&
           steps.release.outputs.released == 'true'
         # see https://github.com/actions/upload-artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ env.DIST_ARTIFACT }}
           path: ${{ env.DIST_DIR }}/
@@ -220,7 +220,7 @@ jobs:
           echo "GHCR_REPO=${GHCR_REPO@L}" >> "${GITHUB_ENV}"
       - name: Checkout code (${{ env.TAG }})
         # see https://github.com/actions/checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: ${{ needs.release-PyPI.outputs.tag }}
       - name: setup dirs
@@ -229,7 +229,7 @@ jobs:
           mkdir "$DIST_DIR"
       - name: Fetch python dist artifact
         # see https://github.com/actions/download-artifact
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: ${{ env.DIST_ARTIFACT }}
           path: ${{ env.DIST_DIR }}/
@@ -262,7 +262,7 @@ jobs:
       - name: Artifact reports
         if: ${{ ! cancelled() }}
         # see https://github.com/actions/upload-artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ env.ARTIFACT_DOCKER_SBOM }}
           path: ${{ env.REPORTS_DIR }}/*.bom.*

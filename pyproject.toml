@@ -92,11 +92,14 @@ pep8-naming = "0.15.1"
 flake8-logging = "1.8.0"
 isort = "6.1.0"
 autopep8 = "2.3.2"
-mypy = "1.18.2"
+mypy = "1.19.1"
 bandit = "1.8.6"
 tomli = { version = "^2.0.1", python = "<3.11" }
 tox = "4.30.3"
-pyupgrade = "3.21.0"
+pyupgrade = [
+  { version = "3.21.0", python = "<3.10" },
+  { version = "3.21.2", python = ">=3.10" },
+]
 deptry = "0.23.1"
 # for tests, use the GPL-version of jsonschema format validators - they are faster
 jsonschema = { version = "*", extras = ["format"] }
@@ -111,7 +114,7 @@ pip = ">=23.0"
 pipenv = ">=2023.11.5"
 poetry = "^1.7"
 pdm = "^2.11"
-uv = "0.9.9"  # keep pinned to exact version, until a v1.0.0 is released
+uv = "0.9.13"  # keep pinned to exact version, until a v1.0.0 is released
 
 
 
