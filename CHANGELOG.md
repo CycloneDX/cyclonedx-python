@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v7.2.2 (2026-02-19)
+
+### Documentation
+
+- Modernize RTF setup ([#1002](https://github.com/CycloneDX/cyclonedx-python/pull/1002),
+  [`206c17e`](https://github.com/CycloneDX/cyclonedx-python/commit/206c17e6e515a211eee2a4a238c50e8db274bafc))
+
+
 ## v7.2.1 (2025-10-29)
 
 ### Documentation

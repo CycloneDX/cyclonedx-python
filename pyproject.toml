@@ -6,7 +6,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "cyclonedx-bom"
-version = "7.2.1"
+version = "7.2.2"
 description = "CycloneDX Software Bill of Materials (SBOM) generator for Python projects and environments"
 authors = [
   "Jan Kowalleck <jan.kowalleck@gmail.com>",
