@@ -128,4 +128,3 @@ class TestCliUv(TestCase, SnapshotMixin):
             make_comparable(actual, of),
             join('uv', f'{purpose}_{basename(projectdir)}_{sv.to_version()}.{of.name.lower()}')
         )
-
