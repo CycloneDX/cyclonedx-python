@@ -33,6 +33,7 @@ from .environment import EnvironmentBB
 from .pipenv import PipenvBB
 from .poetry import PoetryBB
 from .requirements import RequirementsBB
+from .uv import UvBB
 from .utils.args import argparse_type4enum, choices4enum
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -115,6 +116,7 @@ class Command:
             (RequirementsBB, 'requirements'),
             (PipenvBB, 'pipenv'),
             (PoetryBB, 'poetry'),
+            (UvBB, 'uv'),
         ):
             spp = scbbc.make_argument_parser(add_help=False)
             sp.add_parser(sct, aliases=scta,
