@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.1" version="1">
+  <components>
+    <component type="library" bom-ref="ddt@1.7.2">
+      <name>ddt</name>
+      <version>1.7.2</version>
+      <purl>pkg:pypi/ddt@1.7.2</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://files.pythonhosted.org/packages/51/d4/bdea45c5c1f1f0ae55844d841101b00905c9863ee1004da37d911253abb2/ddt-1.7.2.tar.gz</url>
+          <comment>sdist</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://files.pythonhosted.org/packages/61/7c/38d1aec205833096eddefcbb3492fbb2c886e74174c72bc160da9522b2f0/ddt-1.7.2-py2.py3-none-any.whl</url>
+          <comment>wheel</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="toml@0.10.2">
+      <name>toml</name>
+      <version>0.10.2</version>
+      <purl>pkg:pypi/toml@0.10.2</purl>
+      <externalReferences>
+        <reference type="distribution">
+          <url>https://files.pythonhosted.org/packages/44/6f/7120676b6d73228c96e17f1f794d8ab046fc910d781c8d151120c3f1569e/toml-0.10.2-py2.py3-none-any.whl</url>
+          <comment>wheel</comment>
+        </reference>
+        <reference type="distribution">
+          <url>https://files.pythonhosted.org/packages/be/ba/1f744cdc819428fc6b5084ec34d9b30660f6f9daaf70eead706e3203ec3c/toml-0.10.2.tar.gz</url>
+          <comment>sdist</comment>
+        </reference>
+      </externalReferences>
+    </component>
+  </components>
+</bom>

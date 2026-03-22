@@ -1,0 +1,169 @@
+{
+  "components": [
+    {
+      "bom-ref": "ddt@1.7.2",
+      "externalReferences": [
+        {
+          "comment": "sdist",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "d215d6b083963013c4a19b1e4dcd6a96e80e43ab77519597a6acfcf2e9a3e04b"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://files.pythonhosted.org/packages/51/d4/bdea45c5c1f1f0ae55844d841101b00905c9863ee1004da37d911253abb2/ddt-1.7.2.tar.gz"
+        },
+        {
+          "comment": "wheel",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "6adcfaf9785f0a36f9e73a89b91e412de9ef8649e289b750e3683bc79d5e2354"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://files.pythonhosted.org/packages/61/7c/38d1aec205833096eddefcbb3492fbb2c886e74174c72bc160da9522b2f0/ddt-1.7.2-py2.py3-none-any.whl"
+        }
+      ],
+      "name": "ddt",
+      "purl": "pkg:pypi/ddt@1.7.2",
+      "type": "library",
+      "version": "1.7.2"
+    },
+    {
+      "bom-ref": "toml@0.10.2",
+      "externalReferences": [
+        {
+          "comment": "wheel",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://files.pythonhosted.org/packages/44/6f/7120676b6d73228c96e17f1f794d8ab046fc910d781c8d151120c3f1569e/toml-0.10.2-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "sdist",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://files.pythonhosted.org/packages/be/ba/1f744cdc819428fc6b5084ec34d9b30660f6f9daaf70eead706e3203ec3c/toml-0.10.2.tar.gz"
+        }
+      ],
+      "name": "toml",
+      "purl": "pkg:pypi/toml@0.10.2",
+      "type": "library",
+      "version": "0.10.2"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "ddt@1.7.2"
+    },
+    {
+      "dependsOn": [
+        "ddt@1.7.2",
+        "toml@0.10.2"
+      ],
+      "ref": "root-component"
+    },
+    {
+      "ref": "toml@0.10.2"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "root-component",
+      "description": "environment via uv",
+      "evidence": {
+        "licenses": [
+          {
+            "license": {
+              "id": "MIT"
+            }
+          },
+          {
+            "license": {
+              "name": "License :: OSI Approved :: Apache Software License"
+            }
+          }
+        ]
+      },
+      "externalReferences": [
+        {
+          "comment": "from pyproject urls: documentation",
+          "type": "documentation",
+          "url": "https://oss.acme.org/my-project/docs/"
+        },
+        {
+          "comment": "from pyproject urls: Bug Tracker",
+          "type": "issue-tracker",
+          "url": "https://oss.acme.org/my-project/bugs/"
+        },
+        {
+          "comment": "from pyproject urls: Funding",
+          "type": "other",
+          "url": "https://oss.acme.org/my-project/funding/"
+        },
+        {
+          "comment": "from pyproject urls: Change log",
+          "type": "other",
+          "url": "https://oss.acme.org/my-project/changelog/"
+        },
+        {
+          "comment": "from pyproject urls: repository",
+          "type": "vcs",
+          "url": "https://oss.acme.org/my-project.git"
+        },
+        {
+          "comment": "from pyproject urls: homepage",
+          "type": "website",
+          "url": "https://oss.acme.org/my-project/"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0 OR MIT"
+        }
+      ],
+      "name": "via-uv",
+      "properties": [
+        {
+          "name": "cdx:python:package:required-extra",
+          "value": "foo"
+        }
+      ],
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": [
+      {
+        "name": "cyclonedx-py",
+        "vendor": "CycloneDX",
+        "version": "thisVersion-testing"
+      },
+      {
+        "name": "cyclonedx-python-lib",
+        "vendor": "CycloneDX",
+        "version": "libVersion-testing"
+      }
+    ]
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.3a.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.3"
+}
