@@ -47,6 +47,13 @@ if TYPE_CHECKING:  # pragma: no cover
     T_NameDict = dict[str, Any]
 
 
+def _bom_ref_value(component: Component) -> str:
+    ref = component.bom_ref.value
+    if ref is None:
+        raise ValueError(f'component {component.name!r} is missing bom_ref')
+    return ref
+
+
 class ExtrasNotFoundError(ValueError):
     def __init__(self, extras: Iterable[str]) -> None:
         self.__extras = frozenset(extras)
@@ -224,7 +231,8 @@ class UvBB(BomBuilder):
         with pyproject_fh, lock_fh:
             pyproject: 'T_NameDict' = toml_loads(pyproject_fh.read())
             locker: 'T_NameDict' = toml_loads(lock_fh.read())
-            self.__marker_env_base = default_environment()
+            _marker_defaults = default_environment()
+            self.__marker_env_base = {str(k): str(v) for k, v in _marker_defaults.items()}
             self.__marker_env_by_extra.clear()
             self.__active_resolution_markers = self.__select_active_resolution_markers(locker)
 
@@ -260,18 +268,17 @@ class UvBB(BomBuilder):
                 raise ValueError('some uv dependency groups are unknown') from groups_error
 
             include_project_deps = len(groups_only_s) == 0
-            use_groups: frozenset[str]
             if groups_only_s:
                 use_groups = groups_only_s - groups_without_s
             else:
-                use_groups = set()
+                acc: set[str] = set()
                 if all_groups:
-                    use_groups.update(all_groups_s)
+                    acc.update(all_groups_s)
                 else:
                     if not no_default_groups:
-                        use_groups.update(self.__get_default_groups(pyproject, all_groups_s))
-                    use_groups.update(groups_with_s)
-                use_groups = frozenset(use_groups - groups_without_s)
+                        acc.update(self.__get_default_groups(pyproject, all_groups_s))
+                    acc.update(groups_with_s)
+                use_groups = frozenset(acc - groups_without_s)
             del groups_with_s, groups_without_s, groups_only_s, groups_requested, groups_unknown
 
             extras_s: frozenset[str]
@@ -645,7 +652,8 @@ class UvBB(BomBuilder):
             for entry in entries:
                 root_dep.dependencies.add(Dependency(entry.component.bom_ref))
 
-        deps_by_ref: dict[str, Dependency] = {root_c.bom_ref.value: root_dep}
+        root_bref = _bom_ref_value(root_c)
+        deps_by_ref: dict[str, Dependency] = {root_bref: root_dep}
 
         for entry in included:
             if entry.name == root_name_n:
@@ -655,15 +663,16 @@ class UvBB(BomBuilder):
                 self._logger.info('add component for package %r', entry.component.name)
                 self._logger.debug('add component: %r', entry.component)
                 bom.components.add(entry.component)
-            dep = deps_by_ref.get(entry.component.bom_ref.value)
+            bref = _bom_ref_value(entry.component)
+            dep = deps_by_ref.get(bref)
             if dep is None:
-                dep = deps_by_ref[entry.component.bom_ref.value] = Dependency(entry.component.bom_ref)
+                dep = deps_by_ref[bref] = Dependency(entry.component.bom_ref)
                 bom.dependencies.add(dep)
 
         for entry in included:
             if entry.name == root_name_n:
                 continue
-            dep = deps_by_ref.get(entry.component.bom_ref.value)
+            dep = deps_by_ref.get(_bom_ref_value(entry.component))
             if dep is None:
                 continue
             for dep_name_n in sorted(entry.dependencies):
@@ -692,12 +701,12 @@ class UvBB(BomBuilder):
             if not entries:
                 continue
             for entry in entries:
-                ref = entry.component.bom_ref.value
+                ref = _bom_ref_value(entry.component)
                 if ref in included:
                     continue
                 included[ref] = entry
                 pending.extend(sorted(entry.dependencies))
-        return tuple(sorted(included.values(), key=lambda e: e.component.bom_ref.value))
+        return tuple(sorted(included.values(), key=lambda e: _bom_ref_value(e.component)))
 
     def _parse_lock(self, locker: 'T_NameDict') -> Generator[_LockEntry, None, None]:
         package: 'T_NameDict'
