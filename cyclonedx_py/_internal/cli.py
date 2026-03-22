@@ -33,8 +33,8 @@ from .environment import EnvironmentBB
 from .pipenv import PipenvBB
 from .poetry import PoetryBB
 from .requirements import RequirementsBB
-from .uv import UvBB
 from .utils.args import argparse_type4enum, choices4enum
+from .uv import UvBB
 
 if TYPE_CHECKING:  # pragma: no cover
     from cyclonedx.model.bom import Bom

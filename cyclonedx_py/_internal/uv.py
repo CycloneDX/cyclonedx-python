@@ -42,7 +42,6 @@ if TYPE_CHECKING:  # pragma: no cover
     from logging import Logger
 
     from cyclonedx.model.bom import Bom
-    from cyclonedx.model.component import ComponentType
 
     T_NameDict = dict[str, Any]
 
@@ -198,7 +197,7 @@ class UvBB(BomBuilder):
             self._logger.warning('uv lock has multiple matching resolution-markers: %s', ', '.join(sorted(active)))
         return active
 
-    def __call__(self, *,  # type:ignore[override]
+    def __call__(self, *,  # type:ignore[override]  # noqa: C901
                  project_directory: str,
                  groups_with: list[str],
                  groups_without: list[str],
@@ -307,11 +306,12 @@ class UvBB(BomBuilder):
                 extras_s,
             )
 
-    def __get_dependency_seeds(self, pyproject: 'T_NameDict', locker: 'T_NameDict',
-                               extras: frozenset[str],
-                               groups: frozenset[str],
-                               include_project_deps: bool
-                               ) -> tuple[frozenset[str], dict[str, frozenset[str]]]:
+    def __get_dependency_seeds(  # noqa: C901
+        self, pyproject: 'T_NameDict', locker: 'T_NameDict',
+        extras: frozenset[str],
+        groups: frozenset[str],
+        include_project_deps: bool
+    ) -> tuple[frozenset[str], dict[str, frozenset[str]]]:
         """
         Determine which packages are included, based on `pyproject.toml` manifest.
 
@@ -400,7 +400,9 @@ class UvBB(BomBuilder):
             return {}
         return {k: frozenset(v) for k, v in self.__optional_dependencies_from_lock(lock_root.package).items()}
 
-    def __get_dependency_groups(self, pyproject: 'T_NameDict', locker: 'T_NameDict') -> dict[str, frozenset[str]]:
+    def __get_dependency_groups(  # noqa: C901
+        self, pyproject: 'T_NameDict', locker: 'T_NameDict',
+    ) -> dict[str, frozenset[str]]:
         """
         Determine which dependency groups are available.
 
@@ -600,9 +602,11 @@ class UvBB(BomBuilder):
         )
         return self._LockRoot(candidate, deps)
 
-    def _make_bom(self, root_c: Component, locker: 'T_NameDict',
-                  seed_deps: tuple[frozenset[str], dict[str, frozenset[str]]],
-                  use_extras: frozenset[str]) -> 'Bom':
+    def _make_bom(  # noqa: C901
+        self, root_c: Component, locker: 'T_NameDict',
+        seed_deps: tuple[frozenset[str], dict[str, frozenset[str]]],
+        use_extras: frozenset[str],
+    ) -> 'Bom':
         bom = make_bom()
         bom.metadata.component = root_c
         self._logger.debug('root-component: %r', root_c)
