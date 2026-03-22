@@ -348,6 +348,84 @@ The full documentation can be issued by running with ``poetry --help``:
                             (default: silent)
 
 
+For uv
+------
+
+**subcommand:** ``uv``
+
+Support for `uv`_ dependency management and package manifest.
+This requires parsing your ``pyproject.toml`` and ``uv.lock`` file which details exact pinned versions of
+dependencies.
+By default, dependencies from uv's default dependency groups (e.g. ``dev``) are included;
+use ``--no-dev`` or ``--no-default-groups`` to exclude them.
+
+.. _uv: https://docs.astral.sh/uv/
+
+The full documentation can be issued by running with ``uv --help``:
+
+.. code-block:: shell-session
+
+    $ cyclonedx-py uv --help
+    usage: cyclonedx-py uv [-h] [--group <group>] [--no-group <group>]
+                           [--only-group <group> | --only-dev] [--all-groups]
+                           [--no-default-groups] [--no-dev]
+                           [-E <extras> | --all-extras] [--mc-type <type>]
+                           [--short-PURLs] [--sv <version>]
+                           [--output-reproducible] [--of <format>] [-o <file>]
+                           [--validate | --no-validate] [-v]
+                           [<project-directory>]
+
+    Build an SBOM from uv project.
+
+    This requires parsing your `pyproject.toml` and `uv.lock` file which details exact pinned versions of
+    dependencies.
+
+    positional arguments:
+      <project-directory>   The project directory for uv (containing
+                            `pyproject.toml` and `uv.lock`), or a path to
+                            `uv.lock` (default: current working directory)
+
+    options:
+      -h, --help            show this help message and exit
+      --group <group>       Include dependencies from the specified dependency
+                            group (multiple values allowed)
+      --no-group <group>    Exclude dependencies from the specified dependency
+                            group (multiple values allowed)
+      --only-group <group>  Only include dependencies from the specified
+                            dependency group (multiple values allowed)
+      --only-dev            Alias for: --only-group dev
+      --all-groups          Include all dependency groups (default: False)
+      --no-default-groups   Ignore the default dependency groups (default: False)
+      --no-dev              Alias for: --no-group dev
+      -E, --extras <extras>
+                            Extra sets of dependencies to include (multiple values
+                            allowed)
+      --all-extras          Include all extra dependencies (default: False)
+      --mc-type <type>      Type of the main component. {choices: application,
+                            firmware, library} (default: application)
+      --short-PURLs         Omit all qualifiers from PackageURLs. This causes
+                            information loss in trade-off shorter PURLs, which
+                            might improve ingesting these strings.
+      --sv, --spec-version <version>
+                            Which version of CycloneDX to use. {choices: 1.7, 1.6,
+                            1.5, 1.4, 1.3, 1.2, 1.1, 1.0} (default: 1.6)
+      --output-reproducible
+                            Whether to go the extra mile and make the output
+                            reproducible. This might result in loss of time- and
+                            random-based values.
+      --of, --output-format <format>
+                            Which output format to use. {choices: JSON, XML}
+                            (default: JSON)
+      -o, --output-file <file>
+                            Path to the output file. (set to "-" to output to
+                            <stdout>) (default: -)
+      --validate, --no-validate
+                            Whether to validate resulting BOM before outputting.
+                            (default: True)
+      -v, --verbose         Increase the verbosity of messages (multiple for more
+                            effect) (default: silent)
+
+
 For Pip requirements
 --------------------
 
@@ -471,22 +549,6 @@ However, since PDM utilizes Python virtual environments under the hood,
 it is possible to use the functionality for Python (virtual) environments as described above.
 
 .. _PDM: https://pdm-project.org/
-
-
-
-*****
-
-
-
-For uv
--------
-
-Support for `uv`_ manifest and lockfile is not explicitly implemented, yet.
-
-However, since uv utilizes Python virtual environments under the hood,
-it is possible to use the functionality for Python (virtual) environments as described above.
-
-.. _uv: https://docs.astral.sh/uv/
 
 
 

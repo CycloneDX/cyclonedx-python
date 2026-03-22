@@ -34,6 +34,7 @@ from .pipenv import PipenvBB
 from .poetry import PoetryBB
 from .requirements import RequirementsBB
 from .utils.args import argparse_type4enum, choices4enum
+from .uv import UvBB
 
 if TYPE_CHECKING:  # pragma: no cover
     from cyclonedx.model.bom import Bom
@@ -115,6 +116,7 @@ class Command:
             (RequirementsBB, 'requirements'),
             (PipenvBB, 'pipenv'),
             (PoetryBB, 'poetry'),
+            (UvBB, 'uv'),
         ):
             spp = scbbc.make_argument_parser(add_help=False)
             sp.add_parser(sct, aliases=scta,

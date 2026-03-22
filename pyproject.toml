@@ -36,7 +36,7 @@ exclude = [
 keywords = [
   "OWASP", "CycloneDX",
   "bill-of-materials", "BOM", "software-bill-of-materials", "SBOM",
-  "environment", "virtualenv", "venv", "Poetry", "Pipenv", "requirements", "PDM", "Conda",
+  "environment", "virtualenv", "venv", "Poetry", "Pipenv", "uv", "requirements", "PDM", "Conda",
   "SPDX", "licenses", "PURL", "package-url", "dependency-graph",
 ]
 classifiers = [

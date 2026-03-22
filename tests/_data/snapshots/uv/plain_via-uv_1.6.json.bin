@@ -1,0 +1,181 @@
+{
+  "components": [
+    {
+      "bom-ref": "toml@0.10.2",
+      "externalReferences": [
+        {
+          "comment": "wheel",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://files.pythonhosted.org/packages/44/6f/7120676b6d73228c96e17f1f794d8ab046fc910d781c8d151120c3f1569e/toml-0.10.2-py2.py3-none-any.whl"
+        },
+        {
+          "comment": "sdist",
+          "hashes": [
+            {
+              "alg": "SHA-256",
+              "content": "b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f"
+            }
+          ],
+          "type": "distribution",
+          "url": "https://files.pythonhosted.org/packages/be/ba/1f744cdc819428fc6b5084ec34d9b30660f6f9daaf70eead706e3203ec3c/toml-0.10.2.tar.gz"
+        }
+      ],
+      "name": "toml",
+      "purl": "pkg:pypi/toml@0.10.2",
+      "type": "library",
+      "version": "0.10.2"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "toml@0.10.2"
+      ],
+      "ref": "root-component"
+    },
+    {
+      "ref": "toml@0.10.2"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "root-component",
+      "description": "environment via uv",
+      "evidence": {
+        "licenses": [
+          {
+            "license": {
+              "acknowledgement": "declared",
+              "id": "MIT"
+            }
+          },
+          {
+            "license": {
+              "acknowledgement": "declared",
+              "name": "License :: OSI Approved :: Apache Software License"
+            }
+          }
+        ]
+      },
+      "externalReferences": [
+        {
+          "comment": "from pyproject urls: documentation",
+          "type": "documentation",
+          "url": "https://oss.acme.org/my-project/docs/"
+        },
+        {
+          "comment": "from pyproject urls: Bug Tracker",
+          "type": "issue-tracker",
+          "url": "https://oss.acme.org/my-project/bugs/"
+        },
+        {
+          "comment": "from pyproject urls: Funding",
+          "type": "other",
+          "url": "https://oss.acme.org/my-project/funding/"
+        },
+        {
+          "comment": "from pyproject urls: Change log",
+          "type": "release-notes",
+          "url": "https://oss.acme.org/my-project/changelog/"
+        },
+        {
+          "comment": "from pyproject urls: repository",
+          "type": "vcs",
+          "url": "https://oss.acme.org/my-project.git"
+        },
+        {
+          "comment": "from pyproject urls: homepage",
+          "type": "website",
+          "url": "https://oss.acme.org/my-project/"
+        }
+      ],
+      "licenses": [
+        {
+          "acknowledgement": "declared",
+          "expression": "Apache-2.0 OR MIT"
+        }
+      ],
+      "name": "via-uv",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": {
+      "components": [
+        {
+          "description": "CycloneDX Software Bill of Materials (SBOM) generator for Python projects and environments",
+          "externalReferences": [
+            {
+              "type": "build-system",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/actions"
+            },
+            {
+              "type": "distribution",
+              "url": "https://pypi.org/project/cyclonedx-bom/"
+            },
+            {
+              "type": "documentation",
+              "url": "https://cyclonedx-bom-tool.readthedocs.io/"
+            },
+            {
+              "type": "issue-tracker",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/issues"
+            },
+            {
+              "type": "license",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE"
+            },
+            {
+              "type": "release-notes",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/blob/main/CHANGELOG.md"
+            },
+            {
+              "type": "vcs",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/"
+            },
+            {
+              "type": "website",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/#readme"
+            }
+          ],
+          "group": "CycloneDX",
+          "licenses": [
+            {
+              "license": {
+                "acknowledgement": "declared",
+                "id": "Apache-2.0"
+              }
+            }
+          ],
+          "name": "cyclonedx-py",
+          "type": "application",
+          "version": "thisVersion-testing"
+        },
+        {
+          "description": "stripped",
+          "externalReferences": [   ],
+          "group": "CycloneDX",
+          "licenses": [   ],
+          "name": "cyclonedx-python-lib",
+          "type": "library",
+          "version": "libVersion-testing"
+        }
+      ]
+    }
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6"
+}
