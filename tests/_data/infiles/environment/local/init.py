@@ -54,7 +54,7 @@ def main() -> None:
         join(localpackages_dir, 'a', 'dist', 'package_a-23.42-py3-none-any.whl'),
         join(localpackages_dir, 'b', 'dist', 'package-b-23.42.tar.gz'),
         join(localpackages_dir, 'c'),
-        join(localpackages_dir, 'd_with_additional_site'),
+        join(localpackages_dir, 'd_with_additional_site', 'dist', 'd_with_additional_site-0.0.1-py3-none-any.whl'),
     )
 
 

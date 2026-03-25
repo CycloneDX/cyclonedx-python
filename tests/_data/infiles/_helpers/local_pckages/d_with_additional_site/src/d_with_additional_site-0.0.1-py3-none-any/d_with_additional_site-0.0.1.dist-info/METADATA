@@ -1,0 +1,5 @@
+Metadata-Version: 2.4
+Name: d_with_additional_site
+Version: 0.0.1
+Summary: some package with additional site
+Requires-Python: >=3.8
