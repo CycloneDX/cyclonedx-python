@@ -1,0 +1,11 @@
+# EditorConfig is awesome: https://editorconfig.org
+
+[my_licenses/utf-8*]
+charset = utf-8
+
+[my_licenses/utf-16le*]
+charset = utf-16le
+
+[my_licenses/utf-16be*]
+charset = utf-16be
+

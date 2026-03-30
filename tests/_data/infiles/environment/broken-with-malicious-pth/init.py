@@ -48,6 +48,7 @@ def main() -> None:
         system_site_packages=False,
         symlinks=os_name != 'nt',
         with_pip=False,
+        clear=True,  # explicitely important, since the env might be broken on purpose
     ).create(env_dir)
 
     pip_install(
