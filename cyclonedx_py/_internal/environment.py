@@ -111,7 +111,7 @@ class EnvironmentBB(BomBuilder):
                  • Build an SBOM from uv environment:
                      $ %(prog)s "$(uv python find)"
                """)
-        p.add_argument('-S',
+        p.add_argument('-S',  # mimic `python -S`
                        action='store_false',
                        dest='import_site',
                        help='Do not implicitly import site during Python path detection.\n'
