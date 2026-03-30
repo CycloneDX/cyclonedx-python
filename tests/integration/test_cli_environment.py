@@ -127,7 +127,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
             join(projectdir, '.venv')
         )
         self.assertNotEqual(0, res, err)
-        self.assertIn('JSONDecodeError', err)
+        self.assertIn('JSONDecodeError', err)  # due to pownage
 
     def test_with_sites_evaluation_suppressed(self) -> None:
         projectdir = join(INFILES_DIRECTORY, 'environment', 'broken-with-malicious-pth')
