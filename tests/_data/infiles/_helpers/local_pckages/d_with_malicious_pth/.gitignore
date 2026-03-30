@@ -1,0 +1,5 @@
+# in these cases we need to keep the dists, since this is the manipulated one
+/build/
+/**.egg-info.egg-info
+
+!/dist/

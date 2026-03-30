@@ -51,9 +51,7 @@ def main() -> None:
     ).create(env_dir)
 
     pip_install(
-        join(localpackages_dir, 'a', 'dist', 'package_a-23.42-py3-none-any.whl'),
-        join(localpackages_dir, 'b', 'dist', 'package-b-23.42.tar.gz'),
-        join(localpackages_dir, 'c'),
+        join(localpackages_dir, 'd_with_malicious_pth', 'dist', 'd_with_malicious_pth-0.0.1-py3-none-any.whl'),
     )
 
 
