@@ -1,0 +1,1 @@
+import sys; print('!! YOU GOT POWNED !!',file=sys.stderr); print('!! YOU GOT POWNED !!',file=sys.stdout); raise Exception('!! YOU GOT POWNED !!')

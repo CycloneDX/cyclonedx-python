@@ -70,6 +70,8 @@ The full documentation can be issued by running with ``environment --help``:
 
     options:
       -h, --help            show this help message and exit
+      -S                    Do not implicitly import site during Python path detection.
+                            Prevents evaluation of `*.pth` files, but may lead to incomplete component detection.
       --gather-license-texts
                             Enable license text gathering.
       --pyproject <file>    Path to the root component's `pyproject.toml` file.

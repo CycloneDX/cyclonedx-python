@@ -35,6 +35,7 @@ initfiles = glob(join(INFILES_DIRECTORY, 'environment', '*', 'init.py'))
 test_data = tuple(
     (f'{basename(projectdir)}-{sv.name}-{of.name}', projectdir, sv, of)
     for projectdir in map(dirname, initfiles)
+    if not basename(projectdir).startswith('broken-')
     for of, sv in SUPPORTED_OF_SV
 )
 
@@ -115,6 +116,36 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
         )
         self.assertNotEqual(0, res, err)
         self.assertIn('Could not open pyproject file: something-that-must-not-exist.testing', err)
+
+    def test_with_sites_detection_fails(self) -> None:
+        projectdir = join(INFILES_DIRECTORY, 'environment', 'broken-with-malicious-pth')
+        res, out, err = run_cli(
+            'environment',
+            '-vvv',
+            '-o=-',
+            '--pyproject', join(projectdir, 'pyproject.toml'),
+            join(projectdir, '.venv')
+        )
+        self.assertNotEqual(0, res, err)
+        self.assertIn('JSONDecodeError', err)  # due to pownage
+
+    def test_with_sites_evaluation_suppressed(self) -> None:
+        projectdir = join(INFILES_DIRECTORY, 'environment', 'broken-with-malicious-pth')
+        sv = SchemaVersion.V1_6
+        of = OutputFormat.JSON
+        res, out, err = run_cli(
+            'environment',
+            '-vvv',
+            '--sv', sv.to_version(),
+            '--of', of.name,
+            '--output-reproducible',
+            '-o=-',
+            '--pyproject', join(projectdir, 'pyproject.toml'),
+            '-S',  # the important part
+            join(projectdir, '.venv')
+        )
+        self.assertEqual(0, res, err)
+        self.assertEqualSnapshot(out, 'test_with_sites_evaluation_suppressed', projectdir, sv, of)
 
     def test_with_current_python(self) -> None:
         sv = SchemaVersion.V1_6
