@@ -114,8 +114,8 @@ class EnvironmentBB(BomBuilder):
         p.add_argument('-S',
                        action='store_false',
                        dest='import_site',
-                       help='Do not implicitly import site during path detection for the specified Python interpreter.\n'
-                            'This prevents evaluation of `*.pth` files, but may result in incomplete component detection.')
+                       help='Do not implicitly import site during Python path detection.\n'
+                            'Prevents evaluation of `*.pth` files, but may lead to incomplete component detection.')
         p.add_argument('--gather-license-texts',
                        action='store_true',
                        dest='gather_license_texts',
