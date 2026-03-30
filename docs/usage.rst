@@ -61,6 +61,7 @@ The full documentation can be issued by running with ``environment --help``:
                                     [--validate | --no-validate]
                                     [-o <file>] [--sv <version>] [--of <format>]
                                     [--pyproject <file>] [--mc-type <type>]
+                                    [-S]
                                     [<python>]
 
     Build an SBOM from Python (virtual) environment
