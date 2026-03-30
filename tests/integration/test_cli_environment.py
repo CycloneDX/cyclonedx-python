@@ -127,7 +127,25 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
             join(projectdir, '.venv')
         )
         self.assertNotEqual(0, res, err)
-        self.assertIn('FOOOOO', err)
+        self.assertIn('JSONDecodeError', err)
+
+    def test_with_sites_evaluation_suppressed(self) -> None:
+        projectdir = join(INFILES_DIRECTORY, 'environment', 'broken-with-malicious-pth')
+        sv = SchemaVersion.V1_6
+        of = OutputFormat.JSON
+        res, out, err = run_cli(
+            'environment',
+            '-vvv',
+            '--sv', sv.to_version(),
+            '--of', of.name,
+            '--output-reproducible',
+            '-o=-',
+            '--pyproject', join(projectdir, 'pyproject.toml'),
+            '-S',  # the important part
+            join(projectdir, '.venv')
+        )
+        self.assertEqual(0, res, err)
+        self.assertEqualSnapshot(out, 'test_with_sites_evaluation_suppressed', projectdir, sv, of)
 
     def test_with_current_python(self) -> None:
         sv = SchemaVersion.V1_6

@@ -19,7 +19,7 @@
 from argparse import OPTIONAL, ArgumentParser
 from collections.abc import Iterable
 from importlib.metadata import distributions
-from json import loads
+from json import loads as json_loads
 from os import getcwd, name as os_name
 from os.path import exists, isdir, join
 from subprocess import run  # nosec
@@ -111,6 +111,11 @@ class EnvironmentBB(BomBuilder):
                  • Build an SBOM from uv environment:
                      $ %(prog)s "$(uv python find)"
                """)
+        p.add_argument('-S',
+                       action='store_false',
+                       dest='import_site',
+                       help="Don't imply 'import site' during path detection of a given python.\n"
+                            'This should prevent evaluation of .pth files at cost of component detection')
         p.add_argument('--gather-license-texts',
                        action='store_true',
                        dest='gather_license_texts',
@@ -137,6 +142,7 @@ class EnvironmentBB(BomBuilder):
         self._gather_license_texts = gather_license_texts
 
     def __call__(self, *,  # type:ignore[override]
+                 import_site: bool,
                  python: Optional[str],
                  pyproject_file: Optional[str],
                  mc_type: 'ComponentType',
@@ -155,7 +161,7 @@ class EnvironmentBB(BomBuilder):
 
         path: list[str]
         if python:
-            path = self.__path4python(python)
+            path = self.__path4python(python, import_site)
         else:
             path = sys_path.copy()
         if path[0] in ('', getcwd()):
@@ -278,8 +284,8 @@ class EnvironmentBB(BomBuilder):
             raise ValueError(f'No such file or directory: {value}')
         if isdir(value):
             for venv_loc in (
-                ('bin', 'python'),  # unix
-                ('Scripts', 'python.exe'),  # win
+                    ('bin', 'python'),  # unix
+                    ('Scripts', 'python.exe'),  # win
             ):
                 maybe = join(value, *venv_loc)
                 if exists(maybe):
@@ -287,8 +293,11 @@ class EnvironmentBB(BomBuilder):
             raise ValueError(f'Failed to find python in directory: {value}')
         return value
 
-    def __path4python(self, python: str) -> list[str]:
-        cmd = self.__py_interpreter(python), '-c', 'import json,sys;json.dump(sys.path,sys.stdout)'
+    def __path4python(self, python: str, import_site: bool) -> list[str]:
+        cmd = [self.__py_interpreter(python), '-c', 'import json,sys;json.dump(sys.path,sys.stdout)']
+        if not import_site:
+            cmd.insert(1, '-S')
+
         self._logger.debug('fetch `path` from python interpreter cmd: %r', cmd)
         res = run(cmd, capture_output=True, encoding='utf8', shell=False)  # nosec
         if res.returncode != 0:
@@ -297,4 +306,4 @@ class EnvironmentBB(BomBuilder):
                                f'stdout: {res.stdout}\n'
                                f'stderr: {res.stderr}\n')
         self._logger.debug('got `path` from Python interpreter: %r', res.stdout)
-        return loads(res.stdout)  # type:ignore[no-any-return]
+        return json_loads(res.stdout)  # type:ignore[no-any-return]
