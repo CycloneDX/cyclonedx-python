@@ -2,6 +2,15 @@
 
 <!-- version list -->
 
+## v7.3.0 (2026-03-30)
+
+### Features
+
+- Add -S flag to skip `*.pth` evaluation during environment analysis
+  ([#1032](https://github.com/CycloneDX/cyclonedx-python/pull/1032),
+  [`55c15d7`](https://github.com/CycloneDX/cyclonedx-python/commit/55c15d738729562c13171fdc1a48ec6ac61b6cb3))
+
+
 ## v7.2.2 (2026-02-19)
 
 ### Documentation
