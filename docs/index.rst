@@ -17,6 +17,7 @@ CycloneDX SBOM Generation Tool for Python
 =========================================
 
 This tool generates Software Bill of material (SBOM) documents in OWASP `CycloneDX`_ format.
+This is probably the most accurate, complete SBOM generator for any python-related projects.
 
 Supported data sources are:
 
@@ -26,6 +27,9 @@ Supported data sources are:
 * Pip's `requirements file format`_ format
 * `PDM`_ manifest and lockfile support is not implemented, yet.
   However, PDM's Python virtual environments are fully supported.
+  See the :doc:`docs </usage>` for an example.
+* `uv`_ manifest and lockfile are not explicitly supported.
+  However, uv's Python virtual environments are fully supported.
   See the :doc:`docs </usage>` for an example.
 * `Conda`_ as a package manager is no longer supported since version 4.
   However, conda's Python environments are fully supported via the methods listed above.
@@ -45,6 +49,7 @@ and might have properties following the Namespace Taxonomies
 .. _Pipenv: https://pipenv.pypa.io/
 .. _requirements file format: https://pip.pypa.io/en/stable/reference/requirements-file-format/
 .. _PDM: https://pdm-project.org/
+.. _uv: https://docs.astral.sh/uv/
 .. _Conda: https://conda.io/
 
 .. toctree::
