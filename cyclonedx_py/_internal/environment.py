@@ -19,7 +19,7 @@
 from argparse import OPTIONAL, ArgumentParser
 from collections.abc import Iterable
 from importlib.metadata import distributions
-from json import loads as json_loads
+from json import JSONDecodeError, loads as json_loads
 from os import getcwd, name as os_name
 from os.path import exists, isdir, join
 from subprocess import run  # nosec
@@ -294,7 +294,8 @@ class EnvironmentBB(BomBuilder):
         return value
 
     def __path4python(self, python: str, import_site: bool) -> list[str]:
-        cmd = [self.__py_interpreter(python), '-c', 'import json,sys;json.dump(sys.path,sys.stdout)']
+        cmd = [self.__py_interpreter(python),
+               '-c', 'import json,sys;json.dump(sys.path,sys.stdout)']
         if not import_site:
             cmd.insert(1, '-S')
 
@@ -306,4 +307,12 @@ class EnvironmentBB(BomBuilder):
                                f'stdout: {res.stdout}\n'
                                f'stderr: {res.stderr}\n')
         self._logger.debug('got `path` from Python interpreter: %r', res.stdout)
-        return json_loads(res.stdout)  # type:ignore[no-any-return]
+        try:
+            path = json_loads(res.stdout)
+        except JSONDecodeError as err:
+            raise ValueError('Fail fetching `path` from Python interpreter.\n'
+                             f'stdout: {res.stdout}\n') from err
+        if type(path) is not list or any(type(p) is not str for p in path):
+            raise TypeError('Fail fetching `path` from Python interpreter.\n'
+                            f'stdout: {res.stdout}\n')
+        return path
