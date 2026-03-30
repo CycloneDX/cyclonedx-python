@@ -468,7 +468,7 @@ For PDM
 -------
 
 Support for `PDM`_ manifest and lockfile is not explicitly implemented, yet.
-See https://github.com/CycloneDX/cyclonedx-python/issues/604
+See `ticket #604 <https://github.com/CycloneDX/cyclonedx-python/issues/604>`_.
 
 However, since PDM utilizes Python virtual environments under the hood,
 it is possible to use the functionality for Python (virtual) environments as described above.
@@ -485,6 +485,8 @@ For uv
 -------
 
 Support for `uv`_ manifest and lockfile is not explicitly implemented, yet.
+See `ticket #604 <https://github.com/CycloneDX/cyclonedx-python/issues/604>`_
+and `ticket #1029 <https://github.com/CycloneDX/cyclonedx-python/issues/1029>`_.
 
 However, since uv utilizes Python virtual environments under the hood,
 it is possible to use the functionality for Python (virtual) environments as described above.
