@@ -61,7 +61,7 @@ Please sign off your commits, to show that you agree to publish your changes und
 , and to indicate agreement with [Developer Certificate of Origin (DCO)](https://developercertificate.org/).
 
 ```shell
-git commit --signoff ...
+git commit -s ...
 ```
 
 [poetry]: https://python-poetry.org
