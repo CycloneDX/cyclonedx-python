@@ -72,6 +72,8 @@ jobs:
       - name: Checkout code
         # see https://github.com/actions/checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6
+        with:
+          persist-credentials: false
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6
@@ -95,6 +97,8 @@ jobs:
       - name: Checkout
         # see https://github.com/actions/checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6
+        with:
+          persist-credentials: false
       - name: Setup Python Environment
         # see https://github.com/actions/setup-python
         uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6
@@ -134,6 +138,7 @@ jobs:
         # see https://github.com/actions/checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6
         with:
+          persist-credentials: false
           fetch-depth: 0
       - name: Setup python
         # see https://github.com/actions/setup-python
@@ -222,6 +227,7 @@ jobs:
         # see https://github.com/actions/checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6
         with:
+          persist-credentials: false
           ref: ${{ needs.release-PyPI.outputs.tag }}
       - name: setup dirs
         run: |
