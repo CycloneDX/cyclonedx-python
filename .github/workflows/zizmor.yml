@@ -54,5 +54,11 @@ jobs:
         # see https://github.com/zizmorcore/zizmor-action
         uses: zizmorcore/zizmor-action@b1d7e1fb5de872772f31590499237e7cce841e8e  # v0.5.3
         with:
+          # advanced-security: false => emit findings as workflow-command annotations (::error file=…) rather than
+          # uploading a SARIF report to GitHub's Security tab.
+          # Uploading SARIF requires `security-events: write` and GitHub Advanced Security (GHAS),
+          # both of which are unnecessary here and would violate the least-privilege policy.
+          # The two modes are mutually exclusive: advanced-security must be false for
+          # annotations to take effect.
           advanced-security: false
           annotations: true
