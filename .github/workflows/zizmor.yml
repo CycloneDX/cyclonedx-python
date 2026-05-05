@@ -24,9 +24,11 @@ on:
   pull_request:
     paths:
       - '.github/workflows/**'
+      - '.github/dependabot.yml'
   push:
     paths:
       - ".github/workflows/**"
+      - ".github/dependabot.yml"
   schedule:
     # weekly scan: every Saturday at 00:00 UTC
     - cron: '0 0 * * 6'
