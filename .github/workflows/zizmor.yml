@@ -24,6 +24,9 @@ on:
   pull_request:
     paths:
       - '.github/workflows/**'
+  push:
+    paths:
+      - ".github/workflows/**"
   schedule:
     # weekly scan: every Saturday at 00:00 UTC
     - cron: '0 0 * * 6'
