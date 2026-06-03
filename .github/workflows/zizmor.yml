@@ -17,31 +17,26 @@
 
 # For details of what checks are run for PRs please refer below
 # docs: https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions
-
-name: Workflow Security Analysis
+name: Zizmor
 
 on:
-  pull_request:
-    paths:
-      - '.github/workflows/**'
-      - '.github/dependabot.yml'
   push:
-    paths:
-      - ".github/workflows/**"
-      - ".github/dependabot.yml"
+    branches: ['master', 'main']
+  pull_request:
+    branches: ['**']
+  workflow_dispatch:
   schedule:
-    # weekly scan: every Saturday at 00:00 UTC
     - cron: '0 0 * * 6'
+
+permissions: {}
 
 concurrency:
   group: '${{ github.workflow }}-${{ github.ref }}'
   cancel-in-progress: true
 
-permissions: {}
-
 jobs:
   zizmor:
-    name: Harden GitHub Workflows (zizmor)
+    name: Zizmor
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -49,12 +44,12 @@ jobs:
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
       - name: Run zizmor 🌈
         # see https://github.com/zizmorcore/zizmor-action
-        uses: zizmorcore/zizmor-action@b1d7e1fb5de872772f31590499237e7cce841e8e  # v0.5.3
+        uses: zizmorcore/zizmor-action@5f14fd08f7cf1cb1609c1e344975f152c7ee938d # v0.5.6
         with:
           # advanced-security: false => emit findings as workflow-command annotations (::error file=…) rather than
           # uploading a SARIF report to GitHub's Security tab.
