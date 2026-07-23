@@ -64,7 +64,7 @@ def pyproject2component(data: dict[str, Any], *,
         licenses_fixup(component)
         # endregion licenses
         return component
-    raise ValueError('Unable to build component from pyproject')
+    raise ValueError('Unable to build component from pyproject: pyproject.toml is not PEP 621-compliant')
 
 
 def pyproject_load(pyproject_file: str) -> dict[str, Any]:
