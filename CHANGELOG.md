@@ -2,6 +2,24 @@
 
 <!-- version list -->
 
+## v7.3.1 (2026-07-23)
+
+### Bug Fixes
+
+- Improve error message for non-PEP 621 pyproject.toml
+  ([#1080](https://github.com/CycloneDX/cyclonedx-python/pull/1080),
+  [`6715bd9`](https://github.com/CycloneDX/cyclonedx-python/commit/6715bd9f8df0afe609a479d2965ea2b866bf5f5b))
+
+### Documentation
+
+- Update docs ([#1034](https://github.com/CycloneDX/cyclonedx-python/pull/1034),
+  [`e42d0fe`](https://github.com/CycloneDX/cyclonedx-python/commit/e42d0fe873bb27440f371025b68fc530aa38990d))
+
+- Usage `cyclonedx-py environment` help page add `-S`
+  ([#1033](https://github.com/CycloneDX/cyclonedx-python/pull/1033),
+  [`d4a0d50`](https://github.com/CycloneDX/cyclonedx-python/commit/d4a0d506bc434a48d28d834334c54f4d0ef75974))
+
+
 ## v7.3.0 (2026-03-30)
 
 ### Features
