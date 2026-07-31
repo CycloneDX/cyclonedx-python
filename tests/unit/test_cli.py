@@ -17,12 +17,17 @@
 
 
 import logging
+from collections.abc import Iterator
+from contextlib import contextmanager
+from datetime import datetime, timezone
 from io import StringIO
+from json import loads as json_loads
+from os import environ
 from os.path import join
 from random import random
-from typing import Any
+from typing import Any, Optional
 from unittest import TestCase
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
 from cyclonedx.model.bom import Bom
 from cyclonedx.model.component import Component, ComponentType
@@ -31,7 +36,7 @@ from ddt import ddt, named_data
 from packageurl import PackageURL
 
 from cyclonedx_py._internal import BomBuilder
-from cyclonedx_py._internal.cli import Command
+from cyclonedx_py._internal.cli import ENV_SOURCE_DATE_EPOCH, Command
 from tests import SnapshotMixin
 
 
@@ -138,6 +143,78 @@ class TestCli(TestCase, SnapshotMixin):
 
         self.assertEqual(r'["invalid to CDX schema"]', out)
         self.assertIn('WARNING: Validation skipped', log)
+
+    @named_data(
+        ('unset', None, None),
+        ('empty', '', None),
+        ('blank', '  ', None),
+        ('epoch_zero', '0', '1970-01-01T00:00:00+00:00'),
+        ('valid', '1700000000', '2023-11-14T22:13:20+00:00'),
+        ('surrounded_by_whitespace', ' 1700000000 ', '2023-11-14T22:13:20+00:00'),
+        ('not_a_number', 'yesterday', None),
+        ('not_an_int', '1700000000.5', None),
+        ('negative', '-1700000000', None),
+        ('out_of_range', '9' * 42, None),
+    )
+    def test_reproducible_timestamp_from_env(self, sde: Optional[str], expected: Optional[str]) -> None:
+        with self.__patch_sde(sde):
+            out, _ = self.__run_with_bom(output_reproducible=True)
+        metadata = json_loads(out)['metadata']
+        self.assertEqual(expected, metadata.get('timestamp'))
+
+    def test_reproducible_timestamp_env_ignored_if_not_reproducible(self) -> None:
+        with self.__patch_sde('1700000000'):
+            out, _ = self.__run_with_bom(output_reproducible=False)
+        metadata = json_loads(out)['metadata']
+        # the BOM's own timestamp is kept as-is - the env var must have no effect here
+        self.assertEqual('2001-05-15T12:34:56+00:00', metadata.get('timestamp'))
+
+    def test_reproducible_timestamp_invalid_env_is_logged(self) -> None:
+        with self.__patch_sde('yesterday'):
+            _, log = self.__run_with_bom(output_reproducible=True)
+        self.assertIn(f'WARNING: Ignoring invalid ${ENV_SOURCE_DATE_EPOCH}', log)
+
+    @staticmethod
+    @contextmanager
+    def __patch_sde(sde: Optional[str]) -> Iterator[None]:
+        with patch.dict(environ):
+            if sde is None:
+                environ.pop(ENV_SOURCE_DATE_EPOCH, None)
+            else:
+                environ[ENV_SOURCE_DATE_EPOCH] = sde
+            yield
+
+    def __run_with_bom(self, *, output_reproducible: bool) -> tuple[str, str]:
+        bom = Bom()
+        bom.metadata.timestamp = datetime(2001, 5, 15, 12, 34, 56, tzinfo=timezone.utc)
+        bom.metadata.component = Component(
+            type=ComponentType.APPLICATION,
+            name='my-app',
+            bom_ref='my-app')
+        bom.metadata.tools.components.clear()
+        bom.metadata.tools.services.clear()
+        bom.metadata.tools.tools.clear()
+
+        class MyBBC(BomBuilder):
+            def __new__(cls, *args: Any, **kwargs: Any) -> BomBuilder:
+                return Mock(spec=BomBuilder, return_value=bom)
+
+        with StringIO() as logs, StringIO() as outs:
+            logs.name = '<logstream>'
+            outs.name = '<outstream>'
+
+            command = Command(
+                logger=self.__make_fresh_logger(logs),
+                short_purls=False,
+                spec_version=SchemaVersion.V1_6,
+                output_format=OutputFormat.JSON,
+                should_validate=True,
+                output_reproducible=output_reproducible,
+                _bbc=MyBBC
+            )
+            command(output_file=outs)
+
+            return outs.getvalue(), logs.getvalue()
 
     def assertEqualSnapshot(self, actual: str, snapshot_name: str) -> None:  # noqa: N802
         super().assertEqualSnapshot(actual, join('cli', snapshot_name))

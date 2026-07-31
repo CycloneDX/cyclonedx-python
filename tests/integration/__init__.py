@@ -18,14 +18,17 @@
 
 from contextlib import redirect_stderr, redirect_stdout
 from io import BytesIO, StringIO, TextIOWrapper
+from os import environ
 from typing import Any, Optional
 from unittest.mock import patch
 
-from cyclonedx_py._internal.cli import run as _run_cli
+from cyclonedx_py._internal.cli import ENV_SOURCE_DATE_EPOCH, run as _run_cli
 
 
 def run_cli(*args: str, inp: Optional[Any] = None) -> (int, str, str):
-    with StringIO() as err, StringIO() as out:
+    with StringIO() as err, StringIO() as out, patch.dict(environ):
+        # snapshots must not depend on the environment the tests happen to run in
+        environ.pop(ENV_SOURCE_DATE_EPOCH, None)
         err.name = '<fakeerr>'
         out.name = '<fakeout>'
         with redirect_stderr(err), redirect_stdout(out):
