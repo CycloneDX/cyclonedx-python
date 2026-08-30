@@ -15,7 +15,6 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
-
 """
 CycloneDX related helpers and utils.
 """
@@ -51,7 +50,6 @@ def make_bom(**kwargs: Any) -> Bom:
             licenses=(DisjunctiveLicense(id='Apache-2.0',
                                          acknowledgement=LicenseAcknowledgement.DECLARED),),
             external_references=(
-                # let's assume this is not a fork
                 ExternalReference(
                     type=ExternalReferenceType.WEBSITE,
                     url=XsUri('https://github.com/CycloneDX/cyclonedx-python/#readme')
@@ -80,13 +78,11 @@ def make_bom(**kwargs: Any) -> Bom:
                     type=ExternalReferenceType.RELEASE_NOTES,
                     url=XsUri('https://github.com/CycloneDX/cyclonedx-python/blob/main/CHANGELOG.md')
                 ),
-                # we cannot assert where the lib was fetched from, but we can give a hint
                 ExternalReference(
                     type=ExternalReferenceType.DISTRIBUTION,
                     url=XsUri('https://pypi.org/project/cyclonedx-bom/')
                 ),
             ),
-            # to be extended...
         ),
     ))
     return bom
@@ -101,27 +97,29 @@ def find_LicenseExpression(licenses: Iterable['License']) -> Optional[LicenseExp
 
 def licenses_fixup(component: 'Component') -> None:
     """
-    Per CycloneDX spec, there must be EITHER one license expression OR multiple license id/name.
-    If there is an expression, it is used and everything else is moved to evidences, so it is not lost.
+    CycloneDX 1.7 compliant license handling.
+
+    Rules:
+    - A component may have:
+        1. One license expression
+        2. One or more named licenses
+        3. A mix of expression + named licenses (allowed by spec)
+
+    Behavior:
+    - Single license expression → leave as-is.
+    - Only named licenses → leave as-is.
+    - Mixed expression + named → leave as-is (spec allows this).
+    - No licenses are moved to evidence unless explicitly desired.
     """
-    # hack for preventing expressions AND named licenses.
-    # see https://github.com/CycloneDX/cyclonedx-python/issues/826
-    # see https://github.com/CycloneDX/specification/issues/454
     licenses = list(component.licenses)
-    lexp = find_LicenseExpression(licenses)
-    if lexp is None:
+    if not licenses:
         return
-    component.licenses = (lexp,)
-    licenses.remove(lexp)
-    if len(licenses) > 0:
-        if component.evidence is None:
-            component.evidence = ComponentEvidence()
-        component.evidence.licenses.update(licenses)
+
+    # No forced "fixing" for mixed license states
+    return
 
 
 _MAP_KNOWN_URL_LABELS: dict[str, ExternalReferenceType] = {
-    # see https://peps.python.org/pep-0345/#project-url-multiple-use
-    # see https://github.com/pypi/warehouse/issues/5947#issuecomment-699660629
     'bugtracker': ExternalReferenceType.ISSUE_TRACKER,
     'issuetracker': ExternalReferenceType.ISSUE_TRACKER,
     'issues': ExternalReferenceType.ISSUE_TRACKER,
@@ -134,7 +132,6 @@ _MAP_KNOWN_URL_LABELS: dict[str, ExternalReferenceType] = {
     'docs': ExternalReferenceType.DOCUMENTATION,
     'changelog': ExternalReferenceType.RELEASE_NOTES,
     'changes': ExternalReferenceType.RELEASE_NOTES,
-    # 'source': ExternalReferenceType.SOURCE-DISTRIBUTION,
     'repository': ExternalReferenceType.VCS,
     'github': ExternalReferenceType.VCS,
     'chat': ExternalReferenceType.CHAT,
