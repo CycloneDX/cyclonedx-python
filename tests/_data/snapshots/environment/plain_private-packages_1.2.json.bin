@@ -1,6 +1,7 @@
 {
   "components": [
     {
+      "author": "Benjamin Peterson <benjamin@python.org>",
       "bom-ref": "six==1.16.0",
       "description": "Python 2 and 3 compatibility utilities",
       "externalReferences": [
@@ -26,28 +27,6 @@
       "purl": "pkg:pypi/six@1.16.0",
       "type": "library",
       "version": "1.16.0"
-    },
-    {
-      "bom-ref": "toml==0.10.2",
-      "description": "Python Library for Tom's Obvious, Minimal Language",
-      "externalReferences": [
-        {
-          "comment": "from packaging metadata: Home-page",
-          "type": "website",
-          "url": "https://github.com/uiri/toml"
-        }
-      ],
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ],
-      "name": "toml",
-      "purl": "pkg:pypi/toml@0.10.2",
-      "type": "library",
-      "version": "0.10.2"
     }
   ],
   "dependencies": [
@@ -59,9 +38,6 @@
     },
     {
       "ref": "six==1.16.0"
-    },
-    {
-      "ref": "toml==0.10.2"
     }
   ],
   "metadata": {

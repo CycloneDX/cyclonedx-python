@@ -16,11 +16,13 @@
 # Copyright (c) OWASP Foundation. All Rights Reserved.
 
 from collections.abc import Generator
+from email.utils import getaddresses
 from re import compile as re_compile
 from typing import TYPE_CHECKING
 
 from cyclonedx.exception.model import InvalidUriException
 from cyclonedx.model import AttachedText, ExternalReference, ExternalReferenceType, XsUri
+from cyclonedx.model.contact import OrganizationalContact
 from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
 
 from .cdx import url_label_to_ert
@@ -91,6 +93,45 @@ def metadata2extrefs(metadata: 'PackageMetadata') -> Generator['ExternalReferenc
                 url=XsUri(url.strip()))
         except InvalidUriException:  # pragma: nocover
             pass
+
+
+def metadata2authors(metadata: 'PackageMetadata') -> Generator['OrganizationalContact', None, None]:
+    """
+    See:
+    - https://packaging.python.org/en/latest/specifications/core-metadata/#author
+    - https://packaging.python.org/en/latest/specifications/core-metadata/#author-email
+
+    `Author` and `Author-email` are two independent free-text fields; there is no
+    guaranteed way to correlate them when either holds more than one person. So:
+    - if `Author-email` resolves to exactly one address with no display name of its
+      own, and `Author` looks like a bare name (no `<`/`@`), the two are combined
+      into a single contact;
+    - otherwise, every address found in `Author-email` becomes its own contact,
+      and a bare-name `Author` is used as a fallback contact only when
+      `Author-email` is absent entirely.
+    """
+    author = metadata.get('Author')
+    author_email = metadata.get('Author-email')
+    if author_email:
+        # `email.utils.getaddresses()` expects RFC 5322 address syntax. Fed something
+        # that isn't actually shaped like an email - e.g. a bare name with no `<...>`
+        # and no `@` - it silently mis-splits on whitespace and drops everything but
+        # the last "word": `getaddresses(['Jane Doe'])  ==  [('', 'Jane')]`.
+        # Guard against that by only trusting entries that actually look like an email.
+        addresses = [
+            (name or None, email)
+            for name, email in getaddresses([author_email])
+            if '@' in email
+        ]
+        bare_name = bool(author and '<' not in author and '@' not in author)
+        if len(addresses) == 1 and addresses[0][0] is None and bare_name:
+            yield OrganizationalContact(name=author, email=addresses[0][1])
+            return
+        for name, email in addresses:
+            yield OrganizationalContact(name=name, email=email)
+        return
+    if author:
+        yield OrganizationalContact(name=author)
 
 
 _NORMALIZE_PN_MATCHER = re_compile(r'[-_.]+')

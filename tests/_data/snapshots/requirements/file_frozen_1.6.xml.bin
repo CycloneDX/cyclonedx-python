@@ -51,6 +51,15 @@
       </components>
     </tools>
     <component type="application" bom-ref="root-component">
+      <authors>
+        <author>
+          <name>My Name</name>
+        </author>
+        <author>
+          <name>Your Name</name>
+          <email>you@example.com</email>
+        </author>
+      </authors>
       <name>testing-requirements-txt</name>
       <version>0.1.0</version>
       <description>some `reuqirements.txt` a root-component with all metadata</description>
