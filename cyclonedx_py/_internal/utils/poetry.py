@@ -67,6 +67,11 @@ def poetry2extrefs(poetry: dict[str, Any]) -> Generator['ExternalReference', Non
 def poetry2authors(poetry: dict[str, Any]) -> Generator['OrganizationalContact', None, None]:
     # see https://python-poetry.org/docs/pyproject/#authors
     for author in poetry.get('authors', ()):
+        if not isinstance(author, str):
+            # Not per spec -- Poetry's `authors` is a list of "Name <email>" strings --
+            # but e.g. `authors = [123]` is valid TOML. `person_string2contact()`
+            # requires a string; skip anything else rather than crash.
+            continue
         contact = person_string2contact(author)
         if contact is not None:
             yield contact

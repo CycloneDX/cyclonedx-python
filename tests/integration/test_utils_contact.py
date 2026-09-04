@@ -50,6 +50,19 @@ class TestPersonString2Contact(TestCase):
     def test_none_for_empty_input(self, value: str) -> None:
         self.assertIsNone(person_string2contact(value))
 
+    @named_data(
+        # These do not match `_PERSON_STRING_MATCHER` at all (as opposed to matching
+        # and yielding an empty name/email) - regression coverage for the `m is None`
+        # branch, which real-world messy author strings can and do reach.
+        ('multiple_angle_bracket_fragments', 'Jane <foo> Doe <bar@example.com>'),
+        ('trailing_text_after_closing_bracket', 'Jane Doe <jane@example.com> (Acme Inc.)'),
+        ('two_email_fragments', 'Jane Doe <jane@example.com><john@example.com>'),
+        ('unbalanced_opening_bracket', 'Jane Doe <jane@example.com'),
+        ('unbalanced_closing_bracket', 'Jane Doe <jane@example.com>>'),
+    )
+    def test_none_for_unparseable_shape(self, value: str) -> None:
+        self.assertIsNone(person_string2contact(value))
+
 
 @ddt()
 class TestContacts2Author(TestCase):

@@ -157,6 +157,20 @@ class TestUtilsPEP621(TestCase):
         self.assertEqual(len(authors), 2)
         self.assertEqual([a.name for a in authors], ['Jane Doe', 'John Roe'])
 
+    @named_data(
+        ('int_entry', 123),
+        ('none_entry', None),
+        ('list_entry', []),
+    )
+    def test_project2authors_non_dict_non_str_entry_is_skipped(self, bad_entry: any) -> None:
+        # Not per spec at all -- e.g. `authors = [123]` -- but valid TOML, so it
+        # reaches this function regardless. Must be skipped, not crash on
+        # `author.get(...)` (regression: this used to raise AttributeError).
+        project = {'name': 'testpkg', 'authors': [bad_entry, {'name': 'Jane Doe'}]}
+        authors = list(project2authors(project))
+        self.assertEqual(len(authors), 1)
+        self.assertEqual(authors[0].name, 'Jane Doe')
+
     # endregion project2authors
 
     # region project2component -- authors wiring

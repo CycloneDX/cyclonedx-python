@@ -46,7 +46,13 @@ def person_string2contact(value: str) -> Optional[OrganizationalContact]:
     Returns `None` if `value` carries no usable name or email at all.
     """
     m = _PERSON_STRING_MATCHER.match(value)
-    if m is None:  # pragma: nocover  -- the pattern matches any string, including the empty one
+    if m is None:
+        # Reachable: the pattern requires the whole string to be a bare name, a bare
+        # `<email>`, or exactly one of each in that order - anything with more than
+        # one `<...>` fragment, an unbalanced bracket, or trailing text after a
+        # closing `>` does not match at all (see test_multiple_angle_bracket_fragments
+        # and friends). Real-world pyproject.toml/Poetry authors data occasionally has
+        # this shape; treat it the same as "no usable name or email" rather than crash.
         return None
     name = m.group('name') or None
     email = m.group('email') or None

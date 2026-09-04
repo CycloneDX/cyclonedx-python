@@ -63,6 +63,21 @@ class TestUtilsPoetry(TestCase):
         self.assertEqual(len(authors), 1)
         self.assertEqual(authors[0].name, 'Jane Doe')
 
+    @named_data(
+        ('int_entry', 123),
+        ('none_entry', None),
+        ('list_entry', []),
+    )
+    def test_poetry2authors_non_string_entry_is_skipped(self, bad_entry: any) -> None:
+        # Poetry's `authors` is documented as a list of "Name <email>" strings, but
+        # e.g. `authors = [123]` is valid TOML regardless. `person_string2contact()`
+        # requires a string; must be skipped, not crash (regression: this used to
+        # raise TypeError from `re.match()`).
+        poetry = {'name': 'testpkg', 'authors': [bad_entry, 'Jane Doe']}
+        authors = list(poetry2authors(poetry))
+        self.assertEqual(len(authors), 1)
+        self.assertEqual(authors[0].name, 'Jane Doe')
+
     # endregion poetry2authors
 
     # region poetry2component -- authors wiring

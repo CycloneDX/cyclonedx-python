@@ -128,6 +128,11 @@ def project2authors(project: dict[str, Any]) -> Generator['OrganizationalContact
             if contact is not None:
                 yield contact
             continue
+        if not isinstance(author, dict):
+            # Not per spec at all -- e.g. `authors = [123]` -- TOML happily allows it,
+            # PEP 621 does not. There is nothing name/email-shaped to extract; skip it
+            # rather than crash on `author.get(...)`.
+            continue
         name = author.get('name') or None
         email = author.get('email') or None
         if name is not None or email is not None:
