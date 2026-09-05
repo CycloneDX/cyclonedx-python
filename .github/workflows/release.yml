@@ -180,7 +180,7 @@ jobs:
           !failure() && !cancelled() &&
           steps.release.outputs.released == 'true'
         # see https://python-semantic-release.readthedocs.io/en/latest/automatic-releases/github-actions.html#python-semantic-release-publish-action
-        uses: python-semantic-release/publish-action@310a9983a0ae878b29f3aac778d7c77c1db27378  # v10.5.3
+        uses: python-semantic-release/publish-action@6d89e2de8d40ecb3717316ecbbf15a6fa8ea9039  # v10.6.2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ steps.release.outputs.tag }}
