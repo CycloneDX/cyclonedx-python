@@ -61,6 +61,13 @@
   </metadata>
   <components>
     <component type="library" bom-ref="six==1.16.0">
+      <authors>
+        <author>
+          <name>Benjamin Peterson</name>
+          <email>benjamin@python.org</email>
+        </author>
+      </authors>
+      <author>Benjamin Peterson &lt;benjamin@python.org&gt;</author>
       <name>six</name>
       <version>1.16.0</version>
       <description>Python 2 and 3 compatibility utilities</description>
@@ -84,29 +91,11 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="toml==0.10.2">
-      <name>toml</name>
-      <version>0.10.2</version>
-      <description>Python Library for Tom's Obvious, Minimal Language</description>
-      <licenses>
-        <license acknowledgement="declared">
-          <id>MIT</id>
-        </license>
-      </licenses>
-      <purl>pkg:pypi/toml@0.10.2</purl>
-      <externalReferences>
-        <reference type="website">
-          <url>https://github.com/uiri/toml</url>
-          <comment>from packaging metadata: Home-page</comment>
-        </reference>
-      </externalReferences>
-    </component>
   </components>
   <dependencies>
     <dependency ref="root-component">
       <dependency ref="six==1.16.0"/>
     </dependency>
     <dependency ref="six==1.16.0"/>
-    <dependency ref="toml==0.10.2"/>
   </dependencies>
 </bom>

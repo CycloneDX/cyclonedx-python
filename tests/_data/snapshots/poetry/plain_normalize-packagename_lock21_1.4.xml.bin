@@ -41,6 +41,7 @@
       </tool>
     </tools>
     <component type="application" bom-ref="normalize-packagename">
+      <author>Your Name &lt;you@example.com&gt;</author>
       <name>normalize-packagename</name>
       <version>0.1.0</version>
       <description>packages with non-normalized names</description>

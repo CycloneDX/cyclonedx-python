@@ -24,6 +24,7 @@
   </metadata>
   <components>
     <component type="library" bom-ref="ruamel.yaml==0.18.5">
+      <author>Anthon van der Neut &lt;a.van.der.neut@ruamel.eu&gt;</author>
       <name>ruamel.yaml</name>
       <version>0.18.5</version>
       <description>ruamel.yaml is a YAML parser/emitter that supports roundtrip preservation of comments, seq/map flow style, and map key order</description>
@@ -56,6 +57,7 @@
       </properties>
     </component>
     <component type="library" bom-ref="ruamel.yaml.jinja2==0.2.7">
+      <author>Anthon van der Neut &lt;a.van.der.neut@ruamel.eu&gt;</author>
       <name>ruamel.yaml.jinja2</name>
       <version>0.2.7</version>
       <description>jinja2 pre and post-processor to update with YAML</description>

@@ -61,6 +61,13 @@
   </metadata>
   <components>
     <component type="library" bom-ref="six==1.16.0">
+      <authors>
+        <author>
+          <name>Benjamin Peterson</name>
+          <email>benjamin@python.org</email>
+        </author>
+      </authors>
+      <author>Benjamin Peterson &lt;benjamin@python.org&gt;</author>
       <name>six</name>
       <version>1.16.0</version>
       <description>Python 2 and 3 compatibility utilities</description>

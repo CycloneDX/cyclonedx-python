@@ -266,6 +266,13 @@
   ],
   "metadata": {
     "component": {
+      "author": "Your Name <you@example.com>",
+      "authors": [
+        {
+          "email": "you@example.com",
+          "name": "Your Name"
+        }
+      ],
       "bom-ref": "main-and-dev",
       "description": "main and dev depenndencies",
       "name": "main-and-dev",
