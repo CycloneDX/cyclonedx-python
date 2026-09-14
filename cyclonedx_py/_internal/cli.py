@@ -45,8 +45,8 @@ if TYPE_CHECKING:  # pragma: no cover
 
 OPTION_OUTPUT_STDOUT = '-'
 
+# Environment variable per https://reproducible-builds.org/docs/source-date-epoch/
 ENV_SOURCE_DATE_EPOCH = 'SOURCE_DATE_EPOCH'
-"""Environment variable per <https://reproducible-builds.org/docs/source-date-epoch/>."""
 
 
 class Command:
