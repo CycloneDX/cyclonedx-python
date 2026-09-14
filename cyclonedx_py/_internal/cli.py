@@ -85,7 +85,7 @@ class Command:
         op.add_argument('--output-reproducible',
                         help='Whether to go the extra mile and make the output reproducible.\n'
                         'This might result in loss of time- and random-based values.\n'
-                        f'If the environment variable `${ENV_SOURCE_DATE_EPOCH}` holds a valid UNIX timestamp,'
+                        f'If the environment variable {ENV_SOURCE_DATE_EPOCH} holds a valid UNIX timestamp,'
                         " then it is used as the SBOM's timestamp, instead of omitting it.",
                         action='store_true',
                         dest='output_reproducible',
