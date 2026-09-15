@@ -2,6 +2,15 @@
 
 <!-- version list -->
 
+## v7.4.0 (2026-09-15)
+
+### Features
+
+- Respect env var `SOURCE_DATE_EPOCH` when generating reproducible output
+  ([#1084](https://github.com/CycloneDX/cyclonedx-python/pull/1084),
+  [`51813c7`](https://github.com/CycloneDX/cyclonedx-python/commit/51813c7bbf4262435594b6f4a4e84407e73d5119))
+
+
 ## v7.3.1 (2026-07-23)
 
 ### Bug Fixes
