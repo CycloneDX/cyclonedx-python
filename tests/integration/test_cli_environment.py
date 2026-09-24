@@ -18,12 +18,15 @@
 import random
 from collections.abc import Generator
 from glob import glob
-from os import name as os_name
+from json import loads as json_loads
+from os import environ, mkdir, name as os_name
 from os.path import basename, dirname, join
 from subprocess import run  # nosec:B404
 from sys import executable, stderr
+from tempfile import TemporaryDirectory
 from typing import Any
 from unittest import TestCase, skipIf
+from unittest.mock import patch
 
 from cyclonedx.schema import OutputFormat, SchemaVersion
 from ddt import data, ddt, named_data
@@ -146,6 +149,46 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
         )
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'test_with_sites_evaluation_suppressed', projectdir, sv, of)
+
+    def test_isolated_ignores_parent_pythonpath(self) -> None:
+        """Regression for #1045: with --isolated, target is probed via python -E,
+        so a parent PYTHONPATH (inherited by the subprocess via os.environ /
+        patch.dict) must not appear in the SBOM."""
+        projectdir = join(INFILES_DIRECTORY, 'environment', 'no-deps')
+        sv = SchemaVersion.V1_6
+        of = OutputFormat.JSON
+        foreign_name = 'leakypkg'
+
+        with TemporaryDirectory() as foreign_root:
+            dist_info = join(foreign_root, f'{foreign_name}-9.9.9.dist-info')
+            mkdir(dist_info)
+            with open(join(dist_info, 'METADATA'), 'w', encoding='utf8') as fh:
+                fh.write('Metadata-Version: 2.1\n'
+                         f'Name: {foreign_name}\n'
+                         'Version: 9.9.9\n')
+
+            common = (
+                'environment',
+                '-vvv',
+                '--sv', sv.to_version(),
+                '--of', of.name,
+                '--output-reproducible',
+                '-o=-',
+                join(projectdir, '.venv'),
+            )
+
+            with patch.dict(environ, {'PYTHONPATH': foreign_root}):
+                res, out, err = run_cli(*common)
+            self.assertEqual(0, res, err)
+            names = {c['name'] for c in json_loads(out).get('components') or ()}
+            self.assertIn(foreign_name, names)
+
+            with patch.dict(environ, {'PYTHONPATH': foreign_root}):
+                res, out, err = run_cli(*common[:-1], '--isolated', common[-1])
+            self.assertEqual(0, res, err)
+            self.assertIn('-E', err)  # probe cmd logged at -vvv
+            names = {c['name'] for c in json_loads(out).get('components') or ()}
+            self.assertNotIn(foreign_name, names)
 
     def test_with_current_python(self) -> None:
         sv = SchemaVersion.V1_6
