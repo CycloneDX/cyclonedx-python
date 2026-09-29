@@ -75,7 +75,7 @@ packageurl-python = ">=0.11, <2"  # keep in sync with same dep in `cyclonedx-pyt
 pip-requirements-parser = ">=32, <33"
 packaging = ">=22, <27"
 tomli = { version = ">=2.0.1, <3", python = "<3.11" }
-chardet = ">=5.1, <6"
+chardet = ">=5.1, !=6.*, <8"
 
 [tool.poetry.group.dev.dependencies]
 # pin to exact versions, if the tool/lib/plugin is process-relevant
