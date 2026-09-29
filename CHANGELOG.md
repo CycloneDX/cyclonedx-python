@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v7.5.0 (2026-09-29)
+
+### Features
+
+- **deps**: Support `chardet` v7 ([#1110](https://github.com/CycloneDX/cyclonedx-python/pull/1110),
+  [`e1e1040`](https://github.com/CycloneDX/cyclonedx-python/commit/e1e1040a8be0f267314fa01c01359b1a30b67408))
+
+
 ## v7.4.0 (2026-09-15)
 
 ### Features
