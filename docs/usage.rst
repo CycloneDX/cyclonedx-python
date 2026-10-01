@@ -61,8 +61,7 @@ The full documentation can be issued by running with ``environment --help``:
                                     [--validate | --no-validate]
                                     [-o <file>] [--sv <version>] [--of <format>]
                                     [--pyproject <file>] [--mc-type <type>]
-                                    [-S]
-                                    [--isolated]
+                                    [-S] [-E]
                                     [<python>]
 
     Build an SBOM from Python (virtual) environment
@@ -74,7 +73,7 @@ The full documentation can be issued by running with ``environment --help``:
       -h, --help            show this help message and exit
       -S                    Do not implicitly import site during Python path detection.
                             Prevents evaluation of `*.pth` files, but may lead to incomplete component detection.
-      --isolated            Run the target interpreter with `-E` (ignore PYTHON*
+      -E                    Run the target interpreter with `-E` (ignore PYTHON*
                             environment variables such as PYTHONPATH) when
                             detecting its path. Only applies when a target
                             `<python>` is given; has no effect when analyzing the

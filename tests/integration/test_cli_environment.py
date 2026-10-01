@@ -150,8 +150,8 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'test_with_sites_evaluation_suppressed', projectdir, sv, of)
 
-    def test_isolated_ignores_parent_pythonpath(self) -> None:
-        """Regression for #1045: with --isolated, target is probed via python -E,
+    def test_E_ignores_parent_pythonpath(self) -> None:
+        """Regression for #1045: with -E, target is probed via python -E,
         so a parent PYTHONPATH (inherited by the subprocess via os.environ /
         patch.dict) must not appear in the SBOM."""
         projectdir = join(INFILES_DIRECTORY, 'environment', 'no-deps')
@@ -184,7 +184,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
             self.assertIn(foreign_name, names)
 
             with patch.dict(environ, {'PYTHONPATH': foreign_root}):
-                res, out, err = run_cli(*common[:-1], '--isolated', common[-1])
+                res, out, err = run_cli(*common[:-1], '-E', common[-1])
             self.assertEqual(0, res, err)
             self.assertIn('-E', err)  # probe cmd logged at -vvv
             names = {c['name'] for c in json_loads(out).get('components') or ()}
