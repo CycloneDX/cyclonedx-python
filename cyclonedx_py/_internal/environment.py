@@ -116,7 +116,7 @@ class EnvironmentBB(BomBuilder):
                        dest='import_site',
                        help='Do not implicitly import site during Python path detection.\n'
                             'Prevents evaluation of `*.pth` files, but may lead to incomplete component detection.')
-        p.add_argument('--isolated',
+        p.add_argument('-E',  # mimic `python -E`
                        action='store_true',
                        dest='isolated',
                        help='Run the target interpreter with `-E` (ignore PYTHON* environment\n'
