@@ -548,6 +548,7 @@
   ],
   "metadata": {
     "component": {
+      "author": "Your Name <you@example.com>",
       "bom-ref": "multi-constraint-deps",
       "description": "multi-constraint depenndencies",
       "name": "multi-constraint-deps",

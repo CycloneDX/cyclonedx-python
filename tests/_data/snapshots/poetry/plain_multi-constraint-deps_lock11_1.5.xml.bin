@@ -51,6 +51,7 @@
       </components>
     </tools>
     <component type="application" bom-ref="multi-constraint-deps">
+      <author>Your Name &lt;you@example.com&gt;</author>
       <name>multi-constraint-deps</name>
       <version>0.1.0</version>
       <description>multi-constraint depenndencies</description>

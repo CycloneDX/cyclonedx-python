@@ -52,6 +52,13 @@
   ],
   "metadata": {
     "component": {
+      "author": "Your Name <you@example.com>",
+      "authors": [
+        {
+          "email": "you@example.com",
+          "name": "Your Name"
+        }
+      ],
       "bom-ref": "regression-issue611",
       "description": "regression for issue #611",
       "name": "regression-issue611",

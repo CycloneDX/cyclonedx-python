@@ -32,10 +32,12 @@ from typing import TYPE_CHECKING, Any
 from cyclonedx.exception.model import InvalidUriException
 from cyclonedx.model import AttachedText, Encoding, ExternalReference, XsUri
 from cyclonedx.model.component import Component
+from cyclonedx.model.contact import OrganizationalContact
 from cyclonedx.model.license import DisjunctiveLicense, LicenseAcknowledgement
 from packaging.requirements import Requirement
 
 from .cdx import url_label_to_ert
+from .contact import contacts2author, person_string2contact
 from .license_trove_classifier import is_license_trove, license_trove2spdx
 from .mimetypes import guess_type
 
@@ -114,15 +116,41 @@ def project2extrefs(project: dict[str, Any]) -> Generator['ExternalReference', N
             pass
 
 
+def project2authors(project: dict[str, Any]) -> Generator['OrganizationalContact', None, None]:
+    # see https://packaging.python.org/en/latest/specifications/pyproject-toml/#authors-maintainers
+    # see https://peps.python.org/pep-0621/#authors-maintainers
+    for author in project.get('authors', ()):
+        if isinstance(author, str):
+            # Not per spec -- PEP 621 authors are tables, not strings -- but some
+            # real-world pyproject.toml files use Poetry's "Name <email>" convention
+            # here regardless. Be lenient and parse it the same way, rather than crash.
+            contact = person_string2contact(author)
+            if contact is not None:
+                yield contact
+            continue
+        if not isinstance(author, dict):
+            # Not per spec at all -- e.g. `authors = [123]` -- TOML happily allows it,
+            # PEP 621 does not. There is nothing name/email-shaped to extract; skip it
+            # rather than crash on `author.get(...)`.
+            continue
+        name = author.get('name') or None
+        email = author.get('email') or None
+        if name is not None or email is not None:
+            yield OrganizationalContact(name=name, email=email)
+
+
 def project2component(project: dict[str, Any], *,
                       ctype: 'ComponentType') -> 'Component':
     dynamic = project.get('dynamic', ())
+    authors = tuple(project2authors(project)) if 'authors' not in dynamic else ()
     return Component(
         type=ctype,
         name=project['name'],
         version=project.get('version', None) if 'version' not in dynamic else None,
         description=project.get('description', None) if 'description' not in dynamic else None,
         external_references=project2extrefs(project),
+        authors=authors,
+        author=contacts2author(authors),
         # licenses are not gathered here per default, they may be sourced otherwise
         # TODO add more properties according to spec
     )

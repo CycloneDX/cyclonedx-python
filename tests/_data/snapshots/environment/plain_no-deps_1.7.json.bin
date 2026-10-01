@@ -6,6 +6,15 @@
   ],
   "metadata": {
     "component": {
+      "authors": [
+        {
+          "name": "My Name"
+        },
+        {
+          "email": "you@example.com",
+          "name": "Your Name"
+        }
+      ],
       "bom-ref": "root-component",
       "description": "packages with all meta, but no deps",
       "evidence": {

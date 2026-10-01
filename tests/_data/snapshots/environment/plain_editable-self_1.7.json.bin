@@ -1,6 +1,13 @@
 {
   "components": [
     {
+      "author": "Benjamin Peterson <benjamin@python.org>",
+      "authors": [
+        {
+          "email": "benjamin@python.org",
+          "name": "Benjamin Peterson"
+        }
+      ],
       "bom-ref": "six==1.16.0",
       "description": "Python 2 and 3 compatibility utilities",
       "externalReferences": [

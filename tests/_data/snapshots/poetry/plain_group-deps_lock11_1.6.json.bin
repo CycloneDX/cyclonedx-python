@@ -314,6 +314,13 @@
   ],
   "metadata": {
     "component": {
+      "author": "Your Name <you@example.com>",
+      "authors": [
+        {
+          "email": "you@example.com",
+          "name": "Your Name"
+        }
+      ],
       "bom-ref": "group-deps",
       "description": "dependencies organized in groups",
       "name": "group-deps",

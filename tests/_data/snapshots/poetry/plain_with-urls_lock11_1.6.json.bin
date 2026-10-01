@@ -131,6 +131,13 @@
   ],
   "metadata": {
     "component": {
+      "author": "Your Name <you@example.com>",
+      "authors": [
+        {
+          "email": "you@example.com",
+          "name": "Your Name"
+        }
+      ],
       "bom-ref": "with-urls",
       "description": "packages from direct urls",
       "name": "with-urls",

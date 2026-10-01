@@ -51,6 +51,7 @@
       </components>
     </tools>
     <component type="application" bom-ref="private-packges">
+      <author>Your Name &lt;you@example.com&gt;</author>
       <name>private-packges</name>
       <version>0.1.0</version>
       <description>packages from aternative package repositories</description>

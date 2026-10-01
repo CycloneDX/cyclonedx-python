@@ -36,7 +36,8 @@ from packaging.requirements import Requirement
 from . import BomBuilder, PropertyName, PurlTypePypi
 from .cli_common import add_argument_mc_type, add_argument_pyproject
 from .utils.cdx import licenses_fixup, make_bom
-from .utils.packaging import metadata2extrefs, metadata2licenses, normalize_packagename
+from .utils.contact import contacts2author
+from .utils.packaging import metadata2authors, metadata2extrefs, metadata2licenses, normalize_packagename
 from .utils.pep610 import PackageSourceArchive, PackageSourceVcs, packagesource2extref, packagesource4dist
 from .utils.pep639 import dist2licenses_from_files as pep639_dist2licenses_from_files
 from .utils.pyproject import pyproject2component, pyproject2dependencies, pyproject_load
@@ -181,6 +182,7 @@ class EnvironmentBB(BomBuilder):
             dist_meta = dist.metadata  # see https://packaging.python.org/en/latest/specifications/core-metadata/
             dist_name = dist_meta['Name']
             dist_version = dist_meta['Version']
+            authors = tuple(metadata2authors(dist_meta))
             component = Component(
                 type=ComponentType.LIBRARY,
                 bom_ref=f'{dist_name}=={dist_version}',
@@ -188,8 +190,11 @@ class EnvironmentBB(BomBuilder):
                 version=dist_version,
                 description=dist_meta['Summary'] if 'Summary' in dist_meta else None,
                 external_references=metadata2extrefs(dist_meta),
+                authors=authors,
+                author=contacts2author(authors),
                 # path of dist-package on disc? naaa... a package may have multiple files/folders on disc
             )
+            del authors
 
             # region licenses
             component.licenses.update(metadata2licenses(dist_meta, LicenseFactory(),

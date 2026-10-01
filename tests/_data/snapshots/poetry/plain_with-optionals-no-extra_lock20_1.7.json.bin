@@ -6,6 +6,13 @@
   ],
   "metadata": {
     "component": {
+      "author": "Your Name <you@example.com>",
+      "authors": [
+        {
+          "email": "you@example.com",
+          "name": "Your Name"
+        }
+      ],
       "bom-ref": "with-optionals-no-extra",
       "description": "depenndencies with optionlas and no exgtras",
       "name": "with-optionals-no-extra",

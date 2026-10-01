@@ -618,6 +618,7 @@
   ],
   "metadata": {
     "component": {
+      "author": "Your Name <you@example.com>",
       "bom-ref": "private-packges",
       "description": "packages from aternative package repositories",
       "name": "private-packges",

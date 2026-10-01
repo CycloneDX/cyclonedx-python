@@ -661,6 +661,13 @@
   ],
   "metadata": {
     "component": {
+      "author": "Your Name <you@example.com>",
+      "authors": [
+        {
+          "email": "you@example.com",
+          "name": "Your Name"
+        }
+      ],
       "bom-ref": "normalize-packagename",
       "description": "packages with non-normalized names",
       "name": "normalize-packagename",

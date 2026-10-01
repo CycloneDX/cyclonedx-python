@@ -51,6 +51,15 @@
       </components>
     </tools>
     <component type="application" bom-ref="no-deps">
+      <authors>
+        <author>
+          <name>My Name</name>
+        </author>
+        <author>
+          <name>Your Name</name>
+          <email>you@example.com</email>
+        </author>
+      </authors>
       <name>no-deps</name>
       <version>0.1.0</version>
       <description>packages with all meta, but no deps</description>

@@ -94,6 +94,15 @@
   ],
   "metadata": {
     "component": {
+      "authors": [
+        {
+          "name": "My Name"
+        },
+        {
+          "email": "you@example.com",
+          "name": "Your Name"
+        }
+      ],
       "bom-ref": "root-component",
       "description": "some `reuqirements.txt` a root-component with all metadata",
       "evidence": {

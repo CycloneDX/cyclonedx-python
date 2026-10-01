@@ -29,10 +29,12 @@ from cyclonedx.exception.model import InvalidUriException
 from cyclonedx.factory.license import LicenseFactory
 from cyclonedx.model import ExternalReference, ExternalReferenceType, XsUri
 from cyclonedx.model.component import Component
+from cyclonedx.model.contact import OrganizationalContact
 from cyclonedx.model.license import LicenseAcknowledgement
 from packaging.requirements import Requirement
 
 from .cdx import licenses_fixup, url_label_to_ert
+from .contact import contacts2author, person_string2contact
 from .pep621 import classifiers2licenses
 
 if TYPE_CHECKING:
@@ -62,13 +64,29 @@ def poetry2extrefs(poetry: dict[str, Any]) -> Generator['ExternalReference', Non
             pass
 
 
+def poetry2authors(poetry: dict[str, Any]) -> Generator['OrganizationalContact', None, None]:
+    # see https://python-poetry.org/docs/pyproject/#authors
+    for author in poetry.get('authors', ()):
+        if not isinstance(author, str):
+            # Not per spec -- Poetry's `authors` is a list of "Name <email>" strings --
+            # but e.g. `authors = [123]` is valid TOML. `person_string2contact()`
+            # requires a string; skip anything else rather than crash.
+            continue
+        contact = person_string2contact(author)
+        if contact is not None:
+            yield contact
+
+
 def poetry2component(poetry: dict[str, Any], *, ctype: 'ComponentType') -> 'Component':
+    authors = tuple(poetry2authors(poetry))
     component = Component(
         type=ctype,
         name=poetry['name'],
         version=poetry.get('version'),
         description=poetry.get('description'),
         external_references=poetry2extrefs(poetry),
+        authors=authors,
+        author=contacts2author(authors),
         # TODO add more properties according to spec
     )
     # region licenses

@@ -1,6 +1,7 @@
 {
   "components": [
     {
+      "author": "Anthon van der Neut <a.van.der.neut@ruamel.eu>",
       "bom-ref": "ruamel.yaml==0.18.5",
       "description": "ruamel.yaml is a YAML parser/emitter that supports roundtrip preservation of comments, seq/map flow style, and map key order",
       "externalReferences": [
@@ -44,6 +45,7 @@
       "version": "0.18.5"
     },
     {
+      "author": "Anthon van der Neut <a.van.der.neut@ruamel.eu>",
       "bom-ref": "ruamel.yaml.jinja2==0.2.7",
       "description": "jinja2 pre and post-processor to update with YAML",
       "externalReferences": [

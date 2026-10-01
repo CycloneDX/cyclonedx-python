@@ -327,6 +327,7 @@
   ],
   "metadata": {
     "component": {
+      "author": "Your Name <you@example.com>",
       "bom-ref": "normalize-packagename",
       "description": "packages with non-normalized names",
       "name": "normalize-packagename",

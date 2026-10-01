@@ -3205,6 +3205,13 @@
   ],
   "metadata": {
     "component": {
+      "author": "Your Name <you@example.com>",
+      "authors": [
+        {
+          "email": "you@example.com",
+          "name": "Your Name"
+        }
+      ],
       "bom-ref": "with-extras",
       "description": "depenndencies with extras",
       "name": "with-extras",
