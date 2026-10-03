@@ -112,7 +112,7 @@ setuptools = ">= 47.0.0"
 # we do not relaly care for exact versions, as long as they have a stable CLI and craft usable virtual-environments
 pip = ">=23.0"
 pipenv = ">=2023.11.5"
-poetry = ">=1.7, <2"
+poetry = ">=1.7,<3"
 pdm = ">=2.11, <3"
 uv = "0.12.17"  # keep pinned to exact version, until a v1.0.0 is released
 
