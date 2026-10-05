@@ -35,6 +35,7 @@ from cyclonedx.model.component import (  # type:ignore[attr-defined]  # Componen
 from cyclonedx.model.license import DisjunctiveLicense, License, LicenseAcknowledgement, LicenseExpression
 
 from ... import __version__ as _THIS_VERSION  # noqa:N812
+from .url_classifiers import _MAP_KNOWN_URL_LABELS, _MAP_URL_LABEL_PREFIXES
 
 
 def make_bom(**kwargs: Any) -> Bom:
@@ -119,32 +120,17 @@ def licenses_fixup(component: 'Component') -> None:
         component.evidence.licenses.update(licenses)
 
 
-_MAP_KNOWN_URL_LABELS: dict[str, ExternalReferenceType] = {
-    # see https://peps.python.org/pep-0345/#project-url-multiple-use
-    # see https://github.com/pypi/warehouse/issues/5947#issuecomment-699660629
-    'bugtracker': ExternalReferenceType.ISSUE_TRACKER,
-    'issuetracker': ExternalReferenceType.ISSUE_TRACKER,
-    'issues': ExternalReferenceType.ISSUE_TRACKER,
-    'bugreports': ExternalReferenceType.ISSUE_TRACKER,
-    'tracker': ExternalReferenceType.ISSUE_TRACKER,
-    'home': ExternalReferenceType.WEBSITE,
-    'homepage': ExternalReferenceType.WEBSITE,
-    'download': ExternalReferenceType.DISTRIBUTION,
-    'documentation': ExternalReferenceType.DOCUMENTATION,
-    'docs': ExternalReferenceType.DOCUMENTATION,
-    'changelog': ExternalReferenceType.RELEASE_NOTES,
-    'changes': ExternalReferenceType.RELEASE_NOTES,
-    # 'source': ExternalReferenceType.SOURCE-DISTRIBUTION,
-    'repository': ExternalReferenceType.VCS,
-    'github': ExternalReferenceType.VCS,
-    'chat': ExternalReferenceType.CHAT,
-}
-
 _NOCHAR_MATCHER = re_compile('[^a-z]')
 
 
-def url_label_to_ert(value: str) -> ExternalReferenceType:
-    return _MAP_KNOWN_URL_LABELS.get(
-        _NOCHAR_MATCHER.sub('', str(value).lower()),
-        ExternalReferenceType.OTHER
-    )
+def url_label_to_ert(label: str, url: Optional[str] = None) -> ExternalReferenceType:
+    norm = _NOCHAR_MATCHER.sub('', str(label).lower())
+    # 1. exact label
+    ert = _MAP_KNOWN_URL_LABELS.get(norm)
+    if ert is not None:
+        return ert
+    # 2. label prefix
+    for prefix, pert in _MAP_URL_LABEL_PREFIXES:
+        if norm.startswith(prefix):
+            return pert
+    return ExternalReferenceType.OTHER
