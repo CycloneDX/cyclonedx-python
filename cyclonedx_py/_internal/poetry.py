@@ -34,7 +34,7 @@ from packageurl import PackageURL
 from . import BomBuilder, PropertyName, PurlTypePypi
 from .cli_common import add_argument_mc_type
 from .utils.cdx import make_bom
-from .utils.packaging import normalize_packagename
+from .utils.packaging import normalize_packagename, to_tags
 from .utils.poetry import poetry2component
 from .utils.secret import redact_auth_from_url
 from .utils.toml import toml_loads
@@ -404,7 +404,7 @@ class PoetryBB(BomBuilder):
         is_vcs = source.get('type') in self.__PACKAGE_SRC_VCS
         is_local = source.get('type') in self.__PACKAGE_SRC_LOCAL
 
-        return Component(
+        component = Component(
             bom_ref=f'{package["name"]}@{package["version"]}',
             name=package['name'],
             version=package.get('version'),
@@ -432,6 +432,12 @@ class PoetryBB(BomBuilder):
                 qualifiers=self.__purl_qualifiers4lock(package)
             ) if not is_local else None
         )
+
+        if hasattr(component, 'tags'):
+            component.tags.update(to_tags(package.get('keywords')))
+        self._logger.debug('component created: %r', component)
+
+        return component
 
     def __purl_qualifiers4lock(self, package: 'T_NameDict') -> 'T_NameDict':
         # see https://github.com/package-url/purl-spec/blob/master/PURL-SPECIFICATION.rst
