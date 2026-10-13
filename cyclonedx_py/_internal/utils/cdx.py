@@ -19,7 +19,7 @@
 """
 CycloneDX related helpers and utils.
 """
-
+from urllib.parse import urlparse
 from collections.abc import Iterable
 from re import compile as re_compile
 from typing import Any, Optional
@@ -134,12 +134,52 @@ _MAP_KNOWN_URL_LABELS: dict[str, ExternalReferenceType] = {
     'docs': ExternalReferenceType.DOCUMENTATION,
     'changelog': ExternalReferenceType.RELEASE_NOTES,
     'changes': ExternalReferenceType.RELEASE_NOTES,
+    'releasenotes': ExternalReferenceType.RELEASE_NOTES,
+    'news': ExternalReferenceType.RELEASE_NOTES,
+    'whatsnew': ExternalReferenceType.RELEASE_NOTES,
+    'history': ExternalReferenceType.RELEASE_NOTES,
     # 'source': ExternalReferenceType.SOURCE-DISTRIBUTION,
     'repository': ExternalReferenceType.VCS,
     'github': ExternalReferenceType.VCS,
     'chat': ExternalReferenceType.CHAT,
+    'sponsor': ExternalReferenceType.SOCIAL,
+    'donation': ExternalReferenceType.SOCIAL,
+    'donate': ExternalReferenceType.SOCIAL
 }
-
+URL_MAP = {
+    # Hosting
+    "github.com": ExternalReferenceType.VCS,
+    "gitlab.com": ExternalReferenceType.VCS,
+    "bitbucket.org": ExternalReferenceType.VCS,
+    # Social
+    "discord.gg": ExternalReferenceType.SOCIAL,
+    "discord.com": ExternalReferenceType.SOCIAL,
+    "discordapp.com": ExternalReferenceType.SOCIAL,
+    "glitter.im": ExternalReferenceType.SOCIAL,
+    "mastodon.com": ExternalReferenceType.SOCIAL,
+    "reddit.com": ExternalReferenceType.SOCIAL,
+    "slack.com": ExternalReferenceType.SOCIAL,
+    "youtube.com": ExternalReferenceType.SOCIAL,
+    "youtu.be": ExternalReferenceType.SOCIAL,
+    "twitter.com": ExternalReferenceType.SOCIAL,
+    "x.com": ExternalReferenceType.SOCIAL,
+    # Docs
+    "readthedocs.io": ExternalReferenceType.DOCUMENTATION,
+    # CI
+    "ci.appveyor.com": ExternalReferenceType.QUALITY_METRICS,
+    "circleci.com": ExternalReferenceType.QUALITY_METRICS,
+    "codecov.io":ExternalReferenceType.QUALITY_METRICS,
+    "coveralls.io": ExternalReferenceType.QUALITY_METRICS,
+    "travis-ci.com": ExternalReferenceType.QUALITY_METRICS,
+    "travis-ci.org": ExternalReferenceType.QUALITY_METRICS,
+    # PyPI
+    "cheeseshop.python.org": ExternalReferenceType.DISTRIBUTION,
+    "pypi.io": ExternalReferenceType.DISTRIBUTION,
+    "pypi.org": ExternalReferenceType.DISTRIBUTION,
+    "pypi.python.org": ExternalReferenceType.DISTRIBUTION,
+    # Python
+    "python.org": ExternalReferenceType.WEBSITE,
+}
 _NOCHAR_MATCHER = re_compile('[^a-z]')
 
 
