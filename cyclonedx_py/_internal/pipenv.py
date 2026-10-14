@@ -26,7 +26,7 @@ from typing import TYPE_CHECKING, Any, Optional
 
 from cyclonedx.exception.model import InvalidUriException, UnknownHashTypeException
 from cyclonedx.model import ExternalReference, ExternalReferenceType, HashType, Property, XsUri
-from cyclonedx.model.component import Component, ComponentType
+from cyclonedx.model.component import Component, ComponentScope, ComponentType
 from packageurl import PackageURL
 
 from . import BomBuilder, PropertyName, PurlTypePypi
@@ -160,6 +160,12 @@ class PipenvBB(BomBuilder):
         if root_c:
             # root for possible self-installs
             all_components[normalize_packagename(root_c.name)] = root_c
+        non_develop_packages = {
+            normalize_packagename(pkg_name)
+            for gname, pkgs in locker.items()
+            if gname != self.__LOCKFILE_META and gname != 'develop' and isinstance(pkgs, dict)
+            for pkg_name in pkgs
+        }
         for group_name in use_groups:
             self._logger.debug('processing group %r ...', group_name)
             for package_name, package_data in locker.get(group_name, {}).items():
@@ -167,12 +173,17 @@ class PipenvBB(BomBuilder):
                 if package_name_normalized in all_components:
                     component = all_components[package_name_normalized]
                     self._logger.info('existing component for package %r', package_name)
+                    if group_name != 'develop':
+                        component.scope = None
                 else:
                     component = all_components[package_name_normalized] = Component(
                         bom_ref=f'{package_name}{package_data.get("version", "")}',
                         type=ComponentType.LIBRARY,
                         name=package_name,
                         version=package_data['version'][2:] if 'version' in package_data else None,
+                        scope=ComponentScope.EXCLUDED if (
+                            group_name == 'develop' and package_name_normalized not in non_develop_packages
+                        ) else None,
                         external_references=self.__make_extrefs(package_name, package_data, source_urls),
                     )
                     component.purl = PackageURL(
