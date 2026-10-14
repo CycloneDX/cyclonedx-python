@@ -2,6 +2,23 @@
 
 <!-- version list -->
 
+## v7.5.0 (2026-09-29)
+
+### Features
+
+- **deps**: Support `chardet` v7 ([#1110](https://github.com/CycloneDX/cyclonedx-python/pull/1110),
+  [`e1e1040`](https://github.com/CycloneDX/cyclonedx-python/commit/e1e1040a8be0f267314fa01c01359b1a30b67408))
+
+
+## v7.4.0 (2026-09-15)
+
+### Features
+
+- Respect env var `SOURCE_DATE_EPOCH` when generating reproducible output
+  ([#1084](https://github.com/CycloneDX/cyclonedx-python/pull/1084),
+  [`51813c7`](https://github.com/CycloneDX/cyclonedx-python/commit/51813c7bbf4262435594b6f4a4e84407e73d5119))
+
+
 ## v7.3.1 (2026-07-23)
 
 ### Bug Fixes

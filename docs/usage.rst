@@ -89,6 +89,7 @@ The full documentation can be issued by running with ``environment --help``:
       --output-reproducible
                             Whether to go the extra mile and make the output reproducible.
                             This might result in loss of time- and random-based-values.
+                            If the environment variable SOURCE_DATE_EPOCH holds a valid UNIX timestamp, then it is used as the SBOM's timestamp, instead of omitting it.
       --of <format>, --output-format <format>
                             Which output format to use.
                             {choices: JSON, XML}
@@ -260,6 +261,7 @@ The full documentation can be issued by running with ``pipenv --help``:
       --output-reproducible
                             Whether to go the extra mile and make the output reproducible.
                             This might result in loss of time- and random-based-values.
+                            If the environment variable SOURCE_DATE_EPOCH holds a valid UNIX timestamp, then it is used as the SBOM's timestamp, instead of omitting it.
       --of <format>, --output-format <format>
                             Which output format to use.
                             {choices: JSON, XML}
@@ -335,6 +337,7 @@ The full documentation can be issued by running with ``poetry --help``:
       --output-reproducible
                             Whether to go the extra mile and make the output reproducible.
                             This might result in loss of time- and random-based-values.
+                            If the environment variable SOURCE_DATE_EPOCH holds a valid UNIX timestamp, then it is used as the SBOM's timestamp, instead of omitting it.
       --of <format>, --output-format <format>
                             Which output format to use.
                             {choices: JSON, XML}
@@ -406,6 +409,7 @@ The full documentation can be issued by running with ``requirements --help``:
       --output-reproducible
                             Whether to go the extra mile and make the output reproducible.
                             This might result in loss of time- and random-based-values.
+                            If the environment variable SOURCE_DATE_EPOCH holds a valid UNIX timestamp, then it is used as the SBOM's timestamp, instead of omitting it.
       --of <format>, --output-format <format>
                             Which output format to use.
                             {choices: JSON, XML}

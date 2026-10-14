@@ -19,7 +19,9 @@ import logging
 import sys
 from argparse import ArgumentParser, BooleanOptionalAction, FileType, RawDescriptionHelpFormatter
 from collections.abc import Sequence
+from datetime import datetime, timezone
 from itertools import chain
+from os import environ
 from typing import TYPE_CHECKING, Any, NoReturn, Optional, TextIO, Union
 
 from cyclonedx.model import Property
@@ -42,6 +44,9 @@ if TYPE_CHECKING:  # pragma: no cover
     from . import BomBuilder
 
 OPTION_OUTPUT_STDOUT = '-'
+
+# Environment variable per https://reproducible-builds.org/docs/source-date-epoch/
+ENV_SOURCE_DATE_EPOCH = 'SOURCE_DATE_EPOCH'
 
 
 class Command:
@@ -79,7 +84,9 @@ class Command:
                         default=SchemaVersion.V1_6.to_version())
         op.add_argument('--output-reproducible',
                         help='Whether to go the extra mile and make the output reproducible.\n'
-                        'This might result in loss of time- and random-based values.',
+                        'This might result in loss of time- and random-based values.\n'
+                        f'If the environment variable {ENV_SOURCE_DATE_EPOCH} holds a valid UNIX timestamp,'
+                        " then it is used as the SBOM's timestamp, instead of omitting it.",
                         action='store_true',
                         dest='output_reproducible',
                         default=False)
@@ -212,6 +219,28 @@ class Command:
         self._logger.debug('Wrote %i bytes to %s', written, output_file.name)
         return written
 
+    def _source_date_epoch(self) -> Optional[datetime]:
+        """Read a reproducible timestamp from the environment.
+
+        See `the SOURCE_DATE_EPOCH specification <https://reproducible-builds.org/docs/source-date-epoch/>`_.
+        Returns `None` if the variable is unset, empty or not a valid non-negative UNIX timestamp.
+        """
+        sde = environ.get(ENV_SOURCE_DATE_EPOCH, '').strip()
+        if len(sde) == 0:
+            return None
+        try:
+            seconds = int(sde)
+            timestamp = datetime.fromtimestamp(seconds, tz=timezone.utc) \
+                if seconds >= 0 \
+                else None
+        except (ValueError, OverflowError, OSError):
+            timestamp = None
+        if timestamp is None:
+            self._logger.warning('Ignoring invalid $%s: %r', ENV_SOURCE_DATE_EPOCH, sde)
+        else:
+            self._logger.debug('Using $%s as timestamp: %s', ENV_SOURCE_DATE_EPOCH, timestamp)
+        return timestamp
+
     def _make_output(self, bom: 'Bom') -> str:
         self._logger.info('Serializing SBOM: %s/%s', self._spec_version.to_version(), self._output_format.name)
 
@@ -220,7 +249,7 @@ class Command:
                                                  value=PropertyValue.BooleanTrue.value))
             # dirty hacks to remove these mandatory properties
             bom.serial_number = None  # type:ignore[assignment]
-            bom.metadata.timestamp = None  # type:ignore[assignment]
+            bom.metadata.timestamp = self._source_date_epoch()  # type:ignore[assignment]
 
         return make_outputter(
             bom,
