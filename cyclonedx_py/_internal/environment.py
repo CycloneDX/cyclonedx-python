@@ -34,12 +34,12 @@ from packageurl import PackageURL
 from packaging.requirements import Requirement
 
 from . import BomBuilder, PropertyName, PurlTypePypi
-from .cli_common import add_argument_mc_type, add_argument_pyproject
+from .cli_common import add_argument_mc_name, add_argument_mc_type, add_argument_mc_version, add_argument_pyproject, resolve_main_component
 from .utils.cdx import licenses_fixup, make_bom
 from .utils.packaging import metadata2extrefs, metadata2licenses, normalize_packagename
 from .utils.pep610 import PackageSourceArchive, PackageSourceVcs, packagesource2extref, packagesource4dist
 from .utils.pep639 import dist2licenses_from_files as pep639_dist2licenses_from_files
-from .utils.pyproject import pyproject2component, pyproject2dependencies, pyproject_load
+from .utils.pyproject import pyproject2dependencies
 
 if TYPE_CHECKING:  # pragma: no cover
     from logging import Logger
@@ -121,6 +121,8 @@ class EnvironmentBB(BomBuilder):
                        dest='gather_license_texts',
                        help='Enable license text gathering.')
         add_argument_pyproject(p)
+        add_argument_mc_name(p)
+        add_argument_mc_version(p)
         add_argument_mc_type(p)
         # TODO possible additional switch:
         #  `--exclude <package>` Exclude specified package from the output (multi use)
@@ -145,19 +147,27 @@ class EnvironmentBB(BomBuilder):
                  import_site: bool,
                  python: Optional[str],
                  pyproject_file: Optional[str],
+                 mc_name: Optional[str],
+                 mc_version: Optional[str],
                  mc_type: 'ComponentType',
                  **__: Any) -> 'Bom':
-        if pyproject_file is None:
-            rc = None
-        else:
+        root_c = resolve_main_component(
+            mc_name=mc_name,
+            mc_version=mc_version,
+            mc_type=mc_type,
+            pyproject_file=pyproject_file,
+            gather_license_texts=self._gather_license_texts,
+            logger=self._logger,
+        )
+        # `pyproject` is still needed here for dependency extraction.
+        # The main-component resolver only needs the file path; dependencies need parsed TOML data.
+        if pyproject_file is not None:
+            from .utils.pyproject import pyproject_load
             pyproject = pyproject_load(pyproject_file)
-            root_c = pyproject2component(pyproject, ctype=mc_type,
-                                         fpath=pyproject_file,
-                                         gather_license_texts=self._gather_license_texts,
-                                         logger=self._logger)
-            root_c.bom_ref.value = 'root-component'
             root_d = tuple(pyproject2dependencies(pyproject))
-            rc = (root_c, root_d)
+        else:
+            root_d = tuple()
+        rc = (root_c, root_d) if root_c is not None else None
 
         path: list[str]
         if python:
