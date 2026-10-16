@@ -38,6 +38,29 @@ Example usage: save SBOM in CycloneDX 1.6 XML format, generated from current pyt
    cyclonedx-py environment --spec-version 1.6 --output-format XML --output-file my-sbom.xml
 
 
+Identity evidence
+-----------------
+
+Use ``--gather-identity-evidence`` with any subcommand to record the sources of
+component names and concrete versions in ``evidence.identity``. For example:
+
+.. code-block:: shell
+
+   cyclonedx-py requirements requirements.txt --gather-identity-evidence
+
+Sources are Python distribution metadata, requirements line numbers, ``Pipfile.lock``,
+``poetry.lock``, and ``pyproject.toml`` for a supplied root component.
+Each declared field uses the ``manifest-analysis`` technique. Method confidence of
+``1`` describes direct extraction of the declared value; it does not authenticate
+the package or its metadata. Missing or unpinned versions are omitted. Names and
+versions inferred from requirements URLs or local paths are not recorded as evidence.
+Source labels do not include absolute paths or requirement contents.
+
+CycloneDX 1.6 and later retain both name and version identities, including their
+concluded values. CycloneDX 1.5 retains only the name identity and its method;
+earlier versions omit identity evidence. Evidence gathering is disabled by default.
+
+
 For Python (virtual) environment
 --------------------------------
 
@@ -57,6 +80,7 @@ The full documentation can be issued by running with ``environment --help``:
     $ cyclonedx-py environment --help
     usage: cyclonedx-py environment [-h] [-v]
                                     [--gather-license-texts]
+                                    [--gather-identity-evidence]
                                     [--short-PURLs] [--output-reproducible]
                                     [--validate | --no-validate]
                                     [-o <file>] [--sv <version>] [--of <format>]
@@ -80,6 +104,8 @@ The full documentation can be issued by running with ``environment --help``:
       --mc-type <type>      Type of the main component.
                             {choices: application, firmware, library}
                             (default: application)
+      --gather-identity-evidence
+                            Record the metadata sources of component names and versions.
       --short-PURLs         Omit all qualifiers from PackageURLs.
                             This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
       --sv <version>, --spec-version <version>
@@ -222,6 +248,7 @@ The full documentation can be issued by running with ``pipenv --help``:
 
     $ cyclonedx-py pipenv --help
     usage: cyclonedx-py pipenv [-h] [-v]
+                               [--gather-identity-evidence]
                                [--short-PURLs]  [--output-reproducible]
                                [--validate | --no-validate]
                                [-o <file>] [--sv <version>] [--of <format>]
@@ -252,6 +279,8 @@ The full documentation can be issued by running with ``pipenv --help``:
       --mc-type <type>      Type of the main component.
                             {choices: application, firmware, library}
                             (default: application)
+      --gather-identity-evidence
+                            Record the metadata sources of component names and versions.
       --short-PURLs         Omit all qualifiers from PackageURLs.
                             This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
       --sv <version>, --spec-version <version>
@@ -295,6 +324,7 @@ The full documentation can be issued by running with ``poetry --help``:
 
     $ cyclonedx-py poetry --help
     usage: cyclonedx-py poetry [-h] [-v]
+                               [--gather-identity-evidence]
                                [--short-PURLs] [--output-reproducible]
                                [--validate | --no-validate]
                                [-o <file>] [--sv <version>] [--of <format>]
@@ -328,6 +358,8 @@ The full documentation can be issued by running with ``poetry --help``:
       --mc-type <type>      Type of the main component.
                             {choices: application, firmware, library}
                             (default: application)
+      --gather-identity-evidence
+                            Record the metadata sources of component names and versions.
       --short-PURLs         Omit all qualifiers from PackageURLs.
                             This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
       --sv <version>, --spec-version <version>
@@ -369,6 +401,7 @@ The full documentation can be issued by running with ``requirements --help``:
 
     $ cyclonedx-py requirements --help
     usage: cyclonedx-py requirements [-h] [-v]
+                                     [--gather-identity-evidence]
                                      [--short-PURLs]  [--output-reproducible]
                                      [--validate | --no-validate]
                                      [-o <file>] [--sv <version>] [--of <format>]
@@ -400,6 +433,8 @@ The full documentation can be issued by running with ``requirements --help``:
       --mc-type <type>      Type of the main component.
                             {choices: application, firmware, library}
                             (default: application)
+      --gather-identity-evidence
+                            Record the metadata sources of component names and versions.
       --short-PURLs         Omit all qualifiers from PackageURLs.
                             This causes information loss in trade-off shorter PURLs, which might improve ingesting these strings.
       --sv <version>, --spec-version <version>
