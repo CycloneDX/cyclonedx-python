@@ -33,6 +33,7 @@ from cyclonedx.model.license import LicenseAcknowledgement
 from packaging.requirements import Requirement
 
 from .cdx import licenses_fixup, url_label_to_ert
+from .identity import make_identity_evidence
 from .pep621 import classifiers2licenses
 
 if TYPE_CHECKING:
@@ -62,11 +63,15 @@ def poetry2extrefs(poetry: dict[str, Any]) -> Generator['ExternalReference', Non
             pass
 
 
-def poetry2component(poetry: dict[str, Any], *, ctype: 'ComponentType') -> 'Component':
+def poetry2component(poetry: dict[str, Any], *, ctype: 'ComponentType',
+                     gather_identity_evidence: bool = False) -> 'Component':
     component = Component(
         type=ctype,
         name=poetry['name'],
         version=poetry.get('version'),
+        evidence=make_identity_evidence(
+            name=poetry['name'], version=poetry.get('version'), source='pyproject.toml',
+        ) if gather_identity_evidence else None,
         description=poetry.get('description'),
         external_references=poetry2extrefs(poetry),
         # TODO add more properties according to spec

@@ -36,6 +36,7 @@ from packaging.requirements import Requirement
 from . import BomBuilder, PropertyName, PurlTypePypi
 from .cli_common import add_argument_mc_type, add_argument_pyproject
 from .utils.cdx import licenses_fixup, make_bom
+from .utils.identity import make_identity_evidence
 from .utils.packaging import metadata2extrefs, metadata2licenses, normalize_packagename
 from .utils.pep610 import PackageSourceArchive, PackageSourceVcs, packagesource2extref, packagesource4dist
 from .utils.pep639 import dist2licenses_from_files as pep639_dist2licenses_from_files
@@ -137,9 +138,11 @@ class EnvironmentBB(BomBuilder):
     def __init__(self, *,
                  logger: 'Logger',
                  gather_license_texts: bool,
+                 gather_identity_evidence: bool = False,
                  **__: Any) -> None:
         self._logger = logger
         self._gather_license_texts = gather_license_texts
+        self._gather_identity_evidence = gather_identity_evidence
 
     def __call__(self, *,  # type:ignore[override]
                  import_site: bool,
@@ -154,6 +157,7 @@ class EnvironmentBB(BomBuilder):
             root_c = pyproject2component(pyproject, ctype=mc_type,
                                          fpath=pyproject_file,
                                          gather_license_texts=self._gather_license_texts,
+                                         gather_identity_evidence=self._gather_identity_evidence,
                                          logger=self._logger)
             root_c.bom_ref.value = 'root-component'
             root_d = tuple(pyproject2dependencies(pyproject))
@@ -186,6 +190,9 @@ class EnvironmentBB(BomBuilder):
                 bom_ref=f'{dist_name}=={dist_version}',
                 name=dist_name,
                 version=dist_version,
+                evidence=make_identity_evidence(
+                    name=dist_name, version=dist_version, source='Python distribution metadata',
+                ) if self._gather_identity_evidence else None,
                 description=dist_meta['Summary'] if 'Summary' in dist_meta else None,
                 external_references=metadata2extrefs(dist_meta),
                 # path of dist-package on disc? naaa... a package may have multiple files/folders on disc
