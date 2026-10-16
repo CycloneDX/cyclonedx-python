@@ -18,6 +18,7 @@
 import random
 from collections.abc import Generator
 from glob import glob
+from json import loads as json_loads
 from os import name as os_name
 from os.path import basename, dirname, join
 from subprocess import run  # nosec:B404
@@ -174,6 +175,42 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
             make_comparable(sbom1, of),
             make_comparable(sbom2, of)
         )
+
+    def test_without_pyproject_has_no_component(self) -> None:
+        sv = SchemaVersion.V1_6
+        of = OutputFormat.JSON
+        res, out, err = run_cli(
+            'environment',
+            '-vvv',
+            '--sv', sv.to_version(),
+            '--of', of.name,
+            '--output-reproducible',
+            '-o=-',
+        )
+        self.assertEqual(0, res, err)
+
+        component = json_loads(out)['metadata'].get('component')
+        self.assertIsNone(component)
+
+    def test_with_explicit_mc_metadata(self) -> None:
+        sv = SchemaVersion.V1_6
+        of = OutputFormat.JSON
+        res, out, err = run_cli(
+            'environment',
+            '-vvv',
+            '--sv', sv.to_version(),
+            '--of', of.name,
+            '--output-reproducible',
+            '-o=-',
+            '--mc-name', 'my application',
+            '--mc-version', '1.0',
+        )
+        self.assertEqual(0, res, err)
+
+        component = json_loads(out)['metadata']['component']
+        self.assertEqual('my application', component['name'])
+        self.assertEqual('1.0', component['version'])
+        self.assertEqual('application', component['type'])
 
     @named_data(*test_data)
     def test_plain_as_expected(self, projectdir: str, sv: SchemaVersion, of: OutputFormat) -> None:
