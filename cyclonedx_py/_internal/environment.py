@@ -20,10 +20,10 @@ from argparse import OPTIONAL, ArgumentParser
 from collections.abc import Iterable
 from importlib.metadata import distributions
 from json import JSONDecodeError, loads as json_loads
-from os import getcwd, name as os_name
+from os import environ, getcwd, name as os_name
 from os.path import exists, isdir, join
 from subprocess import run  # nosec
-from sys import path as sys_path
+from sys import executable, path as sys_path
 from textwrap import dedent
 from typing import TYPE_CHECKING, Any, Optional
 
@@ -49,6 +49,19 @@ if TYPE_CHECKING:  # pragma: no cover
     from .utils.pep610 import PackageSource
 
     T_AllComponents = dict[str, tuple['Component', Iterable[Requirement]]]
+
+# Parent-process variables that change interpreter discovery but are not part of
+# the target environment unless the caller opts in by leaving `--isolated` off.
+_ISOLATED_ENV_NAMES = ('PYTHONPATH', 'PYTHONHOME', 'VIRTUAL_ENV')
+
+
+def _path_probe_env(isolated: bool) -> Optional[dict[str, str]]:
+    if not isolated:
+        return None
+    # Windows environment names are case-insensitive. A plain dict lookup would
+    # leave PythonPath in place, and the child interpreter would still honor it.
+    dropped = {name.casefold() for name in _ISOLATED_ENV_NAMES}
+    return {key: value for key, value in environ.items() if key.casefold() not in dropped}
 
 
 class EnvironmentBB(BomBuilder):
@@ -116,6 +129,12 @@ class EnvironmentBB(BomBuilder):
                        dest='import_site',
                        help='Do not implicitly import site during Python path detection.\n'
                             'Prevents evaluation of `*.pth` files, but may lead to incomplete component detection.')
+        p.add_argument('--isolated',
+                       action='store_true',
+                       dest='isolated',
+                       help='Do not inherit PYTHONPATH, PYTHONHOME, or VIRTUAL_ENV\n'
+                            'when detecting the target interpreter package path.\n'
+                            'Off by default, so environments that rely on those variables stay unchanged.')
         p.add_argument('--gather-license-texts',
                        action='store_true',
                        dest='gather_license_texts',
@@ -146,6 +165,7 @@ class EnvironmentBB(BomBuilder):
                  python: Optional[str],
                  pyproject_file: Optional[str],
                  mc_type: 'ComponentType',
+                 isolated: bool = False,
                  **__: Any) -> 'Bom':
         if pyproject_file is None:
             rc = None
@@ -161,7 +181,9 @@ class EnvironmentBB(BomBuilder):
 
         path: list[str]
         if python:
-            path = self.__path4python(python, import_site)
+            path = self.__path4python(python, import_site, isolated=isolated)
+        elif isolated:
+            path = self.__path4python(executable, import_site, isolated=True)
         else:
             path = sys_path.copy()
         if path[0] in ('', getcwd()):
@@ -293,14 +315,15 @@ class EnvironmentBB(BomBuilder):
             raise ValueError(f'Failed to find python in directory: {value}')
         return value
 
-    def __path4python(self, python: str, import_site: bool) -> list[str]:
+    def __path4python(self, python: str, import_site: bool, *, isolated: bool = False) -> list[str]:
         cmd = [self.__py_interpreter(python),
                '-c', 'import json,sys;json.dump(sys.path,sys.stdout)']
         if not import_site:
             cmd.insert(1, '-S')
 
         self._logger.debug('fetch `path` from python interpreter cmd: %r', cmd)
-        res = run(cmd, capture_output=True, encoding='utf8', shell=False)  # nosec
+        res = run(  # nosec
+            cmd, capture_output=True, encoding='utf8', shell=False, env=_path_probe_env(isolated))
         if res.returncode != 0:
             raise RuntimeError('Fail fetching `path` from Python interpreter.\n'
                                f'returncode: {res.returncode}\n'

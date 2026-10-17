@@ -18,12 +18,14 @@
 import random
 from collections.abc import Generator
 from glob import glob
-from os import name as os_name
+from os import environ, mkdir, name as os_name
 from os.path import basename, dirname, join
 from subprocess import run  # nosec:B404
 from sys import executable, stderr
+from tempfile import TemporaryDirectory
 from typing import Any
 from unittest import TestCase, skipIf
+from unittest.mock import patch
 
 from cyclonedx.schema import OutputFormat, SchemaVersion
 from ddt import data, ddt, named_data
@@ -54,6 +56,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
     def test_help(self, subcommand: str) -> None:
         res, out, err = run_cli(subcommand, '--help')
         self.assertEqual(0, res, '\n'.join((out, err)))
+        self.assertIn('--isolated', out)
 
     @classmethod
     def __setup_testbeds_init(cls) -> None:
@@ -146,6 +149,39 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
         )
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'test_with_sites_evaluation_suppressed', projectdir, sv, of)
+
+    def test_isolated_ignores_parent_discovery_env(self) -> None:
+        leak_name = 'leakpkg-isolated-test'
+        with TemporaryDirectory() as leak_root, TemporaryDirectory() as python_home:
+            dist_info = join(leak_root, 'leakpkg_isolated_test-9.9.9.dist-info')
+            mkdir(dist_info)
+            with open(join(dist_info, 'METADATA'), 'w', encoding='utf-8') as metadata:
+                metadata.write(
+                    'Metadata-Version: 2.1\n'
+                    'Name: leakpkg-isolated-test\n'
+                    'Version: 9.9.9\n'
+                )
+            with patch.dict(environ, {'PYTHONPATH': leak_root, 'PythonHome': python_home}):
+                res, out, err = run_cli(
+                    'environment', '--no-validate', '-o=-', executable)
+                self.assertNotEqual(0, res, err)
+                self.assertIn('Fail fetching `path`', err)
+
+                res, out, err = run_cli(
+                    'environment', '--isolated', '--no-validate', '-o=-', executable)
+                self.assertEqual(0, res, err)
+                self.assertNotIn(leak_name, out)
+
+            with patch.dict(environ, {'PYTHONPATH': leak_root}):
+                res, out, err = run_cli(
+                    'environment', '--no-validate', '-o=-', executable)
+                self.assertEqual(0, res, err)
+                self.assertIn(leak_name, out)
+
+                res, out, err = run_cli(
+                    'environment', '--isolated', '--no-validate', '-o=-')
+                self.assertEqual(0, res, err)
+                self.assertNotIn(leak_name, out)
 
     def test_with_current_python(self) -> None:
         sv = SchemaVersion.V1_6

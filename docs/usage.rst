@@ -61,7 +61,7 @@ The full documentation can be issued by running with ``environment --help``:
                                     [--validate | --no-validate]
                                     [-o <file>] [--sv <version>] [--of <format>]
                                     [--pyproject <file>] [--mc-type <type>]
-                                    [-S]
+                                    [-S] [--isolated]
                                     [<python>]
 
     Build an SBOM from Python (virtual) environment
@@ -73,6 +73,10 @@ The full documentation can be issued by running with ``environment --help``:
       -h, --help            show this help message and exit
       -S                    Do not implicitly import site during Python path detection.
                             Prevents evaluation of `*.pth` files, but may lead to incomplete component detection.
+      --isolated            Do not inherit PYTHONPATH, PYTHONHOME, or VIRTUAL_ENV
+                            when detecting the target interpreter package path.
+                            Off by default, so environments that rely on those
+                            variables stay unchanged.
       --gather-license-texts
                             Enable license text gathering.
       --pyproject <file>    Path to the root component's `pyproject.toml` file.
