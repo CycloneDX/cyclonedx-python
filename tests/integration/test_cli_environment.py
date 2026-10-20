@@ -150,7 +150,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'test_with_sites_evaluation_suppressed', projectdir, sv, of)
 
-    def test_E_ignores_parent_pythonpath(self) -> None:
+    def test_no_python_env_ignores_parent_pythonpath(self) -> None:
         """Regression for #1045: with -E, target is probed via python -E,
         so a parent PYTHONPATH (inherited by the subprocess via os.environ /
         patch.dict) must not appear in the SBOM."""
