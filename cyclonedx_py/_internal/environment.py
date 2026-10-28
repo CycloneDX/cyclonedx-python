@@ -117,8 +117,8 @@ class EnvironmentBB(BomBuilder):
                        help='Do not implicitly import site during Python path detection.\n'
                             'Prevents evaluation of `*.pth` files, but may lead to incomplete component detection.')
         p.add_argument('-E',  # mimic `python -E`
-                       action='store_true',
-                       dest='isolated',
+                       action='store_false',
+                       dest='honor_py_env_vars',
                        help='Run the target interpreter with `-E` (ignore PYTHON* environment\n'
                             'variables such as PYTHONPATH) when detecting its path.\n'
                             'Only applies when a target `<python>` is given; has no effect when\n'
@@ -151,7 +151,7 @@ class EnvironmentBB(BomBuilder):
 
     def __call__(self, *,  # type:ignore[override]
                  import_site: bool,
-                 isolated: bool,
+                 honor_py_env_vars: bool,
                  python: Optional[str],
                  pyproject_file: Optional[str],
                  mc_type: 'ComponentType',
@@ -170,7 +170,7 @@ class EnvironmentBB(BomBuilder):
 
         path: list[str]
         if python:
-            path = self.__path4python(python, import_site, isolated)
+            path = self.__path4python(python, import_site, honor_py_env_vars)
         else:
             path = sys_path.copy()
         if path[0] in ('', getcwd()):
@@ -302,15 +302,12 @@ class EnvironmentBB(BomBuilder):
             raise ValueError(f'Failed to find python in directory: {value}')
         return value
 
-    def __path4python(self, python: str, import_site: bool, isolated: bool) -> list[str]:
+    def __path4python(self, python: str, import_site: bool, honor_py_env_vars: bool) -> list[str]:
         cmd = [self.__py_interpreter(python),
                '-c', 'import json,sys;json.dump(sys.path,sys.stdout)']
         if not import_site:
             cmd.insert(1, '-S')
-        if isolated:
-            # `-E` ignores PYTHON* env vars (PYTHONPATH, PYTHONHOME, ...);
-            # see https://github.com/CycloneDX/cyclonedx-python/issues/1045
-            # Prefer `-E` over `-I` so user-site packages stay discoverable.
+        if not honor_py_env_vars:
             cmd.insert(1, '-E')
 
         self._logger.debug('fetch `path` from python interpreter cmd: %r', cmd)
