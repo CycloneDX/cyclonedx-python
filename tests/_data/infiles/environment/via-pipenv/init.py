@@ -40,7 +40,7 @@ pipenv_env['PIPENV_NOSPIN'] = '1'
 
 def pipenv_run(*args: str) -> CompletedProcess:
     # pipenv is not API, but a CLI -- call it like that!
-    call = (executable, '-m', 'pipenv', '--python', executable,
+    call = (executable, '-m', 'pipenv',
             *args)
     print('+ ', *call, file=stderr)
     print('!!! DEBUG:', repr(call))
