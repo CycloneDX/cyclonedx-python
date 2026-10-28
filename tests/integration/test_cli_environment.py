@@ -166,29 +166,33 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
                 fh.write('Metadata-Version: 2.1\n'
                          f'Name: {foreign_name}\n'
                          'Version: 9.9.9\n')
-
-            common = (
-                'environment',
-                '-vvv',
-                '--sv', sv.to_version(),
-                '--of', of.name,
-                '--output-reproducible',
-                '-o=-',
-                join(projectdir, '.venv'),
-            )
-
             with patch.dict(environ, {'PYTHONPATH': foreign_root}):
-                res, out, err = run_cli(*common)
+                res, sbom1, err = run_cli(
+                    'environment',
+                    '-vvv',
+                    '--sv', sv.to_version(),
+                    '--of', of.name,
+                    '--output-reproducible',
+                    '-o=-',
+                    join(projectdir, '.venv'),
+                )
             self.assertEqual(0, res, err)
-            names = {c['name'] for c in json_loads(out).get('components') or ()}
-            self.assertIn(foreign_name, names)
-
             with patch.dict(environ, {'PYTHONPATH': foreign_root}):
-                res, out, err = run_cli(*common[:-1], '-E', common[-1])
+                res, sbom2, err = run_cli(
+                    'environment',
+                    '-vvv',
+                    '--sv', sv.to_version(),
+                    '--of', of.name,
+                    '--output-reproducible',
+                    '-o=-',
+                    '-E',  # the important part
+                    join(projectdir, '.venv'),
+                )
             self.assertEqual(0, res, err)
-            self.assertIn('-E', err)  # probe cmd logged at -vvv
-            names = {c['name'] for c in json_loads(out).get('components') or ()}
-            self.assertNotIn(foreign_name, names)
+            names1 = {c['name'] for c in json_loads(sbom1).get('components') or ()}
+            names2 = {c['name'] for c in json_loads(sbom2).get('components') or ()}
+            self.assertIn(foreign_name, names1)
+            self.assertNotIn(foreign_name, names2)
 
     def test_with_current_python(self) -> None:
         sv = SchemaVersion.V1_6
