@@ -36,14 +36,12 @@ pipenv_env['PIPENV_VENV_IN_PROJECT'] = '1'
 pipenv_env['PIPENV_IGNORE_VIRTUALENVS'] = '1'
 pipenv_env['PIPENV_NO_INHERIT'] = '1'
 pipenv_env['PIPENV_NOSPIN'] = '1'
-
-
-py_version = '.'.join(map(str, version_info[:3]))
+pipenv_env['PIPENV_PYTHON'] = executable
 
 
 def pipenv_run(*args: str) -> CompletedProcess:
     # pipenv is not API, but a CLI -- call it like that!
-    call = (executable, '-m', 'pipenv', '--python', py_version,
+    call = (executable, '-m', 'pipenv',
             *args)
     print('+ ', *call, file=stderr)
     res = run(call, cwd=this_dir, env=pipenv_env, shell=False)  # nosec:B603
