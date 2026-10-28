@@ -38,7 +38,7 @@ pipenv_env['PIPENV_NO_INHERIT'] = '1'
 pipenv_env['PIPENV_NOSPIN'] = '1'
 
 
-py_version = '.'.join(map(str, version_info[:2]))
+py_version = '.'.join(map(str, version_info[:3]))
 
 
 def pipenv_run(*args: str) -> CompletedProcess:
