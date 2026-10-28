@@ -23,7 +23,7 @@ from os import environ
 from os.path import dirname, join
 from shutil import rmtree
 from subprocess import CompletedProcess, run  # nosec:B404
-from sys import executable, stderr, version_info
+from sys import executable, stderr
 from typing import Any
 
 __all__ = ['main']
