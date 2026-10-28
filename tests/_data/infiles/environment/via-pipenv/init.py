@@ -47,7 +47,6 @@ def pipenv_run(*args: str) -> CompletedProcess:
     call = (executable, '-m', 'pipenv', '--python', py_version,
             *args)
     print('+ ', *call, file=stderr)
-    print('!!! DEBUG:', repr(call))
     res = run(call, cwd=this_dir, env=pipenv_env, shell=False)  # nosec:B603
     if res.returncode != 0:
         raise RuntimeError('process failed')
