@@ -39,14 +39,12 @@ pipenv_env['PIPENV_NOSPIN'] = '1'
 
 def pipenv_run(*args: str) -> CompletedProcess:
     # pipenv is not API, but a CLI -- call it like that!
-    call = (executable, '-m', 'pipenv',
+    call = (executable, '-m', 'pipenv', '--python', executable,
             *args)
     print('+ ', *call, file=stderr)
+    print('!!! DEBUG:', repr(call))
     res = run(call, cwd=this_dir, env=pipenv_env, shell=False)  # nosec:B603
     if res.returncode != 0:
-        print('res', repr(res))
-        print('call', repr(call))
-        print('pipenv_env', repr(pipenv_env))
         raise RuntimeError('process failed')
     return res
 
