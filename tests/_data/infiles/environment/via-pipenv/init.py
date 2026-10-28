@@ -23,7 +23,7 @@ from os import environ
 from os.path import dirname, join
 from shutil import rmtree
 from subprocess import CompletedProcess, run  # nosec:B404
-from sys import executable, stderr
+from sys import executable, stderr, version_info
 from typing import Any
 
 __all__ = ['main']
@@ -38,9 +38,12 @@ pipenv_env['PIPENV_NO_INHERIT'] = '1'
 pipenv_env['PIPENV_NOSPIN'] = '1'
 
 
+py_version = '.'.join(map(str,version_info[:2]))
+print('debug:', executable, py_version)
+
 def pipenv_run(*args: str) -> CompletedProcess:
     # pipenv is not API, but a CLI -- call it like that!
-    call = (executable, '-m', 'pipenv',
+    call = (executable, '-m', 'pipenv', '--python', py_version,
             *args)
     print('+ ', *call, file=stderr)
     print('!!! DEBUG:', repr(call))
