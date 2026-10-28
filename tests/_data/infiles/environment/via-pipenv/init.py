@@ -37,6 +37,7 @@ pipenv_env['PIPENV_IGNORE_VIRTUALENVS'] = '1'
 pipenv_env['PIPENV_NO_INHERIT'] = '1'
 pipenv_env['PIPENV_NOSPIN'] = '1'
 
+
 def pipenv_run(*args: str) -> CompletedProcess:
     # pipenv is not API, but a CLI -- call it like that!
     call = (executable, '-m', 'pipenv', '--python', executable,
