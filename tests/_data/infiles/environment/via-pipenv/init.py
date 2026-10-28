@@ -39,7 +39,6 @@ pipenv_env['PIPENV_NOSPIN'] = '1'
 
 
 py_version = '.'.join(map(str, version_info[:2]))
-print('debug:', executable, py_version)
 
 
 def pipenv_run(*args: str) -> CompletedProcess:
