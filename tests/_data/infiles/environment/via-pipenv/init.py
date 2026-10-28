@@ -36,6 +36,7 @@ pipenv_env['PIPENV_VENV_IN_PROJECT'] = '1'
 pipenv_env['PIPENV_IGNORE_VIRTUALENVS'] = '1'
 pipenv_env['PIPENV_NO_INHERIT'] = '1'
 pipenv_env['PIPENV_NOSPIN'] = '1'
+pipenv_env['PIPENV_PYTHON'] = executable
 
 
 def pipenv_run(*args: str) -> CompletedProcess:
