@@ -2,6 +2,15 @@
 
 <!-- version list -->
 
+## v7.6.0 (2026-10-28)
+
+### Features
+
+- **environment**: Add option -E to ignore parent PYTHON* env vars
+  ([#1106](https://github.com/CycloneDX/cyclonedx-python/pull/1106),
+  [`87fc286`](https://github.com/CycloneDX/cyclonedx-python/commit/87fc286523bd291b7f3f8b5b09b8dd0db478729f))
+
+
 ## v7.5.0 (2026-09-29)
 
 ### Features
