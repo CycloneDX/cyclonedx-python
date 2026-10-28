@@ -37,7 +37,6 @@ pipenv_env['PIPENV_IGNORE_VIRTUALENVS'] = '1'
 pipenv_env['PIPENV_NO_INHERIT'] = '1'
 pipenv_env['PIPENV_NOSPIN'] = '1'
 
-
 def pipenv_run(*args: str) -> CompletedProcess:
     # pipenv is not API, but a CLI -- call it like that!
     call = (executable, '-m', 'pipenv',
@@ -45,6 +44,9 @@ def pipenv_run(*args: str) -> CompletedProcess:
     print('+ ', *call, file=stderr)
     res = run(call, cwd=this_dir, env=pipenv_env, shell=False)  # nosec:B603
     if res.returncode != 0:
+        print('res', repr(res))
+        print('call', repr(call))
+        print('pipenv_env', repr(pipenv_env))
         raise RuntimeError('process failed')
     return res
 
