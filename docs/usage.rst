@@ -73,6 +73,7 @@ The full documentation can be issued by running with ``environment --help``:
       -h, --help            show this help message and exit
       -S                    Do not implicitly import site during Python path detection.
                             Prevents evaluation of `*.pth` files, but may lead to incomplete component detection.
+                            Without a target `<python>`, the current interpreter is probed this way.
       -E                    Run the target interpreter with `-E` (ignore PYTHON*
                             environment variables such as PYTHONPATH) when
                             detecting its path. Without a target `<python>`, the

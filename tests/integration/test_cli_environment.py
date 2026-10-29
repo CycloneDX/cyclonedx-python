@@ -221,6 +221,34 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
         self.assertIn(foreign_name, names1)
         self.assertNotIn(foreign_name, names2)
 
+    def test_no_python_given_site_flags_probe_current_interpreter(self) -> None:
+        """Follow-up for #1045: with -S and/or -E and no target, the current interpreter
+        is probed with the corresponding flags instead of reusing the already-imported sys.path."""
+        sentinel = ['/sentinel/not/probed']
+        for flags, expected in (
+            (('-S',), ['-S']),
+            (('-E',), ['-E']),
+            (('-S', '-E'), ['-E', '-S']),
+        ):
+            with self.subTest(flags=flags), \
+                    patch('cyclonedx_py._internal.environment.sys_path', sentinel), \
+                    patch('cyclonedx_py._internal.environment.run', wraps=run) as run_spy:
+                res, sbom, err = run_cli(
+                    'environment', '--sv', '1.6', '--of', 'JSON', '--no-validate', '-o=-',
+                    *flags)
+                self.assertEqual(0, res, err)
+                self.assertEqual(1, run_spy.call_count)
+                cmd = run_spy.call_args.args[0]
+                self.assertEqual(executable, cmd[0])
+                self.assertEqual(expected, cmd[1:-2])
+
+    def test_no_python_given_no_flags_reuses_sys_path(self) -> None:
+        with patch('cyclonedx_py._internal.environment.run') as run_mock:
+            res, sbom, err = run_cli(
+                'environment', '--sv', '1.6', '--of', 'JSON', '--no-validate', '-o=-')
+        self.assertEqual(0, res, err)
+        run_mock.assert_not_called()
+
     def test_with_current_python(self) -> None:
         sv = SchemaVersion.V1_6
         of = random.choice((OutputFormat.XML, OutputFormat.JSON))  # nosec B311
