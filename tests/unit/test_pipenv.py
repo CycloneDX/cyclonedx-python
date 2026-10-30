@@ -68,7 +68,6 @@ class TestPipenvScope(TestCase):
             'develop': {'types-python-dateutil': {'version': '==1.0.0'}}
         }
         bom = self.bb._make_bom(None, locker, frozenset({'default', 'develop'}))
-        comp_map = {c.name: c for c in bom.components}
 
         self.assertEqual(1, len(bom.components))
         comp = next(iter(bom.components))

@@ -39,6 +39,7 @@
       ],
       "name": "ddt",
       "purl": "pkg:pypi/ddt@1.7.0",
+      "scope": "excluded",
       "type": "library",
       "version": "1.7.0"
     },
