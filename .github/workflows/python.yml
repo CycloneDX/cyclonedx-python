@@ -238,6 +238,8 @@ jobs:
             python-version: "3.10"
           - os: ubuntu-24.04
             python-version: "3.9"
+          - os: macos-15
+            python-version: "3.9"
     steps:
       - name: Checkout
         # see https://github.com/actions/checkout
