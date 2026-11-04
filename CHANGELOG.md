@@ -2,6 +2,15 @@
 
 <!-- version list -->
 
+## v8.0.0 (2026-11-04)
+
+### Features
+
+- **environment**: With `-E`/`-S` and no `<python>`, probe the current interpreter
+  ([#1134](https://github.com/CycloneDX/cyclonedx-python/pull/1134),
+  [`72619e9`](https://github.com/CycloneDX/cyclonedx-python/commit/72619e90305a4ec593abb4b3bde92ede16f733d2))
+
+
 ## v7.6.0 (2026-10-28)
 
 ### Features
