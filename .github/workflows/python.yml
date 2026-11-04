@@ -229,16 +229,14 @@ jobs:
           - "3.10"
           - "3.9"  # lowest supported -- handled in include
         exclude:
-          - os: macos-latest  # macos-latest is incompatible with some PY versions
+          - os: macos-latest
             python-version: "3.10"
-          - os: ubuntu-latest  # macos-latest is incompatible with some PY versions
+          - os: ubuntu-latest
             python-version: "3.9"
         include:
           - os: macos-15
             python-version: "3.10"
           - os: ubuntu-24.04
-            python-version: "3.9"
-          - os: macos-15
             python-version: "3.9"
     steps:
       - name: Checkout
