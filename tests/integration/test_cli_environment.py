@@ -22,7 +22,7 @@ from json import loads as json_loads
 from os import environ, mkdir, name as os_name
 from os.path import basename, dirname, join
 from subprocess import run  # nosec:B404
-from sys import executable, stderr
+from sys import executable, path as sys_path, stderr
 from tempfile import TemporaryDirectory
 from typing import Any
 from unittest import TestCase, skipIf
@@ -193,6 +193,61 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
             names2 = {c['name'] for c in json_loads(sbom2).get('components') or ()}
             self.assertIn(foreign_name, names1)
             self.assertNotIn(foreign_name, names2)
+
+    def test_no_python_given_env_ignores_parent_pythonpath(self) -> None:
+        """Follow-up for #1045: with -E and no target, the current interpreter is
+        probed via `python -E` instead of reusing the already-imported sys.path."""
+        foreign_name = 'leakypkg'
+        with TemporaryDirectory() as foreign_root:
+            dist_info = join(foreign_root, f'{foreign_name}-9.9.9.dist-info')
+            mkdir(dist_info)
+            with open(join(dist_info, 'METADATA'), 'w', encoding='utf8') as fh:
+                fh.write('Metadata-Version: 2.1\n'
+                         f'Name: {foreign_name}\n'
+                         'Version: 9.9.9\n')
+            # simulate a parent PYTHONPATH that the running interpreter already honored
+            leaky_path = [foreign_root, *sys_path]
+            with patch('cyclonedx_py._internal.environment.sys_path', leaky_path), \
+                    patch.dict(environ, {'PYTHONPATH': foreign_root}):
+                res, sbom1, err = run_cli(
+                    'environment', '--sv', '1.6', '--of', 'JSON', '--no-validate', '-o=-')
+                self.assertEqual(0, res, err)
+                res, sbom2, err = run_cli(
+                    'environment', '--sv', '1.6', '--of', 'JSON', '--no-validate', '-o=-',
+                    '-E')  # the important part
+                self.assertEqual(0, res, err)
+        names1 = {c['name'] for c in json_loads(sbom1).get('components') or ()}
+        names2 = {c['name'] for c in json_loads(sbom2).get('components') or ()}
+        self.assertIn(foreign_name, names1)
+        self.assertNotIn(foreign_name, names2)
+
+    def test_no_python_given_site_flags_probe_current_interpreter(self) -> None:
+        """Follow-up for #1045: with -S and/or -E and no target, the current interpreter
+        is probed with the corresponding flags instead of reusing the already-imported sys.path."""
+        sentinel = ['/sentinel/not/probed']
+        for flags, expected in (
+            (('-S',), ['-S']),
+            (('-E',), ['-E']),
+            (('-S', '-E'), ['-E', '-S']),
+        ):
+            with self.subTest(flags=flags), \
+                    patch('cyclonedx_py._internal.environment.sys_path', sentinel), \
+                    patch('cyclonedx_py._internal.environment.run', wraps=run) as run_spy:
+                res, sbom, err = run_cli(
+                    'environment', '--sv', '1.6', '--of', 'JSON', '--no-validate', '-o=-',
+                    *flags)
+                self.assertEqual(0, res, err)
+                self.assertEqual(1, run_spy.call_count)
+                cmd = run_spy.call_args.args[0]
+                self.assertEqual(executable, cmd[0])
+                self.assertEqual(expected, cmd[1:-2])
+
+    def test_no_python_given_no_flags_reuses_sys_path(self) -> None:
+        with patch('cyclonedx_py._internal.environment.run') as run_mock:
+            res, sbom, err = run_cli(
+                'environment', '--sv', '1.6', '--of', 'JSON', '--no-validate', '-o=-')
+        self.assertEqual(0, res, err)
+        run_mock.assert_not_called()
 
     def test_with_current_python(self) -> None:
         sv = SchemaVersion.V1_6

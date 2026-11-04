@@ -23,7 +23,7 @@ from json import JSONDecodeError, loads as json_loads
 from os import getcwd, name as os_name
 from os.path import exists, isdir, join
 from subprocess import run  # nosec
-from sys import path as sys_path
+from sys import executable, path as sys_path
 from textwrap import dedent
 from typing import TYPE_CHECKING, Any, Optional
 
@@ -115,14 +115,14 @@ class EnvironmentBB(BomBuilder):
                        action='store_false',
                        dest='import_site',
                        help='Do not implicitly import site during Python path detection.\n'
-                            'Prevents evaluation of `*.pth` files, but may lead to incomplete component detection.')
+                            'Prevents evaluation of `*.pth` files, but may lead to incomplete component detection.\n'
+                            'Without a target `<python>`, the current interpreter is probed this way.')
         p.add_argument('-E',  # mimic `python -E`
                        action='store_false',
                        dest='honor_py_env_vars',
                        help='Run the target interpreter with `-E` (ignore PYTHON* environment\n'
                             'variables such as PYTHONPATH) when detecting its path.\n'
-                            'Only applies when a target `<python>` is given; has no effect when\n'
-                            'analyzing the current environment.\n'
+                            'Without a target `<python>`, the current interpreter is probed this way.\n'
                             'Interpreters that require PYTHONHOME to start may fail with this flag.')
         p.add_argument('--gather-license-texts',
                        action='store_true',
@@ -171,6 +171,10 @@ class EnvironmentBB(BomBuilder):
         path: list[str]
         if python:
             path = self.__path4python(python, import_site, honor_py_env_vars)
+        elif not import_site or not honor_py_env_vars:
+            # the already-running interpreter imported site and honored PYTHON* vars at startup;
+            # probe a fresh one with the requested flags
+            path = self.__path4python(executable, import_site, honor_py_env_vars)
         else:
             path = sys_path.copy()
         if path[0] in ('', getcwd()):
