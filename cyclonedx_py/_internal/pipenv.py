@@ -33,7 +33,7 @@ from . import BomBuilder, PropertyName, PurlTypePypi
 from .cli_common import add_argument_mc_type, add_argument_pyproject
 from .utils.args import arparse_split
 from .utils.cdx import make_bom
-from .utils.packaging import normalize_packagename
+from .utils.packaging import normalize_packagename, to_tags
 from .utils.pyproject import pyproject_file2component
 from .utils.secret import redact_auth_from_url
 
@@ -175,6 +175,8 @@ class PipenvBB(BomBuilder):
                         version=package_data['version'][2:] if 'version' in package_data else None,
                         external_references=self.__make_extrefs(package_name, package_data, source_urls),
                     )
+                    if hasattr(component, 'tags'):
+                        component.tags.update(to_tags(package_data.get('keywords')))
                     component.purl = PackageURL(
                         type=PurlTypePypi,
                         name=component.name,

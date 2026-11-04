@@ -33,6 +33,22 @@ if TYPE_CHECKING:  # pragma: no cover
     from ..py_interop.packagemetadata import PackageMetadata
 
 
+_KEYWORDS_SPLIT_MATCHER = re_compile(r'[;, ]+')
+
+
+def metadata2tags(metadata: 'PackageMetadata') -> Generator[str, None, None]:
+    """
+    Generate tags from metadata keywords.
+    """
+    keywords_string = metadata.get('Keywords', '')
+    if keywords_string:
+        yield from (
+            tag
+            for tag in (s.strip() for s in _KEYWORDS_SPLIT_MATCHER.split(keywords_string))
+            if tag
+        )
+
+
 def metadata2licenses(metadata: 'PackageMetadata', lfac: 'LicenseFactory',
                       gather_texts: bool
                       ) -> Generator['License', None, None]:
