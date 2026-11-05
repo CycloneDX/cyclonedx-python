@@ -20,6 +20,7 @@ import os
 import random
 from collections.abc import Generator
 from glob import glob
+from json import loads as json_loads
 from os.path import basename, join, splitext
 from typing import Any
 from unittest import TestCase
@@ -45,6 +46,9 @@ def test_data_file_filter(s: str) -> Generator[Any, None, None]:
     return ((n, d, sv, of) for n, d, sv, of in test_data if s in n)
 
 
+test_data_file_filter.__test__ = False
+
+
 if os.name == 'nt':
     def test_data_os_filter(data: Any) -> bool:
         return True
@@ -52,6 +56,9 @@ else:
     def test_data_os_filter(data: tuple[Any, str, Any, Any]) -> bool:
         # skip windows encoded files on non-windows
         return '.cp125' not in data[1]
+
+
+test_data_os_filter.__test__ = False
 
 
 @ddt
@@ -116,6 +123,40 @@ class TestCliRequirements(TestCase, SnapshotMixin):
                 inp=inp)
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'stream', infile, sv, of)
+
+    def test_without_pyproject_has_no_component(self) -> None:
+        _, infile, _, _ = random.choice(test_data)  # nosec B311
+        res, out, err = run_cli(
+            'requirements',
+            '-vvv',
+            '--sv', SchemaVersion.V1_6.to_version(),
+            '--of', OutputFormat.JSON.name,
+            '--output-reproducible',
+            '-o=-',
+            infile)
+        self.assertEqual(0, res, err)
+
+        component = json_loads(out)['metadata'].get('component')
+        self.assertIsNone(component)
+
+    def test_with_explicit_mc_metadata(self) -> None:
+        _, infile, _, _ = random.choice(test_data)  # nosec B311
+        res, out, err = run_cli(
+            'requirements',
+            '-vvv',
+            '--sv', SchemaVersion.V1_6.to_version(),
+            '--of', OutputFormat.JSON.name,
+            '--output-reproducible',
+            '-o=-',
+            '--mc-name', 'my application',
+            '--mc-version', '1.0',
+            infile)
+        self.assertEqual(0, res, err)
+
+        component = json_loads(out)['metadata']['component']
+        self.assertEqual('my application', component['name'])
+        self.assertEqual('1.0', component['version'])
+        self.assertEqual('application', component['type'])
 
     @named_data(*test_data_file_filter('frozen'))
     def test_with_index_auth(self, infile: str, sv: SchemaVersion, of: OutputFormat) -> None:

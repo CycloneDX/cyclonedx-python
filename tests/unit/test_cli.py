@@ -25,6 +25,7 @@ from json import loads as json_loads
 from os import environ
 from os.path import join
 from random import random
+from tempfile import NamedTemporaryFile
 from typing import Any, Optional
 from unittest import TestCase
 from unittest.mock import Mock, patch
@@ -37,6 +38,7 @@ from packageurl import PackageURL
 
 from cyclonedx_py._internal import BomBuilder
 from cyclonedx_py._internal.cli import ENV_SOURCE_DATE_EPOCH, Command
+from cyclonedx_py._internal.cli_common import resolve_main_component
 from tests import SnapshotMixin
 
 
@@ -230,3 +232,79 @@ class TestCli(TestCase, SnapshotMixin):
         lh.setFormatter(logging.Formatter('%(levelname)s: %(message)s'))
         logger.addHandler(lh)
         return logger
+
+    @named_data(
+        ('with_pyproject_and_version_only', None, '1.0', ComponentType.APPLICATION, 'pyproject-app', '1.0'),
+        ('only_name', 'my app', None, ComponentType.APPLICATION, 'my app', '9.9'),
+        ('name_and_version', 'my app', '1.0', ComponentType.LIBRARY, 'my app', '1.0'),
+    )
+    def test_resolve_main_component_explicit_overrides(self, mc_name: Optional[str], mc_version: Optional[str],
+                                                     mc_type: ComponentType, expected_name: str,
+                                                     expected_version: Optional[str]) -> None:
+        with NamedTemporaryFile('w', encoding='utf8', suffix='.toml', delete=False) as fh:
+            fh.write('[project]\nname = "pyproject-app"\nversion = "9.9"\n')
+            pyproject_path = fh.name
+
+        try:
+            component = resolve_main_component(
+                mc_name=mc_name,
+                mc_version=mc_version,
+                mc_type=mc_type,
+                pyproject_file=pyproject_path,
+                gather_license_texts=False,
+                logger=self.__make_fresh_logger(StringIO()),
+            )
+            self.assertIsNotNone(component)
+            self.assertEqual(expected_name, component.name)
+            self.assertEqual(expected_version, component.version)
+            self.assertEqual(mc_type, component.type)
+        finally:
+            import os
+            os.unlink(pyproject_path)
+
+    def test_resolve_main_component_without_pyproject_uses_cli_name(self) -> None:
+        component = resolve_main_component(
+            mc_name='direct-name',
+            mc_version=None,
+            mc_type=ComponentType.APPLICATION,
+            pyproject_file=None,
+            gather_license_texts=False,
+            logger=self.__make_fresh_logger(StringIO()),
+        )
+        self.assertIsNotNone(component)
+        self.assertEqual('direct-name', component.name)
+        self.assertIsNone(component.version)
+        self.assertEqual(ComponentType.APPLICATION, component.type)
+
+    def test_resolve_main_component_without_name_and_with_version_returns_none(self) -> None:
+        component = resolve_main_component(
+            mc_name=None,
+            mc_version='1.0',
+            mc_type=ComponentType.APPLICATION,
+            pyproject_file=None,
+            gather_license_texts=False,
+            logger=self.__make_fresh_logger(StringIO()),
+        )
+        self.assertIsNone(component)
+
+    def test_resolve_main_component_with_pyproject_and_conflicting_cli_values(self) -> None:
+        with NamedTemporaryFile('w', encoding='utf8', suffix='.toml', delete=False) as fh:
+            fh.write('[project]\nname = "pyproject-app"\nversion = "9.9"\n')
+            pyproject_path = fh.name
+
+        try:
+            component = resolve_main_component(
+                mc_name='cli-app',
+                mc_version='2.0',
+                mc_type=ComponentType.LIBRARY,
+                pyproject_file=pyproject_path,
+                gather_license_texts=False,
+                logger=self.__make_fresh_logger(StringIO()),
+            )
+            self.assertIsNotNone(component)
+            self.assertEqual('cli-app', component.name)
+            self.assertEqual('2.0', component.version)
+            self.assertEqual(ComponentType.LIBRARY, component.type)
+        finally:
+            import os
+            os.unlink(pyproject_path)
