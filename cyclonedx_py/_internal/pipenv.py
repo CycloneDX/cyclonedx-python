@@ -33,6 +33,7 @@ from . import BomBuilder, PropertyName, PurlTypePypi
 from .cli_common import add_argument_mc_type, add_argument_pyproject
 from .utils.args import arparse_split
 from .utils.cdx import make_bom
+from .utils.identity import make_identity_evidence
 from .utils.packaging import normalize_packagename
 from .utils.pyproject import pyproject_file2component
 from .utils.secret import redact_auth_from_url
@@ -92,9 +93,11 @@ class PipenvBB(BomBuilder):
     def __init__(self, *,
                  logger: 'Logger',
                  pypi_url: Optional[str],
+                 gather_identity_evidence: bool = False,
                  **__: Any) -> None:
         self._logger = logger
         self._pypi_url = pypi_url or None  # ignore empty strings
+        self._gather_identity_evidence = gather_identity_evidence
 
     def __call__(self, *,  # type:ignore[override]
                  project_directory: str,
@@ -133,7 +136,8 @@ class PipenvBB(BomBuilder):
                 rc = None
             else:
                 rc = pyproject_file2component(pyproject_file, ctype=mc_type,
-                                              gather_license_texts=False, logger=self._logger)
+                                              gather_license_texts=False, logger=self._logger,
+                                              gather_identity_evidence=self._gather_identity_evidence)
                 rc.bom_ref.value = 'root-component'
 
             return self._make_bom(rc,
@@ -173,6 +177,12 @@ class PipenvBB(BomBuilder):
                         type=ComponentType.LIBRARY,
                         name=package_name,
                         version=package_data['version'][2:] if 'version' in package_data else None,
+                        evidence=make_identity_evidence(
+                            name=package_name,
+                            version=package_data['version'][2:]
+                            if package_data.get('version', '').startswith('==') else None,
+                            source='Pipfile.lock',
+                        ) if self._gather_identity_evidence else None,
                         external_references=self.__make_extrefs(package_name, package_data, source_urls),
                     )
                     component.purl = PackageURL(

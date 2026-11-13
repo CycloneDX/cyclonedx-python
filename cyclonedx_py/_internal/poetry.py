@@ -34,6 +34,7 @@ from packageurl import PackageURL
 from . import BomBuilder, PropertyName, PurlTypePypi
 from .cli_common import add_argument_mc_type
 from .utils.cdx import make_bom
+from .utils.identity import make_identity_evidence
 from .utils.packaging import normalize_packagename
 from .utils.poetry import poetry2component
 from .utils.secret import redact_auth_from_url
@@ -159,8 +160,10 @@ class PoetryBB(BomBuilder):
 
     def __init__(self, *,
                  logger: 'Logger',
+                 gather_identity_evidence: bool = False,
                  **__: Any) -> None:
         self._logger = logger
+        self._gather_identity_evidence = gather_identity_evidence
 
     def __call__(self, *,  # type:ignore[override]
                  project_directory: str,
@@ -258,7 +261,8 @@ class PoetryBB(BomBuilder):
 
         po_cfg = project['tool']['poetry']
 
-        bom.metadata.component = root_c = poetry2component(po_cfg, ctype=mc_type)
+        bom.metadata.component = root_c = poetry2component(
+            po_cfg, ctype=mc_type, gather_identity_evidence=self._gather_identity_evidence)
         root_c.bom_ref.value = root_c.name
         root_c.properties.update(
             Property(
@@ -408,6 +412,9 @@ class PoetryBB(BomBuilder):
             bom_ref=f'{package["name"]}@{package["version"]}',
             name=package['name'],
             version=package.get('version'),
+            evidence=make_identity_evidence(
+                name=package['name'], version=package.get('version'), source='poetry.lock',
+            ) if self._gather_identity_evidence else None,
             description=package.get('description'),
             scope=ComponentScope.OPTIONAL if package.get('optional') else None,
             external_references=self.__extrefs4lock(package),

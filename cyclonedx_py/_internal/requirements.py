@@ -33,6 +33,7 @@ from pip_requirements_parser import RequirementsFile  # type:ignore[import-untyp
 from . import BomBuilder, PropertyName, PurlTypePypi
 from .cli_common import add_argument_mc_type, add_argument_pyproject
 from .utils.cdx import make_bom
+from .utils.identity import make_identity_evidence
 from .utils.io import io2file
 from .utils.packaging import normalize_packagename
 from .utils.pyproject import pyproject_file2component
@@ -103,10 +104,12 @@ class RequirementsBB(BomBuilder):
                  logger: 'Logger',
                  index_url: str,
                  extra_index_urls: Iterable[str],
+                 gather_identity_evidence: bool = False,
                  **__: Any) -> None:
         self._logger = logger
         self._index_url = index_url
         self._extra_index_urls = tuple(extra_index_urls)
+        self._gather_identity_evidence = gather_identity_evidence
 
     def __call__(self, *,  # type:ignore[override]
                  requirements_file: str,
@@ -117,7 +120,8 @@ class RequirementsBB(BomBuilder):
             rc = None
         else:
             rc = pyproject_file2component(pyproject_file, ctype=mc_type,
-                                          gather_license_texts=False, logger=self._logger)
+                                          gather_license_texts=False, logger=self._logger,
+                                          gather_identity_evidence=self._gather_identity_evidence)
             rc.bom_ref.value = 'root-component'
 
         if requirements_file == '-':
@@ -220,6 +224,9 @@ class RequirementsBB(BomBuilder):
             type=ComponentType.LIBRARY,
             name=name or 'unknown',
             version=version,
+            evidence=make_identity_evidence(
+                name=name, version=version, source=f'requirements line {req.line_number}',
+            ) if self._gather_identity_evidence and not (req.is_url or is_local) else None,
             purl=PackageURL(
                 type=PurlTypePypi,
                 name=req.name,

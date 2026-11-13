@@ -66,6 +66,11 @@ class Command:
 
         # region SubCOmmand
         op = ArgumentParser(add_help=False)
+        op.add_argument('--gather-identity-evidence',
+                        help='Record the metadata sources of component names and versions.',
+                        action='store_true',
+                        dest='gather_identity_evidence',
+                        default=False)
         op.add_argument('--short-PURLs',
                         help='Omit all qualifiers from PackageURLs.\n'
                              'This causes information loss in trade-off shorter PURLs, '

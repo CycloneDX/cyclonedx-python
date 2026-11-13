@@ -25,6 +25,7 @@ from typing import TYPE_CHECKING, Any
 from cyclonedx.factory.license import LicenseFactory
 
 from .cdx import licenses_fixup
+from .identity import make_identity_evidence
 from .pep621 import (
     project2component as pep621_project2component,
     project2dependencies as pep621_project2dependencies,
@@ -45,13 +46,17 @@ def pyproject2component(data: dict[str, Any], *,
                         ctype: 'ComponentType',
                         fpath: str,
                         gather_license_texts: bool,
-                        logger: 'Logger'
+                        logger: 'Logger',
+                        gather_identity_evidence: bool = False,
                         ) -> 'Component':
     tool = data.get('tool', {})
     if poetry := tool.get('poetry'):
-        return poetry2component(poetry, ctype=ctype)
+        return poetry2component(poetry, ctype=ctype, gather_identity_evidence=gather_identity_evidence)
     if project := data.get('project'):
         component = pep621_project2component(project, ctype=ctype)
+        if gather_identity_evidence:
+            component.evidence = make_identity_evidence(
+                name=project['name'], version=component.version, source='pyproject.toml')
         # region licenses
         lfac = LicenseFactory()
         component.licenses.update(pep639_project2licenses(project, lfac, gather_license_texts,
@@ -79,12 +84,14 @@ def pyproject_load(pyproject_file: str) -> dict[str, Any]:
 def pyproject_file2component(pyproject_file: str, *,
                              ctype: 'ComponentType',
                              gather_license_texts: bool,
-                             logger: 'Logger'
+                             logger: 'Logger',
+                             gather_identity_evidence: bool = False,
                              ) -> 'Component':
     return pyproject2component(
         pyproject_load(pyproject_file),
         ctype=ctype, fpath=pyproject_file,
         gather_license_texts=gather_license_texts,
+        gather_identity_evidence=gather_identity_evidence,
         logger=logger
     )
 
