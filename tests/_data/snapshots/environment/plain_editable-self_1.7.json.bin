@@ -22,11 +22,22 @@
       "purl": "pkg:pypi/six@1.16.0",
       "type": "library",
       "version": "1.16.0"
+    },
+    {
+      "bom-ref": "python-runtime",
+      "isExternal": true,
+      "name": "python",
+      "type": "platform",
+      "version": "pythonVersion-testing"
     }
   ],
   "dependencies": [
     {
+      "ref": "python-runtime"
+    },
+    {
       "dependsOn": [
+        "python-runtime",
         "six==1.16.0"
       ],
       "ref": "root-component"

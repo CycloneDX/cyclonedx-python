@@ -22,6 +22,7 @@ from importlib.metadata import distributions
 from json import JSONDecodeError, loads as json_loads
 from os import getcwd, name as os_name
 from os.path import exists, isdir, join
+from platform import python_version
 from subprocess import run  # nosec
 from sys import executable, path as sys_path
 from textwrap import dedent
@@ -30,6 +31,7 @@ from typing import TYPE_CHECKING, Any, Optional
 from cyclonedx.factory.license import LicenseFactory
 from cyclonedx.model import Property
 from cyclonedx.model.component import Component, ComponentType
+from cyclonedx.schema import SchemaVersion
 from packageurl import PackageURL
 from packaging.requirements import Requirement
 
@@ -49,6 +51,12 @@ if TYPE_CHECKING:  # pragma: no cover
     from .utils.pep610 import PackageSource
 
     T_AllComponents = dict[str, tuple['Component', Iterable[Requirement]]]
+
+
+# The Python runtime is added as an external component, which requires CycloneDX >= 1.7
+# and a `cyclonedx-python-lib` that supports `Component.is_external` (>= 11.12).
+_SV_PYTHON_RUNTIME: Optional[SchemaVersion] = getattr(SchemaVersion, 'V1_7', None)
+_LIB_SUPPORTS_IS_EXTERNAL = hasattr(Component, 'is_external')
 
 
 class EnvironmentBB(BomBuilder):
@@ -145,9 +153,14 @@ class EnvironmentBB(BomBuilder):
     def __init__(self, *,
                  logger: 'Logger',
                  gather_license_texts: bool,
+                 spec_version: Optional[SchemaVersion] = None,
                  **__: Any) -> None:
         self._logger = logger
         self._gather_license_texts = gather_license_texts
+        self._add_python_runtime = _LIB_SUPPORTS_IS_EXTERNAL \
+            and spec_version is not None \
+            and _SV_PYTHON_RUNTIME is not None \
+            and spec_version >= _SV_PYTHON_RUNTIME
 
     def __call__(self, *,  # type:ignore[override]
                  import_site: bool,
@@ -169,20 +182,47 @@ class EnvironmentBB(BomBuilder):
             rc = (root_c, root_d)
 
         path: list[str]
+        py_version: Optional[str] = None
         if python:
             path = self.__path4python(python, import_site, honor_py_env_vars)
+            if self._add_python_runtime:
+                py_version = self.__version4python(python, import_site, honor_py_env_vars)
         elif not import_site or not honor_py_env_vars:
             # the already-running interpreter imported site and honored PYTHON* vars at startup;
             # probe a fresh one with the requested flags
             path = self.__path4python(executable, import_site, honor_py_env_vars)
+            if self._add_python_runtime:
+                py_version = self.__version4python(executable, import_site, honor_py_env_vars)
         else:
             path = sys_path.copy()
+            if self._add_python_runtime:
+                py_version = python_version()
         if path[0] in ('', getcwd()):
             path.pop(0)
 
         bom = make_bom()
         self.__add_components(bom, rc, path=path)
+        if py_version is not None:
+            self.__add_python_runtime_component(bom, py_version)
         return bom
+
+    def __add_python_runtime_component(self, bom: 'Bom', py_version: str) -> None:
+        # the runtime is expected to be provided by the deployment environment, it is not bundled.
+        # the implementation (CPython, PyPy, etc.) is intentionally not part of the SBOM.
+        runtime_c = Component(
+            type=ComponentType.PLATFORM,
+            bom_ref='python-runtime',
+            name='python',
+            version=py_version,
+            is_external=True,
+        )
+        self._logger.info('add component for Python runtime %r', py_version)
+        self._logger.debug('add component: %r', runtime_c)
+        bom.components.add(runtime_c)
+        if bom.metadata.component is None:
+            bom.register_dependency(runtime_c)
+        else:
+            bom.register_dependency(bom.metadata.component, (runtime_c,))
 
     def __add_components(self, bom: 'Bom',
                          rc: Optional[tuple['Component', Iterable['Requirement']]],
@@ -305,6 +345,25 @@ class EnvironmentBB(BomBuilder):
                     return maybe
             raise ValueError(f'Failed to find python in directory: {value}')
         return value
+
+    def __version4python(self, python: str, import_site: bool, honor_py_env_vars: bool) -> str:
+        cmd = [self.__py_interpreter(python),
+               '-c', 'import platform,sys;sys.stdout.write(platform.python_version())']
+        if not import_site:
+            cmd.insert(1, '-S')
+        if not honor_py_env_vars:
+            cmd.insert(1, '-E')
+
+        self._logger.debug('fetch `version` from python interpreter cmd: %r', cmd)
+        res = run(cmd, capture_output=True, encoding='utf8', shell=False)  # nosec
+        version = res.stdout.strip()
+        if res.returncode != 0 or len(version) == 0:
+            raise RuntimeError('Fail fetching `version` from Python interpreter.\n'
+                               f'returncode: {res.returncode}\n'
+                               f'stdout: {res.stdout}\n'
+                               f'stderr: {res.stderr}\n')
+        self._logger.debug('got `version` from Python interpreter: %r', version)
+        return version
 
     def __path4python(self, python: str, import_site: bool, honor_py_env_vars: bool) -> list[str]:
         cmd = [self.__py_interpreter(python),

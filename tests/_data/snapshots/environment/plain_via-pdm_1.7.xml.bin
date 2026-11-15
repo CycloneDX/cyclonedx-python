@@ -90,9 +90,15 @@
         </reference>
       </externalReferences>
     </component>
+    <component type="platform" bom-ref="python-runtime" isExternal="true">
+      <name>python</name>
+      <version>pythonVersion-testing</version>
+    </component>
   </components>
   <dependencies>
+    <dependency ref="python-runtime"/>
     <dependency ref="root-component">
+      <dependency ref="python-runtime"/>
       <dependency ref="toml==0.10.2"/>
     </dependency>
     <dependency ref="toml==0.10.2"/>

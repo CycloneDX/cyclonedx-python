@@ -21,6 +21,7 @@ from glob import glob
 from json import loads as json_loads
 from os import environ, mkdir, name as os_name
 from os.path import basename, dirname, join
+from platform import python_version
 from subprocess import run  # nosec:B404
 from sys import executable, path as sys_path, stderr
 from tempfile import TemporaryDirectory
@@ -305,6 +306,82 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
             join(projectdir, '.venv'))
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'texts', projectdir, sv, of)
+
+    def test_python_runtime_as_external_platform(self) -> None:
+        projectdir = join(INFILES_DIRECTORY, 'environment', 'no-deps')
+        res, out, err = run_cli(
+            'environment',
+            '-vvv',
+            '--sv', '1.7',
+            '--of', OutputFormat.JSON.name,
+            '--output-reproducible',
+            '-o=-',
+            '--pyproject', join(projectdir, 'pyproject.toml'),
+            join(projectdir, '.venv'))
+        self.assertEqual(0, res, err)
+        venv_python = join(projectdir, '.venv', 'Scripts', 'python.exe') \
+            if os_name == 'nt' \
+            else join(projectdir, '.venv', 'bin', 'python')
+        expected_version = run(
+            (venv_python, '-c', 'import platform,sys;sys.stdout.write(platform.python_version())'),
+            capture_output=True, encoding='utf8', check=True, shell=False  # nosec:B603
+        ).stdout
+        bom = json_loads(out)
+        runtime = [c for c in bom['components'] if c.get('bom-ref') == 'python-runtime']
+        self.assertEqual([{
+            'bom-ref': 'python-runtime',
+            'isExternal': True,
+            'name': 'python',
+            'type': 'platform',
+            'version': expected_version,
+        }], runtime)
+        root_deps = next(d for d in bom['dependencies'] if d['ref'] == 'root-component')
+        self.assertIn('python-runtime', root_deps['dependsOn'])
+
+    def test_python_runtime_of_current_interpreter(self) -> None:
+        for flags in ((), ('-S',), ('-E',)):
+            with self.subTest(flags=flags):
+                res, out, err = run_cli(
+                    'environment', '--sv', '1.7', '--of', 'JSON', '-o=-',
+                    *flags)
+                self.assertEqual(0, res, err)
+                bom = json_loads(out)
+                runtime = next(c for c in bom['components'] if c.get('bom-ref') == 'python-runtime')
+                self.assertEqual(python_version(), runtime['version'])
+                self.assertIn('python-runtime', {d['ref'] for d in bom['dependencies']})
+
+    @named_data(*(
+        (f'{sv.name}-{of.name}', sv, of)
+        for of, sv in SUPPORTED_OF_SV
+        if sv.to_version() != '1.7'
+    ))
+    def test_python_runtime_omitted_before_1_7(self, sv: SchemaVersion, of: OutputFormat) -> None:
+        projectdir = join(INFILES_DIRECTORY, 'environment', 'no-deps')
+        res, out, err = run_cli(
+            'environment',
+            '-vvv',
+            '--sv', sv.to_version(),
+            '--of', of.name,
+            '--output-reproducible',
+            '-o=-',
+            '--pyproject', join(projectdir, 'pyproject.toml'),
+            join(projectdir, '.venv'))
+        self.assertEqual(0, res, err)
+        self.assertNotIn('python-runtime', out)
+
+    def test_python_runtime_omitted_without_lib_support(self) -> None:
+        projectdir = join(INFILES_DIRECTORY, 'environment', 'no-deps')
+        with patch('cyclonedx_py._internal.environment._LIB_SUPPORTS_IS_EXTERNAL', False):
+            res, out, err = run_cli(
+                'environment',
+                '-vvv',
+                '--sv', '1.7',
+                '--of', OutputFormat.JSON.name,
+                '--output-reproducible',
+                '-o=-',
+                join(projectdir, '.venv'))
+        self.assertEqual(0, res, err)
+        self.assertNotIn('python-runtime', out)
 
     def assertEqualSnapshot(  # noqa:N802
         self, actual: str,

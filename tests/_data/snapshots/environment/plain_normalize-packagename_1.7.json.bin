@@ -66,11 +66,22 @@
       "purl": "pkg:pypi/ruamel.yaml.jinja2@0.2.7",
       "type": "library",
       "version": "0.2.7"
+    },
+    {
+      "bom-ref": "python-runtime",
+      "isExternal": true,
+      "name": "python",
+      "type": "platform",
+      "version": "pythonVersion-testing"
     }
   ],
   "dependencies": [
     {
+      "ref": "python-runtime"
+    },
+    {
       "dependsOn": [
+        "python-runtime",
         "ruamel.yaml==0.18.5"
       ],
       "ref": "root-component"

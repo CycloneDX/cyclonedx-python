@@ -89,6 +89,13 @@
       "name": "package-c",
       "type": "library",
       "version": "23.42"
+    },
+    {
+      "bom-ref": "python-runtime",
+      "isExternal": true,
+      "name": "python",
+      "type": "platform",
+      "version": "pythonVersion-testing"
     }
   ],
   "dependencies": [
@@ -102,6 +109,12 @@
       "ref": "package-c==23.42"
     },
     {
+      "ref": "python-runtime"
+    },
+    {
+      "dependsOn": [
+        "python-runtime"
+      ],
       "ref": "root-component"
     }
   ],

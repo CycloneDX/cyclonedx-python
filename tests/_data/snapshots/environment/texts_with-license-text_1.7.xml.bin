@@ -136,11 +136,18 @@ It is expected to be available in a SBOM.</text>
         </licenses>
       </evidence>
     </component>
+    <component type="platform" bom-ref="python-runtime" isExternal="true">
+      <name>python</name>
+      <version>pythonVersion-testing</version>
+    </component>
   </components>
   <dependencies>
     <dependency ref="package-a==23.42"/>
     <dependency ref="package-b==23.42"/>
     <dependency ref="package-c==23.42"/>
-    <dependency ref="root-component"/>
+    <dependency ref="python-runtime"/>
+    <dependency ref="root-component">
+      <dependency ref="python-runtime"/>
+    </dependency>
   </dependencies>
 </bom>

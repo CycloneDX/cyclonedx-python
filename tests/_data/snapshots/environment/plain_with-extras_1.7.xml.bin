@@ -845,6 +845,10 @@
         </reference>
       </externalReferences>
     </component>
+    <component type="platform" bom-ref="python-runtime" isExternal="true">
+      <name>python</name>
+      <version>pythonVersion-testing</version>
+    </component>
   </components>
   <dependencies>
     <dependency ref="arrow==1.3.0">
@@ -905,6 +909,7 @@
     <dependency ref="python-dateutil==2.9.0.post0">
       <dependency ref="six==1.17.0"/>
     </dependency>
+    <dependency ref="python-runtime"/>
     <dependency ref="referencing==0.37.0">
       <dependency ref="attrs==25.4.0"/>
       <dependency ref="rpds-py==0.27.1"/>
@@ -919,6 +924,7 @@
     </dependency>
     <dependency ref="root-component">
       <dependency ref="cyclonedx-python-lib==11.2.0"/>
+      <dependency ref="python-runtime"/>
     </dependency>
     <dependency ref="rpds-py==0.27.1"/>
     <dependency ref="six==1.17.0"/>

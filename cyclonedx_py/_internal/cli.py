@@ -163,6 +163,7 @@ class Command:
         self._output_reproducible = output_reproducible
         self._should_validate = should_validate
         self._bbc = _bbc(**self._clean_kwargs(kwargs),
+                         spec_version=spec_version,
                          logger=self._logger.getChild(_bbc.__name__))
 
     def _shorten_purls(self, bom: 'Bom') -> bool:

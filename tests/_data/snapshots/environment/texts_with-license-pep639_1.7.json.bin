@@ -360,6 +360,13 @@
       "name": "regression-issue868",
       "type": "library",
       "version": "0.1"
+    },
+    {
+      "bom-ref": "python-runtime",
+      "isExternal": true,
+      "name": "python",
+      "type": "platform",
+      "version": "pythonVersion-testing"
     }
   ],
   "dependencies": [
@@ -385,6 +392,9 @@
       "ref": "license-expression==30.3.0"
     },
     {
+      "ref": "python-runtime"
+    },
+    {
       "ref": "regression-issue868==0.1"
     },
     {
@@ -394,6 +404,7 @@
         "cryptography==43.0.1",
         "jsonpointer==2.4",
         "license-expression==30.3.0",
+        "python-runtime",
         "regression-issue868==0.1"
       ],
       "ref": "root-component"

@@ -50,6 +50,12 @@ For Python (virtual) environment
 By analyzing the actually installed packages, this will produce the most accurate and complete CycloneDX BOM.
 The generated CycloneDX SBOM will include metadata, licenses, dependency graph, and more.
 
+When CycloneDX 1.7 or later is requested (``--spec-version 1.7``),
+the Python runtime of the analyzed environment is added as a component
+of type ``platform`` with ``isExternal=true``, named ``python`` and versioned like ``3.13.5``.
+If a root component is known (``--pyproject``), it depends on this runtime component.
+The specific implementation (CPython, PyPy, etc.) is intentionally not part of the SBOM.
+
 The full documentation can be issued by running with ``environment --help``:
 
 .. code-block:: shell-session

@@ -170,6 +170,13 @@
       "purl": "pkg:pypi/urllib3@2.2.0?download_url=https://github.com/urllib3/urllib3/archive/refs/tags/2.2.0.zip",
       "type": "library",
       "version": "2.2.0"
+    },
+    {
+      "bom-ref": "python-runtime",
+      "isExternal": true,
+      "name": "python",
+      "type": "platform",
+      "version": "pythonVersion-testing"
     }
   ],
   "dependencies": [
@@ -177,7 +184,11 @@
       "ref": "packaging==23.2"
     },
     {
+      "ref": "python-runtime"
+    },
+    {
       "dependsOn": [
+        "python-runtime",
         "six==1.16.0"
       ],
       "ref": "root-component"
