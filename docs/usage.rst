@@ -50,9 +50,9 @@ For Python (virtual) environment
 By analyzing the actually installed packages, this will produce the most accurate and complete CycloneDX BOM.
 The generated CycloneDX SBOM will include metadata, licenses, dependency graph, and more.
 
-When CycloneDX 1.7 or later is requested (``--spec-version 1.7``),
-the Python runtime of the analyzed environment is added as a component
+With ``--add-python-runtime``, the Python runtime of the analyzed environment is added as a component
 of type ``platform`` with ``isExternal=true``, named ``python`` and versioned like ``3.13.5``.
+The ``isExternal`` marker is only available in CycloneDX 1.7 and later (``--spec-version 1.7``).
 If a root component is known (``--pyproject``), it depends on this runtime component.
 The specific implementation (CPython, PyPy, etc.) is intentionally not part of the SBOM.
 
@@ -63,6 +63,7 @@ The full documentation can be issued by running with ``environment --help``:
     $ cyclonedx-py environment --help
     usage: cyclonedx-py environment [-h] [-v]
                                     [--gather-license-texts]
+                                    [--add-python-runtime]
                                     [--short-PURLs] [--output-reproducible]
                                     [--validate | --no-validate]
                                     [-o <file>] [--sv <version>] [--of <format>]
@@ -88,6 +89,8 @@ The full documentation can be issued by running with ``environment --help``:
                             flag.
       --gather-license-texts
                             Enable license text gathering.
+      --add-python-runtime  Add the Python runtime of the analyzed environment as an external component.
+                            The `isExternal` marker is only available in CycloneDX 1.7 and later.
       --pyproject <file>    Path to the root component's `pyproject.toml` file.
                             This should point to a file compliant with PEP 621 (Storing project metadata in pyproject.toml). Supports PEP 639 (Improving License Clarity with Better Package Metadata).
       --mc-type <type>      Type of the main component.

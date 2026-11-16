@@ -22,22 +22,11 @@
       "purl": "pkg:pypi/toml@0.10.2",
       "type": "library",
       "version": "0.10.2"
-    },
-    {
-      "bom-ref": "python-runtime",
-      "isExternal": true,
-      "name": "python",
-      "type": "platform",
-      "version": "pythonVersion-testing"
     }
   ],
   "dependencies": [
     {
-      "ref": "python-runtime"
-    },
-    {
       "dependsOn": [
-        "python-runtime",
         "toml==0.10.2"
       ],
       "ref": "root-component"

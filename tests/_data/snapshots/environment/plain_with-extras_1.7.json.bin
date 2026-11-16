@@ -1048,13 +1048,6 @@
       "purl": "pkg:pypi/zipp@3.20.2",
       "type": "library",
       "version": "3.20.2"
-    },
-    {
-      "bom-ref": "python-runtime",
-      "isExternal": true,
-      "name": "python",
-      "type": "platform",
-      "version": "pythonVersion-testing"
     }
   ],
   "dependencies": [
@@ -1164,9 +1157,6 @@
       "ref": "python-dateutil==2.9.0.post0"
     },
     {
-      "ref": "python-runtime"
-    },
-    {
       "dependsOn": [
         "attrs==25.4.0",
         "rpds-py==0.27.1",
@@ -1191,8 +1181,7 @@
     },
     {
       "dependsOn": [
-        "cyclonedx-python-lib==11.2.0",
-        "python-runtime"
+        "cyclonedx-python-lib==11.2.0"
       ],
       "ref": "root-component"
     },

@@ -149,12 +149,6 @@ def make_xml_comparable(bom: str) -> str:
         '        <version>\\1</version>\n'
         '        <externalReferences><!-- stripped --></externalReferences>',
         bom)
-    bom = re_sub(  # replace the version of the Python runtime the tests happen to run with
-        '(<component type="platform" bom-ref="python-runtime" isExternal="true">\n'
-        ' *<name>python</name>\n'
-        ' *<version>).*?(</version>)',
-        '\\1pythonVersion-testing\\2',
-        bom)
     if sys.version_info < (3, 13):
         # py3.13 finally fixed a bug in the XML writer: https://github.com/python/cpython/issues/81555
         # no longer escape double-quotes(") in text/non-attribute.
@@ -219,14 +213,6 @@ def make_json_comparable(bom: str) -> str:
         '        "externalReferences": [   ],\n'
         '        "name": "cyclonedx-python-lib",\n'
         '        "vendor": "CycloneDX",\n',
-        bom)
-    bom = re_sub(  # replace the version of the Python runtime the tests happen to run with
-        '("bom-ref": "python-runtime",\n'
-        ' *"isExternal": true,\n'
-        ' *"name": "python",\n'
-        ' *"type": "platform",\n'
-        ' *"version": )".*?"',
-        '\\1"pythonVersion-testing"',
         bom)
     return bom
 

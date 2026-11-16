@@ -1,21 +1,6 @@
 {
-  "components": [
-    {
-      "bom-ref": "python-runtime",
-      "isExternal": true,
-      "name": "python",
-      "type": "platform",
-      "version": "pythonVersion-testing"
-    }
-  ],
   "dependencies": [
     {
-      "ref": "python-runtime"
-    },
-    {
-      "dependsOn": [
-        "python-runtime"
-      ],
       "ref": "root-component"
     }
   ],

@@ -31,7 +31,6 @@ from typing import TYPE_CHECKING, Any, Optional
 from cyclonedx.factory.license import LicenseFactory
 from cyclonedx.model import Property
 from cyclonedx.model.component import Component, ComponentType
-from cyclonedx.schema import SchemaVersion
 from packageurl import PackageURL
 from packaging.requirements import Requirement
 
@@ -51,12 +50,6 @@ if TYPE_CHECKING:  # pragma: no cover
     from .utils.pep610 import PackageSource
 
     T_AllComponents = dict[str, tuple['Component', Iterable[Requirement]]]
-
-
-# The Python runtime is added as an external component, which requires CycloneDX >= 1.7
-# and a `cyclonedx-python-lib` that supports `Component.is_external` (>= 11.12).
-_SV_PYTHON_RUNTIME: Optional[SchemaVersion] = getattr(SchemaVersion, 'V1_7', None)
-_LIB_SUPPORTS_IS_EXTERNAL = hasattr(Component, 'is_external')
 
 
 class EnvironmentBB(BomBuilder):
@@ -136,6 +129,11 @@ class EnvironmentBB(BomBuilder):
                        action='store_true',
                        dest='gather_license_texts',
                        help='Enable license text gathering.')
+        p.add_argument('--add-python-runtime',
+                       action='store_true',
+                       dest='add_python_runtime',
+                       help='Add the Python runtime of the analyzed environment as an external component.\n'
+                            'The `isExternal` marker is only available in CycloneDX 1.7 and later.')
         add_argument_pyproject(p)
         add_argument_mc_type(p)
         # TODO possible additional switch:
@@ -153,14 +151,11 @@ class EnvironmentBB(BomBuilder):
     def __init__(self, *,
                  logger: 'Logger',
                  gather_license_texts: bool,
-                 spec_version: Optional[SchemaVersion] = None,
+                 add_python_runtime: bool,
                  **__: Any) -> None:
         self._logger = logger
         self._gather_license_texts = gather_license_texts
-        self._add_python_runtime = _LIB_SUPPORTS_IS_EXTERNAL \
-            and spec_version is not None \
-            and _SV_PYTHON_RUNTIME is not None \
-            and spec_version >= _SV_PYTHON_RUNTIME
+        self._add_python_runtime = add_python_runtime
 
     def __call__(self, *,  # type:ignore[override]
                  import_site: bool,
@@ -182,27 +177,23 @@ class EnvironmentBB(BomBuilder):
             rc = (root_c, root_d)
 
         path: list[str]
-        py_version: Optional[str] = None
         if python:
             path = self.__path4python(python, import_site, honor_py_env_vars)
-            if self._add_python_runtime:
-                py_version = self.__version4python(python, import_site, honor_py_env_vars)
         elif not import_site or not honor_py_env_vars:
             # the already-running interpreter imported site and honored PYTHON* vars at startup;
             # probe a fresh one with the requested flags
             path = self.__path4python(executable, import_site, honor_py_env_vars)
-            if self._add_python_runtime:
-                py_version = self.__version4python(executable, import_site, honor_py_env_vars)
         else:
             path = sys_path.copy()
-            if self._add_python_runtime:
-                py_version = python_version()
         if path[0] in ('', getcwd()):
             path.pop(0)
 
         bom = make_bom()
         self.__add_components(bom, rc, path=path)
-        if py_version is not None:
+        if self._add_python_runtime:
+            py_version = self.__version4python(python, import_site, honor_py_env_vars) \
+                if python \
+                else python_version()
             self.__add_python_runtime_component(bom, py_version)
         return bom
 

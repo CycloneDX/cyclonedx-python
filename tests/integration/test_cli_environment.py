@@ -312,6 +312,7 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
         res, out, err = run_cli(
             'environment',
             '-vvv',
+            '--add-python-runtime',
             '--sv', '1.7',
             '--of', OutputFormat.JSON.name,
             '--output-reproducible',
@@ -339,47 +340,26 @@ class TestCliEnvironment(TestCase, SnapshotMixin):
         self.assertIn('python-runtime', root_deps['dependsOn'])
 
     def test_python_runtime_of_current_interpreter(self) -> None:
-        for flags in ((), ('-S',), ('-E',)):
-            with self.subTest(flags=flags):
-                res, out, err = run_cli(
-                    'environment', '--sv', '1.7', '--of', 'JSON', '-o=-',
-                    *flags)
-                self.assertEqual(0, res, err)
-                bom = json_loads(out)
-                runtime = next(c for c in bom['components'] if c.get('bom-ref') == 'python-runtime')
-                self.assertEqual(python_version(), runtime['version'])
-                self.assertIn('python-runtime', {d['ref'] for d in bom['dependencies']})
+        res, out, err = run_cli(
+            'environment', '--add-python-runtime', '--sv', '1.7', '--of', 'JSON', '-o=-')
+        self.assertEqual(0, res, err)
+        bom = json_loads(out)
+        runtime = next(c for c in bom['components'] if c.get('bom-ref') == 'python-runtime')
+        self.assertEqual(python_version(), runtime['version'])
+        self.assertIn('python-runtime', {d['ref'] for d in bom['dependencies']})
 
-    @named_data(*(
-        (f'{sv.name}-{of.name}', sv, of)
-        for of, sv in SUPPORTED_OF_SV
-        if sv.to_version() != '1.7'
-    ))
-    def test_python_runtime_omitted_before_1_7(self, sv: SchemaVersion, of: OutputFormat) -> None:
+    @named_data(('JSON', OutputFormat.JSON), ('XML', OutputFormat.XML))
+    def test_python_runtime_omitted_by_default(self, of: OutputFormat) -> None:
         projectdir = join(INFILES_DIRECTORY, 'environment', 'no-deps')
         res, out, err = run_cli(
             'environment',
             '-vvv',
-            '--sv', sv.to_version(),
+            '--sv', '1.7',
             '--of', of.name,
             '--output-reproducible',
             '-o=-',
             '--pyproject', join(projectdir, 'pyproject.toml'),
             join(projectdir, '.venv'))
-        self.assertEqual(0, res, err)
-        self.assertNotIn('python-runtime', out)
-
-    def test_python_runtime_omitted_without_lib_support(self) -> None:
-        projectdir = join(INFILES_DIRECTORY, 'environment', 'no-deps')
-        with patch('cyclonedx_py._internal.environment._LIB_SUPPORTS_IS_EXTERNAL', False):
-            res, out, err = run_cli(
-                'environment',
-                '-vvv',
-                '--sv', '1.7',
-                '--of', OutputFormat.JSON.name,
-                '--output-reproducible',
-                '-o=-',
-                join(projectdir, '.venv'))
         self.assertEqual(0, res, err)
         self.assertNotIn('python-runtime', out)
 

@@ -77,15 +77,9 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="platform" bom-ref="python-runtime" isExternal="true">
-      <name>python</name>
-      <version>pythonVersion-testing</version>
-    </component>
   </components>
   <dependencies>
-    <dependency ref="python-runtime"/>
     <dependency ref="root-component">
-      <dependency ref="python-runtime"/>
       <dependency ref="six==1.16.0"/>
     </dependency>
     <dependency ref="six==1.16.0"/>
