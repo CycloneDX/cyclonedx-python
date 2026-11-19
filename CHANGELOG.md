@@ -2,6 +2,15 @@
 
 <!-- version list -->
 
+## v9.0.0 (2026-11-19)
+
+### Features
+
+- **environment**: Add Python runtime component
+  ([#1146](https://github.com/CycloneDX/cyclonedx-python/pull/1146),
+  [`ee6dc7a`](https://github.com/CycloneDX/cyclonedx-python/commit/ee6dc7a4a2a56ba145d6d833e26b1bf65bfd597c))
+
+
 ## v8.0.1 (2026-11-04)
 
 
