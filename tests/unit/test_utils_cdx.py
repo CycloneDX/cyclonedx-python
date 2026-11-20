@@ -23,8 +23,9 @@ from unittest import TestCase
 from cyclonedx.model import ExternalReference, ExternalReferenceType
 from cyclonedx.model.component import Component, ComponentType
 from cyclonedx.model.license import License, LicenseAcknowledgement
+from ddt import data, ddt, unpack
 
-from cyclonedx_py._internal.utils.cdx import make_bom
+from cyclonedx_py._internal.utils.cdx import make_bom, url_label_to_ert
 from tests import EXPECTED_TOOL_NAME, load_pyproject
 
 
@@ -79,3 +80,41 @@ class TestThisComponentInMetadataTools(TestCase, ExtRefsTestMixin):
         c = self.__get_c_by_name(EXPECTED_TOOL_NAME)
         ers: tuple[ExternalReference, ...] = tuple(c.external_references)
         self.assertExtRefs(p, ers)
+
+
+@ddt
+class TestUrlLabelToErt(TestCase):
+
+    @data(
+        # exact labels (existing behaviour preserved)
+        ('Homepage', ExternalReferenceType.WEBSITE),
+        ('Home', ExternalReferenceType.WEBSITE),
+        ('Download', ExternalReferenceType.DISTRIBUTION),
+        ('Changelog', ExternalReferenceType.RELEASE_NOTES),
+        ('Change log', ExternalReferenceType.RELEASE_NOTES),
+        ('Release notes', ExternalReferenceType.RELEASE_NOTES),
+        ("What's new", ExternalReferenceType.RELEASE_NOTES),
+        ('History', ExternalReferenceType.RELEASE_NOTES),
+        ('Repository', ExternalReferenceType.VCS),
+        ('Source', ExternalReferenceType.VCS),
+        ('Chat', ExternalReferenceType.CHAT),
+        # prefix labels (PyPI '*' semantics)
+        ('Documentation', ExternalReferenceType.DOCUMENTATION),
+        ('Documentation for users', ExternalReferenceType.DOCUMENTATION),
+        ('Docs (latest)', ExternalReferenceType.DOCUMENTATION),
+        ('Bug Reports', ExternalReferenceType.ISSUE_TRACKER),
+        ('Issue Tracker', ExternalReferenceType.ISSUE_TRACKER),
+        ('Tracker', ExternalReferenceType.ISSUE_TRACKER),
+        ('Report a bug', ExternalReferenceType.ISSUE_TRACKER),
+        ('Funding', ExternalReferenceType.OTHER),
+        ('Sponsor this project', ExternalReferenceType.OTHER),
+        ('Donate', ExternalReferenceType.OTHER),
+        # unknown -> OTHER
+        ('Some Random Label', ExternalReferenceType.OTHER),
+    )
+    @unpack
+    def test_label_only(self, label: str, expected: ExternalReferenceType) -> None:
+        self.assertIs(expected, url_label_to_ert(label))
+
+    def test_label_only_url_none_backcompat(self) -> None:
+        self.assertIs(ExternalReferenceType.WEBSITE, url_label_to_ert('Homepage', None))
