@@ -114,6 +114,7 @@
       <name>isoduration</name>
       <version>20.11.0</version>
       <description>Operations with ISO 8601 durations</description>
+      <scope>excluded</scope>
       <purl>pkg:pypi/isoduration@20.11.0</purl>
       <externalReferences>
         <reference type="distribution">

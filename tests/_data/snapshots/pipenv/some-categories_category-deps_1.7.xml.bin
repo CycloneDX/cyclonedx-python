@@ -95,6 +95,7 @@
     <component type="library" bom-ref="ddt==1.7.0">
       <name>ddt</name>
       <version>1.7.0</version>
+      <scope>excluded</scope>
       <purl>pkg:pypi/ddt@1.7.0</purl>
       <externalReferences>
         <reference type="distribution">

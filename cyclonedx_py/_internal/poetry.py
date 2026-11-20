@@ -292,7 +292,9 @@ class PoetryBB(BomBuilder):
 
         use_extras_dep_names = frozenset(map(normalize_packagename,
                                              chain.from_iterable(po_cfg['extras'][e] for e in use_extras)))
-        for group_name in use_groups:
+        sorted_groups = sorted(use_groups, key=lambda g: 1 if g == 'dev' else 0)
+        for group_name in sorted_groups:
+            is_dev = group_name == 'dev'
             for dep_name, dep_specs in po_cfg['group'][group_name].get('dependencies', {}).items():
                 dep_name = normalize_packagename(dep_name)
                 if not isinstance(dep_specs, list):
@@ -319,16 +321,20 @@ class PoetryBB(BomBuilder):
                     self.__add_dep(
                         bom, lock_entry,
                         chain.from_iterable(ds.get('extras', ()) for ds in dep_specs),
-                        lock_data)
+                        lock_data,
+                        is_dev=is_dev)
 
         return bom
 
-    def __add_dep(self, bom: 'Bom', lock_entry: _LockEntry, use_extras: Iterable[str], lock_data: 'T_LockData') -> None:
+    def __add_dep(self, bom: 'Bom', lock_entry: _LockEntry, use_extras: Iterable[str], lock_data: 'T_LockData',
+                  *, is_dev: bool = False) -> None:
         if lock_entry.added2bom:
             self._logger.debug('existing component: %r', lock_entry.component)
             lock_entry_dep = None
         else:
             lock_entry.added2bom = True
+            if is_dev:
+                lock_entry.component.scope = ComponentScope.EXCLUDED
             self._logger.info('add component for package %r', lock_entry.name)
             self._logger.debug('add component: %r', lock_entry.component)
             bom.components.add(lock_entry.component)
@@ -347,7 +353,7 @@ class PoetryBB(BomBuilder):
                     continue
                 for dep_lock_entry in dep_lock_entries:
                     lock_entry_dep.dependencies.add(Dependency(dep_lock_entry.component.bom_ref))
-                    self.__add_dep(bom, dep_lock_entry, dep_spec.get('extras', ()), lock_data)
+                    self.__add_dep(bom, dep_lock_entry, dep_spec.get('extras', ()), lock_data, is_dev=is_dev)
         if use_extras:
             use_extras = frozenset(map(normalize_packagename, use_extras))
             lock_entry.component.properties.update(
@@ -369,7 +375,7 @@ class PoetryBB(BomBuilder):
                     continue
                 for dep_lock_entry in dep_lock_entries:
                     lock_entry_dep.dependencies.add(Dependency(dep_lock_entry.component.bom_ref))
-                    self.__add_dep(bom, dep_lock_entry, req.extras, lock_data)
+                    self.__add_dep(bom, dep_lock_entry, req.extras, lock_data, is_dev=is_dev)
 
     @staticmethod
     def _get_lockfile_version(locker: 'T_NameDict') -> tuple[int, ...]:

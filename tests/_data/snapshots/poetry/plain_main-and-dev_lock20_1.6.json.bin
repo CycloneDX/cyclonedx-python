@@ -111,6 +111,7 @@
         }
       ],
       "purl": "pkg:pypi/isoduration@20.11.0",
+      "scope": "excluded",
       "type": "library",
       "version": "20.11.0"
     },
