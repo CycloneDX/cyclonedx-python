@@ -31,11 +31,10 @@ from packageurl import PackageURL
 from pip_requirements_parser import RequirementsFile  # type:ignore[import-untyped]
 
 from . import BomBuilder, PropertyName, PurlTypePypi
-from .cli_common import add_argument_mc_type, add_argument_pyproject
+from .cli_common import add_argument_mc_name, add_argument_mc_type, add_argument_mc_version, add_argument_pyproject, resolve_main_component
 from .utils.cdx import make_bom
 from .utils.io import io2file
 from .utils.packaging import normalize_packagename
-from .utils.pyproject import pyproject_file2component
 from .utils.secret import redact_auth_from_url
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -90,6 +89,8 @@ class RequirementsBB(BomBuilder):
                        dest='extra_index_urls',
                        default=[])
         add_argument_pyproject(p)
+        add_argument_mc_name(p)
+        add_argument_mc_version(p)
         add_argument_mc_type(p)
         p.add_argument('requirements_file',
                        metavar='<requirements-file>',
@@ -111,14 +112,18 @@ class RequirementsBB(BomBuilder):
     def __call__(self, *,  # type:ignore[override]
                  requirements_file: str,
                  pyproject_file: Optional[str],
+                 mc_name: Optional[str],
+                 mc_version: Optional[str],
                  mc_type: 'ComponentType',
                  **__: Any) -> 'Bom':
-        if pyproject_file is None:
-            rc = None
-        else:
-            rc = pyproject_file2component(pyproject_file, ctype=mc_type,
-                                          gather_license_texts=False, logger=self._logger)
-            rc.bom_ref.value = 'root-component'
+        rc = resolve_main_component(
+            mc_name=mc_name,
+            mc_version=mc_version,
+            mc_type=mc_type,
+            pyproject_file=pyproject_file,
+            gather_license_texts=False,
+            logger=self._logger,
+        )
 
         if requirements_file == '-':
             from sys import stdin  # late bind, to allow patching
