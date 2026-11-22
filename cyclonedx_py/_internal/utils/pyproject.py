@@ -41,19 +41,6 @@ if TYPE_CHECKING:  # pragma: no cover
     from packaging.requirements import Requirement
 
 
-def _merge_poetry_licenses(component: 'Component',
-                           project: dict[str, Any],
-                           poetry: dict[str, Any],
-                           lfac: 'LicenseFactory') -> None:
-    poetry_fallback: dict[str, Any] = {}
-    if 'license' not in project and 'license' in poetry:
-        poetry_fallback['license'] = poetry['license']
-    if 'classifiers' not in project and 'classifiers' in poetry:
-        poetry_fallback['classifiers'] = poetry['classifiers']
-    if poetry_fallback:
-        component.licenses.update(poetry2licenses(poetry_fallback, lfac))
-
-
 def _merge_poetry_into_component(component: 'Component',
                                  project: dict[str, Any],
                                  poetry: dict[str, Any],
@@ -71,7 +58,9 @@ def _merge_poetry_into_component(component: 'Component',
             existing_extrefs.add((er.type, er.url))
 
     if not has_pep639_licenses:
-        _merge_poetry_licenses(component, project, poetry, lfac)
+        fallback_keys = ('license', 'classifiers')
+        poetry_fallback = {k: poetry[k] for k in fallback_keys if k not in project and k in poetry}
+        component.licenses.update(poetry2licenses(poetry_fallback, lfac))
 
 
 def pyproject2component(data: dict[str, Any], *,
@@ -80,8 +69,8 @@ def pyproject2component(data: dict[str, Any], *,
                         gather_license_texts: bool,
                         logger: 'Logger'
                         ) -> 'Component':
-    project: dict[str, Any] = data.get('project') or {}
-    poetry: dict[str, Any] = data.get('tool', {}).get('poetry') or {}
+    project: dict[str, Any] = data.get('project', {})
+    poetry: dict[str, Any] = data.get('tool', {}).get('poetry', {})
     if project:
         if 'name' not in project and 'name' in poetry:
             project = {**project, 'name': poetry['name']}

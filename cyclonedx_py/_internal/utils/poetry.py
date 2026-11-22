@@ -101,11 +101,9 @@ def poetry2dependencies(poetry: dict[str, Any]) -> Generator['Requirement', None
         )
     ):
         req = Requirement(name)
-        if isinstance(spec, dict) and 'extras' in spec:
-            req.extras = set(spec['extras'])
-        elif isinstance(spec, list):
-            req.extras = set(chain.from_iterable(
-                s.get('extras', ()) for s in spec if isinstance(s, dict)
-            ))
+        specs = spec if isinstance(spec, list) else (spec,)
+        req.extras = set(chain.from_iterable(
+            s.get('extras', ()) for s in specs if isinstance(s, dict)
+        ))
         # add other optional properties as soon as they were needed
         yield req
