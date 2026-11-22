@@ -37,6 +37,7 @@ from .pep621 import classifiers2licenses
 
 if TYPE_CHECKING:
     from cyclonedx.model.component import ComponentType
+    from cyclonedx.model.license import License
 
 
 def poetry2extrefs(poetry: dict[str, Any]) -> Generator['ExternalReference', None, None]:
@@ -62,6 +63,17 @@ def poetry2extrefs(poetry: dict[str, Any]) -> Generator['ExternalReference', Non
             pass
 
 
+def poetry2licenses(poetry: dict[str, Any], lfac: 'LicenseFactory') -> Generator['License', None, None]:
+    lack = LicenseAcknowledgement.DECLARED
+    if 'classifiers' in poetry:
+        yield from classifiers2licenses(poetry['classifiers'], lfac, lack)
+    if 'license' in poetry:
+        # per spec(https://python-poetry.org/docs/pyproject#license):
+        # the `license` is intended to be the name of a license, not the license text itself.
+        yield lfac.make_from_string(poetry['license'],
+                                    license_acknowledgement=lack)
+
+
 def poetry2component(poetry: dict[str, Any], *, ctype: 'ComponentType') -> 'Component':
     component = Component(
         type=ctype,
@@ -72,15 +84,7 @@ def poetry2component(poetry: dict[str, Any], *, ctype: 'ComponentType') -> 'Comp
         # TODO add more properties according to spec
     )
     # region licenses
-    lfac = LicenseFactory()
-    lack = LicenseAcknowledgement.DECLARED
-    if 'classifiers' in poetry:
-        component.licenses.update(classifiers2licenses(poetry['classifiers'], lfac, lack))
-    if 'license' in poetry:
-        # per spec(https://python-poetry.org/docs/pyproject#license):
-        # the `license` is intended to be the name of a license, not the license text itself.
-        component.licenses.add(lfac.make_from_string(poetry['license'],
-                                                     license_acknowledgement=lack))
+    component.licenses.update(poetry2licenses(poetry, LicenseFactory()))
     licenses_fixup(component)
     # endregion licenses
     return component
@@ -99,5 +103,9 @@ def poetry2dependencies(poetry: dict[str, Any]) -> Generator['Requirement', None
         req = Requirement(name)
         if isinstance(spec, dict) and 'extras' in spec:
             req.extras = set(spec['extras'])
+        elif isinstance(spec, list):
+            req.extras = set(chain.from_iterable(
+                s.get('extras', ()) for s in spec if isinstance(s, dict)
+            ))
         # add other optional properties as soon as they were needed
         yield req
