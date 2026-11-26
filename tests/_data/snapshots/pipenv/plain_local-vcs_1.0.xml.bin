@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.0" version="1">
+  <components>
+    <component type="library">
+      <name>my-local-project</name>
+      <version/>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>six</name>
+      <version/>
+      <purl>pkg:pypi/six?vcs_url=git%2Bhttps://github.com/benjaminp/six.git%4065486e4383f9f411da95937451205d3c7b61b9e1</purl>
+      <modified>false</modified>
+    </component>
+  </components>
+</bom>
