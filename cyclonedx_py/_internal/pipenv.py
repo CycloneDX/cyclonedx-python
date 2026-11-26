@@ -202,6 +202,8 @@ class PipenvBB(BomBuilder):
             location: str = data['file']
         elif 'path' in data:
             location = data['path']
+        elif (vcs_source := self.__package_vcs(data)) is not None:
+            location = vcs_source[1]
         else:
             return False
         # schema length is expected to be at least 2 chars, to prevent confusion with Windows drive letters `C:\`

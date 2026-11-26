@@ -1,0 +1,97 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.4" version="1">
+  <metadata>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-py</name>
+        <version>thisVersion-testing</version>
+        <externalReferences>
+          <reference type="build-system">
+            <url>https://github.com/CycloneDX/cyclonedx-python/actions</url>
+          </reference>
+          <reference type="distribution">
+            <url>https://pypi.org/project/cyclonedx-bom/</url>
+          </reference>
+          <reference type="documentation">
+            <url>https://cyclonedx-bom-tool.readthedocs.io/</url>
+          </reference>
+          <reference type="issue-tracker">
+            <url>https://github.com/CycloneDX/cyclonedx-python/issues</url>
+          </reference>
+          <reference type="license">
+            <url>https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE</url>
+          </reference>
+          <reference type="release-notes">
+            <url>https://github.com/CycloneDX/cyclonedx-python/blob/main/CHANGELOG.md</url>
+          </reference>
+          <reference type="vcs">
+            <url>https://github.com/CycloneDX/cyclonedx-python/</url>
+          </reference>
+          <reference type="website">
+            <url>https://github.com/CycloneDX/cyclonedx-python/#readme</url>
+          </reference>
+        </externalReferences>
+      </tool>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python-lib</name>
+        <version>libVersion-testing</version>
+        <externalReferences><!-- stripped --></externalReferences>
+      </tool>
+    </tools>
+    <component type="application" bom-ref="root-component">
+      <name>local-vcs</name>
+      <version>0.1.0</version>
+      <description>packages from local VCS repositories</description>
+    </component>
+    <properties>
+      <property name="cdx:reproducible">true</property>
+    </properties>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="my-local-project">
+      <name>my-local-project</name>
+      <externalReferences>
+        <reference type="vcs">
+          <url>git+file:///home/user/projects/my-local-project#da59ad000d1405eaecd557175e29083a87d19f7c</url>
+          <comment>from git</comment>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:pipenv:category">default</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="my-other-local-project">
+      <name>my-other-local-project</name>
+      <externalReferences>
+        <reference type="vcs">
+          <url>file:///home/user/projects/my-other-local-project#da59ad000d1405eaecd557175e29083a87d19f7c</url>
+          <comment>from git</comment>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:pipenv:category">default</property>
+      </properties>
+    </component>
+    <component type="library" bom-ref="six">
+      <name>six</name>
+      <purl>pkg:pypi/six?vcs_url=git%2Bhttps://github.com/benjaminp/six.git%4065486e4383f9f411da95937451205d3c7b61b9e1</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>git+https://github.com/benjaminp/six.git#65486e4383f9f411da95937451205d3c7b61b9e1</url>
+          <comment>from git</comment>
+        </reference>
+      </externalReferences>
+      <properties>
+        <property name="cdx:pipenv:category">default</property>
+      </properties>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="my-local-project"/>
+    <dependency ref="my-other-local-project"/>
+    <dependency ref="root-component"/>
+    <dependency ref="six"/>
+  </dependencies>
+</bom>
