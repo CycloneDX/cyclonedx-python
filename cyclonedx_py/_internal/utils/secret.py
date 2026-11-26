@@ -17,7 +17,10 @@
 
 from re import compile as re_compile
 
-_URL_AUTH_MATCHER = re_compile(r'(?<=://)[^/@:]+:[^/@]+@')
+# In HTTP URLs any userinfo is a secret, it could be a single token without a colon.
+# Elsewhere, a single name is not - like in `ssh://git@...`.
+_URL_AUTH_MATCHER = re_compile(r'(?i:(?<=http://)|(?<=https://))[^/?#\s]+@'
+                               r'|(?<=://)[^/@:]+:[^/@]+@')
 _URL_AUTH_REPLACE = ''  # drop auth - in accordance with PEP 610
 
 
