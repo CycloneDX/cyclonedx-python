@@ -7,6 +7,11 @@
       <modified>false</modified>
     </component>
     <component type="library">
+      <name>my-other-local-project</name>
+      <version/>
+      <modified>false</modified>
+    </component>
+    <component type="library">
       <name>six</name>
       <version/>
       <purl>pkg:pypi/six?vcs_url=git%2Bhttps://github.com/benjaminp/six.git%4065486e4383f9f411da95937451205d3c7b61b9e1</purl>

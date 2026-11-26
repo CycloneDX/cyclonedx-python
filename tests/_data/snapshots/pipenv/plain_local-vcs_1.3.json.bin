@@ -20,6 +20,25 @@
       "version": ""
     },
     {
+      "bom-ref": "my-other-local-project",
+      "externalReferences": [
+        {
+          "comment": "from git",
+          "type": "vcs",
+          "url": "file:///home/user/projects/my-other-local-project#da59ad000d1405eaecd557175e29083a87d19f7c"
+        }
+      ],
+      "name": "my-other-local-project",
+      "properties": [
+        {
+          "name": "cdx:pipenv:category",
+          "value": "default"
+        }
+      ],
+      "type": "library",
+      "version": ""
+    },
+    {
       "bom-ref": "six",
       "externalReferences": [
         {
@@ -43,6 +62,9 @@
   "dependencies": [
     {
       "ref": "my-local-project"
+    },
+    {
+      "ref": "my-other-local-project"
     },
     {
       "ref": "root-component"
