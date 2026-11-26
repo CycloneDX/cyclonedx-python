@@ -53,7 +53,7 @@ if TYPE_CHECKING:  # pragma: no cover
 class _LockEntry:
     name: str
     component: Component
-    dependencies: dict[str, 'T_NameDict']  # keys MUST go through `normalize_packagename()`
+    dependencies: dict[str, list['T_NameDict']]  # keys MUST go through `normalize_packagename()`
     extras: dict[str, list[str]]  # keys MUST go through `normalize_packagename()`
     added2bom: bool
 
@@ -295,11 +295,7 @@ class PoetryBB(BomBuilder):
         for group_name in use_groups:
             for dep_name, dep_specs in po_cfg['group'][group_name].get('dependencies', {}).items():
                 dep_name = normalize_packagename(dep_name)
-                if not isinstance(dep_specs, list):
-                    if isinstance(dep_specs, dict):
-                        dep_specs = [dep_specs]
-                    else:
-                        dep_specs = [{'version': dep_specs}]
+                dep_specs = self._normalize_dep_specs(dep_specs)
                 self._logger.debug('root-component depends on %s', dep_name)
                 if dep_name == 'python':
                     continue  # skip python constraint
@@ -323,6 +319,15 @@ class PoetryBB(BomBuilder):
 
         return bom
 
+    @staticmethod
+    def _normalize_dep_specs(dep_specs: Any) -> list['T_NameDict']:
+        if isinstance(dep_specs, list):
+            return [
+                ds if isinstance(ds, dict) else {'version': ds}
+                for ds in dep_specs
+            ]
+        return [dep_specs if isinstance(dep_specs, dict) else {'version': dep_specs}]
+
     def __add_dep(self, bom: 'Bom', lock_entry: _LockEntry, use_extras: Iterable[str], lock_data: 'T_LockData') -> None:
         if lock_entry.added2bom:
             self._logger.debug('existing component: %r', lock_entry.component)
@@ -334,7 +339,7 @@ class PoetryBB(BomBuilder):
             bom.components.add(lock_entry.component)
             lock_entry_dep = Dependency(lock_entry.component.bom_ref)
             bom.dependencies.add(lock_entry_dep)
-            for dep_name, dep_spec in lock_entry.dependencies.items():
+            for dep_name, dep_specs in lock_entry.dependencies.items():
                 # Actually, a best-path should be calculated here, like it is done by Poetry itself...
                 # This would require heavy computation and might cause false-negatives or insufficient picks.
                 # Instead, we pick all dependencies, just to be on the safe side.
@@ -342,12 +347,13 @@ class PoetryBB(BomBuilder):
                 if dep_lock_entries is None:
                     self._logger.warning('skip unlocked component: %s', dep_name)
                     continue
-                if dep_spec.get('optional'):
+                if bool(dep_specs) and all(ds.get('optional') for ds in dep_specs):
                     # optionals are not installed, per default. they may be added via `use_extras` later.
                     continue
+                dep_extras = tuple(chain.from_iterable(ds.get('extras', ()) for ds in dep_specs))
                 for dep_lock_entry in dep_lock_entries:
                     lock_entry_dep.dependencies.add(Dependency(dep_lock_entry.component.bom_ref))
-                    self.__add_dep(bom, dep_lock_entry, dep_spec.get('extras', ()), lock_data)
+                    self.__add_dep(bom, dep_lock_entry, dep_extras, lock_data)
         if use_extras:
             use_extras = frozenset(map(normalize_packagename, use_extras))
             lock_entry.component.properties.update(
@@ -386,7 +392,7 @@ class PoetryBB(BomBuilder):
                 name=normalize_packagename(package['name']),
                 component=self.__make_component4lock(package),
                 dependencies={
-                    normalize_packagename(dn): ds if isinstance(ds, dict) else {'version': ds}
+                    normalize_packagename(dn): self._normalize_dep_specs(ds)
                     for dn, ds in package.get('dependencies', {}).items()
                 },
                 extras={
