@@ -123,14 +123,14 @@
       <purl>pkg:pypi/boolean.py@4.0</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>https://pypi.org/simple/boolean.py/#boolean.py-4.0-py3-none-any.whl</url>
+          <url>https://pypi.org/simple/boolean-py/#boolean.py-4.0-py3-none-any.whl</url>
           <comment>from legacy-api</comment>
           <hashes>
             <hash alg="SHA-256">2876f2051d7d6394a531d82dc6eb407faa0b01a0a0b3083817ccd7323b8d96bd</hash>
           </hashes>
         </reference>
         <reference type="distribution">
-          <url>https://pypi.org/simple/boolean.py/#boolean.py-4.0.tar.gz</url>
+          <url>https://pypi.org/simple/boolean-py/#boolean.py-4.0.tar.gz</url>
           <comment>from legacy-api</comment>
           <hashes>
             <hash alg="SHA-256">17b9a181630e43dde1851d42bef546d616d5d9b4480357514597e78b203d06e4</hash>

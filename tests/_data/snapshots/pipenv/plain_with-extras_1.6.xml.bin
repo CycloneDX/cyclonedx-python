@@ -102,7 +102,7 @@
       <purl>pkg:pypi/boolean.py@4.0</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>https://pypi.org/simple/boolean.py/</url>
+          <url>https://pypi.org/simple/boolean-py/</url>
           <comment>from implicit index: pypi</comment>
           <hashes>
             <hash alg="SHA-256">17b9a181630e43dde1851d42bef546d616d5d9b4480357514597e78b203d06e4</hash>

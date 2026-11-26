@@ -37,7 +37,7 @@
       <purl>pkg:pypi/requirements-parser</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>https://pypi.org/simple/requirements_parser/</url>
+          <url>https://pypi.org/simple/requirements-parser/</url>
           <comment>implicit dist url</comment>
         </reference>
       </externalReferences>

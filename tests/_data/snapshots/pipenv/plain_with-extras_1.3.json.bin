@@ -76,7 +76,7 @@
             }
           ],
           "type": "distribution",
-          "url": "https://pypi.org/simple/boolean.py/"
+          "url": "https://pypi.org/simple/boolean-py/"
         }
       ],
       "name": "boolean.py",

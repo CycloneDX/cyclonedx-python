@@ -17,7 +17,7 @@
             }
           ],
           "type": "distribution",
-          "url": "https://pypi.org/simple/FooProject/"
+          "url": "https://pypi.org/simple/fooproject/"
         }
       ],
       "name": "FooProject",

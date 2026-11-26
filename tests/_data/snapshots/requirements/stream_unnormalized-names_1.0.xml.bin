@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.0" version="1">
+  <components>
+    <component type="library">
+      <name>Flask_SQLAlchemy</name>
+      <version>3.1.1</version>
+      <description>requirements line 7: Flask_SQLAlchemy==3.1.1</description>
+      <purl>pkg:pypi/flask-sqlalchemy@3.1.1</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>PyYAML</name>
+      <version>6.0.2</version>
+      <description>requirements line 8: PyYAML==6.0.2</description>
+      <purl>pkg:pypi/pyyaml@6.0.2</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>ruamel.yaml</name>
+      <version>0.18.5</version>
+      <description>requirements line 9: ruamel.yaml==0.18.5</description>
+      <purl>pkg:pypi/ruamel.yaml@0.18.5</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>ruamel.yaml.clib</name>
+      <version>0.2.8</version>
+      <description>requirements line 10: ruamel.yaml.clib==0.2.8</description>
+      <purl>pkg:pypi/ruamel.yaml.clib@0.2.8</purl>
+      <modified>false</modified>
+    </component>
+    <component type="library">
+      <name>zope.interface</name>
+      <version>7.1.1</version>
+      <description>requirements line 11: zope.interface==7.1.1</description>
+      <purl>pkg:pypi/zope.interface@7.1.1</purl>
+      <modified>false</modified>
+    </component>
+  </components>
+</bom>

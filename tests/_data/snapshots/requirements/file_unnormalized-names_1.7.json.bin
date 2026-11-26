@@ -1,0 +1,259 @@
+{
+  "components": [
+    {
+      "bom-ref": "requirements-L7",
+      "description": "requirements line 7: Flask_SQLAlchemy==3.1.1",
+      "externalReferences": [
+        {
+          "comment": "implicit dist extra-url",
+          "type": "distribution",
+          "url": "https://legacy1.pypackages.acme.org/simple/flask-sqlalchemy/"
+        },
+        {
+          "comment": "implicit dist url",
+          "type": "distribution",
+          "url": "https://pypackages.acme.org/simple/flask-sqlalchemy/"
+        }
+      ],
+      "name": "Flask_SQLAlchemy",
+      "purl": "pkg:pypi/flask-sqlalchemy@3.1.1",
+      "type": "library",
+      "version": "3.1.1"
+    },
+    {
+      "bom-ref": "requirements-L8",
+      "description": "requirements line 8: PyYAML==6.0.2",
+      "externalReferences": [
+        {
+          "comment": "implicit dist extra-url",
+          "type": "distribution",
+          "url": "https://legacy1.pypackages.acme.org/simple/pyyaml/"
+        },
+        {
+          "comment": "implicit dist url",
+          "type": "distribution",
+          "url": "https://pypackages.acme.org/simple/pyyaml/"
+        }
+      ],
+      "name": "PyYAML",
+      "purl": "pkg:pypi/pyyaml@6.0.2",
+      "type": "library",
+      "version": "6.0.2"
+    },
+    {
+      "bom-ref": "requirements-L9",
+      "description": "requirements line 9: ruamel.yaml==0.18.5",
+      "externalReferences": [
+        {
+          "comment": "implicit dist extra-url",
+          "type": "distribution",
+          "url": "https://legacy1.pypackages.acme.org/simple/ruamel-yaml/"
+        },
+        {
+          "comment": "implicit dist url",
+          "type": "distribution",
+          "url": "https://pypackages.acme.org/simple/ruamel-yaml/"
+        }
+      ],
+      "name": "ruamel.yaml",
+      "purl": "pkg:pypi/ruamel.yaml@0.18.5",
+      "type": "library",
+      "version": "0.18.5"
+    },
+    {
+      "bom-ref": "requirements-L10",
+      "description": "requirements line 10: ruamel.yaml.clib==0.2.8",
+      "externalReferences": [
+        {
+          "comment": "implicit dist extra-url",
+          "type": "distribution",
+          "url": "https://legacy1.pypackages.acme.org/simple/ruamel-yaml-clib/"
+        },
+        {
+          "comment": "implicit dist url",
+          "type": "distribution",
+          "url": "https://pypackages.acme.org/simple/ruamel-yaml-clib/"
+        }
+      ],
+      "name": "ruamel.yaml.clib",
+      "purl": "pkg:pypi/ruamel.yaml.clib@0.2.8",
+      "type": "library",
+      "version": "0.2.8"
+    },
+    {
+      "bom-ref": "requirements-L11",
+      "description": "requirements line 11: zope.interface==7.1.1",
+      "externalReferences": [
+        {
+          "comment": "implicit dist extra-url",
+          "type": "distribution",
+          "url": "https://legacy1.pypackages.acme.org/simple/zope-interface/"
+        },
+        {
+          "comment": "implicit dist url",
+          "type": "distribution",
+          "url": "https://pypackages.acme.org/simple/zope-interface/"
+        }
+      ],
+      "name": "zope.interface",
+      "purl": "pkg:pypi/zope.interface@7.1.1",
+      "type": "library",
+      "version": "7.1.1"
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "requirements-L10"
+    },
+    {
+      "ref": "requirements-L11"
+    },
+    {
+      "ref": "requirements-L7"
+    },
+    {
+      "ref": "requirements-L8"
+    },
+    {
+      "ref": "requirements-L9"
+    },
+    {
+      "ref": "root-component"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "root-component",
+      "description": "some `reuqirements.txt` a root-component with all metadata",
+      "evidence": {
+        "licenses": [
+          {
+            "license": {
+              "acknowledgement": "declared",
+              "id": "MIT"
+            }
+          },
+          {
+            "license": {
+              "acknowledgement": "declared",
+              "name": "License :: OSI Approved :: Apache Software License"
+            }
+          }
+        ]
+      },
+      "externalReferences": [
+        {
+          "comment": "from pyproject urls: documentation",
+          "type": "documentation",
+          "url": "https://oss.acme.org/my-project/docs/"
+        },
+        {
+          "comment": "from pyproject urls: Bug Tracker",
+          "type": "issue-tracker",
+          "url": "https://oss.acme.org/my-project/bugs/"
+        },
+        {
+          "comment": "from pyproject urls: Funding",
+          "type": "other",
+          "url": "https://oss.acme.org/my-project/funding/"
+        },
+        {
+          "comment": "from pyproject urls: Change log",
+          "type": "release-notes",
+          "url": "https://oss.acme.org/my-project/changelog/"
+        },
+        {
+          "comment": "from pyproject urls: repository",
+          "type": "vcs",
+          "url": "https://oss.acme.org/my-project.git"
+        },
+        {
+          "comment": "from pyproject urls: homepage",
+          "type": "website",
+          "url": "https://oss.acme.org/my-project/"
+        }
+      ],
+      "licenses": [
+        {
+          "acknowledgement": "declared",
+          "expression": "Apache-2.0 OR MIT"
+        }
+      ],
+      "name": "testing-requirements-txt",
+      "type": "application",
+      "version": "0.1.0"
+    },
+    "properties": [
+      {
+        "name": "cdx:reproducible",
+        "value": "true"
+      }
+    ],
+    "tools": {
+      "components": [
+        {
+          "description": "CycloneDX Software Bill of Materials (SBOM) generator for Python projects and environments",
+          "externalReferences": [
+            {
+              "type": "build-system",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/actions"
+            },
+            {
+              "type": "distribution",
+              "url": "https://pypi.org/project/cyclonedx-bom/"
+            },
+            {
+              "type": "documentation",
+              "url": "https://cyclonedx-bom-tool.readthedocs.io/"
+            },
+            {
+              "type": "issue-tracker",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/issues"
+            },
+            {
+              "type": "license",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/blob/main/LICENSE"
+            },
+            {
+              "type": "release-notes",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/blob/main/CHANGELOG.md"
+            },
+            {
+              "type": "vcs",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/"
+            },
+            {
+              "type": "website",
+              "url": "https://github.com/CycloneDX/cyclonedx-python/#readme"
+            }
+          ],
+          "group": "CycloneDX",
+          "licenses": [
+            {
+              "license": {
+                "acknowledgement": "declared",
+                "id": "Apache-2.0"
+              }
+            }
+          ],
+          "name": "cyclonedx-py",
+          "type": "application",
+          "version": "thisVersion-testing"
+        },
+        {
+          "description": "stripped",
+          "externalReferences": [   ],
+          "group": "CycloneDX",
+          "licenses": [   ],
+          "name": "cyclonedx-python-lib",
+          "type": "library",
+          "version": "libVersion-testing"
+        }
+      ]
+    }
+  },
+  "version": 1,
+  "$schema": "http://cyclonedx.org/schema/bom-1.7.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.7"
+}

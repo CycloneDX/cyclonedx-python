@@ -49,12 +49,12 @@
         {
           "comment": "from legacy-api",
           "type": "distribution",
-          "url": "https://pypi.org/simple/boolean.py/#boolean.py-4.0-py3-none-any.whl"
+          "url": "https://pypi.org/simple/boolean-py/#boolean.py-4.0-py3-none-any.whl"
         },
         {
           "comment": "from legacy-api",
           "type": "distribution",
-          "url": "https://pypi.org/simple/boolean.py/#boolean.py-4.0.tar.gz"
+          "url": "https://pypi.org/simple/boolean-py/#boolean.py-4.0.tar.gz"
         }
       ],
       "name": "boolean.py",

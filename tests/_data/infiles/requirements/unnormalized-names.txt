@@ -1,0 +1,11 @@
+## Simple Repository API (PEP 503) project URLs must use the normalized project name
+## see https://packaging.python.org/en/latest/specifications/simple-repository-api/#project-detail
+
+--index-url https://pypackages.acme.org/simple/
+--extra-index-url https://legacy1.pypackages.acme.org/simple/
+
+Flask_SQLAlchemy==3.1.1
+PyYAML==6.0.2
+ruamel.yaml==0.18.5
+ruamel.yaml.clib==0.2.8
+zope.interface==7.1.1

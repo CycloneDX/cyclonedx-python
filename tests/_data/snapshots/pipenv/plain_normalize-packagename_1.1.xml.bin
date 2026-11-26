@@ -18,7 +18,7 @@
       <purl>pkg:pypi/ruamel.yaml.clib@0.2.8</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>https://pypi.org/simple/ruamel.yaml.clib/</url>
+          <url>https://pypi.org/simple/ruamel-yaml-clib/</url>
           <comment>from implicit index: pypi</comment>
         </reference>
       </externalReferences>
@@ -29,7 +29,7 @@
       <purl>pkg:pypi/ruamel.yaml.jinja2@0.2.7</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>https://pypi.org/simple/ruamel.yaml.jinja2/</url>
+          <url>https://pypi.org/simple/ruamel-yaml-jinja2/</url>
           <comment>from implicit index: pypi</comment>
         </reference>
       </externalReferences>

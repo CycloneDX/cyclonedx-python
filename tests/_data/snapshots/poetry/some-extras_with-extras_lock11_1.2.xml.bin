@@ -62,11 +62,11 @@
       <purl>pkg:pypi/boolean.py@4.0</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>https://pypi.org/simple/boolean.py/#boolean.py-4.0-py3-none-any.whl</url>
+          <url>https://pypi.org/simple/boolean-py/#boolean.py-4.0-py3-none-any.whl</url>
           <comment>from legacy-api</comment>
         </reference>
         <reference type="distribution">
-          <url>https://pypi.org/simple/boolean.py/#boolean.py-4.0.tar.gz</url>
+          <url>https://pypi.org/simple/boolean-py/#boolean.py-4.0.tar.gz</url>
           <comment>from legacy-api</comment>
         </reference>
       </externalReferences>

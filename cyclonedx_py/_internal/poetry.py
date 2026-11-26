@@ -478,7 +478,7 @@ class PoetryBB(BomBuilder):
                 yield ExternalReference(
                     comment='from legacy-api',
                     type=ExternalReferenceType.DISTRIBUTION,
-                    url=XsUri(f'{source_url}/{package["name"]}/#{file["file"]}'),
+                    url=XsUri(f'{source_url}/{normalize_packagename(package["name"])}/#{file["file"]}'),
                     hashes=[HashType.from_composite_str(file['hash'])]
                 )
             except (InvalidUriException, UnknownHashTypeException) as error:  # pragma: nocover

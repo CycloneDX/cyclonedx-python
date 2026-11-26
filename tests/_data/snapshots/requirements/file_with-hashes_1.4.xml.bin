@@ -96,7 +96,7 @@
       <purl>pkg:pypi/fooproject@1.2</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>https://pypi.org/simple/FooProject/</url>
+          <url>https://pypi.org/simple/fooproject/</url>
           <comment>implicit dist url</comment>
           <hashes>
             <hash alg="SHA-256">2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824</hash>
