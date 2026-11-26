@@ -1,0 +1,10 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+# PEP 440 arbitrary equality, with a marker that does not match the locking host
+colorama = {version = "===0.4.6", markers = "sys_platform == 'win32'"}
+
+[dev-packages]
