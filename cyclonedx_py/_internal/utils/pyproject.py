@@ -31,7 +31,7 @@ from .pep621 import (
     project2licenses as pep621_project2licenses,
 )
 from .pep639 import project2licenses as pep639_project2licenses
-from .poetry import poetry2component, poetry2dependencies
+from .poetry import poetry2component, poetry2dependencies, poetry2extrefs, poetry2licenses
 from .toml import toml_loads
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -41,29 +41,57 @@ if TYPE_CHECKING:  # pragma: no cover
     from packaging.requirements import Requirement
 
 
+def _merge_poetry_into_component(component: 'Component',
+                                 project: dict[str, Any],
+                                 poetry: dict[str, Any],
+                                 lfac: 'LicenseFactory',
+                                 has_pep639_licenses: bool) -> None:
+    if component.version is None:
+        component.version = poetry.get('version')
+    if component.description is None:
+        component.description = poetry.get('description')
+
+    existing_extrefs = {(er.type, er.url) for er in component.external_references}
+    for er in poetry2extrefs(poetry):
+        if (er.type, er.url) not in existing_extrefs:
+            component.external_references.add(er)
+            existing_extrefs.add((er.type, er.url))
+
+    if not has_pep639_licenses:
+        fallback_keys = ('license', 'classifiers')
+        poetry_fallback = {k: poetry[k] for k in fallback_keys if k not in project and k in poetry}
+        component.licenses.update(poetry2licenses(poetry_fallback, lfac))
+
+
 def pyproject2component(data: dict[str, Any], *,
                         ctype: 'ComponentType',
                         fpath: str,
                         gather_license_texts: bool,
                         logger: 'Logger'
                         ) -> 'Component':
-    tool = data.get('tool', {})
-    if poetry := tool.get('poetry'):
-        return poetry2component(poetry, ctype=ctype)
-    if project := data.get('project'):
+    project: dict[str, Any] = data.get('project', {})
+    poetry: dict[str, Any] = data.get('tool', {}).get('poetry', {})
+    if project:
+        if 'name' not in project and 'name' in poetry:
+            project = {**project, 'name': poetry['name']}
         component = pep621_project2component(project, ctype=ctype)
         # region licenses
         lfac = LicenseFactory()
         component.licenses.update(pep639_project2licenses(project, lfac, gather_license_texts,
                                                           fpath=fpath, logger=logger))
-        if len(component.licenses) == 0:
+        has_pep639_licenses = len(component.licenses) > 0
+        if not has_pep639_licenses:
             # According to PEP 639 spec, if licenses are declared in the "new" style,
             # all other license declarations MUST be ignored.
             # https://peps.python.org/pep-0639/#converting-legacy-metadata
             component.licenses.update(pep621_project2licenses(project, lfac, gather_license_texts, fpath=fpath))
+        if poetry:
+            _merge_poetry_into_component(component, project, poetry, lfac, has_pep639_licenses)
         licenses_fixup(component)
         # endregion licenses
         return component
+    if poetry:
+        return poetry2component(poetry, ctype=ctype)
     raise ValueError('Unable to build component from pyproject: pyproject.toml is not PEP 621-compliant')
 
 
@@ -90,9 +118,7 @@ def pyproject_file2component(pyproject_file: str, *,
 
 
 def pyproject2dependencies(data: dict[str, Any]) -> Iterator['Requirement']:
-    tool = data.get('tool', {})
-    if 'poetry' in tool:
-        return poetry2dependencies(tool['poetry'])
-    if 'project' in data:
-        return pep621_project2dependencies(data['project'])
-    return iter(())
+    if project := data.get('project'):
+        yield from pep621_project2dependencies(project)
+    if poetry := data.get('tool', {}).get('poetry'):
+        yield from poetry2dependencies(poetry)

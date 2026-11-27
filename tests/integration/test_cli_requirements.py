@@ -20,7 +20,9 @@ import os
 import random
 from collections.abc import Generator
 from glob import glob
+from json import loads as json_loads
 from os.path import basename, join, splitext
+from tempfile import TemporaryDirectory
 from typing import Any
 from unittest import TestCase
 
@@ -133,6 +135,44 @@ class TestCliRequirements(TestCase, SnapshotMixin):
             infile)
         self.assertEqual(0, res, err)
         self.assertEqualSnapshot(out, 'index_auth', infile, sv, of)
+
+    def test_with_hybrid_poetry_v2_pyproject(self) -> None:
+        pyproject_toml = """\
+[project]
+name = "hybrid-poetry-v2-app"
+dynamic = ["version"]
+description = "Hybrid Poetry v2 manifest"
+license = "Apache-2.0"
+
+[tool.poetry]
+version = "1.4.0"
+repository = "https://github.com/example/hybrid-poetry-v2-app"
+
+[tool.poetry.group.dev.dependencies]
+ddt = "^1.7.2"
+"""
+        with TemporaryDirectory() as tmpdir:
+            pyp = join(tmpdir, 'pyproject.toml')
+            req = join(tmpdir, 'requirements.txt')
+            with open(pyp, 'w', encoding='utf8') as f:
+                f.write(pyproject_toml)
+            with open(req, 'w', encoding='utf8') as f:
+                f.write('toml==0.10.2\n')
+            res, out, err = run_cli(
+                'requirements',
+                '-vvv',
+                '--sv', '1.6',
+                '--of', OutputFormat.JSON.name,
+                '--output-reproducible',
+                '--pyproject', pyp,
+                '-o=-',
+                req)
+        self.assertEqual(0, res, err)
+        bom = json_loads(out)
+        root = bom['metadata']['component']
+        self.assertEqual('hybrid-poetry-v2-app', root['name'])
+        self.assertEqual('1.4.0', root['version'])
+        self.assertEqual([{'license': {'acknowledgement': 'declared', 'id': 'Apache-2.0'}}], root['licenses'])
 
     def assertEqualSnapshot(self, actual: str,  # noqa:N802
                             purpose: str,
