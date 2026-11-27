@@ -96,7 +96,7 @@
       <purl>pkg:pypi/fooproject@1.2</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>https://legacy1.pypackages.acme.org/simple/FooProject/</url>
+          <url>https://legacy1.pypackages.acme.org/simple/fooproject/</url>
           <comment>implicit dist extra-url</comment>
           <hashes>
             <hash alg="SHA-256">2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824</hash>
@@ -104,7 +104,7 @@
           </hashes>
         </reference>
         <reference type="distribution">
-          <url>https://legacy2.pypackages.acme.org/simple/FooProject/</url>
+          <url>https://legacy2.pypackages.acme.org/simple/fooproject/</url>
           <comment>implicit dist extra-url</comment>
           <hashes>
             <hash alg="SHA-256">2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824</hash>
@@ -112,7 +112,7 @@
           </hashes>
         </reference>
         <reference type="distribution">
-          <url>https://pypackages.acme.org/simple/FooProject/</url>
+          <url>https://pypackages.acme.org/simple/fooproject/</url>
           <comment>implicit dist url</comment>
           <hashes>
             <hash alg="SHA-256">2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824</hash>

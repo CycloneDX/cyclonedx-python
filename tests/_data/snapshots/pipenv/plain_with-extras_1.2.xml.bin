@@ -48,7 +48,7 @@
       <purl>pkg:pypi/boolean.py@4.0</purl>
       <externalReferences>
         <reference type="distribution">
-          <url>https://pypi.org/simple/boolean.py/</url>
+          <url>https://pypi.org/simple/boolean-py/</url>
           <comment>from implicit index: pypi</comment>
         </reference>
       </externalReferences>

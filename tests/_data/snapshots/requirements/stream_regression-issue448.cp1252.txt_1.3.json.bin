@@ -22,7 +22,7 @@
         {
           "comment": "implicit dist url",
           "type": "distribution",
-          "url": "https://pypi.org/simple/requirements_parser/"
+          "url": "https://pypi.org/simple/requirements-parser/"
         }
       ],
       "name": "requirements_parser",

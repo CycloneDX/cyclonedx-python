@@ -242,7 +242,7 @@
             }
           ],
           "type": "distribution",
-          "url": "https://pypi.org/simple/ruamel.yaml.clib/"
+          "url": "https://pypi.org/simple/ruamel-yaml-clib/"
         }
       ],
       "name": "ruamel.yaml.clib",
@@ -272,7 +272,7 @@
             }
           ],
           "type": "distribution",
-          "url": "https://pypi.org/simple/ruamel.yaml.jinja2/"
+          "url": "https://pypi.org/simple/ruamel-yaml-jinja2/"
         }
       ],
       "name": "ruamel.yaml.jinja2",

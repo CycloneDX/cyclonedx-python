@@ -259,13 +259,13 @@ class PipenvBB(BomBuilder):
                 yield ExternalReference(
                     comment=f'from explicit index: {data["index"]}',
                     type=ExternalReferenceType.DISTRIBUTION,
-                    url=XsUri(f'{source_urls[data["index"]]}/{name}/'),
+                    url=XsUri(f'{source_urls[data["index"]]}/{normalize_packagename(name)}/'),
                     hashes=hashes)
             else:
                 yield ExternalReference(
                     comment='from implicit index: pypi',
                     type=ExternalReferenceType.DISTRIBUTION,
-                    url=XsUri(f'{source_urls["pypi"]}/{name}/'),
+                    url=XsUri(f'{source_urls["pypi"]}/{normalize_packagename(name)}/'),
                     hashes=hashes)
         except (InvalidUriException, UnknownHashTypeException, KeyError) as error:  # pragma: nocover
             self._logger.debug('skipped dist-extRef for: %r', name, exc_info=error)
