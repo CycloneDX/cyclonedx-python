@@ -201,17 +201,17 @@ class RequirementsBB(BomBuilder):
                 # url based on https://warehouse.pypa.io/api-reference/legacy.html
                 # PEP 503 requires clients to request the normalized project name
                 # see https://packaging.python.org/en/latest/specifications/simple-repository-api/#project-detail
-                simple_name = normalize_packagename(name) if name else name
+                name_normalized = normalize_packagename(name) if name else name
                 external_references.append(ExternalReference(
                     comment='implicit dist url',
                     type=ExternalReferenceType.DISTRIBUTION,
-                    url=XsUri(f'{index_url or self._index_url}/{simple_name}/'),
+                    url=XsUri(f'{index_url or self._index_url}/{name_normalized}/'),
                     hashes=hashes))
                 for eiurl in extra_index_urls:
                     external_references.append(ExternalReference(
                         comment='implicit dist extra-url',
                         type=ExternalReferenceType.DISTRIBUTION,
-                        url=XsUri(f'{eiurl}/{simple_name}/'),
+                        url=XsUri(f'{eiurl}/{name_normalized}/'),
                         hashes=hashes))
         except InvalidUriException as error:
             self._logger.debug('failed ExternalReference/url URL for: %s', req.line, exc_info=error)
