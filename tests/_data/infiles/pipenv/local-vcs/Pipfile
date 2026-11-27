@@ -1,0 +1,7 @@
+[pipenv]
+sort_pipfile = true
+
+[packages]
+my-project = {git = "git+file:///home/user/projects/my-project", ref = "da59ad000d1405eaecd557175e29083a87d19f7c"}
+
+[dev-packages]

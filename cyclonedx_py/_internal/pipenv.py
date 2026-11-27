@@ -198,8 +198,15 @@ class PipenvBB(BomBuilder):
         return bom
 
     def __is_local(self, data: 'NameDict') -> bool:
-        if 'file' in data:
-            location: str = data['file']
+        # a VCS dependency might point to a local repository,
+        # e.g. `git+file:///home/user/projects/my-project`
+        # see https://github.com/CycloneDX/cyclonedx-python/issues/1152
+        vcs_source = self.__package_vcs(data)
+        location: str
+        if vcs_source is not None:
+            location = vcs_source[1]
+        elif 'file' in data:
+            location = data['file']
         elif 'path' in data:
             location = data['path']
         else:
